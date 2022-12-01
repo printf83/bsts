@@ -1,0 +1,29 @@
+{
+	"name": "bsts",
+	"version": "0.1.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"compile": "tsc && tsc --build tsconfig.es5.json"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/printf83/bsts.git"
+	},
+	"keywords": [
+		"bootstrap 5",
+		"api",
+		"sdk",
+		"typescript"
+	],
+	"author": "Hamzah A <printf83@gmail.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/printf83/bsts/issues"
+	},
+	"homepage": "https://github.com/printf83/bsts#readme",
+	"devDependencies": {
+		"typescript": "^4.9.3"
+	}
+}
