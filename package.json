@@ -25,5 +25,8 @@
 	"homepage": "https://github.com/printf83/bsts#readme",
 	"devDependencies": {
 		"typescript": "^4.9.3"
+	},
+	"dependencies": {
+		"@printf83/bsts": "^0.0.1"
 	}
 }
