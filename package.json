@@ -1,11 +1,21 @@
 {
-	"name": "bsts",
+	"name": "@printf83/bsts",
 	"version": "0.1.0",
-	"description": "",
-	"main": "index.js",
+	"description": "Bootstrap TS builder",
+	"main": "dist/index.js",
+	"module": "dist/index.m.js",
+	"unpkg": "dist/index.umd.js",
+	"types": "dist/index.d.ts",
+	"exports": {
+		"require": "./dist/index.js",
+		"default": "./dist/index.modern.js"
+	},
+	"files": [
+		"dist"
+	],
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"compile": "tsc && tsc --build tsconfig.es5.json"
+		"build": "rm -rf dist && microbundle --tsconfig tsconfig.json --no-sourcemap",
+		"dev": "microbundle --watch --tsconfig tsconfig.json --no-sourcemap"
 	},
 	"repository": {
 		"type": "git",
@@ -25,8 +35,5 @@
 	"homepage": "https://github.com/printf83/bsts#readme",
 	"devDependencies": {
 		"typescript": "^4.9.3"
-	},
-	"dependencies": {
-		"@printf83/bsts": "^0.0.1"
 	}
 }

@@ -1,11 +1,16 @@
 {
   "compilerOptions": {
-    "module": "ES6",
-    "target": "ES5",
-    "lib": ["ES2020","DOM"],
+    "module": "commonjs",
     "declaration": true,
-    "outDir": "./dist/lib/es6",
-    "moduleResolution": "node"
+    "removeComments": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": false,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "test", "lib", "**/*spec.ts"]
 }
+
