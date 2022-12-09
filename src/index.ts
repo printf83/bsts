@@ -1,1 +1,2 @@
-import { pluck } from './array/pluck';
+import {msg}  from './test/msg';
+export default {msg}

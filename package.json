@@ -34,6 +34,7 @@
 	},
 	"homepage": "https://github.com/printf83/bsts#readme",
 	"devDependencies": {
+		"microbundle": "^0.15.1",
 		"typescript": "^4.9.3"
 	}
 }
