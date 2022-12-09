@@ -1,2 +1,2 @@
 import {msg}  from './test/msg';
-export default {msg}
+export = {msg}
