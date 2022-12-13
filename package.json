@@ -2,6 +2,22 @@
 	"name": "@printf83/bsts",
 	"version": "0.1.0",
 	"description": "Bootstrap TS builder",
+	"keywords": [
+		"bootstrap 5",
+		"api",
+		"sdk",
+		"typescript"
+	],
+	"author": "Hamzah A <printf83@gmail.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/printf83/bsts/issues"
+	},
+	"homepage": "https://github.com/printf83/bsts#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/printf83/bsts.git"
+	},
 	"main": "dist/index.js",
 	"module": "dist/index.m.js",
 	"unpkg": "dist/index.umd.js",
@@ -18,22 +34,6 @@
 		"build": "rm -rf dist && microbundle --tsconfig tsconfig.json --no-sourcemap",
 		"dev": "microbundle --watch --tsconfig tsconfig.json --no-sourcemap"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/printf83/bsts.git"
-	},
-	"keywords": [
-		"bootstrap 5",
-		"api",
-		"sdk",
-		"typescript"
-	],
-	"author": "Hamzah A <printf83@gmail.com>",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/printf83/bsts/issues"
-	},
-	"homepage": "https://github.com/printf83/bsts#readme",
 	"devDependencies": {
 		"microbundle": "^0.15.1",
 		"typescript": "^4.9.3"
