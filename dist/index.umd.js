@@ -1,1 +1,0 @@
-!function(e,o){"object"==typeof exports&&"undefined"!=typeof module?module.exports=o():"function"==typeof define&&define.amd?define(o):(e||self).bsts=o()}(this,function(){return{msg:function(e){console.log("msg : "+e)},msg2:function(e){console.log("msg2 : "+e)}}});
