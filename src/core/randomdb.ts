@@ -34,7 +34,7 @@ export function randomdb<T>(name:string, db:[T]):T {
 		rdb[name].x = 0;
 		return randomdb(name, db);
 	} else {
-		rdb[name].x = rdb[name].x + 1;
+		rdb[name].x += 1;
 
 		let x = rdb[name].x - 1;
 		let i = rdb[name].i[x];
