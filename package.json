@@ -18,20 +18,20 @@
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts.git"
 	},
-	"main": "dist/index.js",
-	"module": "dist/index.m.js",
-	"unpkg": "dist/index.umd.js",
-	"types": "dist/index.d.ts",
+	"main": "lib/index.js",
+	"module": "lib/index.m.js",
+	"unpkg": "lib/index.umd.js",
+	"types": "lib/index.d.ts",
 	"exports": {
-		"require": "./dist/index.js",
-		"default": "./dist/index.js"
+		"require": "./lib/index.js",
+		"default": "./lib/index.js"
 	},
 	"files": [
-		"dist"
+		"lib"
 	],
 	"scripts": {
-		"build-win": "rmdir /S /Q dist && microbundle --tsconfig tsconfig.json --no-sourcemap",
-		"build": "rm -rf dist && microbundle --tsconfig tsconfig.json --no-sourcemap",
+		"build-win": "rmdir /S /Q lib && microbundle --tsconfig tsconfig.json --no-sourcemap",
+		"build": "rm -rf lib && microbundle --tsconfig tsconfig.json --no-sourcemap",
 		"dev": "microbundle --watch --tsconfig tsconfig.json --no-sourcemap"
 	},
 	"devDependencies": {
