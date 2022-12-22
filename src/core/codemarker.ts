@@ -1,4 +1,4 @@
-export function codemarker(container: HTMLElement): any {
+export const codemarker = (container: HTMLElement): void => {
 	let com = container.getElementsByClassName("com");
 	if (com && com.length > 0) {
 		Array.prototype.forEach.call(com, (i:HTMLElement) => {

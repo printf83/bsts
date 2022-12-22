@@ -5,7 +5,7 @@ export const cookie = {
 		expDate.setTime(expDate.getTime() + expiredDays * 24 * 60 * 60 * 1000);
         document.cookie = `${name}=${value};expires=${expDate.toUTCString()};samesite=strict;path=/`
 	},
-	get: (name:string):string => {
+	get: (name:string):string|null => {
         name = `${name}=`;
 		let decodedCookie = decodeURIComponent(document.cookie);
         let cookieString = decodedCookie.split(";");

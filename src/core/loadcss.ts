@@ -1,12 +1,8 @@
 import { UUID } from "./uuid.js";
 import { detachEventListener } from "./detachEventListener.js";
 
-export function loadcss(url: string, callback?: Function) {
-	// load me some stylesheet
-	let body = document.getElementsByTagName("body")[0];
-
-	// body.style.display = "none";
-
+export const loadcss = (url: string, callback?: Function): void => {
+	
 	let head = document.getElementsByTagName("head")[0];
 	let link = document.createElement("link");
 	let id = UUID();
