@@ -1,4 +1,4 @@
-export function extend(out:any):any {
+export function extend(out:object):object {
 	out = out || {};
 
 	for (let i = 1; i < arguments.length; i++) {

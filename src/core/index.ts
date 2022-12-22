@@ -24,5 +24,8 @@ export const core = {
     isColorDark,
     loadCSS,
     num2En,
-    num2EnTh, randomDB, rnd, setting, shuffleArray, UUID
+    num2EnTh,
+    randomDB, rnd,
+    setting,
+    shuffleArray, UUID
 }
