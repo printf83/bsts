@@ -1,5 +1,5 @@
 import { cookie } from "./cookie.js";
-import { loadcss } from "./loadcss.js";
+import { loadCSS } from "./loadcss.js";
 
 export interface IIconFn {
     (color:string, weight:string): {
@@ -108,7 +108,7 @@ export const setting = {
             let url = value? `https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.2.2/${value}/bootstrap.min.css`
                 : `https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.2/css/bootstrap.min.css`
             
-			loadcss(
+			loadCSS(
 				url,
 				() => {
 					if (value) {

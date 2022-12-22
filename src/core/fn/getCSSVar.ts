@@ -1,4 +1,4 @@
-export const getcssvar = (name:string) :string | null => {
+export const getCSSVar = (name:string) :string | null => {
 	let style = getComputedStyle(document.body);
 	let bs_rgb = style.getPropertyValue(`--bs-${name}-rgb`);
 	if (bs_rgb) {

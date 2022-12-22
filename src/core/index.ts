@@ -1,16 +1,28 @@
-import { capitalize } from "./capitalize.js";
-import { codemarker } from "./codemarker.js";
-import { cookie } from "./cookie.js";
-import { detachEventListener } from "./detachEventListener.js";
-import { getcssvar } from "./getcssvar.js";
-import { isdarkcolor } from "./isdarkcolor.js";
-import { loadcss } from "./loadcss.js";
-import { num2En } from "./num2En.js";
-import { num2EnTh } from "./num2EnTh.js";
-import { randomdb } from "./randomdb.js";
-import { rnd } from "./rnd.js";
-import { setting } from "./setting.js";
-import { shufflearray } from "./shufflearray.js";
-import { UUID } from "./uuid.js";
+import { capitalize } from "./fn/capitalize.js";
+import { codeMarker } from "./fn/codeMarker.js";
+import { cookie } from "./fn/cookie.js";
+import { detachEventListener } from "./fn/detachEventListener.js";
+import { getBaseIcon } from "./fn/getBaseIcon.js";
+import { getCSSVar } from "./fn/getCSSVar.js";
+import { isColorDark } from "./fn/isColorDark.js";
+import { loadCSS } from "./fn/loadCSS.js";
+import { num2En } from "./fn/num2En.js";
+import { num2EnTh } from "./fn/num2EnTh.js";
+import { randomDB } from "./fn/randomDB.js";
+import { rnd } from "./fn/rnd.js";
+import { setting } from "./fn/setting.js";
+import { shuffleArray } from "./fn/shuffleArray.js";
+import { UUID } from "./fn/uuid.js";
 
-export const core = {capitalize,codemarker,cookie,detachEventListener,getcssvar,isdarkcolor,loadcss,num2En,num2EnTh,randomdb,rnd,setting,shufflearray,UUID}
+export const core = {
+    capitalize,
+    codeMarker,
+    cookie,
+    detachEventListener,
+    getBaseIcon,
+    getCSSVar,
+    isColorDark,
+    loadCSS,
+    num2En,
+    num2EnTh, randomDB, rnd, setting, shuffleArray, UUID
+}

@@ -1,4 +1,4 @@
-export const isdarkcolor =(color: string):boolean => {
+export const isColorDark =(color: string):boolean => {
     if (!color)    {
         return false;
     }
