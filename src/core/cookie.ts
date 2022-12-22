@@ -1,12 +1,7 @@
 export const cookie = {
 	set: (name:string, value:string, expiredDays:number=7):void => {
-		
-
-		if (!value) {
-			expiredDays = -1;
-		}
-
-        let expDate = new Date();
+		let expDate = new Date();
+		expiredDays = !value ? -1 : expiredDays;        
 		expDate.setTime(expDate.getTime() + expiredDays * 24 * 60 * 60 * 1000);
         document.cookie = `${name}=${value};expires=${expDate.toUTCString()};samesite=strict;path=/`
 	},

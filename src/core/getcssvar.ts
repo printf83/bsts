@@ -1,12 +1,12 @@
-export function getcssvar  (name:string)  {
+export function getcssvar  (name:string) :string | null {
 	let style = getComputedStyle(document.body);
-	let result_1 = style.getPropertyValue(`--bs-${name}-rgb`);
-	if (result_1) {
-		return `rgb(${result_1})`;
+	let bs_rgb = style.getPropertyValue(`--bs-${name}-rgb`);
+	if (bs_rgb) {
+		return `rgb(${bs_rgb})`;
 	} else {
-		let result_2 = style.getPropertyValue(`--bs-${name}`);
-		if (result_2) {
-			return result_2;
+		let bs_normal = style.getPropertyValue(`--bs-${name}`);
+		if (bs_normal) {
+			return bs_normal;
 		} else {
 			console.error(`Css var --bs-${name} or --bs-${name}-rgb not found`);
 			return null;

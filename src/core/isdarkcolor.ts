@@ -23,7 +23,7 @@ export function isdarkcolor (color: string):boolean {
     }
 
     // from : https://stackoverflow.com/questions/12043187/how-to-check-if-hex-color-is-too-black
-    var luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    let luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
 
     if (luma < 48) {
         return true;

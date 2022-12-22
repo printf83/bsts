@@ -2,7 +2,7 @@ import { shufflearray } from "./shufflearray.js";
 
 const rdb: object = {};
 
-export function randomdb<T>(name:string, db:[T]):T {
+export function randomdb<T>(name:string, db:T[]):T {
 	let db_length = db.length;
 
 	if (!rdb[name]) {
