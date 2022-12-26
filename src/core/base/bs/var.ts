@@ -244,78 +244,26 @@ const decorder = {
 
 	display: { format: "d-$1", value: display },
 	print: { format: "d-print-$1", value: print },
-	container: {
-		format: "container-$1",
-		formatTrue: "container",
-		value: container,
-	},
+	container: {format: "container-$1",formatTrue: "container",value: container},
 
-	flex: {
-		format: "flex-$1",
-		value: flex,
-	},
-
-	float: {
-		format: "float-$1",
-		value: float,
-	},
-
-	order: {
-		format: "order-$1",
-		value: order,
-	},
-
-	offset: {
-		format: "offset-$1",
-		value: offset,
-	},
-
-	alignContent: {
-		format: "align-content-$1",
-		value: alignContent,
-	},
-
-	justifyContent: {
-		format: "justify-content-$1",
-		value: justifyContent,
-	},
-
-	alignItem: {
-		format: "align-items-$1",
-		value: alignItem,
-	},
-	alignSelf: {
-		format: "align-self-$1",
-		value: alignSelf,
-	},
-
-	visible: {
-		formatTrue: "visible",
-		formatFalse: "invisible",
-		value: visible
-	},
-	textWrap: {
-		formatTrue: "text-wrap",
-		formatFalse: "text-nowrap",
-		value: textWrap,
-	},
-	fontItalic: {
-		formatTrue: "fst-italic",
-		formatFalse: "fst-normal",
-		value: fontItalic,
-	},
-	bgGradient: {
-		formatTrue: "bg-gradient",
-		value: bgGradient,
-	},
-	wordBreak: {
-		formatTrue: "text-break",
-		value: wordBreak
-	},
+	flex: {format: "flex-$1",value: flex},
+	float: {format: "float-$1",value: float},
+	order: {format: "order-$1",value: order},
+	offset: {format: "offset-$1",value: offset},
+	alignContent: {format: "align-content-$1",value: alignContent},
+	justifyContent: {format: "justify-content-$1",value: justifyContent},
+	alignItem: {format: "align-items-$1",value: alignItem},
+	alignSelf: {format: "align-self-$1",value: alignSelf},
+	visible: {formatTrue: "visible",formatFalse: "invisible",value: visible},
+	textWrap: {formatTrue: "text-wrap",formatFalse: "text-nowrap",value: textWrap},
+	fontItalic: {formatTrue: "fst-italic",formatFalse: "fst-normal",value: fontItalic},
+	bgGradient: {formatTrue: "bg-gradient",	value: bgGradient},
+	wordBreak: {formatTrue: "text-break",value: wordBreak},
 	monospace: { formatTrue: "font-monospace", value: monospace},
 	placeholder: {formatTrue: "placeholder", value: placeholder},
     row: { formatTrue: "row", formatFalse: null, value: row },
 	col: {format: "col-$1", formatTrue: "col", value: col},
 	rowCol: {format: "row-cols-$1",value: rowCol},
 }
-export { };
+
+export { spacer };

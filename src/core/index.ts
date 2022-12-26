@@ -13,6 +13,7 @@ import { rnd } from "./fn/rnd.js";
 import { setting } from "./fn/setting.js";
 import { shuffleArray } from "./fn/shuffleArray.js";
 import { UUID } from "./fn/uuid.js";
+import { spacer } from "./base/bs/var.js";
 
 export const core = {
     capitalize,
@@ -25,7 +26,10 @@ export const core = {
     loadCSS,
     num2En,
     num2EnTh,
-    randomDB, rnd,
+    randomDB,
+    rnd,
     setting,
-    shuffleArray, UUID
+    shuffleArray,
+    UUID,
+    spacer
 }
