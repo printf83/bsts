@@ -38,7 +38,7 @@ let monospace: true;
 let placeholder: true;
 let row: boolean;
 let col: true|typeof rowCol;
-
+	
 let userSelect: "all" | "auto" | "none";
 let pointerEvent: "auto" | "none";
 let position: "static" | "relative";
@@ -115,155 +115,87 @@ let gutterY: typeof spacer;
 let print: typeof display;
 let container: true | "xs" | typeof baseViewPort | "fluid";
 
-const decorder = {
-    userSelect: { format: "user-select-$1",value: userSelect },
-    pointerEvent: { format: "pe-$1",value: pointerEvent },
-    position: { format: "position-$1", value:  position},
-	overflow: { format: "overflow-$1", value: overflow },
-
-	textAlign: { format: "text-$1", value: textAlign },
-	verticalAlign: { format: "align-$1", value: verticalAlign },
-
-	opacity: { format: "opacity-$1", value: opacity },
-	bgOpacity: { format: "bg-opacity-$1", value: bgOpacity },
-	textOpacity: { format: "text-opacity-$1", value: textOpacity },
-
-	btnColor: { format: "btn-$1", value: color },
-	btnOutlineColor: { format: "btn-outline-$1", value: color },
-	alertColor: { format: "alert-$1", value: color },
-
-	textBgColor: { format: "text-bg-$1", value: color },
-	textColor: { format: "text-$1", value: color },
-	linkColor: { format: "link-$1", value: color },
-	bgColor: { format: "bg-$1", value: color },
-
-	textTransform: { format: "text-$1", value: textTransform },
-	textDecoration: { format: "text-decoration-$1", value: textDecoration },
-	lineHeight: { format: "lh-$1", value: lineHeight },
-
-	fontSize: { format: "fs-$1", value: fontSize },
-	fontWeight: { format: "fw-$1", value: fontWeight },
-
-	top: { format: "top-$1", value: top },
-	bottom: { format: "bottom-$1", value: bottom },
-	start: { format: "start-$1", value: start },
-	end: { format: "end-$1", value: end },
-	tMiddle: { format: "translate-middle-$1", formatTrue: "translate-middle", value: tMiddle },
-
-    height: { format: "h-$1", value: height},
-	width: { format: "w-$1", value: width },
-	maxHeight: { format: "mh-$1", value: maxHeight },
-	maxWidth: { format: "mw-$1", value: maxWidth },
-	minViewHeight: { format: "min-vh-$1", value: minViewHeight },
-	minViewWidth: { format: "min-vw-$1", value: minViewWidth },
-	viewHeight: { format: "vh-$1", value: viewHeight },
-    viewWeight: { format: "vw-$1", value: viewWidth },
-    
-    placeholderAnimation: { format: "placeholder-$1", value: placeholderAnimation},
-    placeholderWeight: { format: "placeholder-$1", formatValue: "placeholder $1", value: placeholderWeight },
-    
-    shadow: {
-		format: "shadow-$1",
-		formatTrue: "shadow",
-		formatFalse: "shadow-none",
-		value: shadow,
-	},
-
-	border: {
-		format: "border-$1",
-		formatTrue: "border",
-		formatFalse: "border-0",
-		value: border,
-	},
-
-	borderNone: {
-		format: "border border-$1-0",
-		formatTrue: "border-0",
-		value: borderNone,
-	},
-
-	borderColor: {
-		format: "border-$1",
-		formatValue: "border",
-		value: borderColor,
-	},
-
-	borderOpacity: {
-		format: "border-opacity-$1",
-		formatValue: "border",
-		value: borderOpacity,
-	},
-
-	borderWidth: {
-		format: "border-$1",
-		formatValue: "border",
-		value: borderWidth,
-	},
-
-	rounded: {
-		format: "rounded-$1",
-		formatTrue: "rounded",
-		formatFalse: "rounded-0",
-		value: rounded,
-	},
-
-	roundedNone: {
-		format: "rounded-$1-0",
-		formatTrue: "rounded-0",
-		formatFalse: "rounded",
-		formatValue: "rounded",
-		value: roundedNone,
-	},
-
-	roundedSize: {
-		format: "rounded-$1",
-		formatValue: "rounded",
-		value: roundedSize,
-	},
-
-	padding: { format: "p-$1", value: padding },
-	paddingX: { format: "px-$1", value: paddingX },
-	paddingY: { format: "py-$1", value: paddingY },
-	paddingTop: { format: "pt-$1", value: paddingTop },
-	paddingBottom: { format: "pb-$1", value: paddingBottom },
-	paddingStart: { format: "ps-$1", value: paddingStart },
-	paddingEnd: { format: "pe-$1", value: paddingEnd },
-
-	margin: { format: "m-$1", value: margin },
-	marginX: { format: "mx-$1", value: marginX },
-	marginY: { format: "my-$1", value: marginY },
-	marginTop: { format: "mt-$1", value: marginTop },
-	marginBottom: { format: "mb-$1", value: marginBottom },
-	marginStart: { format: "ms-$1", value: marginStart },
-	marginEnd: { format: "me-$1", value: marginEnd },
-
-	gap: { format: "gap-$1", value: gap },
-	gutter: { format: "g-$1", value: gutter },
-	gutterX: { format: "gx-$1", value: gutterX },
-	gutterY: { format: "gy-$1", value: gutterY },
-
-	display: { format: "d-$1", value: display },
-	print: { format: "d-print-$1", value: print },
-	container: {format: "container-$1",formatTrue: "container",value: container},
-
-	flex: {format: "flex-$1",value: flex},
-	float: {format: "float-$1",value: float},
-	order: {format: "order-$1",value: order},
-	offset: {format: "offset-$1",value: offset},
-	alignContent: {format: "align-content-$1",value: alignContent},
-	justifyContent: {format: "justify-content-$1",value: justifyContent},
-	alignItem: {format: "align-items-$1",value: alignItem},
-	alignSelf: {format: "align-self-$1",value: alignSelf},
-	visible: {formatTrue: "visible",formatFalse: "invisible",value: visible},
-	textWrap: {formatTrue: "text-wrap",formatFalse: "text-nowrap",value: textWrap},
-	fontItalic: {formatTrue: "fst-italic",formatFalse: "fst-normal",value: fontItalic},
-	bgGradient: {formatTrue: "bg-gradient",	value: bgGradient},
-	wordBreak: {formatTrue: "text-break",value: wordBreak},
-	monospace: { formatTrue: "font-monospace", value: monospace},
-	placeholder: {formatTrue: "placeholder", value: placeholder},
-    row: { formatTrue: "row", formatFalse: null, value: row },
-	col: {format: "col-$1", formatTrue: "col", value: col},
-	rowCol: {format: "row-cols-$1",value: rowCol},
-}
-
-export { spacer };
+export type spacer = typeof spacer
+export type display = typeof display
+export type flex = typeof flex
+export type justifyContent = typeof justifyContent
+export type align = typeof align
+export type alignContent = typeof alignContent
+export type alignItem = typeof alignItem
+export type alignSelf = typeof alignSelf
+export type order = typeof order
+export type grid = typeof grid
+export type offset = typeof offset
+export type rowCol = typeof rowCol
+export type float = typeof float
+export type color = typeof color
+export type positionView = typeof positionView
+export type visible = typeof visible
+export type textWrap = typeof textWrap
+export type fontItalic = typeof fontItalic
+export type bgGradient = typeof bgGradient
+export type spawordBreakcer = typeof wordBreak
+export type monospace = typeof monospace
+export type placeholder = typeof placeholder
+export type row = typeof row
+export type col = typeof col
+export type userSelect = typeof userSelect
+export type pointerEvent = typeof pointerEvent
+export type position = typeof position
+export type overflow = typeof overflow
+export type textAlign = typeof textAlign
+export type verticalAlign = typeof verticalAlign
+export type opacity = typeof opacity
+export type bgOpacity = typeof bgOpacity
+export type textOpacity = typeof textOpacity
+export type textBgColor = typeof textBgColor
+export type textColor = typeof textColor
+export type bgColor = typeof bgColor
+export type textTransform = typeof textTransform
+export type textDecoration = typeof textDecoration
+export type lineHeight = typeof lineHeight
+export type fontSize = typeof fontSize
+export type fontWeight = typeof fontWeight
+export type top = typeof top
+export type bottom = typeof bottom
+export type start = typeof start
+export type end = typeof end
+export type tMiddle = typeof tMiddle
+export type height = typeof height
+export type width = typeof width
+export type maxHeight = typeof maxHeight
+export type maxWidth = typeof maxWidth
+export type minViewHeight = typeof minViewHeight
+export type minViewWidth = typeof minViewWidth
+export type viewHeight = typeof viewHeight
+export type viewWidth = typeof viewWidth
+export type placeholderAnimation = typeof placeholderAnimation
+export type placeholderWeight = typeof placeholderWeight
+export type shadow = typeof shadow
+export type borderNone = typeof borderNone
+export type border = typeof border
+export type borderColor = typeof borderColor
+export type borderOpacity = typeof borderOpacity
+export type borderWidth = typeof borderWidth
+export type roundedNone = typeof roundedNone
+export type rounded = typeof rounded
+export type padding = typeof padding
+export type paddingX = typeof paddingX
+export type paddingY = typeof paddingY
+export type paddingTop = typeof paddingTop
+export type paddingBottom = typeof paddingBottom
+export type paddingStart = typeof paddingStart
+export type paddingEnd = typeof paddingEnd
+export type margin = typeof margin
+export type marginX = typeof marginX
+export type marginY = typeof marginY
+export type marginTop = typeof marginTop
+export type marginBottom = typeof marginBottom
+export type marginStart = typeof marginStart
+export type marginEnd = typeof marginEnd
+export type gap = typeof gap
+export type gutter = typeof gutter
+export type gutterX = typeof gutterX
+export type gutterY = typeof gutterY
+export type print = typeof print
+export type container = typeof container
