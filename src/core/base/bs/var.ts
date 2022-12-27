@@ -1,201 +1,225 @@
-let base12: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-let base5: 0 | 1 | 2 | 3 | 4 | 5;
-let baseColumn: "auto" | typeof base5;
-let baseViewPort: "sm" | "md" | "lg" | "xl" | "xxl";
-let baseDisplay: "none"|"inline"|"inline-block"|"block"|"grid"|"table"|"table-cell"|"table-row"|"flex"|"inline-flex"
-let baseFlex: "row"|"row-reverse"|"column"|"column-reverse"|"wrap"|"wrap-reverse"|"nowrap"|"fill"|"shrink-0"|"shrink-1"|"grow-0"|"grow-1"
-let baseJustifyContent :"start"|"end"|"center"|"between"|"around"|"evenly"
-let baseAlign: "start" | "end" | "center" | "baseline" | "stretch";
-let baseAlignContent: "start" | "end" | "center" | "between" | "stretch";
-let baseOrder: "first" | typeof base12 | "last";
-let baseGrid: typeof base12;
-let baseRowCol: "auto" | typeof base12;
-let baseFloat: "start" | "end" | "none";
-let baseColor: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "light" | "dark" | "muted" | "white" | "black" | "transparent" | "link"
-let basePositionView: "start" | "center" | "end";
 
-let spacer: typeof baseColumn | `${typeof baseViewPort}-${typeof baseColumn}`;
-let display: typeof baseDisplay | `${typeof baseViewPort}-${typeof baseDisplay}`;
-let flex: typeof baseFlex | `${typeof baseViewPort}-${typeof baseFlex}`;
-let justifyContent: typeof baseJustifyContent | `${typeof baseViewPort}-${typeof baseJustifyContent}`;
-let align: typeof baseAlign | `${typeof baseViewPort}-${typeof baseAlign}`;
-let alignContent: typeof baseAlignContent | `${typeof baseViewPort}-${typeof baseAlignContent}`;
-let alignItem: typeof align;
-let alignSelf: typeof align;
-let order: typeof baseOrder | `${typeof baseViewPort}-${typeof baseOrder}`;
-let grid: typeof baseGrid | `${typeof baseViewPort}-${typeof baseGrid}`;
-let offset: typeof grid;
-let rowCol: typeof baseRowCol | `${typeof baseViewPort}-${typeof baseRowCol}`;
-let float: typeof baseFloat | `${typeof baseViewPort}-${typeof baseFloat}`;
-let color: typeof baseColor;
-let positionView: typeof basePositionView | `${typeof baseViewPort}-${typeof basePositionView}`;
-let visible: boolean;
-let textWrap: boolean;
-let fontItalic: boolean;
-let bgGradient: true;
-let wordBreak: true;
-let monospace: true;
-let placeholder: true;
-let row: boolean;
-let col: true|typeof rowCol;
-	
-let userSelect: "all" | "auto" | "none";
-let pointerEvent: "auto" | "none";
-let position: "static" | "relative";
-let overflow: "auto" | "hidden" | "scroll";
+type base12= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+type base5= 0 | 1 | 2 | 3 | 4 | 5;
+type baseColumn= "auto" |  base5;
+type baseViewPort = "sm" | "md" | "lg" | "xl" | "xxl";
+type baseDisplay= "none"|"inline"|"inline-block"|"block"|"grid"|"table"|"table-cell"|"table-row"|"flex"|"inline-flex"
+type baseFlex= "row"|"row-reverse"|"column"|"column-reverse"|"wrap"|"wrap-reverse"|"nowrap"|"fill"|"shrink-0"|"shrink-1"|"grow-0"|"grow-1"
+type baseJustifyContent ="start"|"end"|"center"|"between"|"around"|"evenly"
+type baseAlign= "start" | "end" | "center" | "baseline" | "stretch";
+type baseAlignContent= "start" | "end" | "center" | "between" | "stretch";
+type baseOrder= "first" |  base12 | "last";
+type baseGrid=  base12;
+type baseRowCol= "auto" |  base12;
+type baseFloat= "start" | "end" | "none";
+type baseColor= "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "light" | "dark" | "muted" | "white" | "black" | "transparent" | "link"
+type basePositionView= "start" | "center" | "end";
 
-let textAlign: typeof positionView;
-let verticalAlign: "baseline" | "top" | "middle" | "bottom" | "text-top" | "text-bottom";
+export namespace bs{
+    export type spacer = baseColumn | `${baseViewPort}-${baseColumn}`;
+    export type display=  baseDisplay | `${baseViewPort}-${baseDisplay}`;
+    export type flex= baseFlex | `${baseViewPort}-${baseFlex}`;
+    export type justifyContent= baseJustifyContent | `${baseViewPort}-${baseJustifyContent}`;
+    export type align= baseAlign | `${baseViewPort}-${baseAlign}`;
+    export type alignContent= baseAlignContent | `${baseViewPort}-${baseAlignContent}`;
+    export type alignItem= align;
+    export type alignSelf= align;
+    export type order= baseOrder | `${baseViewPort}-${baseOrder}`;
+    export type grid= baseGrid | `${baseViewPort}-${baseGrid}`;
+    export type offset= grid;
+    export type rowCol= baseRowCol | `${baseViewPort}-${baseRowCol}`;
+    export type float= baseFloat | `${baseViewPort}-${baseFloat}`;
+    export type color= baseColor;
+    export type positionView= basePositionView | `${baseViewPort}-${basePositionView}`;
+    export type visible= boolean;
+    export type textWrap= boolean;
+    export type fontItalic= boolean;
+    export type bgGradient= true;
+    export type wordBreak= true;
+    export type monospace= true;
+    export type placeholder= true;
+    export type row= boolean;
+    export type col= true|rowCol;
+        
+    export type userSelect= "all" | "auto" | "none";
+    export type pointerEvent= "auto" | "none";
+    export type position= "static" | "relative";
+    export type overflow= "auto" | "hidden" | "scroll";
 
-let opacity: 0 | 25 | 50 | 75 | 100;
-let bgOpacity: 10 | 25 | 50 | 75 | 100;
-let textOpacity: 25 | 50 | 75 | 100;
+    export type textAlign= positionView;
+    export type verticalAlign= "baseline" | "top" | "middle" | "bottom" | "text-top" | "text-bottom";
 
-let textBgColor: typeof color;
-let textColor: typeof color;
-let bgColor: typeof color;
+    export type opacity= 0 | 25 | 50 | 75 | 100;
+    export type bgOpacity= 10 | 25 | 50 | 75 | 100;
+    export type textOpacity= 25 | 50 | 75 | 100;
 
-let textTransform: "lowercase" | "uppercase" | "capitalize";
-let textDecoration: "underline" | "line-through" | "none";
-let lineHeight: 1 | "sm" | "base" | "lg";
+    export type textBgColor= color;
+    export type textColor= color;
+    export type bgColor= color;
 
-let fontSize: 1 | 2 | 3 | 4 | 5 | 6;
-let fontWeight: "bold" | "bolder" | "normal" | "light" | "lighter";
+    export type textTransform= "lowercase" | "uppercase" | "capitalize";
+    export type textDecoration= "underline" | "line-through" | "none";
+    export type lineHeight= 1 | "sm" | "base" | "lg";
 
-let top: 0 | 50 | 100;
-let bottom: typeof top;
-let start: typeof top;
-let end: typeof top;
-let tMiddle: true | "x" | "y";
+    export type fontSize= 1 | 2 | 3 | 4 | 5 | 6;
+    export type fontWeight= "bold" | "bolder" | "normal" | "light" | "lighter";
 
-let height: "auto" | 25 | 50 | 75 | 100;
-let width: typeof height;
-let maxHeight: 100;
-let maxWidth: 100;
-let minViewHeight: 100;
-let minViewWidth: 100;
-let viewHeight: 100;
-let viewWidth: 100;
+    export type top= 0 | 50 | 100;
+    export type bottom= top;
+    export type start= top;
+    export type end= top;
+    export type tMiddle= true | "x" | "y";
 
-let placeholderAnimation: "glow" | "wave";
-let placeholderWeight: "lg" | "sm" | "xs";
+    export type height= "auto" | 25 | 50 | 75 | 100;
+    export type width= height;
+    export type maxHeight= 100;
+    export type maxWidth= 100;
+    export type minViewHeight= 100;
+    export type minViewWidth= 100;
+    export type viewHeight= 100;
+    export type viewWidth= 100;
 
-let shadow: true | false | "none" | "sm" | "lg" | "inset";
-let borderNone: true | "top" | "end" | "bottom" | "start";
-let border: typeof borderNone | false;
+    export type placeholderAnimation= "glow" | "wave";
+    export type placeholderWeight= "lg" | "sm" | "xs";
 
-let borderColor: typeof color;
-let borderOpacity: 10 | 25 | 50 | 75;
-let borderWidth: typeof base5;
-let roundedNone:true | false | "top" | "end" | "bottom" | "start"
-let rounded: typeof roundedNone | "circle" | "pill";
-let roundedSize: typeof base5;
+    export type shadow= true | false | "none" | "sm" | "lg" | "inset";
+    export type borderNone= true | "top" | "end" | "bottom" | "start";
+    export type border= borderNone | false;
 
-let padding: typeof spacer;
-let paddingX: typeof spacer;
-let paddingY: typeof spacer;
-let paddingTop: typeof spacer;
-let paddingBottom: typeof spacer;
-let paddingStart: typeof spacer;
-let paddingEnd: typeof spacer;
+    export type borderColor= color;
+    export type borderOpacity= 10 | 25 | 50 | 75;
+    export type borderWidth= base5;
+    export type roundedNone=true | false | "top" | "end" | "bottom" | "start"
+    export type rounded= roundedNone | "circle" | "pill";
+    export type roundedSize= base5;
 
-let margin: typeof spacer;
-let marginX: typeof spacer;
-let marginY: typeof spacer;
-let marginTop: typeof spacer;
-let marginBottom: typeof spacer;
-let marginStart: typeof spacer;
-let marginEnd: typeof spacer;
+    export type padding= spacer;
+    export type paddingX= spacer;
+    export type paddingY= spacer;
+    export type paddingTop= spacer;
+    export type paddingBottom= spacer;
+    export type paddingStart= spacer;
+    export type paddingEnd= spacer;
 
-let gap: typeof spacer;
-let gutter: typeof spacer;
-let gutterX: typeof spacer;
-let gutterY: typeof spacer;
+    export type margin= spacer;
+    export type marginX= spacer;
+    export type marginY= spacer;
+    export type marginTop= spacer;
+    export type marginBottom= spacer;
+    export type marginStart= spacer;
+    export type marginEnd= spacer;
 
-let print: typeof display;
-let container: true | "xs" | typeof baseViewPort | "fluid";
+    export type gap= spacer;
+    export type gutter= spacer;
+    export type gutterX= spacer;
+    export type gutterY= spacer;
 
-export type spacer = typeof spacer
-export type display = typeof display
-export type flex = typeof flex
-export type justifyContent = typeof justifyContent
-export type align = typeof align
-export type alignContent = typeof alignContent
-export type alignItem = typeof alignItem
-export type alignSelf = typeof alignSelf
-export type order = typeof order
-export type grid = typeof grid
-export type offset = typeof offset
-export type rowCol = typeof rowCol
-export type float = typeof float
-export type color = typeof color
-export type positionView = typeof positionView
-export type visible = typeof visible
-export type textWrap = typeof textWrap
-export type fontItalic = typeof fontItalic
-export type bgGradient = typeof bgGradient
-export type spawordBreakcer = typeof wordBreak
-export type monospace = typeof monospace
-export type placeholder = typeof placeholder
-export type row = typeof row
-export type col = typeof col
-export type userSelect = typeof userSelect
-export type pointerEvent = typeof pointerEvent
-export type position = typeof position
-export type overflow = typeof overflow
-export type textAlign = typeof textAlign
-export type verticalAlign = typeof verticalAlign
-export type opacity = typeof opacity
-export type bgOpacity = typeof bgOpacity
-export type textOpacity = typeof textOpacity
-export type textBgColor = typeof textBgColor
-export type textColor = typeof textColor
-export type bgColor = typeof bgColor
-export type textTransform = typeof textTransform
-export type textDecoration = typeof textDecoration
-export type lineHeight = typeof lineHeight
-export type fontSize = typeof fontSize
-export type fontWeight = typeof fontWeight
-export type top = typeof top
-export type bottom = typeof bottom
-export type start = typeof start
-export type end = typeof end
-export type tMiddle = typeof tMiddle
-export type height = typeof height
-export type width = typeof width
-export type maxHeight = typeof maxHeight
-export type maxWidth = typeof maxWidth
-export type minViewHeight = typeof minViewHeight
-export type minViewWidth = typeof minViewWidth
-export type viewHeight = typeof viewHeight
-export type viewWidth = typeof viewWidth
-export type placeholderAnimation = typeof placeholderAnimation
-export type placeholderWeight = typeof placeholderWeight
-export type shadow = typeof shadow
-export type borderNone = typeof borderNone
-export type border = typeof border
-export type borderColor = typeof borderColor
-export type borderOpacity = typeof borderOpacity
-export type borderWidth = typeof borderWidth
-export type roundedNone = typeof roundedNone
-export type rounded = typeof rounded
-export type padding = typeof padding
-export type paddingX = typeof paddingX
-export type paddingY = typeof paddingY
-export type paddingTop = typeof paddingTop
-export type paddingBottom = typeof paddingBottom
-export type paddingStart = typeof paddingStart
-export type paddingEnd = typeof paddingEnd
-export type margin = typeof margin
-export type marginX = typeof marginX
-export type marginY = typeof marginY
-export type marginTop = typeof marginTop
-export type marginBottom = typeof marginBottom
-export type marginStart = typeof marginStart
-export type marginEnd = typeof marginEnd
-export type gap = typeof gap
-export type gutter = typeof gutter
-export type gutterX = typeof gutterX
-export type gutterY = typeof gutterY
-export type print = typeof print
-export type container = typeof container
+    export type print= display;
+    export type container= true | "xs" | baseViewPort | "fluid";
+}
+
+export const db = {
+        
+        userSelect: { format: "user-select-$1" },
+        pointerEvent: { format: "pe-$1" },
+        position: { format: "position-$1"},
+        overflow: { format: "overflow-$1" },
+
+        textAlign: { format: "text-$1" },
+        verticalAlign: { format: "align-$1" },
+
+        opacity: { format: "opacity-$1" },
+        bgOpacity: { format: "bg-opacity-$1"},
+        textOpacity: { format: "text-opacity-$1"},
+
+        btnColor: { format: "btn-$1"},
+        btnOutlineColor: { format: "btn-outline-$1"},
+        alertColor: { format: "alert-$1"},
+
+        textBgColor: { format: "text-bg-$1"},
+        textColor: { format: "text-$1"},
+        linkColor: { format: "link-$1"},
+        bgColor: { format: "bg-$1"},
+
+        textTransform: { format: "text-$1"},
+        textDecoration: { format: "text-decoration-$1"},
+        lineHeight: { format: "lh-$1"},
+
+        fontSize: { format: "fs-$1"},
+        fontWeight: { format: "fw-$1"},
+
+        top: { format: "top-$1"},
+        bottom: { format: "bottom-$1"},
+        start: { format: "start-$1"},
+        end: { format: "end-$1"},
+        tMiddle: { format: "translate-middle-$1", formatTrue: "translate-middle"},
+
+        height: { format: "h-$1"},
+        width: { format: "w-$1"},
+        maxHeight: { format: "mh-$1"},
+        maxWidth: { format: "mw-$1"},
+        minViewHeight: { format: "min-vh-$1"},
+        minViewWidth: { format: "min-vw-$1"},
+        viewHeight: { format: "vh-$1"},
+        viewWeight: { format: "vw-$1"},
+        
+        placeholderAnimation: { format: "placeholder-$1"},
+        placeholderWeight: { format: "placeholder-$1", formatValue: "placeholder $1"},
+        
+        shadow: { format: "shadow-$1", formatTrue: "shadow", formatFalse: "shadow-none" },
+
+        border: { format: "border-$1", formatTrue: "border", formatFalse: "border-0" },
+        borderNone: { format: "border border-$1-0", formatTrue: "border-0" },
+        borderColor: { format: "border-$1", formatValue: "border" },
+        borderOpacity: { format: "border-opacity-$1", formatValue: "border" },
+        borderWidth: { format: "border-$1", formatValue: "border" },
+
+        rounded: { format: "rounded-$1", formatTrue: "rounded", formatFalse: "rounded-0" },
+        roundedNone: { format: "rounded-$1-0", formatTrue: "rounded-0", formatFalse: "rounded", formatValue: "rounded" },
+        roundedSize: { format: "rounded-$1", formatValue: "rounded" },
+
+        padding: { format: "p-$1"},
+        paddingX: { format: "px-$1"},
+        paddingY: { format: "py-$1"},
+        paddingTop: { format: "pt-$1"},
+        paddingBottom: { format: "pb-$1"},
+        paddingStart: { format: "ps-$1"},
+        paddingEnd: { format: "pe-$1"},
+
+        margin: { format: "m-$1"},
+        marginX: { format: "mx-$1"},
+        marginY: { format: "my-$1"},
+        marginTop: { format: "mt-$1"},
+        marginBottom: { format: "mb-$1"},
+        marginStart: { format: "ms-$1"},
+        marginEnd: { format: "me-$1"},
+
+        gap: { format: "gap-$1"},
+        gutter: { format: "g-$1"},
+        gutterX: { format: "gx-$1"},
+        gutterY: { format: "gy-$1"},
+
+        display: { format: "d-$1"},
+        print: { format: "d-print-$1"},
+        container: {format: "container-$1",formatTrue: "container"},
+
+        flex: {format: "flex-$1"},
+        float: {format: "float-$1"},
+        order: {format: "order-$1"},
+        offset: {format: "offset-$1"},
+        alignContent: {format: "align-content-$1"},
+        justifyContent: {format: "justify-content-$1"},
+        alignItem: {format: "align-items-$1"},
+        alignSelf: {format: "align-self-$1"},
+        visible: {formatTrue: "visible",formatFalse: "invisible"},
+        textWrap: {formatTrue: "text-wrap",formatFalse: "text-nowrap"},
+        fontItalic: {formatTrue: "fst-italic",formatFalse: "fst-normal"},
+        bgGradient: {formatTrue: "bg-gradient"},
+        wordBreak: {formatTrue: "text-break"},
+        monospace: { formatTrue: "font-monospace"},
+        placeholder: {formatTrue: "placeholder"},
+        row: { formatTrue: "row", formatFalse: null},
+        col: {format: "col-$1", formatTrue: "col"},
+        rowCol: {format: "row-cols-$1"},
+}
+
