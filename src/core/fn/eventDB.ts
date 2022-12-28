@@ -2,7 +2,7 @@ import { UUID } from "./uuid.js";
 
 const _db = {}
 
-export const eventdb = {
+export const eventDB = {
 	create: (fn:Function) => {
 		let id = UUID();
 		_db[id] = fn;
