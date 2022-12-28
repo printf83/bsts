@@ -1,18 +1,18 @@
-import { attachHref } from './attachHref';
-import { attachAria } from './attachAria';
-import { attachData } from './attachData';
-import { attachBoolean } from './boolean/index';
-import { attachDisabled } from './attachDisabled';
-import { attachActive } from './attachActive';
+import { attachHref } from './attachHref.js';
+import { attachAria } from './attachAria.js';
+import { attachData } from './attachData.js';
+import { attachBoolean } from './attachBoolean.js';
+import { attachDisabled } from './attachDisabled.js';
+import { attachActive } from './attachActive.js';
 import { setting } from '../fn/setting.js';
-import { IBase, IAttachResult } from './base.interface';
-import { attachBootstrap } from './bs/index.js';
+import { IBase, IAttachResult } from './base.interface.js';
+import { attachBootstrap } from './attachBootstrap.js';
 import { attachEvent } from './attachEvent.js';
-import { attachStyle } from './style/index.js';
+import { attachStyle } from './attachStyle.js';
 import { attachManualStyle } from './attachManualStyle.js';
 import { attachClass } from './attachClass.js';
 
-const notAttr = ["tag", "elem"];
+
 const cleanupAttr = (key: string, elem: HTMLElement, opt: IBase): IAttachResult => {
     if ((opt[key] === undefined || opt[key]) === null) {
 		if (setting.DEBUG) console.log(`${key}:${opt[key]} is null or undefined. Delete it`);
@@ -24,7 +24,22 @@ const cleanupAttr = (key: string, elem: HTMLElement, opt: IBase): IAttachResult 
 	return { opt, elem };
 }
 
-const fnAttach = {
+const notAttr = ["tag", "elem"];
+const attrDB = [
+	"cleanupAttr",
+    "attachActive",
+    "attachDisabled",
+	"attachBoolean",
+	"attachData",
+	"attachAria",
+	"attachBootstrap",
+	"attachEvent",
+	"attachStyle",
+	"attachManualStyle",
+	"attachClass",
+	"attachHref",
+];
+const fnAttr = {
 	cleanupAttr,
     attachActive,
     attachDisabled,
@@ -38,3 +53,5 @@ const fnAttach = {
 	attachClass,
 	attachHref,
 };
+
+

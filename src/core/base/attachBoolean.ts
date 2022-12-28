@@ -1,6 +1,36 @@
-import { IBase, IAttachResult } from './../base.interface';
 import { setting } from "src/core/fn/setting.js";
-import { db } from "./var.js";
+import { IAttachResult, IBase } from "./base.interface.js";
+
+const db = [
+	"allowfullscreen",
+	"allowpaymentrequest",
+	"async",
+	"autofocus",
+	"autoplay",
+	"checked",
+	"indeterminate",
+	"controls",
+	"default",
+	"defer",
+	"disabled",
+	"formnovalidate",
+	"novalidate",
+	"noValidate",
+	"hidden",
+	"ismap",
+	"itemscope",
+	"loop",
+	"multiple",
+	"muted",
+	"nomodule",
+	"open",
+	"playsinline",
+	"readOnly",
+	"required",
+	"reversed",
+	"selected",
+	"truespeed",
+];
 
 export const attachBoolean = (key:string, elem:HTMLElement, opt:IBase):IAttachResult => {
 	if (db.indexOf(key) > -1) {

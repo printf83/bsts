@@ -1,4 +1,8 @@
-export const db = [
+import { IAttachResult, IBase } from "./base.interface.js";
+import { camel2Dash } from 'src/core/fn/camel2Dash.js';
+import { dash2Camel } from 'src/core/fn/dash2Camel.js';
+
+const db = [
 	"alignContent",
 	"alignItem",
 	"alignSelf",
@@ -187,3 +191,44 @@ export const db = [
 	"widows",
 	"zIndex",
 ];
+
+let allowProp = [];
+
+const allow =(key:string):string|null=> {
+	if (allowProp.length === 0) {
+		let t = db;
+		allowProp = [
+			...t,
+			...t
+				.map((i) => {
+					let j = camel2Dash(i);
+					if (j !== i) {
+						return j;
+					}
+				})
+				.filter(Boolean),
+		];
+	}
+
+	if (allowProp.indexOf(key) > -1) {
+		let k = dash2Camel(key);
+		if (k !== key) {
+			return k;
+		} else {
+			return key;
+		}
+	}
+
+	return null;
+}
+
+export const attachStyle = (key:string, elem:HTMLElement, opt:IBase):IAttachResult=> {
+    let a_key = allow(key);
+    
+	if (a_key !== null) {
+		elem.style[a_key] = opt[key];
+		delete opt[key];
+	}
+
+	return { opt, elem };
+}
