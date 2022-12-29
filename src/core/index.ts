@@ -1,4 +1,3 @@
-import { build, appendChild, prependChild, replaceChild, html, replaceWith } from './fn/builder';
 import { isTypeOf } from './fn/isTypeOf';
 import { attachAttr } from './base/index';
 import { elemInfo } from './fn/elemInfo';
@@ -37,53 +36,53 @@ import { shuffleArray } from "./fn/shuffleArray.js";
 import { UUID } from "./fn/uuid.js";
 import { importJS } from './fn/importJS.js';
 import { importJSPromise } from './fn/importJSPromise.js';
+import { appendChild, build, html, prependChild, replaceChild, replaceWith } from './fn/builder.js';
 
-export namespace core {
-    addIntoClassList                    
-    camel2Dash
-    capitalize
-    codeMarker
-    combineArray
-    cookie
-    dash2Camel
-    deleteEventListener
-    detachEventListener
-    elemInfo
-    eventDB
-    extend
-    genClassList
-    getBaseIcon
-    getCSSVar
-    importJS
-    importJSPromise
-    isColorDark
-    isHTML
-    isTypeOf
-    loadCSS
-    mergeClass
-    mergeObject
-    mergeStyle
-    multiClass
-    multipleConstructorClass
-    num2En
-    num2EnTh
-    randomDB
-    removeChildElement
-    removeElement
-    removeEmptyArray
-    rnd
-    setting
-    setupEventListenerRemover
-    shuffleArray
-    UUID
-
-    attachAttr
-    html
-    build
-    appendChild
-    prependChild
-    replaceChild
-    replaceWith
+export const core = {
+    addIntoClassList,
+    camel2Dash,
+    capitalize,
+    codeMarker,
+    combineArray,
+    cookie,
+    dash2Camel,
+    deleteEventListener,
+    detachEventListener,
+    elemInfo,
+    eventDB,
+    extend,
+    genClassList,
+    getBaseIcon,
+    getCSSVar,
+    importJS,
+    importJSPromise,
+    isColorDark,
+    isHTML,
+    isTypeOf,
+    loadCSS,
+    mergeClass,
+    mergeObject,
+    mergeStyle,
+    multiClass,
+    multipleConstructorClass,
+    num2En,
+    num2EnTh,
+    randomDB,
+    removeChildElement,
+    removeElement,
+    removeEmptyArray,
+    rnd,
+    setting,
+    setupEventListenerRemover,
+    shuffleArray,
+    UUID,
+    attachAttr,
+    html,
+    build,
+    appendChild,
+    prependChild,
+    replaceChild,
+    replaceWith,
 }
 
 

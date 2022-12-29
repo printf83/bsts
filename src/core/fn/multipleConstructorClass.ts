@@ -1,6 +1,6 @@
 import { setting } from "./setting.js"
 
-interface IMultipleConstructor{
+export interface IMultipleConstructor{
     rule: string[],
     fn:Function,
 }
