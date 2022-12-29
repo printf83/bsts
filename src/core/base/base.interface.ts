@@ -1,4 +1,4 @@
-import { bs } from "./bs/var.js"
+import { bs } from "./attachBootstrap.js";
 
 export interface IBase{
     tag: string,

@@ -820,214 +820,224 @@ export namespace bsType{
 }
 
 export namespace bs{
+
+    export interface rule{
+        format?: string,
+        formatValue?:string|null,
+        formatTrue?: string|null,
+        formatFalse?:string|null,
+        value: any[]
+        
+    }
+
     export type spacer = typeof bsType.spacer;
-    export type display=  typeof bsType.display;
-    export type flex= typeof bsType.flex;
-    export type justifyContent= typeof bsType.justifyContent;
-    export type align= typeof bsType.align;
-    export type alignContent= typeof bsType.alignContent;
-    export type alignItem= typeof bsType.align;
-    export type alignSelf= typeof bsType.align;
-    export type order= typeof bsType.order;
-    export type grid= typeof bsType.grid;
-    export type offset= typeof bsType.grid;
-    export type rowCol= typeof bsType.rowCol;
-    export type float= typeof bsType.float;
-    export type color= typeof bsType.color;
+    export type display = typeof bsType.display;
+    export type flex = typeof bsType.flex;
+    export type justifyContent = typeof bsType.justifyContent;
+    export type align = typeof bsType.align;
+    export type alignContent = typeof bsType.alignContent;
+    export type alignItem = typeof bsType.align;
+    export type alignSelf = typeof bsType.align;
+    export type order = typeof bsType.order;
+    export type grid = typeof bsType.grid;
+    export type offset = typeof bsType.grid;
+    export type rowCol = typeof bsType.rowCol;
+    export type float = typeof bsType.float;
+    export type color = typeof bsType.color;
     export type positionView = typeof bsType.positionView;
     
-    export type visible= typeof bsType.visible;
-    export type textWrap= typeof bsType.textWrap;
-    export type fontItalic= typeof bsType.fontItalic;
-    export type bgGradient= typeof bsType.bgGradient;
-    export type wordBreak= typeof bsType.wordBreak;
-    export type monospace= typeof bsType.monospace;
-    export type placeholder= typeof bsType.placeholder;
-    export type row= typeof bsType.row;
-    export type col= typeof bsType.col;
+    export type visible = typeof bsType.visible;
+    export type textWrap = typeof bsType.textWrap;
+    export type fontItalic = typeof bsType.fontItalic;
+    export type bgGradient = typeof bsType.bgGradient;
+    export type wordBreak = typeof bsType.wordBreak;
+    export type monospace = typeof bsType.monospace;
+    export type placeholder = typeof bsType.placeholder;
+    export type row = typeof bsType.row;
+    export type col = typeof bsType.col;
         
-    export type userSelect= typeof bsType.userSelect;
-    export type pointerEvent= typeof bsType.pointerEvent;
-    export type position= typeof bsType.position;
-    export type overflow= typeof bsType.overflow;
+    export type userSelect = typeof bsType.userSelect;
+    export type pointerEvent = typeof bsType.pointerEvent;
+    export type position = typeof bsType.position;
+    export type overflow = typeof bsType.overflow;
 
-    export type textAlign= typeof bsType.textAlign;
-    export type verticalAlign= typeof bsType.verticalAlign;
+    export type textAlign = typeof bsType.textAlign;
+    export type verticalAlign = typeof bsType.verticalAlign;
 
-    export type opacity= typeof bsType.opacity;
-    export type bgOpacity= typeof bsType.bgOpacity;
-    export type textOpacity= typeof bsType.textOpacity;
+    export type opacity = typeof bsType.opacity;
+    export type bgOpacity = typeof bsType.bgOpacity;
+    export type textOpacity = typeof bsType.textOpacity;
 
-    export type textBgColor= typeof bsType.textBgColor;
-    export type textColor= typeof bsType.textColor;
-    export type bgColor= typeof bsType.bgColor;
+    export type textBgColor = typeof bsType.textBgColor;
+    export type textColor = typeof bsType.textColor;
+    export type bgColor = typeof bsType.bgColor;
 
-    export type textTransform= typeof bsType.textTransform;
-    export type textDecoration= typeof bsType.textDecoration;
-    export type lineHeight=typeof bsType.lineHeight;
+    export type textTransform = typeof bsType.textTransform;
+    export type textDecoration = typeof bsType.textDecoration;
+    export type lineHeight = typeof bsType.lineHeight;
 
-    export type fontSize= typeof bsType.fontSize;
-    export type fontWeight= typeof bsType.fontWeight;
+    export type fontSize = typeof bsType.fontSize;
+    export type fontWeight = typeof bsType.fontWeight;
 
-    export type top= typeof bsType.top;
-    export type bottom= typeof bsType.bottom;
-    export type start= typeof bsType.start;
-    export type end= typeof bsType.end;
-    export type tMiddle= typeof bsType.tMiddle;
+    export type top = typeof bsType.top;
+    export type bottom = typeof bsType.bottom;
+    export type start = typeof bsType.start;
+    export type end = typeof bsType.end;
+    export type tMiddle = typeof bsType.tMiddle;
 
-    export type height= typeof bsType.height;
-    export type width= typeof bsType.width;
-    export type maxHeight= typeof bsType.maxHeight;
-    export type maxWidth= typeof bsType.maxWidth;
-    export type minViewHeight= typeof bsType.minViewHeight;
-    export type minViewWidth= typeof bsType.minViewWidth;
-    export type viewHeight= typeof bsType.viewHeight;
-    export type viewWidth= typeof bsType.viewWidth;
+    export type height = typeof bsType.height;
+    export type width = typeof bsType.width;
+    export type maxHeight = typeof bsType.maxHeight;
+    export type maxWidth = typeof bsType.maxWidth;
+    export type minViewHeight = typeof bsType.minViewHeight;
+    export type minViewWidth = typeof bsType.minViewWidth;
+    export type viewHeight = typeof bsType.viewHeight;
+    export type viewWidth = typeof bsType.viewWidth;
 
-    export type placeholderAnimation= typeof bsType.placeholderAnimation;
-    export type placeholderWeight= typeof bsType.placeholderWeight;
+    export type placeholderAnimation = typeof bsType.placeholderAnimation;
+    export type placeholderWeight = typeof bsType.placeholderWeight;
 
-    export type shadow= typeof bsType.shadow;
-    export type borderNone= typeof bsType.borderNone;
-    export type border= typeof bsType.border;
+    export type shadow = typeof bsType.shadow;
+    export type borderNone = typeof bsType.borderNone;
+    export type border = typeof bsType.border;
 
-    export type borderColor= typeof bsType.borderColor;
-    export type borderOpacity= typeof bsType.borderOpacity;
-    export type borderWidth= typeof bsType.borderWidth;
-    export type roundedNone=typeof bsType.roundedNone;
-    export type rounded= typeof bsType.rounded;
-    export type roundedSize= typeof bsType.roundedSize;
+    export type borderColor = typeof bsType.borderColor;
+    export type borderOpacity = typeof bsType.borderOpacity;
+    export type borderWidth = typeof bsType.borderWidth;
+    export type roundedNone = typeof bsType.roundedNone;
+    export type rounded = typeof bsType.rounded;
+    export type roundedSize = typeof bsType.roundedSize;
 
-    export type padding= typeof bsType.padding;
-    export type paddingX= typeof bsType.paddingX;
-    export type paddingY= typeof bsType.paddingY;
-    export type paddingTop= typeof bsType.paddingTop;
-    export type paddingBottom= typeof bsType.paddingBottom;
-    export type paddingStart= typeof bsType.paddingStart;
-    export type paddingEnd= typeof bsType.paddingEnd;
+    export type padding = typeof bsType.padding;
+    export type paddingX = typeof bsType.paddingX;
+    export type paddingY = typeof bsType.paddingY;
+    export type paddingTop = typeof bsType.paddingTop;
+    export type paddingBottom = typeof bsType.paddingBottom;
+    export type paddingStart = typeof bsType.paddingStart;
+    export type paddingEnd = typeof bsType.paddingEnd;
 
-    export type margin= typeof bsType.margin;
-    export type marginX= typeof bsType.marginX;
-    export type marginY= typeof bsType.marginY;
-    export type marginTop= typeof bsType.marginTop;
-    export type marginBottom= typeof bsType.marginBottom;
-    export type marginStart= typeof bsType.marginStart;
-    export type marginEnd= typeof bsType.marginEnd;
+    export type margin = typeof bsType.margin;
+    export type marginX = typeof bsType.marginX;
+    export type marginY = typeof bsType.marginY;
+    export type marginTop = typeof bsType.marginTop;
+    export type marginBottom = typeof bsType.marginBottom;
+    export type marginStart = typeof bsType.marginStart;
+    export type marginEnd = typeof bsType.marginEnd;
 
-    export type gap= typeof bsType.gap;
-    export type gutter= typeof bsType.gutter;
-    export type gutterX= typeof bsType.gutterX;
-    export type gutterY= typeof bsType.gutterY;
+    export type gap = typeof bsType.gap;
+    export type gutter = typeof bsType.gutter;
+    export type gutterX = typeof bsType.gutterX;
+    export type gutterY = typeof bsType.gutterY;
 
-    export type print= typeof bsType.print;
-    export type container= typeof bsType.container;
+    export type print = typeof bsType.print;
+    export type container = typeof bsType.container;
 }
 
 const db = {
         
-        userSelect: { format: "user-select-$1", value:bsType.userSelect },
-        pointerEvent: { format: "pe-$1", value:bsType.userSelect },
-        position: { format: "position-$1", value:bsType.userSelect},
-        overflow: { format: "overflow-$1", value:bsType.userSelect },
+        userSelect: { format: "user-select-$1", value:bsType.userSelect.concat() } satisfies bs.rule,
+        pointerEvent: { format: "pe-$1", value:bsType.pointerEvent.concat() } satisfies bs.rule,
+        position: { format: "position-$1", value:bsType.position.concat() } satisfies bs.rule,
+        overflow: { format: "overflow-$1", value:bsType.overflow.concat() } satisfies bs.rule,
 
-        textAlign: { format: "text-$1", value:bsType.textAlign },
-        verticalAlign: { format: "align-$1", value:bsType.verticalAlign },
+        textAlign: { format: "text-$1", value:bsType.textAlign.concat() } satisfies bs.rule,
+        verticalAlign: { format: "align-$1", value:bsType.verticalAlign.concat() } satisfies bs.rule,
 
-        opacity: { format: "opacity-$1" , value:bsType.opacity},
-        bgOpacity: { format: "bg-opacity-$1", value:bsType.bgOpacity},
-        textOpacity: { format: "text-opacity-$1", value:bsType.textOpacity},
+        opacity: { format: "opacity-$1" , value:bsType.opacity.concat() } satisfies bs.rule,
+        bgOpacity: { format: "bg-opacity-$1", value:bsType.bgOpacity.concat() } satisfies bs.rule,
+        textOpacity: { format: "text-opacity-$1", value:bsType.textOpacity.concat() } satisfies bs.rule,
 
-        btnColor: { format: "btn-$1", value:bsType.btnColor},
-        btnOutlineColor: { format: "btn-outline-$1", value:bsType.btnOutlineColor},
-        alertColor: { format: "alert-$1", value:bsType.alertColor},
+        btnColor: { format: "btn-$1", value:bsType.btnColor.concat() } satisfies bs.rule,
+        btnOutlineColor: { format: "btn-outline-$1", value:bsType.btnOutlineColor.concat() } satisfies bs.rule,
+        alertColor: { format: "alert-$1", value:bsType.alertColor.concat() } satisfies bs.rule,
 
-        textBgColor: { format: "text-bg-$1", value:bsType.textBgColor},
-        textColor: { format: "text-$1", value:bsType.textColor},
-        linkColor: { format: "link-$1", value:bsType.linkColor},
-        bgColor: { format: "bg-$1", value:bsType.bgColor},
+        textBgColor: { format: "text-bg-$1", value:bsType.textBgColor.concat() } satisfies bs.rule,
+        textColor: { format: "text-$1", value:bsType.textColor.concat() } satisfies bs.rule,
+        linkColor: { format: "link-$1", value:bsType.linkColor.concat() } satisfies bs.rule,
+        bgColor: { format: "bg-$1", value:bsType.bgColor.concat() } satisfies bs.rule,
 
-        textTransform: { format: "text-$1", value:bsType.textTransform},
-        textDecoration: { format: "text-decoration-$1", value:bsType.textDecoration},
-        lineHeight: { format: "lh-$1", value:bsType.lineHeight},
+        textTransform: { format: "text-$1", value:bsType.textTransform.concat() } satisfies bs.rule,
+        textDecoration: { format: "text-decoration-$1", value:bsType.textDecoration.concat() } satisfies bs.rule,
+        lineHeight: { format: "lh-$1", value:bsType.lineHeight.concat() } satisfies bs.rule,
 
-        fontSize: { format: "fs-$1", value:bsType.fontSize},
-        fontWeight: { format: "fw-$1", value:bsType.fontWeight},
+        fontSize: { format: "fs-$1", value:bsType.fontSize.concat() } satisfies bs.rule,
+        fontWeight: { format: "fw-$1", value:bsType.fontWeight.concat() } satisfies bs.rule,
 
-        top: { format: "top-$1", value:bsType.top},
-        bottom: { format: "bottom-$1", value:bsType.bottom},
-        start: { format: "start-$1", value:bsType.start},
-        end: { format: "end-$1", value:bsType.end},
-        tMiddle: { format: "translate-middle-$1", formatTrue: "translate-middle", value:bsType.tMiddle},
+        top: { format: "top-$1", value:bsType.top.concat() } satisfies bs.rule,
+        bottom: { format: "bottom-$1", value:bsType.bottom.concat() } satisfies bs.rule,
+        start: { format: "start-$1", value:bsType.start.concat() } satisfies bs.rule,
+        end: { format: "end-$1", value:bsType.end.concat() } satisfies bs.rule,
+        tMiddle: { format: "translate-middle-$1", formatTrue: "translate-middle", value:bsType.tMiddle.concat() } satisfies bs.rule,
 
-        height: { format: "h-$1", value:bsType.height},
-        width: { format: "w-$1", value:bsType.width},
-        maxHeight: { format: "mh-$1", value:bsType.maxHeight},
-        maxWidth: { format: "mw-$1", value:bsType.maxWidth},
-        minViewHeight: { format: "min-vh-$1", value:bsType.minViewHeight},
-        minViewWidth: { format: "min-vw-$1", value:bsType.minViewWidth},
-        viewHeight: { format: "vh-$1", value:bsType.viewHeight},
-        viewWidth: { format: "vw-$1", value:bsType.viewWidth},
+        height: { format: "h-$1", value:bsType.height.concat() } satisfies bs.rule,
+        width: { format: "w-$1", value:bsType.width.concat() } satisfies bs.rule,
+        maxHeight: { format: "mh-$1", value:bsType.maxHeight.concat() } satisfies bs.rule,
+        maxWidth: { format: "mw-$1", value:bsType.maxWidth.concat() } satisfies bs.rule,
+        minViewHeight: { format: "min-vh-$1", value:bsType.minViewHeight.concat() } satisfies bs.rule,
+        minViewWidth: { format: "min-vw-$1", value:bsType.minViewWidth.concat() } satisfies bs.rule,
+        viewHeight: { format: "vh-$1", value:bsType.viewHeight.concat() } satisfies bs.rule,
+        viewWidth: { format: "vw-$1", value:bsType.viewWidth.concat() } satisfies bs.rule,
         
-        placeholderAnimation: { format: "placeholder-$1", value:bsType.placeholderAnimation},
-        placeholderWeight: { format: "placeholder-$1", formatValue: "placeholder $1", value:bsType.placeholderWeight},
+        placeholderAnimation: { format: "placeholder-$1", value:bsType.placeholderAnimation.concat() } satisfies bs.rule,
+        placeholderWeight: { format: "placeholder-$1", formatValue: "placeholder $1", value:bsType.placeholderWeight.concat() } satisfies bs.rule,
         
-        shadow: { format: "shadow-$1", formatTrue: "shadow", formatFalse: "shadow-none", value:bsType.shadow },
+        shadow: { format: "shadow-$1", formatTrue: "shadow", formatFalse: "shadow-none", value:bsType.shadow.concat() } satisfies bs.rule,
 
-        border: { format: "border-$1", formatTrue: "border", formatFalse: "border-0" , value:bsType.border},
-        borderNone: { format: "border border-$1-0", formatTrue: "border-0" , value:bsType.borderNone},
-        borderColor: { format: "border-$1", formatValue: "border", value:bsType.borderColor },
-        borderOpacity: { format: "border-opacity-$1", formatValue: "border", value:bsType.borderOpacity },
-        borderWidth: { format: "border-$1", formatValue: "border", value:bsType.borderWidth },
+        border: { format: "border-$1", formatTrue: "border", formatFalse: "border-0" , value:bsType.border.concat() } satisfies bs.rule,
+        borderNone: { format: "border border-$1-0", formatTrue: "border-0" , value:bsType.borderNone.concat() } satisfies bs.rule,
+        borderColor: { format: "border-$1", formatValue: "border", value:bsType.borderColor.concat() } satisfies bs.rule,
+        borderOpacity: { format: "border-opacity-$1", formatValue: "border", value:bsType.borderOpacity.concat() } satisfies bs.rule,
+        borderWidth: { format: "border-$1", formatValue: "border", value:bsType.borderWidth.concat() } satisfies bs.rule,
 
-        rounded: { format: "rounded-$1", formatTrue: "rounded", formatFalse: "rounded-0", value:bsType.rounded },
-        roundedNone: { format: "rounded-$1-0", formatTrue: "rounded-0", formatFalse: "rounded", formatValue: "rounded", value:bsType.roundedNone },
-        roundedSize: { format: "rounded-$1", formatValue: "rounded", value:bsType.roundedSize },
+        rounded: { format: "rounded-$1", formatTrue: "rounded", formatFalse: "rounded-0", value:bsType.rounded.concat() } satisfies bs.rule,
+        roundedNone: { format: "rounded-$1-0", formatTrue: "rounded-0", formatFalse: "rounded", formatValue: "rounded", value:bsType.roundedNone.concat() } satisfies bs.rule,
+        roundedSize: { format: "rounded-$1", formatValue: "rounded", value:bsType.roundedSize.concat() } satisfies bs.rule,
 
-        padding: { format: "p-$1", value:bsType.padding},
-        paddingX: { format: "px-$1", value:bsType.paddingX},
-        paddingY: { format: "py-$1", value:bsType.paddingY},
-        paddingTop: { format: "pt-$1", value:bsType.paddingTop},
-        paddingBottom: { format: "pb-$1", value:bsType.paddingBottom},
-        paddingStart: { format: "ps-$1", value:bsType.paddingStart},
-        paddingEnd: { format: "pe-$1", value:bsType.paddingEnd},
+        padding: { format: "p-$1", value:bsType.padding.concat() } satisfies bs.rule,
+        paddingX: { format: "px-$1", value:bsType.paddingX.concat() } satisfies bs.rule,
+        paddingY: { format: "py-$1", value:bsType.paddingY.concat() } satisfies bs.rule,
+        paddingTop: { format: "pt-$1", value:bsType.paddingTop.concat() } satisfies bs.rule,
+        paddingBottom: { format: "pb-$1", value:bsType.paddingBottom.concat() } satisfies bs.rule,
+        paddingStart: { format: "ps-$1", value:bsType.paddingStart.concat() } satisfies bs.rule,
+        paddingEnd: { format: "pe-$1", value:bsType.paddingEnd.concat() } satisfies bs.rule,
 
-        margin: { format: "m-$1", value:bsType.margin},
-        marginX: { format: "mx-$1", value:bsType.marginX},
-        marginY: { format: "my-$1", value:bsType.marginY},
-        marginTop: { format: "mt-$1", value:bsType.marginTop},
-        marginBottom: { format: "mb-$1", value:bsType.marginBottom},
-        marginStart: { format: "ms-$1", value:bsType.marginStart},
-        marginEnd: { format: "me-$1", value:bsType.marginEnd},
+        margin: { format: "m-$1", value:bsType.margin.concat() } satisfies bs.rule,
+        marginX: { format: "mx-$1", value:bsType.marginX.concat() } satisfies bs.rule,
+        marginY: { format: "my-$1", value:bsType.marginY.concat() } satisfies bs.rule,
+        marginTop: { format: "mt-$1", value:bsType.marginTop.concat() } satisfies bs.rule,
+        marginBottom: { format: "mb-$1", value:bsType.marginBottom.concat() } satisfies bs.rule,
+        marginStart: { format: "ms-$1", value:bsType.marginStart.concat() } satisfies bs.rule,
+        marginEnd: { format: "me-$1", value:bsType.marginEnd.concat() } satisfies bs.rule,
 
-        gap: { format: "gap-$1", value:bsType.gap},
-        gutter: { format: "g-$1", value:bsType.gutter},
-        gutterX: { format: "gx-$1", value:bsType.gutterX},
-        gutterY: { format: "gy-$1", value:bsType.gutterY},
+        gap: { format: "gap-$1", value:bsType.gap.concat() } satisfies bs.rule,
+        gutter: { format: "g-$1", value:bsType.gutter.concat() } satisfies bs.rule,
+        gutterX: { format: "gx-$1", value:bsType.gutterX.concat() } satisfies bs.rule,
+        gutterY: { format: "gy-$1", value:bsType.gutterY.concat() } satisfies bs.rule,
 
-        display: { format: "d-$1", value:bsType.display},
-        print: { format: "d-print-$1", value:bsType.print},
-        container: {format: "container-$1",formatTrue: "container", value:bsType.container},
+        display: { format: "d-$1", value:bsType.display.concat() } satisfies bs.rule,
+        print: { format: "d-print-$1", value:bsType.print.concat() } satisfies bs.rule,
+        container: {format: "container-$1",formatTrue: "container", value:bsType.container.concat() } satisfies bs.rule,
 
-        flex: {format: "flex-$1", value:bsType.flex},
-        float: {format: "float-$1", value:bsType.float},
-        order: {format: "order-$1", value:bsType.order},
-        offset: {format: "offset-$1", value:bsType.offset},
+        flex: {format: "flex-$1", value:bsType.flex.concat() } satisfies bs.rule,
+        float: {format: "float-$1", value:bsType.float.concat() } satisfies bs.rule,
+        order: {format: "order-$1", value:bsType.order.concat() } satisfies bs.rule,
+        offset: {format: "offset-$1", value:bsType.offset.concat() } satisfies bs.rule,
 
-        alignContent: {format: "align-content-$1", value:bsType.alignContent},
-        justifyContent: {format: "justify-content-$1", value:bsType.justifyContent},
-        alignItem: {format: "align-items-$1", value:bsType.alignItem},
-        alignSelf: {format: "align-self-$1", value:bsType.alignSelf},
+        alignContent: {format: "align-content-$1", value:bsType.alignContent.concat() } satisfies bs.rule,
+        justifyContent: {format: "justify-content-$1", value:bsType.justifyContent.concat() } satisfies bs.rule,
+        alignItem: {format: "align-items-$1", value:bsType.alignItem.concat() } satisfies bs.rule,
+        alignSelf: {format: "align-self-$1", value:bsType.alignSelf.concat() } satisfies bs.rule,
 
-        visible: {formatTrue: "visible",formatFalse: "invisible", value:bsType.visible},
-        textWrap: {formatTrue: "text-wrap",formatFalse: "text-nowrap", value:bsType.textWrap},
-        fontItalic: {formatTrue: "fst-italic",formatFalse: "fst-normal", value:bsType.fontItalic},
-        bgGradient: {formatTrue: "bg-gradient", value:bsType.bgGradient},
-        wordBreak: {formatTrue: "text-break", value:bsType.wordBreak},
-        monospace: { formatTrue: "font-monospace", value:bsType.monospace},
-        placeholder: {formatTrue: "placeholder", value:bsType.placeholder},
-        row: { formatTrue: "row", formatFalse: null, value:bsType.row},
-        col: {format: "col-$1", formatTrue: "col", value:bsType.col},
-        rowCol: {format: "row-cols-$1", value:bsType.rowCol},
+        visible: {formatTrue: "visible",formatFalse: "invisible", value:bsType.visible.concat() } satisfies bs.rule,
+        textWrap: {formatTrue: "text-wrap",formatFalse: "text-nowrap", value:bsType.textWrap.concat() } satisfies bs.rule,
+        fontItalic: {formatTrue: "fst-italic",formatFalse: "fst-normal", value:bsType.fontItalic.concat() } satisfies bs.rule,
+        bgGradient: {formatTrue: "bg-gradient", value:bsType.bgGradient.concat() } satisfies bs.rule,
+        wordBreak: {formatTrue: "text-break", value:bsType.wordBreak.concat() } satisfies bs.rule,
+        monospace: { formatTrue: "font-monospace", value:bsType.monospace.concat() } satisfies bs.rule,
+        placeholder: {formatTrue: "placeholder", value:bsType.placeholder.concat() } satisfies bs.rule,
+        row: { formatTrue: "row", formatFalse: null, value:bsType.row.concat() } satisfies bs.rule,
+        col: {format: "col-$1", formatTrue: "col", value:bsType.col.concat() } satisfies bs.rule,
+        rowCol: {format: "row-cols-$1", value:bsType.rowCol.concat() } satisfies bs.rule,
 }
 
 let allowProp: string[] = [];
