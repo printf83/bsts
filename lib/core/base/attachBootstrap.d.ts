@@ -91,6 +91,13 @@ export declare namespace bsType {
     const container: (string | boolean)[];
 }
 export declare namespace bs {
+    interface rule {
+        format?: string;
+        formatValue?: string | null;
+        formatTrue?: string | null;
+        formatFalse?: string | null;
+        value: any[];
+    }
     type spacer = typeof bsType.spacer;
     type display = typeof bsType.display;
     type flex = typeof bsType.flex;

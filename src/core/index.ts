@@ -39,7 +39,7 @@ import { importJS } from './fn/importJS.js';
 import { importJSPromise } from './fn/importJSPromise.js';
 
 export namespace core {
-    addIntoClassList
+    addIntoClassList                    
     camel2Dash
     capitalize
     codeMarker
@@ -76,6 +76,7 @@ export namespace core {
     setupEventListenerRemover
     shuffleArray
     UUID
+
     attachAttr
     html
     build
@@ -83,7 +84,7 @@ export namespace core {
     prependChild
     replaceChild
     replaceWith
-    
-
 }
+
+
 

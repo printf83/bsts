@@ -1,1 +1,1 @@
-export declare function extend(out: object): object;
+export declare const extend: (x: object, y?: object) => object;
