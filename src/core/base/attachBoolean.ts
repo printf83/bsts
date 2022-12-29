@@ -1,4 +1,4 @@
-import { setting } from "src/core/fn/setting.js";
+import { setting } from "../fn/setting.js";
 import { IAttachResult, IBase } from "./base.interface.js";
 
 const db = [
