@@ -25,7 +25,7 @@ const cleanupAttr = (key: string, elem: HTMLElement, opt: IBase): IAttachResult 
 	return { opt, elem };
 }
 
-const notAttr = ["tag", "elem"];
+const notAttr = ["tag", "elem","dom"];
 const attrDB = [
 	"cleanupAttr",
     "attachActive",

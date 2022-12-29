@@ -1,3 +1,5 @@
+import { build, appendChild, prependChild, replaceChild, html, replaceWith } from './fn/builder';
+import { isTypeOf } from './fn/isTypeOf';
 import { attachAttr } from './base/index';
 import { elemInfo } from './fn/elemInfo';
 import { multiClass } from './fn/multiClass';
@@ -56,6 +58,7 @@ export namespace core {
     importJSPromise
     isColorDark
     isHTML
+    isTypeOf
     loadCSS
     mergeClass
     mergeObject
@@ -74,5 +77,13 @@ export namespace core {
     shuffleArray
     UUID
     attachAttr
+    html
+    build
+    appendChild
+    prependChild
+    replaceChild
+    replaceWith
+    
+
 }
 
