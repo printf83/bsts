@@ -55,7 +55,7 @@ const attrFn = {
 	attachHref,
 };
 
-export const attachAttr =(elem:HTMLElement, opt:object) =>{
+export const attachAttr = (elem:HTMLElement, opt:object) =>{
 	// try {
 	if (elem && opt) {
 		opt = extend(opt);
