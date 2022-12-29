@@ -1,8 +1,8 @@
-import { addIntoClassList } from 'src/core/fn/addIntoClassList';
-import { setting } from 'src/core/fn/setting';
-import { IAttachResult, IBase } from './base.interface';
-import { camel2Dash } from "src/core/fn/camel2Dash";
-import { dash2Camel } from "src/core/fn/dash2Camel";
+import { addIntoClassList } from "../fn/addIntoClassList.js";
+import { camel2Dash } from "../fn/camel2Dash.js";
+import { dash2Camel } from "../fn/dash2Camel.js";
+import { setting } from "../fn/setting.js";
+import { IAttachResult, IBase } from "./base.interface.js";
 
 export namespace bsType{
     const base5 = [0, 1, 2, 3, 4, 5];

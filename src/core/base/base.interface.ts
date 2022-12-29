@@ -4,9 +4,9 @@ import { bs } from "./attachBootstrap";
 export interface IBase{
     tag: string,
     elem: IBase|string|null|(IBase|string|null)[],
-    class: string | string[],
-    padding: bs.padding,
-    dom:HTMLElement,
+    class?: string | string[],
+    padding?: bs.padding,
+    dom?:HTMLElement,
 }
 
 export interface IAttachResult {

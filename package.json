@@ -32,6 +32,8 @@
 	"scripts": {
 		"build-win": "rmdir /S /Q lib && microbundle --tsconfig tsconfig.json",
 		"build": "rm -rf lib && microbundle --tsconfig tsconfig.json",
+		"watch-win": "rmdir /S /Q lib && microbundle --tsconfig tsconfig.json --watch",
+		"watch": "rm -rf lib && microbundle --tsconfig tsconfig.json --watch",
 		"dev": "microbundle --watch --tsconfig tsconfig.json"
 	},
 	"devDependencies": {
