@@ -4,13 +4,13 @@
     "declaration": true,
     "removeComments": true,
     "allowSyntheticDefaultImports": true,
-    "target": "ES6",
+    "target": "ES5",
     "sourceMap": true,
     "outDir": "./lib",
     "baseUrl": "./",
     "incremental": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "test", "**/*spec.ts"]
+  "exclude": ["node_modules", "**/*spec.ts"]
 }
 
