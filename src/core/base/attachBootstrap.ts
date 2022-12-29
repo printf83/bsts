@@ -632,16 +632,16 @@ export namespace bsType{
         "xl-end",
     ] as const;
 
-    export const visible = [true, false] as const;
-    export const textWrap = [true, false] as const;
-    export const fontItalic = [true, false] as const;
+    export const visible = truefalse;
+    export const textWrap = truefalse;
+    export const fontItalic = truefalse;
 
-    export const bgGradient = [true] as const;
-    export const wordBreak = [true] as const;
-    export const monospace = [true] as const;
-    export const placeholder = [true] as const;
+    export const bgGradient = trueonly;
+    export const wordBreak = trueonly;
+    export const monospace = trueonly;
+    export const placeholder = trueonly;
 
-    export const row = [true, false] as const;
+    export const row = truefalse;
 
     export const col = [
         true,

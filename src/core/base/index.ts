@@ -11,6 +11,7 @@ import { attachEvent } from './attachEvent.js';
 import { attachStyle } from './attachStyle.js';
 import { attachManualStyle } from './attachManualStyle.js';
 import { attachClass } from './attachClass.js';
+import { extend } from '../fn/extend.js';
 
 
 const cleanupAttr = (key: string, elem: HTMLElement, opt: IBase): IAttachResult => {
@@ -39,7 +40,7 @@ const attrDB = [
 	"attachClass",
 	"attachHref",
 ];
-const fnAttr = {
+const attrFn = {
 	cleanupAttr,
     attachActive,
     attachDisabled,
@@ -54,4 +55,36 @@ const fnAttr = {
 	attachHref,
 };
 
+export const attachAttr =(elem:HTMLElement, opt:object) =>{
+	// try {
+	if (elem && opt) {
+		opt = extend(opt);
 
+		let keys = Object.keys(opt);
+		if (keys) {
+			
+			let keyLength = keys.length;
+			let attrDBLength = attrDB.length;
+
+			for (let x = 0; x < keyLength; x++) {
+				if (notAttr.indexOf(keys[x]) === -1) {
+					for (let y = 0; y < attrDBLength; y++) {
+						if (opt.hasOwnProperty(keys[x]) && opt[keys[x]] !== null && opt[keys[x]] !== undefined) {
+							if (y === attrDBLength - 1) {
+								if (setting.DEBUG) {
+									console.log(`Treat ${keys[x]}:${opt[keys[x]]} as another attribute.`);
+								}
+							}
+
+							let r = attrFn[attrDB[y]](keys[x], elem, opt);
+							opt = r.opt;
+							elem = r.elem;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return elem;
+}

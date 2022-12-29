@@ -1,3 +1,9 @@
+import { attachAttr } from './base/index';
+import { elemInfo } from './fn/elemInfo';
+import { multiClass } from './fn/multiClass';
+import { mergeStyle } from './fn/mergeStyle';
+import { mergeObject } from './fn/mergeObject';
+import { mergeClass } from './fn/mergeClass';
 import { setupEventListenerRemover } from './fn/setupEventListenerRemover';
 import { removeEmptyArray } from './fn/removeEmptyArray';
 import { removeElement } from './fn/removeElement';
@@ -40,6 +46,7 @@ export namespace core {
     dash2Camel
     deleteEventListener
     detachEventListener
+    elemInfo
     eventDB
     extend
     genClassList
@@ -50,6 +57,10 @@ export namespace core {
     isColorDark
     isHTML
     loadCSS
+    mergeClass
+    mergeObject
+    mergeStyle
+    multiClass
     multipleConstructorClass
     num2En
     num2EnTh
@@ -62,5 +73,6 @@ export namespace core {
     setupEventListenerRemover
     shuffleArray
     UUID
+    attachAttr
 }
 
