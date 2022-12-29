@@ -40,7 +40,7 @@ export const build = (container:HTMLElement, arg:IBase|string|null|(IBase|string
                                             );
                                         }
                                         else {
-                                            element.append(document.createTextNode(g));    
+                                            element.appendChild(document.createTextNode(g));    
                                         }
                                             
                                     }
@@ -49,17 +49,19 @@ export const build = (container:HTMLElement, arg:IBase|string|null|(IBase|string
                         }
 
                         //add to data dom
-                        e.dom = element;
+                        //e.dom = element;
 
                         if (pos) {
                             container.insertBefore(element,pos);
                         }
                         else {
-                            if (append) {
-                                container.append(element);
-                            }
-                            else {
-                                container.prepend(element);
+                            if (e.tag) {
+                                if (append) {
+                                    container.appendChild(element);
+                                }
+                                else {
+                                    container.appendChild(element);
+                                }    
                             }
                         }
                     }

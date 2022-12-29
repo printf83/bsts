@@ -8,24 +8,11 @@
     "sourceMap": true,
     "outDir": "./lib",
     "baseUrl": "./",
-    "incremental": true
+    "incremental": true,
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*spec.ts"]
 }
-// {
-//     "compilerOptions": {
-//         "lib": [ "es6", "es2021", "esnext" ],
-//         "target": "es2021",
-//         "module": "es2022",
-//         "moduleResolution": "Node",
-//         "outDir": "./lib",
-//         "rootDir": "./src",
-//         "declaration": true,
-//         "declarationMap": true,
-//         "inlineSourceMap": true,
-//         "inlineSources": true
-//     }
-// }
+
 
 
