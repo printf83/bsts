@@ -1,6 +1,6 @@
 
-import { core } from './core/index.js';
-import tag from './tag/index.js';
+import { core } from './core/index';
+import tag from './tag/index';
 
 export {core, tag};
 

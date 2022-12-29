@@ -1,10 +1,10 @@
 import { isTypeOf } from './isTypeOf';
-import { attachAttr } from '../base/index.js';
-import { IBase } from './../base/base.interface.js';
-import { isHTML } from './isHTML.js';
-import { setting } from './setting.js';
-import { removeChildElement } from './removeChildElement.js';
-import { removeElement } from './removeElement.js';
+import { attachAttr } from '../base/index';
+import { IBase } from './../base/base.interface';
+import { isHTML } from './isHTML';
+import { setting } from './setting';
+import { removeChildElement } from './removeChildElement';
+import { removeElement } from './removeElement';
 
 export const build = (container:HTMLElement, arg:IBase|string|null|(IBase|string|null)[], append:boolean=true, pos:HTMLElement|null=null):HTMLElement => {
 	if (arg) {

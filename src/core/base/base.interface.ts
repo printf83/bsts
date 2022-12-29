@@ -1,4 +1,4 @@
-import { bs } from "./attachBootstrap.js";
+import { bs } from "./attachBootstrap";
 
 
 export interface IBase{

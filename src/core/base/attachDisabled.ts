@@ -1,4 +1,4 @@
-import { addIntoClassList } from '../fn/addIntoClassList.js';
+import { addIntoClassList } from '../fn/addIntoClassList';
 import { IBase, IAttachResult } from './base.interface';
 export const attachDisabled = (key:string, elem:HTMLElement, opt:IBase):IAttachResult => {
 	if (key === "disabled" && opt[key] === true) {

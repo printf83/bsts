@@ -1,6 +1,6 @@
-import { bs } from "../base/attachBootstrap.js";
-import { genClassList } from "./genClassList.js";
-import { setting } from "./setting.js";
+import { bs } from "../base/attachBootstrap";
+import { genClassList } from "./genClassList";
+import { setting } from "./setting";
 
 const bsClass = (value:string|number|boolean, rules:bs.rule):string[] => {
 	let i = [];

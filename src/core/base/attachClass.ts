@@ -1,4 +1,4 @@
-import { addIntoClassList } from '../fn/addIntoClassList.js';
+import { addIntoClassList } from '../fn/addIntoClassList';
 import { IBase, IAttachResult } from './base.interface';
 
 export const attachClass = (key:string, elem:HTMLElement, opt:IBase) : IAttachResult => {

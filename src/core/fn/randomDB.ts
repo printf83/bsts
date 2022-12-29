@@ -1,4 +1,4 @@
-import { shuffleArray } from "./shuffleArray.js";
+import { shuffleArray } from "./shuffleArray";
 
 const _db = {};
 

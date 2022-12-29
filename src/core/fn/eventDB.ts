@@ -1,4 +1,4 @@
-import { UUID } from "./uuid.js";
+import { UUID } from "./uuid";
 
 const _db = {}
 

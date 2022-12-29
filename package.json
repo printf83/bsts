@@ -35,7 +35,9 @@
 		"dev": "microbundle --watch --tsconfig tsconfig.json"
 	},
 	"devDependencies": {
+		"@types/node": "^18.11.18",
 		"microbundle": "^0.15.1",
-		"typescript": "^4.9.3"
+		"ts-node": "^10.9.1",
+		"typescript": "^4.9.4"
 	}
 }

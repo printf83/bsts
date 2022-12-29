@@ -1,5 +1,5 @@
-import { deleteEventListener } from '../fn/deleteEventListener.js';
-import { setupEventListenerRemover } from '../fn/setupEventListenerRemover.js';
+import { deleteEventListener } from '../fn/deleteEventListener';
+import { setupEventListenerRemover } from '../fn/setupEventListenerRemover';
 import { IBase, IAttachResult} from './base.interface';
 
 export const attachEvent = (key:string, elem:HTMLElement, opt:IBase):IAttachResult => {

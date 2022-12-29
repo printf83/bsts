@@ -1,5 +1,5 @@
-import { cookie } from "./cookie.js";
-import { loadCSS } from "./loadCSS.js";
+import { cookie } from "./cookie";
+import { loadCSS } from "./loadCSS";
 
 export interface IIconFn {
     (color:string, weight:string): {

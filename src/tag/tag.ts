@@ -1,6 +1,6 @@
 "use strict";
 
-import {tagOption} from "./tag.interface.js";
+import {tagOption} from "./tag.interface";
 
 export class tag{
     private d: tagOption;
