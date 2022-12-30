@@ -38,7 +38,7 @@ const attrDB = [
 	"attachStyle",
 	"attachManualStyle",
 	"attachClass",
-	// "attachHref",
+	"attachHref",
 ];
 const attrFn = {
 	cleanupAttr,
@@ -52,10 +52,10 @@ const attrFn = {
 	attachStyle,
 	attachManualStyle,
 	attachClass,
-	// attachHref,
+	attachHref,
 };
 
-export const attachAttr = (elem:HTMLElement, opt:object) =>{
+export const attachAttr = (elem:HTMLElement, opt:object):HTMLElement =>{
 	// try {
 	if (elem && opt) {
 		opt = extend(opt);
