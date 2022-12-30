@@ -12,13 +12,14 @@
 // 	return out;
 // }
 
-export const extend = (x: object, y: object={}): object => {
+export const extend = <T>(x: T, y: T=null): T => {
 	if (x) {
+		(y as object) = y || {};
 		Object.keys(x).forEach((i) => {
 			if (!y.hasOwnProperty(i) && x[i] !== null && x[i] !== undefined) {
 				y[i] = x[i]
 			}
 		})
 	}
-	return y
+	return y as T
 }

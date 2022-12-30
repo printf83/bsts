@@ -55,31 +55,28 @@ const attrFn = {
 	attachHref,
 };
 
-export const attachAttr = (elem:HTMLElement, opt:object):HTMLElement =>{
-	// try {
-	if (elem && opt) {
-		opt = extend(opt);
+export const attachAttr = (elem:HTMLElement, opt:IBase):HTMLElement =>{
+	opt = extend(opt);
 
-		let keys = Object.keys(opt);
-		if (keys) {
-			
-			let keyLength = keys.length;
-			let attrDBLength = attrDB.length;
+	let keys = Object.keys(opt);
+	if (keys) {
+		
+		let keyLength = keys.length;
+		let attrDBLength = attrDB.length;
 
-			for (let x = 0; x < keyLength; x++) {
-				if (notAttr.indexOf(keys[x]) === -1) {
-					for (let y = 0; y < attrDBLength; y++) {
-						if (opt.hasOwnProperty(keys[x]) && opt[keys[x]] !== null && opt[keys[x]] !== undefined) {
-							if (y === attrDBLength - 1) {
-								if (setting.DEBUG) {
-									console.log(`Treat ${keys[x]}:${opt[keys[x]]} as another attribute.`);
-								}
+		for (let x = 0; x < keyLength; x++) {
+			if (notAttr.indexOf(keys[x]) === -1) {
+				for (let y = 0; y < attrDBLength; y++) {
+					if (opt.hasOwnProperty(keys[x]) && opt[keys[x]] !== null && opt[keys[x]] !== undefined) {
+						if (y === attrDBLength - 1) {
+							if (setting.DEBUG) {
+								console.log(`Treat ${keys[x]}:${opt[keys[x]]} as another attribute.`);
 							}
-
-							let r = attrFn[attrDB[y]](keys[x], elem, opt);
-							opt = r.opt;
-							elem = r.elem;
 						}
+
+						let r = attrFn[attrDB[y]](keys[x], elem, opt);
+						opt = r.opt;
+						elem = r.elem;
 					}
 				}
 			}
