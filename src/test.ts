@@ -1,5 +1,5 @@
 import { IBase } from './../lib/core/base/base.interface.d';
-import { tag, core } from "./index.js";
+import { core } from "./index.js";
 
 console.log(core.UUID());
 console.log(core.UUID());

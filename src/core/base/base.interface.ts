@@ -1,13 +1,14 @@
+import { isHTML } from './../fn/isHTML';
 import { bs } from "./attachBootstrap.js";
 
 
-export interface IBase{
+interface IBase{
     tag: string,
-    elem: IBase | string | null | (IBase | string | null)[],
+    elem?: tag | string | (tag | string)[],
     dom?: HTMLElement,
 
     id?: string,
-    name?:string,
+    name?: string,
     class?: string | string[],
     
     padding?: bs.padding[number],
@@ -17,36 +18,27 @@ export interface IBase{
     "text-Color"?: bs.textColor[number],
 }
 
-export const isIBase = (obj: any): boolean => {
+const isIBase = (obj: any): boolean => {
     return typeof obj === "object" && ("tag" in obj && "elem" in obj);
 }
 
-export interface IAttachResult {
-    elem: HTMLElement,
-    opt:IBase
+export class tag{
+    istag: true;
+    constructor(public data: IBase) {
+    }
+}
+
+export const isTag = (obj: any): boolean => {
+    return typeof obj === "object" && ("istag" in obj && obj.istag === true);
 }
 
 export type attachFn = (key: string, elem: HTMLElement, opt: IBase) => {
     elem: HTMLElement,
-    opt:IBase,
+    opt: IBase,
 };
 
 
-// export class t implements IBase{
-    
-//     tag = "h1";
-//     elem = null;
 
-//     constructor(arg: IBase) {
-//         this.tag = arg.tag;
-//         this.elem = arg.elem;
-//     }
-
-//     convert = ():void => {
-        
-//     }
-
-// }
 
 // function aaaa(d: t):t {
 //     return d;
