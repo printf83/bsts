@@ -1,5 +1,23 @@
 import { bs } from "./attachBootstrap.js";
 
+export interface baseAttr{
+    id?: string,
+    name?: string,
+    class?: string | string[],
+    
+    padding?: bs.padding[number],
+    bgColor?: bs.bgColor[number],
+    "bg-Color"?: bs.bgColor[number],
+    textColor?: bs.textColor[number],
+    "text-Color"?: bs.textColor[number],
+}
+
+export interface baseTag{
+    tag: string,
+    elem?: string,
+    attr?: baseAttr,
+    dom?:HTMLElement,
+}
 
 export interface IBase{
     tag: string,
@@ -22,7 +40,7 @@ export const isIBase = (obj: any): boolean => {
 }
 
 export class tag{
-    istag: true;
+    public istag = true;
     constructor(public data: IBase) {
     }
 }
@@ -35,18 +53,5 @@ export type attachFn = (key: string, elem: HTMLElement, opt: IBase) => {
     elem: HTMLElement,
     opt: IBase,
 };
-
-
-
-
-// function aaaa(d: t):t {
-//     return d;
-// }
-
-// aaaa(new t({
-//     tag: "test",
-//     elem: null,
-//     bgColor:"danger"
-// }))
 
 

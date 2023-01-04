@@ -5,9 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "firefox",
+            "request": "launch",
+            "name": "Launch Firefox",
+            "url": "${workspaceFolder}/index.html",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "tsc: build - tsconfig.json",
+            "timeout": 5,
+            "reAttach": true,
+            "tmpDir": "/home/hamzah/Documents/temp"
+        },
+        {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome agains localhost",
+            "name": "Launch Chrome",
             "skipFiles": [
                 "<node_internals>/**"
             ],
