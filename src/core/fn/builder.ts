@@ -14,12 +14,12 @@ export const build = (container:HTMLElement, arg:tag|string|(tag|string)[], appe
                 if (h !== null) {
                     if (isTag(h)){
                         let e = (h as tag);
-                        let element = e.data.tag ? document.createElement(e.data.tag) : container;
-                        element = attachAttr(element, e.data);
+                        let element = e.tag ? document.createElement(e.tag) : container;
+                        element = attachAttr(element, e.attr);
 
-                        if (e.data.elem) {
-                            e.data.elem = Array.isArray(e.data.elem) ? e.data.elem : [e.data.elem];
-                            e.data.elem.forEach((i) => {
+                        if (e.elem) {
+                            e.elem = Array.isArray(e.elem) ? e.elem : [e.elem];
+                            e.elem.forEach((i) => {
                                 if (i !== null) {
                                     
                                     if (isTag(i)) {
@@ -28,7 +28,7 @@ export const build = (container:HTMLElement, arg:tag|string|(tag|string)[], appe
                                     }
                                     else {
                                         let g = i as string;
-                                        if (e.data.tag === "pre" && isHTML(g)) {
+                                        if (e.tag === "pre" && isHTML(g)) {
                                             element.insertAdjacentHTML("beforeend", g);
                                         }
                                         else if (Array.isArray(i)) {
@@ -53,7 +53,7 @@ export const build = (container:HTMLElement, arg:tag|string|(tag|string)[], appe
                             container.insertBefore(element,pos);
                         }
                         else {
-                            if (e.data.tag) {
+                            if (e.tag) {
                                 if (append) {
                                     container.appendChild(element);
                                 }

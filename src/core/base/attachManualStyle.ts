@@ -1,18 +1,18 @@
 import { attachFn } from './base.interface.js';
 
-export const attachManualStyle: attachFn = (key, elem, opt) => {
+export const attachManualStyle: attachFn = (key, elem, attr) => {
 	if (key === "style") {
-		let styleKeys = Object.keys(opt[key]);
+		let styleKeys = Object.keys(attr[key]);
 		if (styleKeys) {
 			for (let x = 0; x < styleKeys.length; x++) {
-				if (opt[key][styleKeys[x]]) {
-					elem.style.setProperty(styleKeys[x], opt[key][styleKeys[x]]);
+				if (attr[key][styleKeys[x]]) {
+					elem.style.setProperty(styleKeys[x], attr[key][styleKeys[x]]);
 				}
 			}
 		}
 
-		delete opt[key];
+		delete attr[key];
 	}
 
-	return { opt, elem };
+	return { attr, elem };
 }

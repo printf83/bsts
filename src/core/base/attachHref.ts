@@ -1,11 +1,11 @@
 import { attachFn } from './base.interface.js';
-export const attachHref: attachFn = (key, elem, opt) => {
-    let i = Array.isArray(opt[key]) ? opt[key].join(" ") : opt[key];
+export const attachHref: attachFn = (key, elem, attr) => {
+    let i = Array.isArray(attr[key]) ? attr[key].join(" ") : attr[key];
 	
 	if (key === "href" && i === "#") {
 		elem.setAttribute(key, "javascript:void(0);");
-		delete opt[key];
+		delete attr[key];
 	}
 
-	return { opt, elem };
+	return { attr, elem };
 }

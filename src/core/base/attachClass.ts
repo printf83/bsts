@@ -1,12 +1,12 @@
 import { addIntoClassList } from '../fn/addIntoClassList.js';
 import { attachFn } from './base.interface.js';
 
-export const attachClass: attachFn = (key, elem, opt) => {
+export const attachClass: attachFn = (key, elem, attr) => {
 	if (key === "class") {
 		let i = [];
-		elem = addIntoClassList(elem, opt[key]);
-		delete opt[key];
+		elem = addIntoClassList(elem, attr[key]);
+		delete attr[key];
 	}
 
-	return { opt, elem };
+	return { attr, elem };
 }

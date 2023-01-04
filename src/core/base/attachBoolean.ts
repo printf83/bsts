@@ -32,20 +32,20 @@ const db = [
 	"truespeed",
 ];
 
-export const attachBoolean: attachFn = (key, elem, opt) => {
+export const attachBoolean: attachFn = (key, elem, attr) => {
 	if (db.indexOf(key) > -1) {
-		if (opt[key] === true) {
+		if (attr[key] === true) {
 			elem.setAttribute(key, key);
 			// elem[key] = true;
-		} else if (opt[key] === false) {
+		} else if (attr[key] === false) {
 			// elem.setAttribute(key, "");
 			// elem[key] = false;
 		} else {
-			if (setting.DEBUG) console.log(`Attribute ${key}:${opt[key]} is not TRUE`);
+			if (setting.DEBUG) console.log(`Attribute ${key}:${attr[key]} is not TRUE`);
 		}
 
-		delete opt[key];
+		delete attr[key];
 	}
 
-	return { opt, elem };
+	return { attr, elem };
 }

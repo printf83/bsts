@@ -14,44 +14,25 @@ export interface baseAttr{
 
 export interface baseTag{
     tag: string,
-    elem?: string,
+    elem?: string | tag | (string | tag)[],
     attr?: baseAttr,
-    dom?:HTMLElement,
 }
 
-export interface IBase{
-    tag: string,
-    elem?: tag | string | (tag | string)[],
-    dom?: HTMLElement,
-
-    id?: string,
-    name?: string,
-    class?: string | string[],
-    
-    padding?: bs.padding[number],
-    bgColor?: bs.bgColor[number],
-    "bg-Color"?: bs.bgColor[number],
-    textColor?: bs.textColor[number],
-    "text-Color"?: bs.textColor[number],
-}
-
-export const isIBase = (obj: any): boolean => {
-    return typeof obj === "object" && ("tag" in obj && "elem" in obj);
-}
-
-export class tag{
-    public istag = true;
-    constructor(public data: IBase) {
+export class tag implements baseTag{
+    constructor(
+        public tag: string,
+        public elem?: string | tag | (string | tag)[],
+        public attr?: baseAttr) {
     }
 }
 
 export const isTag = (obj: any): boolean => {
-    return typeof obj === "object" && ("istag" in obj && obj.istag === true);
+    return typeof obj === "object" && "tag" in obj;
 }
 
-export type attachFn = (key: string, elem: HTMLElement, opt: IBase) => {
+export type attachFn = (key: string, elem: HTMLElement, attr: baseAttr) => {
     elem: HTMLElement,
-    opt: IBase,
+    attr: baseAttr,
 };
 
 

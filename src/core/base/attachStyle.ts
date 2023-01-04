@@ -222,13 +222,13 @@ const allow =(key:string):string|null=> {
 	return null;
 }
 
-export const attachStyle: attachFn = (key, elem, opt) => {
+export const attachStyle: attachFn = (key, elem, attr) => {
     let a_key = allow(key);
     
 	if (a_key !== null) {
-		elem.style[a_key] = opt[key];
-		delete opt[key];
+		elem.style[a_key] = attr[key];
+		delete attr[key];
 	}
 
-	return { opt, elem };
+	return { attr, elem };
 }

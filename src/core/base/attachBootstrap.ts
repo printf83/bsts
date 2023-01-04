@@ -1070,12 +1070,12 @@ const allow = (key:string):string|null => {
 	return null;
 }
 
-export const attachBootstrap: attachFn = (key, elem, opt) => {
+export const attachBootstrap: attachFn = (key, elem, attr) => {
 	let a_key = allow(key);
 	if (a_key !== null) {
-		if (Array.isArray(opt[key])) {
+		if (Array.isArray(attr[key])) {
 			let shared = false;
-			opt[key].forEach((i:any) => {
+			attr[key].forEach((i:any) => {
 				if (db[a_key].value.indexOf(i) > -1) {
 					shared = shared === false && db[a_key].shared !== false ? true : false;
 					if (db[a_key].hasOwnProperty("formatValue")) {
@@ -1102,37 +1102,37 @@ export const attachBootstrap: attachFn = (key, elem, opt) => {
 			});
 
 			if (!shared) {
-				delete opt[key];
+				delete attr[key];
 			}
 		} else {
-			if (db[a_key].value.indexOf(opt[key]) > -1) {
+			if (db[a_key].value.indexOf(attr[key]) > -1) {
 				if (db[a_key].hasOwnProperty("formatValue")) {
 					elem = addIntoClassList(elem, db[a_key].formatValue);
 				}
 
-				if (opt[key] === true) {
+				if (attr[key] === true) {
 					if (db[a_key].hasOwnProperty("formatTrue")) {
 						elem = addIntoClassList(elem, db[a_key].formatTrue);
 					}
-				} else if (opt[key] === false) {
+				} else if (attr[key] === false) {
 					if (db[a_key].hasOwnProperty("formatFalse")) {
 						elem = addIntoClassList(elem, db[a_key].formatFalse);
 					}
 				} else {
 					if (db[a_key].hasOwnProperty("format")) {
-						elem = addIntoClassList(elem, db[a_key].format.replace(/\$1/g, opt[key]));
+						elem = addIntoClassList(elem, db[a_key].format.replace(/\$1/g, attr[key]));
 					}
 				}
 
 				if (!db[a_key].shared) {
-					delete opt[key];
+					delete attr[key];
 				}
 			} else {
 				if (setting.DEBUG)
-					console.warn(`${opt[key]}:"${key}" is not supported value for bootstrap property`);
+					console.warn(`${attr[key]}:"${key}" is not supported value for bootstrap property`);
 			}
 		}
 	}
 
-	return { opt, elem };
+	return { attr, elem };
 }

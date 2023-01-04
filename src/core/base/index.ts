@@ -6,7 +6,7 @@ import { attachBoolean } from './attachBoolean.js';
 import { attachDisabled } from './attachDisabled.js';
 import { attachActive } from './attachActive.js';
 import { setting } from '../fn/setting.js';
-import { attachFn, IBase, tag } from './base.interface.js';
+import { attachFn, baseAttr } from './base.interface.js';
 import { attachBootstrap } from './attachBootstrap.js';
 import { attachEvent } from './attachEvent.js';
 import { attachStyle } from './attachStyle.js';
@@ -15,16 +15,14 @@ import { attachClass } from './attachClass.js';
 import { extend } from '../fn/extend.js';
 
 
-const cleanupAttr: attachFn = (key, elem, opt) => {
-    if ((opt[key] === undefined || opt[key]) === null) {
-		if (setting.DEBUG) console.log(`${key}:${opt[key]} is null or undefined. Delete it`);
-		delete opt[key];
+const cleanupAttr: attachFn = (key, elem, attr) => {
+    if ((attr[key] === undefined || attr[key]) === null) {
+		if (setting.DEBUG) console.log(`${key}:${attr[key]} is null or undefined. Delete it`);
+		delete attr[key];
 	}
 
-	return { opt, elem };
+	return { attr, elem };
 }
-
-const notAttr = ["tag", "elem", "dom"];
 
 const attrFn:attachFn[] = [
 	cleanupAttr,
@@ -44,33 +42,34 @@ const attrFn:attachFn[] = [
 
 
 
-export const attachAttr = (elem:HTMLElement, opt:IBase):HTMLElement =>{
-	let data = extend(opt);
+export const attachAttr = (elem: HTMLElement, attr: baseAttr): HTMLElement => {
+	if (attr) {
+		attr = extend(attr);
 
-	let keys = Object.keys(data);
-	if (keys) {
-		
-		let keyLength = keys.length;
-		let attrFnLength = attrFn.length;
+		let keys = Object.keys(attr);
+		if (keys) {
+			
+			let keyLength = keys.length;
+			let attrFnLength = attrFn.length;
 
-		for (let x = 0; x < keyLength; x++) {
-			if (notAttr.indexOf(keys[x]) === -1) {
+			for (let x = 0; x < keyLength; x++) {
 				for (let y = 0; y < attrFnLength; y++) {
-					if (data.hasOwnProperty(keys[x]) && data[keys[x]] !== null && data[keys[x]] !== undefined) {
-						if (y === attrFnLength - 1) {
-							if (setting.DEBUG) {
-								console.log(`Treat ${keys[x]}:${data[keys[x]]} as another attribute.`);
+						if (attr.hasOwnProperty(keys[x]) && attr[keys[x]] !== null && attr[keys[x]] !== undefined) {
+							if (y === attrFnLength - 1) {
+								if (setting.DEBUG) {
+									console.log(`Treat ${keys[x]}:${attr[keys[x]]} as another attribute.`);
+								}
 							}
-						}
 
-						let r = attrFn[y](keys[x], elem, data);
-						data = r.opt;
-						elem = r.elem;
+							let r = attrFn[y](keys[x], elem, attr);
+							attr = r.attr;
+							elem = r.elem;
+						}
 					}
-				}
 			}
-		}
+		}	
 	}
+	
 
 	return elem;
 }
