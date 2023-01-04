@@ -5,11 +5,7 @@ export const attachHref = (key: string, elem: HTMLElement, opt: IBase): IAttachR
 	if (key === "href" && i === "#") {
 		elem.setAttribute(key, "javascript:void(0);");
 		delete opt[key];
-	} else {
-		// elem.setAttribute(key, i);
 	}
-
-	
 
 	return { opt, elem };
 }

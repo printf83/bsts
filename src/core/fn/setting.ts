@@ -38,7 +38,7 @@ const _setting: ISetting = {
 	term: () => {},
 	banner: () => {},
 	themechange: (value:string) => {},
-	debug: false,
+	debug: true,
 };
 
 export const setting = {

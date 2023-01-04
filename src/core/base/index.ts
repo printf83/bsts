@@ -1,3 +1,4 @@
+import { attachOther } from './attachOther.js';
 import { attachHref } from './attachHref.js';
 import { attachAria } from './attachAria.js';
 import { attachData } from './attachData.js';
@@ -39,6 +40,7 @@ const attrDB = [
 	"attachManualStyle",
 	"attachClass",
 	"attachHref",
+	"attachOther",
 ];
 const attrFn = {
 	cleanupAttr,
@@ -53,6 +55,7 @@ const attrFn = {
 	attachManualStyle,
 	attachClass,
 	attachHref,
+	attachOther,
 };
 
 export const attachAttr = (elem:HTMLElement, opt:IBase):HTMLElement =>{
