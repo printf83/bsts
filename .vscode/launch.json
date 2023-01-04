@@ -4,7 +4,6 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
         {
             "type": "chrome",
             "request": "launch",
@@ -18,21 +17,5 @@
             "runtimeArgs": ["--disable-web-security"]
 
         },
-        {
-            "type": "firefox",
-            "request": "launch",
-            "name": "Launch Firefox agains localhost",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "url": "file:///E:/print/Documents/git/bsts/index.html",
-            "preLaunchTask": "tsc: build - tsconfig.json && firefox -start-debugger-server",
-            "timeout": 5,
-            "webRoot": "${workspaceFolder}",
-            "reAttach": true,
-            "file": "${workspaceFolder}/index.html",
-            // "firefoxArgs":[""],
-
-        }
     ]
 }
