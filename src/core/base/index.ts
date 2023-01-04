@@ -1,4 +1,3 @@
-import { IBase } from './../../../lib/core/base/base.interface.d';
 import { attachOther } from './attachOther.js';
 import { attachHref } from './attachHref.js';
 import { attachAria } from './attachAria.js';
@@ -7,7 +6,7 @@ import { attachBoolean } from './attachBoolean.js';
 import { attachDisabled } from './attachDisabled.js';
 import { attachActive } from './attachActive.js';
 import { setting } from '../fn/setting.js';
-import { attachFn, tag } from './base.interface.js';
+import { attachFn, IBase, tag } from './base.interface.js';
 import { attachBootstrap } from './attachBootstrap.js';
 import { attachEvent } from './attachEvent.js';
 import { attachStyle } from './attachStyle.js';
@@ -20,8 +19,6 @@ const cleanupAttr: attachFn = (key, elem, opt) => {
     if ((opt[key] === undefined || opt[key]) === null) {
 		if (setting.DEBUG) console.log(`${key}:${opt[key]} is null or undefined. Delete it`);
 		delete opt[key];
-	} else {
-		if (setting.DEBUG) console.log(`${key}:${opt[key]} isNot null and undefined`);
 	}
 
 	return { opt, elem };

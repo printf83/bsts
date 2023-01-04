@@ -17,6 +17,22 @@
             "webRoot": "${workspaceFolder}",
             "runtimeArgs": ["--disable-web-security"]
 
+        },
+        {
+            "type": "firefox",
+            "request": "launch",
+            "name": "Launch Firefox agains localhost",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "url": "file:///E:/print/Documents/git/bsts/index.html",
+            "preLaunchTask": "tsc: build - tsconfig.json && firefox -start-debugger-server",
+            "timeout": 5,
+            "webRoot": "${workspaceFolder}",
+            "reAttach": true,
+            "file": "${workspaceFolder}/index.html",
+            // "firefoxArgs":[""],
+
         }
     ]
 }

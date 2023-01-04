@@ -15,7 +15,7 @@ export const build = (container:HTMLElement, arg:tag|string|(tag|string)[], appe
                     if (isTag(h)){
                         let e = (h as tag);
                         let element = e.data.tag ? document.createElement(e.data.tag) : container;
-                        element = attachAttr(element, e);
+                        element = attachAttr(element, e.data);
 
                         if (e.data.elem) {
                             e.data.elem = Array.isArray(e.data.elem) ? e.data.elem : [e.data.elem];

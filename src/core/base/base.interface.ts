@@ -1,8 +1,7 @@
-import { isHTML } from './../fn/isHTML';
 import { bs } from "./attachBootstrap.js";
 
 
-interface IBase{
+export interface IBase{
     tag: string,
     elem?: tag | string | (tag | string)[],
     dom?: HTMLElement,
@@ -18,7 +17,7 @@ interface IBase{
     "text-Color"?: bs.textColor[number],
 }
 
-const isIBase = (obj: any): boolean => {
+export const isIBase = (obj: any): boolean => {
     return typeof obj === "object" && ("tag" in obj && "elem" in obj);
 }
 
