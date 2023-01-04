@@ -1,5 +1,5 @@
 import { setting } from "../fn/setting.js";
-import { IAttachResult, IBase } from "./base.interface.js";
+import { attachFn } from "./base.interface.js";
 
 const db = [
 	"allowfullscreen",
@@ -32,7 +32,7 @@ const db = [
 	"truespeed",
 ];
 
-export const attachBoolean = (key:string, elem:HTMLElement, opt:IBase):IAttachResult => {
+export const attachBoolean: attachFn = (key, elem, opt) => {
 	if (db.indexOf(key) > -1) {
 		if (opt[key] === true) {
 			elem.setAttribute(key, key);

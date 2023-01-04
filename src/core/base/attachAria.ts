@@ -1,5 +1,5 @@
-import { IBase, IAttachResult } from './base.interface.js';
-export const attachAria = (key:string, elem:HTMLElement, opt:IBase):IAttachResult => {
+import { attachFn } from './base.interface.js';
+export const attachAria: attachFn = (key, elem, opt) => {
 	if (key.startsWith("aria")) {
 		elem.setAttribute(
 			key.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase()),

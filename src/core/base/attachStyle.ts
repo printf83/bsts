@@ -1,6 +1,6 @@
 import { camel2Dash } from "../fn/camel2Dash.js";
 import { dash2Camel } from "../fn/dash2Camel.js";
-import { IAttachResult, IBase } from "./base.interface.js";
+import { attachFn } from "./base.interface.js";
 
 const db = [
 	"alignContent",
@@ -222,7 +222,7 @@ const allow =(key:string):string|null=> {
 	return null;
 }
 
-export const attachStyle = (key:string, elem:HTMLElement, opt:IBase):IAttachResult=> {
+export const attachStyle: attachFn = (key, elem, opt) => {
     let a_key = allow(key);
     
 	if (a_key !== null) {

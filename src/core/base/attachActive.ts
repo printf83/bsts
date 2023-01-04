@@ -1,6 +1,6 @@
 import { addIntoClassList } from '../fn/addIntoClassList.js';
-import { IBase, IAttachResult } from './base.interface.js';
-export const attachActive = (key:string, elem:HTMLElement, opt:IBase):IAttachResult => {
+import { attachFn } from './base.interface.js';
+export const attachActive: attachFn = (key, elem, opt) => {
 	if (opt[key] === true && key === "active") {
 		elem = addIntoClassList(elem, "active");
 		delete opt[key];
@@ -8,3 +8,7 @@ export const attachActive = (key:string, elem:HTMLElement, opt:IBase):IAttachRes
 
 	return { opt, elem };
 }
+
+
+
+

@@ -1,6 +1,6 @@
 import { addIntoClassList } from '../fn/addIntoClassList.js';
-import { IBase, IAttachResult } from './base.interface.js';
-export const attachDisabled = (key:string, elem:HTMLElement, opt:IBase):IAttachResult => {
+import { attachFn } from './base.interface.js';
+export const attachDisabled: attachFn = (key, elem, opt) => {
 	if (key === "disabled" && opt[key] === true) {
 		elem = addIntoClassList(elem, key);
 		elem.setAttribute(`aria-${key}`, opt[key]);

@@ -1,6 +1,6 @@
-import { IBase, IAttachResult } from './base.interface.js';
+import { attachFn } from './base.interface.js';
 
-export const attachManualStyle = (key: string, elem: HTMLElement, opt: IBase): IAttachResult=> {
+export const attachManualStyle: attachFn = (key, elem, opt) => {
 	if (key === "style") {
 		let styleKeys = Object.keys(opt[key]);
 		if (styleKeys) {

@@ -1,8 +1,8 @@
 import { deleteEventListener } from '../fn/deleteEventListener.js';
 import { setupEventListenerRemover } from '../fn/setupEventListenerRemover.js';
-import { IBase, IAttachResult} from './base.interface.js';
+import { attachFn} from './base.interface.js';
 
-export const attachEvent = (key:string, elem:HTMLElement, opt:IBase):IAttachResult => {
+export const attachEvent: attachFn = (key, elem, opt) => {
 	if (typeof opt[key] === "function") {
 		elem.addEventListener(key, opt[key], false);
 

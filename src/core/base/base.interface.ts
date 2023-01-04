@@ -26,9 +26,36 @@ export interface IAttachResult {
     opt:IBase
 }
 
-let a: IBase = {
-    tag: "a",
-    elem: "aaa",
-    bgColor:"primary"
-}
+export type attachFn = (key: string, elem: HTMLElement, opt: IBase) => {
+    elem: HTMLElement,
+    opt:IBase,
+};
+
+
+// export class t implements IBase{
+    
+//     tag = "h1";
+//     elem = null;
+
+//     constructor(arg: IBase) {
+//         this.tag = arg.tag;
+//         this.elem = arg.elem;
+//     }
+
+//     convert = ():void => {
+        
+//     }
+
+// }
+
+// function aaaa(d: t):t {
+//     return d;
+// }
+
+// aaaa(new t({
+//     tag: "test",
+//     elem: null,
+//     bgColor:"danger"
+// }))
+
 
