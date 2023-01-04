@@ -1,4 +1,4 @@
-import { genClassList } from "./genClassList";
+import { genClassList } from "./genClassList.js";
 
 export const addIntoClassList = (elem: HTMLElement, value: string | string[]): HTMLElement => {
      try {

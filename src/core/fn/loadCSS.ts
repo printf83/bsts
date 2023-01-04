@@ -1,5 +1,5 @@
-import { UUID } from "./uuid";
-import { detachEventListener } from "./detachEventListener";
+import { UUID } from "./uuid.js";
+import { detachEventListener } from "./detachEventListener.js";
 
 export const loadCSS = (url: string, callback?: Function): void => {
 	

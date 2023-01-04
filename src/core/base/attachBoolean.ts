@@ -1,5 +1,5 @@
-import { setting } from "../fn/setting";
-import { IAttachResult, IBase } from "./base.interface";
+import { setting } from "../fn/setting.js";
+import { IAttachResult, IBase } from "./base.interface.js";
 
 const db = [
 	"allowfullscreen",

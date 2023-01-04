@@ -1,4 +1,4 @@
-import { IBase, IAttachResult } from './base.interface';
+import { IBase, IAttachResult } from './base.interface.js';
 
 export const attachManualStyle = (key: string, elem: HTMLElement, opt: IBase): IAttachResult=> {
 	if (key === "style") {

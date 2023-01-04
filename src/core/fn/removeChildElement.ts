@@ -1,4 +1,4 @@
-import { detachEventListener } from './detachEventListener';
+import { detachEventListener } from './detachEventListener.js';
 
 export const removeChildElement = (elem:HTMLElement) => {
 	while (elem.firstChild) {

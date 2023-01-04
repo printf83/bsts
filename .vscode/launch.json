@@ -6,15 +6,17 @@
     "configurations": [
         
         {
-            "type": "node",
+            "type": "chrome",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Launch Chrome agains localhost",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/src/index.ts",
+            "url": "file:///E:/print/Documents/git/bsts/index.html",
             "preLaunchTask": "tsc: build - tsconfig.json",
-            "outFiles": ["${workspaceFolder}/lib/**/*.js"]
+            "webRoot": "${workspaceFolder}",
+            "runtimeArgs": ["--disable-web-security"]
+
         }
     ]
 }

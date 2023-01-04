@@ -1,17 +1,26 @@
+// {
+//   "compilerOptions": {
+//     "module": "CommonJS",
+//     "declaration": true,
+//     "removeComments": true,
+//     "allowSyntheticDefaultImports": true,
+//     "target": "es2021",
+//     "sourceMap": true,
+//     "outDir": "./lib",
+//     "baseUrl": "./",
+//     "incremental": true,
+//   },
+//   "include": ["src/**/*", "test.js"],
+//   "exclude": ["node_modules", "**/*spec.ts"]
+// }
+
 {
   "compilerOptions": {
-    "module": "CommonJS",
-    "declaration": true,
-    "removeComments": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "es2021",
-    "sourceMap": true,
+    "target": "ES6",
+    "module": "ESNext",
     "outDir": "./lib",
-    "baseUrl": "./",
-    "incremental": true,
+    "sourceMap": true,
   },
-  "include": ["src/**/*", "test.js"],
-  "exclude": ["node_modules", "**/*spec.ts"]
 }
 
 

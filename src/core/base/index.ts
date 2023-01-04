@@ -1,17 +1,17 @@
-import { attachHref } from './attachHref';
-import { attachAria } from './attachAria';
-import { attachData } from './attachData';
-import { attachBoolean } from './attachBoolean';
-import { attachDisabled } from './attachDisabled';
-import { attachActive } from './attachActive';
-import { setting } from '../fn/setting';
-import { IBase, IAttachResult } from './base.interface';
-import { attachBootstrap } from './attachBootstrap';
-import { attachEvent } from './attachEvent';
-import { attachStyle } from './attachStyle';
-import { attachManualStyle } from './attachManualStyle';
-import { attachClass } from './attachClass';
-import { extend } from '../fn/extend';
+import { attachHref } from './attachHref.js';
+import { attachAria } from './attachAria.js';
+import { attachData } from './attachData.js';
+import { attachBoolean } from './attachBoolean.js';
+import { attachDisabled } from './attachDisabled.js';
+import { attachActive } from './attachActive.js';
+import { setting } from '../fn/setting.js';
+import { IBase, IAttachResult } from './base.interface.js';
+import { attachBootstrap } from './attachBootstrap.js';
+import { attachEvent } from './attachEvent.js';
+import { attachStyle } from './attachStyle.js';
+import { attachManualStyle } from './attachManualStyle.js';
+import { attachClass } from './attachClass.js';
+import { extend } from '../fn/extend.js';
 
 
 const cleanupAttr = (key: string, elem: HTMLElement, opt: IBase): IAttachResult => {

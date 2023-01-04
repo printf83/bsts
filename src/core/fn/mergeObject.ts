@@ -1,5 +1,5 @@
-import { mergeClass } from "./mergeClass";
-import { mergeStyle } from "./mergeStyle";
+import { mergeClass } from "./mergeClass.js";
+import { mergeStyle } from "./mergeStyle.js";
 
 export const mergeObject = (existingObject:object|null|undefined, newObject:object|null|undefined) => {
     

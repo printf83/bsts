@@ -1,6 +1,6 @@
 import { camel2Dash } from "../fn/camel2Dash.js";
 import { dash2Camel } from "../fn/dash2Camel.js";
-import { IAttachResult, IBase } from "./base.interface";
+import { IAttachResult, IBase } from "./base.interface.js";
 
 const db = [
 	"alignContent",
