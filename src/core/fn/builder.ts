@@ -1,6 +1,5 @@
-import { isTypeOf } from './isTypeOf.js';
 import { attachAttr } from '../base/index.js';
-import { IBase } from './../base/base.interface.js';
+import { IBase, isIBase } from './../base/base.interface.js';
 import { isHTML } from './isHTML.js';
 import { setting } from './setting.js';
 import { removeChildElement } from './removeChildElement.js';
@@ -13,7 +12,7 @@ export const build = (container:HTMLElement, arg:IBase|string|null|(IBase|string
 		if (arg.length > 0) {
 			arg.forEach((h) => {
                 if (h !== null) {
-                    if (isTypeOf<IBase>(h)){
+                    if (isIBase(h)){
                         let e = (h as IBase);
                         let element = e.tag ? document.createElement(e.tag) : container;
                         element = attachAttr(element, e);
@@ -23,9 +22,8 @@ export const build = (container:HTMLElement, arg:IBase|string|null|(IBase|string
                             e.elem.forEach((i) => {
                                 if (i !== null) {
                                     
-                                    if (isTypeOf<IBase>(i)) {
-                                        let f = (i as IBase);
-                                        let t = build(element, i);
+                                    if (isIBase(i)) {
+                                        let t = build(element, (i as IBase));
                                         element = t ? t : element;
                                     }
                                     else {

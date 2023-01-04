@@ -1,4 +1,4 @@
-import { isTypeOf } from './fn/isTypeOf.js';
+import { isIBase } from './base/base.interface.js';
 import { attachAttr } from './base/index.js';
 import { elemInfo } from './fn/elemInfo.js';
 import { multiClass } from './fn/multiClass.js';
@@ -58,7 +58,7 @@ export const core = {
     importJSPromise,
     isColorDark,
     isHTML,
-    isTypeOf,
+    isIBase,
     loadCSS,
     mergeClass,
     mergeObject,

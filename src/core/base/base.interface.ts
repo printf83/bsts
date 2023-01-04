@@ -10,15 +10,25 @@ export interface IBase{
     name?:string,
     class?: string | string[],
     
-    padding?: bs.padding,
-    bgColor?: bs.bgColor,
-    "bg-Color"?: bs.bgColor,
-    textColor?: bs.textColor,
-    "text-Color"?: bs.textColor,
+    padding?: bs.padding[number],
+    bgColor?: bs.bgColor[number],
+    "bg-Color"?: bs.bgColor[number],
+    textColor?: bs.textColor[number],
+    "text-Color"?: bs.textColor[number],
+}
+
+export const isIBase = (obj: any): boolean => {
+    return typeof obj === "object" && ("tag" in obj && "elem" in obj);
 }
 
 export interface IAttachResult {
     elem: HTMLElement,
     opt:IBase
+}
+
+let a: IBase = {
+    tag: "a",
+    elem: "aaa",
+    bgColor:"primary"
 }
 
