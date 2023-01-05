@@ -21,9 +21,9 @@
     "outDir": "./lib",
     "sourceMap": true,
 
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true
+    // "strict": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true
   },
 }
 

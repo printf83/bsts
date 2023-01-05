@@ -4,9 +4,7 @@ export class tag implements baseTag {
 	public isbsts = true;
 	public dom: HTMLElement;
 
-	constructor(public tag: string, public elem?: baseElem, public attr?: baseAttr) {
-		console.log(attr);
-	}
+	constructor(public tag: string, public elem?: baseElem, public attr?: baseAttr) {}
 }
 
 export const isTag = (obj: any): boolean => {
