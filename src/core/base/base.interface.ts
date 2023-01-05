@@ -40,7 +40,7 @@ export interface baseAttr{
     end?: bs.end[number],
     tMiddle?: bs.tMiddle[number],
 
-    height?: bs.height[number],
+    height?: string | bs.height[number],
     width?: bs.width[number],
     maxHeight?: bs.maxHeight[number],
     maxWidth?: bs.maxWidth[number],
@@ -111,7 +111,7 @@ export interface baseAttr{
     rowCol?: bs.rowCol[number],
     //bootstrap [end]
 
-    
+
 
     [key: string]: string | number | boolean | Function | (string | number | boolean)[]| undefined,
 }

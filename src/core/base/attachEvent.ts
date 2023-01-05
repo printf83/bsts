@@ -4,11 +4,11 @@ import { attachFn} from './base.interface.js';
 
 export const attachEvent: attachFn = (key, elem, attr) => {
 	if (typeof attr[key] === "function") {
-		elem.addEventListener(key, attr[key], false);
+		elem.addEventListener(key, (attr[key] as EventListenerOrEventListenerObject), false);
 
 		setupEventListenerRemover(key, elem, () => {
 			deleteEventListener(key, elem, () => {
-				elem.removeEventListener(key, attr[key], false);
+				elem.removeEventListener(key, (attr[key] as EventListenerOrEventListenerObject), false);
 			});
 		});
 

@@ -5,7 +5,7 @@ console.log(core.UUID());
 
 let body = document.getElementById("main") as HTMLElement;
 
-// core.appendChild(body, new tag("h1", [
+// core.replaceChild(body, new tag("h1", [
 //     new tag("span", "hello"),
 //     new tag("span", " world!")
 // ], { id: "test" }));
@@ -15,8 +15,14 @@ let body = document.getElementById("main") as HTMLElement;
 //     new span(" world", { textColor: "primary" })
 // ]));
 
-core.appendChild(body, new div([
-    new div("1", { col: 1 }),
-    new div("2", { col: 1 }),
-    new div("3", { col: 1 }),
-],{row:true}))
+// core.replaceChild(body, new div([
+//     new div("1", { col: 4 }),
+//     new div("2", { col: 4 }),
+//     new div("3", { col: 4 }),
+// ],{row:true}))
+
+core.replaceChild(body, new div([
+    new div("1", { col: 4 }),
+    new div("2", { col: 4 }),
+    new div("3", { col: 4 }),
+],{row:true, height:"350px"}))
