@@ -2,7 +2,7 @@ import { shuffleArray } from "./shuffleArray.js";
 
 const _db = {};
 
-export const randomDB = <T>(name:string, arr:T[]):T => {
+export const randomDB = <T>(name: string, arr: T[]): T => {
 	let arr_length = arr.length;
 
 	if (!_db[name]) {
@@ -41,4 +41,4 @@ export const randomDB = <T>(name:string, arr:T[]):T => {
 		let r = arr[i];
 		return r;
 	}
-}
+};

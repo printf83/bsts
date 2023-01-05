@@ -48,4 +48,4 @@ export const attachBoolean: attachFn = (key, elem, attr) => {
 	}
 
 	return { attr, elem };
-}
+};

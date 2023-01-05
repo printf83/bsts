@@ -2,7 +2,6 @@ import { UUID } from "./uuid.js";
 import { detachEventListener } from "./detachEventListener.js";
 
 export const loadCSS = (url: string, callback?: Function): void => {
-	
 	let head = document.getElementsByTagName("head")[0];
 	let link = document.createElement("link");
 	let id = UUID();
@@ -19,9 +18,9 @@ export const loadCSS = (url: string, callback?: Function): void => {
 			elem.remove();
 		}
 
-        if (typeof callback === "function") {
-            callback();    
-        }
+		if (typeof callback === "function") {
+			callback();
+		}
 	};
 
 	link.href = url;

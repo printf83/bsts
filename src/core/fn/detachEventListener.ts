@@ -1,4 +1,4 @@
-export const detachEventListener = (elem:ChildNode):void => {
+export const detachEventListener = (elem: ChildNode): void => {
 	let c = elem?.childNodes;
 	if (c?.length > 0) {
 		c.forEach((item) => {
@@ -8,6 +8,6 @@ export const detachEventListener = (elem:ChildNode):void => {
 					item["detachEventListener"][i]();
 				});
 			}
-		});	
+		});
 	}
-}
+};

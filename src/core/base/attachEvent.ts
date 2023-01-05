@@ -1,14 +1,14 @@
-import { deleteEventListener } from '../fn/deleteEventListener.js';
-import { setupEventListenerRemover } from '../fn/setupEventListenerRemover.js';
-import { attachFn} from './index.js';
+import { deleteEventListener } from "../fn/deleteEventListener.js";
+import { setupEventListenerRemover } from "../fn/setupEventListenerRemover.js";
+import { attachFn } from "./index.js";
 
 export const attachEvent: attachFn = (key, elem, attr) => {
 	if (typeof attr[key] === "function") {
-		elem.addEventListener(key, (attr[key] as EventListener), false);
+		elem.addEventListener(key, attr[key] as EventListener, false);
 
 		setupEventListenerRemover(key, elem, () => {
 			deleteEventListener(key, elem, () => {
-				elem.removeEventListener(key, (attr[key] as EventListener), false);
+				elem.removeEventListener(key, attr[key] as EventListener, false);
 			});
 		});
 
@@ -16,4 +16,4 @@ export const attachEvent: attachFn = (key, elem, attr) => {
 	}
 
 	return { attr, elem };
-}
+};

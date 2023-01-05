@@ -1,7 +1,7 @@
-export interface IIcon{
-    icon: string,
-    type: string,
-    color: string
+export interface IIcon {
+	icon: string;
+	type: string;
+	color: string;
 }
 const _baseIcon = {
 	i: { icon: "info-circle", type: "fas", color: "primary" },
@@ -13,10 +13,9 @@ const _baseIcon = {
 	"-": { icon: "minus-circle", type: "fas", color: "danger" },
 };
 
-export const getBaseIcon = (icon:string):IIcon | null => {
-
-    if (_baseIcon.hasOwnProperty(icon)) {
-			return _baseIcon[icon]
-    }
+export const getBaseIcon = (icon: string): IIcon | null => {
+	if (_baseIcon.hasOwnProperty(icon)) {
+		return _baseIcon[icon];
+	}
 	return null;
-}
+};

@@ -1,4 +1,4 @@
-import { attachFn } from './index.js';
+import { attachFn } from "./index.js";
 
 export const attachAria: attachFn = (key, elem, attr) => {
 	if (key.startsWith("aria")) {
@@ -11,4 +11,4 @@ export const attachAria: attachFn = (key, elem, attr) => {
 	}
 
 	return { attr, elem };
-}
+};

@@ -194,7 +194,7 @@ const db = [
 
 let allowProp = [];
 
-const allow =(key:string):string|null=> {
+const allow = (key: string): string | null => {
 	if (allowProp.length === 0) {
 		let t = db;
 		allowProp = [
@@ -220,15 +220,15 @@ const allow =(key:string):string|null=> {
 	}
 
 	return null;
-}
+};
 
 export const attachStyle: attachFn = (key, elem, attr) => {
-    let a_key = allow(key);
-    
+	let a_key = allow(key);
+
 	if (a_key !== null) {
 		elem.style[a_key] = attr[key];
 		delete attr[key];
 	}
 
 	return { attr, elem };
-}
+};

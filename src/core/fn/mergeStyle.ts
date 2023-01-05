@@ -1,13 +1,11 @@
-export const mergeStyle = (existingStyle:object|null|undefined, newStyle:object|null|undefined) => {
-	
+export const mergeStyle = (existingStyle: object | null | undefined, newStyle: object | null | undefined) => {
 	if (existingStyle) {
 		if (newStyle) {
 			let res = {};
 			Object.keys(existingStyle).forEach((i) => {
 				if (newStyle.hasOwnProperty(i)) {
-					res[i] = newStyle[i];	
-				}
-				else {
+					res[i] = newStyle[i];
+				} else {
 					res[i] = existingStyle[i];
 				}
 			});
@@ -15,23 +13,20 @@ export const mergeStyle = (existingStyle:object|null|undefined, newStyle:object|
 			Object.keys(newStyle).forEach((i) => {
 				if (!existingStyle.hasOwnProperty(i)) {
 					if (newStyle[i] !== null && newStyle[i] !== undefined) {
-                        res[i] = newStyle[i];
-                    }
+						res[i] = newStyle[i];
+					}
 				}
 			});
 
 			return res;
-		}
-		else {
+		} else {
 			return existingStyle;
 		}
-	}
-	else {
+	} else {
 		if (newStyle) {
 			return newStyle;
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
-}
+};

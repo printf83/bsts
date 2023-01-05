@@ -1,5 +1,5 @@
-export const genClassList = (value: string | string[]):string[]|null => {
-    let result:string[] = [];
+export const genClassList = (value: string | string[]): string[] | null => {
+	let result: string[] = [];
 	let i = null;
 	if (Array.isArray(value)) {
 		i = value;
@@ -29,4 +29,4 @@ export const genClassList = (value: string | string[]):string[]|null => {
 	}
 
 	return result && result.length > 0 ? result : null;
-}
+};

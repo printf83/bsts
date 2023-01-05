@@ -1,4 +1,4 @@
-import { attachFn } from './index.js';
+import { attachFn } from "./index.js";
 
 export const attachManualStyle: attachFn = (key, elem, attr) => {
 	if (key === "style") {
@@ -15,4 +15,4 @@ export const attachManualStyle: attachFn = (key, elem, attr) => {
 	}
 
 	return { attr, elem };
-}
+};

@@ -2,7 +2,7 @@ import { bs } from "../base/attachBootstrap.js";
 import { genClassList } from "./genClassList.js";
 import { setting } from "./setting.js";
 
-const bsClass = (value:string|number|boolean, rules:bs.rule):string[] => {
+const bsClass = (value: string | number | boolean, rules: bs.rule): string[] => {
 	let i = [];
 
 	if (rules.hasOwnProperty("formatValue")) {
@@ -24,9 +24,9 @@ const bsClass = (value:string|number|boolean, rules:bs.rule):string[] => {
 	}
 
 	return i && i.length > 0 ? i : null;
-}
+};
 
-export const multiClass = (value:string|number|boolean, rules:bs.rule):string[] =>{
+export const multiClass = (value: string | number | boolean, rules: bs.rule): string[] => {
 	if (value !== null && value !== undefined) {
 		if (rules.hasOwnProperty("value")) {
 			if (rules.value.indexOf(value) > -1) {
@@ -41,4 +41,4 @@ export const multiClass = (value:string|number|boolean, rules:bs.rule):string[] 
 	}
 
 	return null;
-}
+};

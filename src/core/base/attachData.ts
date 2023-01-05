@@ -1,4 +1,4 @@
-import { attachFn } from './index.js';
+import { attachFn } from "./index.js";
 
 export const attachData: attachFn = (key, elem, attr) => {
 	if (key.startsWith("data")) {
@@ -11,4 +11,4 @@ export const attachData: attachFn = (key, elem, attr) => {
 	}
 
 	return { attr, elem };
-}
+};

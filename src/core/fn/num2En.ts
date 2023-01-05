@@ -34,7 +34,7 @@ const num2EngDB = [
 	{ value: 1, str: "one" },
 ];
 
-export const num2En = (num:number):string => {
+export const num2En = (num: number): string => {
 	let result = "";
 	for (let n of num2EngDB) {
 		if (num >= n.value) {
