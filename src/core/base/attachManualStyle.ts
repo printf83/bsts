@@ -1,4 +1,4 @@
-import { attachFn } from './base.interface.js';
+import { attachFn } from './index.js';
 
 export const attachManualStyle: attachFn = (key, elem, attr) => {
 	if (key === "style") {

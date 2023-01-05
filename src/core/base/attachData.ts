@@ -1,4 +1,5 @@
-import { attachFn } from './base.interface.js';
+import { attachFn } from './index.js';
+
 export const attachData: attachFn = (key, elem, attr) => {
 	if (key.startsWith("data")) {
 		elem.setAttribute(

@@ -1,4 +1,5 @@
-import { baseAttr, tag } from "../core/base/base.interface.js";
+import { baseAttr } from "../core/base/index.js";
+import { tag } from "./index.js";
 
 export class span extends tag{
     constructor(

@@ -1,9 +1,9 @@
 import { core } from './core/index.js';
-import { tag } from './core/base/base.interface.js';
 
-import { div } from './ctl/div.js';
-import { h } from './ctl/h.js';
-import { span } from './ctl/span.js';
+import { div } from './tag/div.js';
+import { h } from './tag/h.js';
+import { tag } from './tag/index.js';
+import { span } from './tag/span.js';
 
 
 export {

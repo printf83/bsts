@@ -2,7 +2,7 @@ import { addIntoClassList } from "../fn/addIntoClassList.js";
 import { camel2Dash } from "../fn/camel2Dash.js";
 import { dash2Camel } from "../fn/dash2Camel.js";
 import { setting } from "../fn/setting.js";
-import { attachFn } from "./base.interface.js";
+import { attachFn } from "./index.js";
 
 export namespace bsType{
     const base5 = [0, 1, 2, 3, 4, 5];

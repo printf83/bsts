@@ -1,6 +1,6 @@
 import { camel2Dash } from "../fn/camel2Dash.js";
 import { dash2Camel } from "../fn/dash2Camel.js";
-import { attachFn } from "./base.interface.js";
+import { attachFn } from "./index.js";
 
 const db = [
 	"alignContent",

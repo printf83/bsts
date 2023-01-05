@@ -1,9 +1,9 @@
 import { attachAttr } from '../base/index.js';
-import { tag, isTag } from './../base/base.interface.js';
 import { isHTML } from './isHTML.js';
 import { setting } from './setting.js';
 import { removeChildElement } from './removeChildElement.js';
 import { removeElement } from './removeElement.js';
+import { isTag, tag } from '../../tag/index.js';
 
 export const build = (container:HTMLElement, arg:tag|string|(tag|string)[], append:boolean=true, pos:HTMLElement|null=null):HTMLElement => {
 	if (arg) {

@@ -1,5 +1,5 @@
 import { setting } from "../fn/setting.js";
-import { attachFn } from "./base.interface.js";
+import { attachFn } from "./index.js";
 
 const db = [
 	"allowfullscreen",

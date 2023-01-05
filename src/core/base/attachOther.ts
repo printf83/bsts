@@ -1,4 +1,4 @@
-import { attachFn } from './base.interface.js';
+import { attachFn } from './index.js';
 
 export const attachOther: attachFn = (key, elem, attr) => {
 	let i = Array.isArray(attr[key]) ? (attr[key] as []).join(" ") : attr[key];
