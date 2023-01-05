@@ -5,11 +5,77 @@ import { removeChildElement } from "./removeChildElement.js";
 import { removeElement } from "./removeElement.js";
 import { isTag, tag } from "../../tag/index.js";
 
+// export const build = (
+// 	container: HTMLElement,
+// 	arg: tag | string | (tag | string)[],
+// 	append: boolean = true,
+// 	pos: HTMLElement | null = null
+// ): HTMLElement => {
+// 	if (arg) {
+// 		arg = Array.isArray(arg) ? arg : [arg];
+
+// 		if (arg.length > 0) {
+// 			arg.forEach((h) => {
+// 				if (h !== null) {
+// 					if (isTag(h)) {
+// 						let e = h as tag;
+// 						let element = e.tag ? document.createElement(e.tag) : container;
+// 						element = attachAttr(element, e.attr);
+
+// 						if (e.elem) {
+// 							e.elem = Array.isArray(e.elem) ? e.elem : [e.elem];
+// 							e.elem.forEach((i) => {
+// 								if (i !== null) {
+// 									if (isTag(i)) {
+// 										let t = build(element, i as tag);
+// 										element = t ? t : element;
+// 									} else {
+// 										let g = i as string;
+// 										if (e.tag === "pre" && isHTML(g)) {
+// 											element.insertAdjacentHTML("beforeend", g);
+// 										} else if (Array.isArray(i)) {
+// 											console.error(
+// 												"i is array. This happen when you set elem: [[tag],tag]. It should be elem:[tag,tag]",
+// 												i
+// 											);
+// 										} else {
+// 											element.appendChild(document.createTextNode(g));
+// 										}
+// 									}
+// 								}
+// 							});
+// 						}
+
+// 						//add to data dom
+// 						//e.dom = element;
+
+// 						if (pos) {
+// 							container.insertBefore(element, pos);
+// 						} else {
+// 							if (e.tag) {
+// 								if (append) {
+// 									container.appendChild(element);
+// 								} else {
+// 									container.appendChild(element);
+// 								}
+// 							}
+// 						}
+// 					}
+// 				}
+// 			});
+// 		}
+// 	}
+
+// 	return container;
+// };
+
+export type buildArg = tag | string | (tag | string)[];
+
 export const build = (
-	container: HTMLElement,
-	arg: tag | string | (tag | string)[],
+	container: HTMLElement | null,
+	arg: buildArg,
 	append: boolean = true,
-	pos: HTMLElement | null = null
+	beforeElem: HTMLElement = null
 ): HTMLElement => {
 	if (arg) {
 		arg = Array.isArray(arg) ? arg : [arg];
@@ -19,8 +85,7 @@ export const build = (
 				if (h !== null) {
 					if (isTag(h)) {
 						let e = h as tag;
-						let element = e.tag ? document.createElement(e.tag) : container;
-						element = attachAttr(element, e.attr);
+						let element = attachAttr(document.createElement(e.tag), e.attr);
 
 						if (e.elem) {
 							e.elem = Array.isArray(e.elem) ? e.elem : [e.elem];
@@ -46,18 +111,24 @@ export const build = (
 							});
 						}
 
-						//add to data dom
-						//e.dom = element;
+						e.dom = element;
 
-						if (pos) {
-							container.insertBefore(element, pos);
+						if (append) {
+							if (beforeElem) {
+								container.insertBefore(element, beforeElem);
+							} else {
+								container.appendChild(element);
+							}
 						} else {
-							if (e.tag) {
-								if (append) {
-									container.appendChild(element);
+							if (container.childElementCount > 0) {
+								if (beforeElem) {
+									container.insertBefore(element, beforeElem);
+									beforeElem = element;
 								} else {
-									container.appendChild(element);
+									container.insertBefore(element, container.firstChild);
 								}
+							} else {
+								container.appendChild(element);
 							}
 						}
 					}
@@ -69,21 +140,42 @@ export const build = (
 	return container;
 };
 
-export const appendChild = (container: HTMLElement, arg: tag | string | (tag | string)[]): HTMLElement => {
-	if (setting.DEBUG) console.time("appendChild");
-	container = build(container, arg, true);
-	if (setting.DEBUG) console.timeEnd("appendChild");
-	return container.lastChild as HTMLElement;
+export const node = (arg: buildArg): HTMLElement | HTMLElement[] | null => {
+	let container = build(document.createElement("div"), arg);
+	let childCount = container.childElementCount;
+	if (childCount > 0) {
+		if (childCount === 1) {
+			return container.firstChild as HTMLElement;
+		} else {
+			return Array.from(container.childNodes).map((i) => i as HTMLElement);
+		}
+	}
+
+	return null;
 };
 
-export const prependChild = (container: HTMLElement, arg: tag | string | (tag | string)[]): HTMLElement => {
+export const html = (arg: buildArg): string => {
+	let container = build(document.createElement("div"), arg);
+	let result = container.innerHTML;
+	container = null;
+	return result;
+};
+
+export const appendChild = (container: HTMLElement, arg: buildArg): HTMLElement => {
+	if (setting.DEBUG) console.time("appendChild");
+	container = build(container, arg);
+	if (setting.DEBUG) console.timeEnd("appendChild");
+	return container;
+};
+
+export const prependChild = (container: HTMLElement, arg: buildArg): HTMLElement => {
 	if (setting.DEBUG) console.time("prependChild");
 	container = build(container, arg, false);
 	if (setting.DEBUG) console.timeEnd("prependChild");
-	return container.firstChild as HTMLElement;
+	return container;
 };
 
-export const replaceWith = (elem: HTMLElement, arg: tag | string | (tag | string)[]): HTMLElement => {
+export const replaceWith = (elem: HTMLElement, arg: buildArg): HTMLElement => {
 	if (setting.DEBUG) console.time("replaceWith");
 	let parent = elem.parentNode as HTMLElement;
 	parent = build(parent, arg, true, elem);
@@ -92,18 +184,10 @@ export const replaceWith = (elem: HTMLElement, arg: tag | string | (tag | string
 	return parent;
 };
 
-export const replaceChild = (container: HTMLElement, arg: tag | string | (tag | string)[]): HTMLElement => {
+export const replaceChild = (container: HTMLElement, arg: buildArg): HTMLElement => {
 	if (setting.DEBUG) console.time("replaceChild");
 	removeChildElement(container);
 	container = build(container, arg);
 	if (setting.DEBUG) console.timeEnd("replaceChild");
 	return container;
-};
-
-export const html = (arg: tag | string | (tag | string)[]): string => {
-	let container = document.createElement("div") as HTMLElement;
-	container = build(container, arg);
-	let html = container.innerHTML;
-	container = null;
-	return html;
 };

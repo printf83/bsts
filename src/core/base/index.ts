@@ -322,6 +322,7 @@ export interface baseTag {
 	tag: string;
 	elem?: string | tag | (string | tag)[];
 	attr?: baseAttr;
+	dom?: HTMLElement;
 }
 
 export type attachFn = (

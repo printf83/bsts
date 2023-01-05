@@ -32,6 +32,7 @@ core.replaceChild(body, [
 						textColor: "danger",
 						click: (e: Event) => {
 							alert("click");
+							core.removeElement(e.target as HTMLElement);
 						},
 					}),
 					new h(2, "2", { col: 3, textColor: "primary", class: ["hello", "world"] }),
