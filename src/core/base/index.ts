@@ -320,10 +320,12 @@ export interface baseAttr {
 
 export interface baseTag {
 	tag: string;
-	elem?: string | tag | (string | tag)[];
+	elem?: baseElem;
 	attr?: baseAttr;
 	dom?: HTMLElement;
 }
+
+export type baseElem = string | tag | (string | tag)[];
 
 export type attachFn = (
 	key: string,

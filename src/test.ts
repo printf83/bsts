@@ -1,4 +1,4 @@
-import { core, div, divCol, divRow, h, span, tag } from "./index.js";
+import { core, div, divCol, divRow, h } from "./index.js";
 
 // console.log(core.UUID());
 // console.log(core.UUID());
@@ -38,7 +38,7 @@ core.replaceChild(body, [
 					new h(2, "2", { col: 3, textColor: "primary", class: ["hello", "world"] }),
 					new h(3, "3", { col: 3, textColor: "success", class: "world" }),
 				],
-				{ height: "350px" }
+				{ height: "50px" }
 			),
 		],
 		{ container: true }

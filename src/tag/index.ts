@@ -1,10 +1,10 @@
-import { baseAttr, baseTag } from "../core/base/index.js";
+import { baseAttr, baseElem, baseTag } from "../core/base/index.js";
 
 export class tag implements baseTag {
 	public isbsts = true;
 	public dom: HTMLElement;
 
-	constructor(public tag: string, public elem?: string | tag | (string | tag)[], public attr?: baseAttr) {
+	constructor(public tag: string, public elem?: baseElem, public attr?: baseAttr) {
 		console.log(attr);
 	}
 }
