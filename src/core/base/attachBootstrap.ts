@@ -868,8 +868,13 @@ export namespace bs{
     export type bgOpacity = typeof bsType.bgOpacity;
     export type textOpacity = typeof bsType.textOpacity;
 
+    export type btnColor = typeof bsType.btnColor;
+    export type btnOutlineColor = typeof bsType.btnOutlineColor;
+    export type alertColor = typeof bsType.alertColor;
+
     export type textBgColor = typeof bsType.textBgColor;
     export type textColor = typeof bsType.textColor;
+    export type linkColor = typeof bsType.linkColor;
     export type bgColor = typeof bsType.bgColor;
 
     export type textTransform = typeof bsType.textTransform;
@@ -978,6 +983,7 @@ const db = {
         viewHeight: { format: "vh-$1", value:bsType.viewHeight.concat() } satisfies bs.rule,
         viewWidth: { format: "vw-$1", value:bsType.viewWidth.concat() } satisfies bs.rule,
         
+        placeholder: {formatTrue: "placeholder", value:bsType.placeholder.concat() } satisfies bs.rule,
         placeholderAnimation: { format: "placeholder-$1", value:bsType.placeholderAnimation.concat() } satisfies bs.rule,
         placeholderWeight: { format: "placeholder-$1", formatValue: "placeholder $1", value:bsType.placeholderWeight.concat() } satisfies bs.rule,
         
@@ -1034,7 +1040,6 @@ const db = {
         bgGradient: {formatTrue: "bg-gradient", value:bsType.bgGradient.concat() } satisfies bs.rule,
         wordBreak: {formatTrue: "text-break", value:bsType.wordBreak.concat() } satisfies bs.rule,
         monospace: { formatTrue: "font-monospace", value:bsType.monospace.concat() } satisfies bs.rule,
-        placeholder: {formatTrue: "placeholder", value:bsType.placeholder.concat() } satisfies bs.rule,
         row: { formatTrue: "row", formatFalse: null, value:bsType.row.concat() } satisfies bs.rule,
         col: {format: "col-$1", formatTrue: "col", value:bsType.col.concat() } satisfies bs.rule,
         rowCol: {format: "row-cols-$1", value:bsType.rowCol.concat() } satisfies bs.rule,
@@ -1073,9 +1078,9 @@ const allow = (key:string):string|null => {
 export const attachBootstrap: attachFn = (key, elem, attr) => {
 	let a_key = allow(key);
 	if (a_key !== null) {
-		if (Array.isArray(attr[key])) {
+        if (Array.isArray(attr[key])) {
 			let shared = false;
-			attr[key].forEach((i:any) => {
+			(attr[key] as (string | number | boolean)[]).forEach((i:any) => {
 				if (db[a_key].value.indexOf(i) > -1) {
 					shared = shared === false && db[a_key].shared !== false ? true : false;
 					if (db[a_key].hasOwnProperty("formatValue")) {

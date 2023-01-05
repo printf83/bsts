@@ -41,7 +41,6 @@ const attrFn:attachFn[] = [
 ];
 
 
-
 export const attachAttr = (elem: HTMLElement, attr: baseAttr): HTMLElement => {
 	if (attr) {
 		attr = extend(attr);

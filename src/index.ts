@@ -1,5 +1,12 @@
-import { tag } from './core/base/base.interface.js';
-import { span } from './ctl/span.js';
 import { core } from './core/index.js';
+import { tag } from './core/base/base.interface.js';
 
-export {core,span,tag};
+import { div } from './ctl/div.js';
+import { span } from './ctl/span.js';
+
+export {
+    core,
+    tag,
+    div,
+    span,
+};
