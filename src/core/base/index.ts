@@ -57,7 +57,7 @@ export interface baseAttr{
     end?: bs.end[number],
     tMiddle?: bs.tMiddle[number],
 
-    height?: string | string | bs.height[number],
+    height?: string | bs.height[number],
     width?: string | bs.width[number],
     maxHeight?: string | bs.maxHeight[number],
     maxWidth?: string | bs.maxWidth[number],
@@ -74,7 +74,7 @@ export interface baseAttr{
 
     border?: string | bs.border[number],
     borderNone?: bs.borderNone[number],
-    borderColor?: string | bs.borderColor[number],
+    borderColor?:  string | bs.borderColor[number],
     borderOpacity?: bs.borderOpacity[number],
     borderWidth?: string | bs.borderWidth[number],
 

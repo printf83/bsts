@@ -1,6 +1,8 @@
 import { baseAttr, baseTag } from "../core/base/index.js";
 
 export class tag implements baseTag{
+    public bststag = true;
+
     constructor(
         public tag: string,
         public elem?: string | tag | (string | tag)[],
@@ -11,5 +13,5 @@ export class tag implements baseTag{
 }
 
 export const isTag = (obj: any): boolean => {
-    return typeof obj === "object" && "tag" in obj;
+    return typeof obj === "object" && "bststag" in obj && obj["bststag"] === true;
 }

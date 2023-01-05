@@ -827,6 +827,7 @@ export namespace bs{
         formatTrue?: string|null,
         formatFalse?:string|null,
         value: any[]
+        shared?:boolean,
         
     }
 
@@ -940,15 +941,15 @@ export namespace bs{
 
 const db = {
         
-        userSelect: { format: "user-select-$1", value:bsType.userSelect.concat() } satisfies bs.rule,
+        userSelect: { format: "user-select-$1", value:bsType.userSelect.concat(), shared:true } satisfies bs.rule,
         pointerEvent: { format: "pe-$1", value:bsType.pointerEvent.concat() } satisfies bs.rule,
-        position: { format: "position-$1", value:bsType.position.concat() } satisfies bs.rule,
-        overflow: { format: "overflow-$1", value:bsType.overflow.concat() } satisfies bs.rule,
+        position: { format: "position-$1", value:bsType.position.concat(), shared:true } satisfies bs.rule,
+        overflow: { format: "overflow-$1", value:bsType.overflow.concat(), shared:true } satisfies bs.rule,
 
-        textAlign: { format: "text-$1", value:bsType.textAlign.concat() } satisfies bs.rule,
-        verticalAlign: { format: "align-$1", value:bsType.verticalAlign.concat() } satisfies bs.rule,
+        textAlign: { format: "text-$1", value:bsType.textAlign.concat(), shared:true } satisfies bs.rule,
+        verticalAlign: { format: "align-$1", value:bsType.verticalAlign.concat(), shared:true } satisfies bs.rule,
 
-        opacity: { format: "opacity-$1" , value:bsType.opacity.concat() } satisfies bs.rule,
+        opacity: { format: "opacity-$1" , value:bsType.opacity.concat(), shared:true} satisfies bs.rule,
         bgOpacity: { format: "bg-opacity-$1", value:bsType.bgOpacity.concat() } satisfies bs.rule,
         textOpacity: { format: "text-opacity-$1", value:bsType.textOpacity.concat() } satisfies bs.rule,
 
@@ -961,23 +962,23 @@ const db = {
         linkColor: { format: "link-$1", value:bsType.linkColor.concat() } satisfies bs.rule,
         bgColor: { format: "bg-$1", value:bsType.bgColor.concat() } satisfies bs.rule,
 
-        textTransform: { format: "text-$1", value:bsType.textTransform.concat() } satisfies bs.rule,
-        textDecoration: { format: "text-decoration-$1", value:bsType.textDecoration.concat() } satisfies bs.rule,
-        lineHeight: { format: "lh-$1", value:bsType.lineHeight.concat() } satisfies bs.rule,
+        textTransform: { format: "text-$1", value:bsType.textTransform.concat(), shared:true } satisfies bs.rule,
+        textDecoration: { format: "text-decoration-$1", value:bsType.textDecoration.concat(), shared:true } satisfies bs.rule,
+        lineHeight: { format: "lh-$1", value:bsType.lineHeight.concat(), shared:true } satisfies bs.rule,
 
-        fontSize: { format: "fs-$1", value:bsType.fontSize.concat() } satisfies bs.rule,
-        fontWeight: { format: "fw-$1", value:bsType.fontWeight.concat() } satisfies bs.rule,
+        fontSize: { format: "fs-$1", value:bsType.fontSize.concat(), shared:true } satisfies bs.rule,
+        fontWeight: { format: "fw-$1", value:bsType.fontWeight.concat(), shared:true } satisfies bs.rule,
 
-        top: { format: "top-$1", value:bsType.top.concat() } satisfies bs.rule,
-        bottom: { format: "bottom-$1", value:bsType.bottom.concat() } satisfies bs.rule,
+        top: { format: "top-$1", value:bsType.top.concat(), shared:true } satisfies bs.rule,
+        bottom: { format: "bottom-$1", value:bsType.bottom.concat(), shared:true } satisfies bs.rule,
         start: { format: "start-$1", value:bsType.start.concat() } satisfies bs.rule,
         end: { format: "end-$1", value:bsType.end.concat() } satisfies bs.rule,
         tMiddle: { format: "translate-middle-$1", formatTrue: "translate-middle", value:bsType.tMiddle.concat() } satisfies bs.rule,
 
-        height: { format: "h-$1", value:bsType.height.concat() } satisfies bs.rule,
-        width: { format: "w-$1", value:bsType.width.concat() } satisfies bs.rule,
-        maxHeight: { format: "mh-$1", value:bsType.maxHeight.concat() } satisfies bs.rule,
-        maxWidth: { format: "mw-$1", value:bsType.maxWidth.concat() } satisfies bs.rule,
+        height: { format: "h-$1", value:bsType.height.concat(), shared:true } satisfies bs.rule,
+        width: { format: "w-$1", value:bsType.width.concat(), shared:true } satisfies bs.rule,
+        maxHeight: { format: "mh-$1", value:bsType.maxHeight.concat(), shared:true } satisfies bs.rule,
+        maxWidth: { format: "mw-$1", value:bsType.maxWidth.concat(), shared:true } satisfies bs.rule,
         minViewHeight: { format: "min-vh-$1", value:bsType.minViewHeight.concat() } satisfies bs.rule,
         minViewWidth: { format: "min-vw-$1", value:bsType.minViewWidth.concat() } satisfies bs.rule,
         viewHeight: { format: "vh-$1", value:bsType.viewHeight.concat() } satisfies bs.rule,
@@ -989,29 +990,29 @@ const db = {
         
         shadow: { format: "shadow-$1", formatTrue: "shadow", formatFalse: "shadow-none", value:bsType.shadow.concat() } satisfies bs.rule,
 
-        border: { format: "border-$1", formatTrue: "border", formatFalse: "border-0" , value:bsType.border.concat() } satisfies bs.rule,
+        border: { format: "border-$1", formatTrue: "border", formatFalse: "border-0" , value:bsType.border.concat(), shared:true } satisfies bs.rule,
         borderNone: { format: "border border-$1-0", formatTrue: "border-0" , value:bsType.borderNone.concat() } satisfies bs.rule,
-        borderColor: { format: "border-$1", formatValue: "border", value:bsType.borderColor.concat() } satisfies bs.rule,
+        borderColor: { format: "border-$1", formatValue: "border", value:bsType.borderColor.concat(), shared:true } satisfies bs.rule,
         borderOpacity: { format: "border-opacity-$1", formatValue: "border", value:bsType.borderOpacity.concat() } satisfies bs.rule,
-        borderWidth: { format: "border-$1", formatValue: "border", value:bsType.borderWidth.concat() } satisfies bs.rule,
+        borderWidth: { format: "border-$1", formatValue: "border", value:bsType.borderWidth.concat(), shared:true } satisfies bs.rule,
 
         rounded: { format: "rounded-$1", formatTrue: "rounded", formatFalse: "rounded-0", value:bsType.rounded.concat() } satisfies bs.rule,
         roundedNone: { format: "rounded-$1-0", formatTrue: "rounded-0", formatFalse: "rounded", formatValue: "rounded", value:bsType.roundedNone.concat() } satisfies bs.rule,
         roundedSize: { format: "rounded-$1", formatValue: "rounded", value:bsType.roundedSize.concat() } satisfies bs.rule,
 
-        padding: { format: "p-$1", value:bsType.padding.concat() } satisfies bs.rule,
+        padding: { format: "p-$1", value:bsType.padding.concat(), shared:true } satisfies bs.rule,
         paddingX: { format: "px-$1", value:bsType.paddingX.concat() } satisfies bs.rule,
         paddingY: { format: "py-$1", value:bsType.paddingY.concat() } satisfies bs.rule,
-        paddingTop: { format: "pt-$1", value:bsType.paddingTop.concat() } satisfies bs.rule,
-        paddingBottom: { format: "pb-$1", value:bsType.paddingBottom.concat() } satisfies bs.rule,
+        paddingTop: { format: "pt-$1", value:bsType.paddingTop.concat(), shared:true } satisfies bs.rule,
+        paddingBottom: { format: "pb-$1", value:bsType.paddingBottom.concat(), shared:true } satisfies bs.rule,
         paddingStart: { format: "ps-$1", value:bsType.paddingStart.concat() } satisfies bs.rule,
         paddingEnd: { format: "pe-$1", value:bsType.paddingEnd.concat() } satisfies bs.rule,
 
-        margin: { format: "m-$1", value:bsType.margin.concat() } satisfies bs.rule,
+        margin: { format: "m-$1", value:bsType.margin.concat(), shared:true } satisfies bs.rule,
         marginX: { format: "mx-$1", value:bsType.marginX.concat() } satisfies bs.rule,
         marginY: { format: "my-$1", value:bsType.marginY.concat() } satisfies bs.rule,
-        marginTop: { format: "mt-$1", value:bsType.marginTop.concat() } satisfies bs.rule,
-        marginBottom: { format: "mb-$1", value:bsType.marginBottom.concat() } satisfies bs.rule,
+        marginTop: { format: "mt-$1", value:bsType.marginTop.concat(), shared:true } satisfies bs.rule,
+        marginBottom: { format: "mb-$1", value:bsType.marginBottom.concat(), shared:true } satisfies bs.rule,
         marginStart: { format: "ms-$1", value:bsType.marginStart.concat() } satisfies bs.rule,
         marginEnd: { format: "me-$1", value:bsType.marginEnd.concat() } satisfies bs.rule,
 
@@ -1020,25 +1021,25 @@ const db = {
         gutterX: { format: "gx-$1", value:bsType.gutterX.concat() } satisfies bs.rule,
         gutterY: { format: "gy-$1", value:bsType.gutterY.concat() } satisfies bs.rule,
 
-        display: { format: "d-$1", value:bsType.display.concat() } satisfies bs.rule,
+        display: { format: "d-$1", value:bsType.display.concat(), shared:true } satisfies bs.rule,
         print: { format: "d-print-$1", value:bsType.print.concat() } satisfies bs.rule,
         container: {format: "container-$1",formatTrue: "container", value:bsType.container.concat() } satisfies bs.rule,
 
-        flex: {format: "flex-$1", value:bsType.flex.concat() } satisfies bs.rule,
+        flex: {format: "flex-$1", value:bsType.flex.concat(), shared:true } satisfies bs.rule,
         float: {format: "float-$1", value:bsType.float.concat() } satisfies bs.rule,
-        order: {format: "order-$1", value:bsType.order.concat() } satisfies bs.rule,
+        order: {format: "order-$1", value:bsType.order.concat(), shared:true } satisfies bs.rule,
         offset: {format: "offset-$1", value:bsType.offset.concat() } satisfies bs.rule,
 
-        alignContent: {format: "align-content-$1", value:bsType.alignContent.concat() } satisfies bs.rule,
-        justifyContent: {format: "justify-content-$1", value:bsType.justifyContent.concat() } satisfies bs.rule,
-        alignItem: {format: "align-items-$1", value:bsType.alignItem.concat() } satisfies bs.rule,
-        alignSelf: {format: "align-self-$1", value:bsType.alignSelf.concat() } satisfies bs.rule,
+        alignContent: {format: "align-content-$1", value:bsType.alignContent.concat(), shared:true } satisfies bs.rule,
+        justifyContent: {format: "justify-content-$1", value:bsType.justifyContent.concat() , shared:true} satisfies bs.rule,
+        alignItem: {format: "align-items-$1", value:bsType.alignItem.concat(), shared:true } satisfies bs.rule,
+        alignSelf: {format: "align-self-$1", value:bsType.alignSelf.concat(), shared:true } satisfies bs.rule,
 
         visible: {formatTrue: "visible",formatFalse: "invisible", value:bsType.visible.concat() } satisfies bs.rule,
         textWrap: {formatTrue: "text-wrap",formatFalse: "text-nowrap", value:bsType.textWrap.concat() } satisfies bs.rule,
         fontItalic: {formatTrue: "fst-italic",formatFalse: "fst-normal", value:bsType.fontItalic.concat() } satisfies bs.rule,
         bgGradient: {formatTrue: "bg-gradient", value:bsType.bgGradient.concat() } satisfies bs.rule,
-        wordBreak: {formatTrue: "text-break", value:bsType.wordBreak.concat() } satisfies bs.rule,
+        wordBreak: {formatTrue: "text-break", value:bsType.wordBreak.concat(), shared:true} satisfies bs.rule,
         monospace: { formatTrue: "font-monospace", value:bsType.monospace.concat() } satisfies bs.rule,
         row: { formatTrue: "row", formatFalse: null, value:bsType.row.concat() } satisfies bs.rule,
         col: {format: "col-$1", formatTrue: "col", value:bsType.col.concat() } satisfies bs.rule,
@@ -1075,68 +1076,113 @@ const allow = (key:string):string|null => {
 	return null;
 }
 
+// export const attachBootstrap: attachFn = (key, elem, attr) => {
+// 	let a_key = allow(key);
+// 	if (a_key !== null) {
+//         if (Array.isArray(attr[key])) {
+// 			let shared = false;
+// 			(attr[key] as (string | number | boolean)[]).forEach((i:any) => {
+// 				if (db[a_key].value.indexOf(i) > -1) {
+// 					shared = shared === false && db[a_key].shared !== false ? true : false;
+// 					if (db[a_key].hasOwnProperty("formatValue")) {
+// 						elem = addIntoClassList(elem, db[a_key].formatValue);
+// 					}
+
+// 					if (i === true) {
+// 						if (db[a_key].hasOwnProperty("formatTrue")) {
+// 							elem = addIntoClassList(elem, db[a_key].formatTrue);
+// 						}
+// 					} else if (i === false) {
+// 						if (db[a_key].hasOwnProperty("formatFalse")) {
+// 							elem = addIntoClassList(elem, db[a_key].formatFalse);
+// 						}
+// 					} else {
+// 						if (db[a_key].hasOwnProperty("format")) {
+// 							elem = addIntoClassList(elem, db[a_key].format.replace(/\$1/g, i));
+// 						}
+// 					}
+// 				} else {
+// 					if (setting.DEBUG)
+// 						console.warn(`${a_key}:"${i}" is not supported value for bootstrap property`);
+// 				}
+// 			});
+
+// 			if (!shared) {
+// 				delete attr[key];
+// 			}
+// 		} else {
+// 			if (db[a_key].value.indexOf(attr[key]) > -1) {
+// 				if (db[a_key].hasOwnProperty("formatValue")) {
+// 					elem = addIntoClassList(elem, db[a_key].formatValue);
+// 				}
+
+// 				if (attr[key] === true) {
+// 					if (db[a_key].hasOwnProperty("formatTrue")) {
+// 						elem = addIntoClassList(elem, db[a_key].formatTrue);
+// 					}
+// 				} else if (attr[key] === false) {
+// 					if (db[a_key].hasOwnProperty("formatFalse")) {
+// 						elem = addIntoClassList(elem, db[a_key].formatFalse);
+// 					}
+// 				} else {
+// 					if (db[a_key].hasOwnProperty("format")) {
+// 						elem = addIntoClassList(elem, db[a_key].format.replace(/\$1/g, attr[key]));
+// 					}
+// 				}
+
+// 				if (!db[a_key].shared) {
+// 					delete attr[key];
+// 				}
+// 			} else {
+// 				if (setting.DEBUG)
+// 					console.warn(`${key}:"${attr[key]}" is not supported value for bootstrap property`);
+// 			}
+// 		}
+// 	}
+
+// 	return { attr, elem };
+// }
+
 export const attachBootstrap: attachFn = (key, elem, attr) => {
 	let a_key = allow(key);
 	if (a_key !== null) {
-        if (Array.isArray(attr[key])) {
-			let shared = false;
-			(attr[key] as (string | number | boolean)[]).forEach((i:any) => {
-				if (db[a_key].value.indexOf(i) > -1) {
-					shared = shared === false && db[a_key].shared !== false ? true : false;
-					if (db[a_key].hasOwnProperty("formatValue")) {
-						elem = addIntoClassList(elem, db[a_key].formatValue);
-					}
-
-					if (i === true) {
-						if (db[a_key].hasOwnProperty("formatTrue")) {
-							elem = addIntoClassList(elem, db[a_key].formatTrue);
-						}
-					} else if (i === false) {
-						if (db[a_key].hasOwnProperty("formatFalse")) {
-							elem = addIntoClassList(elem, db[a_key].formatFalse);
-						}
-					} else {
-						if (db[a_key].hasOwnProperty("format")) {
-							elem = addIntoClassList(elem, db[a_key].format.replace(/\$1/g, i));
-						}
-					}
-				} else {
-					if (setting.DEBUG)
-						console.warn(`${a_key}:"${i}" is not supported value for bootstrap property`);
-				}
-			});
-
-			if (!shared) {
-				delete attr[key];
-			}
-		} else {
-			if (db[a_key].value.indexOf(attr[key]) > -1) {
-				if (db[a_key].hasOwnProperty("formatValue")) {
-					elem = addIntoClassList(elem, db[a_key].formatValue);
-				}
-
-				if (attr[key] === true) {
-					if (db[a_key].hasOwnProperty("formatTrue")) {
-						elem = addIntoClassList(elem, db[a_key].formatTrue);
-					}
-				} else if (attr[key] === false) {
-					if (db[a_key].hasOwnProperty("formatFalse")) {
-						elem = addIntoClassList(elem, db[a_key].formatFalse);
-					}
-				} else {
-					if (db[a_key].hasOwnProperty("format")) {
-						elem = addIntoClassList(elem, db[a_key].format.replace(/\$1/g, attr[key]));
-					}
-				}
-
-				if (!db[a_key].shared) {
-					delete attr[key];
-				}
-			} else {
-				if (setting.DEBUG)
-					console.warn(`${attr[key]}:"${key}" is not supported value for bootstrap property`);
-			}
+        if (!Array.isArray(attr[key])) {
+			attr[key] = [(attr[key] as (string | number | boolean))];
 		}
+
+        let delAttr = false;
+        (attr[key] as (string | number | boolean)[]).forEach((i) => {
+            if (db[a_key].value.indexOf(i) > -1) {
+                
+                if (db[a_key].hasOwnProperty("formatValue")) {
+                    elem = addIntoClassList(elem, db[a_key].formatValue);
+                }
+
+                if (i === true) {
+                    if (db[a_key].hasOwnProperty("formatTrue")) {
+                        elem = addIntoClassList(elem, db[a_key].formatTrue);
+                    }
+                } else if (i === false) {
+                    if (db[a_key].hasOwnProperty("formatFalse")) {
+                        elem = addIntoClassList(elem, db[a_key].formatFalse);
+                    }
+                } else {
+                    if (db[a_key].hasOwnProperty("format")) {
+                        elem = addIntoClassList(elem, db[a_key].format.replace(/\$1/g, i));
+                    }
+                }
+
+                delAttr = true;
+            } else {
+                delAttr = false;
+                if (setting.DEBUG)
+                    console.warn(`${a_key}:"${i}" is not supported value for bootstrap property`);
+            }
+        });
+
+        if (delAttr) {
+            delete attr[key];
+        }
 	}
 
 	return { attr, elem };

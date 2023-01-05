@@ -1,4 +1,4 @@
-import { core,div,h,span,tag } from "./index.js";
+import { core,div,divCol,divRow,h,span,tag } from "./index.js";
 
 // console.log(core.UUID());
 // console.log(core.UUID());
@@ -23,13 +23,14 @@ let body = document.getElementById("main") as HTMLElement;
 
 core.replaceChild(body, [
     new div([
-        new div([
+        new divRow([
+            new divCol(3,"0",{textColor:"warning",borderColor:"#333",borderWidth:3,rounded:true}),
             new h(1, "1", {
-                col: 4, textColor: "danger", click: (e: Event) => {
+                col: 3, textColor: "danger", click: (e: Event) => {
                     alert("click");
             } }),
-            new h(2,"2", { col: 4,textColor:"primary" }),
-            new h(3,"3", { col: 4,textColor:"success" }),
-        ],{row:true, height:"350px"})  
+            new h(2,"2", { col: 3, textColor:"primary", class:["hello","world"] }),
+            new h(3,"3", { col: 3, textColor:"success", class:"world" }),
+        ],{height:"350px"})
     ],{container:true} )
 ])
