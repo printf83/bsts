@@ -1091,7 +1091,7 @@ const db = {
 	rowCol: { format: "row-cols-$1", value: bsType.rowCol.concat() } satisfies bs.rule,
 };
 
-let allowProp: string[] = [];
+let allowProp: (string | undefined)[] = [];
 
 const allow = (key: string): string | null => {
 	if (allowProp.length === 0) {
@@ -1191,35 +1191,38 @@ const allow = (key: string): string | null => {
 export const attachBootstrap: attachFn = (key, elem, attr) => {
 	let a_key = allow(key);
 	if (a_key !== null) {
+		type kkk = keyof typeof db;
+		let k = a_key as kkk;
+
 		if (!Array.isArray(attr[key])) {
 			attr[key] = [attr[key] as string | number | boolean];
 		}
 
 		let delAttr = false;
 		(attr[key] as (string | number | boolean)[]).forEach((i) => {
-			if (db[a_key].value.indexOf(i) > -1) {
-				if (db[a_key].hasOwnProperty("formatValue")) {
-					elem = addIntoClassList(elem, db[a_key].formatValue);
+			if (db[k].value.indexOf(i) > -1) {
+				if (db[k].hasOwnProperty("formatValue")) {
+					elem = addIntoClassList(elem, db[k].formatValue);
 				}
 
 				if (i === true) {
-					if (db[a_key].hasOwnProperty("formatTrue")) {
-						elem = addIntoClassList(elem, db[a_key].formatTrue);
+					if (db[k].hasOwnProperty("formatTrue")) {
+						elem = addIntoClassList(elem, db[k].formatTrue);
 					}
 				} else if (i === false) {
-					if (db[a_key].hasOwnProperty("formatFalse")) {
-						elem = addIntoClassList(elem, db[a_key].formatFalse);
+					if (db[k].hasOwnProperty("formatFalse")) {
+						elem = addIntoClassList(elem, db[k].formatFalse);
 					}
 				} else {
-					if (db[a_key].hasOwnProperty("format")) {
-						elem = addIntoClassList(elem, db[a_key].format.replace(/\$1/g, i));
+					if (db[k].hasOwnProperty("format")) {
+						elem = addIntoClassList(elem, db[k].format.replace(/\$1/g, i));
 					}
 				}
 
 				delAttr = true;
 			} else {
 				delAttr = false;
-				if (setting.DEBUG) console.warn(`${a_key}:"${i}" is not supported value for bootstrap property`);
+				if (setting.DEBUG) console.warn(`${k}:"${i}" is not supported value for bootstrap property`);
 			}
 		});
 
