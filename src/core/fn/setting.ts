@@ -10,7 +10,7 @@ export interface IIconFn {
 }
 
 export interface IThemeChangeFn {
-	(value: string): void;
+	(value: string | null): void;
 }
 
 export interface ISetting {
@@ -37,7 +37,7 @@ const _setting: ISetting = {
 	userchange: () => {},
 	term: () => {},
 	banner: () => {},
-	themechange: (value: string) => {},
+	themechange: (_value: string | null) => {},
 	debug: true,
 };
 
@@ -93,11 +93,11 @@ export const setting = {
 	get theme(): string | null {
 		return cookie.get("theme");
 	},
-	set theme(value: string) {
+	set theme(value: string | null) {
 		cookie.set("theme", value);
 
-		let css_bootstrap = document.getElementById("css_bootstrap");
-		let css_bootswatch = document.getElementById("css_bootswatch");
+		let css_bootstrap = document.getElementById("css_bootstrap")!;
+		let css_bootswatch = document.getElementById("css_bootswatch")!;
 
 		if (css_bootstrap && css_bootswatch) {
 			let url = value
@@ -119,7 +119,9 @@ export const setting = {
 					}, 300);
 				}
 
-				_setting.themechange(value);
+				if (typeof _setting.themechange === "function") {
+					_setting.themechange(value);
+				}
 			});
 		} else {
 			console.error("#css_bootstrap and #css_bootswatch not found");
@@ -132,7 +134,7 @@ export const setting = {
 		if (fn) {
 			_setting.themechange = fn;
 		} else {
-			_setting.themechange = (value: string) => {};
+			_setting.themechange = (_value: string | null) => {};
 		}
 	},
 };

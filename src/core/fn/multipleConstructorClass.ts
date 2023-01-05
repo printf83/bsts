@@ -14,7 +14,7 @@ const compareRulesAndArg = (ruleSetting: string[], argType: string[]): boolean =
 		if (ruleSetting) {
 			//make sure rule setting is same with arg
 			if (ruleSetting.length === argType.length) {
-				let result = Array.from({ length: ruleSetting.length }, (e) => false);
+				let result = Array.from({ length: ruleSetting.length }, () => false);
 
 				//check if each rule apply to arg
 				for (let i = 0; i < ruleSetting.length; i++) {
@@ -45,9 +45,9 @@ const compareRulesAndArg = (ruleSetting: string[], argType: string[]): boolean =
 				}
 			}
 		}
-
-		return false;
 	}
+
+	return false;
 };
 
 const getFunction = (ruleSetting: IMultipleConstructor[], argType: string[]): Function | null => {
@@ -62,7 +62,7 @@ const getFunction = (ruleSetting: IMultipleConstructor[], argType: string[]): Fu
 	return null;
 };
 
-const checkArgType = (obj: any) => {
+const checkArgType = (obj: any): string => {
 	if (obj === undefined) {
 		return "undefined";
 	}
@@ -80,8 +80,8 @@ const checkArgType = (obj: any) => {
 	} else {
 		let t = typeof obj;
 		if (t === "object") {
-			if (obj.hasOwnProperty("cl")) {
-				return "cl";
+			if (obj.hasOwnProperty("isbsts")) {
+				return "tag";
 			} else if (obj.debug === true) {
 				return "debug";
 			} else {
@@ -95,7 +95,7 @@ const checkArgType = (obj: any) => {
 
 const getArgType = (obj: any): string[] | null => {
 	if (obj && obj.length > 0) {
-		let result = [];
+		let result: string[] = [];
 		obj.forEach((i: any) => {
 			result.push(checkArgType(i));
 		});
@@ -108,22 +108,24 @@ const getArgType = (obj: any): string[] | null => {
 export const multipleConstructorClass = (rules: IMultipleConstructor[], caller: string, obj: any[]) => {
 	let argType = getArgType(obj);
 
-	let fn = getFunction(rules, argType);
-	if (fn) {
-		return fn(obj);
-	} else {
-		if ((setting.DEBUG = true)) {
-			console.error(`"${caller}" argument "${argType.join(", ")}" is not supported by any rules`, {
-				type: argType,
-				rule: rules
-					? rules.map((i) => {
-							return i?.rule?.join(", ");
-					  })
-					: null,
-				// obj: obj,
-			});
+	if (argType) {
+		let fn = getFunction(rules, argType);
+		if (fn) {
+			return fn(obj);
+		} else {
+			if ((setting.DEBUG = true)) {
+				console.error(`"${caller}" argument "${argType.join(", ")}" is not supported by any rules`, {
+					type: argType,
+					rule: rules
+						? rules.map((i) => {
+								return i?.rule?.join(", ");
+						  })
+						: null,
+					// obj: obj,
+				});
+			}
 		}
-
-		return null;
 	}
+
+	return null;
 };

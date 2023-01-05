@@ -1,5 +1,5 @@
 export const cookie = {
-	set: (name: string, value: string, expiredDays: number = 7): void => {
+	set: (name: string, value: string | null, expiredDays: number = 7): void => {
 		let expDate = new Date();
 		expiredDays = !value ? -1 : expiredDays;
 		expDate.setTime(expDate.getTime() + expiredDays * 24 * 60 * 60 * 1000);
