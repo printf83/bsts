@@ -1,7 +1,11 @@
+import { baseAttr } from "./../base/index";
 import { mergeClass } from "./mergeClass.js";
 import { mergeStyle } from "./mergeStyle.js";
 
-export const mergeObject = (existingObject: object | null | undefined, newObject: object | null | undefined) => {
+export const mergeObject = (
+	existingObject: baseAttr | null | undefined,
+	newObject: baseAttr | null | undefined
+): baseAttr | null => {
 	if (existingObject) {
 		if (newObject) {
 			let res = {};

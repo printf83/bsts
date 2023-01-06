@@ -1,3 +1,5 @@
+import { baseAttr } from "../base/index.js";
+
 export const mergeStyle = (existingStyle: object | null | undefined, newStyle: object | null | undefined) => {
 	if (existingStyle) {
 		if (newStyle) {

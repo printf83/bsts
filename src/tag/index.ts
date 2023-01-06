@@ -2,7 +2,7 @@ import { baseAttr, baseElem, baseTag } from "../core/base/index.js";
 
 export class tag implements baseTag {
 	public isbsts = true;
-	public dom: HTMLElement;
+	public dom?: HTMLElement;
 
 	constructor(public tag: string, public elem?: baseElem, public attr?: baseAttr) {}
 }

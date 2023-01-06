@@ -809,7 +809,7 @@ export namespace bs {
 		formatValue?: string | null;
 		formatTrue?: string | null;
 		formatFalse?: string | null;
-		value: any[];
+		value: (string | number | boolean)[];
 		shared?: boolean;
 	}
 
@@ -1091,6 +1091,8 @@ const db = {
 	rowCol: { format: "row-cols-$1", value: bsType.rowCol.concat() } satisfies bs.rule,
 };
 
+type dbType = keyof typeof db;
+
 let allowProp: (string | undefined)[] = [];
 
 const allow = (key: string): string | null => {
@@ -1121,78 +1123,10 @@ const allow = (key: string): string | null => {
 	return null;
 };
 
-// export const attachBootstrap: attachFn = (key, elem, attr) => {
-// 	let a_key = allow(key);
-// 	if (a_key !== null) {
-//         if (Array.isArray(attr[key])) {
-// 			let shared = false;
-// 			(attr[key] as (string | number | boolean)[]).forEach((i:any) => {
-// 				if (db[a_key].value.indexOf(i) > -1) {
-// 					shared = shared === false && db[a_key].shared !== false ? true : false;
-// 					if (db[a_key].hasOwnProperty("formatValue")) {
-// 						elem = addIntoClassList(elem, db[a_key].formatValue);
-// 					}
-
-// 					if (i === true) {
-// 						if (db[a_key].hasOwnProperty("formatTrue")) {
-// 							elem = addIntoClassList(elem, db[a_key].formatTrue);
-// 						}
-// 					} else if (i === false) {
-// 						if (db[a_key].hasOwnProperty("formatFalse")) {
-// 							elem = addIntoClassList(elem, db[a_key].formatFalse);
-// 						}
-// 					} else {
-// 						if (db[a_key].hasOwnProperty("format")) {
-// 							elem = addIntoClassList(elem, db[a_key].format.replace(/\$1/g, i));
-// 						}
-// 					}
-// 				} else {
-// 					if (setting.DEBUG)
-// 						console.warn(`${a_key}:"${i}" is not supported value for bootstrap property`);
-// 				}
-// 			});
-
-// 			if (!shared) {
-// 				delete attr[key];
-// 			}
-// 		} else {
-// 			if (db[a_key].value.indexOf(attr[key]) > -1) {
-// 				if (db[a_key].hasOwnProperty("formatValue")) {
-// 					elem = addIntoClassList(elem, db[a_key].formatValue);
-// 				}
-
-// 				if (attr[key] === true) {
-// 					if (db[a_key].hasOwnProperty("formatTrue")) {
-// 						elem = addIntoClassList(elem, db[a_key].formatTrue);
-// 					}
-// 				} else if (attr[key] === false) {
-// 					if (db[a_key].hasOwnProperty("formatFalse")) {
-// 						elem = addIntoClassList(elem, db[a_key].formatFalse);
-// 					}
-// 				} else {
-// 					if (db[a_key].hasOwnProperty("format")) {
-// 						elem = addIntoClassList(elem, db[a_key].format.replace(/\$1/g, attr[key]));
-// 					}
-// 				}
-
-// 				if (!db[a_key].shared) {
-// 					delete attr[key];
-// 				}
-// 			} else {
-// 				if (setting.DEBUG)
-// 					console.warn(`${key}:"${attr[key]}" is not supported value for bootstrap property`);
-// 			}
-// 		}
-// 	}
-
-// 	return { attr, elem };
-// }
-
 export const attachBootstrap: attachFn = (key, elem, attr) => {
 	let a_key = allow(key);
 	if (a_key !== null) {
-		type kkk = keyof typeof db;
-		let k = a_key as kkk;
+		let k = a_key as dbType;
 
 		if (!Array.isArray(attr[key])) {
 			attr[key] = [attr[key] as string | number | boolean];
@@ -1200,22 +1134,22 @@ export const attachBootstrap: attachFn = (key, elem, attr) => {
 
 		let delAttr = false;
 		(attr[key] as (string | number | boolean)[]).forEach((i) => {
-			if (db[k].value.indexOf(i) > -1) {
+			if (db[k].value.findIndex((j) => i === j) > -1) {
 				if (db[k].hasOwnProperty("formatValue")) {
-					elem = addIntoClassList(elem, db[k].formatValue);
+					elem = addIntoClassList(elem, (db[k] as bs.rule).formatValue!);
 				}
 
 				if (i === true) {
 					if (db[k].hasOwnProperty("formatTrue")) {
-						elem = addIntoClassList(elem, db[k].formatTrue);
+						elem = addIntoClassList(elem, (db[k] as bs.rule).formatTrue!);
 					}
 				} else if (i === false) {
 					if (db[k].hasOwnProperty("formatFalse")) {
-						elem = addIntoClassList(elem, db[k].formatFalse);
+						elem = addIntoClassList(elem, (db[k] as bs.rule).formatFalse!);
 					}
 				} else {
 					if (db[k].hasOwnProperty("format")) {
-						elem = addIntoClassList(elem, db[k].format.replace(/\$1/g, i));
+						elem = addIntoClassList(elem, (db[k] as bs.rule).format!.replace(/\$1/g, i.toString()));
 					}
 				}
 
