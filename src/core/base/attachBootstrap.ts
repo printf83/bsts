@@ -804,15 +804,6 @@ export namespace bsType {
 }
 
 export namespace bs {
-	export interface rule {
-		format?: string;
-		formatValue?: string | null;
-		formatTrue?: string | null;
-		formatFalse?: string | null;
-		value: (string | number | boolean)[];
-		shared?: boolean;
-	}
-
 	export type spacer = typeof bsType.spacer;
 	export type display = typeof bsType.display;
 	export type flex = typeof bsType.flex;
@@ -921,175 +912,302 @@ export namespace bs {
 	export type container = typeof bsType.container;
 }
 
-const db = {
-	userSelect: { format: "user-select-$1", value: bsType.userSelect.concat(), shared: true } satisfies bs.rule,
-	pointerEvent: { format: "pe-$1", value: bsType.pointerEvent.concat() } satisfies bs.rule,
-	position: { format: "position-$1", value: bsType.position.concat(), shared: true } satisfies bs.rule,
-	overflow: { format: "overflow-$1", value: bsType.overflow.concat(), shared: true } satisfies bs.rule,
-
-	textAlign: { format: "text-$1", value: bsType.textAlign.concat(), shared: true } satisfies bs.rule,
-	verticalAlign: { format: "align-$1", value: bsType.verticalAlign.concat(), shared: true } satisfies bs.rule,
-
-	opacity: { format: "opacity-$1", value: bsType.opacity.concat(), shared: true } satisfies bs.rule,
-	bgOpacity: { format: "bg-opacity-$1", value: bsType.bgOpacity.concat() } satisfies bs.rule,
-	textOpacity: { format: "text-opacity-$1", value: bsType.textOpacity.concat() } satisfies bs.rule,
-
-	btnColor: { format: "btn-$1", value: bsType.btnColor.concat() } satisfies bs.rule,
-	btnOutlineColor: { format: "btn-outline-$1", value: bsType.btnOutlineColor.concat() } satisfies bs.rule,
-	alertColor: { format: "alert-$1", value: bsType.alertColor.concat() } satisfies bs.rule,
-
-	textBgColor: { format: "text-bg-$1", value: bsType.textBgColor.concat() } satisfies bs.rule,
-	textColor: { format: "text-$1", value: bsType.textColor.concat() } satisfies bs.rule,
-	linkColor: { format: "link-$1", value: bsType.linkColor.concat() } satisfies bs.rule,
-	bgColor: { format: "bg-$1", value: bsType.bgColor.concat() } satisfies bs.rule,
-
-	textTransform: { format: "text-$1", value: bsType.textTransform.concat(), shared: true } satisfies bs.rule,
-	textDecoration: {
-		format: "text-decoration-$1",
-		value: bsType.textDecoration.concat(),
-		shared: true,
-	} satisfies bs.rule,
-	lineHeight: { format: "lh-$1", value: bsType.lineHeight.concat(), shared: true } satisfies bs.rule,
-
-	fontSize: { format: "fs-$1", value: bsType.fontSize.concat(), shared: true } satisfies bs.rule,
-	fontWeight: { format: "fw-$1", value: bsType.fontWeight.concat(), shared: true } satisfies bs.rule,
-
-	top: { format: "top-$1", value: bsType.top.concat(), shared: true } satisfies bs.rule,
-	bottom: { format: "bottom-$1", value: bsType.bottom.concat(), shared: true } satisfies bs.rule,
-	start: { format: "start-$1", value: bsType.start.concat() } satisfies bs.rule,
-	end: { format: "end-$1", value: bsType.end.concat() } satisfies bs.rule,
-	tMiddle: {
-		format: "translate-middle-$1",
-		formatTrue: "translate-middle",
-		value: bsType.tMiddle.concat(),
-	} satisfies bs.rule,
-
-	height: { format: "h-$1", value: bsType.height.concat(), shared: true } satisfies bs.rule,
-	width: { format: "w-$1", value: bsType.width.concat(), shared: true } satisfies bs.rule,
-	maxHeight: { format: "mh-$1", value: bsType.maxHeight.concat(), shared: true } satisfies bs.rule,
-	maxWidth: { format: "mw-$1", value: bsType.maxWidth.concat(), shared: true } satisfies bs.rule,
-	minViewHeight: { format: "min-vh-$1", value: bsType.minViewHeight.concat() } satisfies bs.rule,
-	minViewWidth: { format: "min-vw-$1", value: bsType.minViewWidth.concat() } satisfies bs.rule,
-	viewHeight: { format: "vh-$1", value: bsType.viewHeight.concat() } satisfies bs.rule,
-	viewWidth: { format: "vw-$1", value: bsType.viewWidth.concat() } satisfies bs.rule,
-
-	placeholder: { formatTrue: "placeholder", value: bsType.placeholder.concat() } satisfies bs.rule,
-	placeholderAnimation: { format: "placeholder-$1", value: bsType.placeholderAnimation.concat() } satisfies bs.rule,
-	placeholderWeight: {
-		format: "placeholder-$1",
-		formatValue: "placeholder $1",
-		value: bsType.placeholderWeight.concat(),
-	} satisfies bs.rule,
-
-	shadow: {
-		format: "shadow-$1",
-		formatTrue: "shadow",
-		formatFalse: "shadow-none",
-		value: bsType.shadow.concat(),
-	} satisfies bs.rule,
-
-	border: {
-		format: "border-$1",
-		formatTrue: "border",
-		formatFalse: "border-0",
-		value: bsType.border.concat(),
-		shared: true,
-	} satisfies bs.rule,
-	borderNone: {
-		format: "border border-$1-0",
-		formatTrue: "border-0",
-		value: bsType.borderNone.concat(),
-	} satisfies bs.rule,
-	borderColor: {
-		format: "border-$1",
-		formatValue: "border",
-		value: bsType.borderColor.concat(),
-		shared: true,
-	} satisfies bs.rule,
-	borderOpacity: {
-		format: "border-opacity-$1",
-		formatValue: "border",
-		value: bsType.borderOpacity.concat(),
-	} satisfies bs.rule,
-	borderWidth: {
-		format: "border-$1",
-		formatValue: "border",
-		value: bsType.borderWidth.concat(),
-		shared: true,
-	} satisfies bs.rule,
-
-	rounded: {
-		format: "rounded-$1",
-		formatTrue: "rounded",
-		formatFalse: "rounded-0",
-		value: bsType.rounded.concat(),
-	} satisfies bs.rule,
-	roundedNone: {
-		format: "rounded-$1-0",
-		formatTrue: "rounded-0",
-		formatFalse: "rounded",
-		formatValue: "rounded",
-		value: bsType.roundedNone.concat(),
-	} satisfies bs.rule,
-	roundedSize: { format: "rounded-$1", formatValue: "rounded", value: bsType.roundedSize.concat() } satisfies bs.rule,
-
-	padding: { format: "p-$1", value: bsType.padding.concat(), shared: true } satisfies bs.rule,
-	paddingX: { format: "px-$1", value: bsType.paddingX.concat() } satisfies bs.rule,
-	paddingY: { format: "py-$1", value: bsType.paddingY.concat() } satisfies bs.rule,
-	paddingTop: { format: "pt-$1", value: bsType.paddingTop.concat(), shared: true } satisfies bs.rule,
-	paddingBottom: { format: "pb-$1", value: bsType.paddingBottom.concat(), shared: true } satisfies bs.rule,
-	paddingStart: { format: "ps-$1", value: bsType.paddingStart.concat() } satisfies bs.rule,
-	paddingEnd: { format: "pe-$1", value: bsType.paddingEnd.concat() } satisfies bs.rule,
-
-	margin: { format: "m-$1", value: bsType.margin.concat(), shared: true } satisfies bs.rule,
-	marginX: { format: "mx-$1", value: bsType.marginX.concat() } satisfies bs.rule,
-	marginY: { format: "my-$1", value: bsType.marginY.concat() } satisfies bs.rule,
-	marginTop: { format: "mt-$1", value: bsType.marginTop.concat(), shared: true } satisfies bs.rule,
-	marginBottom: { format: "mb-$1", value: bsType.marginBottom.concat(), shared: true } satisfies bs.rule,
-	marginStart: { format: "ms-$1", value: bsType.marginStart.concat() } satisfies bs.rule,
-	marginEnd: { format: "me-$1", value: bsType.marginEnd.concat() } satisfies bs.rule,
-
-	gap: { format: "gap-$1", value: bsType.gap.concat() } satisfies bs.rule,
-	gutter: { format: "g-$1", value: bsType.gutter.concat() } satisfies bs.rule,
-	gutterX: { format: "gx-$1", value: bsType.gutterX.concat() } satisfies bs.rule,
-	gutterY: { format: "gy-$1", value: bsType.gutterY.concat() } satisfies bs.rule,
-
-	display: { format: "d-$1", value: bsType.display.concat(), shared: true } satisfies bs.rule,
-	print: { format: "d-print-$1", value: bsType.print.concat() } satisfies bs.rule,
-	container: { format: "container-$1", formatTrue: "container", value: bsType.container.concat() } satisfies bs.rule,
-
-	flex: { format: "flex-$1", value: bsType.flex.concat(), shared: true } satisfies bs.rule,
-	float: { format: "float-$1", value: bsType.float.concat() } satisfies bs.rule,
-	order: { format: "order-$1", value: bsType.order.concat(), shared: true } satisfies bs.rule,
-	offset: { format: "offset-$1", value: bsType.offset.concat() } satisfies bs.rule,
-
-	alignContent: { format: "align-content-$1", value: bsType.alignContent.concat(), shared: true } satisfies bs.rule,
-	justifyContent: {
-		format: "justify-content-$1",
-		value: bsType.justifyContent.concat(),
-		shared: true,
-	} satisfies bs.rule,
-	alignItem: { format: "align-items-$1", value: bsType.alignItem.concat(), shared: true } satisfies bs.rule,
-	alignSelf: { format: "align-self-$1", value: bsType.alignSelf.concat(), shared: true } satisfies bs.rule,
-
-	visible: { formatTrue: "visible", formatFalse: "invisible", value: bsType.visible.concat() } satisfies bs.rule,
-	textWrap: {
-		formatTrue: "text-wrap",
-		formatFalse: "text-nowrap",
-		value: bsType.textWrap.concat(),
-	} satisfies bs.rule,
-	fontItalic: {
-		formatTrue: "fst-italic",
-		formatFalse: "fst-normal",
-		value: bsType.fontItalic.concat(),
-	} satisfies bs.rule,
-	bgGradient: { formatTrue: "bg-gradient", value: bsType.bgGradient.concat() } satisfies bs.rule,
-	wordBreak: { formatTrue: "text-break", value: bsType.wordBreak.concat(), shared: true } satisfies bs.rule,
-	monospace: { formatTrue: "font-monospace", value: bsType.monospace.concat() } satisfies bs.rule,
-	row: { formatTrue: "row", formatFalse: null, value: bsType.row.concat() } satisfies bs.rule,
-	col: { format: "col-$1", formatTrue: "col", value: bsType.col.concat() } satisfies bs.rule,
-	rowCol: { format: "row-cols-$1", value: bsType.rowCol.concat() } satisfies bs.rule,
+export type bsRuleType = {
+	format?: string;
+	value?: (string | number | boolean)[];
+	formatValue?: string;
+	formatTrue?: string;
+	formatFalse?: string;
+	shared?: boolean;
 };
+export class bsRule implements bsRuleType {
+	constructor(
+		public format: string = null,
+		public value: (string | number | boolean)[] = null,
+		public formatValue: string = null,
+		public formatTrue: string = null,
+		public formatFalse: string = null,
+		public shared: boolean = false
+	) {}
+}
+const db = {
+	userSelect: new bsRule("user-select-$1", bsType.userSelect.concat(), null, null, null, true),
+	pointerEvent: new bsRule("pe-$1", bsType.pointerEvent.concat()),
+	position: new bsRule("position-$1", bsType.position.concat(), null, null, null, true),
+	overflow: new bsRule("overflow-$1", bsType.overflow.concat(), null, null, null, true),
+
+	textAlign: new bsRule("text-$1", bsType.textAlign.concat(), null, null, null, true),
+	verticalAlign: new bsRule("align-$1", bsType.verticalAlign.concat(), null, null, null, true),
+
+	opacity: new bsRule("opacity-$1", bsType.opacity.concat(), null, null, null, true),
+	bgOpacity: new bsRule("bg-opacity-$1", bsType.bgOpacity.concat()),
+	textOpacity: new bsRule("text-opacity-$1", bsType.textOpacity.concat()),
+
+	btnColor: new bsRule("btn-$1", bsType.btnColor.concat()),
+	btnOutlineColor: new bsRule("btn-outline-$1", bsType.btnOutlineColor.concat()),
+	alertColor: new bsRule("alert-$1", bsType.alertColor.concat()),
+
+	textBgColor: new bsRule("text-bg-$1", bsType.textBgColor.concat()),
+	textColor: new bsRule("text-$1", bsType.textColor.concat()),
+	linkColor: new bsRule("link-$1", bsType.linkColor.concat()),
+	bgColor: new bsRule("bg-$1", bsType.bgColor.concat()),
+
+	textTransform: new bsRule("text-$1", bsType.textTransform.concat(), null, null, null, true),
+	textDecoration: new bsRule("text-decoration-$1", bsType.textDecoration.concat(), null, null, null, true),
+	lineHeight: new bsRule("lh-$1", bsType.lineHeight.concat(), null, null, null, true),
+
+	fontSize: new bsRule("fs-$1", bsType.fontSize.concat(), null, null, null, true),
+	fontWeight: new bsRule("fw-$1", bsType.fontWeight.concat(), null, null, null, true),
+
+	top: new bsRule("top-$1", bsType.top.concat(), null, null, null, true),
+	bottom: new bsRule("bottom-$1", bsType.bottom.concat(), null, null, null, true),
+	start: new bsRule("start-$1", bsType.start.concat()),
+	end: new bsRule("end-$1", bsType.end.concat()),
+	tMiddle: new bsRule("translate-middle-$1", bsType.tMiddle.concat(), null, "translate-middle"),
+
+	height: new bsRule("h-$1", bsType.height.concat(), null, null, null, true),
+	width: new bsRule("w-$1", bsType.width.concat(), null, null, null, true),
+	maxHeight: new bsRule("mh-$1", bsType.maxHeight.concat(), null, null, null, true),
+	maxWidth: new bsRule("mw-$1", bsType.maxWidth.concat(), null, null, null, true),
+	minViewHeight: new bsRule("min-vh-$1", bsType.minViewHeight.concat()),
+	minViewWidth: new bsRule("min-vw-$1", bsType.minViewWidth.concat()),
+	viewHeight: new bsRule("vh-$1", bsType.viewHeight.concat()),
+	viewWidth: new bsRule("vw-$1", bsType.viewWidth.concat()),
+
+	placeholder: new bsRule(null, bsType.placeholder.concat(), null, "placeholder"),
+	placeholderAnimation: new bsRule("placeholder-$1", bsType.placeholderAnimation.concat()),
+	placeholderWeight: new bsRule("placeholder-$1", bsType.placeholderWeight.concat(), "placeholder $1"),
+
+	shadow: new bsRule("shadow-$1", bsType.shadow.concat(), null, "shadow", "shadow-none"),
+
+	border: new bsRule("border-$1", bsType.border.concat(), null, "border", "border-0", true),
+	borderNone: new bsRule("border border-$1-0", bsType.borderNone.concat(), null, "border-0"),
+	borderColor: new bsRule("border-$1", bsType.borderColor.concat(), "border", null, null, true),
+	borderOpacity: new bsRule("border-opacity-$1", bsType.borderOpacity.concat(), "border"),
+	borderWidth: new bsRule("border-$1", bsType.borderWidth.concat(), "border", null, null, true),
+
+	rounded: new bsRule("rounded-$1", bsType.rounded.concat(), null, "rounded", "rounded-0"),
+	roundedNone: new bsRule("rounded-$1-0", bsType.roundedNone.concat(), "rounded", "rounded", "rounded-0"),
+	roundedSize: new bsRule("rounded-$1", bsType.roundedSize.concat(), "rounded"),
+
+	padding: new bsRule("p-$1", bsType.padding.concat(), null, null, null, true),
+	paddingX: new bsRule("px-$1", bsType.paddingX.concat()),
+	paddingY: new bsRule("py-$1", bsType.paddingY.concat()),
+	paddingTop: new bsRule("pt-$1", bsType.paddingTop.concat(), null, null, null, true),
+	paddingBottom: new bsRule("pb-$1", bsType.paddingBottom.concat(), null, null, null, true),
+	paddingStart: new bsRule("ps-$1", bsType.paddingStart.concat()),
+	paddingEnd: new bsRule("pe-$1", bsType.paddingEnd.concat()),
+
+	margin: new bsRule("m-$1", bsType.margin.concat(), null, null, null, true),
+	marginX: new bsRule("mx-$1", bsType.marginX.concat()),
+	marginY: new bsRule("my-$1", bsType.marginY.concat()),
+	marginTop: new bsRule("mt-$1", bsType.marginTop.concat(), null, null, null, true),
+	marginBottom: new bsRule("mb-$1", bsType.marginBottom.concat(), null, null, null, true),
+	marginStart: new bsRule("ms-$1", bsType.marginStart.concat()),
+	marginEnd: new bsRule("me-$1", bsType.marginEnd.concat()),
+
+	gap: new bsRule("gap-$1", bsType.gap.concat()),
+	gutter: new bsRule("g-$1", bsType.gutter.concat()),
+	gutterX: new bsRule("gx-$1", bsType.gutterX.concat()),
+	gutterY: new bsRule("gy-$1", bsType.gutterY.concat()),
+
+	display: new bsRule("d-$1", bsType.display.concat(), null, null, null, true),
+	print: new bsRule("d-print-$1", bsType.print.concat()),
+	container: new bsRule("container-$1", bsType.container.concat(), null, "container"),
+
+	flex: new bsRule("flex-$1", bsType.flex.concat(), null, null, null, true),
+	float: new bsRule("float-$1", bsType.float.concat()),
+	order: new bsRule("order-$1", bsType.order.concat(), null, null, null, true),
+	offset: new bsRule("offset-$1", bsType.offset.concat()),
+
+	alignContent: new bsRule("align-content-$1", bsType.alignContent.concat(), null, null, null, true),
+	justifyContent: new bsRule("justify-content-$1", bsType.justifyContent.concat(), null, null, null, true),
+	alignItem: new bsRule("align-items-$1", bsType.alignItem.concat(), null, null, null, true),
+	alignSelf: new bsRule("align-self-$1", bsType.alignSelf.concat(), null, null, null, true),
+
+	visible: new bsRule(null, bsType.visible.concat(), null, "visible", "invisible"),
+	textWrap: new bsRule(null, bsType.textWrap.concat(), null, "text-wrap", "text-nowrap"),
+	fontItalic: new bsRule(null, bsType.fontItalic.concat(), null, "fst-italic", "fst-normal"),
+
+	bgGradient: new bsRule(null, bsType.bgGradient.concat(), null, "bg-gradient"),
+	wordBreak: new bsRule(null, bsType.wordBreak.concat(), null, "text-break", null, true),
+	monospace: new bsRule(null, bsType.monospace.concat(), null, "font-monospace"),
+
+	row: new bsRule(null, bsType.row.concat(), null, "row"),
+	col: new bsRule("col-$1", bsType.col.concat(), null, "col"),
+	rowCol: new bsRule("row-cols-$1", bsType.rowCol.concat()),
+};
+
+// const db = {
+// 	userSelect: new bsRule("user-select-$1", bsType.userSelect.concat(), null, null, null, true),
+// 	userSelect: { format: "user-select-$1", value: bsType.userSelect.concat(), shared: true } satisfies bs.rule,
+// 	pointerEvent: { format: "pe-$1", value: bsType.pointerEvent.concat() } satisfies bs.rule,
+// 	position: { format: "position-$1", value: bsType.position.concat(), shared: true } satisfies bs.rule,
+// 	overflow: { format: "overflow-$1", value: bsType.overflow.concat(), shared: true } satisfies bs.rule,
+
+// 	textAlign: { format: "text-$1", value: bsType.textAlign.concat(), shared: true } satisfies bs.rule,
+// 	verticalAlign: { format: "align-$1", value: bsType.verticalAlign.concat(), shared: true } satisfies bs.rule,
+
+// 	opacity: { format: "opacity-$1", value: bsType.opacity.concat(), shared: true } satisfies bs.rule,
+// 	bgOpacity: { format: "bg-opacity-$1", value: bsType.bgOpacity.concat() } satisfies bs.rule,
+// 	textOpacity: { format: "text-opacity-$1", value: bsType.textOpacity.concat() } satisfies bs.rule,
+
+// 	btnColor: { format: "btn-$1", value: bsType.btnColor.concat() } satisfies bs.rule,
+// 	btnOutlineColor: { format: "btn-outline-$1", value: bsType.btnOutlineColor.concat() } satisfies bs.rule,
+// 	alertColor: { format: "alert-$1", value: bsType.alertColor.concat() } satisfies bs.rule,
+
+// 	textBgColor: { format: "text-bg-$1", value: bsType.textBgColor.concat() } satisfies bs.rule,
+// 	textColor: { format: "text-$1", value: bsType.textColor.concat() } satisfies bs.rule,
+// 	linkColor: { format: "link-$1", value: bsType.linkColor.concat() } satisfies bs.rule,
+// 	bgColor: { format: "bg-$1", value: bsType.bgColor.concat() } satisfies bs.rule,
+
+// 	textTransform: { format: "text-$1", value: bsType.textTransform.concat(), shared: true } satisfies bs.rule,
+// 	textDecoration: {
+// 		format: "text-decoration-$1",
+// 		value: bsType.textDecoration.concat(),
+// 		shared: true,
+// 	} satisfies bs.rule,
+// 	lineHeight: { format: "lh-$1", value: bsType.lineHeight.concat(), shared: true } satisfies bs.rule,
+
+// 	fontSize: { format: "fs-$1", value: bsType.fontSize.concat(), shared: true } satisfies bs.rule,
+// 	fontWeight: { format: "fw-$1", value: bsType.fontWeight.concat(), shared: true } satisfies bs.rule,
+
+// 	top: { format: "top-$1", value: bsType.top.concat(), shared: true } satisfies bs.rule,
+// 	bottom: { format: "bottom-$1", value: bsType.bottom.concat(), shared: true } satisfies bs.rule,
+// 	start: { format: "start-$1", value: bsType.start.concat() } satisfies bs.rule,
+// 	end: { format: "end-$1", value: bsType.end.concat() } satisfies bs.rule,
+// 	tMiddle: {
+// 		format: "translate-middle-$1",
+// 		formatTrue: "translate-middle",
+// 		value: bsType.tMiddle.concat(),
+// 	} satisfies bs.rule,
+
+// 	height: { format: "h-$1", value: bsType.height.concat(), shared: true } satisfies bs.rule,
+// 	width: { format: "w-$1", value: bsType.width.concat(), shared: true } satisfies bs.rule,
+// 	maxHeight: { format: "mh-$1", value: bsType.maxHeight.concat(), shared: true } satisfies bs.rule,
+// 	maxWidth: { format: "mw-$1", value: bsType.maxWidth.concat(), shared: true } satisfies bs.rule,
+// 	minViewHeight: { format: "min-vh-$1", value: bsType.minViewHeight.concat() } satisfies bs.rule,
+// 	minViewWidth: { format: "min-vw-$1", value: bsType.minViewWidth.concat() } satisfies bs.rule,
+// 	viewHeight: { format: "vh-$1", value: bsType.viewHeight.concat() } satisfies bs.rule,
+// 	viewWidth: { format: "vw-$1", value: bsType.viewWidth.concat() } satisfies bs.rule,
+
+// 	placeholder: { formatTrue: "placeholder", value: bsType.placeholder.concat() } satisfies bs.rule,
+// 	placeholderAnimation: { format: "placeholder-$1", value: bsType.placeholderAnimation.concat() } satisfies bs.rule,
+// 	placeholderWeight: {
+// 		format: "placeholder-$1",
+// 		formatValue: "placeholder $1",
+// 		value: bsType.placeholderWeight.concat(),
+// 	} satisfies bs.rule,
+
+// 	shadow: {
+// 		format: "shadow-$1",
+// 		formatTrue: "shadow",
+// 		formatFalse: "shadow-none",
+// 		value: bsType.shadow.concat(),
+// 	} satisfies bs.rule,
+
+// 	border: {
+// 		format: "border-$1",
+// 		formatTrue: "border",
+// 		formatFalse: "border-0",
+// 		value: bsType.border.concat(),
+// 		shared: true,
+// 	} satisfies bs.rule,
+// 	borderNone: {
+// 		format: "border border-$1-0",
+// 		formatTrue: "border-0",
+// 		value: bsType.borderNone.concat(),
+// 	} satisfies bs.rule,
+// 	borderColor: {
+// 		format: "border-$1",
+// 		formatValue: "border",
+// 		value: bsType.borderColor.concat(),
+// 		shared: true,
+// 	} satisfies bs.rule,
+// 	borderOpacity: {
+// 		format: "border-opacity-$1",
+// 		formatValue: "border",
+// 		value: bsType.borderOpacity.concat(),
+// 	} satisfies bs.rule,
+// 	borderWidth: {
+// 		format: "border-$1",
+// 		formatValue: "border",
+// 		value: bsType.borderWidth.concat(),
+// 		shared: true,
+// 	} satisfies bs.rule,
+
+// 	rounded: {
+// 		format: "rounded-$1",
+// 		formatTrue: "rounded",
+// 		formatFalse: "rounded-0",
+// 		value: bsType.rounded.concat(),
+// 	} satisfies bs.rule,
+// 	roundedNone: {
+// 		format: "rounded-$1-0",
+// 		formatTrue: "rounded-0",
+// 		formatFalse: "rounded",
+// 		formatValue: "rounded",
+// 		value: bsType.roundedNone.concat(),
+// 	} satisfies bs.rule,
+// 	roundedSize: { format: "rounded-$1", formatValue: "rounded", value: bsType.roundedSize.concat() } satisfies bs.rule,
+
+// 	padding: { format: "p-$1", value: bsType.padding.concat(), shared: true } satisfies bs.rule,
+// 	paddingX: { format: "px-$1", value: bsType.paddingX.concat() } satisfies bs.rule,
+// 	paddingY: { format: "py-$1", value: bsType.paddingY.concat() } satisfies bs.rule,
+// 	paddingTop: { format: "pt-$1", value: bsType.paddingTop.concat(), shared: true } satisfies bs.rule,
+// 	paddingBottom: { format: "pb-$1", value: bsType.paddingBottom.concat(), shared: true } satisfies bs.rule,
+// 	paddingStart: { format: "ps-$1", value: bsType.paddingStart.concat() } satisfies bs.rule,
+// 	paddingEnd: { format: "pe-$1", value: bsType.paddingEnd.concat() } satisfies bs.rule,
+
+// 	margin: { format: "m-$1", value: bsType.margin.concat(), shared: true } satisfies bs.rule,
+// 	marginX: { format: "mx-$1", value: bsType.marginX.concat() } satisfies bs.rule,
+// 	marginY: { format: "my-$1", value: bsType.marginY.concat() } satisfies bs.rule,
+// 	marginTop: { format: "mt-$1", value: bsType.marginTop.concat(), shared: true } satisfies bs.rule,
+// 	marginBottom: { format: "mb-$1", value: bsType.marginBottom.concat(), shared: true } satisfies bs.rule,
+// 	marginStart: { format: "ms-$1", value: bsType.marginStart.concat() } satisfies bs.rule,
+// 	marginEnd: { format: "me-$1", value: bsType.marginEnd.concat() } satisfies bs.rule,
+
+// 	gap: { format: "gap-$1", value: bsType.gap.concat() } satisfies bs.rule,
+// 	gutter: { format: "g-$1", value: bsType.gutter.concat() } satisfies bs.rule,
+// 	gutterX: { format: "gx-$1", value: bsType.gutterX.concat() } satisfies bs.rule,
+// 	gutterY: { format: "gy-$1", value: bsType.gutterY.concat() } satisfies bs.rule,
+
+// 	display: { format: "d-$1", value: bsType.display.concat(), shared: true } satisfies bs.rule,
+// 	print: { format: "d-print-$1", value: bsType.print.concat() } satisfies bs.rule,
+// 	container: { format: "container-$1", formatTrue: "container", value: bsType.container.concat() } satisfies bs.rule,
+
+// 	flex: { format: "flex-$1", value: bsType.flex.concat(), shared: true } satisfies bs.rule,
+// 	float: { format: "float-$1", value: bsType.float.concat() } satisfies bs.rule,
+// 	order: { format: "order-$1", value: bsType.order.concat(), shared: true } satisfies bs.rule,
+// 	offset: { format: "offset-$1", value: bsType.offset.concat() } satisfies bs.rule,
+
+// 	alignContent: { format: "align-content-$1", value: bsType.alignContent.concat(), shared: true } satisfies bs.rule,
+// 	justifyContent: {
+// 		format: "justify-content-$1",
+// 		value: bsType.justifyContent.concat(),
+// 		shared: true,
+// 	} satisfies bs.rule,
+// 	alignItem: { format: "align-items-$1", value: bsType.alignItem.concat(), shared: true } satisfies bs.rule,
+// 	alignSelf: { format: "align-self-$1", value: bsType.alignSelf.concat(), shared: true } satisfies bs.rule,
+
+// 	visible: { formatTrue: "visible", formatFalse: "invisible", value: bsType.visible.concat() } satisfies bs.rule,
+// 	textWrap: {
+// 		formatTrue: "text-wrap",
+// 		formatFalse: "text-nowrap",
+// 		value: bsType.textWrap.concat(),
+// 	} satisfies bs.rule,
+// 	fontItalic: {
+// 		formatTrue: "fst-italic",
+// 		formatFalse: "fst-normal",
+// 		value: bsType.fontItalic.concat(),
+// 	} satisfies bs.rule,
+// 	bgGradient: { formatTrue: "bg-gradient", value: bsType.bgGradient.concat() } satisfies bs.rule,
+// 	wordBreak: { formatTrue: "text-break", value: bsType.wordBreak.concat(), shared: true } satisfies bs.rule,
+// 	monospace: { formatTrue: "font-monospace", value: bsType.monospace.concat() } satisfies bs.rule,
+// 	row: { formatTrue: "row", formatFalse: null, value: bsType.row.concat() } satisfies bs.rule,
+// 	col: { format: "col-$1", formatTrue: "col", value: bsType.col.concat() } satisfies bs.rule,
+// 	rowCol: { format: "row-cols-$1", value: bsType.rowCol.concat() } satisfies bs.rule,
+// };
 
 type dbType = keyof typeof db;
 
