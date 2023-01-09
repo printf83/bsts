@@ -26,19 +26,26 @@ core.replaceChild(body, [
 		[
 			new divRow(
 				[
-					new divCol(3, "0", { textColor: "warning", borderColor: "#333", borderWidth: 3, rounded: true }),
+					new divCol(3, "0", {
+						textColor: "warning",
+						borderColor: "secondary",
+						borderWidth: 3,
+						rounded: true,
+					}),
 					new h(1, "1", {
 						col: 3,
 						textColor: "danger",
-						click: (e: Event) => {
-							alert("click");
-							core.removeElement(e.target as HTMLElement);
+						on: {
+							click: (e: Event) => {
+								alert("click");
+								core.removeElement(e.target as HTMLElement);
+							},
 						},
 					}),
 					new h(2, "2", { col: 3, textColor: "primary", class: ["hello", "world"] }),
-					new h(3, "3", { col: 3, textColor: "success", class: "world" }),
+					new h(3, "3", { col: 3, textColor: "success", class: "world", borderColor: "danger" }),
 				],
-				{ height: "50px" }
+				{ height: "auto" }
 			),
 		],
 		{ container: true }

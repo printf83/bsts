@@ -1,24 +1,24 @@
-import { bs } from "../base/attachBootstrap.js";
+import { bsRule } from "./../base/attachBootstrap";
 import { genClassList } from "./genClassList.js";
 import { setting } from "./setting.js";
 
-const bsClass = (value: string | number | boolean, rules: bs.rule): string[] => {
+const bsClass = (value: string | number | boolean, rules: bsRule): string[] => {
 	let i = [];
 
-	if (rules.hasOwnProperty("formatValue")) {
+	if (rules.formatValue) {
 		i = [...i, ...genClassList(rules.formatValue)];
 	}
 
 	if (value === true) {
-		if (rules.hasOwnProperty("formatTrue")) {
+		if (rules.formatTrue) {
 			i = [...i, ...genClassList(rules.formatTrue)];
 		}
 	} else if (value === false) {
-		if (rules.hasOwnProperty("formatFalse")) {
+		if (rules.formatFalse) {
 			i = [...i, ...genClassList(rules.formatFalse)];
 		}
 	} else {
-		if (rules.hasOwnProperty("format")) {
+		if (rules.format) {
 			i = [...i, ...genClassList(rules.format.replace(/\$1/g, value.toString()))];
 		}
 	}
@@ -26,9 +26,9 @@ const bsClass = (value: string | number | boolean, rules: bs.rule): string[] => 
 	return i && i.length > 0 ? i : null;
 };
 
-export const multiClass = (value: string | number | boolean, rules: bs.rule): string[] => {
+export const multiClass = (value: string | number | boolean, rules: bsRule): string[] => {
 	if (value !== null && value !== undefined) {
-		if (rules.hasOwnProperty("value")) {
+		if (rules.value) {
 			if (rules.value.indexOf(value) > -1) {
 				return bsClass(value, rules);
 			} else {

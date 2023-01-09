@@ -1,3 +1,4 @@
+import { extend } from "./../fn/extend";
 import { attachOther } from "./attachOther.js";
 import { attachHref } from "./attachHref.js";
 import { attachAria } from "./attachAria.js";
@@ -11,124 +12,10 @@ import { attachEvent } from "./attachEvent.js";
 import { attachStyle } from "./attachStyle.js";
 import { attachManualStyle } from "./attachManualStyle.js";
 import { attachClass } from "./attachClass.js";
-import { extend } from "../fn/extend.js";
 import { bs } from "./attachBootstrap.js";
 import { tag } from "../../tag/index.js";
 
-export interface baseAttr {
-	id?: string;
-	name?: string;
-	class?: string | string[];
-
-	active?: boolean;
-
-	//bootstrap [start]
-	userSelect?: string | bs.userSelect[number];
-	pointerEvent?: bs.pointerEvent[number];
-	position?: string | bs.position[number];
-	overflow?: string | bs.overflow[number];
-
-	textAlign?: string | bs.textAlign[number];
-	verticalAlign?: string | bs.verticalAlign[number];
-
-	opacity?: string | bs.opacity[number];
-	bgOpacity?: bs.bgOpacity[number];
-	textOpacity?: bs.textOpacity[number];
-
-	btnColor?: bs.btnColor[number];
-	btnOutlineColor?: bs.btnOutlineColor[number];
-	alertColor?: bs.alertColor[number];
-
-	textBgColor?: bs.textBgColor[number];
-	textColor?: bs.textColor[number];
-	linkColor?: bs.linkColor[number];
-	bgColor?: bs.bgColor[number];
-
-	textTransform?: string | bs.textTransform[number];
-	textDecoration?: string | bs.textDecoration[number];
-	lineHeight?: string | bs.lineHeight[number];
-
-	fontSize?: string | bs.fontSize[number];
-	fontWeight?: string | bs.fontWeight[number];
-
-	top?: string | bs.top[number];
-	bottom?: string | bs.bottom[number];
-	start?: bs.start[number];
-	end?: bs.end[number];
-	tMiddle?: bs.tMiddle[number];
-
-	height?: string | bs.height[number];
-	width?: string | bs.width[number];
-	maxHeight?: string | bs.maxHeight[number];
-	maxWidth?: string | bs.maxWidth[number];
-	minViewHeight?: bs.minViewHeight[number];
-	minViewWidth?: bs.minViewWidth[number];
-	viewHeight?: bs.viewHeight[number];
-	viewWidth?: bs.viewWidth[number];
-
-	placeholder?: bs.placeholder[number];
-	placeholderAnimation?: bs.placeholderAnimation[number];
-	placeholderWeight?: bs.placeholderWeight[number];
-
-	shadow?: bs.shadow[number];
-
-	border?: string | bs.border[number];
-	borderNone?: bs.borderNone[number];
-	borderColor?: string | bs.borderColor[number];
-	borderOpacity?: bs.borderOpacity[number];
-	borderWidth?: string | bs.borderWidth[number];
-
-	rounded?: bs.rounded[number];
-	roundedNone?: bs.roundedNone[number];
-	roundedSize?: bs.roundedSize[number];
-
-	padding?: string | bs.padding[number];
-	paddingX?: bs.paddingX[number];
-	paddingY?: bs.paddingY[number];
-	paddingTop?: string | bs.paddingTop[number];
-	paddingBottom?: string | bs.paddingBottom[number];
-	paddingStart?: bs.paddingStart[number];
-	paddingEnd?: bs.paddingEnd[number];
-
-	margin?: string | bs.margin[number];
-	marginX?: bs.marginX[number];
-	marginY?: bs.marginY[number];
-	marginTop?: string | bs.marginTop[number];
-	marginBottom?: string | bs.marginBottom[number];
-	marginStart?: bs.marginStart[number];
-	marginEnd?: bs.marginEnd[number];
-
-	gap?: bs.gap[number];
-	gutter?: bs.gutter[number];
-	gutterX?: bs.gutterX[number];
-	gutterY?: bs.gutterY[number];
-
-	display?: string | bs.display[number];
-	print?: bs.print[number];
-	container?: bs.container[number];
-
-	flex?: string | bs.flex[number];
-	float?: bs.float[number];
-	order?: string | bs.order[number];
-	offset?: bs.offset[number];
-
-	alignContent?: string | bs.alignContent[number];
-	justifyContent?: string | bs.justifyContent[number];
-	alignItem?: string | bs.alignItem[number];
-	alignSelf?: string | bs.alignSelf[number];
-
-	visible?: bs.visible[number];
-	textWrap?: bs.textWrap[number];
-	fontItalic?: bs.fontItalic[number];
-	bgGradient?: bs.bgGradient[number];
-	wordBreak?: string | bs.wordBreak[number];
-	monospace?: bs.monospace[number];
-	row?: bs.row[number];
-	col?: bs.col[number];
-	rowCol?: bs.rowCol[number];
-	//bootstrap [end]
-
-	//style [start]
+export interface baseStyle {
 	animation?: string;
 	animationDelay?: string;
 	animationDirection?: string;
@@ -282,7 +169,220 @@ export interface baseAttr {
 	wordWrap?: string;
 	widows?: string;
 	zIndex?: string;
-	//style [end]
+}
+
+export interface baseEvent {
+	[key: string]: EventListener;
+
+	afterprint?: EventListener;
+	beforeprint?: EventListener;
+	beforeunload?: EventListener;
+	errorscript?: EventListener;
+	hashchange?: EventListener;
+	load?: EventListener;
+	message?: EventListener;
+	offline?: EventListener;
+	online?: EventListener;
+	pagehide?: EventListener;
+	pageshow?: EventListener;
+	popstate?: EventListener;
+	resize?: EventListener;
+	storage?: EventListener;
+	unload?: EventListener;
+
+	blur?: EventListener;
+	change?: EventListener;
+	contextmenu?: EventListener;
+	focus?: EventListener;
+	input?: EventListener;
+	invalid?: EventListener;
+	reset?: EventListener;
+	search?: EventListener;
+	select?: EventListener;
+	submit?: EventListener;
+
+	keydown?: EventListener;
+	keypress?: EventListener;
+	keyup?: EventListener;
+
+	click?: EventListener;
+	dblclick?: EventListener;
+	mousedown?: EventListener;
+	mousemove?: EventListener;
+	mouseout?: EventListener;
+	mouseover?: EventListener;
+	mouseup?: EventListener;
+	mousewheel?: EventListener;
+	wheel?: EventListener;
+
+	drag?: EventListener;
+	dragend?: EventListener;
+	dragenter?: EventListener;
+	dragleave?: EventListener;
+	dragover?: EventListener;
+	dragstart?: EventListener;
+	drop?: EventListener;
+	scroll?: EventListener;
+
+	copy?: EventListener;
+	cut?: EventListener;
+	paste?: EventListener;
+
+	abort?: EventListener;
+	canplay?: EventListener;
+	canplaythrough?: EventListener;
+	cuechange?: EventListener;
+	durationchange?: EventListener;
+	emptied?: EventListener;
+	ended?: EventListener;
+	error?: EventListener;
+	loadeddata?: EventListener;
+	loadedmetadata?: EventListener;
+	loadstart?: EventListener;
+	pause?: EventListener;
+	play?: EventListener;
+	playing?: EventListener;
+	progress?: EventListener;
+	ratechange?: EventListener;
+	seeked?: EventListener;
+	seeking?: EventListener;
+	stalled?: EventListener;
+	suspend?: EventListener;
+	timeupdate?: EventListener;
+	volumechange?: EventListener;
+	waiting?: EventListener;
+
+	toggle?: EventListener;
+}
+
+export interface baseAria {
+	[key: string]: string | number | boolean;
+}
+
+export interface baseData {
+	[key: string]: string | number | boolean;
+}
+
+export interface baseAttr {
+	id?: string;
+	name?: string;
+	class?: string | string[];
+
+	data?: baseData;
+	aria?: baseAria;
+	on?: baseEvent;
+	style?: baseStyle;
+
+	active?: boolean;
+	href?: string;
+
+	accept?: string;
+
+	//bootstrap [start]
+	userSelect?: bs.userSelect[number];
+	pointerEvent?: bs.pointerEvent[number];
+	position?: bs.position[number];
+	overflow?: bs.overflow[number];
+
+	textAlign?: bs.textAlign[number];
+	verticalAlign?: bs.verticalAlign[number];
+
+	opacity?: bs.opacity[number];
+	bgOpacity?: bs.bgOpacity[number];
+	textOpacity?: bs.textOpacity[number];
+
+	btnColor?: bs.btnColor[number];
+	btnOutlineColor?: bs.btnOutlineColor[number];
+	alertColor?: bs.alertColor[number];
+
+	textBgColor?: bs.textBgColor[number];
+	textColor?: bs.textColor[number];
+	linkColor?: bs.linkColor[number];
+	bgColor?: bs.bgColor[number];
+
+	textTransform?: bs.textTransform[number];
+	textDecoration?: bs.textDecoration[number];
+	lineHeight?: bs.lineHeight[number];
+
+	fontSize?: bs.fontSize[number];
+	fontWeight?: bs.fontWeight[number];
+
+	top?: bs.top[number];
+	bottom?: bs.bottom[number];
+	start?: bs.start[number];
+	end?: bs.end[number];
+	tMiddle?: bs.tMiddle[number];
+
+	height?: bs.height[number];
+	width?: bs.width[number];
+	maxHeight?: bs.maxHeight[number];
+	maxWidth?: bs.maxWidth[number];
+	minViewHeight?: bs.minViewHeight[number];
+	minViewWidth?: bs.minViewWidth[number];
+	viewHeight?: bs.viewHeight[number];
+	viewWidth?: bs.viewWidth[number];
+
+	placeholder?: bs.placeholder[number];
+	placeholderAnimation?: bs.placeholderAnimation[number];
+	placeholderWeight?: bs.placeholderWeight[number];
+
+	shadow?: bs.shadow[number];
+
+	border?: bs.border[number];
+	borderNone?: bs.borderNone[number];
+	borderColor?: bs.borderColor[number];
+	borderOpacity?: bs.borderOpacity[number];
+	borderWidth?: bs.borderWidth[number];
+
+	rounded?: bs.rounded[number];
+	roundedNone?: bs.roundedNone[number];
+	roundedSize?: bs.roundedSize[number];
+
+	padding?: bs.padding[number] | bs.padding[number][];
+	paddingX?: bs.paddingX[number] | bs.paddingX[number][];
+	paddingY?: bs.paddingY[number] | bs.paddingY[number][];
+	paddingTop?: bs.paddingTop[number] | bs.paddingTop[number][];
+	paddingBottom?: bs.paddingBottom[number] | bs.paddingBottom[number][];
+	paddingStart?: bs.paddingStart[number] | bs.paddingStart[number][];
+	paddingEnd?: bs.paddingEnd[number] | bs.paddingEnd[number][];
+
+	margin?: bs.margin[number] | bs.margin[number][];
+	marginX?: bs.marginX[number] | bs.marginX[number][];
+	marginY?: bs.marginY[number] | bs.marginY[number][];
+	marginTop?: bs.marginTop[number] | bs.marginTop[number][];
+	marginBottom?: bs.marginBottom[number] | bs.marginBottom[number][];
+	marginStart?: bs.marginStart[number] | bs.marginStart[number][];
+	marginEnd?: bs.marginEnd[number] | bs.marginEnd[number][];
+
+	gap?: bs.gap[number] | bs.gap[number][];
+	gutter?: bs.gutter[number] | bs.gutter[number];
+	gutterX?: bs.gutterX[number] | bs.gutterX[number][];
+	gutterY?: bs.gutterY[number] | bs.gutterY[number][];
+
+	display?: bs.display[number] | bs.display[number][];
+	print?: bs.print[number] | bs.print[number];
+	container?: bs.container[number];
+
+	flex?: bs.flex[number] | bs.flex[number][];
+	float?: bs.float[number] | bs.float[number][];
+	order?: bs.order[number] | bs.order[number][];
+	offset?: bs.offset[number] | bs.offset[number][];
+
+	alignContent?: bs.alignContent[number] | bs.alignContent[number][];
+	justifyContent?: bs.justifyContent[number] | bs.justifyContent[number][];
+	alignItem?: bs.alignItem[number] | bs.alignItem[number][];
+	alignSelf?: bs.alignSelf[number] | bs.alignSelf[number][];
+
+	visible?: bs.visible[number];
+	textWrap?: bs.textWrap[number];
+	fontItalic?: bs.fontItalic[number];
+	bgGradient?: bs.bgGradient[number];
+	wordBreak?: bs.wordBreak[number];
+	monospace?: bs.monospace[number];
+	row?: bs.row[number];
+	col?: bs.col[number] | bs.col[number][];
+	rowCol?: bs.rowCol[number] | bs.rowCol[number][];
+	//bootstrap [end]
 
 	//boolean attr [start]
 	allowfullscreen?: boolean;
@@ -314,8 +414,6 @@ export interface baseAttr {
 	selected?: boolean;
 	truespeed?: boolean;
 	//boolean attr [end]
-
-	[key: string]: string | number | boolean | EventListener | (string | number | boolean)[] | undefined;
 }
 
 export interface baseTag {

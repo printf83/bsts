@@ -36,10 +36,6 @@ export const attachBoolean: attachFn = (key, elem, attr) => {
 	if (db.indexOf(key) > -1) {
 		if (attr[key] === true) {
 			elem.setAttribute(key, key);
-			// elem[key] = true;
-		} else if (attr[key] === false) {
-			// elem.setAttribute(key, "");
-			// elem[key] = false;
 		} else {
 			if (setting.DEBUG) console.log(`Attribute ${key}:${attr[key]} is not TRUE`);
 		}

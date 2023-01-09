@@ -4,8 +4,7 @@ import { div } from "./div.js";
 
 export class divRow extends div {
 	constructor(public elem?: baseElem, public attr?: baseAttr) {
-		attr = mergeObject(attr, { row: true });
-
+		attr = mergeObject(attr as object, { row: true }) as baseAttr;
 		super(elem, attr);
 	}
 }
