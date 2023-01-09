@@ -9,7 +9,6 @@ import { setting } from "../fn/setting.js";
 import { attachBootstrap } from "./attachBootstrap.js";
 import { attachEvent } from "./attachEvent.js";
 import { attachStyle } from "./attachStyle.js";
-import { attachManualStyle } from "./attachManualStyle.js";
 import { attachClass } from "./attachClass.js";
 import { bs } from "./attachBootstrap.js";
 import { tag } from "../../tag/index.js";
@@ -549,7 +548,6 @@ const attrFn: attachFn[] = [
 	attachBootstrap,
 	attachEvent,
 	attachStyle,
-	attachManualStyle,
 	attachClass,
 	attachHref,
 	attachOther,

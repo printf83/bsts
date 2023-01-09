@@ -4,7 +4,7 @@ import { attachFn } from "./index.js";
 
 const db = [
 	"alignContent",
-	"alignItem",
+	"alignItems",
 	"alignSelf",
 	"animation",
 	"animationDelay",
