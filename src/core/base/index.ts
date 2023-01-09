@@ -205,8 +205,6 @@ export interface baseStyle {
 }
 
 export interface baseEvent {
-	[key: string]: EventListener;
-
 	afterprint?: EventListener;
 	beforeprint?: EventListener;
 	beforeunload?: EventListener;
@@ -286,6 +284,8 @@ export interface baseEvent {
 	waiting?: EventListener;
 
 	toggle?: EventListener;
+
+	[key: string]: EventListener | undefined;
 }
 
 export interface baseAria {
@@ -533,9 +533,12 @@ export type attachFn = (
 };
 
 const cleanupAttr: attachFn = (key, elem, attr) => {
-	if (attr && typeof attr[key] !== "undefined" && attr[key] === null) {
-		if (setting.DEBUG) console.log(`${key}:${attr[key]} is null. Delete it`);
-		delete attr[key];
+	type baseAttrType = keyof typeof attr;
+	let k = key as baseAttrType;
+
+	if (attr && typeof attr[k] !== "undefined" && attr[k] === null) {
+		if (setting.DEBUG) console.log(`${key}:${attr[k]} is null. Delete it`);
+		delete attr[k];
 	}
 
 	return { attr, elem };
@@ -562,15 +565,19 @@ export const attachAttr = (elem: HTMLElement, attr: baseAttr): HTMLElement => {
 
 		let keys = Object.keys(attr);
 		if (keys) {
+			type baseAttrType = keyof typeof attr;
+
 			let keyLength = keys.length;
 			let attrFnLength = attrFn.length;
 
 			for (let x = 0; x < keyLength; x++) {
 				for (let y = 0; y < attrFnLength; y++) {
-					if (typeof attr[keys[x]] !== "undefined" && attr[keys[x]] !== null) {
+					let k = keys[x] as baseAttrType;
+
+					if (typeof attr[k] !== "undefined" && attr[k] !== null) {
 						if (y === attrFnLength - 1) {
 							if (setting.DEBUG) {
-								console.log(`Treat ${keys[x]}:${attr[keys[x]]} as another attribute.`);
+								console.log(`Treat ${keys[x]}:${attr[k]} as another attribute.`);
 							}
 						}
 

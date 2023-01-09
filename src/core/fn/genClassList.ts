@@ -1,6 +1,7 @@
-export const genClassList = (value: string | string[]): string[] | null => {
+export const genClassList = (value: string | string[]): string[] => {
 	let result: string[] = [];
-	let i = null;
+	let i: string[] = [];
+
 	if (Array.isArray(value)) {
 		i = value;
 	} else {
@@ -13,20 +14,23 @@ export const genClassList = (value: string | string[]): string[] | null => {
 	//make sure every class not have whitespace
 	if (i && i.length > 0) {
 		for (let x = 0; x < i.length; x++) {
-			if (i[x].indexOf(" ") > -1) {
-				i[x] = i[x].split(" ");
-				i[x] = i[x].filter(Boolean);
+			let j = i[x];
+			let h: string[] = [];
 
-				if (i[x] && i[x].length > 0) {
-					for (let y = 0; y < i[x].length; y++) {
-						result.push(i[x][y]);
+			if (j.indexOf(" ") > -1) {
+				h = j.split(" ");
+				h = h.filter(Boolean);
+
+				if (h && h.length > 0) {
+					for (let y = 0; y < h.length; y++) {
+						result.push(h[y]);
 					}
 				}
 			} else {
-				result.push(i[x]);
+				result.push(j);
 			}
 		}
 	}
 
-	return result && result.length > 0 ? result : null;
+	return result && result.length > 0 ? result : [];
 };

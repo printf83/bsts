@@ -3,7 +3,7 @@ import { genClassList } from "./genClassList.js";
 import { setting } from "./setting.js";
 
 const bsClass = (value: string | number | boolean, rules: bsRule): string[] => {
-	let i = [];
+	let i: string[] = [];
 
 	if (rules.formatValue) {
 		i = [...i, ...genClassList(rules.formatValue)];
@@ -23,7 +23,7 @@ const bsClass = (value: string | number | boolean, rules: bsRule): string[] => {
 		}
 	}
 
-	return i && i.length > 0 ? i : null;
+	return i && i.length > 0 ? i : [];
 };
 
 export const multiClass = (value: string | number | boolean, rules: bsRule): string[] => {
@@ -40,5 +40,5 @@ export const multiClass = (value: string | number | boolean, rules: bsRule): str
 		}
 	}
 
-	return null;
+	return [];
 };
