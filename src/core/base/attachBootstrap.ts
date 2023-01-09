@@ -1037,8 +1037,6 @@ const db = {
 	col: new bsRule("col-$1", bsType.col.concat(), null, "col"),
 	rowCol: new bsRule("row-cols-$1", bsType.rowCol.concat()),
 };
-
-// const db = {
 // 	userSelect: new bsRule("user-select-$1", bsType.userSelect.concat(), null, null, null, true),
 // 	userSelect: { format: "user-select-$1", value: bsType.userSelect.concat(), shared: true } satisfies bs.rule,
 // 	pointerEvent: { format: "pe-$1", value: bsType.pointerEvent.concat() } satisfies bs.rule,
@@ -1253,21 +1251,21 @@ export const attachBootstrap: attachFn = (key, elem, attr) => {
 		let delAttr = false;
 		(attr[key] as (string | number | boolean)[]).forEach((i) => {
 			if (db[k].value.findIndex((j) => i === j) > -1) {
-				if (db[k].hasOwnProperty("formatValue")) {
-					elem = addIntoClassList(elem, (db[k] as bs.rule).formatValue!);
+				if (db[k].formatValue) {
+					elem = addIntoClassList(elem, db[k].formatValue);
 				}
 
 				if (i === true) {
-					if (db[k].hasOwnProperty("formatTrue")) {
-						elem = addIntoClassList(elem, (db[k] as bs.rule).formatTrue!);
+					if (db[k].formatTrue) {
+						elem = addIntoClassList(elem, db[k].formatTrue);
 					}
 				} else if (i === false) {
-					if (db[k].hasOwnProperty("formatFalse")) {
-						elem = addIntoClassList(elem, (db[k] as bs.rule).formatFalse!);
+					if (db[k].formatFalse) {
+						elem = addIntoClassList(elem, db[k].formatFalse);
 					}
 				} else {
-					if (db[k].hasOwnProperty("format")) {
-						elem = addIntoClassList(elem, (db[k] as bs.rule).format!.replace(/\$1/g, i.toString()));
+					if (db[k].format) {
+						elem = addIntoClassList(elem, db[k].format.replace(/\$1/g, i.toString()));
 					}
 				}
 
