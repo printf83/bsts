@@ -1,10 +1,11 @@
 import { attachFn } from "./index.js";
 
 export const attachOther: attachFn = (key, elem, attr) => {
-	let i = Array.isArray(attr[key]) ? (attr[key] as []).join(" ") : attr[key];
-
-	elem.setAttribute(key, i.toString());
-	delete attr[key];
+	if (attr && typeof attr !== "undefined") {
+		let i = Array.isArray(attr[key]) ? attr[key].join(" ") : attr[key];
+		elem.setAttribute(key, i.toString());
+		delete attr[key];
+	}
 
 	return { attr, elem };
 };

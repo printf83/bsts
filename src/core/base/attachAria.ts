@@ -2,7 +2,7 @@ import { attachFn } from "./index.js";
 
 export const attachAria: attachFn = (key, elem, attr) => {
 	if (key === "aria") {
-		if (attr && attr.aria) {
+		if (attr && typeof attr.aria !== "undefined") {
 			let prop = Object.keys(attr.aria);
 			if (prop) {
 				for (let x = 0; x < prop.length; x++) {

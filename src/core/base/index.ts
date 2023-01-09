@@ -306,6 +306,9 @@ export interface baseAttr {
 	on?: baseEvent;
 	style?: baseStyle;
 
+	//addtional
+	active?: boolean;
+
 	//html attribute [start]
 	accept?: string;
 	acceptCharset?: string;
@@ -530,8 +533,8 @@ export type attachFn = (
 };
 
 const cleanupAttr: attachFn = (key, elem, attr) => {
-	if ((attr[key] === undefined || attr[key]) === null) {
-		if (setting.DEBUG) console.log(`${key}:${attr[key]} is null or undefined. Delete it`);
+	if (attr && typeof attr[key] !== "undefined" && attr[key] === null) {
+		if (setting.DEBUG) console.log(`${key}:${attr[key]} is null. Delete it`);
 		delete attr[key];
 	}
 
@@ -564,7 +567,7 @@ export const attachAttr = (elem: HTMLElement, attr: baseAttr): HTMLElement => {
 
 			for (let x = 0; x < keyLength; x++) {
 				for (let y = 0; y < attrFnLength; y++) {
-					if (attr.hasOwnProperty(keys[x]) && attr[keys[x]] !== null && attr[keys[x]] !== undefined) {
+					if (typeof attr[keys[x]] !== "undefined" && attr[keys[x]] !== null) {
 						if (y === attrFnLength - 1) {
 							if (setting.DEBUG) {
 								console.log(`Treat ${keys[x]}:${attr[keys[x]]} as another attribute.`);
