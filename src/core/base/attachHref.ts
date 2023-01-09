@@ -1,4 +1,3 @@
-import { type } from "os";
 import { attachFn } from "./index.js";
 
 export const attachHref: attachFn = (key, elem, attr) => {

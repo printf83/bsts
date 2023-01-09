@@ -2,7 +2,7 @@ import { addIntoClassList } from "../fn/addIntoClassList.js";
 import { camel2Dash } from "../fn/camel2Dash.js";
 import { dash2Camel } from "../fn/dash2Camel.js";
 import { setting } from "../fn/setting.js";
-import { attachFn } from "./index.js";
+import { attachFn, baseAttr } from "./index.js";
 
 export namespace bsType {
 	const base5 = [0, 1, 2, 3, 4, 5];
@@ -913,21 +913,21 @@ export namespace bs {
 }
 
 export type bsRuleType = {
-	format?: string;
-	value?: (string | number | boolean)[];
-	formatValue?: string;
-	formatTrue?: string;
-	formatFalse?: string;
+	format?: string | null;
+	value?: (string | number | boolean)[] | null;
+	formatValue?: string | null;
+	formatTrue?: string | null;
+	formatFalse?: string | null;
 	shared?: boolean;
 };
 
 export class bsRule implements bsRuleType {
 	constructor(
-		public format: string = null,
-		public value: (string | number | boolean)[] = null,
-		public formatValue: string = null,
-		public formatTrue: string = null,
-		public formatFalse: string = null,
+		public format?: string | null,
+		public value?: (string | number | boolean)[],
+		public formatValue?: string | null,
+		public formatTrue?: string | null,
+		public formatFalse?: string | null,
 		public shared: boolean = false
 	) {}
 }
@@ -1074,42 +1074,67 @@ const allow = (key: string): string | null => {
 export const attachBootstrap: attachFn = (key, elem, attr) => {
 	let a_key = allow(key);
 	if (a_key !== null) {
+		type baseAttrType = keyof typeof attr;
+		let a = key as baseAttrType;
 		let k = a_key as dbType;
 
-		if (!Array.isArray(attr[key])) {
-			attr[key] = [attr[key] as string | number | boolean];
-		}
-
-		let delAttr = false;
-		(attr[key] as (string | number | boolean)[]).forEach((i) => {
-			if (db[k].value.findIndex((j) => i === j) > -1) {
+		if (!Array.isArray(attr[a])) {
+			let i = attr[a];
+			if (db[k].value!.findIndex((j) => i === j) > -1) {
 				if (db[k].formatValue) {
-					elem = addIntoClassList(elem, db[k].formatValue);
+					elem = addIntoClassList(elem, db[k].formatValue!);
 				}
 
 				if (i === true) {
 					if (db[k].formatTrue) {
-						elem = addIntoClassList(elem, db[k].formatTrue);
+						elem = addIntoClassList(elem, db[k].formatTrue!);
 					}
 				} else if (i === false) {
 					if (db[k].formatFalse) {
-						elem = addIntoClassList(elem, db[k].formatFalse);
+						elem = addIntoClassList(elem, db[k].formatFalse!);
 					}
 				} else {
 					if (db[k].format) {
-						elem = addIntoClassList(elem, db[k].format.replace(/\$1/g, i.toString()));
+						elem = addIntoClassList(elem, db[k].format!.replace(/\$1/g, i!.toString()));
 					}
 				}
 
-				delAttr = true;
+				delete attr[a];
 			} else {
-				delAttr = false;
 				if (setting.DEBUG) console.warn(`${k}:"${i}" is not supported value for bootstrap property`);
 			}
-		});
+		} else {
+			let delAttr = false;
+			(attr[a] as (string | number | boolean)[]).forEach((i) => {
+				if (db[k].value!.findIndex((j) => i === j) > -1) {
+					if (db[k].formatValue) {
+						elem = addIntoClassList(elem, db[k].formatValue!);
+					}
 
-		if (delAttr) {
-			delete attr[key];
+					if (i === true) {
+						if (db[k].formatTrue) {
+							elem = addIntoClassList(elem, db[k].formatTrue!);
+						}
+					} else if (i === false) {
+						if (db[k].formatFalse) {
+							elem = addIntoClassList(elem, db[k].formatFalse!);
+						}
+					} else {
+						if (db[k].format) {
+							elem = addIntoClassList(elem, db[k].format!.replace(/\$1/g, i.toString()));
+						}
+					}
+
+					delAttr = true;
+				} else {
+					delAttr = false;
+					if (setting.DEBUG) console.warn(`${k}:"${i}" is not supported value for bootstrap property`);
+				}
+			});
+
+			if (delAttr) {
+				delete attr[a];
+			}
 		}
 	}
 
