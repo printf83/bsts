@@ -47,7 +47,7 @@ core.replaceChild(body, [
 				],
 				{
 					style: {
-						height: "60px !important",
+						height: "60px",
 					},
 				}
 			),
