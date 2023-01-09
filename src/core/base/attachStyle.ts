@@ -1,3 +1,4 @@
+import { keyOfType } from "./../fn/keyOfType.js";
 import { attachFn } from "./index.js";
 
 export const attachStyle: attachFn = (key, elem, attr) => {
@@ -6,10 +7,8 @@ export const attachStyle: attachFn = (key, elem, attr) => {
 			let i = Object.keys(attr.style);
 
 			if (i) {
-				type baseStyleType = keyof typeof attr.style;
-
 				for (let x = 0; x < i.length; x++) {
-					let k = i[x] as baseStyleType;
+					let k = keyOfType(i[x], attr.style);
 
 					if (attr.style[k]) {
 						if (attr.style[k]!.indexOf(" !important") > -1) {

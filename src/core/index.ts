@@ -1,3 +1,4 @@
+import { keyOfType } from "./fn/keyOfType.js";
 import { attachAttr } from "./base/index.js";
 import { elemInfo } from "./fn/elemInfo.js";
 import { multiClass } from "./fn/multiClass.js";
@@ -59,6 +60,7 @@ export const core = {
 	isColorDark,
 	isHTML,
 	isTag,
+	keyOfType,
 	loadCSS,
 	mergeClass,
 	mergeObject,

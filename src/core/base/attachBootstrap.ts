@@ -1,3 +1,4 @@
+import { keyOfType } from "./../fn/keyOfType.js";
 import { addIntoClassList } from "../fn/addIntoClassList.js";
 import { camel2Dash } from "../fn/camel2Dash.js";
 import { dash2Camel } from "../fn/dash2Camel.js";
@@ -1039,8 +1040,6 @@ const db = {
 	rowCol: new bsRule("row-cols-$1", bsType.rowCol.concat()),
 };
 
-type dbType = keyof typeof db;
-
 let allowProp: (string | undefined)[] = [];
 
 const allow = (key: string): string | null => {
@@ -1074,66 +1073,65 @@ const allow = (key: string): string | null => {
 export const attachBootstrap: attachFn = (key, elem, attr) => {
 	let a_key = allow(key);
 	if (a_key !== null) {
-		type baseAttrType = keyof typeof attr;
-		let a = key as baseAttrType;
-		let k = a_key as dbType;
+		let k = keyOfType(key, attr);
+		let a = keyOfType(a_key, db);
 
-		if (!Array.isArray(attr[a])) {
-			let i = attr[a];
-			if (db[k].value!.findIndex((j) => i === j) > -1) {
-				if (db[k].formatValue) {
-					elem = addIntoClassList(elem, db[k].formatValue!);
+		if (!Array.isArray(attr[k])) {
+			let i = attr[k];
+			if (db[a].value!.findIndex((j) => i === j) > -1) {
+				if (db[a].formatValue) {
+					elem = addIntoClassList(elem, db[a].formatValue!);
 				}
 
 				if (i === true) {
-					if (db[k].formatTrue) {
-						elem = addIntoClassList(elem, db[k].formatTrue!);
+					if (db[a].formatTrue) {
+						elem = addIntoClassList(elem, db[a].formatTrue!);
 					}
 				} else if (i === false) {
-					if (db[k].formatFalse) {
-						elem = addIntoClassList(elem, db[k].formatFalse!);
+					if (db[a].formatFalse) {
+						elem = addIntoClassList(elem, db[a].formatFalse!);
 					}
 				} else {
-					if (db[k].format) {
-						elem = addIntoClassList(elem, db[k].format!.replace(/\$1/g, i!.toString()));
+					if (db[a].format) {
+						elem = addIntoClassList(elem, db[a].format!.replace(/\$1/g, i!.toString()));
 					}
 				}
 
-				delete attr[a];
+				delete attr[k];
 			} else {
-				if (setting.DEBUG) console.warn(`${k}:"${i}" is not supported value for bootstrap property`);
+				if (setting.DEBUG) console.warn(`${a}:"${i}" is not supported value for bootstrap property`);
 			}
 		} else {
 			let delAttr = false;
-			(attr[a] as (string | number | boolean)[]).forEach((i) => {
-				if (db[k].value!.findIndex((j) => i === j) > -1) {
-					if (db[k].formatValue) {
-						elem = addIntoClassList(elem, db[k].formatValue!);
+			(attr[k] as (string | number | boolean)[]).forEach((i) => {
+				if (db[a].value!.findIndex((j) => i === j) > -1) {
+					if (db[a].formatValue) {
+						elem = addIntoClassList(elem, db[a].formatValue!);
 					}
 
 					if (i === true) {
-						if (db[k].formatTrue) {
-							elem = addIntoClassList(elem, db[k].formatTrue!);
+						if (db[a].formatTrue) {
+							elem = addIntoClassList(elem, db[a].formatTrue!);
 						}
 					} else if (i === false) {
-						if (db[k].formatFalse) {
-							elem = addIntoClassList(elem, db[k].formatFalse!);
+						if (db[a].formatFalse) {
+							elem = addIntoClassList(elem, db[a].formatFalse!);
 						}
 					} else {
-						if (db[k].format) {
-							elem = addIntoClassList(elem, db[k].format!.replace(/\$1/g, i.toString()));
+						if (db[a].format) {
+							elem = addIntoClassList(elem, db[a].format!.replace(/\$1/g, i.toString()));
 						}
 					}
 
 					delAttr = true;
 				} else {
 					delAttr = false;
-					if (setting.DEBUG) console.warn(`${k}:"${i}" is not supported value for bootstrap property`);
+					if (setting.DEBUG) console.warn(`${a}:"${i}" is not supported value for bootstrap property`);
 				}
 			});
 
 			if (delAttr) {
-				delete attr[a];
+				delete attr[k];
 			}
 		}
 	}

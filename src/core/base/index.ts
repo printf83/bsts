@@ -1,3 +1,4 @@
+import { keyOfType } from "./../fn/keyOfType.js";
 import { attachOther } from "./attachOther.js";
 import { attachHref } from "./attachHref.js";
 import { attachAria } from "./attachAria.js";
@@ -533,8 +534,7 @@ export type attachFn = (
 };
 
 const cleanupAttr: attachFn = (key, elem, attr) => {
-	type baseAttrType = keyof typeof attr;
-	let k = key as baseAttrType;
+	let k = keyOfType(key, attr);
 
 	if (attr && typeof attr[k] !== "undefined" && attr[k] === null) {
 		if (setting.DEBUG) console.log(`${key}:${attr[k]} is null. Delete it`);
@@ -565,14 +565,12 @@ export const attachAttr = (elem: HTMLElement, attr: baseAttr): HTMLElement => {
 
 		let keys = Object.keys(attr);
 		if (keys) {
-			type baseAttrType = keyof typeof attr;
-
 			let keyLength = keys.length;
 			let attrFnLength = attrFn.length;
 
 			for (let x = 0; x < keyLength; x++) {
 				for (let y = 0; y < attrFnLength; y++) {
-					let k = keys[x] as baseAttrType;
+					let k = keyOfType(keys[x], attr);
 
 					if (typeof attr[k] !== "undefined" && attr[k] !== null) {
 						if (y === attrFnLength - 1) {
