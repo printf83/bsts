@@ -1,4 +1,3 @@
-import { extend } from "./../fn/extend";
 import { attachOther } from "./attachOther.js";
 import { attachHref } from "./attachHref.js";
 import { attachAria } from "./attachAria.js";
@@ -14,6 +13,7 @@ import { attachManualStyle } from "./attachManualStyle.js";
 import { attachClass } from "./attachClass.js";
 import { bs } from "./attachBootstrap.js";
 import { tag } from "../../tag/index.js";
+import { extend } from "../fn/extend.js";
 
 export interface baseStyle {
 	animation?: string;

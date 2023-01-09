@@ -1,4 +1,3 @@
-import { baseAttr } from "./../base/index";
 import { mergeClass } from "./mergeClass.js";
 import { mergeStyle } from "./mergeStyle.js";
 
