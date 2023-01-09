@@ -12,14 +12,14 @@
 // 	return out;
 // }
 
-export const extend = <T>(x: T, y: T = null): T => {
-	if (x) {
-		(y as object) = y || {};
-		Object.keys(x).forEach((i) => {
-			if (!y.hasOwnProperty(i) && x[i] !== null && x[i] !== undefined) {
-				y[i] = x[i];
+export const extend = <T>(target: T, source: T = null): T => {
+	if (target) {
+		(source as object) = source || {};
+		Object.keys(target).forEach((i) => {
+			if (!source.hasOwnProperty(i) && target[i] !== null && target[i] !== undefined) {
+				source[i] = target[i];
 			}
 		});
 	}
-	return y as T;
+	return source as T;
 };

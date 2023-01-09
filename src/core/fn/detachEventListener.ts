@@ -4,11 +4,11 @@ export const detachEventListener = (elem: ChildNode): void => {
 
 		//detach event from child
 		if (c?.length > 0) {
-			c.forEach((item) => {
-				detachEventListener(item);
-				if ("detachEventListener" in item) {
-					Object.keys(item["detachEventListener"]).forEach((i) => {
-						item["detachEventListener"][i]();
+			c.forEach((i) => {
+				detachEventListener(i);
+				if ("detachEventListener" in i) {
+					Object.keys(i["detachEventListener"]).forEach((i) => {
+						i["detachEventListener"][i]();
 					});
 				}
 			});

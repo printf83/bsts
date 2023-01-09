@@ -16,6 +16,9 @@ import { tag } from "../../tag/index.js";
 import { extend } from "../fn/extend.js";
 
 export interface baseStyle {
+	alignContent?: string;
+	alignItems?: string;
+	alignSelf?: string;
 	animation?: string;
 	animationDelay?: string;
 	animationDirection?: string;
@@ -35,6 +38,7 @@ export interface baseStyle {
 	backgroundOrigin?: string;
 	backgroundSize?: string;
 	backfaceVisibility?: string;
+	border?: string;
 	borderBottom?: string;
 	borderBottomColor?: string;
 	borderBottomLeftRadius?: string;
@@ -42,6 +46,7 @@ export interface baseStyle {
 	borderBottomStyle?: string;
 	borderBottomWidth?: string;
 	borderCollapse?: string;
+	borderColor?: string;
 	borderImage?: string;
 	borderImageOutset?: string;
 	borderImageRepeat?: string;
@@ -65,6 +70,8 @@ export interface baseStyle {
 	borderTopRightRadius?: string;
 	borderTopStyle?: string;
 	borderTopWidth?: string;
+	borderWidth?: string;
+	bottom?: string;
 	boxDecorationBreak?: string;
 	boxShadow?: string;
 	boxSizing?: string;
@@ -88,8 +95,10 @@ export interface baseStyle {
 	counterReset?: string;
 	cursor?: string;
 	direction?: string;
+	display?: string;
 	emptyCells?: string;
 	filter?: string;
+	flex?: string;
 	flexBasis?: string;
 	flexDirection?: string;
 	flexFlow?: string;
@@ -99,23 +108,33 @@ export interface baseStyle {
 	cssFloat?: string;
 	font?: string;
 	fontFamily?: string;
+	fontSize?: string;
 	fontStyle?: string;
 	fontVariant?: string;
+	fontWeight?: string;
 	fontSizeAdjust?: string;
 	fontStretch?: string;
 	hangingPunctuation?: string;
+	height?: string;
 	hyphens?: string;
 	icon?: string;
 	imageOrientation?: string;
 	isolation?: string;
+	justifyContent?: string;
 	left?: string;
 	letterSpacing?: string;
+	lineHeight?: string;
 	listStyle?: string;
 	listStyleImage?: string;
 	listStylePosition?: string;
 	listStyleType?: string;
+	margin?: string;
+	marginBottom?: string;
 	marginLeft?: string;
 	marginRight?: string;
+	marginTop?: string;
+	maxHeight?: string;
+	maxWidth?: string;
 	minHeight?: string;
 	minWidth?: string;
 	navDown?: string;
@@ -125,28 +144,37 @@ export interface baseStyle {
 	navUp?: string;
 	objectFit?: string;
 	objectPosition?: string;
+	opacity?: string;
+	order?: string;
 	orphans?: string;
 	outline?: string;
 	outlineColor?: string;
 	outlineOffset?: string;
 	outlineStyle?: string;
 	outlineWidth?: string;
+	overflow?: string;
 	overflowX?: string;
 	overflowY?: string;
+	padding?: string;
+	paddingBottom?: string;
 	paddingLeft?: string;
 	paddingRight?: string;
+	paddingTop?: string;
 	pageBreakAfter?: string;
 	pageBreakBefore?: string;
 	pageBreakInside?: string;
 	perspective?: string;
 	perspectiveOrigin?: string;
+	position?: string;
 	quotes?: string;
 	resize?: string;
 	right?: string;
 	scrollBehavior?: string;
 	tableLayout?: string;
 	tabSize?: string;
+	textAlign?: string;
 	textAlignLast?: string;
+	textDecoration?: string;
 	textDecorationColor?: string;
 	textDecorationLine?: string;
 	textDecorationStyle?: string;
@@ -154,6 +182,8 @@ export interface baseStyle {
 	textJustify?: string;
 	textOverflow?: string;
 	textShadow?: string;
+	textTransform?: string;
+	top?: string;
 	transform?: string;
 	transformOrigin?: string;
 	transformStyle?: string;
@@ -163,8 +193,12 @@ export interface baseStyle {
 	transitionTimingFunction?: string;
 	transitionDelay?: string;
 	unicodeBidi?: string;
+	userSelect?: string;
+	verticalAlign?: string;
 	visibility?: string;
 	whiteSpace?: string;
+	width?: string;
+	wordBreak?: string;
 	wordSpacing?: string;
 	wordWrap?: string;
 	widows?: string;
@@ -523,7 +557,7 @@ const attrFn: attachFn[] = [
 
 export const attachAttr = (elem: HTMLElement, attr: baseAttr): HTMLElement => {
 	if (attr) {
-		attr = extend(attr);
+		attr = extend({}, attr);
 
 		let keys = Object.keys(attr);
 		if (keys) {

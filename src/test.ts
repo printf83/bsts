@@ -45,7 +45,11 @@ core.replaceChild(body, [
 					new h(2, "2", { col: 3, textColor: "primary", class: ["hello", "world"] }),
 					new h(3, "3", { col: 3, textColor: "success", class: "world", borderColor: "danger" }),
 				],
-				{ height: "auto" }
+				{
+					style: {
+						height: "30px",
+					},
+				}
 			),
 		],
 		{ container: true }

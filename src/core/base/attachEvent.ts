@@ -9,13 +9,7 @@ export const attachEvent: attachFn = (key, elem, attr) => {
 			if (prop) {
 				for (let x = 0; x < prop.length; x++) {
 					if (typeof attr.on[prop[x]] === "function") {
-						elem.addEventListener(key, attr.on[prop[x]], false);
-
-						setupEventListenerRemover(key, elem, () => {
-							deleteEventListener(key, elem, () => {
-								elem.removeEventListener(key, attr.on[prop[x]], false);
-							});
-						});
+						addEvent(elem, prop[x], attr.on[prop[x]]);
 					}
 				}
 			}
@@ -25,4 +19,13 @@ export const attachEvent: attachFn = (key, elem, attr) => {
 	}
 
 	return { attr, elem };
+};
+
+const addEvent = (elem: HTMLElement, key: string, fn: EventListener) => {
+	elem.addEventListener(key, fn, false);
+	setupEventListenerRemover(key, elem, () => {
+		deleteEventListener(key, elem, () => {
+			elem.removeEventListener(key, fn, false);
+		});
+	});
 };
