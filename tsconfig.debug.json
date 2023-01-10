@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "ESNext",
+    "outDir": "./lib",
+    "sourceMap": true,
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
+  },
+}
+
+
+

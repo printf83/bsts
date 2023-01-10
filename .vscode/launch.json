@@ -10,7 +10,7 @@
             "name": "Launch Firefox",
             "url": "${workspaceFolder}/index.html",
             "webRoot": "${workspaceFolder}",
-            "preLaunchTask": "tsc: build - tsconfig.json",
+            "preLaunchTask": "tsc: build - tsconfig.debug.json",
             "timeout": 5,
             "reAttach": true,
             "tmpDir": "/home/hamzah/Documents/temp"
@@ -23,7 +23,7 @@
                 "<node_internals>/**"
             ],
             "url": "file:///E:/print/Documents/git/bsts/index.html",
-            "preLaunchTask": "tsc: build - tsconfig.json",
+            "preLaunchTask": "tsc: build - tsconfig.debug.json",
             "webRoot": "${workspaceFolder}",
             "runtimeArgs": ["--disable-web-security"]
 

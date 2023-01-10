@@ -30,9 +30,8 @@
 		"lib"
 	],
 	"scripts": {
-		"build": "microbundle --tsconfig tsconfig.json",
-		"watch": "microbundle --tsconfig tsconfig.json --watch",
-		"dev": "microbundle --watch --tsconfig tsconfig.json"
+		"build": "microbundle --tsconfig tsconfig.prod.json",
+		"debug": "microbundle --tsconfig tsconfig.debug.json --watch"
 	},
 	"devDependencies": {
 		"@types/node": "^18.11.18",

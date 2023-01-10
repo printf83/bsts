@@ -1,4 +1,4 @@
-import { core, div, divCol, divRow, h } from "./index.js";
+import { core, div, divCol, divRow, h, hr } from "./index.js";
 
 // console.log(core.UUID());
 // console.log(core.UUID());
@@ -48,11 +48,13 @@ core.replaceChild(body, [
 					new h(3, "3", { col: 3, textColor: "success", class: "world", borderColor: "danger" }),
 				],
 				{
+					padding: ["lg-2", "md-3", "sm-4", "xl-1"],
 					style: {
 						height: "60px !important",
 					},
 				}
 			),
+			new divRow([new hr({ style: { borderWidth: "3px" } })]),
 		],
 		{ container: true }
 	),
