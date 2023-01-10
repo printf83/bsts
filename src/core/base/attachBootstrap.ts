@@ -1,10 +1,7 @@
 import { keyOfType } from "./../fn/keyOfType.js";
 import { addIntoClassList } from "../fn/addIntoClassList.js";
-import { camel2Dash } from "../fn/camel2Dash.js";
-import { dash2Camel } from "../fn/dash2Camel.js";
 import { setting } from "../fn/setting.js";
 import { attachFn } from "./index.js";
-import { removeEmptyArray } from "../fn/removeEmptyArray.js";
 
 export namespace bsType {
 	const base5 = [0, 1, 2, 3, 4, 5];
@@ -1043,97 +1040,58 @@ const db = {
 
 let allowProp: (string | undefined)[] = [];
 
-const allow = (key: string): string | null => {
+const allow = (key: string) => {
 	if (allowProp.length === 0) {
-		let t = Object.keys(db);
-		allowProp = [
-			...t,
-			...removeEmptyArray(
-				t.map((i) => {
-					let j = camel2Dash(i);
-					if (j !== i) {
-						return j;
-					}
-				})
-			),
-		];
+		allowProp = Object.keys(db);
 	}
 
 	if (allowProp.indexOf(key) > -1) {
-		let k = dash2Camel(key);
-		if (k !== key) {
-			return k;
-		} else {
-			return key;
-		}
+		return true;
 	}
 
-	return null;
+	return false;
+};
+
+const addBSClass = (key: string, dbB: bsRule, i: string | number | boolean, elem: HTMLElement) => {
+	if (dbB.value!.findIndex((j) => i === j) > -1) {
+		if (dbB.formatValue) {
+			elem = addIntoClassList(elem, dbB.formatValue!);
+		}
+
+		if (i === true) {
+			if (dbB.formatTrue) {
+				elem = addIntoClassList(elem, dbB.formatTrue!);
+			}
+		} else if (i === false) {
+			if (dbB.formatFalse) {
+				elem = addIntoClassList(elem, dbB.formatFalse!);
+			}
+		} else {
+			if (dbB.format) {
+				elem = addIntoClassList(elem, dbB.format!.replace(/\$1/g, i.toString()));
+			}
+		}
+	} else {
+		if (setting.DEBUG) console.warn(`${key}:"${i}" is not supported value for bootstrap property`);
+	}
+
+	return elem;
 };
 
 export const attachBootstrap: attachFn = (key, elem, attr) => {
-	let a_key = allow(key);
-	if (a_key !== null) {
-		let k = keyOfType(key, attr);
-		let a = keyOfType(a_key, db);
+	if (allow(key)) {
+		let a = keyOfType(key, attr);
+		let b = keyOfType(key, db);
 
-		if (!Array.isArray(attr[k])) {
-			let i = attr[k];
-			if (db[a].value!.findIndex((j) => i === j) > -1) {
-				if (db[a].formatValue) {
-					elem = addIntoClassList(elem, db[a].formatValue!);
-				}
-
-				if (i === true) {
-					if (db[a].formatTrue) {
-						elem = addIntoClassList(elem, db[a].formatTrue!);
-					}
-				} else if (i === false) {
-					if (db[a].formatFalse) {
-						elem = addIntoClassList(elem, db[a].formatFalse!);
-					}
-				} else {
-					if (db[a].format) {
-						elem = addIntoClassList(elem, db[a].format!.replace(/\$1/g, i!.toString()));
-					}
-				}
-
-				delete attr[k];
-			} else {
-				if (setting.DEBUG) console.warn(`${a}:"${i}" is not supported value for bootstrap property`);
-			}
+		if (!Array.isArray(attr[a])) {
+			elem = addBSClass(key, db[b], attr[a] as string | number | boolean, elem);
+			delete attr[a];
 		} else {
-			let delAttr = false;
-			(attr[k] as (string | number | boolean)[]).forEach((i) => {
-				if (db[a].value!.findIndex((j) => i === j) > -1) {
-					if (db[a].formatValue) {
-						elem = addIntoClassList(elem, db[a].formatValue!);
-					}
-
-					if (i === true) {
-						if (db[a].formatTrue) {
-							elem = addIntoClassList(elem, db[a].formatTrue!);
-						}
-					} else if (i === false) {
-						if (db[a].formatFalse) {
-							elem = addIntoClassList(elem, db[a].formatFalse!);
-						}
-					} else {
-						if (db[a].format) {
-							elem = addIntoClassList(elem, db[a].format!.replace(/\$1/g, i.toString()));
-						}
-					}
-
-					delAttr = true;
-				} else {
-					delAttr = false;
-					if (setting.DEBUG) console.warn(`${a}:"${i}" is not supported value for bootstrap property`);
-				}
+			(attr[a] as (string | number | boolean)[]).forEach((i) => {
+				elem = addBSClass(key, db[b], i, elem);
 			});
 
-			if (delAttr) {
-				delete attr[k];
-			}
+			delete attr[a];
 		}
 	}
 
