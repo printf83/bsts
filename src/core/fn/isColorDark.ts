@@ -20,7 +20,8 @@ export const isColorDark = (color: string): boolean => {
 			b = Number(0);
 		}
 	} else {
-		let numColor = +("0x" + color.slice(1).replace(color.length < 5 && /./g, "$&$&"));
+		// let numColor = +("0x" + color.slice(1).replace(color.length < 5 && /./g, "$&$&"));
+		let numColor = color.length < 5 ? +("0x" + color.slice(1).replace(/./g, "$&$&")) : +color;
 
 		r = numColor >> 16;
 		g = (numColor >> 8) & 255;
