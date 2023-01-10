@@ -2,7 +2,7 @@ import { keyOfType } from "./fn/keyOfType.js";
 import { attachAttr } from "./base/index.js";
 import { elemInfo } from "./fn/elemInfo.js";
 import { multiClass } from "./fn/multiClass.js";
-import { mergeStyle } from "./fn/mergeStyle.js";
+import { mergeAttr } from "./fn/mergeAttr.js";
 import { mergeObject } from "./fn/mergeObject.js";
 import { mergeClass } from "./fn/mergeClass.js";
 import { setupEventListenerRemover } from "./fn/setupEventListenerRemover.js";
@@ -64,7 +64,7 @@ export const core = {
 	loadCSS,
 	mergeClass,
 	mergeObject,
-	mergeStyle,
+	mergeAttr,
 	multiClass,
 	multipleConstructorClass,
 	num2En,
