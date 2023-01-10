@@ -23,7 +23,7 @@ import { capitalize } from "./fn/capitalize.js";
 import { codeMarker } from "./fn/codeMarker.js";
 import { cookie } from "./fn/cookie.js";
 import { detachEventListener } from "./fn/detachEventListener.js";
-import { getBaseIcon } from "./fn/getBaseIcon.js";
+import { getBaseIcon, setBaseIcon } from "./fn/getBaseIcon.js";
 import { getCSSVar } from "./fn/getCSSVar.js";
 import { isColorDark } from "./fn/isColorDark.js";
 import { loadCSS } from "./fn/loadCSS.js";
@@ -38,6 +38,7 @@ import { importJS } from "./fn/importJS.js";
 import { importJSPromise } from "./fn/importJSPromise.js";
 import { appendChild, build, html, prependChild, replaceChild, replaceWith } from "./fn/builder.js";
 import { isTag } from "../tag/index.js";
+import { documentReady, elemReady } from "./fn/documentReady.js";
 
 export const core = {
 	addIntoClassList,
@@ -49,11 +50,14 @@ export const core = {
 	dash2Camel,
 	deleteEventListener,
 	detachEventListener,
+	documentReady,
 	elemInfo,
+	elemReady,
 	eventDB,
 	extend,
 	genClassList,
 	getBaseIcon,
+	setBaseIcon,
 	getCSSVar,
 	importJS,
 	importJSPromise,
