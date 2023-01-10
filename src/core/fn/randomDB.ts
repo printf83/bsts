@@ -4,45 +4,45 @@ export interface IRandomDB {
 	[key: string]: { x: number; i: any[] | null };
 }
 
-const _db: IRandomDB = {};
+const db: IRandomDB = {};
 
 export const randomDB = <T>(name: string, arr: T[]): T => {
-	let arr_length = arr.length;
+	let arrLength = arr.length;
 
-	if (!_db[name]) {
-		_db[name] = {
+	if (!db[name]) {
+		db[name] = {
 			x: 0,
 			i: null,
 		};
 	}
 
-	if (_db[name].x === 0) {
-		if (_db[name].i) {
+	if (db[name].x === 0) {
+		if (db[name].i) {
 			//have old value
-			let last_i_value = _db[name].i![arr_length - 1];
+			let last_i_value = db[name].i![arrLength - 1];
 
 			//shuffle new db
-			_db[name].i = shuffleArray<T>(arr);
+			db[name].i = shuffleArray<T>(arr);
 
 			//check if last value same with new value
-			if (last_i_value === _db[name].i![0]) {
+			if (last_i_value === db[name].i![0]) {
 				//swap first with end
-				_db[name].i![0] = _db[name].i![arr_length - 1];
-				_db[name].i![arr_length - 1] = last_i_value;
+				db[name].i![0] = db[name].i![arrLength - 1];
+				db[name].i![arrLength - 1] = last_i_value;
 			}
 		} else {
-			_db[name].i = shuffleArray<T>(arr);
+			db[name].i = shuffleArray<T>(arr);
 		}
 	}
 
-	if (_db[name].x + 1 >= arr_length) {
-		_db[name].x = 0;
+	if (db[name].x + 1 >= arrLength) {
+		db[name].x = 0;
 		return randomDB(name, arr);
 	} else {
-		_db[name].x += 1;
+		db[name].x += 1;
 
-		let x = _db[name].x - 1;
-		let i = _db[name].i![x];
+		let x = db[name].x - 1;
+		let i = db[name].i![x];
 		let r = arr[i];
 		return r;
 	}
