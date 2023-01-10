@@ -1,74 +1,72 @@
+import { baseAttr } from "../base/index.js";
+import { mergeAttr } from "./mergeAttr.js";
 import { mergeClass } from "./mergeClass.js";
-import { mergeStyle } from "./mergeStyle.js";
 
-// export const mergeObject = (
-// 	existingObject: baseAttr | null | undefined,
-// 	newObject: baseAttr | null | undefined
-// ): baseAttr | null => {
-// 	if (existingObject) {
-// 		if (newObject) {
-// 			let res = {};
-// 			Object.keys(existingObject).forEach((i) => {
-// 				if (newObject.hasOwnProperty(i)) {
+// export const mergeObject = (target: baseAttr, source: baseAttr): baseAttr | null => {
+// 	if (target) {
+// 		if (source) {
+// 			let result: baseAttr = {};
+
+// 			Object.keys(target).forEach((i) => {
+// 				let k = keyOfType(i, result);
+
+// 				if (source.hasOwnProperty(i)) {
 // 					if (i === "class") {
-// 						res[i] = mergeClass(existingObject[i], newObject[i]);
+// 						result.class = mergeClass(target.class, source.class);
 // 					} else if (i === "style") {
-// 						res[i] = mergeStyle(existingObject[i], newObject[i]);
+// 						result.style = mergeStyle(target.style, source.style);
 // 					} else {
-// 						res[i] = newObject[i]; //used newObject insted
+// 						result[k] = source[k]; //used newObject insted
 // 					}
 // 				} else {
-// 					res[i] = existingObject[i];
+// 					result[k] = target[k];
 // 				}
 // 			});
 
-// 			Object.keys(newObject).forEach((i) => {
-// 				if (!existingObject.hasOwnProperty(i)) {
-// 					if (newObject[i] !== null && newObject[i] !== undefined) {
-// 						res[i] = newObject[i];
+// 			Object.keys(source).forEach((i) => {
+// 				if (!target.hasOwnProperty(i)) {
+// 					let k = keyOfType(i, source);
+
+// 					if (source[k] !== null && source[k] !== undefined) {
+// 						result[k] = source[k];
 // 					}
 // 				}
 // 			});
 
-// 			return res;
+// 			return result;
 // 		} else {
-// 			return existingObject;
+// 			return target;
 // 		}
 // 	} else {
-// 		if (newObject) {
-// 			return newObject;
+// 		if (source) {
+// 			return source;
 // 		} else {
 // 			return null;
 // 		}
 // 	}
 // };
 
-export const mergeObject = (target: object, source: object): object => {
+export const mergeObject = (target: baseAttr, source: baseAttr): baseAttr | null => {
 	if (target) {
 		if (source) {
-			let result = {};
+			let target_class = target.class;
+			let source_class = source.class;
+			let target_style = target.style;
+			let source_style = source.style;
+			let target_aria = target.aria;
+			let source_aria = source.aria;
+			let target_data = target.data;
+			let source_data = source.data;
+			let target_on = target.on;
+			let source_on = source.on;
 
-			Object.keys(target).forEach((i) => {
-				if (source.hasOwnProperty(i)) {
-					if (i === "class") {
-						result[i] = mergeClass(target[i], source[i]);
-					} else if (i === "style") {
-						result[i] = mergeStyle(target[i], source[i]);
-					} else {
-						result[i] = source[i]; //used newObject insted
-					}
-				} else {
-					result[i] = target[i];
-				}
-			});
+			let result = mergeAttr(target, source);
 
-			Object.keys(source).forEach((i) => {
-				if (!target.hasOwnProperty(i)) {
-					if (source[i] !== null && source[i] !== undefined) {
-						result[i] = source[i];
-					}
-				}
-			});
+			result.class = mergeClass(target_class, source_class);
+			result.style = mergeAttr(target_style, source_style);
+			result.aria = mergeAttr(target_aria, source_aria);
+			result.data = mergeAttr(target_data, source_data);
+			result.on = mergeAttr(target_on, source_on);
 
 			return result;
 		} else {

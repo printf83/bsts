@@ -29,8 +29,8 @@
 // 	}
 // };
 
-const string2Array = (d: string | string[]) => {
-	let result: string[];
+const string2Array = (d: string | string[] | undefined) => {
+	let result: string[] | undefined;
 	if (typeof d === "string") {
 		result = d.split(" ");
 	} else {
@@ -40,9 +40,23 @@ const string2Array = (d: string | string[]) => {
 	return result;
 };
 
-export const mergeClass = (target: string | string[], source: string | string[]): string[] => {
+export const mergeClass = (target: string | string[] | undefined, source: string | string[] | undefined): string[] => {
 	target = string2Array(target);
 	source = string2Array(source);
-	let result = [...target, ...source].filter(Boolean);
+
+	let result: string[] = [];
+
+	if (target) {
+		if (source) {
+			result = [...target, ...source].filter(Boolean);
+		} else {
+			result = target.filter(Boolean);
+		}
+	} else {
+		if (source) {
+			result = source.filter(Boolean);
+		}
+	}
+
 	return result.filter((value, index) => result.indexOf(value) === index);
 };
