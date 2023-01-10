@@ -8,10 +8,10 @@ import { isTag, tag } from "../../tag/index.js";
 export type buildArg = tag | string | (tag | string)[];
 
 export const build = (
-	container: HTMLElement | null,
+	container: HTMLElement,
 	arg: buildArg,
 	append: boolean = true,
-	beforeElem: HTMLElement = null
+	beforeElem: HTMLElement | null = null
 ): HTMLElement => {
 	if (arg) {
 		arg = Array.isArray(arg) ? arg : [arg];
@@ -21,7 +21,9 @@ export const build = (
 				if (h !== null) {
 					if (isTag(h)) {
 						let e = h as tag;
-						let element = attachAttr(document.createElement(e.tag), e.attr);
+						let element = e.attr
+							? attachAttr(document.createElement(e.tag), e.attr!)
+							: document.createElement(e.tag);
 
 						if (e.elem) {
 							e.elem = Array.isArray(e.elem) ? e.elem : [e.elem];
@@ -93,7 +95,7 @@ export const node = (arg: buildArg): HTMLElement | HTMLElement[] | null => {
 export const html = (arg: buildArg): string => {
 	let container = build(document.createElement("div"), arg);
 	let result = container.innerHTML;
-	container = null;
+	removeElement(container);
 	return result;
 };
 

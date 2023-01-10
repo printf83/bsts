@@ -1,6 +1,10 @@
 import { UUID } from "./uuid.js";
 
-const _db = {};
+export interface IEventDB {
+	[key: string]: Function;
+}
+
+const _db: IEventDB = {};
 
 export const eventDB = {
 	create: (fn: Function) => {
@@ -12,7 +16,7 @@ export const eventDB = {
 	remove: (sender: HTMLElement) => {
 		sender.getAttributeNames().forEach((name) => {
 			if (name.startsWith("cl.event.")) {
-				delete _db[sender.getAttribute(name)];
+				delete _db[sender.getAttribute(name)!];
 			}
 		});
 	},

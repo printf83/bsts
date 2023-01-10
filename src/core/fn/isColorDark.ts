@@ -10,10 +10,15 @@ export const isColorDark = (color: string): boolean => {
 	if (color.match(/^rgb/)) {
 		// If RGB --> store the red, green, blue values in separate variables
 		let regColor = color.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/);
-
-		r = Number(regColor[1]);
-		g = Number(regColor[2]);
-		b = Number(regColor[3]);
+		if (regColor) {
+			r = Number(regColor[1]);
+			g = Number(regColor[2]);
+			b = Number(regColor[3]);
+		} else {
+			r = Number(0);
+			g = Number(0);
+			b = Number(0);
+		}
 	} else {
 		let numColor = +("0x" + color.slice(1).replace(color.length < 5 && /./g, "$&$&"));
 

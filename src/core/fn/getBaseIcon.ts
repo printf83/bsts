@@ -1,3 +1,4 @@
+import { keyOfType } from "./keyOfType";
 export interface IIcon {
 	icon: string;
 	type: string;
@@ -15,7 +16,8 @@ const _baseIcon = {
 
 export const getBaseIcon = (icon: string): IIcon | null => {
 	if (_baseIcon.hasOwnProperty(icon)) {
-		return _baseIcon[icon];
+		let k = keyOfType(icon, _baseIcon);
+		return _baseIcon[k];
 	}
 	return null;
 };

@@ -1,23 +1,12 @@
-// export function extend(out:object ):object {
-// 	out = out || {};
-
-// 	for (let i = 1; i < arguments.length; i++) {
-// 		if (!arguments[i]) continue;
-
-// 		for (let key in arguments[i]) {
-// 			if (arguments[i].hasOwnProperty(key)) out[key] = arguments[i][key];
-// 		}
-// 	}
-
-// 	return out;
-// }
-
-export const extend = <T>(target: T, source: T = null): T => {
+import { keyOfType } from "./keyOfType";
+export const extend = <T>(target: T, source?: T): T => {
 	if (target) {
-		(source as object) = source || {};
+		source = source || ({} as T);
 		Object.keys(target).forEach((i) => {
-			if (!source.hasOwnProperty(i) && target[i] !== null && target[i] !== undefined) {
-				source[i] = target[i];
+			let k = keyOfType(i, target);
+
+			if (!source!.hasOwnProperty(i) && target[k] !== null && target[k] !== undefined) {
+				source![k] = target[k];
 			}
 		});
 	}

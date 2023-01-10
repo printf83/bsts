@@ -1,3 +1,4 @@
+import { keyOfType } from "./../fn/keyOfType";
 import { setting } from "../fn/setting.js";
 import { attachFn } from "./index.js";
 
@@ -34,14 +35,16 @@ const db = [
 
 export const attachBoolean: attachFn = (key, elem, attr) => {
 	if (db.indexOf(key) > -1) {
-		if (attr && typeof attr[key] !== "undefined") {
-			if (attr[key] === true) {
+		let k = keyOfType(key, attr);
+
+		if (attr && typeof attr[k] !== "undefined") {
+			if (attr[k] === true) {
 				elem.setAttribute(key, key);
 			} else {
-				if (setting.DEBUG) console.log(`Attribute ${key}:${attr[key]} is FALSE`);
+				if (setting.DEBUG) console.log(`Attribute ${key}:${attr[k]} is FALSE`);
 			}
 
-			delete attr[key];
+			delete attr[k];
 		}
 	}
 

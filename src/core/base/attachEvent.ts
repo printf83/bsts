@@ -9,7 +9,7 @@ export const attachEvent: attachFn = (key, elem, attr) => {
 			if (prop) {
 				for (let x = 0; x < prop.length; x++) {
 					if (typeof attr.on[prop[x]] === "function") {
-						addEvent(elem, prop[x], attr.on[prop[x]]);
+						addEvent(elem, prop[x], attr.on[prop[x]]!);
 					}
 				}
 			}
