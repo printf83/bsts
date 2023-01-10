@@ -27,14 +27,16 @@ core.replaceChild(body, [
 			new divRow(
 				[
 					new divCol(3, "0", {
+						name: "hahaha",
 						textColor: "warning",
 						borderColor: "secondary",
 						borderWidth: 3,
 						rounded: true,
+						aria: { wowoww: "what?" },
+						data: { mehhh: "yaya" },
 					}),
 					new h(1, "1", {
 						col: 3,
-						textColor: "danger",
 						on: {
 							click: (e: Event) => {
 								alert("click");

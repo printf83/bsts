@@ -563,23 +563,21 @@ export const attachAttr = (elem: HTMLElement, attr: baseAttr): HTMLElement => {
 	if (attr) {
 		attr = extend({}, attr);
 
-		let keys = Object.keys(attr);
-		if (keys) {
-			let keyLength = keys.length;
+		let prop = Object.keys(attr);
+		if (prop) {
+			let propLength = prop.length;
 			let attrFnLength = attrFn.length;
 
-			for (let x = 0; x < keyLength; x++) {
+			for (let x = 0; x < propLength; x++) {
 				for (let y = 0; y < attrFnLength; y++) {
-					let k = keyOfType(keys[x], attr);
+					let k = keyOfType(prop[x], attr);
 
 					if (typeof attr[k] !== "undefined" && attr[k] !== null) {
-						if (y === attrFnLength - 1) {
-							if (setting.DEBUG) {
-								console.log(`Treat ${keys[x]}:${attr[k]} as another attribute.`);
-							}
+						if (y === attrFnLength - 1 && setting.DEBUG) {
+							console.log(`Treat ${prop[x]}:${attr[k]} as another attribute.`);
 						}
 
-						let r = attrFn[y](keys[x], elem, attr);
+						let r = attrFn[y](prop[x], elem, attr);
 						attr = r.attr;
 						elem = r.elem;
 					}
