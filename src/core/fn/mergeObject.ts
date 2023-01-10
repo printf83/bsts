@@ -2,50 +2,6 @@ import { baseAttr } from "../base/index.js";
 import { mergeAttr } from "./mergeAttr.js";
 import { mergeClass } from "./mergeClass.js";
 
-// export const mergeObject = (target: baseAttr, source: baseAttr): baseAttr | null => {
-// 	if (target) {
-// 		if (source) {
-// 			let result: baseAttr = {};
-
-// 			Object.keys(target).forEach((i) => {
-// 				let k = keyOfType(i, result);
-
-// 				if (source.hasOwnProperty(i)) {
-// 					if (i === "class") {
-// 						result.class = mergeClass(target.class, source.class);
-// 					} else if (i === "style") {
-// 						result.style = mergeStyle(target.style, source.style);
-// 					} else {
-// 						result[k] = source[k]; //used newObject insted
-// 					}
-// 				} else {
-// 					result[k] = target[k];
-// 				}
-// 			});
-
-// 			Object.keys(source).forEach((i) => {
-// 				if (!target.hasOwnProperty(i)) {
-// 					let k = keyOfType(i, source);
-
-// 					if (source[k] !== null && source[k] !== undefined) {
-// 						result[k] = source[k];
-// 					}
-// 				}
-// 			});
-
-// 			return result;
-// 		} else {
-// 			return target;
-// 		}
-// 	} else {
-// 		if (source) {
-// 			return source;
-// 		} else {
-// 			return null;
-// 		}
-// 	}
-// };
-
 export const mergeObject = (target: baseAttr, source: baseAttr): baseAttr | null => {
 	if (target) {
 		if (source) {

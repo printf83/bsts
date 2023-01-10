@@ -1,4 +1,4 @@
-import { keyOfType } from "./keyOfType";
+import { keyOfType } from "./keyOfType.js";
 export const extend = <T>(target: T, source?: T): T => {
 	if (target) {
 		source = source || ({} as T);

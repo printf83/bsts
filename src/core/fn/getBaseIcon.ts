@@ -1,4 +1,4 @@
-import { keyOfType } from "./keyOfType";
+import { keyOfType } from "./keyOfType.js";
 export interface IIcon {
 	icon: string;
 	type: string;

@@ -1,4 +1,4 @@
-import { keyOfType } from "./../fn/keyOfType";
+import { keyOfType } from "./../fn/keyOfType.js";
 import { setting } from "../fn/setting.js";
 import { attachFn } from "./index.js";
 

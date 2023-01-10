@@ -1,4 +1,3 @@
-import { keyOfType } from "./keyOfType";
 import { HTMLElementWithDetachEventListener } from "./setupEventListenerRemover";
 export const detachEventListener = (elem: HTMLElement): void => {
 	if (elem) {

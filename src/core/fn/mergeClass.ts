@@ -1,33 +1,4 @@
-// export const mergeClass = (
-// 	existingClass: string | string[] | null | undefined,
-// 	newClass: string | string[] | null | undefined
-// ): string | string[] | null => {
-// 	if (existingClass) {
-// 		if (newClass) {
-// 			if (Array.isArray(existingClass)) {
-// 				if (Array.isArray(newClass)) {
-// 					return [...existingClass, ...newClass];
-// 				} else {
-// 					return [...existingClass, newClass];
-// 				}
-// 			} else {
-// 				if (Array.isArray(newClass)) {
-// 					return [existingClass, ...newClass];
-// 				} else {
-// 					return [existingClass, newClass];
-// 				}
-// 			}
-// 		} else {
-// 			return existingClass;
-// 		}
-// 	} else {
-// 		if (newClass) {
-// 			return newClass;
-// 		} else {
-// 			return null;
-// 		}
-// 	}
-// };
+import { removeEmptyArray } from "./removeEmptyArray.js";
 
 const string2Array = (d: string | string[] | undefined) => {
 	let result: string[] | undefined;
@@ -48,13 +19,13 @@ export const mergeClass = (target: string | string[] | undefined, source: string
 
 	if (target) {
 		if (source) {
-			result = [...target, ...source].filter(Boolean);
+			result = removeEmptyArray([...target, ...source]);
 		} else {
-			result = target.filter(Boolean);
+			result = removeEmptyArray(target);
 		}
 	} else {
 		if (source) {
-			result = source.filter(Boolean);
+			result = removeEmptyArray(source);
 		}
 	}
 

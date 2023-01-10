@@ -1,3 +1,5 @@
+import { removeEmptyArray } from "./removeEmptyArray.js";
+
 export const genClassList = (value: string | string[]): string[] => {
 	let result: string[] = [];
 	let i: string[] = [];
@@ -9,7 +11,7 @@ export const genClassList = (value: string | string[]): string[] => {
 	}
 
 	//remove null
-	i = i.filter(Boolean);
+	i = removeEmptyArray(i);
 
 	//make sure every class not have whitespace
 	if (i && i.length > 0) {
@@ -19,7 +21,7 @@ export const genClassList = (value: string | string[]): string[] => {
 
 			if (j.indexOf(" ") > -1) {
 				h = j.split(" ");
-				h = h.filter(Boolean);
+				h = removeEmptyArray(h);
 
 				if (h && h.length > 0) {
 					for (let y = 0; y < h.length; y++) {

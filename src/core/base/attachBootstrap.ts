@@ -3,7 +3,8 @@ import { addIntoClassList } from "../fn/addIntoClassList.js";
 import { camel2Dash } from "../fn/camel2Dash.js";
 import { dash2Camel } from "../fn/dash2Camel.js";
 import { setting } from "../fn/setting.js";
-import { attachFn, baseAttr } from "./index.js";
+import { attachFn } from "./index.js";
+import { removeEmptyArray } from "../fn/removeEmptyArray.js";
 
 export namespace bsType {
 	const base5 = [0, 1, 2, 3, 4, 5];
@@ -1047,14 +1048,14 @@ const allow = (key: string): string | null => {
 		let t = Object.keys(db);
 		allowProp = [
 			...t,
-			...t
-				.map((i) => {
+			...removeEmptyArray(
+				t.map((i) => {
 					let j = camel2Dash(i);
 					if (j !== i) {
 						return j;
 					}
 				})
-				.filter(Boolean),
+			),
 		];
 	}
 
