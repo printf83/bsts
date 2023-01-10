@@ -2,7 +2,7 @@ import { baseAttr } from "../base/index.js";
 import { mergeAttr } from "./mergeAttr.js";
 import { mergeClass } from "./mergeClass.js";
 
-export const mergeObject = (target: baseAttr, source: baseAttr): baseAttr | null => {
+export const mergeObject = (target: baseAttr, source: baseAttr): baseAttr | never => {
 	if (target) {
 		if (source) {
 			let target_class = target.class;
@@ -32,7 +32,7 @@ export const mergeObject = (target: baseAttr, source: baseAttr): baseAttr | null
 		if (source) {
 			return source;
 		} else {
-			return null;
+			throw new Error("Please provide target or source");
 		}
 	}
 };

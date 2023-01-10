@@ -5,7 +5,12 @@ import { div } from "./div.js";
 
 export class divCol extends div {
 	constructor(public col: typeof bsType.col[number], public elem?: baseElem, public attr?: baseAttr) {
-		attr = mergeObject(attr as object, { col: col }) as baseAttr;
+		if (typeof attr !== "undefined") {
+			attr = mergeObject(attr, { col: col });
+		} else {
+			attr = { col: col };
+		}
+
 		super(elem, attr);
 	}
 }
