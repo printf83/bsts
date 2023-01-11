@@ -23,6 +23,7 @@ import {
 	IAttrValue,
 	IElem,
 } from "../core/base/index.js";
+import { mergeObject } from "../core/fn/mergeObject.js";
 import { tag } from "./index.js";
 
 export interface IAttrTagInput
@@ -50,7 +51,13 @@ export interface IAttrTagInput
 		IAttrValue {}
 
 export class input extends tag {
-	constructor(public elem?: IElem, public attr?: IAttrTagInput) {
-		super("input", elem, attr);
+	constructor(public type: string, public attr?: IAttrTagInput) {
+		if (typeof attr !== "undefined") {
+			attr = mergeObject(attr, { type: type });
+		} else {
+			attr = { type: type };
+		}
+
+		super("input", undefined, attr);
 	}
 }

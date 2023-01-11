@@ -14,6 +14,7 @@ import { attachClass } from "./attachClass.js";
 import { bs } from "./attachBootstrap.js";
 import { tag } from "../../tag/index.js";
 import { attachAlias } from "./attachAlias.js";
+import { extend } from "../fn/extend.js";
 
 export interface IStyle {
 	alignContent?: string;

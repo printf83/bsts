@@ -37,6 +37,7 @@ core.documentReady(() => {
 				),
 				new $.divRow(new $.divCol(true, new $.hr({ style: { borderWidth: "3px" } }))),
 				new $.divRow(new $.divCol(true, new $.a("this is link", { href: "#", linkColor: "danger" }))),
+				new $.divRow(new $.divCol(true, new $.input("text", { placeholderText: "Test Placeholder" }))),
 			],
 			{ container: true }
 		),
