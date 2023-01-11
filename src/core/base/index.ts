@@ -1,3 +1,4 @@
+import { extend } from "./../fn/extend";
 import { keyOfType } from "./../fn/keyOfType.js";
 import { attachOther } from "./attachOther.js";
 import { attachHref } from "./attachHref.js";
@@ -311,20 +312,20 @@ export interface IAttr {
 	active?: boolean;
 
 	//html attribute [start]
-	accept?: string;
-	acceptCharset?: string;
+	// accept?: string;
+	// acceptCharset?: string;
 	accesskey?: string;
-	action?: string;
-	alt?: string;
-	autocomplete?: string;
-	charset?: string;
-	cite?: string;
-	cols?: string;
-	colspan?: string;
-	content?: string;
-	contenteditable?: string;
-	coords?: string;
-	datetime?: string;
+	// action?: string;
+	// alt?: string;
+	// autocomplete?: string;
+	// charset?: string;
+	// cite?: string;
+	// cols?: string;
+	// colspan?: string;
+	// content?: string;
+	contenteditable?: "true";
+	// coords?: string;
+	// datetime?: string;
 	dir?: string;
 	dirname?: string;
 	download?: string;
@@ -335,8 +336,6 @@ export interface IAttr {
 	formaction?: string;
 	headers?: string;
 	high?: string;
-	// href?: string;
-	// hreflang?: string;
 	httpEquiv?: string;
 	kind?: string;
 	label?: string;
@@ -487,13 +486,13 @@ export interface IAttr {
 	allowfullscreen?: boolean;
 	allowpaymentrequest?: boolean;
 	async?: boolean;
-	autofocus?: boolean;
-	autoplay?: boolean;
+	// autofocus?: boolean;
+	// autoplay?: boolean;
 	checked?: boolean;
 	indeterminate?: boolean;
-	controls?: boolean;
-	default?: boolean;
-	defer?: boolean;
+	// controls?: boolean;
+	// default?: boolean;
+	// defer?: boolean;
 	disabled?: boolean;
 	formnovalidate?: boolean;
 	novalidate?: boolean;
@@ -513,6 +512,74 @@ export interface IAttr {
 	selected?: boolean;
 	truespeed?: boolean;
 	//boolean attr [end]
+}
+
+export interface IAttrAccept extends IAttr {
+	accept?: string;
+}
+
+export interface IAttrCharset extends IAttr {
+	acceptCharset?: string;
+}
+
+export interface IAttrAction extends IAttr {
+	action?: string;
+}
+
+export interface IAttrAlt extends IAttr {
+	alt?: string;
+}
+
+export interface IAttrAutocomplete extends IAttr {
+	autocomplete?: string;
+}
+
+export interface IAttrAutofocus extends IAttr {
+	autofocus?: boolean;
+}
+
+export interface IAttrAutoplay extends IAttr {
+	autoplay?: boolean;
+}
+
+export interface IAttrCharset extends IAttr {
+	charset?: string;
+}
+
+export interface IAttrCite extends IAttr {
+	cite?: string;
+}
+
+export interface IAttrCols extends IAttr {
+	cols?: string;
+}
+
+export interface IAttrColspan extends IAttr {
+	colspan?: string;
+}
+
+export interface IAttrContent extends IAttr {
+	content?: string;
+}
+
+export interface IAttrControls extends IAttr {
+	controls?: boolean;
+}
+
+export interface IAttrCoords extends IAttr {
+	coords?: string;
+}
+
+export interface IAttrDatetime extends IAttr {
+	datetime?: string;
+}
+
+export interface IAttrDefault extends IAttr {
+	default?: boolean;
+}
+
+export interface IAttrDefer extends IAttr {
+	defer?: boolean;
 }
 
 export interface IAttrHref extends IAttr {
