@@ -27,8 +27,10 @@ const db = [
 	"open",
 	"playsinline",
 	"readOnly",
+	"readonly",
 	"required",
 	"reversed",
+	"sandbox",
 	"selected",
 	"truespeed",
 ];
