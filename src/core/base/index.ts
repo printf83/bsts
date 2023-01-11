@@ -429,9 +429,6 @@ export interface IAttr {
 	//bootstrap [end]
 
 	//boolean attr [start]
-	checked?: boolean;
-	indeterminate?: boolean;
-	formnovalidate?: boolean;
 	hidden?: boolean;
 	itemscope?: boolean;
 	nomodule?: boolean;
@@ -445,6 +442,10 @@ export interface IAttrAccept extends IAttr {
 
 export interface IAttrAcceptCharset extends IAttr {
 	acceptCharset?: string;
+}
+
+export interface IAttrChecked extends IAttr {
+	checked?: boolean;
 }
 
 export interface IAttrAction extends IAttr {
@@ -543,6 +544,10 @@ export interface IAttrFormAction extends IAttr {
 	formaction?: string;
 }
 
+export interface IAttrFormnovalidate extends IAttr {
+	formnovalidate?: boolean;
+}
+
 export interface IAttrHeaders extends IAttr {
 	headers?: string;
 }
@@ -561,6 +566,10 @@ export interface IAttrHrefLang extends IAttr {
 
 export interface IAttrHttpEquiv extends IAttr {
 	httpEquiv?: string;
+}
+
+export interface IAttrIndeterminate extends IAttr {
+	indeterminate?: boolean;
 }
 
 export interface IAttrIsmap extends IAttr {
