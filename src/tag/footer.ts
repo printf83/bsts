@@ -2,7 +2,16 @@ import { IAttr, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
 export class footer extends tag {
-	constructor(public attr?: IAttr, public elem?: IElem) {
-		super("footer", attr, elem);
+	constructor();
+	constructor(elem: IElem);
+	constructor(attr: IAttr, elem: IElem);
+	constructor(...arg: any[]) {
+		if (arg.length === 0) {
+			super("footer");
+		} else if (arg.length === 1) {
+			super("footer", undefined, arg[0]);
+		} else if (arg.length === 2) {
+			super("footer", arg[0], arg[1]);
+		}
 	}
 }

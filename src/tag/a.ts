@@ -16,12 +16,12 @@ export class a extends tag {
 	constructor(elem: IElem);
 	constructor(attr: IAttrTagA, elem: IElem);
 	constructor(...arg: any[]) {
-		if (arg.length === 2) {
-			super("a", arg[0], arg[1]);
+		if (arg.length === 0) {
+			super("a");
 		} else if (arg.length === 1) {
 			super("a", undefined, arg[0]);
-		} else if (arg.length === 0) {
-			super("a");
+		} else if (arg.length === 2) {
+			super("a", arg[0], arg[1]);
 		}
 	}
 }
