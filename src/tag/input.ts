@@ -21,7 +21,6 @@ import {
 	IAttrStep,
 	IAttrType,
 	IAttrValue,
-	IElem,
 } from "../core/base/index.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { tag } from "./index.js";

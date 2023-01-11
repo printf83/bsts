@@ -7,6 +7,7 @@ core.documentReady(() => {
 		new $.div({ container: true }, [
 			new $.div(
 				{
+					row: true,
 					padding: ["lg-2", "md-3", "sm-4", "xl-1"],
 					style: {
 						height: "60px !important",
@@ -15,6 +16,7 @@ core.documentReady(() => {
 				[
 					new $.div(
 						{
+							col: 3,
 							textColor: "warning",
 							borderColor: "secondary",
 							borderWidth: 3,
@@ -41,9 +43,21 @@ core.documentReady(() => {
 					new $.h(3, { col: 3, textColor: "success", class: "world", borderColor: "danger" }, "3"),
 				]
 			),
-			new $.div({}, new $.div({}, new $.hr({ style: { borderWidth: "3px" } }))),
-			new $.div({}, new $.div({}, new $.a({ href: "#", linkColor: "danger" }, "this is link"))),
-			new $.div({}, new $.div({}, new $.input("text", { placeholderText: "Test Placeholder" }))),
+			new $.div(
+				{ row: true },
+				new $.div({ col: true }, new $.hr({ title: "test", style: { backgroundColor: "red" } }))
+			),
+			new $.div(
+				{ row: true },
+				new $.div({ col: true }, new $.a({ href: "#", linkColor: "danger" }, "this is link"))
+			),
+			new $.div(
+				{ row: true },
+				new $.div({ col: true }, new $.input("text", { placeholderText: "Test Placeholder" }))
+			),
+			new $.div({ row: true }, new $.div({ col: true }, new $.img("https://picsum.photos/seed/picsum/300/150"))),
+			new $.div({ row: true }, new $.div({ col: true }, new $.a("this is link 2"))),
+			new $.div({ row: true }, new $.div({ col: true }, new $.b({ title: "test" }, "this is bold"))),
 		]),
 	]);
 });

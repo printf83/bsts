@@ -12,7 +12,16 @@ import { tag } from "./index.js";
 export interface IAttrTagA extends IAttrHref, IAttrHrefLang, IAttrDownload, IAttrRel, IAttrTarget, IAttrType {}
 
 export class a extends tag {
-	constructor(public attr?: IAttrTagA, public elem?: IElem) {
-		super("a", attr, elem);
+	constructor();
+	constructor(elem: IElem);
+	constructor(attr: IAttrTagA, elem: IElem);
+	constructor(...arg: any[]) {
+		if (arg.length === 2) {
+			super("a", arg[0], arg[1]);
+		} else if (arg.length === 1) {
+			super("a", undefined, arg[0]);
+		} else if (arg.length === 0) {
+			super("a");
+		}
 	}
 }

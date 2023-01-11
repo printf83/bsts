@@ -5,13 +5,21 @@ import { tag } from "./index.js";
 export interface IAttrTagImg extends IAttrAlt, IAttrSrc, IAttrIsmap, IAttrSizes, IAttrSrcset, IAttrUsemap {}
 
 export class img extends tag {
-	constructor(public src: string, public attr?: IAttrTagImg) {
-		if (typeof attr !== "undefined") {
-			attr = mergeObject(attr, { src: src });
-		} else {
-			attr = { src: src };
+	constructor();
+	constructor(src: string);
+	constructor(attr: IAttrTagImg);
+	constructor(src: string, attr: IAttrTagImg);
+	constructor(...arg: any[]) {
+		if (arg.length === 2) {
+			super("img", mergeObject(arg[1], { src: arg[0] } as IAttrTagImg), undefined);
+		} else if (arg.length === 1) {
+			if (typeof arg[0] === "string") {
+				super("img", { src: arg[0] } as IAttrTagImg, undefined);
+			} else {
+				super("img", arg[0], undefined);
+			}
+		} else if (arg.length === 0) {
+			super("img");
 		}
-
-		super("img", attr);
 	}
 }

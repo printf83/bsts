@@ -4,7 +4,13 @@ import { tag } from "./index.js";
 export interface IAttrTagCol extends IAttrSpan {}
 
 export class col extends tag {
-	constructor(public attr?: IAttrTagCol) {
-		super("col", attr);
+	constructor();
+	constructor(attr: IAttrTagCol);
+	constructor(...arg: any[]) {
+		if (arg.length === 1) {
+			super("col", undefined, arg[0]);
+		} else if (arg.length === 0) {
+			super("col");
+		}
 	}
 }

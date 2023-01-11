@@ -22,7 +22,16 @@ export interface IAttrTagArea
 		IAttrTarget {}
 
 export class area extends tag {
-	constructor(public attr?: IAttrTagArea, public elem?: IElem) {
-		super("area", attr, elem);
+	constructor();
+	constructor(elem: IElem);
+	constructor(attr: IAttrTagArea, elem: IElem);
+	constructor(...arg: any[]) {
+		if (arg.length === 2) {
+			super("area", arg[0], arg[1]);
+		} else if (arg.length === 1) {
+			super("area", undefined, arg[0]);
+		} else if (arg.length === 0) {
+			super("area");
+		}
 	}
 }

@@ -2,7 +2,16 @@ import { IAttr, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
 export class em extends tag {
-	constructor(public attr?: IAttr, public elem?: IElem) {
-		super("em", attr, elem);
+	constructor();
+	constructor(elem: IElem);
+	constructor(attr: IAttr, elem: IElem);
+	constructor(...arg: any[]) {
+		if (arg.length === 2) {
+			super("em", arg[0], arg[1]);
+		} else if (arg.length === 1) {
+			super("em", undefined, arg[0]);
+		} else if (arg.length === 0) {
+			super("em");
+		}
 	}
 }
