@@ -1,6 +1,6 @@
-import { attachFn } from "./index.js";
+import { IAttachFn } from "./index.js";
 
-export const attachHref: attachFn = (key, elem, attr) => {
+export const attachHref: IAttachFn = (key, elem, attr) => {
 	if (key === "href") {
 		if (attr && typeof attr.href !== "undefined") {
 			let i = Array.isArray(attr.href) ? attr.href.join(" ") : attr.href;

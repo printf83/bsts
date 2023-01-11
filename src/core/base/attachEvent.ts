@@ -1,8 +1,8 @@
 import { deleteEventListener } from "../fn/deleteEventListener.js";
 import { setupEventListenerRemover } from "../fn/setupEventListenerRemover.js";
-import { attachFn } from "./index.js";
+import { IAttachFn } from "./index.js";
 
-export const attachEvent: attachFn = (key, elem, attr) => {
+export const attachEvent: IAttachFn = (key, elem, attr) => {
 	if (key === "on") {
 		if (attr && typeof attr.on !== "undefined") {
 			let prop = Object.keys(attr.on);

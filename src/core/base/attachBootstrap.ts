@@ -1,7 +1,7 @@
 import { keyOfType } from "./../fn/keyOfType.js";
 import { addIntoClassList } from "../fn/addIntoClassList.js";
 import { setting } from "../fn/setting.js";
-import { attachFn } from "./index.js";
+import { IAttachFn } from "./index.js";
 
 export namespace bsType {
 	const base5 = [0, 1, 2, 3, 4, 5];
@@ -1078,7 +1078,7 @@ const addBSClass = (key: string, dbB: bsRule, i: string | number | boolean, elem
 	return elem;
 };
 
-export const attachBootstrap: attachFn = (key, elem, attr) => {
+export const attachBootstrap: IAttachFn = (key, elem, attr) => {
 	if (allow(key)) {
 		let a = keyOfType(key, attr);
 		let b = keyOfType(key, db);

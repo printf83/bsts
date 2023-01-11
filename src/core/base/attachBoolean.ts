@@ -1,6 +1,6 @@
 import { keyOfType } from "./../fn/keyOfType.js";
 import { setting } from "../fn/setting.js";
-import { attachFn } from "./index.js";
+import { IAttachFn } from "./index.js";
 
 const db = [
 	"allowfullscreen",
@@ -33,7 +33,7 @@ const db = [
 	"truespeed",
 ];
 
-export const attachBoolean: attachFn = (key, elem, attr) => {
+export const attachBoolean: IAttachFn = (key, elem, attr) => {
 	if (db.indexOf(key) > -1) {
 		let k = keyOfType(key, attr);
 

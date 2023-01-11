@@ -1,7 +1,7 @@
 import { addIntoClassList } from "../fn/addIntoClassList.js";
-import { attachFn } from "./index.js";
+import { IAttachFn } from "./index.js";
 
-export const attachDisabled: attachFn = (key, elem, attr) => {
+export const attachDisabled: IAttachFn = (key, elem, attr) => {
 	if (key === "disabled" && attr[key] === true) {
 		if (attr && typeof attr.disabled !== "undefined") {
 			if (attr.disabled === true) {

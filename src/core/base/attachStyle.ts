@@ -1,7 +1,7 @@
 import { keyOfType } from "./../fn/keyOfType.js";
-import { attachFn } from "./index.js";
+import { IAttachFn } from "./index.js";
 
-export const attachStyle: attachFn = (key, elem, attr) => {
+export const attachStyle: IAttachFn = (key, elem, attr) => {
 	if (key === "style") {
 		if (attr && typeof attr.style !== "undefined") {
 			let i = Object.keys(attr.style);

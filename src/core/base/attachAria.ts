@@ -1,6 +1,6 @@
-import { attachFn } from "./index.js";
+import { IAttachFn } from "./index.js";
 
-export const attachAria: attachFn = (key, elem, attr) => {
+export const attachAria: IAttachFn = (key, elem, attr) => {
 	if (key === "aria") {
 		if (attr && typeof attr.aria !== "undefined") {
 			let prop = Object.keys(attr.aria);

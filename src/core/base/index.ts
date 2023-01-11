@@ -524,7 +524,7 @@ export interface ITag {
 
 export type IElem = string | tag | (string | tag)[];
 
-export type attachFn = (
+export type IAttachFn = (
 	key: string,
 	elem: HTMLElement,
 	attr: IAttr
@@ -533,7 +533,7 @@ export type attachFn = (
 	attr: IAttr;
 };
 
-const cleanupAttr: attachFn = (key, elem, attr) => {
+const cleanupAttr: IAttachFn = (key, elem, attr) => {
 	let k = keyOfType(key, attr);
 
 	if (attr && typeof attr[k] !== "undefined" && attr[k] === null) {
@@ -544,7 +544,7 @@ const cleanupAttr: attachFn = (key, elem, attr) => {
 	return { attr, elem };
 };
 
-const attrFn: attachFn[] = [
+const attrFn: IAttachFn[] = [
 	cleanupAttr,
 	attachActive,
 	attachDisabled,
