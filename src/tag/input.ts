@@ -12,6 +12,15 @@ import {
 	IAttrMin,
 	IAttrMultiple,
 	IAttrName,
+	IAttrPattern,
+	IAttrPlaceholderText,
+	IAttrReadonly,
+	IAttrRequired,
+	IAttrSize,
+	IAttrSrc,
+	IAttrStep,
+	IAttrType,
+	IAttrValue,
 	IElem,
 } from "../core/base/index.js";
 import { tag } from "./index.js";
@@ -29,7 +38,16 @@ export interface IAttrTagInput
 		IAttrMaxlength,
 		IAttrMin,
 		IAttrMultiple,
-		IAttrName {}
+		IAttrName,
+		IAttrPattern,
+		IAttrPlaceholderText,
+		IAttrReadonly,
+		IAttrRequired,
+		IAttrSize,
+		IAttrSrc,
+		IAttrStep,
+		IAttrType,
+		IAttrValue {}
 
 export class input extends tag {
 	constructor(public elem?: IElem, public attr?: IAttrTagInput) {

@@ -5,6 +5,9 @@ import {
 	IAttrEnctype,
 	IAttrMethod,
 	IAttrName,
+	IAttrNovalidate,
+	IAttrRel,
+	IAttrTarget,
 	IElem,
 } from "../core/base/index.js";
 import { tag } from "./index.js";
@@ -15,7 +18,10 @@ export interface IAttrTagInput
 		IAttrAutocomplete,
 		IAttrEnctype,
 		IAttrMethod,
-		IAttrName {}
+		IAttrName,
+		IAttrNovalidate,
+		IAttrRel,
+		IAttrTarget {}
 
 export class form extends tag {
 	constructor(public elem?: IElem, public attr?: IAttrTagInput) {

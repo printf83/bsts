@@ -1,7 +1,7 @@
-import { IAttrDisabled, IAttrLabel, IElem } from "../core/base/index.js";
+import { IAttrDisabled, IAttrLabel, IAttrSelected, IAttrValue, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagOption extends IAttrDisabled, IAttrLabel {}
+export interface IAttrTagOption extends IAttrDisabled, IAttrLabel, IAttrSelected, IAttrValue {}
 
 export class option extends tag {
 	constructor(public elem?: IElem, public attr?: IAttrTagOption) {

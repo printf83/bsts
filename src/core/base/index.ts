@@ -14,6 +14,7 @@ import { attachStyle } from "./attachStyle.js";
 import { attachClass } from "./attachClass.js";
 import { bs } from "./attachBootstrap.js";
 import { tag } from "../../tag/index.js";
+import { attachAlias } from "./attachAlias.js";
 
 export interface IStyle {
 	alignContent?: string;
@@ -500,6 +501,10 @@ export interface IAttrCoords extends IAttr {
 	coords?: string;
 }
 
+export interface IAttrDataText extends IAttr {
+	dataText?: string;
+}
+
 export interface IAttrDatetime extends IAttr {
 	datetime?: string;
 }
@@ -644,6 +649,10 @@ export interface IAttrPattern extends IAttr {
 	pattern?: string;
 }
 
+export interface IAttrPlaceholderText extends IAttr {
+	placeholderText?: string;
+}
+
 export interface IAttrPoster extends IAttr {
 	poster?: string;
 }
@@ -720,6 +729,10 @@ export interface IAttrSrcset extends IAttr {
 	srcset?: string;
 }
 
+export interface IAttrStartValue extends IAttr {
+	startValue?: string;
+}
+
 export interface IAttrStep extends IAttr {
 	step?: string;
 }
@@ -780,6 +793,7 @@ const cleanupAttr: IAttachFn = (key, elem, attr) => {
 
 const attrFn: IAttachFn[] = [
 	cleanupAttr,
+	attachAlias,
 	attachActive,
 	attachDisabled,
 	attachBoolean,
