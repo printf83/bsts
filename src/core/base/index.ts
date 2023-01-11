@@ -443,7 +443,7 @@ export interface IAttrAccept extends IAttr {
 	accept?: string;
 }
 
-export interface IAttrCharset extends IAttr {
+export interface IAttrAcceptCharset extends IAttr {
 	acceptCharset?: string;
 }
 
