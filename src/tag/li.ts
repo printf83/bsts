@@ -1,4 +1,4 @@
-import { IAttr, IAttrValue, IElem } from "../core/base/index.js";
+import { IAttrValue, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
 export interface IAttrTagLi extends IAttrValue {}

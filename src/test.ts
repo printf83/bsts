@@ -1,14 +1,14 @@
-import { a, core, div, divCol, divRow, h, hr } from "./index.js";
+import { core, html as $ } from "./index.js";
 
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 
 	core.replaceChild(body, [
-		new div(
+		new $.div(
 			[
-				new divRow(
+				new $.divRow(
 					[
-						new divCol(3, "hello", {
+						new $.divCol(3, "hello", {
 							textColor: "warning",
 							borderColor: "secondary",
 							borderWidth: 3,
@@ -16,7 +16,7 @@ core.documentReady(() => {
 							aria: { wowoww: "what?" },
 							data: { mehhh: "yaya" },
 						}),
-						new h(1, "world", {
+						new $.h(1, "world", {
 							col: 3,
 							on: {
 								click: (e: Event) => {
@@ -25,8 +25,8 @@ core.documentReady(() => {
 								},
 							},
 						}),
-						new h(2, "2", { col: 3, textColor: "primary", class: ["hello", "world"] }),
-						new h(3, "3", { col: 3, textColor: "success", class: "world", borderColor: "danger" }),
+						new $.h(2, "2", { col: 3, textColor: "primary", class: ["hello", "world"] }),
+						new $.h(3, "3", { col: 3, textColor: "success", class: "world", borderColor: "danger" }),
 					],
 					{
 						padding: ["lg-2", "md-3", "sm-4", "xl-1"],
@@ -35,8 +35,8 @@ core.documentReady(() => {
 						},
 					}
 				),
-				new divRow(new divCol(true, new hr({ style: { borderWidth: "3px" } }))),
-				new divRow(new divCol(true, new a("this is link", { href: "#", linkColor: "danger" }))),
+				new $.divRow(new $.divCol(true, new $.hr({ style: { borderWidth: "3px" } }))),
+				new $.divRow(new $.divCol(true, new $.a("this is link", { href: "#", linkColor: "danger" }))),
 			],
 			{ container: true }
 		),

@@ -1,4 +1,3 @@
-import { extend } from "./../fn/extend";
 import { keyOfType } from "./../fn/keyOfType.js";
 import { attachOther } from "./attachOther.js";
 import { attachHref } from "./attachHref.js";

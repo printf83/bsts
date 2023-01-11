@@ -1,4 +1,4 @@
-import { IAttrName, IAttrValue, IElem } from "../core/base/index.js";
+import { IAttrName, IAttrValue } from "../core/base/index.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { tag } from "./index.js";
 
