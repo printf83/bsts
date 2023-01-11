@@ -4,7 +4,7 @@ import { tag } from "./index.js";
 export interface IAttrTagLi extends IAttrValue {}
 
 export class li extends tag {
-	constructor(public elem?: IElem, public attr?: IAttrTagLi) {
-		super("li", elem, attr);
+	constructor(public attr?: IAttrTagLi, public elem?: IElem) {
+		super("li", attr, elem);
 	}
 }

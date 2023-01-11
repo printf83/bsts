@@ -4,7 +4,7 @@ import { tag } from "./index.js";
 export interface IAttrTagOptgroup extends IAttrDisabled, IAttrLabel {}
 
 export class optgroup extends tag {
-	constructor(public elem?: IElem, public attr?: IAttrTagOptgroup) {
-		super("optgroup", elem, attr);
+	constructor(public attr?: IAttrTagOptgroup, public elem?: IElem) {
+		super("optgroup", attr, elem);
 	}
 }

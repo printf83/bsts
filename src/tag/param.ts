@@ -12,6 +12,6 @@ export class param extends tag {
 			attr = { name: name, value: value };
 		}
 
-		super("param", undefined, attr);
+		super("param", attr);
 	}
 }

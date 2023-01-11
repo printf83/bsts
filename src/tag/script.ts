@@ -12,6 +12,6 @@ export class script extends tag {
 			attr = { src: src };
 		}
 
-		super("script", undefined, attr);
+		super("script", attr);
 	}
 }

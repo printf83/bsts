@@ -4,7 +4,7 @@ import { tag } from "./index.js";
 export interface IAttrTagBlockquote extends IAttrCite {}
 
 export class blockquote extends tag {
-	constructor(public elem?: IElem, public attr?: IAttrTagBlockquote) {
-		super("blockquote", elem, attr);
+	constructor(public attr?: IAttrTagBlockquote, public elem?: IElem) {
+		super("blockquote", attr, elem);
 	}
 }

@@ -12,6 +12,6 @@ export class embed extends tag {
 			attr = { type: type, src: src };
 		}
 
-		super("embed", undefined, attr);
+		super("embed", attr);
 	}
 }

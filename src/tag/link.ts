@@ -12,6 +12,6 @@ export class link extends tag {
 			attr = { href: href };
 		}
 
-		super("link", undefined, attr);
+		super("link", attr);
 	}
 }

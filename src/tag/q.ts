@@ -4,7 +4,7 @@ import { tag } from "./index.js";
 export interface IAttrTagQ extends IAttrCite {}
 
 export class q extends tag {
-	constructor(public elem?: IElem, public attr?: IAttrTagQ) {
-		super("q", elem, attr);
+	constructor(public attr?: IAttrTagQ, public elem?: IElem) {
+		super("q", attr, elem);
 	}
 }

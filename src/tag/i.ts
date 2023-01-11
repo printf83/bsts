@@ -2,7 +2,7 @@ import { IAttr, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
 export class i extends tag {
-	constructor(public elem?: IElem, public attr?: IAttr) {
-		super("i", elem, attr);
+	constructor(public attr?: IAttr, public elem?: IElem) {
+		super("i", attr, elem);
 	}
 }

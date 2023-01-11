@@ -12,6 +12,6 @@ export class base extends tag {
 			attr = { href: href };
 		}
 
-		super("base", undefined, attr);
+		super("base", attr);
 	}
 }

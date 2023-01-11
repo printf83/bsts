@@ -58,6 +58,6 @@ export class input extends tag {
 			attr = { type: type };
 		}
 
-		super("input", undefined, attr);
+		super("input", attr);
 	}
 }

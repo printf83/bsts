@@ -3,6 +3,6 @@ import { tag } from "../tag/index.js";
 
 export class a extends tag {
 	constructor(public elem?: IElem, public attr?: IAttr) {
-		super("a", elem, attr);
+		super("a", attr, elem);
 	}
 }

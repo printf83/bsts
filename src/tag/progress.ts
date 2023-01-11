@@ -4,7 +4,7 @@ import { tag } from "./index.js";
 export interface IAttrTagProgress extends IAttrMax, IAttrValue {}
 
 export class progress extends tag {
-	constructor(public elem?: IElem, public attr?: IAttrTagProgress) {
-		super("progress", elem, attr);
+	constructor(public attr?: IAttrTagProgress, public elem?: IElem) {
+		super("progress", attr, elem);
 	}
 }

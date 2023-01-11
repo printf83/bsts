@@ -24,7 +24,7 @@ export interface IAttrTagInput
 		IAttrTarget {}
 
 export class form extends tag {
-	constructor(public elem?: IElem, public attr?: IAttrTagInput) {
-		super("form", elem, attr);
+	constructor(public attr?: IAttrTagInput, public elem?: IElem) {
+		super("form", attr, elem);
 	}
 }

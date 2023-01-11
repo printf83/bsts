@@ -12,6 +12,6 @@ export class audio extends tag {
 			attr = { src: src };
 		}
 
-		super("audio", undefined, attr);
+		super("audio", attr);
 	}
 }

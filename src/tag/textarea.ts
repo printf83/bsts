@@ -30,6 +30,6 @@ export interface IAttrTagTextarea
 
 export class textarea extends tag {
 	constructor(public value?: string, public attr?: IAttrTagTextarea) {
-		super("textarea", value, attr);
+		super("textarea", attr, value);
 	}
 }

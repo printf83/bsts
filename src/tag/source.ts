@@ -12,6 +12,6 @@ export class source extends tag {
 			attr = { src: src };
 		}
 
-		super("source", undefined, attr);
+		super("source", attr);
 	}
 }

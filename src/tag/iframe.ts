@@ -2,7 +2,7 @@ import { IAttrName, IAttrSandbox, IAttrSrc, IAttrSrcdoc } from "../core/base/ind
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagIframe extends IAttrName, IAttrSrc,IAttrSandbox,IAttrSrcdoc {}
+export interface IAttrTagIframe extends IAttrName, IAttrSrc, IAttrSandbox, IAttrSrcdoc {}
 
 export class iframe extends tag {
 	constructor(public src: string, public attr?: IAttrTagIframe) {
@@ -12,6 +12,6 @@ export class iframe extends tag {
 			attr = { src: src };
 		}
 
-		super("iframe", undefined, attr);
+		super("iframe", attr);
 	}
 }

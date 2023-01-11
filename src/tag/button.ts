@@ -20,7 +20,7 @@ export interface IAttrTagButton
 		IAttrValue {}
 
 export class button extends tag {
-	constructor(public elem?: IElem, public attr?: IAttrTagButton) {
-		super("button", elem, attr);
+	constructor(public attr?: IAttrTagButton, public elem?: IElem) {
+		super("button", attr, elem);
 	}
 }

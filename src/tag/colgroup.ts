@@ -4,7 +4,7 @@ import { tag } from "./index.js";
 export interface IAttrTagColgroup extends IAttrSpan {}
 
 export class colgroup extends tag {
-	constructor(public elem?: IElem, public attr?: IAttrTagColgroup) {
-		super("colgroup", elem, attr);
+	constructor(public attr?: IAttrTagColgroup, public elem?: IElem) {
+		super("colgroup", attr, elem);
 	}
 }

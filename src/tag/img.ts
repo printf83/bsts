@@ -12,6 +12,6 @@ export class img extends tag {
 			attr = { src: src };
 		}
 
-		super("img", undefined, attr);
+		super("img", attr);
 	}
 }

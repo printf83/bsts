@@ -5,6 +5,6 @@ export interface IAttrTagMeta extends IAttrCharset, IAttrContent, IAttrHttpEquiv
 
 export class meta extends tag {
 	constructor(public attr?: IAttrTagMeta) {
-		super("meta", undefined, attr);
+		super("meta", attr);
 	}
 }

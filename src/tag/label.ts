@@ -4,7 +4,7 @@ import { tag } from "./index.js";
 export interface IAttrTagLabel extends IAttrFor, IAttrForm {}
 
 export class label extends tag {
-	constructor(public elem?: IElem, public attr?: IAttrTagLabel) {
-		super("label", elem, attr);
+	constructor(public attr?: IAttrTagLabel, public elem?: IElem) {
+		super("label", attr, elem);
 	}
 }

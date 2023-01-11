@@ -3,6 +3,6 @@ import { tag } from "./index.js";
 
 export class hr extends tag {
 	constructor(public attr?: IAttr) {
-		super("hr", undefined, attr);
+		super("hr", attr);
 	}
 }
