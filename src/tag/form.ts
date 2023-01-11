@@ -1,7 +1,7 @@
-import { IAttrAcceptCharset, IAttrAction, IAttrAutocomplete, IElem } from "../core/base/index.js";
+import { IAttrAcceptCharset, IAttrAction, IAttrAutocomplete, IAttrEnctype, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagInput extends IAttrAcceptCharset, IAttrAction, IAttrAutocomplete {}
+export interface IAttrTagInput extends IAttrAcceptCharset, IAttrAction, IAttrAutocomplete, IAttrEnctype {}
 
 export class form extends tag {
 	constructor(public elem?: IElem, public attr?: IAttrTagInput) {

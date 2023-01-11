@@ -11,7 +11,6 @@ import { span } from "./tag/span.js";
 import { a } from "./tag/a.js";
 import { abbr } from "./tag/abbr.js";
 import { b } from "./tag/b.js";
-import { cite } from "./tag/cite.js";
 import { code } from "./tag/code.js";
 import { em } from "./tag/em.js";
 import { footer } from "./tag/footer.js";
@@ -33,7 +32,6 @@ export {
 	abbr,
 	b,
 	blockquote,
-	cite,
 	code,
 	div,
 	divCol,

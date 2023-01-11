@@ -9,7 +9,6 @@ core.documentReady(() => {
 				new divRow(
 					[
 						new divCol(3, "hello", {
-							name: "hahaha",
 							textColor: "warning",
 							borderColor: "secondary",
 							borderWidth: 3,
