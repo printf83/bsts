@@ -1,8 +1,8 @@
-import { baseAttr } from "../base/index.js";
+import { IAttr } from "../base/index.js";
 import { mergeAttr } from "./mergeAttr.js";
 import { mergeClass } from "./mergeClass.js";
 
-export const mergeObject = (target: baseAttr, source: baseAttr): baseAttr | never => {
+export const mergeObject = (target: IAttr, source: IAttr): IAttr | never => {
 	if (target) {
 		if (source) {
 			let target_class = target.class;

@@ -15,7 +15,7 @@ import { bs } from "./attachBootstrap.js";
 import { tag } from "../../tag/index.js";
 import { extend } from "../fn/extend.js";
 
-export interface baseStyle {
+export interface IStyle {
 	alignContent?: string;
 	alignItems?: string;
 	alignSelf?: string;
@@ -205,7 +205,7 @@ export interface baseStyle {
 	zIndex?: string;
 }
 
-export interface baseEvent {
+export interface IEvent {
 	afterprint?: EventListener;
 	beforeprint?: EventListener;
 	beforeunload?: EventListener;
@@ -289,23 +289,23 @@ export interface baseEvent {
 	[key: string]: EventListener | undefined;
 }
 
-export interface baseAria {
+export interface IAria {
 	[key: string]: string | number | boolean;
 }
 
-export interface baseData {
+export interface IData {
 	[key: string]: string | number | boolean;
 }
 
-export interface baseAttr {
+export interface IAttr {
 	id?: string;
 	name?: string;
 	class?: string | string[];
 
-	data?: baseData;
-	aria?: baseAria;
-	on?: baseEvent;
-	style?: baseStyle;
+	data?: IData;
+	aria?: IAria;
+	on?: IEvent;
+	style?: IStyle;
 
 	//addtional
 	active?: boolean;
@@ -515,22 +515,22 @@ export interface baseAttr {
 	//boolean attr [end]
 }
 
-export interface baseTag {
+export interface ITag {
 	tag: string;
-	elem?: baseElem;
-	attr?: baseAttr;
+	elem?: IElem;
+	attr?: IAttr;
 	dom?: HTMLElement;
 }
 
-export type baseElem = string | tag | (string | tag)[];
+export type IElem = string | tag | (string | tag)[];
 
 export type attachFn = (
 	key: string,
 	elem: HTMLElement,
-	attr: baseAttr
+	attr: IAttr
 ) => {
 	elem: HTMLElement;
-	attr: baseAttr;
+	attr: IAttr;
 };
 
 const cleanupAttr: attachFn = (key, elem, attr) => {
@@ -559,7 +559,7 @@ const attrFn: attachFn[] = [
 	attachOther,
 ];
 
-export const attachAttr = (elem: HTMLElement, attr: baseAttr): HTMLElement => {
+export const attachAttr = (elem: HTMLElement, attr: IAttr): HTMLElement => {
 	if (attr) {
 		attr = extend({}, attr);
 
