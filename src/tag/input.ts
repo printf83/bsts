@@ -7,6 +7,11 @@ import {
 	IAttrDisabled,
 	IAttrForm,
 	IAttrFormAction,
+	IAttrList,
+	IAttrMaxlength,
+	IAttrMin,
+	IAttrMultiple,
+	IAttrName,
 	IElem,
 } from "../core/base/index.js";
 import { tag } from "./index.js";
@@ -19,7 +24,12 @@ export interface IAttrTagInput
 		IAttrDirname,
 		IAttrDisabled,
 		IAttrForm,
-		IAttrFormAction {}
+		IAttrFormAction,
+		IAttrList,
+		IAttrMaxlength,
+		IAttrMin,
+		IAttrMultiple,
+		IAttrName {}
 
 export class input extends tag {
 	constructor(public elem?: IElem, public attr?: IAttrTagInput) {
