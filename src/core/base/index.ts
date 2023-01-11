@@ -335,8 +335,8 @@ export interface IAttr {
 	formaction?: string;
 	headers?: string;
 	high?: string;
-	href?: string;
-	hreflang?: string;
+	// href?: string;
+	// hreflang?: string;
 	httpEquiv?: string;
 	kind?: string;
 	label?: string;
@@ -513,6 +513,14 @@ export interface IAttr {
 	selected?: boolean;
 	truespeed?: boolean;
 	//boolean attr [end]
+}
+
+export interface IAttrHref extends IAttr {
+	href?: string;
+}
+
+export interface IAttrHrefLang extends IAttr {
+	hreflang?: string;
 }
 
 export interface ITag {

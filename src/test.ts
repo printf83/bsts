@@ -1,4 +1,4 @@
-import { core, div, divCol, divRow, h, hr } from "./index.js";
+import { a, core, div, divCol, divRow, h, hr } from "./index.js";
 
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
@@ -36,7 +36,8 @@ core.documentReady(() => {
 						},
 					}
 				),
-				new divRow([new hr({ style: { borderWidth: "3px" } })]),
+				new divRow(new divCol(true, new hr({ style: { borderWidth: "3px" } }))),
+				new divRow(new divCol(true, new a("this is link", { href: "#", linkColor: "danger" }))),
 			],
 			{ container: true }
 		),
