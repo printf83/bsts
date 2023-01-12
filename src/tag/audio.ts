@@ -1,8 +1,15 @@
-import { IAttrAutoplay, IAttrControls, IAttrLoop, IAttrMuted, IAttrPreload, IAttrSrc } from "../core/base/index.js";
+import { IAttr } from "../core/base/index.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagAudio extends IAttrSrc, IAttrAutoplay, IAttrControls, IAttrLoop, IAttrMuted, IAttrPreload {}
+export interface IAttrTagAudio extends IAttr {
+	autoplay?: boolean;
+	controls?: boolean;
+	loop?: boolean;
+	muted?: boolean;
+	preload?: "auto" | "metadata" | "none";
+	src?: string;
+}
 
 export class audio extends tag {
 	constructor();

@@ -4,7 +4,6 @@ export const extend = <T>(target: T, source?: T): T => {
 		source = source || ({} as T);
 		Object.keys(target).forEach((i) => {
 			let k = keyOfType(i, target);
-
 			if (!source!.hasOwnProperty(i) && target[k] !== null && target[k] !== undefined) {
 				source![k] = target[k];
 			}

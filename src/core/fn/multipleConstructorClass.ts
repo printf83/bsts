@@ -80,7 +80,8 @@ const checkArgType = (obj: any): string => {
 	} else {
 		let t = typeof obj;
 		if (t === "object") {
-			if (obj.hasOwnProperty("isbsts")) {
+			// if (obj.hasOwnProperty("isbsts")) {
+			if ("isbsts" in obj) {
 				return "tag";
 			} else if (obj.debug === true) {
 				return "debug";

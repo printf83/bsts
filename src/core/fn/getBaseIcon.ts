@@ -20,7 +20,8 @@ let db: IBaseIcon = {
 };
 
 export const getBaseIcon = (icon: string): IIcon | null => {
-	if (db.hasOwnProperty(icon)) {
+	// if (db.hasOwnProperty(icon)) {
+	if (icon in db) {
 		let k = keyOfType(icon, db);
 		return db[k];
 	}

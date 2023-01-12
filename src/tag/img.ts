@@ -1,8 +1,25 @@
-import { IAttrAlt, IAttrIsmap, IAttrSizes, IAttrSrc, IAttrSrcset, IAttrUsemap } from "../core/base/index.js";
+import { IAttr } from "../core/base/index.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagImg extends IAttrAlt, IAttrSrc, IAttrIsmap, IAttrSizes, IAttrSrcset, IAttrUsemap {}
+export interface IAttrTagImg extends IAttr {
+	alt?: string;
+	crossorigin?: "anonymous" | "use-credentials";
+	ismap?: boolean;
+	loading?: "eager" | "lazy";
+	longdesc?: string;
+	referrerpolicy?:
+		| "no-referrer"
+		| "no-referrer-when-downgrade"
+		| "origin"
+		| "origin-when-cross-origin"
+		| "same-origin"
+		| "unsafe-url";
+	sizes?: string;
+	src?: string;
+	srcset?: string;
+	usemap?: string;
+}
 
 export class img extends tag {
 	constructor();

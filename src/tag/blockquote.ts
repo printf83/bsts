@@ -1,7 +1,9 @@
-import { IAttrCite, IElem } from "../core/base/index.js";
+import { IAttr, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagBlockquote extends IAttrCite {}
+export interface IAttrTagBlockquote extends IAttr {
+	cite?: string;
+}
 
 export class blockquote extends tag {
 	constructor();

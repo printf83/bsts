@@ -9,7 +9,8 @@ const db: { [key: string]: string } = {
 
 export const attachAlias: IAttachFn = (key, elem, attr) => {
 	if (attr && typeof attr !== "undefined") {
-		if (db.hasOwnProperty(key)) {
+		// if (db.hasOwnProperty(key)) {
+		if (key in db) {
 			let a = keyOfType(key, attr);
 			let b = keyOfType(key, db);
 			if (typeof attr[a] !== "undefined") {

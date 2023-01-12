@@ -1,7 +1,12 @@
-import { IAttrCharset, IAttrContent, IAttrHttpEquiv, IAttrName } from "../core/base/index.js";
+import { IAttr } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagMeta extends IAttrCharset, IAttrContent, IAttrHttpEquiv, IAttrName {}
+export interface IAttrTagMeta extends IAttr {
+	charset?: string;
+	content?: string;
+	httpEquiv?: "content-security-policy" | "content-type" | "default-style" | "refresh";
+	name?: "application-name" | "author" | "description" | "generator" | "keywords" | "viewport";
+}
 
 export class meta extends tag {
 	constructor();

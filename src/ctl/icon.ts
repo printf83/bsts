@@ -1,5 +1,4 @@
-import { IAttr, IElem } from "../core/base/index.js";
-import { mergeClass } from "../core/fn/mergeClass.js";
+import { IAttr } from "../core/base/index.js";
 import { i } from "../tag/i.js";
 
 export interface IAttrIcon extends IAttr {

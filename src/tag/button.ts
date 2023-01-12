@@ -1,23 +1,19 @@
-import {
-	IAttrAutofocus,
-	IAttrDisabled,
-	IAttrForm,
-	IAttrFormAction,
-	IAttrName,
-	IAttrType,
-	IAttrValue,
-	IElem,
-} from "../core/base/index.js";
+import { IAttr, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagButton
-	extends IAttrAutofocus,
-		IAttrDisabled,
-		IAttrForm,
-		IAttrFormAction,
-		IAttrName,
-		IAttrType,
-		IAttrValue {}
+export interface IAttrTagButton extends IAttr {
+	autofocus?: boolean;
+	disabled?: boolean;
+	form?: string;
+	formaction?: string;
+	formenctype?: "application/x-www-form-urlencoded" | "multipart/form-data" | "text/plain	";
+	formmethod?: "get" | "post";
+	formnovalidate?: boolean;
+	formtarget?: string;
+	name?: string;
+	type?: "button" | "reset" | "submit";
+	value?: string;
+}
 
 export class button extends tag {
 	constructor();

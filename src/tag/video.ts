@@ -1,23 +1,16 @@
-import {
-	IAttrAutoplay,
-	IAttrControls,
-	IAttrLoop,
-	IAttrMuted,
-	IAttrPoster,
-	IAttrPreload,
-	IAttrSrc,
-} from "../core/base/index.js";
+import { IAttr } from "../core/base/index.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagVideo
-	extends IAttrSrc,
-		IAttrAutoplay,
-		IAttrControls,
-		IAttrLoop,
-		IAttrMuted,
-		IAttrPoster,
-		IAttrPreload {}
+export interface IAttrTagVideo extends IAttr {
+	autoplay?: boolean;
+	controls?: boolean;
+	loop?: boolean;
+	muted?: boolean;
+	poster?: string;
+	preload?: "auto" | "metadata" | "none";
+	src?: string;
+}
 
 export class video extends tag {
 	constructor();

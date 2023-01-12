@@ -1,7 +1,11 @@
-import { IAttrColspan, IAttrHeaders, IAttrRowspan, IElem } from "../core/base/index.js";
+import { IAttr, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagTd extends IAttrColspan, IAttrHeaders, IAttrRowspan {}
+export interface IAttrTagTd extends IAttr {
+	colspan?: number;
+	headers?: string;
+	rowspan?: number;
+}
 
 export class td extends tag {
 	constructor();

@@ -1,32 +1,20 @@
-import {
-	IAttrAutofocus,
-	IAttrCols,
-	IAttrDirname,
-	IAttrDisabled,
-	IAttrForm,
-	IAttrMaxlength,
-	IAttrName,
-	IAttrPlaceholderText,
-	IAttrReadonly,
-	IAttrRequired,
-	IAttrRows,
-	IAttrWarp,
-} from "../core/base/index.js";
+import { IAttr } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagTextarea
-	extends IAttrAutofocus,
-		IAttrCols,
-		IAttrDirname,
-		IAttrDisabled,
-		IAttrForm,
-		IAttrMaxlength,
-		IAttrName,
-		IAttrPlaceholderText,
-		IAttrReadonly,
-		IAttrRequired,
-		IAttrRows,
-		IAttrWarp {}
+export interface IAttrTagTextarea extends IAttr {
+	autofocus?: boolean;
+	cols?: number;
+	dirname?: string;
+	disabled?: boolean;
+	form?: string;
+	maxlength?: number;
+	name?: string;
+	placeholderText?: string;
+	readonly?: boolean;
+	required?: boolean;
+	rows?: number;
+	wrap?: "hard" | "soft";
+}
 
 export class textarea extends tag {
 	constructor();

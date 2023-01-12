@@ -53,7 +53,14 @@ core.documentReady(() => {
 			),
 			new $.div(
 				{ row: true },
-				new $.div({ col: true }, new $.input({ type: "text", placeholderText: "Test Placeholder" }))
+				new $.div({ col: true }, new $.input({ type: "range", min: 30, max: 130, value: 50 }))
+			),
+			new $.div(
+				{ row: true },
+				new $.div(
+					{ col: true },
+					new $.input({ type: "text", maxlength: 5, placeholderText: "test 5 maxlength" })
+				)
 			),
 			new $.div({ row: true }, new $.div({ col: true }, new $.img("https://picsum.photos/seed/picsum/300/150"))),
 			new $.div({ row: true }, new $.div({ col: true }, new $.a("this is link 2"))),

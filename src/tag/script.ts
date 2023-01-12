@@ -1,8 +1,25 @@
-import { IAttrAsync, IAttrCharset, IAttrDefer, IAttrSrc, IAttrType } from "../core/base/index.js";
+import { IAttr } from "../core/base/index.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagScript extends IAttrSrc, IAttrAsync, IAttrCharset, IAttrDefer, IAttrType {}
+export interface IAttrTagScript extends IAttr {
+	async?: boolean;
+	crossorigin?: "anonymous" | "use-credentials";
+	defer?: boolean;
+	integrity?: string;
+	nomodule?: boolean;
+	referrerpolicy?:
+		| "no-referrer"
+		| "no-referrer-when-downgrade"
+		| "origin"
+		| "origin-when-cross-origin"
+		| "same-origin"
+		| "strict-origin"
+		| "strict-origin-when-cross-origin"
+		| "unsafe-url";
+	src?: string;
+	type?: string;
+}
 
 export class script extends tag {
 	constructor();

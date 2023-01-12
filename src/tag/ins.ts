@@ -1,7 +1,10 @@
-import { IAttrCite, IAttrDatetime, IElem } from "../core/base/index.js";
+import { IAttr, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagIns extends IAttrCite, IAttrDatetime {}
+export interface IAttrTagIns extends IAttr {
+	cite?: string;
+	datetime?: string | Date;
+}
 
 export class ins extends tag {
 	constructor();

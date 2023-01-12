@@ -1,27 +1,27 @@
-import {
-	IAttrAcceptCharset,
-	IAttrAction,
-	IAttrAutocomplete,
-	IAttrEnctype,
-	IAttrMethod,
-	IAttrName,
-	IAttrNovalidate,
-	IAttrRel,
-	IAttrTarget,
-	IElem,
-} from "../core/base/index.js";
+import { IAttr, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagForm
-	extends IAttrAcceptCharset,
-		IAttrAction,
-		IAttrAutocomplete,
-		IAttrEnctype,
-		IAttrMethod,
-		IAttrName,
-		IAttrNovalidate,
-		IAttrRel,
-		IAttrTarget {}
+export interface IAttrTagForm extends IAttr {
+	acceptCharset?: string;
+	action?: string;
+	autocomplete?: "on" | "off";
+	enctype?: "application/x-www-form-urlencoded" | "multipart/form-data" | "text/plain	";
+	method?: "get" | "post";
+	name?: string;
+	novalidate?: boolean;
+	rel?:
+		| "external"
+		| "help"
+		| "license"
+		| "next"
+		| "nofollow"
+		| "noopener"
+		| "noreferrer"
+		| "opener"
+		| "prev"
+		| "search";
+	target?: "_blank" | "_self" | "_parent" | "_top";
+}
 
 export class form extends tag {
 	constructor();
