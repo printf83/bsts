@@ -2,7 +2,7 @@ import { keyOfType } from "./../fn/keyOfType.js";
 import { addIntoClassList } from "../fn/addIntoClassList.js";
 import { setting } from "../fn/setting.js";
 import { IAttachFn } from "./_index.js";
-import { bootstrapBase } from "../fn/bootstrap.js";
+import { bootstrapBase } from "../base/bootstrap.js";
 
 export interface IBootstrapAttachRule {
 	format?: string | null;

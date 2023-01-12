@@ -1,4 +1,4 @@
-import { IAttr, IElem, tag } from "../core/attach/_index.js";
+import { IAttr, IElem, tag } from "../core/base/tag.js";
 
 export class span extends tag {
 	constructor();

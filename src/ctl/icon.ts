@@ -1,5 +1,5 @@
-import { bs } from "../core/attach/attachBootstrap.js";
-import { IAttr, IElem, tag } from "../core/attach/_index.js";
+import { bootstrapType } from "../core/base/bootstrap.js";
+import { IAttr, IElem, tag } from "../core/base/tag.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 
 type IAttrIconType = "fab" | "fas" | "far" | "fad" | "fal";
@@ -7,7 +7,7 @@ type IAttrIconType = "fab" | "fas" | "far" | "fad" | "fal";
 export interface IAttrIcon extends IAttr {
 	icon?: string;
 	type?: IAttrIconType;
-	color?: bs.color[number];
+	color?: bootstrapType.color[number];
 	weight?: "2xs" | "xs" | "sm" | "lg" | "xl" | "2xl";
 	fixwidth?: boolean;
 	spin?: boolean;

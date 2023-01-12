@@ -1,5 +1,5 @@
-import { IElem } from "../core/attach/_index.js";
-import { bootstrapType } from "../core/fn/bootstrap.js";
+import { bootstrapType } from "../core/base/bootstrap.js";
+import { IElem } from "../core/base/tag.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { IAttrTagLabel, label as $h_label } from "../tag/label.js";
 
