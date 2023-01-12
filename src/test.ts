@@ -77,7 +77,15 @@ core.documentReady(() => {
 					new $b.icon("star"),
 					new $b.icon({ icon: "star", spin: true, color: "primary", weight: "xl" }),
 					new $b.icon({ type: "fab", icon: "bootstrap", shake: true, color: "danger" }),
-					new $b.icon({ type: "fab", icon: "bootstrap", shake: true, color: "danger", stack: true }, []),
+				])
+			),
+			new $h.div(
+				{ row: true },
+				new $h.div({ col: true }, [
+					new $h.span({ class: ["fa-stack", "fa-2x"] }, [
+						new $b.icon({ icon: "square", stack: 2, color: "primary" }),
+						new $b.icon({ type: "fab", icon: "twitter", stack: 1, inverse: true }),
+					]),
 				])
 			),
 		]),

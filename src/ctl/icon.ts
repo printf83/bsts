@@ -17,7 +17,7 @@ export interface IAttrIcon extends IAttr {
 	shake?: boolean;
 	rotate?: 90 | 180 | 270 | "horizontal" | "vertical" | "both";
 	inverse?: boolean;
-	stack?: boolean | number;
+	stack?: true | 1 | 2;
 }
 
 const convert = (a: IAttrIcon): IAttrIcon => {
@@ -42,7 +42,7 @@ const convert = (a: IAttrIcon): IAttrIcon => {
 					? `fa-rotate-${a.rotate.toString()}`
 					: `fa-flip-${a.rotate.toString()}`
 				: ``,
-			a.stack ? (typeof a.stack === "number" ? `fa-stack-${a.stack.toString()}` : `fa-stack`) : ``,
+			a.stack ? (typeof a.stack === "number" ? `fa-stack-${a.stack.toString()}x` : `fa-stack`) : ``,
 		],
 		textColor: a.color,
 	});
