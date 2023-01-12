@@ -21,14 +21,14 @@ export class icon extends i {
 				let a: IAttr = {
 					class: ["fas", arg[0]],
 				};
-				super(a, undefined);
+				super(a, []);
 			} else {
 			}
 		} else if (arg.length === 2) {
 			let a: IAttr = {
 				class: [arg[0], arg[1]],
 			};
-			super(a, undefined);
+			super(a, []);
 		} else if (arg.length === 3) {
 		}
 	}

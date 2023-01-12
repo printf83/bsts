@@ -22,7 +22,6 @@ import {
 	IAttrType,
 	IAttrValue,
 } from "../core/base/index.js";
-import { mergeObject } from "../core/fn/mergeObject.js";
 import { tag } from "./index.js";
 
 export interface IAttrTagInput
