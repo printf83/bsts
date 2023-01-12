@@ -4,7 +4,7 @@ import { tag } from "./index.js";
 export class i extends tag {
 	constructor();
 	constructor(elem: IElem);
-	constructor(attr: IAttr, elem: IElem);
+	constructor(attr: IAttr, elem: IElem | undefined);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("i");

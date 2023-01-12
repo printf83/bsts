@@ -58,7 +58,7 @@ core.documentReady(() => {
 			new $.div({ row: true }, new $.div({ col: true }, new $.img("https://picsum.photos/seed/picsum/300/150"))),
 			new $.div({ row: true }, new $.div({ col: true }, new $.a("this is link 2"))),
 			new $.div({ row: true }, new $.div({ col: true }, new $.b({ title: "test" }, "this is bold"))),
-			new $.div({ row: true }, new $.div({ col: true }, new $.i({ padding: 3 }, "nothing even happen"))),
+			new $.div({ row: true }, new $.div({ col: true }, new $.i("nothing even happen"))),
 		]),
 	]);
 });
