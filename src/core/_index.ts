@@ -37,7 +37,8 @@ import { importJS } from "./fn/importJS.js";
 import { importJSPromise } from "./fn/importJSPromise.js";
 import { appendChild, build, html, prependChild, replaceChild, replaceWith } from "./fn/builder.js";
 import { documentReady, elemReady } from "./fn/documentReady.js";
-import { attachAttr, isTag } from "./attach/_index.js";
+import { attachAttr } from "./attach/_index.js";
+import { isTag } from "./base/tag.js";
 
 export const core = {
 	addIntoClassList,
