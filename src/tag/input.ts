@@ -50,13 +50,13 @@ export interface IAttrTagInput
 		IAttrValue {}
 
 export class input extends tag {
-	constructor(public type: string, public attr?: IAttrTagInput) {
-		if (typeof attr !== "undefined") {
-			attr = mergeObject(attr, { type: type });
-		} else {
-			attr = { type: type };
+	constructor();
+	constructor(attr: IAttrTagInput);
+	constructor(...arg: any[]) {
+		if (arg.length === 0) {
+			super("input");
+		} else if (arg.length === 1) {
+			super("input", arg[0], undefined);
 		}
-
-		super("input", attr);
 	}
 }

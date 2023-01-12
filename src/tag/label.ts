@@ -4,7 +4,16 @@ import { tag } from "./index.js";
 export interface IAttrTagLabel extends IAttrFor, IAttrForm {}
 
 export class label extends tag {
-	constructor(public attr?: IAttrTagLabel, public elem?: IElem) {
-		super("label", attr, elem);
+	constructor();
+	constructor(elem: IElem);
+	constructor(attr: IAttrTagLabel, elem: IElem);
+	constructor(...arg: any[]) {
+		if (arg.length === 0) {
+			super("label");
+		} else if (arg.length === 1) {
+			super("label", undefined, arg[0]);
+		} else if (arg.length === 2) {
+			super("label", arg[0], arg[1]);
+		}
 	}
 }

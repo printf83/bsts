@@ -10,16 +10,16 @@ export class img extends tag {
 	constructor(attr: IAttrTagImg);
 	constructor(src: string, attr: IAttrTagImg);
 	constructor(...arg: any[]) {
-		if (arg.length === 2) {
-			super("img", mergeObject(arg[1], { src: arg[0] } as IAttrTagImg), undefined);
+		if (arg.length === 0) {
+			super("img");
 		} else if (arg.length === 1) {
 			if (typeof arg[0] === "string") {
 				super("img", { src: arg[0] } as IAttrTagImg, undefined);
 			} else {
 				super("img", arg[0], undefined);
 			}
-		} else if (arg.length === 0) {
-			super("img");
+		} else if (arg.length === 2) {
+			super("img", mergeObject(arg[1], { src: arg[0] } as IAttrTagImg), undefined);
 		}
 	}
 }
