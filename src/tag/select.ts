@@ -20,7 +20,16 @@ export interface IAttrTagSelect
 		IAttrSize {}
 
 export class select extends tag {
-	constructor(public attr?: IAttrTagSelect, public elem?: IElem) {
-		super("select", attr, elem);
+	constructor();
+	constructor(elem: IElem);
+	constructor(attr: IAttrTagSelect, elem: IElem);
+	constructor(...arg: any[]) {
+		if (arg.length === 0) {
+			super("select");
+		} else if (arg.length === 1) {
+			super("select", undefined, arg[0]);
+		} else if (arg.length === 2) {
+			super("select", arg[0], arg[1]);
+		}
 	}
 }

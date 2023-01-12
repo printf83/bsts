@@ -20,13 +20,21 @@ export interface IAttrTagVideo
 		IAttrPreload {}
 
 export class video extends tag {
-	constructor(public src: string, public attr?: IAttrTagVideo) {
-		if (typeof attr !== "undefined") {
-			attr = mergeObject(attr, { src: src });
-		} else {
-			attr = { src: src };
+	constructor();
+	constructor(src: string);
+	constructor(attr: IAttrTagVideo);
+	constructor(src: string, attr: IAttrTagVideo);
+	constructor(...arg: any[]) {
+		if (arg.length === 0) {
+			super("video");
+		} else if (arg.length === 1) {
+			if (typeof arg[0] === "string") {
+				super("video", { src: arg[0] } as IAttrTagVideo, undefined);
+			} else {
+				super("video", arg[0], undefined);
+			}
+		} else if (arg.length === 2) {
+			super("video", mergeObject(arg[1], { src: arg[0] } as IAttrTagVideo), undefined);
 		}
-
-		super("video", attr);
 	}
 }

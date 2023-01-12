@@ -29,7 +29,16 @@ export interface IAttrTagTextarea
 		IAttrWarp {}
 
 export class textarea extends tag {
-	constructor(public value?: string, public attr?: IAttrTagTextarea) {
-		super("textarea", attr, value);
+	constructor();
+	constructor(value: string);
+	constructor(attr: IAttrTagTextarea, value: string);
+	constructor(...arg: any[]) {
+		if (arg.length === 0) {
+			super("textarea");
+		} else if (arg.length === 1) {
+			super("textarea", undefined, arg[0]);
+		} else if (arg.length === 2) {
+			super("textarea", arg[0], arg[1]);
+		}
 	}
 }
