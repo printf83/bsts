@@ -2,7 +2,6 @@ import { IAttr, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
 export interface IAttrTagProgress extends IAttr {
-	min?: number;
 	max?: number;
 	value?: number;
 }
