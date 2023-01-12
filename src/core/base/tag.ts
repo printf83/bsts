@@ -282,20 +282,9 @@ export interface IData {
 	[key: string]: string | number | boolean;
 }
 
-export interface IAttr {
+export interface IGlobal {
 	id?: string;
-	// name?: string;
 	class?: string | string[];
-
-	data?: IData;
-	aria?: IAria;
-	on?: IEvent;
-	style?: IStyle;
-
-	//addtional
-	active?: boolean;
-
-	//html attribute [start]
 	accesskey?: string;
 	contenteditable?: "true";
 	dir?: string;
@@ -305,9 +294,15 @@ export interface IAttr {
 	tabindex?: string;
 	title?: string;
 	translate?: string;
-	//html attribute [end]
 
-	//bootstrap [start]
+	hidden?: boolean;
+	itemscope?: boolean;
+	nomodule?: boolean;
+	playsinline?: boolean;
+	truespeed?: boolean;
+}
+
+export interface IBootstrap {
 	userSelect?: bootstrapType.userSelect[number];
 	pointerEvent?: bootstrapType.pointerEvent[number];
 	position?: bootstrapType.position[number];
@@ -411,14 +406,16 @@ export interface IAttr {
 	row?: bootstrapType.row[number];
 	col?: bootstrapType.col[number] | bootstrapType.col[number][];
 	rowCol?: bootstrapType.rowCol[number] | bootstrapType.rowCol[number][];
-	//bootstrap [end]
+}
 
-	//boolean attr [start]
-	hidden?: boolean;
-	itemscope?: boolean;
-	nomodule?: boolean;
-	playsinline?: boolean;
-	truespeed?: boolean;
+export interface IAttr extends IGlobal, IBootstrap {
+	data?: IData;
+	aria?: IAria;
+	on?: IEvent;
+	style?: IStyle;
+
+	//addtional
+	active?: boolean;
 }
 
 export interface ITag {

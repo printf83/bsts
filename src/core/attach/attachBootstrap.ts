@@ -177,27 +177,32 @@ const allow = (key: string) => {
 	return false;
 };
 
-const addBSClass = (key: string, dbB: bootstrapAttachRule, i: string | number | boolean, elem: HTMLElement) => {
-	if (dbB.value!.findIndex((j) => i === j) > -1) {
-		if (dbB.formatValue) {
-			elem = addIntoClassList(elem, dbB.formatValue!);
+const addBootstrapClass = (
+	key: string,
+	rule: bootstrapAttachRule,
+	data: string | number | boolean,
+	elem: HTMLElement
+) => {
+	if (rule.value!.findIndex((i) => data === i) > -1) {
+		if (rule.formatValue) {
+			elem = addIntoClassList(elem, rule.formatValue!);
 		}
 
-		if (i === true) {
-			if (dbB.formatTrue) {
-				elem = addIntoClassList(elem, dbB.formatTrue!);
+		if (data === true) {
+			if (rule.formatTrue) {
+				elem = addIntoClassList(elem, rule.formatTrue!);
 			}
-		} else if (i === false) {
-			if (dbB.formatFalse) {
-				elem = addIntoClassList(elem, dbB.formatFalse!);
+		} else if (data === false) {
+			if (rule.formatFalse) {
+				elem = addIntoClassList(elem, rule.formatFalse!);
 			}
 		} else {
-			if (dbB.format) {
-				elem = addIntoClassList(elem, dbB.format!.replace(/\$1/g, i.toString()));
+			if (rule.format) {
+				elem = addIntoClassList(elem, rule.format!.replace(/\$1/g, data.toString()));
 			}
 		}
 	} else {
-		if (setting.DEBUG) console.warn(`${key}:"${i}" is not supported value for bootstrap property`);
+		if (setting.DEBUG) console.warn(`${key}:"${data}" is not supported value for bootstrap property`);
 	}
 
 	return elem;
@@ -209,11 +214,11 @@ export const attachBootstrap: IAttachFn = (key, elem, attr) => {
 		let b = keyOfType(key, db);
 
 		if (!Array.isArray(attr[a])) {
-			elem = addBSClass(key, db[b], attr[a] as string | number | boolean, elem);
+			elem = addBootstrapClass(key, db[b], attr[a] as string | number | boolean, elem);
 			delete attr[a];
 		} else {
 			(attr[a] as (string | number | boolean)[]).forEach((i) => {
-				elem = addBSClass(key, db[b], i, elem);
+				elem = addBootstrapClass(key, db[b], i, elem);
 			});
 
 			delete attr[a];
