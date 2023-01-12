@@ -7,7 +7,7 @@ export const attachData: IAttachFn = (key, elem, attr) => {
 			if (prop) {
 				for (let x = 0; x < prop.length; x++) {
 					if (attr.data[prop[x]]) {
-						elem.setAttribute(`data-${prop[x]}`, attr.data[prop[x]].toString());
+						elem.setAttribute(`data-${prop[x]}`, attr.data[prop[x]]!.toString());
 					}
 				}
 			}
