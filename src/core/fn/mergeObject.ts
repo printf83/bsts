@@ -1,4 +1,4 @@
-import { IAttr } from "../attach/_index.js";
+import { IAttr } from "../base/tag.js";
 import { mergeAttr } from "./mergeAttr.js";
 import { mergeClass } from "./mergeClass.js";
 
