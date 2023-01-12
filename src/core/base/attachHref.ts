@@ -1,4 +1,8 @@
-import { IAttachFn, IAttrHref } from "./index.js";
+import { IAttachFn, IAttr } from "./index.js";
+
+interface IAttrHref extends IAttr {
+	href?: string;
+}
 
 export const attachHref: IAttachFn = (key, elem, attr: IAttrHref) => {
 	if (key === "href") {

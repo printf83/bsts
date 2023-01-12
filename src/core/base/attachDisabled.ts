@@ -1,5 +1,9 @@
 import { addIntoClassList } from "../fn/addIntoClassList.js";
-import { IAttachFn, IAttrDisabled } from "./index.js";
+import { IAttachFn, IAttr } from "./index.js";
+
+interface IAttrDisabled extends IAttr {
+	disabled?: boolean;
+}
 
 export const attachDisabled: IAttachFn = (key, elem, attr: IAttrDisabled) => {
 	if (key === "disabled" && attr[key] === true) {

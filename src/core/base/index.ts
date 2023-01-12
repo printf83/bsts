@@ -437,330 +437,330 @@ export interface IAttr {
 	truespeed?: boolean;
 }
 
-export interface IAttrAccept extends IAttr {
-	accept?: string;
-}
-
-export interface IAttrAcceptCharset extends IAttr {
-	acceptCharset?: string;
-}
-
-export interface IAttrChecked extends IAttr {
-	checked?: boolean;
-}
-
-export interface IAttrAction extends IAttr {
-	action?: string;
-}
-
-export interface IAttrAlt extends IAttr {
-	alt?: string;
-}
-
-export interface IAttrAsync extends IAttr {
-	async?: boolean;
-}
-
-export interface IAttrAutocomplete extends IAttr {
-	autocomplete?: string;
-}
-
-export interface IAttrAutofocus extends IAttr {
-	autofocus?: boolean;
-}
-
-export interface IAttrAutoplay extends IAttr {
-	autoplay?: boolean;
-}
-
-export interface IAttrCharset extends IAttr {
-	charset?: string;
-}
-
-export interface IAttrCite extends IAttr {
-	cite?: string;
-}
-
-export interface IAttrCols extends IAttr {
-	cols?: string;
-}
-
-export interface IAttrColspan extends IAttr {
-	colspan?: string;
-}
-
-export interface IAttrContent extends IAttr {
-	content?: string;
-}
-
-export interface IAttrControls extends IAttr {
-	controls?: boolean;
-}
-
-export interface IAttrCoords extends IAttr {
-	coords?: string;
-}
-
-export interface IAttrDataText extends IAttr {
-	dataText?: string;
-}
-
-export interface IAttrDatetime extends IAttr {
-	datetime?: string;
-}
-
-export interface IAttrDefault extends IAttr {
-	default?: boolean;
-}
-
-export interface IAttrDefer extends IAttr {
-	defer?: boolean;
-}
-
-export interface IAttrDefer extends IAttr {
-	defer?: boolean;
-}
-
-export interface IAttrDirname extends IAttr {
-	dirname?: string;
-}
-
-export interface IAttrDisabled extends IAttr {
-	disabled?: boolean;
-}
-
-export interface IAttrDownload extends IAttr {
-	download?: string;
-}
-
-export interface IAttrEnctype extends IAttr {
-	enctype?: string;
-}
-
-export interface IAttrFor extends IAttr {
-	for?: string;
-}
-
-export interface IAttrForm extends IAttr {
-	form?: string;
-}
-
-export interface IAttrFormAction extends IAttr {
-	formaction?: string;
-}
-
-export interface IAttrFormnovalidate extends IAttr {
-	formnovalidate?: boolean;
-}
-
-export interface IAttrHeaders extends IAttr {
-	headers?: string;
-}
-
-export interface IAttrHigh extends IAttr {
-	high?: string;
-}
-
-export interface IAttrHref extends IAttr {
-	href?: string;
-}
-
-export interface IAttrHrefLang extends IAttr {
-	hreflang?: string;
-}
-
-export interface IAttrHttpEquiv extends IAttr {
-	httpEquiv?: string;
-}
-
-export interface IAttrIndeterminate extends IAttr {
-	indeterminate?: boolean;
-}
-
-export interface IAttrIsmap extends IAttr {
-	ismap?: boolean;
-}
-
-export interface IAttrKind extends IAttr {
-	kind?: string;
-}
-
-export interface IAttrLabel extends IAttr {
-	label?: string;
-}
-
-export interface IAttrList extends IAttr {
-	list?: string;
-}
-
-export interface IAttrLoop extends IAttr {
-	loop?: boolean;
-}
-
-export interface IAttrLow extends IAttr {
-	low?: string;
-}
-
-export interface IAttrMax extends IAttr {
-	max?: string;
-}
-
-export interface IAttrMaxlength extends IAttr {
-	maxlength?: string;
-}
-
-export interface IAttrMedia extends IAttr {
-	media?: string;
-}
-
-export interface IAttrMethod extends IAttr {
-	method?: string;
-}
-
-export interface IAttrMin extends IAttr {
-	min?: string;
-}
-
-export interface IAttrMultiple extends IAttr {
-	multiple?: boolean;
-}
-
-export interface IAttrMuted extends IAttr {
-	muted?: boolean;
-}
-
-export interface IAttrName extends IAttr {
-	name?: string;
-}
-
-export interface IAttrNovalidate extends IAttr {
-	novalidate?: boolean;
-}
-
-export interface IAttrOpen extends IAttr {
-	open?: boolean;
-}
-
-export interface IAttrOptimum extends IAttr {
-	optimum?: string;
-}
-
-export interface IAttrPattern extends IAttr {
-	pattern?: string;
-}
-
-export interface IAttrPlaceholderText extends IAttr {
-	placeholderText?: string;
-}
-
-export interface IAttrPoster extends IAttr {
-	poster?: string;
-}
-
-export interface IAttrPreload extends IAttr {
-	preload?: string;
-}
-
-export interface IAttrReadonly extends IAttr {
-	readonly?: boolean;
-}
-
-export interface IAttrRel extends IAttr {
-	rel?: string;
-}
-
-export interface IAttrRequired extends IAttr {
-	required?: boolean;
-}
-
-export interface IAttrReversed extends IAttr {
-	reversed?: boolean;
-}
-
-export interface IAttrRows extends IAttr {
-	rows?: string;
-}
-
-export interface IAttrRowspan extends IAttr {
-	rowspan?: string;
-}
-
-export interface IAttrSandbox extends IAttr {
-	sandbox?: boolean;
-}
-
-export interface IAttrScope extends IAttr {
-	scope?: string;
-}
-
-export interface IAttrSelected extends IAttr {
-	selected?: boolean;
-}
-
-export interface IAttrShape extends IAttr {
-	shape?: string;
-}
-
-export interface IAttrSize extends IAttr {
-	size?: string;
-}
-
-export interface IAttrSizes extends IAttr {
-	sizes?: string;
-}
-
-export interface IAttrSpan extends IAttr {
-	span?: string;
-}
-
-export interface IAttrSrc extends IAttr {
-	src?: string;
-}
-
-export interface IAttrSrcdoc extends IAttr {
-	srcdoc?: string;
-}
-
-export interface IAttrSrclang extends IAttr {
-	srclang?: string;
-}
-
-export interface IAttrSrcset extends IAttr {
-	srcset?: string;
-}
-
-export interface IAttrStartValue extends IAttr {
-	startValue?: string;
-}
-
-export interface IAttrStep extends IAttr {
-	step?: string;
-}
-
-export interface IAttrTarget extends IAttr {
-	target?: string;
-}
-
-export interface IAttrType extends IAttr {
-	type?: string;
-}
-
-export interface IAttrUsemap extends IAttr {
-	usemap?: string;
-}
-
-export interface IAttrValue extends IAttr {
-	value?: string;
-}
-
-export interface IAttrWarp extends IAttr {
-	wrap?: "hard";
-}
-
-export interface IAttrIframe extends IAttr {
-	allowfullscreen?: boolean;
-	allowpaymentrequest?: boolean;
-}
+// export interface IAttrAccept extends IAttr {
+// 	accept?: string;
+// }
+
+// export interface IAttrAcceptCharset extends IAttr {
+// 	acceptCharset?: string;
+// }
+
+// export interface IAttrChecked extends IAttr {
+// 	checked?: boolean;
+// }
+
+// export interface IAttrAction extends IAttr {
+// 	action?: string;
+// }
+
+// export interface IAttrAlt extends IAttr {
+// 	alt?: string;
+// }
+
+// export interface IAttrAsync extends IAttr {
+// 	async?: boolean;
+// }
+
+// export interface IAttrAutocomplete extends IAttr {
+// 	autocomplete?: string;
+// }
+
+// export interface IAttrAutofocus extends IAttr {
+// 	autofocus?: boolean;
+// }
+
+// export interface IAttrAutoplay extends IAttr {
+// 	autoplay?: boolean;
+// }
+
+// export interface IAttrCharset extends IAttr {
+// 	charset?: string;
+// }
+
+// export interface IAttrCite extends IAttr {
+// 	cite?: string;
+// }
+
+// export interface IAttrCols extends IAttr {
+// 	cols?: string;
+// }
+
+// export interface IAttrColspan extends IAttr {
+// 	colspan?: string;
+// }
+
+// export interface IAttrContent extends IAttr {
+// 	content?: string;
+// }
+
+// export interface IAttrControls extends IAttr {
+// 	controls?: boolean;
+// }
+
+// export interface IAttrCoords extends IAttr {
+// 	coords?: string;
+// }
+
+// export interface IAttrDataText extends IAttr {
+// 	dataText?: string;
+// }
+
+// export interface IAttrDatetime extends IAttr {
+// 	datetime?: string;
+// }
+
+// export interface IAttrDefault extends IAttr {
+// 	default?: boolean;
+// }
+
+// export interface IAttrDefer extends IAttr {
+// 	defer?: boolean;
+// }
+
+// export interface IAttrDefer extends IAttr {
+// 	defer?: boolean;
+// }
+
+// export interface IAttrDirname extends IAttr {
+// 	dirname?: string;
+// }
+
+// export interface IAttrDisabled extends IAttr {
+// 	disabled?: boolean;
+// }
+
+// export interface IAttrDownload extends IAttr {
+// 	download?: string;
+// }
+
+// export interface IAttrEnctype extends IAttr {
+// 	enctype?: string;
+// }
+
+// export interface IAttrFor extends IAttr {
+// 	for?: string;
+// }
+
+// export interface IAttrForm extends IAttr {
+// 	form?: string;
+// }
+
+// export interface IAttrFormAction extends IAttr {
+// 	formaction?: string;
+// }
+
+// export interface IAttrFormnovalidate extends IAttr {
+// 	formnovalidate?: boolean;
+// }
+
+// export interface IAttrHeaders extends IAttr {
+// 	headers?: string;
+// }
+
+// export interface IAttrHigh extends IAttr {
+// 	high?: string;
+// }
+
+// export interface IAttrHref extends IAttr {
+// 	href?: string;
+// }
+
+// export interface IAttrHrefLang extends IAttr {
+// 	hreflang?: string;
+// }
+
+// export interface IAttrHttpEquiv extends IAttr {
+// 	httpEquiv?: string;
+// }
+
+// export interface IAttrIndeterminate extends IAttr {
+// 	indeterminate?: boolean;
+// }
+
+// export interface IAttrIsmap extends IAttr {
+// 	ismap?: boolean;
+// }
+
+// export interface IAttrKind extends IAttr {
+// 	kind?: string;
+// }
+
+// export interface IAttrLabel extends IAttr {
+// 	label?: string;
+// }
+
+// export interface IAttrList extends IAttr {
+// 	list?: string;
+// }
+
+// export interface IAttrLoop extends IAttr {
+// 	loop?: boolean;
+// }
+
+// export interface IAttrLow extends IAttr {
+// 	low?: string;
+// }
+
+// export interface IAttrMax extends IAttr {
+// 	max?: string;
+// }
+
+// export interface IAttrMaxlength extends IAttr {
+// 	maxlength?: string;
+// }
+
+// export interface IAttrMedia extends IAttr {
+// 	media?: string;
+// }
+
+// export interface IAttrMethod extends IAttr {
+// 	method?: string;
+// }
+
+// export interface IAttrMin extends IAttr {
+// 	min?: string;
+// }
+
+// export interface IAttrMultiple extends IAttr {
+// 	multiple?: boolean;
+// }
+
+// export interface IAttrMuted extends IAttr {
+// 	muted?: boolean;
+// }
+
+// export interface IAttrName extends IAttr {
+// 	name?: string;
+// }
+
+// export interface IAttrNovalidate extends IAttr {
+// 	novalidate?: boolean;
+// }
+
+// export interface IAttrOpen extends IAttr {
+// 	open?: boolean;
+// }
+
+// export interface IAttrOptimum extends IAttr {
+// 	optimum?: string;
+// }
+
+// export interface IAttrPattern extends IAttr {
+// 	pattern?: string;
+// }
+
+// export interface IAttrPlaceholderText extends IAttr {
+// 	placeholderText?: string;
+// }
+
+// export interface IAttrPoster extends IAttr {
+// 	poster?: string;
+// }
+
+// export interface IAttrPreload extends IAttr {
+// 	preload?: string;
+// }
+
+// export interface IAttrReadonly extends IAttr {
+// 	readonly?: boolean;
+// }
+
+// export interface IAttrRel extends IAttr {
+// 	rel?: string;
+// }
+
+// export interface IAttrRequired extends IAttr {
+// 	required?: boolean;
+// }
+
+// export interface IAttrReversed extends IAttr {
+// 	reversed?: boolean;
+// }
+
+// export interface IAttrRows extends IAttr {
+// 	rows?: string;
+// }
+
+// export interface IAttrRowspan extends IAttr {
+// 	rowspan?: string;
+// }
+
+// export interface IAttrSandbox extends IAttr {
+// 	sandbox?: boolean;
+// }
+
+// export interface IAttrScope extends IAttr {
+// 	scope?: string;
+// }
+
+// export interface IAttrSelected extends IAttr {
+// 	selected?: boolean;
+// }
+
+// export interface IAttrShape extends IAttr {
+// 	shape?: string;
+// }
+
+// export interface IAttrSize extends IAttr {
+// 	size?: string;
+// }
+
+// export interface IAttrSizes extends IAttr {
+// 	sizes?: string;
+// }
+
+// export interface IAttrSpan extends IAttr {
+// 	span?: string;
+// }
+
+// export interface IAttrSrc extends IAttr {
+// 	src?: string;
+// }
+
+// export interface IAttrSrcdoc extends IAttr {
+// 	srcdoc?: string;
+// }
+
+// export interface IAttrSrclang extends IAttr {
+// 	srclang?: string;
+// }
+
+// export interface IAttrSrcset extends IAttr {
+// 	srcset?: string;
+// }
+
+// export interface IAttrStartValue extends IAttr {
+// 	startValue?: string;
+// }
+
+// export interface IAttrStep extends IAttr {
+// 	step?: string;
+// }
+
+// export interface IAttrTarget extends IAttr {
+// 	target?: string;
+// }
+
+// export interface IAttrType extends IAttr {
+// 	type?: string;
+// }
+
+// export interface IAttrUsemap extends IAttr {
+// 	usemap?: string;
+// }
+
+// export interface IAttrValue extends IAttr {
+// 	value?: string;
+// }
+
+// export interface IAttrWarp extends IAttr {
+// 	wrap?: "hard";
+// }
+
+// export interface IAttrIframe extends IAttr {
+// 	allowfullscreen?: boolean;
+// 	allowpaymentrequest?: boolean;
+// }
 
 export interface ITag {
 	tag: string;

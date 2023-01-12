@@ -1,7 +1,7 @@
-import { IAttrMedia, IAttrType } from "../core/base/index.js";
+import { IAttr } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagStyle extends IAttrMedia, IAttrType {
+export interface IAttrTagStyle extends IAttr {
 	media?: string;
 	type?: "text/css";
 }
