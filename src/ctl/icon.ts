@@ -3,9 +3,11 @@ import { IAttr, IElem } from "../core/base/index.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { tag } from "../tag/index.js";
 
+type IAttrIconType = "fab" | "fas" | "far" | "fad" | "fal";
+
 export interface IAttrIcon extends IAttr {
 	icon?: string;
-	type?: "fab" | "fas" | "far" | "fad" | "fal";
+	type?: IAttrIconType;
 	color?: bs.color[number];
 	weight?: "2xs" | "xs" | "sm" | "lg" | "xl" | "2xl";
 	fixwidth?: boolean;
@@ -21,8 +23,6 @@ export interface IAttrIcon extends IAttr {
 }
 
 const convert = (a: IAttrIcon): IAttrIcon => {
-	// attr.class = mergeClass(attr.class, [attr.type, `fa-${attr.icon}`]);
-
 	a = mergeObject(a, {
 		class: [
 			a.type ? a.type : a.icon ? `fas` : ``,
@@ -77,10 +77,7 @@ export class icon extends tag {
 		} else if (arg.length === 1) {
 			if (typeof arg[0] === "string") {
 				//#2
-				let a: IAttr = {
-					class: ["fas", `fa-${arg[0]}`],
-				};
-				super("i", a, []);
+				super("i", convert({ icon: arg[0] }), []);
 			} else {
 				//#3
 				super(arg[0].stack === true ? "span" : "i", convert(arg[0]), []);
@@ -88,10 +85,7 @@ export class icon extends tag {
 		} else if (arg.length === 2) {
 			if (typeof arg[0] === "string") {
 				//#4
-				let a: IAttr = {
-					class: [arg[0], `fa-${arg[1]}`],
-				};
-				super("i", a, []);
+				super("i", convert({ type: arg[0] as IAttrIconType, icon: arg[1] }), []);
 			} else {
 				//#5
 				super(arg[0].stack === true ? "span" : "i", convert(arg[0]), arg[1]);
