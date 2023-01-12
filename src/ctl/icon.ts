@@ -1,7 +1,7 @@
 import { bs } from "../core/base/attachBootstrap.js";
 import { IAttr, IElem } from "../core/base/index.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
-import { i } from "../tag/i.js";
+import { tag } from "../tag/index.js";
 
 export interface IAttrIcon extends IAttr {
 	icon?: string;
@@ -64,7 +64,7 @@ const convert = (a: IAttrIcon): IAttrIcon => {
 	return a;
 };
 
-export class icon extends i {
+export class icon extends tag {
 	constructor(); //#1
 	constructor(icon: string); //#2
 	constructor(attr: IAttrIcon); //#3
@@ -73,17 +73,17 @@ export class icon extends i {
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
-			super();
+			super("i");
 		} else if (arg.length === 1) {
 			if (typeof arg[0] === "string") {
 				//#2
 				let a: IAttr = {
 					class: ["fas", `fa-${arg[0]}`],
 				};
-				super(a, []);
+				super("i", a, []);
 			} else {
 				//#3
-				super(convert(arg[0]), []);
+				super(arg[0].stack === true ? "span" : "i", convert(arg[0]), []);
 			}
 		} else if (arg.length === 2) {
 			if (typeof arg[0] === "string") {
@@ -91,10 +91,10 @@ export class icon extends i {
 				let a: IAttr = {
 					class: [arg[0], `fa-${arg[1]}`],
 				};
-				super(a, []);
+				super("i", a, []);
 			} else {
 				//#5
-				super(convert(arg[0]), arg[1]);
+				super(arg[0].stack === true ? "span" : "i", convert(arg[0]), arg[1]);
 			}
 		}
 	}

@@ -82,7 +82,7 @@ core.documentReady(() => {
 			new $h.div(
 				{ row: true },
 				new $h.div({ col: true }, [
-					new $h.span({ class: ["fa-stack", "fa-2x"] }, [
+					new $b.icon({ stack: true, weight: "2xl" }, [
 						new $b.icon({ icon: "square", stack: 2, color: "primary" }),
 						new $b.icon({ type: "fab", icon: "twitter", stack: 1, inverse: true }),
 					]),
