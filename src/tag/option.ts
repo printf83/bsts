@@ -1,11 +1,18 @@
-import { IAttrDisabled, IAttrLabel, IAttrSelected, IAttrValue, IElem } from "../core/base/index.js";
+import { IAttr, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagOption extends IAttrDisabled, IAttrLabel, IAttrSelected, IAttrValue {}
+export interface IAttrTagOption extends IAttr {
+	disabled?: boolean;
+	label?: string;
+	selected?: boolean;
+	value?: string;
+}
 
 export class option extends tag {
 	constructor();
+	constructor(elem: string);
 	constructor(elem: IElem);
+	constructor(value: string, elem: string);
 	constructor(attr: IAttrTagOption, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
@@ -13,7 +20,11 @@ export class option extends tag {
 		} else if (arg.length === 1) {
 			super("option", undefined, arg[0]);
 		} else if (arg.length === 2) {
-			super("option", arg[0], arg[1]);
+			if (typeof arg[0] === "string") {
+				super("option", { value: arg[0] } as IAttrTagOption, arg[1]);
+			} else {
+				super("option", arg[0], arg[1]);
+			}
 		}
 	}
 }

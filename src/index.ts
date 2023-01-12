@@ -60,6 +60,7 @@ import { th } from "./tag/th.js";
 import { time } from "./tag/time.js";
 import { track } from "./tag/track.js";
 import { video } from "./tag/video.js";
+import { legend } from "./tag/legend.js";
 
 const html = {
 	a,
@@ -89,6 +90,7 @@ const html = {
 	input,
 	ins,
 	label,
+	legend,
 	li,
 	link,
 	map,

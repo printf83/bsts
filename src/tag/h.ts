@@ -1,13 +1,13 @@
 import { IAttr, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-type IHLevel = 1 | 2 | 3 | 4 | 5 | 6;
+type HLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
 export class h extends tag {
 	constructor();
-	constructor(level: IHLevel);
-	constructor(level: IHLevel, elem: IElem);
-	constructor(level: IHLevel, attr: IAttr, elem: IElem);
+	constructor(level: HLevel);
+	constructor(level: HLevel, elem: IElem);
+	constructor(level: HLevel, attr: IAttr, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("h1");

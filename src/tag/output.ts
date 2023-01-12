@@ -1,7 +1,11 @@
-import { IAttrFor, IAttrForm, IAttrName, IElem } from "../core/base/index.js";
+import { IAttr, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagOutput extends IAttrFor, IAttrForm, IAttrName {}
+export interface IAttrTagOutput extends IAttr {
+	for?: string;
+	from?: string;
+	name?: string;
+}
 
 export class output extends tag {
 	constructor();

@@ -1,7 +1,11 @@
-import { IAttrDisabled, IAttrForm, IAttrName, IElem } from "../core/base/index.js";
+import { IAttr, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagFieldset extends IAttrDisabled, IAttrForm, IAttrName {}
+export interface IAttrTagFieldset extends IAttr {
+	disabled?: boolean;
+	form?: string;
+	name?: string;
+}
 
 export class fieldset extends tag {
 	constructor();

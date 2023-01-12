@@ -1,7 +1,10 @@
-import { IAttrReversed, IAttrStartValue, IElem } from "../core/base/index.js";
+import { IAttr, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagOl extends IAttrReversed, IAttrStartValue {}
+export interface IAttrTagOl extends IAttr {
+	reversed?: boolean;
+	startValue?: number;
+}
 
 export class ol extends tag {
 	constructor();

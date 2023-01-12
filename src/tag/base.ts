@@ -1,8 +1,11 @@
-import { IAttrHref, IAttrTarget } from "../core/base/index.js";
+import { IAttr } from "../core/base/index.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagBase extends IAttrHref, IAttrTarget {}
+export interface IAttrTagBase extends IAttr {
+	href?: string;
+	target?: "_blank" | "_parent" | "_self" | "_top";
+}
 
 export class base extends tag {
 	constructor();

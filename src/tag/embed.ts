@@ -1,8 +1,11 @@
-import { IAttrSrc, IAttrType } from "../core/base/index.js";
+import { IAttr } from "../core/base/index.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagEmbed extends IAttrSrc, IAttrType {}
+export interface IAttrTagEmbed extends IAttr {
+	src?: string;
+	type?: string;
+}
 
 export class embed extends tag {
 	constructor();

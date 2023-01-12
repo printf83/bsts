@@ -1,8 +1,11 @@
-import { IAttrName, IAttrValue } from "../core/base/index.js";
+import { IAttr } from "../core/base/index.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagParam extends IAttrName, IAttrValue {}
+export interface IAttrTagParam extends IAttr {
+	name?: string;
+	value?: string;
+}
 
 export class param extends tag {
 	constructor();

@@ -1,7 +1,15 @@
-import { IAttrForm, IAttrHigh, IAttrLow, IAttrMin, IAttrOptimum, IAttrValue, IElem } from "../core/base/index.js";
+import { IAttr, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagMeter extends IAttrForm, IAttrHigh, IAttrLow, IAttrMin, IAttrOptimum, IAttrValue {}
+export interface IAttrTagMeter extends IAttr {
+	form?: string;
+	high?: number;
+	low?: number;
+	max?: number;
+	min?: number;
+	optimum?: number;
+	value?: number;
+}
 
 export class meter extends tag {
 	constructor();

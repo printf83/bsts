@@ -1,8 +1,14 @@
-import { IAttrMedia, IAttrSizes, IAttrSrc, IAttrSrcset, IAttrType } from "../core/base/index.js";
+import { IAttr } from "../core/base/index.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagSource extends IAttrMedia, IAttrSrc, IAttrSizes, IAttrSrcset, IAttrType {}
+export interface IAttrTagSource extends IAttr {
+	media?: string;
+	sizes?: string;
+	src?: string;
+	srcset?: string;
+	type?: string;
+}
 
 export class source extends tag {
 	constructor();

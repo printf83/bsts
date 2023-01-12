@@ -1,7 +1,14 @@
-import { IAttrDataText, IAttrName, IAttrType, IAttrUsemap, IElem } from "../core/base/index.js";
+import { IAttr, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagObj extends IAttrName, IAttrDataText, IAttrType, IAttrUsemap {}
+export interface IAttrTagObj extends IAttr {
+	dataText?: string;
+	form?: string;
+	name?: string;
+	type?: string;
+	typemustmatch?: boolean;
+	usemap?: string;
+}
 
 export class obj extends tag {
 	constructor();

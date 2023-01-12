@@ -1,7 +1,9 @@
-import { IAttrSpan } from "../core/base/index.js";
+import { IAttr } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagCol extends IAttrSpan {}
+export interface IAttrTagCol extends IAttr {
+	span?: number;
+}
 
 export class col extends tag {
 	constructor();

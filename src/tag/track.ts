@@ -1,7 +1,13 @@
-import { IAttrDefault, IAttrKind, IAttrLabel, IAttrSrc, IAttrSrclang, IElem } from "../core/base/index.js";
+import { IAttr, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagTrack extends IAttrDefault, IAttrKind, IAttrLabel, IAttrSrc, IAttrSrclang {}
+export interface IAttrTagTrack extends IAttr {
+	default?: boolean;
+	kind?: "captions" | "chapters" | "descriptions" | "metadata" | "subtitles";
+	label?: string;
+	src?: string;
+	srclang?: string;
+}
 
 export class track extends tag {
 	constructor();

@@ -1,7 +1,9 @@
-import { IAttrOpen, IElem } from "../core/base/index.js";
+import { IAttr, IAttrOpen, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagDetails extends IAttrOpen {}
+export interface IAttrTagDetails extends IAttr {
+	open?: boolean;
+}
 
 export class details extends tag {
 	constructor();

@@ -1,8 +1,31 @@
-import { IAttrName, IAttrSandbox, IAttrSrc, IAttrSrcdoc } from "../core/base/index.js";
+import { IAttr } from "../core/base/index.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagIframe extends IAttrName, IAttrSrc, IAttrSandbox, IAttrSrcdoc {}
+export interface IAttrTagIframe extends IAttr {
+	allowfullscreen?: boolean;
+	allowpaymentrequest?: boolean;
+	loading?: "eager" | "lazy";
+	name?: string;
+	referrerpolicy?:
+		| "no-referrer"
+		| "no-referrer-when-downgrade"
+		| "origin"
+		| "origin-when-cross-origin"
+		| "same-origin"
+		| "strict-origin"
+		| "strict-origin-when-cross-origin"
+		| "unsafe-url";
+	sandbox?:
+		| "allow-forms"
+		| "allow-pointer-lock"
+		| "allow-popups"
+		| "allow-same-origin"
+		| "allow-scripts"
+		| "allow-top-navigation";
+	src?: string;
+	srcdoc?: string;
+}
 
 export class iframe extends tag {
 	constructor();

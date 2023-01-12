@@ -1,7 +1,9 @@
-import { IAttrDatetime, IElem } from "../core/base/index.js";
+import { IAttr, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagTime extends IAttrDatetime {}
+export interface IAttrTagTime extends IAttr {
+	datetime?: Date;
+}
 
 export class time extends tag {
 	constructor();

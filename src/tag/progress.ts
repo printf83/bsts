@@ -1,7 +1,11 @@
-import { IAttrMax, IAttrValue, IElem } from "../core/base/index.js";
+import { IAttr, IElem } from "../core/base/index.js";
 import { tag } from "./index.js";
 
-export interface IAttrTagProgress extends IAttrMax, IAttrValue {}
+export interface IAttrTagProgress extends IAttr {
+	min?: number;
+	max?: number;
+	value?: number;
+}
 
 export class progress extends tag {
 	constructor();
