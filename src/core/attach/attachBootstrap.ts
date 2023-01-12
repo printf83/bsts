@@ -2,29 +2,9 @@ import { keyOfType } from "./../fn/keyOfType.js";
 import { addIntoClassList } from "../fn/addIntoClassList.js";
 import { setting } from "../fn/setting.js";
 import { IAttachFn } from "./_index.js";
-import { bootstrapBase } from "../base/bootstrap.js";
+import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB } from "../base/bootstrap.js";
 
-export interface IBootstrapAttachRule {
-	format?: string | null;
-	value?: (string | number | boolean)[] | null;
-	formatValue?: string | null;
-	formatTrue?: string | null;
-	formatFalse?: string | null;
-	shared?: boolean;
-}
-
-export class bootstrapAttachRule implements IBootstrapAttachRule {
-	constructor(
-		public format?: string | null,
-		public value?: (string | number | boolean)[],
-		public formatValue?: string | null,
-		public formatTrue?: string | null,
-		public formatFalse?: string | null,
-		public shared: boolean = false
-	) {}
-}
-
-const db = {
+const db: bootstrapRuleDB = {
 	userSelect: new bootstrapAttachRule("user-select-$1", bootstrapBase.userSelect.concat(), null, null, null, true),
 	pointerEvent: new bootstrapAttachRule("pe-$1", bootstrapBase.pointerEvent.concat()),
 	position: new bootstrapAttachRule("position-$1", bootstrapBase.position.concat(), null, null, null, true),
@@ -37,8 +17,6 @@ const db = {
 	bgOpacity: new bootstrapAttachRule("bg-opacity-$1", bootstrapBase.bgOpacity.concat()),
 	textOpacity: new bootstrapAttachRule("text-opacity-$1", bootstrapBase.textOpacity.concat()),
 
-	btnColor: new bootstrapAttachRule("btn-$1", bootstrapBase.btnColor.concat()),
-	btnOutlineColor: new bootstrapAttachRule("btn-outline-$1", bootstrapBase.btnOutlineColor.concat()),
 	alertColor: new bootstrapAttachRule("alert-$1", bootstrapBase.alertColor.concat()),
 
 	textBgColor: new bootstrapAttachRule("text-bg-$1", bootstrapBase.textBgColor.concat()),
@@ -212,18 +190,64 @@ export const attachBootstrap: IAttachFn = (key, elem, attr) => {
 	if (allow(key)) {
 		let a = keyOfType(key, attr);
 		let b = keyOfType(key, db);
+		let data: (string | number | boolean)[] = [];
 
 		if (!Array.isArray(attr[a])) {
-			elem = addBootstrapClass(key, db[b], attr[a] as string | number | boolean, elem);
-			delete attr[a];
+			data = [attr[a] as string | number | boolean];
 		} else {
-			(attr[a] as (string | number | boolean)[]).forEach((i) => {
-				elem = addBootstrapClass(key, db[b], i, elem);
-			});
-
-			delete attr[a];
+			data = attr[a] as (string | number | boolean)[];
 		}
+
+		data.forEach((i) => {
+			elem = addBootstrapClass(key, db[b], i, elem);
+		});
+
+		delete attr[a];
 	}
 
 	return { attr, elem };
+};
+
+export const genBootstrapClass = (
+	key: string,
+	rule: bootstrapAttachRule,
+	value: string | number | boolean | (string | number | boolean)[]
+) => {
+	let result: string[] = [];
+
+	if (value) {
+		//convert to array
+		let data: (string | number | boolean)[] = [];
+		if (!Array.isArray(value)) {
+			data = [value];
+		} else {
+			data = value;
+		}
+
+		data.forEach((d) => {
+			if (rule.value!.findIndex((i) => d === i) > -1) {
+				if (rule.formatValue) {
+					result.push(rule.formatValue!);
+				}
+
+				if (d === true) {
+					if (rule.formatTrue) {
+						result.push(rule.formatTrue!);
+					}
+				} else if (d === false) {
+					if (rule.formatFalse) {
+						result.push(rule.formatFalse!);
+					}
+				} else {
+					if (rule.format) {
+						result.push(rule.format!.replace(/\$1/g, d.toString()));
+					}
+				}
+			} else {
+				if (setting.DEBUG) console.warn(`${key}:"${d}" is not supported value for bootstrap property`);
+			}
+		});
+	}
+
+	return result;
 };

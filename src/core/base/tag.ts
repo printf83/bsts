@@ -188,6 +188,8 @@ export interface IStyle {
 	wordWrap?: string;
 	widows?: string;
 	zIndex?: string;
+
+	[key: string]: string | undefined;
 }
 
 export interface IEvent {
@@ -275,11 +277,11 @@ export interface IEvent {
 }
 
 export interface IAria {
-	[key: string]: string | number | boolean;
+	[key: string]: string | number | boolean | undefined;
 }
 
 export interface IData {
-	[key: string]: string | number | boolean;
+	[key: string]: string | number | boolean | undefined;
 }
 
 export interface IGlobal {

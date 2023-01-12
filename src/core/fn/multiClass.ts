@@ -1,4 +1,4 @@
-import { bootstrapAttachRule } from "./../attach/attachBootstrap";
+import { bootstrapAttachRule } from "../base/bootstrap.js";
 import { genClassList } from "./genClassList.js";
 import { setting } from "./setting.js";
 

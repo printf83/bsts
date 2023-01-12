@@ -595,7 +595,17 @@ export namespace bootstrapBase {
 		"xxl-12",
 	] as const;
 
-	export const color = ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"] as const;
+	export const color = [
+		"primary",
+		"secondary",
+		"success",
+		"danger",
+		"warning",
+		"info",
+		"light",
+		"dark",
+		"link",
+	] as const;
 
 	export const positionView = [
 		"start",
@@ -904,4 +914,28 @@ export namespace bootstrapType {
 
 	export type print = typeof bootstrapBase.print;
 	export type container = typeof bootstrapBase.container;
+}
+
+export interface IBootstrapAttachRule {
+	format?: string | null;
+	value?: (string | number | boolean)[] | null;
+	formatValue?: string | null;
+	formatTrue?: string | null;
+	formatFalse?: string | null;
+	shared?: boolean;
+}
+
+export class bootstrapAttachRule implements IBootstrapAttachRule {
+	constructor(
+		public format?: string | null,
+		public value?: (string | number | boolean)[],
+		public formatValue?: string | null,
+		public formatTrue?: string | null,
+		public formatFalse?: string | null,
+		public shared: boolean = false
+	) {}
+}
+
+export interface bootstrapRuleDB {
+	[key: string]: bootstrapAttachRule;
 }

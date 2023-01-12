@@ -88,6 +88,14 @@ core.documentReady(() => {
 					]),
 				])
 			),
+			new $h.div(
+				{ row: true },
+				new $h.div({ col: true }, [
+					new $b.button(),
+					new $b.button("Hello World"),
+					new $b.button({ color: "danger" }, "Hello World"),
+				])
+			),
 		]),
 	]);
 });
