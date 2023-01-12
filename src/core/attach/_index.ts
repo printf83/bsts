@@ -11,9 +11,9 @@ import { attachBootstrap } from "./attachBootstrap.js";
 import { attachEvent } from "./attachEvent.js";
 import { attachStyle } from "./attachStyle.js";
 import { attachClass } from "./attachClass.js";
-import { bs } from "./attachBootstrap.js";
 import { attachAlias } from "./attachAlias.js";
 import { extend } from "../fn/extend.js";
+import { bootstrapType } from "../fn/bootstrap.js";
 
 export interface IStyle {
 	alignContent?: string;
@@ -323,109 +323,109 @@ export interface IAttr {
 	//html attribute [end]
 
 	//bootstrap [start]
-	userSelect?: bs.userSelect[number];
-	pointerEvent?: bs.pointerEvent[number];
-	position?: bs.position[number];
-	overflow?: bs.overflow[number];
+	userSelect?: bootstrapType.userSelect[number];
+	pointerEvent?: bootstrapType.pointerEvent[number];
+	position?: bootstrapType.position[number];
+	overflow?: bootstrapType.overflow[number];
 
-	textAlign?: bs.textAlign[number];
-	verticalAlign?: bs.verticalAlign[number];
+	textAlign?: bootstrapType.textAlign[number];
+	verticalAlign?: bootstrapType.verticalAlign[number];
 
-	opacity?: bs.opacity[number];
-	bgOpacity?: bs.bgOpacity[number];
-	textOpacity?: bs.textOpacity[number];
+	opacity?: bootstrapType.opacity[number];
+	bgOpacity?: bootstrapType.bgOpacity[number];
+	textOpacity?: bootstrapType.textOpacity[number];
 
-	btnColor?: bs.btnColor[number];
-	btnOutlineColor?: bs.btnOutlineColor[number];
-	alertColor?: bs.alertColor[number];
+	btnColor?: bootstrapType.btnColor[number];
+	btnOutlineColor?: bootstrapType.btnOutlineColor[number];
+	alertColor?: bootstrapType.alertColor[number];
 
-	textBgColor?: bs.textBgColor[number];
-	textColor?: bs.textColor[number];
-	linkColor?: bs.linkColor[number];
-	bgColor?: bs.bgColor[number];
+	textBgColor?: bootstrapType.textBgColor[number];
+	textColor?: bootstrapType.textColor[number];
+	linkColor?: bootstrapType.linkColor[number];
+	bgColor?: bootstrapType.bgColor[number];
 
-	textTransform?: bs.textTransform[number];
-	textDecoration?: bs.textDecoration[number];
-	lineHeight?: bs.lineHeight[number];
+	textTransform?: bootstrapType.textTransform[number];
+	textDecoration?: bootstrapType.textDecoration[number];
+	lineHeight?: bootstrapType.lineHeight[number];
 
-	fontSize?: bs.fontSize[number];
-	fontWeight?: bs.fontWeight[number];
+	fontSize?: bootstrapType.fontSize[number];
+	fontWeight?: bootstrapType.fontWeight[number];
 
-	top?: bs.top[number];
-	bottom?: bs.bottom[number];
-	start?: bs.start[number];
-	end?: bs.end[number];
-	tMiddle?: bs.tMiddle[number];
+	top?: bootstrapType.top[number];
+	bottom?: bootstrapType.bottom[number];
+	start?: bootstrapType.start[number];
+	end?: bootstrapType.end[number];
+	tMiddle?: bootstrapType.tMiddle[number];
 
-	height?: bs.height[number];
-	width?: bs.width[number];
-	maxHeight?: bs.maxHeight[number];
-	maxWidth?: bs.maxWidth[number];
-	minViewHeight?: bs.minViewHeight[number];
-	minViewWidth?: bs.minViewWidth[number];
-	viewHeight?: bs.viewHeight[number];
-	viewWidth?: bs.viewWidth[number];
+	height?: bootstrapType.height[number];
+	width?: bootstrapType.width[number];
+	maxHeight?: bootstrapType.maxHeight[number];
+	maxWidth?: bootstrapType.maxWidth[number];
+	minViewHeight?: bootstrapType.minViewHeight[number];
+	minViewWidth?: bootstrapType.minViewWidth[number];
+	viewHeight?: bootstrapType.viewHeight[number];
+	viewWidth?: bootstrapType.viewWidth[number];
 
-	placeholder?: bs.placeholder[number];
-	placeholderAnimation?: bs.placeholderAnimation[number];
-	placeholderWeight?: bs.placeholderWeight[number];
+	placeholder?: bootstrapType.placeholder[number];
+	placeholderAnimation?: bootstrapType.placeholderAnimation[number];
+	placeholderWeight?: bootstrapType.placeholderWeight[number];
 
-	shadow?: bs.shadow[number];
+	shadow?: bootstrapType.shadow[number];
 
-	border?: bs.border[number];
-	borderNone?: bs.borderNone[number];
-	borderColor?: bs.borderColor[number];
-	borderOpacity?: bs.borderOpacity[number];
-	borderWidth?: bs.borderWidth[number];
+	border?: bootstrapType.border[number];
+	borderNone?: bootstrapType.borderNone[number];
+	borderColor?: bootstrapType.borderColor[number];
+	borderOpacity?: bootstrapType.borderOpacity[number];
+	borderWidth?: bootstrapType.borderWidth[number];
 
-	rounded?: bs.rounded[number];
-	roundedNone?: bs.roundedNone[number];
-	roundedSize?: bs.roundedSize[number];
+	rounded?: bootstrapType.rounded[number];
+	roundedNone?: bootstrapType.roundedNone[number];
+	roundedSize?: bootstrapType.roundedSize[number];
 
-	padding?: bs.padding[number] | bs.padding[number][];
-	paddingX?: bs.paddingX[number] | bs.paddingX[number][];
-	paddingY?: bs.paddingY[number] | bs.paddingY[number][];
-	paddingTop?: bs.paddingTop[number] | bs.paddingTop[number][];
-	paddingBottom?: bs.paddingBottom[number] | bs.paddingBottom[number][];
-	paddingStart?: bs.paddingStart[number] | bs.paddingStart[number][];
-	paddingEnd?: bs.paddingEnd[number] | bs.paddingEnd[number][];
+	padding?: bootstrapType.padding[number] | bootstrapType.padding[number][];
+	paddingX?: bootstrapType.paddingX[number] | bootstrapType.paddingX[number][];
+	paddingY?: bootstrapType.paddingY[number] | bootstrapType.paddingY[number][];
+	paddingTop?: bootstrapType.paddingTop[number] | bootstrapType.paddingTop[number][];
+	paddingBottom?: bootstrapType.paddingBottom[number] | bootstrapType.paddingBottom[number][];
+	paddingStart?: bootstrapType.paddingStart[number] | bootstrapType.paddingStart[number][];
+	paddingEnd?: bootstrapType.paddingEnd[number] | bootstrapType.paddingEnd[number][];
 
-	margin?: bs.margin[number] | bs.margin[number][];
-	marginX?: bs.marginX[number] | bs.marginX[number][];
-	marginY?: bs.marginY[number] | bs.marginY[number][];
-	marginTop?: bs.marginTop[number] | bs.marginTop[number][];
-	marginBottom?: bs.marginBottom[number] | bs.marginBottom[number][];
-	marginStart?: bs.marginStart[number] | bs.marginStart[number][];
-	marginEnd?: bs.marginEnd[number] | bs.marginEnd[number][];
+	margin?: bootstrapType.margin[number] | bootstrapType.margin[number][];
+	marginX?: bootstrapType.marginX[number] | bootstrapType.marginX[number][];
+	marginY?: bootstrapType.marginY[number] | bootstrapType.marginY[number][];
+	marginTop?: bootstrapType.marginTop[number] | bootstrapType.marginTop[number][];
+	marginBottom?: bootstrapType.marginBottom[number] | bootstrapType.marginBottom[number][];
+	marginStart?: bootstrapType.marginStart[number] | bootstrapType.marginStart[number][];
+	marginEnd?: bootstrapType.marginEnd[number] | bootstrapType.marginEnd[number][];
 
-	gap?: bs.gap[number] | bs.gap[number][];
-	gutter?: bs.gutter[number] | bs.gutter[number];
-	gutterX?: bs.gutterX[number] | bs.gutterX[number][];
-	gutterY?: bs.gutterY[number] | bs.gutterY[number][];
+	gap?: bootstrapType.gap[number] | bootstrapType.gap[number][];
+	gutter?: bootstrapType.gutter[number] | bootstrapType.gutter[number];
+	gutterX?: bootstrapType.gutterX[number] | bootstrapType.gutterX[number][];
+	gutterY?: bootstrapType.gutterY[number] | bootstrapType.gutterY[number][];
 
-	display?: bs.display[number] | bs.display[number][];
-	print?: bs.print[number] | bs.print[number];
-	container?: bs.container[number];
+	display?: bootstrapType.display[number] | bootstrapType.display[number][];
+	print?: bootstrapType.print[number] | bootstrapType.print[number];
+	container?: bootstrapType.container[number];
 
-	flex?: bs.flex[number] | bs.flex[number][];
-	float?: bs.float[number] | bs.float[number][];
-	order?: bs.order[number] | bs.order[number][];
-	offset?: bs.offset[number] | bs.offset[number][];
+	flex?: bootstrapType.flex[number] | bootstrapType.flex[number][];
+	float?: bootstrapType.float[number] | bootstrapType.float[number][];
+	order?: bootstrapType.order[number] | bootstrapType.order[number][];
+	offset?: bootstrapType.offset[number] | bootstrapType.offset[number][];
 
-	alignContent?: bs.alignContent[number] | bs.alignContent[number][];
-	justifyContent?: bs.justifyContent[number] | bs.justifyContent[number][];
-	alignItem?: bs.alignItem[number] | bs.alignItem[number][];
-	alignSelf?: bs.alignSelf[number] | bs.alignSelf[number][];
+	alignContent?: bootstrapType.alignContent[number] | bootstrapType.alignContent[number][];
+	justifyContent?: bootstrapType.justifyContent[number] | bootstrapType.justifyContent[number][];
+	alignItem?: bootstrapType.alignItem[number] | bootstrapType.alignItem[number][];
+	alignSelf?: bootstrapType.alignSelf[number] | bootstrapType.alignSelf[number][];
 
-	visible?: bs.visible[number];
-	textWrap?: bs.textWrap[number];
-	fontItalic?: bs.fontItalic[number];
-	bgGradient?: bs.bgGradient[number];
-	wordBreak?: bs.wordBreak[number];
-	monospace?: bs.monospace[number];
-	row?: bs.row[number];
-	col?: bs.col[number] | bs.col[number][];
-	rowCol?: bs.rowCol[number] | bs.rowCol[number][];
+	visible?: bootstrapType.visible[number];
+	textWrap?: bootstrapType.textWrap[number];
+	fontItalic?: bootstrapType.fontItalic[number];
+	bgGradient?: bootstrapType.bgGradient[number];
+	wordBreak?: bootstrapType.wordBreak[number];
+	monospace?: bootstrapType.monospace[number];
+	row?: bootstrapType.row[number];
+	col?: bootstrapType.col[number] | bootstrapType.col[number][];
+	rowCol?: bootstrapType.rowCol[number] | bootstrapType.rowCol[number][];
 	//bootstrap [end]
 
 	//boolean attr [start]

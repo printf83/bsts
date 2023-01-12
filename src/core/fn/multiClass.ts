@@ -1,8 +1,8 @@
-import { bsRule } from "./../attach/attachBootstrap";
+import { bootstrapAttachRule } from "./../attach/attachBootstrap";
 import { genClassList } from "./genClassList.js";
 import { setting } from "./setting.js";
 
-const bsClass = (value: string | number | boolean, rules: bsRule): string[] => {
+const bsClass = (value: string | number | boolean, rules: bootstrapAttachRule): string[] => {
 	let i: string[] = [];
 
 	if (rules.formatValue) {
@@ -26,7 +26,7 @@ const bsClass = (value: string | number | boolean, rules: bsRule): string[] => {
 	return i && i.length > 0 ? i : [];
 };
 
-export const multiClass = (value: string | number | boolean, rules: bsRule): string[] => {
+export const multiClass = (value: string | number | boolean, rules: bootstrapAttachRule): string[] => {
 	if (value !== null && value !== undefined) {
 		if (rules.value) {
 			if (rules.value.indexOf(value) > -1) {

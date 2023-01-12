@@ -1,5 +1,5 @@
-import { bs } from "../core/attach/attachBootstrap.js";
 import { IElem } from "../core/attach/_index.js";
+import { bootstrapType } from "../core/fn/bootstrap.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { IAttrTagLabel, label as $h_label } from "../tag/label.js";
 
@@ -8,7 +8,7 @@ type IAttrLabelType = "fab" | "fas" | "far" | "fad" | "fal";
 export interface IAttrLabel extends IAttrTagLabel {
 	icon?: string;
 	type?: IAttrLabelType;
-	color?: bs.color[number];
+	color?: bootstrapType.color[number];
 	weight?: "2xs" | "xs" | "sm" | "lg" | "xl" | "2xl";
 	fixwidth?: boolean;
 	spin?: boolean;
