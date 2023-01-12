@@ -4,7 +4,16 @@ import { tag } from "./index.js";
 export interface IAttrTagProgress extends IAttrMax, IAttrValue {}
 
 export class progress extends tag {
-	constructor(public attr?: IAttrTagProgress, public elem?: IElem) {
-		super("progress", attr, elem);
+	constructor();
+	constructor(elem: IElem);
+	constructor(attr: IAttrTagProgress, elem: IElem);
+	constructor(...arg: any[]) {
+		if (arg.length === 0) {
+			super("progress");
+		} else if (arg.length === 1) {
+			super("progress", undefined, arg[0]);
+		} else if (arg.length === 2) {
+			super("progress", arg[0], arg[1]);
+		}
 	}
 }
