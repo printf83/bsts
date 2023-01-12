@@ -53,7 +53,7 @@ import { script } from "./tag/script.js";
 import { select } from "./tag/select.js";
 import { source } from "./tag/source.js";
 import { style } from "./tag/style.js";
-
+import { summary } from "./tag/summary.js";
 import { td } from "./tag/td.js";
 import { textarea } from "./tag/textarea.js";
 import { th } from "./tag/th.js";
@@ -113,6 +113,7 @@ const html = {
 	span,
 	strong,
 	style,
+	summary,
 	td,
 	textarea,
 	th,

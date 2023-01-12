@@ -67,6 +67,7 @@ core.documentReady(() => {
 			new $.div({ row: true }, new $.div({ col: true }, new $.b({ title: "test" }, "this is bold"))),
 			new $.div({ row: true }, new $.div({ col: true }, new $.i("nothing even happen"))),
 			new $.div({ row: true }, new $.div({ col: true }, new $.i({ id: "hhhhh" }, "test i 2"))),
+			new $.div({ row: true }, new $.div({ col: true }, new $.progress({ value: 55 }, "test"))),
 		]),
 	]);
 });
