@@ -106,7 +106,10 @@ core.documentReady(() => {
 							"Hello World"
 						),
 						new $b.button({ color: "warning", outline: true, weight: "lg" }, "Hello World"),
-						new $b.button({ color: "warning", disabled: true, weight: "sm" }, "Hello World (DIS)"),
+						new $b.button(
+							{ color: "warning", disabled: true, weight: "sm", type: "reset" },
+							"Hello World (DIS)"
+						),
 						new $b.button(
 							{
 								color: "success",
