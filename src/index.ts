@@ -1,12 +1,12 @@
 import { core } from "./core/index.js";
 
+import { a } from "./tag/a.js";
 import { blockquote } from "./tag/blockquote.js";
 import { div } from "./tag/div.js";
 import { h } from "./tag/h.js";
-import { tag } from "./tag/index.js";
+import { tag as $t } from "./tag/index.js";
 import { p } from "./tag/p.js";
 import { span } from "./tag/span.js";
-import { a } from "./tag/a.js";
 import { abbr } from "./tag/abbr.js";
 import { b } from "./tag/b.js";
 import { code } from "./tag/code.js";
@@ -32,7 +32,6 @@ import { del } from "./tag/del.js";
 import { details } from "./tag/details.js";
 import { embed } from "./tag/embed.js";
 import { fieldset } from "./tag/fieldset.js";
-
 import { iframe } from "./tag/iframe.js";
 import { img } from "./tag/img.js";
 import { input } from "./tag/input.js";
@@ -62,7 +61,9 @@ import { track } from "./tag/track.js";
 import { video } from "./tag/video.js";
 import { legend } from "./tag/legend.js";
 
-const html = {
+import { icon } from "./ctl/icon.js";
+
+const $h = {
 	a,
 	abbr,
 	area,
@@ -124,4 +125,8 @@ const html = {
 	video,
 };
 
-export { core, tag, html };
+const $b = {
+	icon,
+};
+
+export { core, $t, $h, $b };

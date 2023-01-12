@@ -1,11 +1,11 @@
-import { core, html as $ } from "./index.js";
+import { core, $h, $b } from "./index.js";
 
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 
 	core.replaceChild(body, [
-		new $.div({ container: true }, [
-			new $.div(
+		new $h.div({ container: true }, [
+			new $h.div(
 				{
 					row: true,
 					padding: ["lg-2", "md-3", "sm-4", "xl-1"],
@@ -14,7 +14,7 @@ core.documentReady(() => {
 					},
 				},
 				[
-					new $.div(
+					new $h.div(
 						{
 							col: 3,
 							textColor: "warning",
@@ -26,7 +26,7 @@ core.documentReady(() => {
 						},
 						"hello"
 					),
-					new $.h(
+					new $h.h(
 						1,
 						{
 							col: 3,
@@ -39,35 +39,47 @@ core.documentReady(() => {
 						},
 						"world"
 					),
-					new $.h(2, { col: 3, textColor: "primary", class: ["hello", "world"] }, "2"),
-					new $.h(3, { col: 3, textColor: "success", class: "world", borderColor: "danger" }, "3"),
+					new $h.h(2, { col: 3, textColor: "primary", class: ["hello", "world"] }, "2"),
+					new $h.h(3, { col: 3, textColor: "success", class: "world", borderColor: "danger" }, "3"),
 				]
 			),
-			new $.div(
+			new $h.div(
 				{ row: true },
-				new $.div({ col: true }, new $.hr({ title: "test", style: { backgroundColor: "red" } }))
+				new $h.div({ col: true }, new $h.hr({ title: "test", style: { backgroundColor: "red" } }))
 			),
-			new $.div(
+			new $h.div(
 				{ row: true },
-				new $.div({ col: true }, new $.a({ href: "#", linkColor: "danger" }, "this is link"))
+				new $h.div({ col: true }, new $h.a({ href: "#", linkColor: "danger" }, "this is link"))
 			),
-			new $.div(
+			new $h.div(
 				{ row: true },
-				new $.div({ col: true }, new $.input({ type: "range", min: 30, max: 130, value: 50 }))
+				new $h.div({ col: true }, new $h.input({ type: "range", min: 30, max: 130, value: 50 }))
 			),
-			new $.div(
+			new $h.div(
 				{ row: true },
-				new $.div(
+				new $h.div(
 					{ col: true },
-					new $.input({ type: "text", maxlength: 5, placeholderText: "test 5 maxlength" })
+					new $h.input({ type: "text", maxlength: 5, placeholderText: "test 5 maxlength" })
 				)
 			),
-			new $.div({ row: true }, new $.div({ col: true }, new $.img("https://picsum.photos/seed/picsum/300/150"))),
-			new $.div({ row: true }, new $.div({ col: true }, new $.a("this is link 2"))),
-			new $.div({ row: true }, new $.div({ col: true }, new $.b({ title: "test" }, "this is bold"))),
-			new $.div({ row: true }, new $.div({ col: true }, new $.i("nothing even happen"))),
-			new $.div({ row: true }, new $.div({ col: true }, new $.i({ id: "hhhhh" }, "test i 2"))),
-			new $.div({ row: true }, new $.div({ col: true }, new $.progress({ value: 55 }, "test"))),
+			new $h.div(
+				{ row: true },
+				new $h.div({ col: true }, new $h.img("https://picsum.photos/seed/picsum/300/150"))
+			),
+			new $h.div({ row: true }, new $h.div({ col: true }, new $h.a("this is link 2"))),
+			new $h.div({ row: true }, new $h.div({ col: true }, new $h.b({ title: "test" }, "this is bold"))),
+			new $h.div({ row: true }, new $h.div({ col: true }, new $h.i("nothing even happen"))),
+			new $h.div({ row: true }, new $h.div({ col: true }, new $h.i({ id: "hhhhh" }, "test i 2"))),
+			new $h.div({ row: true }, new $h.div({ col: true }, new $h.progress({ max: 100, value: 55 }, "test"))),
+			new $h.div(
+				{ row: true },
+				new $h.div({ col: true }, [
+					new $b.icon("star"),
+					new $b.icon({ icon: "star", spin: true, color: "primary", weight: "xl" }),
+					new $b.icon({ type: "fab", icon: "bootstrap", shake: true, color: "danger" }),
+					new $b.icon({ type: "fab", icon: "bootstrap", shake: true, color: "danger", stack: true }, []),
+				])
+			),
 		]),
 	]);
 });
