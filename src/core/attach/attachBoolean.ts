@@ -1,6 +1,6 @@
 import { keyOfType } from "./../fn/keyOfType.js";
 import { setting } from "../fn/setting.js";
-import { IAttachFn } from "./index.js";
+import { IAttachFn } from "./_index.js";
 
 const db = [
 	"allowfullscreen",

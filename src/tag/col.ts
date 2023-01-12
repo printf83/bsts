@@ -1,5 +1,4 @@
-import { IAttr } from "../core/base/index.js";
-import { tag } from "./index.js";
+import { IAttr, tag } from "../core/attach/_index.js";
 
 export interface IAttrTagCol extends IAttr {
 	span?: number;

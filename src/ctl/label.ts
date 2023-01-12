@@ -1,12 +1,13 @@
 import { bs } from "../core/attach/attachBootstrap.js";
-import { IAttr, IElem, tag } from "../core/attach/_index.js";
+import { IElem } from "../core/attach/_index.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
+import { IAttrTagLabel, label as $h_label } from "../tag/label.js";
 
-type IAttrIconType = "fab" | "fas" | "far" | "fad" | "fal";
+type IAttrLabelType = "fab" | "fas" | "far" | "fad" | "fal";
 
-export interface IAttrIcon extends IAttr {
+export interface IAttrLabel extends IAttrTagLabel {
 	icon?: string;
-	type?: IAttrIconType;
+	type?: IAttrLabelType;
 	color?: bs.color[number];
 	weight?: "2xs" | "xs" | "sm" | "lg" | "xl" | "2xl";
 	fixwidth?: boolean;
@@ -21,7 +22,7 @@ export interface IAttrIcon extends IAttr {
 	stack?: true | 1 | 2;
 }
 
-const convert = (a: IAttrIcon): IAttrIcon => {
+const convert = (a: IAttrLabel): IAttrLabel => {
 	a = mergeObject(a, {
 		class: [
 			a.type ? a.type : a.icon ? `fas` : ``,
@@ -63,31 +64,31 @@ const convert = (a: IAttrIcon): IAttrIcon => {
 	return a;
 };
 
-export class icon extends tag {
+export class label extends $h_label {
 	constructor(); //#1
 	constructor(icon: string); //#2
-	constructor(attr: IAttrIcon); //#3
+	constructor(attr: IAttrLabel); //#3
 	constructor(type: string, icon: string); //#4
-	constructor(attr: IAttrIcon, elem: IElem); //#5
+	constructor(attr: IAttrLabel, elem: IElem); //#5
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
-			super("i");
+			super();
 		} else if (arg.length === 1) {
 			if (typeof arg[0] === "string") {
 				//#2
-				super("i", convert({ icon: arg[0] }), []);
+				super(convert({ icon: arg[0] }), []);
 			} else {
 				//#3
-				super(arg[0].stack === true ? "span" : "i", convert(arg[0]), []);
+				super(convert(arg[0]), []);
 			}
 		} else if (arg.length === 2) {
 			if (typeof arg[0] === "string") {
 				//#4
-				super("i", convert({ type: arg[0] as IAttrIconType, icon: arg[1] }), []);
+				super(convert({ type: arg[0] as IAttrLabelType, icon: arg[1] }), []);
 			} else {
 				//#5
-				super(arg[0].stack === true ? "span" : "i", convert(arg[0]), arg[1]);
+				super(convert(arg[0]), arg[1]);
 			}
 		}
 	}

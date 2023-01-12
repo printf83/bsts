@@ -1,5 +1,5 @@
 import { keyOfType } from "./../fn/keyOfType.js";
-import { IAttachFn } from "./index.js";
+import { IAttachFn } from "./_index.js";
 
 export const attachStyle: IAttachFn = (key, elem, attr) => {
 	if (key === "style") {

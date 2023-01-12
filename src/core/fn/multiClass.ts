@@ -1,4 +1,4 @@
-import { bsRule } from "./../base/attachBootstrap";
+import { bsRule } from "./../attach/attachBootstrap";
 import { genClassList } from "./genClassList.js";
 import { setting } from "./setting.js";
 

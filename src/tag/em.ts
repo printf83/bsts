@@ -1,5 +1,4 @@
-import { IAttr, IElem } from "../core/base/index.js";
-import { tag } from "./index.js";
+import { IAttr, IElem, tag } from "../core/attach/_index.js";
 
 export class em extends tag {
 	constructor();

@@ -1,4 +1,4 @@
-import { IAttachFn } from "./index.js";
+import { IAttachFn } from "./_index.js";
 
 export const attachData: IAttachFn = (key, elem, attr) => {
 	if (key === "data") {

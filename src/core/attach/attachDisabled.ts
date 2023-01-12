@@ -1,5 +1,5 @@
 import { addIntoClassList } from "../fn/addIntoClassList.js";
-import { IAttachFn, IAttr } from "./index.js";
+import { IAttachFn, IAttr } from "./_index.js";
 
 interface IAttrDisabled extends IAttr {
 	disabled?: boolean;

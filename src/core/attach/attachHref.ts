@@ -1,4 +1,4 @@
-import { IAttachFn, IAttr } from "./index.js";
+import { IAttachFn, IAttr } from "./_index.js";
 
 interface IAttrHref extends IAttr {
 	href?: string;

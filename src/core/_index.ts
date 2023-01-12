@@ -1,5 +1,4 @@
 import { keyOfType } from "./fn/keyOfType.js";
-import { attachAttr } from "./base/index.js";
 import { elemInfo } from "./fn/elemInfo.js";
 import { multiClass } from "./fn/multiClass.js";
 import { mergeAttr } from "./fn/mergeAttr.js";
@@ -37,8 +36,8 @@ import { UUID } from "./fn/uuid.js";
 import { importJS } from "./fn/importJS.js";
 import { importJSPromise } from "./fn/importJSPromise.js";
 import { appendChild, build, html, prependChild, replaceChild, replaceWith } from "./fn/builder.js";
-import { isTag } from "../tag/index.js";
 import { documentReady, elemReady } from "./fn/documentReady.js";
+import { attachAttr, isTag } from "./attach/_index.js";
 
 export const core = {
 	addIntoClassList,

@@ -1,6 +1,5 @@
-import { IAttr } from "../core/base/index.js";
+import { IAttr, tag } from "../core/attach/_index.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
-import { tag } from "./index.js";
 
 export interface IAttrTagImg extends IAttr {
 	alt?: string;

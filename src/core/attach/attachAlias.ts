@@ -1,5 +1,5 @@
 import { keyOfType } from "../fn/keyOfType.js";
-import { IAttachFn } from "./index.js";
+import { IAttachFn } from "./_index.js";
 
 const db: { [key: string]: string } = {
 	placeholderText: "placeholder",

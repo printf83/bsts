@@ -1,9 +1,8 @@
-import { attachAttr } from "../base/index.js";
+import { attachAttr, isTag, tag } from "../attach/_index.js";
 import { isHTML } from "./isHTML.js";
 import { setting } from "./setting.js";
 import { removeChildElement } from "./removeChildElement.js";
 import { removeElement } from "./removeElement.js";
-import { isTag, tag } from "../../tag/index.js";
 
 export type buildArg = tag | string | (tag | string)[];
 

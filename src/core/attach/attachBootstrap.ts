@@ -1,7 +1,7 @@
 import { keyOfType } from "./../fn/keyOfType.js";
 import { addIntoClassList } from "../fn/addIntoClassList.js";
 import { setting } from "../fn/setting.js";
-import { IAttachFn } from "./index.js";
+import { IAttachFn } from "./_index.js";
 
 export namespace bsType {
 	const base5 = [0, 1, 2, 3, 4, 5];

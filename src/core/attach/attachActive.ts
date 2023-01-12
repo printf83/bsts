@@ -1,5 +1,5 @@
 import { addIntoClassList } from "../fn/addIntoClassList.js";
-import { IAttachFn } from "./index.js";
+import { IAttachFn } from "./_index.js";
 
 export const attachActive: IAttachFn = (key, elem, attr) => {
 	if (key === "active") {

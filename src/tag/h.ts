@@ -1,5 +1,4 @@
-import { IAttr, IElem } from "../core/base/index.js";
-import { tag } from "./index.js";
+import { IAttr, IElem, tag } from "../core/attach/_index.js";
 
 type HLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
