@@ -20,6 +20,8 @@ const rules: bootstrapRuleDB = {
 };
 
 const convert = (a: IAttrButton): IAttrButton => {
+	//add btn class
+	//weight,role,toggle
 	a = mergeObject(a, {
 		class: [`btn`, a.weight ? `btn-${a.weight}` : ``],
 		role: a.href ? "button" : undefined,
@@ -28,11 +30,12 @@ const convert = (a: IAttrButton): IAttrButton => {
 		},
 	});
 
+	//color & outline
 	if (a.color) {
 		if (a.outline === true) {
-			a.class = mergeClass(a.class, genBootstrapClass("btnColor", rules.btnColor, a.color));
-		} else {
 			a.class = mergeClass(a.class, genBootstrapClass("btnOutlineColor", rules.btnOutlineColor, a.color));
+		} else {
+			a.class = mergeClass(a.class, genBootstrapClass("btnColor", rules.btnColor, a.color));
 		}
 	}
 

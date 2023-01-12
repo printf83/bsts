@@ -91,9 +91,43 @@ core.documentReady(() => {
 			new $h.div(
 				{ row: true },
 				new $h.div({ col: true }, [
-					new $b.button(),
-					new $b.button("Hello World"),
-					new $b.button({ color: "danger" }, "Hello World"),
+					new $h.div({ display: "grid", gap: 2, marginX: ["auto", "sm-5"] }, [
+						new $b.button(),
+						new $b.button([new $b.icon({ marginEnd: 3, icon: "home" }), "Hello World"]),
+						new $b.button(
+							{
+								color: "danger",
+								on: {
+									click: () => {
+										alert("hi");
+									},
+								},
+							},
+							"Hello World"
+						),
+						new $b.button({ color: "warning", outline: true, weight: "lg" }, "Hello World"),
+						new $b.button({ color: "warning", disabled: true, weight: "sm" }, "Hello World (DIS)"),
+						new $b.button(
+							{
+								color: "success",
+								style: {
+									"--bs-btn-padding-y": ".25rem",
+									"--bs-btn-padding-x": ".5rem",
+									"--bs-btn-font-size": ".75rem",
+								},
+							},
+							"Custom"
+						),
+						new $b.button(
+							{ color: "success", outline: true, toggle: true, disabled: true },
+							"Hello World (Dis)"
+						),
+						new $b.button({ color: "success", outline: true, toggle: true, href: "#" }, "Hello World"),
+						new $b.button(
+							{ color: "success", outline: true, toggle: true, disabled: true, href: "#" },
+							"Hello World (Dis)"
+						),
+					]),
 				])
 			),
 		]),
