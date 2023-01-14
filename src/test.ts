@@ -1,11 +1,11 @@
-import { core, $h, $b } from "./index.js";
+import { core, html, bs } from "./index.js";
 
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 
 	core.replaceChild(body, [
-		new $h.div({ container: true }, [
-			new $h.div(
+		new html.div({ container: true }, [
+			new html.div(
 				{
 					row: true,
 					padding: ["lg-2", "md-3", "sm-4", "xl-1"],
@@ -14,7 +14,7 @@ core.documentReady(() => {
 					},
 				},
 				[
-					new $h.div(
+					new html.div(
 						{
 							col: 3,
 							textColor: "warning",
@@ -23,10 +23,11 @@ core.documentReady(() => {
 							rounded: true,
 							aria: { wowoww: "what?" },
 							data: { mehhh: "yaya" },
+							style: { backgroundColor: "red" },
 						},
 						"hello"
 					),
-					new $h.h(
+					new html.h(
 						1,
 						{
 							col: 3,
@@ -39,62 +40,65 @@ core.documentReady(() => {
 						},
 						"world"
 					),
-					new $h.h(2, { col: 3, textColor: "primary", class: ["hello", "world"] }, "2"),
-					new $h.h(3, { col: 3, textColor: "success", class: "world", borderColor: "danger" }, "3"),
+					new html.h(2, { col: 3, textColor: "primary", class: ["hello", "world"] }, "2"),
+					new html.h(3, { col: 3, textColor: "success", class: "world", borderColor: "danger" }, "3"),
 				]
 			),
-			new $h.div(
+			new html.div(
 				{ row: true },
-				new $h.div({ col: true }, new $h.hr({ title: "test", style: { backgroundColor: "red" } }))
+				new html.div({ col: true }, new html.hr({ title: "test", style: { backgroundColor: "red" } }))
 			),
-			new $h.div(
+			new html.div(
 				{ row: true },
-				new $h.div({ col: true }, new $h.a({ href: "#", linkColor: "danger" }, "this is link"))
+				new html.div({ col: true }, new html.a({ href: "#", linkColor: "danger" }, "this is link"))
 			),
-			new $h.div(
+			new html.div(
 				{ row: true },
-				new $h.div({ col: true }, new $h.input({ type: "range", min: 30, max: 130, value: 50 }))
+				new html.div({ col: true }, new html.input({ type: "range", min: 30, max: 130, value: 50 }))
 			),
-			new $h.div(
+			new html.div(
 				{ row: true },
-				new $h.div(
+				new html.div(
 					{ col: true },
-					new $h.input({ type: "text", maxlength: 5, placeholderText: "test 5 maxlength" })
+					new html.input({ type: "text", maxlength: 5, placeholderText: "test 5 maxlength" })
 				)
 			),
-			new $h.div(
+			new html.div(
 				{ row: true },
-				new $h.div({ col: true }, new $h.img("https://picsum.photos/seed/picsum/300/150"))
+				new html.div({ col: true }, new html.img("https://picsum.photos/seed/picsum/300/150"))
 			),
-			new $h.div({ row: true }, new $h.div({ col: true }, new $h.a("this is link 2"))),
-			new $h.div({ row: true }, new $h.div({ col: true }, new $h.b({ title: "test" }, "this is bold"))),
-			new $h.div({ row: true }, new $h.div({ col: true }, new $h.i("nothing even happen"))),
-			new $h.div({ row: true }, new $h.div({ col: true }, new $h.i({ id: "hhhhh" }, "test i 2"))),
-			new $h.div({ row: true }, new $h.div({ col: true }, new $h.progress({ max: 100, value: 55 }, "test"))),
-			new $h.div(
+			new html.div({ row: true }, new html.div({ col: true }, new html.a("this is link 2"))),
+			new html.div({ row: true }, new html.div({ col: true }, new html.b({ title: "test" }, "this is bold"))),
+			new html.div({ row: true }, new html.div({ col: true }, new html.i("nothing even happen"))),
+			new html.div({ row: true }, new html.div({ col: true }, new html.i({ id: "hhhhh" }, "test i 2"))),
+			new html.div(
 				{ row: true },
-				new $h.div({ col: true }, [
-					new $b.icon("star"),
-					new $b.icon({ icon: "star", spin: true, color: "primary", weight: "xl" }),
-					new $b.icon({ type: "fab", icon: "bootstrap", shake: true, color: "danger" }),
+				new html.div({ col: true }, new html.progress({ max: 100, value: 55 }, "test"))
+			),
+			new html.div(
+				{ row: true },
+				new html.div({ col: true }, [
+					new bs.icon("star"),
+					new bs.icon({ icon: "star", spin: true, color: "primary", weight: "xl" }),
+					new bs.icon({ type: "fab", icon: "bootstrap", shake: true, color: "danger" }),
 				])
 			),
-			new $h.div(
+			new html.div(
 				{ row: true },
-				new $h.div({ col: true }, [
-					new $b.icon({ stack: true, weight: "2xl" }, [
-						new $b.icon({ icon: "square", stack: 2, color: "primary" }),
-						new $b.icon({ type: "fab", icon: "twitter", stack: 1, inverse: true }),
+				new html.div({ col: true }, [
+					new bs.icon({ stack: true, weight: "2xl" }, [
+						new bs.icon({ icon: "square", stack: 2, color: "primary" }),
+						new bs.icon({ type: "fab", icon: "twitter", stack: 1, inverse: true }),
 					]),
 				])
 			),
-			new $h.div(
+			new html.div(
 				{ row: true },
-				new $h.div({ col: true }, [
-					new $h.div({ display: "grid", gap: 2, marginX: ["auto", "sm-5"] }, [
-						new $b.button(),
-						new $b.button([new $b.icon({ marginEnd: 3, icon: "home" }), "Hello World"]),
-						new $b.button(
+				new html.div({ col: true }, [
+					new html.div({ display: "grid", gap: 2, marginX: ["auto", "sm-5"] }, [
+						new bs.button(),
+						new bs.button([new bs.icon({ marginEnd: 3, icon: "home" }), "Hello World"]),
+						new bs.button(
 							{
 								color: "danger",
 								on: {
@@ -105,12 +109,12 @@ core.documentReady(() => {
 							},
 							"Hello World"
 						),
-						new $b.button({ color: "warning", outline: true, weight: "lg" }, "Hello World"),
-						new $b.button(
+						new bs.button({ color: "warning", outline: true, weight: "lg" }, "Hello World"),
+						new bs.button(
 							{ color: "warning", disabled: true, weight: "sm", type: "reset" },
 							"Hello World (DIS)"
 						),
-						new $b.button(
+						new bs.button(
 							{
 								color: "success",
 								style: {
@@ -121,12 +125,12 @@ core.documentReady(() => {
 							},
 							"Custom"
 						),
-						new $b.button(
+						new bs.button(
 							{ color: "success", outline: true, toggle: true, disabled: true },
 							"Hello World (Dis)"
 						),
-						new $b.button({ color: "success", outline: true, toggle: true, href: "#" }, "Hello World"),
-						new $b.button(
+						new bs.button({ color: "success", outline: true, toggle: true, href: "#" }, "Hello World"),
+						new bs.button(
 							{ color: "success", outline: true, toggle: true, disabled: true, href: "#" },
 							"Hello World (Dis)"
 						),

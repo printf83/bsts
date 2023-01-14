@@ -1,6 +1,6 @@
-import { $h } from "./tag/_index.js";
-import { $b } from "./ctl/_index.js";
+import { html } from "./tag/_index.js";
+import { bs } from "./ctl/_index.js";
 import { core } from "./core/_index.js";
-import { tag as $t } from "./core/base/tag.js";
+import { tag } from "./core/base/tag.js";
 
-export { core, $t, $h, $b };
+export { core, tag, html, bs };

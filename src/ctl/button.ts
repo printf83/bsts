@@ -5,7 +5,7 @@ import { mergeClass } from "../core/fn/mergeClass.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { IAttrTagButton } from "../tag/button.js";
 
-export interface IAttrButton extends IAttrTagButton {
+export interface IAttrBSButton extends IAttrTagButton {
 	color?: bootstrapType.color[number];
 	outline?: boolean;
 	weight?: "lg" | "sm";
@@ -19,11 +19,11 @@ const rules: bootstrapRuleDB = {
 	btnOutlineColor: new bootstrapAttachRule("btn-outline-$1", bootstrapBase.btnOutlineColor.concat()),
 };
 
-const convert = (a: IAttrButton): IAttrButton => {
+const convert = (a: IAttrBSButton): IAttrBSButton => {
 	//add btn class
 	//weight,role,toggle
 	a = mergeObject(a, {
-		class: [`btn`, a.weight ? `btn-${a.weight}` : ``],
+		class: ["btn", a.weight ? `btn-${a.weight}` : ""],
 		role: a.href ? "button" : undefined,
 		data: {
 			"bs-toggle": a.toggle ? "button" : undefined,
@@ -54,7 +54,7 @@ const convert = (a: IAttrButton): IAttrButton => {
 export class button extends tag {
 	constructor(); //#1
 	constructor(elem: IElem); //#2
-	constructor(attr: IAttrButton, elem: IElem); //#3
+	constructor(attr: IAttrBSButton, elem: IElem); //#3
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1

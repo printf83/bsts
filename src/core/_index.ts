@@ -1,6 +1,5 @@
 import { keyOfType } from "./fn/keyOfType.js";
 import { elemInfo } from "./fn/elemInfo.js";
-import { multiClass } from "./fn/multiClass.js";
 import { mergeAttr } from "./fn/mergeAttr.js";
 import { mergeObject } from "./fn/mergeObject.js";
 import { mergeClass } from "./fn/mergeClass.js";
@@ -8,7 +7,6 @@ import { setupEventListenerRemover } from "./fn/setupEventListenerRemover.js";
 import { removeEmptyArray } from "./fn/removeEmptyArray.js";
 import { removeElement } from "./fn/removeElement.js";
 import { removeChildElement } from "./fn/removeChildElement.js";
-import { multipleConstructorClass } from "./fn/multipleConstructorClass.js";
 import { isHTML } from "./fn/isHTML.js";
 import { genClassList } from "./fn/genClassList.js";
 import { eventDB } from "./fn/eventDB.js";
@@ -69,8 +67,6 @@ export const core = {
 	mergeClass,
 	mergeObject,
 	mergeAttr,
-	multiClass,
-	multipleConstructorClass,
 	num2En,
 	num2EnTh,
 	randomDB,

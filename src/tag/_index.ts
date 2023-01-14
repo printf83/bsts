@@ -58,7 +58,7 @@ import { track } from "./track.js";
 import { video } from "./video.js";
 import { legend } from "./legend.js";
 
-export const $h = {
+export const html = {
 	a,
 	abbr,
 	area,
