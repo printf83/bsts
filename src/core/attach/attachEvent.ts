@@ -1,5 +1,4 @@
-import { deleteEventListener } from "../fn/deleteEventListener.js";
-import { setupEventListenerRemover } from "../fn/setupEventListenerRemover.js";
+import { setupEventListenerRemover, deleteEventListener } from "../fn/setupEventListenerRemover.js";
 import { IAttachFn } from "./_index.js";
 
 export const attachEvent: IAttachFn = (key, elem, attr) => {

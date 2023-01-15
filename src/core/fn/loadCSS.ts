@@ -1,5 +1,5 @@
 import { UUID } from "./uuid.js";
-import { detachEventListener } from "./detachEventListener.js";
+import { detachEventListener } from "./setupEventListenerRemover.js";
 
 export const loadCSS = (url: string, callback?: Function): void => {
 	let head = document.getElementsByTagName("head")[0];
