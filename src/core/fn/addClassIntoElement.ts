@@ -1,6 +1,6 @@
 import { removeEmptyArray } from "./removeEmptyArray.js";
 
-export const genClassList = (value: string | string[]): string[] => {
+export const manageClass = (value: string | string[]): string[] => {
 	let result: string[] = [];
 	let i: string[] = [];
 
@@ -35,4 +35,17 @@ export const genClassList = (value: string | string[]): string[] => {
 	}
 
 	return result && result.length > 0 ? result : [];
+};
+
+export const addClassIntoElement = (elem: HTMLElement, value: string | string[]): HTMLElement => {
+	try {
+		let i = manageClass(value);
+		if (i && i.length > 0) {
+			elem.classList.add(...i);
+		}
+	} catch (error) {
+		console.error(`Fail to add class ${value}`, error);
+	}
+
+	return elem;
 };

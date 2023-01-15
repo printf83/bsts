@@ -1,4 +1,4 @@
-import { setupEventListenerRemover, deleteEventListener } from "../fn/setupEventListenerRemover.js";
+import { addEvent, HTMLElementWithEventDB } from "../fn/eventManager.js";
 import { IAttachFn } from "./_index.js";
 
 export const attachEvent: IAttachFn = (key, elem, attr) => {
@@ -8,7 +8,7 @@ export const attachEvent: IAttachFn = (key, elem, attr) => {
 			if (prop) {
 				for (let x = 0; x < prop.length; x++) {
 					if (typeof attr.on[prop[x]] === "function") {
-						addEvent(elem, prop[x], attr.on[prop[x]]!);
+						addEvent(prop[x], elem as HTMLElementWithEventDB, attr.on[prop[x]]!);
 					}
 				}
 			}
@@ -18,13 +18,4 @@ export const attachEvent: IAttachFn = (key, elem, attr) => {
 	}
 
 	return { attr, elem };
-};
-
-const addEvent = (elem: HTMLElement, key: string, fn: EventListener) => {
-	elem.addEventListener(key, fn, false);
-	setupEventListenerRemover(key, elem, () => {
-		deleteEventListener(key, elem, () => {
-			elem.removeEventListener(key, fn, false);
-		});
-	});
 };

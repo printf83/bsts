@@ -1,5 +1,4 @@
 import { UUID } from "./uuid.js";
-import { detachEventListener } from "./setupEventListenerRemover.js";
 
 export const loadCSS = (url: string, callback?: Function): void => {
 	let head = document.getElementsByTagName("head")[0];
@@ -10,11 +9,10 @@ export const loadCSS = (url: string, callback?: Function): void => {
 	link.type = "text/css";
 	link.rel = "stylesheet";
 
-	link.onload = () => {
+	let fnOnload = () => {
 		let elem = document.getElementById(id);
 		if (elem) {
-			//TODO:setupeventlistenerremover
-			detachEventListener(elem);
+			elem.removeEventListener("load", fnOnload, false);
 			elem.remove();
 		}
 
@@ -22,6 +20,8 @@ export const loadCSS = (url: string, callback?: Function): void => {
 			callback();
 		}
 	};
+
+	link.onload = fnOnload;
 
 	link.href = url;
 	head.appendChild(link);

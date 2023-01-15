@@ -1,5 +1,5 @@
 import { IAttr } from "../base/tag.js";
-import { addIntoClassList } from "../fn/addIntoClassList.js";
+import { addClassIntoElement } from "../fn/addClassIntoElement.js";
 import { IAttachFn } from "./_index.js";
 
 interface IAttrDisabled extends IAttr {
@@ -10,7 +10,7 @@ export const attachDisabled: IAttachFn = (key, elem, attr: IAttrDisabled) => {
 	if (key === "disabled" && attr[key] === true) {
 		if (attr && typeof attr.disabled !== "undefined") {
 			if (attr.disabled === true) {
-				elem = addIntoClassList(elem, "disabled");
+				elem = addClassIntoElement(elem, "disabled");
 				elem.setAttribute("aria-disabled", "true");
 				elem.setAttribute("disabled", "disabled");
 				elem.setAttribute("tabindex", "-1");

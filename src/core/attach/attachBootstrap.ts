@@ -1,5 +1,5 @@
 import { keyOfType } from "./../fn/keyOfType.js";
-import { addIntoClassList } from "../fn/addIntoClassList.js";
+import { addClassIntoElement } from "../fn/addClassIntoElement.js";
 import { setting } from "../fn/setting.js";
 import { IAttachFn } from "./_index.js";
 import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB } from "../base/bootstrap.js";
@@ -163,20 +163,20 @@ const addBootstrapClass = (
 ) => {
 	if (rule.value!.findIndex((i) => data === i) > -1) {
 		if (rule.formatValue) {
-			elem = addIntoClassList(elem, rule.formatValue!);
+			elem = addClassIntoElement(elem, rule.formatValue!);
 		}
 
 		if (data === true) {
 			if (rule.formatTrue) {
-				elem = addIntoClassList(elem, rule.formatTrue!);
+				elem = addClassIntoElement(elem, rule.formatTrue!);
 			}
 		} else if (data === false) {
 			if (rule.formatFalse) {
-				elem = addIntoClassList(elem, rule.formatFalse!);
+				elem = addClassIntoElement(elem, rule.formatFalse!);
 			}
 		} else {
 			if (rule.format) {
-				elem = addIntoClassList(elem, rule.format!.replace(/\$1/g, data.toString()));
+				elem = addClassIntoElement(elem, rule.format!.replace(/\$1/g, data.toString()));
 			}
 		}
 	} else {

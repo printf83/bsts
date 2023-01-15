@@ -1,3 +1,4 @@
+import { camel2Dash } from "../fn/camel2Dash.js";
 import { keyOfType } from "./../fn/keyOfType.js";
 import { IAttachFn } from "./_index.js";
 
@@ -12,9 +13,13 @@ export const attachStyle: IAttachFn = (key, elem, attr) => {
 
 					if (attr.style[k]) {
 						if (attr.style[k]!.indexOf(" !important") > -1) {
-							elem.style.setProperty(i[x], attr.style[k]!.replace(" !important", ""), "important");
+							elem.style.setProperty(
+								camel2Dash(i[x]),
+								attr.style[k]!.replace(" !important", ""),
+								"important"
+							);
 						} else {
-							elem.style.setProperty(i[x], attr.style[k]!);
+							elem.style.setProperty(camel2Dash(i[x]), attr.style[k]!);
 						}
 					}
 				}

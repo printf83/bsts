@@ -1,6 +1,6 @@
-import { detachEventListener } from "./setupEventListenerRemover.js";
+import { deleteEvent, HTMLElementWithEventDB } from "./eventManager.js";
 
 export const removeElement = (elem: HTMLElement) => {
-	detachEventListener(elem);
+	deleteEvent(elem as HTMLElementWithEventDB);
 	elem.remove();
 };
