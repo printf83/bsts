@@ -1,5 +1,5 @@
 import { bootstrapType } from "../core/base/bootstrap.js";
-import { IBootstrap, IElem } from "../core/base/tag.js";
+import { IElem } from "../core/base/tag.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { div } from "../tag/div.js";
 import { IAttrTagLabel, label as TLabel } from "../tag/label.js";
@@ -20,7 +20,6 @@ const fnRow = (display: IBootstrapTypeDisplay | undefined, elem: IElem) => {
 };
 
 const fnIcon = (display: IBootstrapTypeDisplay | undefined, attr: IAttrBSIcon) => {
-	// return new icon(mergeObject<IAttrBSIcon>(typeof attr === "string" ? { icon: attr } : attr, { weight: "2xl" }));
 	return new span({ display: display }, new icon(attr!));
 };
 
@@ -73,7 +72,7 @@ const convert = (attr: IAttrBSLabel, text: string) => {
 		if (text) {
 			e = text;
 		} else {
-			e = "label";
+			e = "Label";
 		}
 	}
 

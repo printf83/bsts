@@ -317,10 +317,6 @@ export interface IBootstrap {
 	bgOpacity?: bootstrapType.bgOpacity[number];
 	textOpacity?: bootstrapType.textOpacity[number];
 
-	btnColor?: bootstrapType.btnColor[number];
-	btnOutlineColor?: bootstrapType.btnOutlineColor[number];
-	alertColor?: bootstrapType.alertColor[number];
-
 	textBgColor?: bootstrapType.textBgColor[number];
 	textColor?: bootstrapType.textColor[number];
 	linkColor?: bootstrapType.linkColor[number];

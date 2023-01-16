@@ -849,10 +849,6 @@ export namespace bootstrapType {
 	export type bgOpacity = typeof bootstrapBase.bgOpacity;
 	export type textOpacity = typeof bootstrapBase.textOpacity;
 
-	export type btnColor = typeof bootstrapBase.btnColor;
-	export type btnOutlineColor = typeof bootstrapBase.btnOutlineColor;
-	export type alertColor = typeof bootstrapBase.alertColor;
-
 	export type textBgColor = typeof bootstrapBase.textBgColor;
 	export type textColor = typeof bootstrapBase.textColor;
 	export type linkColor = typeof bootstrapBase.linkColor;
@@ -918,6 +914,108 @@ export namespace bootstrapType {
 	export type print = typeof bootstrapBase.print;
 	export type container = typeof bootstrapBase.container;
 }
+
+// export namespace bootstrapType {
+// 	type userSelect = bs.userSelect;
+// 	type pointerEvent = bs.pointerEvent;
+// 	type position = bs.position;
+// 	type overflow = bs.overflow;
+
+// 	type textAlign = bs.textAlign;
+// 	type verticalAlign = bs.verticalAlign;
+
+// 	type opacity = bs.opacity;
+// 	type bgOpacity = bs.bgOpacity;
+// 	type textOpacity = bs.textOpacity;
+
+// 	type textBgColor = bs.textBgColor;
+// 	type textColor = bs.textColor;
+// 	type linkColor = bs.linkColor;
+// 	type bgColor = bs.bgColor;
+
+// 	type textTransform = bs.textTransform;
+// 	type textDecoration = bs.textDecoration;
+// 	type lineHeight = bs.lineHeight;
+
+// 	type fontSize = bs.fontSize;
+// 	type fontWeight = bs.fontWeight;
+
+// 	type top = bs.top;
+// 	type bottom = bs.bottom;
+// 	type start = bs.start;
+// 	type end = bs.end;
+// 	type tMiddle = bs.tMiddle;
+
+// 	type height = bs.height;
+// 	type width = bs.width;
+// 	type maxHeight = bs.maxHeight;
+// 	type maxWidth = bs.maxWidth;
+// 	type minViewHeight = bs.minViewHeight;
+// 	type minViewWidth = bs.minViewWidth;
+// 	type viewHeight = bs.viewHeight;
+// 	type viewWidth = bs.viewWidth;
+
+// 	type placeholder = bs.placeholder;
+// 	type placeholderAnimation = bs.placeholderAnimation;
+// 	type placeholderWeight = bs.placeholderWeight;
+
+// 	type shadow = bs.shadow;
+
+// 	type border = bs.border;
+// 	type borderNone = bs.borderNone;
+// 	type borderColor = bs.borderColor;
+// 	type borderOpacity = bs.borderOpacity;
+// 	type borderWidth = bs.borderWidth;
+
+// 	type rounded = bs.rounded;
+// 	type roundedNone = bs.roundedNone;
+// 	type roundedSize = bs.roundedSize;
+
+// 	type padding = bs.padding | bs.padding[];
+// 	type paddingX = bs.paddingX | bs.paddingX[];
+// 	type paddingY = bs.paddingY | bs.paddingY[];
+// 	type paddingTop = bs.paddingTop | bs.paddingTop[];
+// 	type paddingBottom = bs.paddingBottom | bs.paddingBottom[];
+// 	type paddingStart = bs.paddingStart | bs.paddingStart[];
+// 	type paddingEnd = bs.paddingEnd | bs.paddingEnd[];
+
+// 	type margin = bs.margin | bs.margin[];
+// 	type marginX = bs.marginX | bs.marginX[];
+// 	type marginY = bs.marginY | bs.marginY[];
+// 	type marginTop = bs.marginTop | bs.marginTop[];
+// 	type marginBottom = bs.marginBottom | bs.marginBottom[];
+// 	type marginStart = bs.marginStart | bs.marginStart[];
+// 	type marginEnd = bs.marginEnd | bs.marginEnd[];
+
+// 	type gap = bs.gap | bs.gap[];
+// 	type gutter = bs.gutter | bs.gutter;
+// 	type gutterX = bs.gutterX | bs.gutterX[];
+// 	type gutterY = bs.gutterY | bs.gutterY[];
+
+// 	type display = bs.display | bs.display[];
+// 	type print = bs.print | bs.print;
+// 	type container = bs.container;
+
+// 	type flex = bs.flex | bs.flex[];
+// 	type float = bs.float | bs.float[];
+// 	type order = bs.order | bs.order[];
+// 	type offset = bs.offset | bs.offset[];
+
+// 	type alignContent = bs.alignContent | bs.alignContent[];
+// 	type justifyContent = bs.justifyContent | bs.justifyContent[];
+// 	type alignItem = bs.alignItem | bs.alignItem[];
+// 	type alignSelf = bs.alignSelf | bs.alignSelf[];
+
+// 	type visible = bs.visible;
+// 	type textWrap = bs.textWrap;
+// 	type fontItalic = bs.fontItalic;
+// 	type bgGradient = bs.bgGradient;
+// 	type wordBreak = bs.wordBreak;
+// 	type monospace = bs.monospace;
+// 	type row = bs.row;
+// 	type col = bs.col | bs.col[];
+// 	type rowCol = bs.rowCol | bs.rowCol[];
+// }
 
 export interface IBootstrapAttachRule {
 	format?: string | null;

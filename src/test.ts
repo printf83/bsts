@@ -1,5 +1,18 @@
 import { core, html, bs } from "./index.js";
 
+let loream = `<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta tincidunt arcu eu dignissim. Suspendisse nunc tortor, semper ut commodo nec, bibendum ut quam. Vivamus porttitor egestas luctus. Morbi tincidunt tortor eu lorem gravida imperdiet. Vestibulum tincidunt hendrerit tempus. Morbi varius est ac euismod tristique. Fusce a tortor suscipit, lacinia arcu nec, aliquet tortor. Maecenas eu lorem nec ante faucibus sollicitudin. Nunc consequat ullamcorper congue. Praesent cursus velit euismod turpis ultrices, sit amet venenatis massa pharetra. Nunc maximus pharetra purus in maximus.
+</p>
+<p>
+Fusce id ex pretium, mollis velit quis, hendrerit metus. In dapibus convallis turpis at vehicula. Maecenas felis urna, ultrices non urna quis, pulvinar rutrum dolor. Mauris vel pretium nunc. Donec in sapien urna. Praesent et massa in neque ultricies tincidunt. Mauris turpis elit, tempor id sem vel, ultricies tincidunt purus. Nulla efficitur congue tellus quis imperdiet. Vivamus id nibh sit amet diam tristique porta. Proin auctor sagittis neque, eget imperdiet lorem egestas nec. Aenean facilisis mattis erat. Praesent velit tortor, dignissim et turpis quis, fermentum tempus est. Vivamus vitae est malesuada, volutpat ex et, vestibulum purus.
+</p>
+<p>
+Donec vulputate, metus id eleifend pretium, elit metus posuere nisl, sit amet maximus nulla elit sed diam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean tincidunt sed leo id pretium. Donec nec felis hendrerit, semper nisl vel, pulvinar est. Mauris at faucibus dolor. Maecenas finibus placerat ligula nec eleifend. Donec diam ante, feugiat dictum urna sed, maximus ullamcorper sapien. Donec vulputate urna turpis, quis placerat lacus condimentum vitae. Etiam sit amet tortor lacus. Nunc ultrices felis arcu. Morbi elit nulla, condimentum nec ante ut, suscipit aliquet elit. Cras commodo mi a rutrum blandit.
+</p>
+<p>
+Curabitur tempus turpis eu rhoncus semper. Integer rhoncus, nisl ac sagittis fringilla, diam massa condimentum sem, sit amet volutpat nisi erat at diam. Proin et risus sed purus sollicitudin laoreet. Proin luctus ac velit sed lacinia. Morbi bibendum semper libero vitae efficitur. Ut sed gravida sem. Aliquam commodo tempus erat, at lobortis ante lobortis eget. Morbi sit amet velit a nulla rutrum posuere. Nulla et dolor nec orci viverra scelerisque sed sit amet augue. Maecenas a mauris porta, suscipit mi ut, semper ante. Aliquam at erat tortor. In hac habitasse platea dictumst. Sed venenatis aliquet turpis a rutrum. Aliquam ultricies ullamcorper interdum. Nullam aliquet massa eu diam semper consequat. Phasellus erat orci, tempor a sagittis in, tempor a massa.
+</p>`;
+
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 
@@ -63,12 +76,12 @@ core.documentReady(() => {
 					new bs.label(
 						{
 							for: "txtTest",
+							icon: { icon: "home", weight: "2xl" },
 							iconPosition: "top",
 							textColor: "danger",
 							labelDisplay: ["sm-none", "md-flex"],
 							iconDisplay: ["sm-flex", "md-none"],
 						},
-						"home",
 						"Home"
 					)
 				),
@@ -93,14 +106,7 @@ core.documentReady(() => {
 				),
 				new html.div(
 					{ col: true },
-					new bs.button(
-						{ color: "success" },
-						new bs.label(
-							{ for: "txtTest" },
-							"home",
-							"Use align-items utilities on flexbox containers to change the alignment of flex items on the cross axis (the y-axis to start, x-axis if flex-direction: column). Choose from start, end, center, baseline, or stretch (browser default)."
-						)
-					)
+					new bs.button({ color: "success" }, new bs.label({ for: "txtTest" }, "home", loream))
 				),
 			]),
 			new html.div(
@@ -188,6 +194,18 @@ core.documentReady(() => {
 							"Hello World (Dis)"
 						),
 					]),
+				])
+			),
+			new html.div(
+				{ row: true },
+				new html.div({ col: true }, [
+					new bs.msg("home", "Home"),
+					new bs.msg(
+						{
+							icon: { icon: "home", weight: "2xl" },
+						},
+						loream
+					),
 				])
 			),
 		]),

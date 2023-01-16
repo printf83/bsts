@@ -42,7 +42,11 @@ export const build = (
 												i
 											);
 										} else {
-											element.appendChild(document.createTextNode(g));
+											if (isHTML(g)) {
+												element.insertAdjacentHTML("beforeend", g);
+											} else {
+												element.appendChild(document.createTextNode(g));
+											}
 										}
 									}
 								}
