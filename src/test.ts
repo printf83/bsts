@@ -24,6 +24,7 @@ core.documentReady(() => {
 							aria: { wowoww: "what?" },
 							data: { mehhh: "yaya" },
 							style: { backgroundColor: "red" },
+							fontWeight: "bolder",
 						},
 						"hello"
 					),
@@ -59,7 +60,17 @@ core.documentReady(() => {
 			new html.div({ row: true }, [
 				new html.div(
 					{ col: true },
-					new bs.label({ for: "txtTest", iconPosition: "top", textColor: "danger" }, "home", "Home")
+					new bs.label(
+						{
+							for: "txtTest",
+							iconPosition: "top",
+							textColor: "danger",
+							labelDisplay: ["sm-none", "md-flex"],
+							iconDisplay: ["sm-flex", "md-none"],
+						},
+						"home",
+						"Home"
+					)
 				),
 				new html.div({ col: true }, new bs.label({ for: "txtTest", textColor: "success" }, "home", "Home")),
 				new html.div({ col: true }, new bs.label({ for: "txtTest" }, "hello bs label")),
@@ -67,7 +78,18 @@ core.documentReady(() => {
 			new html.div({ row: true }, [
 				new html.div(
 					{ col: true },
-					new bs.button({ color: "danger" }, new bs.label({ iconPosition: "top" }, "home", "Home"))
+					new bs.button(
+						{ color: "danger" },
+						new bs.label(
+							{
+								iconPosition: "top",
+								labelDisplay: ["sm-none", "md-flex"],
+								iconDisplay: ["sm-flex", "md-none"],
+							},
+							"home",
+							"Home"
+						)
+					)
 				),
 				new html.div(
 					{ col: true },

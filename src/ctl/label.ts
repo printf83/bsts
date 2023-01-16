@@ -1,24 +1,31 @@
 import { bootstrapType } from "../core/base/bootstrap.js";
-import { IElem } from "../core/base/tag.js";
+import { IBootstrap, IElem } from "../core/base/tag.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { div } from "../tag/div.js";
 import { IAttrTagLabel, label as TLabel } from "../tag/label.js";
 import { span } from "../tag/span.js";
 import { IAttrBSIcon, icon } from "./icon.js";
 
+type IBootstrapTypeDisplay = bootstrapType.display[number] | bootstrapType.display[number][];
+
 export interface IAttrBSLabel extends IAttrTagLabel {
 	icon?: IAttrBSIcon;
 	iconPosition?: "start" | "end" | "top" | "bottom";
-	iconVisible?: bootstrapType.viewport[number];
-	labelVisible?: bootstrapType.viewport[number];
+	iconDisplay?: IBootstrapTypeDisplay;
+	labelDisplay?: IBootstrapTypeDisplay;
 }
 
-const fnRow = (elem: IElem) => {
-	return new div({ row: true }, new div({ col: true, textAlign: "center" }, elem));
+const fnRow = (display: IBootstrapTypeDisplay | undefined, elem: IElem) => {
+	return new div({ row: true, display: display }, new div({ col: true, textAlign: "center" }, elem));
 };
 
-const fnIcon = (attr: IAttrBSIcon) => {
-	return new icon(mergeObject<IAttrBSIcon>(typeof attr === "string" ? { icon: attr } : attr, { weight: "xl" }));
+const fnIcon = (display: IBootstrapTypeDisplay | undefined, attr: IAttrBSIcon) => {
+	// return new icon(mergeObject<IAttrBSIcon>(typeof attr === "string" ? { icon: attr } : attr, { weight: "2xl" }));
+	return new span({ display: display }, new icon(attr!));
+};
+
+const fnText = (display: IBootstrapTypeDisplay | undefined, text: string) => {
+	return new span({ display: display }, text);
 };
 
 const convert = (attr: IAttrBSLabel, text: string) => {
@@ -33,16 +40,28 @@ const convert = (attr: IAttrBSLabel, text: string) => {
 			//append icon base on position
 			switch (attr.iconPosition) {
 				case "start":
-					e = new div({ display: "flex", gap: 2, alignItem: "center" }, [new icon(attr.icon), text]);
+					e = new div({ display: "flex", gap: 2, alignItem: "center" }, [
+						fnIcon(attr.iconDisplay, attr.icon),
+						fnText(attr.labelDisplay, text),
+					]);
 					break;
 				case "end":
-					e = new div({ display: "flex", gap: 2, alignItem: "center" }, [text, new icon(attr.icon)]);
+					e = new div({ display: "flex", gap: 2, alignItem: "center" }, [
+						fnText(attr.labelDisplay, text),
+						fnIcon(attr.iconDisplay, attr.icon),
+					]);
 					break;
 				case "top":
-					e = new div({ display: "inline-block" }, [fnRow(fnIcon(attr.icon)), fnRow(text)]);
+					e = new div({ display: "inline-block" }, [
+						fnRow(attr.iconDisplay, fnIcon(undefined, attr.icon)),
+						fnRow(attr.labelDisplay, fnText(undefined, text)),
+					]);
 					break;
 				case "bottom":
-					e = new div({ display: "inline-block" }, [fnRow(text), fnRow(fnIcon(attr.icon))]);
+					e = new div({ display: "inline-block" }, [
+						fnRow(attr.labelDisplay, fnText(undefined, text)),
+						fnRow(attr.iconDisplay, fnIcon(undefined, attr.icon)),
+					]);
 					break;
 				default:
 					throw new Error("Unknow iconPosition");
@@ -60,8 +79,8 @@ const convert = (attr: IAttrBSLabel, text: string) => {
 
 	delete a.icon;
 	delete a.iconPosition;
-	delete a.iconVisible;
-	delete a.labelVisible;
+	delete a.iconDisplay;
+	delete a.labelDisplay;
 
 	return { a, e };
 };
