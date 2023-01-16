@@ -1,47 +1,45 @@
-import { genBootstrapClass } from "../core/attach/attachBootstrap.js";
-import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB, bootstrapType } from "../core/base/bootstrap.js";
-import { IAttr, IElem, tag } from "../core/base/tag.js";
-import { mergeClass } from "../core/fn/mergeClass.js";
-import { mergeObject } from "../core/fn/mergeObject.js";
+import { bootstrapType } from "../core/base/bootstrap.js";
+import { IElem } from "../core/base/tag.js";
 import { IAttrTagLabel, label as TLabel } from "../tag/label.js";
 import { span } from "../tag/span.js";
 import { IAttrBSIcon, icon } from "./icon.js";
 
-export interface IAttrBSLabel extends IAttr {
+export interface IAttrBSLabel extends IAttrTagLabel {
 	icon?: IAttrBSIcon;
 	iconPosition?: "start" | "end" | "top" | "bottom";
 	iconVisible?: bootstrapType.viewport[number];
 	labelVisible?: bootstrapType.viewport[number];
 }
 
-const convert = (attr: IAttrBSLabel, iconArg?: IAttrBSIcon, labelArg?: TLabel) => {
+const convert = (attr: IAttrBSLabel, text: string) => {
 	let e: IElem;
 	let a: IAttrBSLabel = attr;
 
-	if (iconArg) {
-		if (labelArg) {
+	if (attr && typeof attr.icon !== "undefined") {
+		if (text) {
 			switch (attr.iconPosition) {
 				case "start":
-					e = new span([new icon(iconArg), labelArg]);
+					new span();
+					e = new span([new icon(attr.icon), text]);
 					break;
 				case "end":
-					e = new span([labelArg, new icon(iconArg)]);
+					e = new span([text, new icon(attr.icon)]);
 					break;
 				case "top":
-					e = new span([new icon(iconArg), labelArg]);
+					e = new span([new icon(attr.icon), text]);
 					break;
 				case "bottom":
-					e = new span([labelArg, new icon(iconArg)]);
+					e = new span([text, new icon(attr.icon)]);
 					break;
 				default:
 					throw new Error("Unknow iconPosition");
 			}
 		} else {
-			e = new icon(iconArg);
+			e = new icon(attr.icon);
 		}
 	} else {
-		if (labelArg) {
-			e = labelArg;
+		if (text) {
+			e = text;
 		} else {
 			e = "label";
 		}
@@ -57,8 +55,8 @@ const convert = (attr: IAttrBSLabel, iconArg?: IAttrBSIcon, labelArg?: TLabel) =
 
 export class label extends TLabel {
 	constructor(); //#1
-	constructor(elem: IElem); //#2
-	constructor(attr: IAttrBSLabel, elem: IElem); //#3
+	constructor(text: string); //#2
+	constructor(attr: IAttrBSLabel, text: string); //#3
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1

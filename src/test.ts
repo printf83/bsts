@@ -58,9 +58,13 @@ core.documentReady(() => {
 			),
 			new html.div(
 				{ row: true },
+				new html.div({ col: true }, new bs.label({ for: "txtTest" }, "hello bs label"))
+			),
+			new html.div(
+				{ row: true },
 				new html.div(
 					{ col: true },
-					new html.input({ type: "text", maxlength: 5, placeholderText: "test 5 maxlength" })
+					new html.input({ id: "txtTest", type: "text", maxlength: 5, placeholderText: "test 5 maxlength" })
 				)
 			),
 			new html.div(
