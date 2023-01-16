@@ -1,5 +1,4 @@
-import { bootstrapType } from "../core/base/bootstrap.js";
-import { IElem } from "../core/base/tag.js";
+import { IAttr, IElem } from "../core/base/tag.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { div } from "../tag/div.js";
 import { IAttrTagLabel, label as TLabel } from "../tag/label.js";
@@ -9,18 +8,19 @@ import { IAttrBSIcon, icon } from "./icon.js";
 export interface IAttrBSMsg extends IAttrTagLabel {
 	icon?: IAttrBSIcon;
 	iconPosition?: "start" | "end" | "top" | "bottom";
+	iconContainer?: IAttr;
 }
 
 const fnRow = (elem: IElem) => {
 	return new div({ row: true }, new div({ col: true, textAlign: "center" }, elem));
 };
 
-const fnIcon = (attr: IAttrBSIcon) => {
-	return new span(new icon(attr!));
+const fnIcon = (containerAttr: IAttr | undefined, attr: IAttrBSIcon) => {
+	return new div(containerAttr || { fontSize: 4 }, new icon(attr!));
 };
 
 const fnText = (text: string) => {
-	return new span(text);
+	return new div({ display: "flex", alignItem: "center" }, new span(text));
 };
 
 const convert = (attr: IAttrBSMsg, text: string) => {
@@ -35,16 +35,22 @@ const convert = (attr: IAttrBSMsg, text: string) => {
 			//append icon base on position
 			switch (attr.iconPosition) {
 				case "start":
-					e = new div({ display: "flex", gap: 3 }, [fnIcon(attr.icon), fnText(text)]);
+					e = new div({ display: "flex", gap: 3 }, [fnIcon(attr.iconContainer, attr.icon), fnText(text)]);
 					break;
 				case "end":
-					e = new div({ display: "flex", gap: 3 }, [fnText(text), fnIcon(attr.icon)]);
+					e = new div({ display: "flex", gap: 3 }, [fnText(text), fnIcon(attr.iconContainer, attr.icon)]);
 					break;
 				case "top":
-					e = new div({ display: "inline-block", gap: 3 }, [fnRow(fnIcon(attr.icon)), fnRow(fnText(text))]);
+					e = new div({ display: "inline-block", gap: 3 }, [
+						fnRow(fnIcon(attr.iconContainer, attr.icon)),
+						fnRow(fnText(text)),
+					]);
 					break;
 				case "bottom":
-					e = new div({ display: "inline-block", gap: 3 }, [fnRow(fnText(text)), fnRow(fnIcon(attr.icon))]);
+					e = new div({ display: "inline-block", gap: 3 }, [
+						fnRow(fnText(text)),
+						fnRow(fnIcon(attr.iconContainer, attr.icon)),
+					]);
 					break;
 				default:
 					throw new Error("Unknow iconPosition");

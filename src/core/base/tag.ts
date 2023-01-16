@@ -327,6 +327,7 @@ export interface IBootstrap {
 	lineHeight?: bootstrapType.lineHeight[number];
 
 	fontSize?: bootstrapType.fontSize[number];
+	fontDisplay?: bootstrapType.fontDisplay[number];
 	fontWeight?: bootstrapType.fontWeight[number];
 
 	top?: bootstrapType.top[number];

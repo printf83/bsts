@@ -27,7 +27,7 @@ const convert = (a: IAttrBSIcon): IAttrBSIcon => {
 			a.type ? a.type : a.icon ? "fas" : "",
 			a.icon ? `fa-${a.icon}` : "",
 			a.weight ? `fa-${a.weight}` : "",
-			a.fixwidth ? "fa-fw" : "",
+			a.fixwidth !== false ? "fa-fw" : "",
 			a.spin ? "fa-spin" : "",
 			a.bounce ? "fa-bounce" : "",
 			a.flip ? "fa-flip" : "",

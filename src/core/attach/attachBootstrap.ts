@@ -37,6 +37,7 @@ const db: bootstrapRuleDB = {
 
 	fontSize: new bootstrapAttachRule("fs-$1", bootstrapBase.fontSize.concat(), null, null, null, true),
 	fontWeight: new bootstrapAttachRule("fw-$1", bootstrapBase.fontWeight.concat(), null, null, null, true),
+	fontDisplay: new bootstrapAttachRule("display-$1", bootstrapBase.fontSize.concat(), null, null, null, true),
 
 	top: new bootstrapAttachRule("top-$1", bootstrapBase.top.concat(), null, null, null, true),
 	bottom: new bootstrapAttachRule("bottom-$1", bootstrapBase.bottom.concat(), null, null, null, true),
