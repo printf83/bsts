@@ -4,6 +4,8 @@ export namespace bootstrapBase {
 	const trueonly = [true] as const;
 	const hundred = [100] as const;
 
+	export const viewport = ["sm", "md", "lg", "xl", "xxl"] as const;
+
 	export const grid = [
 		0,
 		1,
@@ -808,6 +810,7 @@ export namespace bootstrapBase {
 }
 
 export namespace bootstrapType {
+	export type viewport = typeof bootstrapBase.viewport;
 	export type spacer = typeof bootstrapBase.spacer;
 	export type display = typeof bootstrapBase.display;
 	export type flex = typeof bootstrapBase.flex;
