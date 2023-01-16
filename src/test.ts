@@ -4,7 +4,7 @@ core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 
 	core.replaceChild(body, [
-		new html.div({ container: true }, [
+		new html.div({ container: true, gap: 3 }, [
 			new html.div(
 				{
 					row: true,
@@ -56,15 +56,42 @@ core.documentReady(() => {
 				{ row: true },
 				new html.div({ col: true }, new html.input({ type: "range", min: 30, max: 130, value: 50 }))
 			),
-			new html.div(
-				{ row: true },
-				new html.div({ col: true }, new bs.label({ for: "txtTest" }, "hello bs label"))
-			),
+			new html.div({ row: true }, [
+				new html.div(
+					{ col: true },
+					new bs.label({ for: "txtTest", iconPosition: "top", textColor: "danger" }, "home", "Home")
+				),
+				new html.div({ col: true }, new bs.label({ for: "txtTest", textColor: "success" }, "home", "Home")),
+				new html.div({ col: true }, new bs.label({ for: "txtTest" }, "hello bs label")),
+			]),
+			new html.div({ row: true }, [
+				new html.div(
+					{ col: true },
+					new bs.button({ color: "danger" }, new bs.label({ iconPosition: "top" }, "home", "Home"))
+				),
+				new html.div(
+					{ col: true },
+					new bs.button(
+						{ color: "success" },
+						new bs.label(
+							{ for: "txtTest" },
+							"home",
+							"Use align-items utilities on flexbox containers to change the alignment of flex items on the cross axis (the y-axis to start, x-axis if flex-direction: column). Choose from start, end, center, baseline, or stretch (browser default)."
+						)
+					)
+				),
+			]),
 			new html.div(
 				{ row: true },
 				new html.div(
 					{ col: true },
-					new html.input({ id: "txtTest", type: "text", maxlength: 5, placeholderText: "test 5 maxlength" })
+					new html.input({
+						id: "txtTest",
+						type: "text",
+						maxlength: 5,
+						placeholderText: "test 5 maxlength",
+						width: 100,
+					})
 				)
 			),
 			new html.div(
