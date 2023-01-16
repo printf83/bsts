@@ -8,8 +8,7 @@ import { span } from "../tag/span.js";
 import { IAttrBSIcon, icon } from "./icon.js";
 
 export interface IAttrBSLabel extends IAttr {
-	label?: TLabel;
-	icon?: icon;
+	icon?: IAttrBSIcon;
 	iconPosition?: "start" | "end" | "top" | "bottom";
 	iconVisible?: bootstrapType.viewport[number];
 	labelVisible?: bootstrapType.viewport[number];
@@ -48,31 +47,29 @@ const convert = (attr: IAttrBSLabel, iconArg?: IAttrBSIcon, labelArg?: TLabel) =
 		}
 	}
 
-	delete a.label;
 	delete a.icon;
 	delete a.iconPosition;
 	delete a.iconVisible;
 	delete a.labelVisible;
 
-	return { e, a };
+	return { a, e };
 };
 
 export class label extends TLabel {
 	constructor(); //#1
-	constructor(icon: IElem, label: IElem); //#2
 	constructor(elem: IElem); //#2
 	constructor(attr: IAttrBSLabel, elem: IElem); //#3
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
-			super({ class: "btn btn-primary" }, "Button");
+			super("Label");
 		} else if (arg.length === 1) {
 			//#2
-			let res = convert();
-			super("button", { class: "btn btn-primary" }, arg[0]);
+			super(arg[0]);
 		} else if (arg.length === 2) {
 			//#3
-			super(convert(arg[0]), arg[1]);
+			let { e, a } = convert(arg[0], arg[1]);
+			super(a, e);
 		}
 	}
 }

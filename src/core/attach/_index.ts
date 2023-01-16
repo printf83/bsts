@@ -69,9 +69,9 @@ export const attachAttr = (elem: HTMLElement, attr: IAttr): HTMLElement => {
 							console.log(`Treat ${prop[x]}:${attr[k]} as another attribute.`);
 						}
 
-						let r = attrFn[y](prop[x], elem, attr);
-						attr = r.attr;
-						elem = r.elem;
+						let { elem: e, attr: a } = attrFn[y](prop[x], elem, attr);
+						elem = e;
+						attr = a;
 					}
 				}
 			}
