@@ -33,10 +33,10 @@ const convert = (attr: IAttrBSLabel, text: string) => {
 			//append icon base on position
 			switch (attr.iconPosition) {
 				case "start":
-					e = new span({ display: "flex", gap: 2, alignItem: "center" }, [new icon(attr.icon), text]);
+					e = new div({ display: "flex", gap: 2, alignItem: "center" }, [new icon(attr.icon), text]);
 					break;
 				case "end":
-					e = new span({ display: "flex", gap: 2, alignItem: "center" }, [text, new icon(attr.icon)]);
+					e = new div({ display: "flex", gap: 2, alignItem: "center" }, [text, new icon(attr.icon)]);
 					break;
 				case "top":
 					e = new div({ display: "inline-block" }, [fnRow(fnIcon(attr.icon)), fnRow(text)]);
