@@ -1,6 +1,6 @@
 import { genBootstrapClass } from "../core/attach/attachBootstrap.js";
 import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB, bootstrapType } from "../core/base/bootstrap.js";
-import { IAttr, IElem, tag } from "../core/base/tag.js";
+import { IAttr, IElem } from "../core/base/tag.js";
 import { mergeClass } from "../core/fn/mergeClass.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { div } from "../tag/div.js";

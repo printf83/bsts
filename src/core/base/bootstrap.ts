@@ -1,3 +1,165 @@
+export namespace bootstrapLTBase {
+	type base5 = 0 | 1 | 2 | 3 | 4 | 5;
+	type base12 = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+	type truefalse = true | false;
+	type trueonly = true;
+	type hundred = 100;
+
+	type viewportPosition = "sm" | "md" | "lg" | "xl";
+	type viewport = viewportPosition | "xxl";
+	type baseFlex =
+		| "row"
+		| "row-reverse"
+		| "column"
+		| "column-reverse"
+		| "wrap"
+		| "wrap-reverse"
+		| "nowrap"
+		| "fill"
+		| "shrink-0"
+		| "shrink-1"
+		| "grow-0"
+		| "grow-1";
+
+	type baseFloat = "start" | "end" | "none";
+	type baseOrder = "first" | base12 | "last";
+	type baseAlign = "start" | "end" | "center" | "baseline" | "stretch";
+	type baseAlignContent = "start" | "end" | "center" | "between" | "around" | "stretch";
+	type baseJustifyContent = "start" | "end" | "center" | "between" | "around" | "evenly";
+	type baseSpacer = "auto" | base5;
+	type baseDisplay =
+		| "none"
+		| "inline"
+		| "inline-block"
+		| "block"
+		| "grid"
+		| "table"
+		| "table-cell"
+		| "table-row"
+		| "flex"
+		| "inline-flex";
+	type baseRowCol = "auto" | base12;
+	type baseColor = "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "light" | "dark";
+
+	type baseUserSelect = "all" | "auto" | "none";
+	type basePointerEvent = "auto" | "none";
+	type basePosition = "static" | "relative";
+	type baseOverflow = "auto" | "hidden" | "scroll";
+	type baseVerticalAlign = "baseline" | "top" | "middle" | "bottom" | "text-top" | "text-bottom";
+	type baseOpacity = 0 | 25 | 50 | 75 | 100;
+	type baseBgOpacity = 10 | 25 | 50 | 75 | 100;
+	type baseTextOpacity = 25 | 50 | 75 | 100;
+
+	export type grid = base12 | `${viewport}-${base12}`;
+	export type flex = baseFlex | `${viewport}-${baseFlex}`;
+	export type float = baseFloat | `${viewport}-${baseFloat}`;
+	export type order = baseOrder | `${viewport}-${baseOrder}`;
+	export type offset = grid;
+	export type align = baseAlign | `${viewport}-${baseAlign}`;
+	export type alignContent = baseAlignContent | `${viewport}-${baseAlignContent}`;
+	export type justifyContent = baseJustifyContent | `${viewport}-${baseJustifyContent}`;
+	export type alignItem = align;
+	export type alignSelf = align;
+	export type spacer = baseSpacer | `${viewport}-${baseSpacer}`;
+	export type display = baseDisplay | `${viewport}-${baseDisplay}`;
+	export type rowCol = baseRowCol | `${viewport}-${baseRowCol}`;
+	export type color = baseColor;
+	export type positionView = baseFloat | `${viewportPosition}-${baseFloat}`;
+	export type visible = truefalse;
+	export type textWrap = truefalse;
+	export type fontItalic = truefalse;
+
+	export type bgGradient = trueonly;
+	export type wordBreak = trueonly;
+	export type monospace = trueonly;
+	export type placeholder = trueonly;
+
+	export type row = truefalse;
+	export type col = true | baseRowCol | `${viewport}-${baseRowCol}`;
+	export type userSelect = baseUserSelect;
+	export type pointerEvent = basePointerEvent;
+	export type position = basePosition;
+	export type overflow = baseOverflow;
+
+	export type textAlign = positionView;
+	export type verticalAlign = baseVerticalAlign;
+
+	export type opacity = baseOpacity;
+	export type bgOpacity = baseBgOpacity;
+	export type textOpacity = baseTextOpacity;
+
+	export type btnColor = color;
+	export type btnOutlineColor = color;
+	export type alertColor = color;
+
+	export type textBgColor = color;
+	export type textColor = color;
+	export type linkColor = color;
+	export type bgColor = color;
+
+	export type textTransform = "lowercase" | "uppercase" | "capitalize";
+	export type textDecoration = "underline" | "line-through" | "none";
+	export type lineHeight = 1 | "sm" | "base" | "lg";
+
+	export type fontSize = 1 | 2 | 3 | 4 | 5 | 6;
+	export type fontDisplay = fontSize;
+	export type fontWeight = "bold" | "bolder" | "normal" | "light" | "lighter";
+
+	export type top = 0 | 50 | 100;
+	export type bottom = top;
+	export type start = top;
+	export type end = top;
+	export type tMiddle = true | "x" | "y";
+
+	export type height = "auto" | 25 | 50 | 75 | 100;
+	export type width = height;
+
+	export type maxHeight = hundred;
+	export type maxWidth = hundred;
+	export type minViewHeight = hundred;
+	export type minViewWidth = hundred;
+	export type viewHeight = hundred;
+	export type viewWidth = hundred;
+
+	export type placeholderAnimation = "glow" | "wave";
+	export type placeholderWeight = "lg" | "sm" | "xs";
+
+	export type shadow = true | false | "none" | "sm" | "lg" | "inset";
+	export type borderNone = true | "top" | "end" | "bottom" | "start";
+	export type border = false | borderNone;
+
+	export type borderColor = color;
+	export type borderOpacity = 10 | 25 | 50 | 75;
+	export type borderWidth = base5;
+	export type roundedNone = border;
+	export type rounded = roundedNone | "circle" | "pill";
+	export type roundedSize = base5;
+
+	export type padding = spacer;
+	export type paddingX = spacer;
+	export type paddingY = spacer;
+	export type paddingTop = spacer;
+	export type paddingBottom = spacer;
+	export type paddingStart = spacer;
+	export type paddingEnd = spacer;
+
+	export type margin = spacer;
+	export type marginX = spacer;
+	export type marginY = spacer;
+	export type marginTop = spacer;
+	export type marginBottom = spacer;
+	export type marginStart = spacer;
+	export type marginEnd = spacer;
+
+	export type gap = spacer;
+	export type gutter = spacer;
+	export type gutterX = spacer;
+	export type gutterY = spacer;
+
+	export type print = display;
+	export type container = true | "xs" | viewport | "fluid";
+}
+
 export namespace bootstrapBase {
 	const base5 = [0, 1, 2, 3, 4, 5];
 	const truefalse = [true, false] as const;
@@ -916,108 +1078,6 @@ export namespace bootstrapType {
 	export type print = typeof bootstrapBase.print;
 	export type container = typeof bootstrapBase.container;
 }
-
-// export namespace bootstrapType {
-// 	type userSelect = bs.userSelect;
-// 	type pointerEvent = bs.pointerEvent;
-// 	type position = bs.position;
-// 	type overflow = bs.overflow;
-
-// 	type textAlign = bs.textAlign;
-// 	type verticalAlign = bs.verticalAlign;
-
-// 	type opacity = bs.opacity;
-// 	type bgOpacity = bs.bgOpacity;
-// 	type textOpacity = bs.textOpacity;
-
-// 	type textBgColor = bs.textBgColor;
-// 	type textColor = bs.textColor;
-// 	type linkColor = bs.linkColor;
-// 	type bgColor = bs.bgColor;
-
-// 	type textTransform = bs.textTransform;
-// 	type textDecoration = bs.textDecoration;
-// 	type lineHeight = bs.lineHeight;
-
-// 	type fontSize = bs.fontSize;
-// 	type fontWeight = bs.fontWeight;
-
-// 	type top = bs.top;
-// 	type bottom = bs.bottom;
-// 	type start = bs.start;
-// 	type end = bs.end;
-// 	type tMiddle = bs.tMiddle;
-
-// 	type height = bs.height;
-// 	type width = bs.width;
-// 	type maxHeight = bs.maxHeight;
-// 	type maxWidth = bs.maxWidth;
-// 	type minViewHeight = bs.minViewHeight;
-// 	type minViewWidth = bs.minViewWidth;
-// 	type viewHeight = bs.viewHeight;
-// 	type viewWidth = bs.viewWidth;
-
-// 	type placeholder = bs.placeholder;
-// 	type placeholderAnimation = bs.placeholderAnimation;
-// 	type placeholderWeight = bs.placeholderWeight;
-
-// 	type shadow = bs.shadow;
-
-// 	type border = bs.border;
-// 	type borderNone = bs.borderNone;
-// 	type borderColor = bs.borderColor;
-// 	type borderOpacity = bs.borderOpacity;
-// 	type borderWidth = bs.borderWidth;
-
-// 	type rounded = bs.rounded;
-// 	type roundedNone = bs.roundedNone;
-// 	type roundedSize = bs.roundedSize;
-
-// 	type padding = bs.padding | bs.padding[];
-// 	type paddingX = bs.paddingX | bs.paddingX[];
-// 	type paddingY = bs.paddingY | bs.paddingY[];
-// 	type paddingTop = bs.paddingTop | bs.paddingTop[];
-// 	type paddingBottom = bs.paddingBottom | bs.paddingBottom[];
-// 	type paddingStart = bs.paddingStart | bs.paddingStart[];
-// 	type paddingEnd = bs.paddingEnd | bs.paddingEnd[];
-
-// 	type margin = bs.margin | bs.margin[];
-// 	type marginX = bs.marginX | bs.marginX[];
-// 	type marginY = bs.marginY | bs.marginY[];
-// 	type marginTop = bs.marginTop | bs.marginTop[];
-// 	type marginBottom = bs.marginBottom | bs.marginBottom[];
-// 	type marginStart = bs.marginStart | bs.marginStart[];
-// 	type marginEnd = bs.marginEnd | bs.marginEnd[];
-
-// 	type gap = bs.gap | bs.gap[];
-// 	type gutter = bs.gutter | bs.gutter;
-// 	type gutterX = bs.gutterX | bs.gutterX[];
-// 	type gutterY = bs.gutterY | bs.gutterY[];
-
-// 	type display = bs.display | bs.display[];
-// 	type print = bs.print | bs.print;
-// 	type container = bs.container;
-
-// 	type flex = bs.flex | bs.flex[];
-// 	type float = bs.float | bs.float[];
-// 	type order = bs.order | bs.order[];
-// 	type offset = bs.offset | bs.offset[];
-
-// 	type alignContent = bs.alignContent | bs.alignContent[];
-// 	type justifyContent = bs.justifyContent | bs.justifyContent[];
-// 	type alignItem = bs.alignItem | bs.alignItem[];
-// 	type alignSelf = bs.alignSelf | bs.alignSelf[];
-
-// 	type visible = bs.visible;
-// 	type textWrap = bs.textWrap;
-// 	type fontItalic = bs.fontItalic;
-// 	type bgGradient = bs.bgGradient;
-// 	type wordBreak = bs.wordBreak;
-// 	type monospace = bs.monospace;
-// 	type row = bs.row;
-// 	type col = bs.col | bs.col[];
-// 	type rowCol = bs.rowCol | bs.rowCol[];
-// }
 
 export interface IBootstrapAttachRule {
 	format?: string | null;
