@@ -114,7 +114,7 @@ core.documentReady(() => {
 
 			new html.div(
 				{ row: true },
-				new html.div({ col: true }, [new bs.alert({ color: "danger" }, new bs.msg("star", "Hello world"))])
+				new html.div({ col: true }, [new bs.alert({ color: "danger" }, new bs.msg("star", loream))])
 			),
 
 			new html.div(
