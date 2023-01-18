@@ -14,7 +14,7 @@
             "preLaunchTask": "tsc: watch - tsconfig.debug.json",
             "timeout": 5,
             "reAttach": true,
-            "tmpDir": "/home/hamzah/Documents/temp"
+            // "tmpDir": "/home/hamzah/Documents/temp"
         },
         {
             "type": "chrome",
