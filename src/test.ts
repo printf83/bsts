@@ -133,8 +133,8 @@ core.documentReady(() => {
 				{ row: true },
 				new html.div({ col: true }, [
 					new bs.icon("star"),
-					new bs.icon({ icon: "star", spin: true, color: "primary", weight: "xl" }),
-					new bs.icon({ type: "fab", icon: "bootstrap", shake: true, color: "danger" }),
+					new bs.icon({ icon: "star", color: "primary", weight: "xl" }),
+					new bs.icon({ type: "fab", icon: "bootstrap", color: "danger" }),
 				])
 			),
 			new html.div(
@@ -200,7 +200,7 @@ core.documentReady(() => {
 						{
 							iconPosition: "top",
 							iconContainer: { fontDisplay: 1, margin: 5 },
-							icon: { icon: "star", weight: "2xl", shake: true, color: "primary" },
+							icon: { icon: "star", weight: "2xl", color: "primary" },
 						},
 						loream
 					),
