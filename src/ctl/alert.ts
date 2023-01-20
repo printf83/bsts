@@ -13,20 +13,20 @@ const rules: bootstrapRuleDB = {
 	alertColor: new bootstrapAttachRule("alert-$1", bootstrapBase.btnColor.concat()),
 };
 
-const convert = (a: IAttrBSAlert): IAttrBSAlert => {
+const convert = (attr: IAttrBSAlert): IAttrBSAlert => {
 	//add alert class
-	a = mergeObject(a, {
+	attr = mergeObject(attr, {
 		class: "alert",
 	});
 
 	//color
-	if (a.color) {
-		a.class = mergeClass(a.class, genBootstrapClass("alertColor", rules.alertColor, a.color));
+	if (attr.color) {
+		attr.class = mergeClass(attr.class, genBootstrapClass("alertColor", rules.alertColor, attr.color));
 	}
 
-	delete a.color;
+	delete attr.color;
 
-	return a;
+	return attr;
 };
 
 export class alert extends div {

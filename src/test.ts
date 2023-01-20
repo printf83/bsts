@@ -119,7 +119,13 @@ core.documentReady(() => {
 
 			new html.div(
 				{ row: true },
-				new html.div({ col: true }, new html.img("https://picsum.photos/seed/picsum/300/150"))
+				new html.div(
+					{ col: true },
+					new bs.img(
+						{ fluid: true, thumbnail: true, rounded: true },
+						"https://picsum.photos/seed/1231/800/400"
+					)
+				)
 			),
 			new html.div({ row: true }, new html.div({ col: true }, new html.a("this is link 2"))),
 			new html.div({ row: true }, new html.div({ col: true }, new html.b({ title: "test" }, "this is bold"))),

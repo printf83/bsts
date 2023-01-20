@@ -19,36 +19,39 @@ const rules: bootstrapRuleDB = {
 	btnOutlineColor: new bootstrapAttachRule("btn-outline-$1", bootstrapBase.btnOutlineColor.concat()),
 };
 
-const convert = (a: IAttrBSButton): IAttrBSButton => {
+const convert = (attr: IAttrBSButton): IAttrBSButton => {
 	//add btn class
 	//weight,role,toggle
-	a = mergeObject(a, {
-		class: ["btn", a.weight ? `btn-${a.weight}` : ""],
-		role: a.href ? "button" : undefined,
+	attr = mergeObject(attr, {
+		class: ["btn", attr.weight ? `btn-${attr.weight}` : ""],
+		role: attr.href ? "button" : undefined,
 		data: {
-			"bs-toggle": a.toggle ? "button" : undefined,
+			"bs-toggle": attr.toggle ? "button" : undefined,
 		},
 	});
 
 	//color & outline
-	if (a.color) {
-		if (a.outline === true) {
-			a.class = mergeClass(a.class, genBootstrapClass("btnOutlineColor", rules.btnOutlineColor, a.color));
+	if (attr.color) {
+		if (attr.outline === true) {
+			attr.class = mergeClass(
+				attr.class,
+				genBootstrapClass("btnOutlineColor", rules.btnOutlineColor, attr.color)
+			);
 		} else {
-			a.class = mergeClass(a.class, genBootstrapClass("btnColor", rules.btnColor, a.color));
+			attr.class = mergeClass(attr.class, genBootstrapClass("btnColor", rules.btnColor, attr.color));
 		}
 	}
 
-	delete a.color;
-	delete a.outline;
-	delete a.weight;
-	delete a.toggle;
+	delete attr.color;
+	delete attr.outline;
+	delete attr.weight;
+	delete attr.toggle;
 
 	// dont delete
 	// delete a.href;
 	// delete a.role;
 
-	return a;
+	return attr;
 };
 
 export class button extends tag {

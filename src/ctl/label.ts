@@ -28,8 +28,8 @@ const fnText = (display: IBootstrapTypeDisplay | undefined, text: string) => {
 };
 
 const convert = (attr: IAttrBSLabel, text: string) => {
-	let e: IElem;
-	let a: IAttrBSLabel = attr;
+	let tElem: IElem;
+	let tAttr: IAttrBSLabel = attr;
 
 	if (attr && typeof attr.icon !== "undefined") {
 		if (text) {
@@ -39,25 +39,25 @@ const convert = (attr: IAttrBSLabel, text: string) => {
 			//append icon base on position
 			switch (attr.iconPosition) {
 				case "start":
-					e = new div({ display: "flex", gap: 2, alignItem: "center" }, [
+					tElem = new div({ display: "flex", gap: 2, alignItem: "center" }, [
 						fnIcon(attr.iconDisplay, attr.icon),
 						fnText(attr.labelDisplay, text),
 					]);
 					break;
 				case "end":
-					e = new div({ display: "flex", gap: 2, alignItem: "center" }, [
+					tElem = new div({ display: "flex", gap: 2, alignItem: "center" }, [
 						fnText(attr.labelDisplay, text),
 						fnIcon(attr.iconDisplay, attr.icon),
 					]);
 					break;
 				case "top":
-					e = new div({ display: "inline-block" }, [
+					tElem = new div({ display: "inline-block" }, [
 						fnRow(attr.iconDisplay, fnIcon(undefined, attr.icon)),
 						fnRow(attr.labelDisplay, fnText(undefined, text)),
 					]);
 					break;
 				case "bottom":
-					e = new div({ display: "inline-block" }, [
+					tElem = new div({ display: "inline-block" }, [
 						fnRow(attr.labelDisplay, fnText(undefined, text)),
 						fnRow(attr.iconDisplay, fnIcon(undefined, attr.icon)),
 					]);
@@ -66,22 +66,22 @@ const convert = (attr: IAttrBSLabel, text: string) => {
 					throw new Error("Unknow iconPosition");
 			}
 		} else {
-			e = new icon(attr.icon);
+			tElem = new icon(attr.icon);
 		}
 	} else {
 		if (text) {
-			e = text;
+			tElem = text;
 		} else {
-			e = "Label";
+			tElem = "Label";
 		}
 	}
 
-	delete a.icon;
-	delete a.iconPosition;
-	delete a.iconDisplay;
-	delete a.labelDisplay;
+	delete tAttr.icon;
+	delete tAttr.iconPosition;
+	delete tAttr.iconDisplay;
+	delete tAttr.labelDisplay;
 
-	return { a, e };
+	return { attr: tAttr, elem: tElem };
 };
 
 export class label extends TLabel {
@@ -100,18 +100,17 @@ export class label extends TLabel {
 		} else if (arg.length === 2) {
 			if (typeof arg[0] === "string" && typeof arg[1] === "string") {
 				//#3
-				let { e, a } = convert({ icon: arg[0] as IAttrBSIcon } as IAttrBSLabel, arg[1]);
-				super(a, e);
+				let { elem, attr } = convert({ icon: arg[0] as IAttrBSIcon } as IAttrBSLabel, arg[1]);
+				super(attr, elem);
 			} else {
 				//#4
-				let { e, a } = convert(arg[0], arg[1]);
-				super(a, e);
+				let { elem, attr } = convert(arg[0], arg[1]);
+				super(attr, elem);
 			}
 		} else if (arg.length === 3) {
 			//#5
-			let ttt = mergeObject<IAttrBSLabel>(arg[0], { icon: arg[1] as IAttrBSIcon });
-			let { e, a } = convert(ttt, arg[2]);
-			super(a, e);
+			let { elem, attr } = convert(mergeObject<IAttrBSLabel>(arg[0], { icon: arg[1] as IAttrBSIcon }), arg[2]);
+			super(attr, elem);
 		}
 	}
 }

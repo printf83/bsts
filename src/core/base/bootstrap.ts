@@ -1102,3 +1102,7 @@ export class bootstrapAttachRule implements IBootstrapAttachRule {
 export interface bootstrapRuleDB {
 	[key: string]: bootstrapAttachRule;
 }
+
+export const isBootstrapType = <T>(x: any, typeName: string): x is T => {
+	return bootstrapBase[typeName].includes(x);
+};

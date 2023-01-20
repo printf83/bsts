@@ -24,8 +24,8 @@ const fnText = (text: string) => {
 };
 
 const convert = (attr: IAttrBSMsg, text: string) => {
-	let e: IElem;
-	let a: IAttrBSMsg = attr;
+	let tElem: IElem;
+	let tAttr: IAttrBSMsg = attr;
 
 	if (attr && typeof attr.icon !== "undefined") {
 		if (text) {
@@ -35,19 +35,19 @@ const convert = (attr: IAttrBSMsg, text: string) => {
 			//append icon base on position
 			switch (attr.iconPosition) {
 				case "start":
-					e = new div({ display: "flex", gap: 3 }, [fnIcon(attr.iconContainer, attr.icon), fnText(text)]);
+					tElem = new div({ display: "flex", gap: 3 }, [fnIcon(attr.iconContainer, attr.icon), fnText(text)]);
 					break;
 				case "end":
-					e = new div({ display: "flex", gap: 3 }, [fnText(text), fnIcon(attr.iconContainer, attr.icon)]);
+					tElem = new div({ display: "flex", gap: 3 }, [fnText(text), fnIcon(attr.iconContainer, attr.icon)]);
 					break;
 				case "top":
-					e = new div({ display: "inline-block", gap: 3 }, [
+					tElem = new div({ display: "inline-block", gap: 3 }, [
 						fnRow(fnIcon(attr.iconContainer, attr.icon)),
 						fnRow(fnText(text)),
 					]);
 					break;
 				case "bottom":
-					e = new div({ display: "inline-block", gap: 3 }, [
+					tElem = new div({ display: "inline-block", gap: 3 }, [
 						fnRow(fnText(text)),
 						fnRow(fnIcon(attr.iconContainer, attr.icon)),
 					]);
@@ -56,20 +56,20 @@ const convert = (attr: IAttrBSMsg, text: string) => {
 					throw new Error("Unknow iconPosition");
 			}
 		} else {
-			e = new icon(attr.icon);
+			tElem = new icon(attr.icon);
 		}
 	} else {
 		if (text) {
-			e = text;
+			tElem = text;
 		} else {
-			e = "Message";
+			tElem = "Message";
 		}
 	}
 
-	delete a.icon;
-	delete a.iconPosition;
+	delete tAttr.icon;
+	delete tAttr.iconPosition;
 
-	return { a, e };
+	return { attr: tAttr, elem: tElem };
 };
 
 export class msg extends TLabel {
@@ -88,18 +88,18 @@ export class msg extends TLabel {
 		} else if (arg.length === 2) {
 			if (typeof arg[0] === "string" && typeof arg[1] === "string") {
 				//#3
-				let { e, a } = convert({ icon: arg[0] as IAttrBSIcon } as IAttrBSMsg, arg[1]);
-				super(a, e);
+				let { elem, attr } = convert({ icon: arg[0] as IAttrBSIcon } as IAttrBSMsg, arg[1]);
+				super(attr, elem);
 			} else {
 				//#4
-				let { e, a } = convert(arg[0], arg[1]);
-				super(a, e);
+				let { elem, attr } = convert(arg[0], arg[1]);
+				super(attr, elem);
 			}
 		} else if (arg.length === 3) {
 			//#5
 			let ttt = mergeObject<IAttrBSMsg>(arg[0], { icon: arg[1] as IAttrBSIcon });
-			let { e, a } = convert(ttt, arg[2]);
-			super(a, e);
+			let { elem, attr } = convert(ttt, arg[2]);
+			super(attr, elem);
 		}
 	}
 }

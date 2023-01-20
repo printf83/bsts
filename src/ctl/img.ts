@@ -1,6 +1,5 @@
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { IAttrTagImg, img as TImg } from "../tag/img.js";
-import { IAttrBSIcon } from "./icon.js";
 
 export interface IAttrBSImg extends IAttrTagImg {
 	fluid?: true;
@@ -21,8 +20,8 @@ const convert = (attr: IAttrBSImg): IAttrBSImg => {
 export class img extends TImg {
 	constructor(); //#1
 	constructor(src: string); //#2
-	constructor(attr: IAttrBSIcon); //#3
-	constructor(attr: IAttrBSIcon, src: string); //#4
+	constructor(attr: IAttrBSImg); //#3
+	constructor(attr: IAttrBSImg, src: string); //#4
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
