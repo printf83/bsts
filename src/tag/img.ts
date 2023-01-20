@@ -21,21 +21,25 @@ export interface IAttrTagImg extends IAttr {
 }
 
 export class img extends tag {
-	constructor();
-	constructor(src: string);
-	constructor(attr: IAttrTagImg);
-	constructor(src: string, attr: IAttrTagImg);
+	constructor(); //#1
+	constructor(src: string); //#2
+	constructor(attr: IAttrTagImg); //#3
+	constructor(attr: IAttrTagImg, src: string); //#4
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
+			//#1
 			super("img");
 		} else if (arg.length === 1) {
 			if (typeof arg[0] === "string") {
+				//#2
 				super("img", { src: arg[0] } as IAttrTagImg, undefined);
 			} else {
+				//#3
 				super("img", arg[0], undefined);
 			}
 		} else if (arg.length === 2) {
-			super("img", mergeObject(arg[1], { src: arg[0] } as IAttrTagImg), undefined);
+			//#4
+			super("img", mergeObject(arg[0], { src: arg[1] } as IAttrTagImg), undefined);
 		}
 	}
 }
