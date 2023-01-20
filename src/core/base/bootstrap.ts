@@ -1103,6 +1103,10 @@ export interface bootstrapRuleDB {
 	[key: string]: bootstrapAttachRule;
 }
 
-export const isBootstrapType = <T>(x: any, typeName: string): x is T => {
-	return bootstrapBase[typeName].includes(x);
+export const isBootstrapType = (value: string | number | boolean, type: any[]): boolean => {
+	let listOfPossible = type.concat();
+	if (listOfPossible && listOfPossible.length > 0) {
+		return listOfPossible.includes(value);
+	}
+	return false;
 };

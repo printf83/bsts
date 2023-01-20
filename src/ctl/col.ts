@@ -1,4 +1,4 @@
-import { bootstrapType, isBootstrapType } from "../core/base/bootstrap.js";
+import { bootstrapBase, bootstrapType, isBootstrapType } from "../core/base/bootstrap.js";
 import { IAttr, IElem } from "../core/base/tag.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { div } from "../tag/div.js";
@@ -24,11 +24,11 @@ export class col extends div {
 			//#2
 			super({ col: true }, arg[0]);
 		} else if (arg.length === 2) {
-			if (isBootstrapType<bootstrapType.col>(arg[0], "col")) {
+			if (isBootstrapType(arg[0], bootstrapBase.col.concat())) {
 				//#3
 				super({ col: arg[0] }, arg[1]);
 			} else {
-				//#3
+				//#4
 				super(convert(arg[0]), arg[1]);
 			}
 		}
