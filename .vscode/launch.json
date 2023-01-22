@@ -5,12 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Attach to Edge",
+            "port": 9222,
+            "request": "attach",
+            "type": "msedge",
+            "webRoot": "${workspaceFolder}",
+            
+        },
+        {
             "type": "firefox",
             "request": "launch",
             "name": "Launch Firefox",
             "url": "${workspaceFolder}/index.html",
             "webRoot": "${workspaceFolder}",
-            // "preLaunchTask": "tsc: build - tsconfig.debug.json",
             "preLaunchTask": "tsc: watch - tsconfig.debug.json",
             "timeout": 5,
             "reAttach": true,
