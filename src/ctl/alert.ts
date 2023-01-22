@@ -20,9 +20,11 @@ const convert = (attr: IAttrBSAlert): IAttrBSAlert => {
 	});
 
 	//color
-	if (attr.color) {
-		attr.class = mergeClass(attr.class, genBootstrapClass("alertColor", rules.alertColor, attr.color));
+	if (!attr.color) {
+		attr.color = "primary";
 	}
+
+	attr.class = mergeClass(attr.class, genBootstrapClass("alertColor", rules.alertColor, attr.color));
 
 	delete attr.color;
 
@@ -36,10 +38,10 @@ export class alert extends div {
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
-			super({ class: "alert alert-primary" }, "Button");
+			super(convert({}), "Button");
 		} else if (arg.length === 1) {
 			//#2
-			super({ class: "alert alert-primary" }, arg[0]);
+			super(convert({}), arg[0]);
 		} else if (arg.length === 2) {
 			//#3
 			super(convert(arg[0]), arg[1]);

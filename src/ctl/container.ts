@@ -19,14 +19,14 @@ export class container extends div {
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
-			super({ container: true }, "");
+			super(convert({}), "");
 		} else if (arg.length === 1) {
 			//#2
-			super({ container: true }, arg[0]);
+			super(convert({}), arg[0]);
 		} else if (arg.length === 2) {
 			if (isBootstrapType(arg[0], bootstrapBase.container.concat())) {
 				//#3
-				super({ container: arg[0] }, arg[1]);
+				super(convert({ container: arg[0] }), arg[1]);
 			} else {
 				//#4
 				super(convert(arg[0]), arg[1]);

@@ -1,4 +1,3 @@
-import { bootstrapBase, bootstrapType, isBootstrapType } from "../core/base/bootstrap.js";
 import { IAttr, IElem } from "../core/base/tag.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { div } from "../tag/div.js";
@@ -19,10 +18,10 @@ export class grid extends div {
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
-			super({ gap: 3 }, "");
+			super(convert({}), "");
 		} else if (arg.length === 1) {
 			//#2
-			super({ gap: 3 }, arg[0]);
+			super(convert({}), arg[0]);
 		} else if (arg.length === 2) {
 			//#3
 			super(convert(arg[0]), arg[1]);

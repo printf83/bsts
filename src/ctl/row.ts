@@ -17,10 +17,10 @@ export class row extends div {
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
-			super({ row: true }, "");
+			super(convert({}), "");
 		} else if (arg.length === 1) {
 			//#2
-			super({ row: true }, arg[0]);
+			super(convert({}), arg[0]);
 		} else if (arg.length === 2) {
 			//#3
 			super(convert(arg[0]), arg[1]);

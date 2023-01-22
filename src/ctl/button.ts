@@ -31,15 +31,14 @@ const convert = (attr: IAttrBSButton): IAttrBSButton => {
 	});
 
 	//color & outline
-	if (attr.color) {
-		if (attr.outline === true) {
-			attr.class = mergeClass(
-				attr.class,
-				genBootstrapClass("btnOutlineColor", rules.btnOutlineColor, attr.color)
-			);
-		} else {
-			attr.class = mergeClass(attr.class, genBootstrapClass("btnColor", rules.btnColor, attr.color));
-		}
+	if (!attr.color) {
+		attr.color = "primary";
+	}
+
+	if (attr.outline === true) {
+		attr.class = mergeClass(attr.class, genBootstrapClass("btnOutlineColor", rules.btnOutlineColor, attr.color));
+	} else {
+		attr.class = mergeClass(attr.class, genBootstrapClass("btnColor", rules.btnColor, attr.color));
 	}
 
 	delete attr.color;
@@ -61,10 +60,10 @@ export class button extends tag {
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
-			super("button", { class: "btn btn-primary" }, "Button");
+			super("button", convert({}), "Button");
 		} else if (arg.length === 1) {
 			//#2
-			super("button", { class: "btn btn-primary" }, arg[0]);
+			super("button", convert({}), arg[0]);
 		} else if (arg.length === 2) {
 			//#3
 			super(arg[0].href ? "a" : "button", convert(arg[0]), arg[1]);
