@@ -88,17 +88,18 @@ core.documentReady(() => {
 					),
 				]),
 				new bs.row(
-					new bs.col(
+					new bs.col([
 						new bs.input({
 							id: "txtTest",
 							type: "text",
-							maxlength: 5,
-							placeholderText: "test 5 maxlength",
-							width: 100,
 							weight: "lg",
-							readonly: true,
-						})
-					)
+							list: "txtTest_list",
+						}),
+						new html.datalist(
+							{ id: "txtTest_list" },
+							loream.split(" ").map((i) => new html.option(i, ""))
+						),
+					])
 				),
 
 				new bs.row(new bs.col([new bs.alert({ color: "danger" }, new bs.msg("star", loream))])),
