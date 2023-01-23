@@ -11,6 +11,7 @@ const convert = (attr: IAttrBSInput) => {
 		id: attr.id || UUID(),
 		type: attr.type || "text",
 		class: [
+			attr.type === "color" ? "form-control-color" : "",
 			attr.readonly ? "form-control-plaintext" : "form-control",
 			attr.weight ? `form-control-${attr.weight}` : "",
 		],

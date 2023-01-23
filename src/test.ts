@@ -8,9 +8,9 @@ core.documentReady(() => {
 	core.replaceChild(body, [
 		new bs.container(
 			new bs.grid([
+				new bs.row(new bs.col([new bs.input({ type: "file" })])),
 				new bs.row(
 					{
-						padding: ["lg-2", "md-3", "sm-4", "xl-1"],
 						style: {
 							height: "60px !important",
 						},

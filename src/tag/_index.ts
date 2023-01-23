@@ -57,6 +57,8 @@ import { time } from "./time.js";
 import { track } from "./track.js";
 import { video } from "./video.js";
 import { legend } from "./legend.js";
+import { datalist } from "./datalist.js";
+import { tr } from "./tr.js";
 
 export const html = {
 	a,
@@ -70,6 +72,7 @@ export const html = {
 	code,
 	col,
 	colgroup,
+	datalist,
 	del,
 	details,
 	div,
@@ -114,6 +117,7 @@ export const html = {
 	textarea,
 	th,
 	time,
+	tr,
 	track,
 	u,
 	ul,
