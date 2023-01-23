@@ -95,10 +95,7 @@ core.documentReady(() => {
 							weight: "lg",
 							list: "txtTest_list",
 						}),
-						new html.datalist(
-							{ id: "txtTest_list" },
-							loream.split(" ").map((i) => new html.option(i, ""))
-						),
+						new html.datalist({ id: "txtTest_list", options: loream.split(" ") }, ""),
 					])
 				),
 
