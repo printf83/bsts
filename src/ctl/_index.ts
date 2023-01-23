@@ -8,6 +8,7 @@ import { row } from "./row.js";
 import { col } from "./col.js";
 import { grid } from "./grid.js";
 import { container } from "./container.js";
+import { input } from "./input.js";
 
 export const bs = {
 	icon,
@@ -20,4 +21,5 @@ export const bs = {
 	col,
 	grid,
 	container,
+	input,
 };

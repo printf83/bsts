@@ -49,7 +49,7 @@ core.documentReady(() => {
 				),
 				new bs.row(new bs.col(new html.hr({ title: "test", style: { backgroundColor: "red" } }))),
 				new bs.row(new bs.col(new html.a({ href: "#", linkColor: "danger" }, "this is link"))),
-				new bs.row(new bs.col(new html.input({ type: "range", min: 30, max: 130, value: 50 }))),
+				new bs.row(new bs.col(new bs.input({ type: "range", min: 30, max: 130, value: 50 }))),
 				new bs.row([
 					new bs.col(
 						new bs.label(
@@ -89,12 +89,14 @@ core.documentReady(() => {
 				]),
 				new bs.row(
 					new bs.col(
-						new html.input({
+						new bs.input({
 							id: "txtTest",
 							type: "text",
 							maxlength: 5,
 							placeholderText: "test 5 maxlength",
 							width: 100,
+							weight: "lg",
+							readonly: true,
 						})
 					)
 				),
