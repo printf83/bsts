@@ -1,5 +1,4 @@
 import { isTag } from "../base/tag.js";
-import { setting } from "./setting.js";
 
 const isArgMatchRule = (rule: string | string[], argType: string[]): boolean => {
 	if (argType) {

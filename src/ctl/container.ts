@@ -1,4 +1,4 @@
-import { bootstrapBase, bootstrapType, isBootstrapType } from "../core/base/bootstrap.js";
+import { bootstrapType } from "../core/base/bootstrap.js";
 import { IAttr, IElem } from "../core/base/tag.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { args } from "../core/fn/args.js";
@@ -15,11 +15,14 @@ const convert = (attr: IAttr): IAttr => {
 export class container extends div {
 	constructor(); //#default
 	constructor(elem: IElem); //#0
-	constructor(size: bootstrapType.container, elem: IElem); //#1
-	constructor(attr: IAttr, elem: IElem); //#2
+	constructor(size: bootstrapType.container); //#1
+	constructor(size: bootstrapType.container, elem: IElem); //#2
+	constructor(attr: IAttr); //#3
+	constructor(attr: IAttr, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		let rules = [
 			"string|tag|string[]|tag[]",
+			"string[]|boolean[]",
 			["string[]|boolean[]", "string|tag|string[]|tag[]"],
 			["object", "string|tag|string[]|tag[]"],
 		];
