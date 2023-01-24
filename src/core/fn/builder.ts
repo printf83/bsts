@@ -1,9 +1,9 @@
 import { attachAttr } from "../attach/_index.js";
+import { isTag, tag } from "../base/tag.js";
 import { isHTML } from "./isHTML.js";
-import { setting } from "./setting.js";
 import { removeChildElement } from "./removeChildElement.js";
 import { removeElement } from "./removeElement.js";
-import { isTag, tag } from "../base/tag.js";
+import { setting } from "./setting.js";
 
 export type buildArg = tag | string | (tag | string)[];
 
@@ -85,15 +85,9 @@ export const build = (
 export const node = (arg: buildArg): HTMLElement | HTMLElement[] | null => {
 	let container = build(document.createElement("div"), arg);
 	let childCount = container.childElementCount;
-	if (childCount > 0) {
-		if (childCount === 1) {
-			return container.firstChild as HTMLElement;
-		} else {
-			return Array.from(container.childNodes).map((i) => i as HTMLElement);
-		}
-	}
-
-	return null;
+	if (childCount === 0) return null;
+	if (childCount === 1) return container.firstChild as HTMLElement;
+	return Array.from(container.childNodes).map((i) => i as HTMLElement);
 };
 
 export const html = (arg: buildArg): string => {

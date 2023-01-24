@@ -6,7 +6,9 @@ core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 
 	core.replaceChild(body, [
-		new bs.container(new bs.row(new bs.col({ col: "auto" }, new html.option("a", "a")))),
+		new bs.container(
+			new bs.row(new bs.col({ col: "auto" }, new html.option({ value: "axddd", textColor: "primary" }, "a")))
+		),
 		new bs.container(
 			new bs.grid([
 				new bs.row(new bs.col([new bs.input({ type: "file" })])),

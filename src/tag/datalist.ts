@@ -11,7 +11,7 @@ const convert = (attr: IAttrTagDatalist, elem: IElem) => {
 	//convert option to tag
 	if (attr.options) {
 		let d = Array.isArray(attr.options) ? attr.options : [attr.options];
-		tElem = d.map((i) => new option({ value: i }, ""));
+		tElem = d.map((i) => new option(i));
 	}
 
 	//conbine with elem

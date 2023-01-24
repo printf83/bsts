@@ -28,6 +28,7 @@ export class container extends div {
 		} else if (arg.length === 1) {
 			//#2
 			super(convert({}), arg[0]);
+			//					^?
 		} else if (arg.length === 2) {
 			//#3
 			super(convert(arg[0]), arg[1]);
