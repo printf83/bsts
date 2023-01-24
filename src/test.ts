@@ -193,8 +193,9 @@ core.documentReady(() => {
 		),
 	]);
 
-	let a = "1";
-	let b = 2;
+	let a: number = 3;
+	let b: number = 2;
+
 	let cxxx = a + b; //?
 	//    ^?
 	console.log(cxxx); //?
