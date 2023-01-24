@@ -13,7 +13,7 @@ export class ol extends tag {
 		if (arg.length === 0) {
 			super("ol");
 		} else if (arg.length === 1) {
-			super("ol", undefined, arg[0]);
+			super("ol", arg[0]);
 		} else if (arg.length === 2) {
 			super("ol", arg[0], arg[1]);
 		}

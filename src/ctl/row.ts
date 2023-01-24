@@ -3,9 +3,12 @@ import { mergeObject } from "../core/fn/mergeObject.js";
 import { div } from "../tag/div.js";
 
 const convert = (attr: IAttr): IAttr => {
-	attr = mergeObject(attr, {
-		row: true,
-	});
+	attr = mergeObject(
+		{
+			row: true,
+		},
+		attr
+	);
 
 	return attr;
 };

@@ -12,7 +12,7 @@ export class colgroup extends tag {
 		if (arg.length === 0) {
 			super("colgroup");
 		} else if (arg.length === 1) {
-			super("colgroup", undefined, arg[0]);
+			super("colgroup", arg[0]);
 		} else if (arg.length === 2) {
 			super("colgroup", arg[0], arg[1]);
 		}

@@ -22,29 +22,32 @@ export interface IAttrBSIcon extends IAttr {
 }
 
 const convert = (attr: IAttrBSIcon): IAttrBSIcon => {
-	attr = mergeObject(attr, {
-		class: [
-			attr.type ? attr.type : attr.icon ? "fas" : "",
-			attr.icon ? `fa-${attr.icon}` : "",
-			attr.weight ? `fa-${attr.weight}` : "",
-			attr.fixwidth !== false ? "fa-fw" : "",
-			attr.spin ? "fa-spin" : "",
-			attr.bounce ? "fa-bounce" : "",
-			attr.flip ? "fa-flip" : "",
-			attr.shake ? "fa-shake" : "",
-			attr.inverse ? "fa-inverse" : "",
-			!attr.beat && attr.fade ? "fa-fade" : "",
-			attr.beat && !attr.fade ? "fa-beat" : "",
-			attr.beat && attr.fade ? "fa-beat-fade" : "",
-			attr.rotate
-				? typeof attr.rotate === "number"
-					? `fa-rotate-${attr.rotate.toString()}`
-					: `fa-flip-${attr.rotate.toString()}`
-				: "",
-			attr.stack ? (typeof attr.stack === "number" ? `fa-stack-${attr.stack.toString()}x` : "fa-stack") : "",
-		],
-		textColor: attr.color,
-	});
+	attr = mergeObject(
+		{
+			class: [
+				attr.type ? attr.type : attr.icon ? "fas" : "",
+				attr.icon ? `fa-${attr.icon}` : "",
+				attr.weight ? `fa-${attr.weight}` : "",
+				attr.fixwidth !== false ? "fa-fw" : "",
+				attr.spin ? "fa-spin" : "",
+				attr.bounce ? "fa-bounce" : "",
+				attr.flip ? "fa-flip" : "",
+				attr.shake ? "fa-shake" : "",
+				attr.inverse ? "fa-inverse" : "",
+				!attr.beat && attr.fade ? "fa-fade" : "",
+				attr.beat && !attr.fade ? "fa-beat" : "",
+				attr.beat && attr.fade ? "fa-beat-fade" : "",
+				attr.rotate
+					? typeof attr.rotate === "number"
+						? `fa-rotate-${attr.rotate.toString()}`
+						: `fa-flip-${attr.rotate.toString()}`
+					: "",
+				attr.stack ? (typeof attr.stack === "number" ? `fa-stack-${attr.stack.toString()}x` : "fa-stack") : "",
+			],
+			textColor: attr.color,
+		},
+		attr
+	);
 
 	delete attr.icon;
 	delete attr.type;

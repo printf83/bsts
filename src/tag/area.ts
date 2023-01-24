@@ -41,7 +41,7 @@ export class area extends tag {
 		if (arg.length === 0) {
 			super("area");
 		} else if (arg.length === 1) {
-			super("area", undefined, arg[0]);
+			super("area", arg[0]);
 		} else if (arg.length === 2) {
 			super("area", arg[0], arg[1]);
 		}

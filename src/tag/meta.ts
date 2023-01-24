@@ -14,7 +14,7 @@ export class meta extends tag {
 		if (arg.length === 0) {
 			super("meta");
 		} else if (arg.length === 1) {
-			super("meta", arg[0], undefined);
+			super("meta", arg[0]);
 		}
 	}
 }

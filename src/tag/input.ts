@@ -61,7 +61,7 @@ export class input extends tag {
 		if (arg.length === 0) {
 			super("input");
 		} else if (arg.length === 1) {
-			super("input", arg[0], undefined);
+			super("input", arg[0]);
 		}
 	}
 }

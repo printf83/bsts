@@ -8,7 +8,7 @@ export class span extends tag {
 		if (arg.length === 0) {
 			super("span");
 		} else if (arg.length === 1) {
-			super("span", undefined, arg[0]);
+			super("span", arg[0]);
 		} else if (arg.length === 2) {
 			super("span", arg[0], arg[1]);
 		}

@@ -5,24 +5,24 @@ import { mergeClass } from "./mergeClass.js";
 export const mergeObject = <T extends IAttr>(target: T, source: T): T | never => {
 	if (target) {
 		if (source) {
-			let target_class = target.class;
-			let source_class = source.class;
-			let target_style = target.style;
-			let source_style = source.style;
-			let target_aria = target.aria;
-			let source_aria = source.aria;
-			let target_data = target.data;
-			let source_data = source.data;
-			let target_on = target.on;
-			let source_on = source.on;
+			let a_class = target.class;
+			let b_class = source.class;
+			let a_style = target.style;
+			let b_style = source.style;
+			let a_aria = target.aria;
+			let b_aria = source.aria;
+			let a_data = target.data;
+			let b_data = source.data;
+			let a_on = target.on;
+			let b_on = source.on;
 
 			let result = mergeAttr(target, source);
 
-			result.class = mergeClass(target_class, source_class);
-			result.style = mergeAttr(target_style, source_style);
-			result.aria = mergeAttr(target_aria, source_aria);
-			result.data = mergeAttr(target_data, source_data);
-			result.on = mergeAttr(target_on, source_on);
+			result.class = mergeClass(a_class, b_class);
+			result.style = mergeAttr(a_style, b_style);
+			result.aria = mergeAttr(a_aria, b_aria);
+			result.data = mergeAttr(a_data, b_data);
+			result.on = mergeAttr(a_on, b_on);
 
 			return result;
 		} else {

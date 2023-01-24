@@ -13,7 +13,7 @@ export class progress extends tag {
 		if (arg.length === 0) {
 			super("progress");
 		} else if (arg.length === 1) {
-			super("progress", undefined, arg[0]);
+			super("progress", arg[0]);
 		} else if (arg.length === 2) {
 			super("progress", arg[0], arg[1]);
 		}

@@ -22,13 +22,16 @@ const rules: bootstrapRuleDB = {
 const convert = (attr: IAttrBSButton): IAttrBSButton => {
 	//add btn class
 	//weight,role,toggle
-	attr = mergeObject(attr, {
-		class: ["btn", attr.weight ? `btn-${attr.weight}` : ""],
-		role: attr.href ? "button" : undefined,
-		data: {
-			"bs-toggle": attr.toggle ? "button" : undefined,
+	attr = mergeObject(
+		{
+			class: ["btn", attr.weight ? `btn-${attr.weight}` : ""],
+			role: attr.href ? "button" : undefined,
+			data: {
+				"bs-toggle": attr.toggle ? "button" : undefined,
+			},
 		},
-	});
+		attr
+	);
 
 	//color & outline
 	if (!attr.color) {

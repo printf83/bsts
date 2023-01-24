@@ -12,7 +12,7 @@ export class details extends tag {
 		if (arg.length === 0) {
 			super("details");
 		} else if (arg.length === 1) {
-			super("details", undefined, arg[0]);
+			super("details", arg[0]);
 		} else if (arg.length === 2) {
 			super("details", arg[0], arg[1]);
 		}

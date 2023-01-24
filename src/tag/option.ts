@@ -16,7 +16,7 @@ export class option extends tag {
 		if (arg.length === 0) {
 			super("option");
 		} else if (arg.length === 1) {
-			super("option", undefined, arg[0]);
+			super("option", arg[0]);
 		} else if (arg.length === 2) {
 			if (typeof arg[0] === "string") {
 				super("option", { value: arg[0] } as IAttrTagOption, arg[1]);

@@ -12,7 +12,7 @@ export class li extends tag {
 		if (arg.length === 0) {
 			super("li");
 		} else if (arg.length === 1) {
-			super("li", undefined, arg[0]);
+			super("li", arg[0]);
 		} else if (arg.length === 2) {
 			super("li", arg[0], arg[1]);
 		}

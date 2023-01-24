@@ -36,12 +36,12 @@ export class iframe extends tag {
 			super("iframe");
 		} else if (arg.length === 1) {
 			if (typeof arg[0] === "string") {
-				super("iframe", { src: arg[0] } as IAttrTagIframe, undefined);
+				super("iframe", { src: arg[0] } as IAttrTagIframe);
 			} else {
-				super("iframe", arg[0], undefined);
+				super("iframe", arg[0]);
 			}
 		} else if (arg.length === 2) {
-			super("iframe", mergeObject(arg[1], { src: arg[0] } as IAttrTagIframe), undefined);
+			super("iframe", mergeObject(arg[1], { src: arg[0] } as IAttrTagIframe));
 		}
 	}
 }

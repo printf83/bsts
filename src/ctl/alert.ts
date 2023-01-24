@@ -15,9 +15,12 @@ const rules: bootstrapRuleDB = {
 
 const convert = (attr: IAttrBSAlert): IAttrBSAlert => {
 	//add alert class
-	attr = mergeObject(attr, {
-		class: "alert",
-	});
+	attr = mergeObject(
+		{
+			class: "alert",
+		},
+		attr
+	);
 
 	//color
 	if (!attr.color) {

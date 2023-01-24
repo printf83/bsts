@@ -434,19 +434,35 @@ export class tag implements ITag {
 	public attr?: IAttr;
 	public dom?: HTMLElement;
 
-	constructor(tag: string);
-	constructor(tag: string, elem?: IElem);
-	constructor(tag: string, attr?: IAttr, elem?: IElem);
+	constructor(); //#1
+	constructor(tag: string); //#2
+	constructor(tag: string, attr: IAttr); //#3
+	constructor(tag: string, elem: IElem); //#4
+	constructor(tag: string, attr: IAttr, elem: IElem); //#5
 	constructor(...arg: any[]) {
-		if (arg.length === 3) {
+		if (arg.length === 0) {
+			//#1
+			this.tag = "div";
+		} else if (arg.length === 1) {
+			//#2
+			this.tag = arg[0];
+		} else if (arg.length === 2) {
+			if (typeof arg[1] === "object" && !isTag(arg[0])) {
+				//#3
+				this.tag = arg[0];
+				this.attr = arg[1];
+			} else {
+				//#4
+				this.tag = arg[0];
+				this.elem = arg[1];
+			}
+		} else if (arg.length === 3) {
+			//#5
 			this.tag = arg[0];
 			this.attr = arg[1];
 			this.elem = arg[2];
-		} else if (arg.length === 2) {
-			this.tag = arg[0];
-			this.elem = arg[1];
-		} else if (arg.length === 1) {
-			this.tag = arg[0];
+		} else {
+			throw Error("Unsuppoted argument length");
 		}
 	}
 }

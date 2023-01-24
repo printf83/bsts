@@ -29,11 +29,11 @@ export class script extends tag {
 		if (arg.length === 0) {
 			super("script");
 		} else if (arg.length === 1) {
-			super("script", arg[0], undefined);
+			super("script", arg[0]);
 		} else if (arg.length === 2) {
-			super("script", { type: arg[0], src: arg[1] } as IAttrTagScript, undefined);
+			super("script", { type: arg[0], src: arg[1] } as IAttrTagScript);
 		} else if (arg.length === 3) {
-			super("script", mergeObject(arg[2], { type: arg[0], src: arg[1] } as IAttrTagScript), undefined);
+			super("script", mergeObject(arg[2], { type: arg[0], src: arg[1] } as IAttrTagScript));
 		}
 	}
 }

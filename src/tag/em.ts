@@ -8,7 +8,7 @@ export class em extends tag {
 		if (arg.length === 0) {
 			super("em");
 		} else if (arg.length === 1) {
-			super("em", undefined, arg[0]);
+			super("em", arg[0]);
 		} else if (arg.length === 2) {
 			super("em", arg[0], arg[1]);
 		}

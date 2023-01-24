@@ -13,7 +13,7 @@ export class optgroup extends tag {
 		if (arg.length === 0) {
 			super("optgroup");
 		} else if (arg.length === 1) {
-			super("optgroup", undefined, arg[0]);
+			super("optgroup", arg[0]);
 		} else if (arg.length === 2) {
 			super("optgroup", arg[0], arg[1]);
 		}

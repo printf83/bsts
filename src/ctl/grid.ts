@@ -3,10 +3,13 @@ import { mergeObject } from "../core/fn/mergeObject.js";
 import { div } from "../tag/div.js";
 
 const convert = (attr: IAttr): IAttr => {
-	attr = mergeObject(attr, {
-		display: "grid",
-		gap: 3,
-	});
+	attr = mergeObject(
+		{
+			display: "grid",
+			gap: 3,
+		},
+		attr
+	);
 
 	return attr;
 };

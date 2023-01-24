@@ -32,14 +32,14 @@ export class img extends tag {
 		} else if (arg.length === 1) {
 			if (typeof arg[0] === "string") {
 				//#2
-				super("img", { src: arg[0] } as IAttrTagImg, undefined);
+				super("img", { src: arg[0] } as IAttrTagImg);
 			} else {
 				//#3
-				super("img", arg[0], undefined);
+				super("img", arg[0]);
 			}
 		} else if (arg.length === 2) {
 			//#4
-			super("img", mergeObject(arg[0], { src: arg[1] } as IAttrTagImg), undefined);
+			super("img", mergeObject(arg[0], { src: arg[1] } as IAttrTagImg));
 		}
 	}
 }

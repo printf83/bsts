@@ -19,12 +19,12 @@ export class source extends tag {
 			super("source");
 		} else if (arg.length === 1) {
 			if (typeof arg[0] === "string") {
-				super("source", { src: arg[0] } as IAttrTagSource, undefined);
+				super("source", { src: arg[0] } as IAttrTagSource);
 			} else {
-				super("source", arg[0], undefined);
+				super("source", arg[0]);
 			}
 		} else if (arg.length === 2) {
-			super("source", mergeObject(arg[1], { src: arg[0] } as IAttrTagSource), undefined);
+			super("source", mergeObject(arg[1], { src: arg[0] } as IAttrTagSource));
 		}
 	}
 }

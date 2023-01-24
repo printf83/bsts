@@ -18,7 +18,7 @@ export class meter extends tag {
 		if (arg.length === 0) {
 			super("meter");
 		} else if (arg.length === 1) {
-			super("meter", undefined, arg[0]);
+			super("meter", arg[0]);
 		} else if (arg.length === 2) {
 			super("meter", arg[0], arg[1]);
 		}

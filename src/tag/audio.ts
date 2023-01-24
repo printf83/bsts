@@ -20,12 +20,12 @@ export class audio extends tag {
 			super("audio");
 		} else if (arg.length === 1) {
 			if (typeof arg[0] === "string") {
-				super("audio", { src: arg[0] } as IAttrTagAudio, undefined);
+				super("audio", { src: arg[0] } as IAttrTagAudio);
 			} else {
-				super("audio", arg[0], undefined);
+				super("audio", arg[0]);
 			}
 		} else if (arg.length === 2) {
-			super("audio", mergeObject(arg[1], { src: arg[0] } as IAttrTagAudio), undefined);
+			super("audio", mergeObject(arg[1], { src: arg[0] } as IAttrTagAudio));
 		}
 	}
 }

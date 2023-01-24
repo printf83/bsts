@@ -8,7 +8,7 @@ export class tr extends tag {
 		if (arg.length === 0) {
 			super("tr");
 		} else if (arg.length === 1) {
-			super("tr", undefined, arg[0]);
+			super("tr", arg[0]);
 		} else if (arg.length === 2) {
 			super("tr", arg[0], arg[1]);
 		}

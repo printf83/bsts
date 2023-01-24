@@ -18,7 +18,7 @@ export class select extends tag {
 		if (arg.length === 0) {
 			super("select");
 		} else if (arg.length === 1) {
-			super("select", undefined, arg[0]);
+			super("select", arg[0]);
 		} else if (arg.length === 2) {
 			super("select", arg[0], arg[1]);
 		}

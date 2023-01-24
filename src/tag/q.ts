@@ -12,7 +12,7 @@ export class q extends tag {
 		if (arg.length === 0) {
 			super("q");
 		} else if (arg.length === 1) {
-			super("q", undefined, arg[0]);
+			super("q", arg[0]);
 		} else if (arg.length === 2) {
 			super("q", arg[0], arg[1]);
 		}

@@ -7,7 +7,7 @@ export class hr extends tag {
 		if (arg.length === 0) {
 			super("hr");
 		} else if (arg.length === 1) {
-			super("hr", arg[0], undefined);
+			super("hr", arg[0]);
 		}
 	}
 }

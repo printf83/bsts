@@ -16,7 +16,7 @@ export class th extends tag {
 		if (arg.length === 0) {
 			super("th");
 		} else if (arg.length === 1) {
-			super("th", undefined, arg[0]);
+			super("th", arg[0]);
 		} else if (arg.length === 2) {
 			super("th", arg[0], arg[1]);
 		}

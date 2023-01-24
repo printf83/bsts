@@ -13,7 +13,7 @@ export class h extends tag {
 		} else if (arg.length === 1) {
 			super(`h${arg[0]}`);
 		} else if (arg.length === 2) {
-			super(`h${arg[0]}`, undefined, arg[1]);
+			super(`h${arg[0]}`, arg[1]);
 		} else if (arg.length === 3) {
 			super(`h${arg[0]}`, arg[1], arg[2]);
 		}

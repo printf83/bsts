@@ -36,7 +36,7 @@ export class datalist extends tag {
 		if (arg.length === 0) {
 			super("datalist");
 		} else if (arg.length === 1) {
-			super("datalist", undefined, arg[0]);
+			super("datalist", arg[0]);
 		} else if (arg.length === 2) {
 			let { attr, elem } = convert(arg[0], arg[1]);
 			super("datalist", attr, elem);

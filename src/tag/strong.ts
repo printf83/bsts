@@ -8,7 +8,7 @@ export class strong extends tag {
 		if (arg.length === 0) {
 			super("strong");
 		} else if (arg.length === 1) {
-			super("strong", undefined, arg[0]);
+			super("strong", arg[0]);
 		} else if (arg.length === 2) {
 			super("strong", arg[0], arg[1]);
 		}

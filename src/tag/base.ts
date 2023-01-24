@@ -16,12 +16,12 @@ export class base extends tag {
 			super("base");
 		} else if (arg.length === 1) {
 			if (typeof arg[0] === "string") {
-				super("base", { href: arg[0] } as IAttrTagBase, undefined);
+				super("base", { href: arg[0] } as IAttrTagBase);
 			} else {
-				super("base", arg[0], undefined);
+				super("base", arg[0]);
 			}
 		} else if (arg.length === 2) {
-			super("base", mergeObject(arg[1], { href: arg[0] } as IAttrTagBase), undefined);
+			super("base", mergeObject(arg[1], { href: arg[0] } as IAttrTagBase));
 		}
 	}
 }

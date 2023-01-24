@@ -969,7 +969,7 @@ export namespace bootstrapBase {
 	export const gutterY = spacer;
 
 	export const print = display;
-	export const container = [true, "xs", "sm", "md", "lg", "xl", "xxl", "fluid"];
+	export const container = [true, "xs", "sm", "md", "lg", "xl", "xxl", "fluid"] as const;
 }
 
 export namespace bootstrapType {

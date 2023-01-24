@@ -13,7 +13,7 @@ export class del extends tag {
 		if (arg.length === 0) {
 			super("del");
 		} else if (arg.length === 1) {
-			super("del", undefined, arg[0]);
+			super("del", arg[0]);
 		} else if (arg.length === 2) {
 			super("del", arg[0], arg[1]);
 		}

@@ -7,15 +7,18 @@ export interface IAttrBSInput extends IAttrTagInput {
 }
 
 const convert = (attr: IAttrBSInput) => {
-	attr = mergeObject(attr, {
-		id: attr.id || UUID(),
-		type: attr.type || "text",
-		class: [
-			attr.type === "color" ? "form-control-color" : "",
-			attr.readonly ? "form-control-plaintext" : "form-control",
-			attr.weight ? `form-control-${attr.weight}` : "",
-		],
-	});
+	attr = mergeObject(
+		{
+			id: attr.id || UUID(),
+			type: attr.type || "text",
+			class: [
+				attr.type === "color" ? "form-control-color" : "",
+				attr.readonly ? "form-control-plaintext" : "form-control",
+				attr.weight ? `form-control-${attr.weight}` : "",
+			],
+		},
+		attr
+	);
 
 	delete attr.weight;
 

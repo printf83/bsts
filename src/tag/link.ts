@@ -43,12 +43,12 @@ export class link extends tag {
 			super("link");
 		} else if (arg.length === 1) {
 			if (typeof arg[0] === "string") {
-				super("link", { href: arg[0] } as IAttrTagLink, undefined);
+				super("link", { href: arg[0] } as IAttrTagLink);
 			} else {
-				super("link", arg[0], undefined);
+				super("link", arg[0]);
 			}
 		} else if (arg.length === 2) {
-			super("link", mergeObject(arg[1], { href: arg[0] } as IAttrTagLink), undefined);
+			super("link", mergeObject(arg[1], { href: arg[0] } as IAttrTagLink));
 		}
 	}
 }

@@ -11,7 +11,7 @@ export class col extends tag {
 		if (arg.length === 0) {
 			super("col");
 		} else if (arg.length === 1) {
-			super("col", arg[0], undefined);
+			super("col", arg[0]);
 		}
 	}
 }

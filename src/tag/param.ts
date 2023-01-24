@@ -15,11 +15,11 @@ export class param extends tag {
 		if (arg.length === 0) {
 			super("param");
 		} else if (arg.length === 1) {
-			super("param", arg[0], undefined);
+			super("param", arg[0]);
 		} else if (arg.length === 2) {
-			super("param", { name: arg[0], value: arg[1] } as IAttrTagParam, undefined);
+			super("param", { name: arg[0], value: arg[1] } as IAttrTagParam);
 		} else if (arg.length === 3) {
-			super("param", mergeObject(arg[2], { name: arg[0], value: arg[1] } as IAttrTagParam), undefined);
+			super("param", mergeObject(arg[2], { name: arg[0], value: arg[1] } as IAttrTagParam));
 		}
 	}
 }

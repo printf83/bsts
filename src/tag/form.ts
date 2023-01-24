@@ -30,7 +30,7 @@ export class form extends tag {
 		if (arg.length === 0) {
 			super("form");
 		} else if (arg.length === 1) {
-			super("form", undefined, arg[0]);
+			super("form", arg[0]);
 		} else if (arg.length === 2) {
 			super("form", arg[0], arg[1]);
 		}

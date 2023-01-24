@@ -17,7 +17,7 @@ export class obj extends tag {
 		if (arg.length === 0) {
 			super("object");
 		} else if (arg.length === 1) {
-			super("object", undefined, arg[0]);
+			super("object", arg[0]);
 		} else if (arg.length === 2) {
 			super("object", arg[0], arg[1]);
 		}

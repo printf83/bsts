@@ -8,7 +8,7 @@ export class div extends tag {
 		if (arg.length === 0) {
 			super("div");
 		} else if (arg.length === 1) {
-			super("div", undefined, arg[0]);
+			super("div", arg[0]);
 		} else if (arg.length === 2) {
 			super("div", arg[0], arg[1]);
 		}

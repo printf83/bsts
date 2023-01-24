@@ -16,7 +16,7 @@ export class track extends tag {
 		if (arg.length === 0) {
 			super("track");
 		} else if (arg.length === 1) {
-			super("track", undefined, arg[0]);
+			super("track", arg[0]);
 		} else if (arg.length === 2) {
 			super("track", arg[0], arg[1]);
 		}

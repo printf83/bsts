@@ -21,12 +21,12 @@ export class video extends tag {
 			super("video");
 		} else if (arg.length === 1) {
 			if (typeof arg[0] === "string") {
-				super("video", { src: arg[0] } as IAttrTagVideo, undefined);
+				super("video", { src: arg[0] } as IAttrTagVideo);
 			} else {
-				super("video", arg[0], undefined);
+				super("video", arg[0]);
 			}
 		} else if (arg.length === 2) {
-			super("video", mergeObject(arg[1], { src: arg[0] } as IAttrTagVideo), undefined);
+			super("video", mergeObject(arg[1], { src: arg[0] } as IAttrTagVideo));
 		}
 	}
 }

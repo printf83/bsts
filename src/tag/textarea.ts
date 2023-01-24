@@ -23,7 +23,7 @@ export class textarea extends tag {
 		if (arg.length === 0) {
 			super("textarea");
 		} else if (arg.length === 1) {
-			super("textarea", undefined, arg[0]);
+			super("textarea", arg[0]);
 		} else if (arg.length === 2) {
 			super("textarea", arg[0], arg[1]);
 		}

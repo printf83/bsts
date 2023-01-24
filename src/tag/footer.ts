@@ -8,7 +8,7 @@ export class footer extends tag {
 		if (arg.length === 0) {
 			super("footer");
 		} else if (arg.length === 1) {
-			super("footer", undefined, arg[0]);
+			super("footer", arg[0]);
 		} else if (arg.length === 2) {
 			super("footer", arg[0], arg[1]);
 		}

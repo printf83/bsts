@@ -6,6 +6,7 @@ core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 
 	core.replaceChild(body, [
+		new bs.container(new bs.row(new bs.col({ col: "auto" }, new html.option("a", "a")))),
 		new bs.container(
 			new bs.grid([
 				new bs.row(new bs.col([new bs.input({ type: "file" })])),
@@ -82,10 +83,7 @@ core.documentReady(() => {
 							)
 						)
 					),
-					new html.div(
-						{ col: true },
-						new bs.button({ color: "success" }, new bs.label({ for: "txtTest" }, "home", loream))
-					),
+					new bs.col(new bs.button({ color: "success" }, new bs.label({ for: "txtTest" }, "home", loream))),
 				]),
 				new bs.row(
 					new bs.col([
