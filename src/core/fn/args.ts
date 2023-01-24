@@ -1,45 +1,40 @@
+import { isTag } from "../base/tag.js";
 import { setting } from "./setting.js";
 
-export type IArgRule = null | undefined | string | (null | undefined | string)[];
+const isArgMatchRule = (rule: string | string[], argType: string[]): boolean => {
+	if (argType) {
+		let tRule: string[] = Array.isArray(rule) ? rule : [rule];
 
-const isArgMatchRule = (rule: string[], argType: string[]): boolean => {
-	if (argType === null) {
-		if (rule === null) {
-			return true;
-		}
-	} else {
-		if (rule) {
-			//make sure rule setting is same with arg
-			if (rule.length === argType.length) {
-				let result = Array.from({ length: rule.length }, () => false);
+		//make sure rule setting is same with arg
+		if (tRule.length === argType.length) {
+			let result = Array.from({ length: tRule.length }, () => false);
 
-				//check if each rule apply to arg
-				for (let i = 0; i < rule.length; i++) {
-					if (rule[i].indexOf("|") >= 0) {
-						//multiple
-						let c = rule[i].split("|");
+			//check if each rule apply to arg
+			for (let i = 0; i < tRule.length; i++) {
+				if (tRule[i].indexOf("|") >= 0) {
+					//multiple
+					let c = tRule[i].split("|");
 
-						for (let j = 0; j < c.length; j++) {
-							if (c[j] === argType[i] || c[j] === "any") {
-								result[i] = true;
-								break;
-							}
-						}
-					} else {
-						//single
-						if (rule[i] === argType[i] || rule[i] === "any") {
+					for (let j = 0; j < c.length; j++) {
+						if (c[j] === argType[i] || c[j] === "any") {
 							result[i] = true;
+							break;
 						}
 					}
-				}
-
-				//if all result is true
-				//then return true
-				if (result.indexOf(false) > -1) {
-					return false;
 				} else {
-					return true;
+					//single
+					if (rule[i] === argType[i] || rule[i] === "any") {
+						result[i] = true;
+					}
 				}
+			}
+
+			//if all result is true
+			//then return true
+			if (result.indexOf(false) > -1) {
+				return false;
+			} else {
+				return true;
 			}
 		}
 	}
@@ -47,25 +42,18 @@ const isArgMatchRule = (rule: string[], argType: string[]): boolean => {
 	return false;
 };
 
-const getRuleIndex = (rule: string | string[], argType: string[]): number => {
-	let res: number = -1;
-	let d: string[] = [];
-	if (Array.isArray(rule)) {
-		d = rule;
-	} else {
-		d = [rule];
-	}
-
-	if (rule.length > 0) {
-		for (var i = 0; i < rule.length; i++) {
-			if (isArgMatchRule(d, argType)) {
-				res = i;
+const getRuleIndex = (rules: (string | string[])[], argType: string[]): number => {
+	let index: number = -1;
+	if (rules.length > 0) {
+		for (var i = 0; i < rules.length; i++) {
+			if (isArgMatchRule(rules[i], argType)) {
+				index = i;
 				break;
 			}
 		}
 	}
 
-	return res;
+	return index;
 };
 
 const checkArgType = (obj: any): string => {
@@ -86,10 +74,12 @@ const checkArgType = (obj: any): string => {
 	} else {
 		let t = typeof obj;
 		if (t === "object") {
-			if (obj.hasOwnProperty("isbsts")) {
-				return "tag";
-			} else if (obj.debug === true) {
-				return "debug";
+			if (isTag(obj)) {
+				if (obj.hasOwnProperty("debug") && obj.debug === true) {
+					return "debug";
+				} else {
+					return "tag";
+				}
 			} else {
 				return t;
 			}
@@ -99,7 +89,7 @@ const checkArgType = (obj: any): string => {
 	}
 };
 
-const getArgType = (obj: any): string[] | null => {
+const getArgType = (obj: any[]): string[] => {
 	if (obj && obj.length > 0) {
 		let result: string[] = [];
 		obj.forEach((i: any) => {
@@ -107,24 +97,18 @@ const getArgType = (obj: any): string[] | null => {
 		});
 		return result;
 	} else {
-		return null;
+		return ["null"];
 	}
 };
 
-export const args = (
-	caller: string,
-	obj: any[],
-	rules: null | undefined | string | (null | undefined | string)[]
-): number => {
+export const args = (caller: string, obj: any[], rules: (string | string[])[]): number | never => {
 	let argType = getArgType(obj);
 	let index: number = -1;
 
 	if (argType) {
 		index = getRuleIndex(rules, argType);
 		if (index === -1) {
-			if (setting.DEBUG === true) {
-				console.error(`"${caller}" argument "${argType.join(", ")}" is not supported by any rules`);
-			}
+			throw Error(`"${caller}" argument "${argType.join(", ")}" is not supported by any rules`);
 		}
 	}
 
