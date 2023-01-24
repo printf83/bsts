@@ -1,5 +1,5 @@
 import { IAttr, IElem, tag } from "../core/base/tag.js";
-import { option } from "./option.js";
+import { IAttrTagOption, option } from "./option.js";
 
 export interface IAttrTagDatalist extends IAttr {
 	options?: string | string[];

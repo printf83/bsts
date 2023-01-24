@@ -32,9 +32,11 @@ import { appendChild, build, html, prependChild, replaceChild, replaceWith } fro
 import { documentReady, elemReady } from "./fn/documentReady.js";
 import { attachAttr } from "./attach/_index.js";
 import { isTag } from "./base/tag.js";
+import { args } from "./fn/args.js";
 
 export const core = {
 	addClassIntoElement,
+	args,
 	camel2Dash,
 	capitalize,
 	codeMarker,

@@ -9,7 +9,6 @@ export interface IAttrTagOption extends IAttr {
 
 export class option extends tag {
 	constructor();
-	constructor(elem: string);
 	constructor(elem: IElem);
 	constructor(value: string, elem: string);
 	constructor(attr: IAttrTagOption, elem: IElem);

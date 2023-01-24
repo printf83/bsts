@@ -1,6 +1,7 @@
 import { bootstrapBase, bootstrapType, isBootstrapType } from "../core/base/bootstrap.js";
 import { IAttr, IElem } from "../core/base/tag.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
+import { args } from "../core/fn/args.js";
 import { div } from "../tag/div.js";
 
 const convert = (attr: IAttr): IAttr => {
@@ -17,6 +18,8 @@ export class container extends div {
 	constructor(size: bootstrapType.container, elem: IElem); //#3
 	constructor(attr: IAttr, elem: IElem); //#4
 	constructor(...arg: any[]) {
+		args("ctl.container", arg, [["object", "string|bsts|string[]|bsts[]"]]);
+
 		if (arg.length === 0) {
 			//#1
 			super(convert({}), "");
