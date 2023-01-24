@@ -192,4 +192,10 @@ core.documentReady(() => {
 			])
 		),
 	]);
+
+	let a = "1";
+	let b = 2;
+	let cxxx = a + b; //?
+	//    ^?
+	console.log(cxxx); //?
 });

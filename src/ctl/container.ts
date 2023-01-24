@@ -3,16 +3,12 @@ import { mergeObject } from "../core/fn/mergeObject.js";
 import { div } from "../tag/div.js";
 
 const convert = (attr: IAttr): IAttr => {
-	console.info(attr);
-
 	attr = mergeObject(
 		{
 			container: true,
 		},
 		attr
 	);
-
-	console.info(attr);
 
 	return attr;
 };
@@ -28,7 +24,6 @@ export class container extends div {
 		} else if (arg.length === 1) {
 			//#2
 			super(convert({}), arg[0]);
-			//					^?
 		} else if (arg.length === 2) {
 			//#3
 			super(convert(arg[0]), arg[1]);
