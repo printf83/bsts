@@ -21,23 +21,36 @@ export class container extends div {
 	constructor(attr: IAttr, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		let rules = [
-			"string|tag|string[]|tag[]",
-			"string[]|boolean[]",
+			["string|tag|string[]|tag[]"],
+			["string[]|boolean[]"],
 			["string[]|boolean[]", "string|tag|string[]|tag[]"],
+			["object"],
 			["object", "string|tag|string[]|tag[]"],
 		];
 
 		switch (args("ctl.container", arg, rules)) {
 			case 0:
+				console.log("#0");
 				super(convert({}), arg[0]);
 				break;
 			case 1:
-				super(convert({ container: arg[0] }), arg[1]);
+				console.log("#1");
+				super(convert({ container: arg[0] }), "");
 				break;
 			case 2:
+				console.log("#2");
+				super(convert({ container: arg[0] }), arg[1]);
+				break;
+			case 3:
+				console.log("#3");
+				super(convert(arg[0]), "");
+				break;
+			case 4:
+				console.log("#4");
 				super(convert(arg[0]), arg[1]);
 				break;
 			default:
+				console.log("#default");
 				super(convert({}), "");
 				break;
 		}
