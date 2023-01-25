@@ -11,6 +11,7 @@ export interface IAttrTagTrack extends IAttr {
 export class track extends tag {
 	constructor();
 	constructor(elem: IElem);
+	constructor(attr: IAttrTagTrack);
 	constructor(attr: IAttrTagTrack, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {

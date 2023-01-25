@@ -1,6 +1,6 @@
 import { genBootstrapClass } from "../core/attach/attachBootstrap.js";
 import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB, bootstrapType } from "../core/base/bootstrap.js";
-import { IElem, tag } from "../core/base/tag.js";
+import { IElem, isAttr, tag } from "../core/base/tag.js";
 import { mergeClass } from "../core/fn/mergeClass.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { IAttrTagButton } from "../tag/button.js";
@@ -58,17 +58,23 @@ const convert = (attr: IAttrBSButton): IAttrBSButton => {
 
 export class button extends tag {
 	constructor(); //#1
-	constructor(elem: IElem); //#2
-	constructor(attr: IAttrBSButton, elem: IElem); //#3
+	constructor(attr: IAttrBSButton); //#2
+	constructor(elem: IElem); //#3
+	constructor(attr: IAttrBSButton, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
 			super("button", convert({}), "Button");
 		} else if (arg.length === 1) {
-			//#2
-			super("button", convert({}), arg[0]);
+			if (isAttr(arg[0])) {
+				//#2
+				super(arg[0].href ? "a" : "button", convert(arg[0]));
+			} else {
+				//#3
+				super("button", convert({}), arg[0]);
+			}
 		} else if (arg.length === 2) {
-			//#3
+			//#4
 			super(arg[0].href ? "a" : "button", convert(arg[0]), arg[1]);
 		}
 	}

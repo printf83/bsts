@@ -7,6 +7,7 @@ export interface IAttrTagTime extends IAttr {
 export class time extends tag {
 	constructor();
 	constructor(elem: IElem);
+	constructor(attr: IAttrTagTime);
 	constructor(attr: IAttrTagTime, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {

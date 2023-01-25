@@ -7,9 +7,8 @@ export interface IAttrTagStyle extends IAttr {
 
 export class style extends tag {
 	constructor();
-	constructor(css: string);
+	constructor(elem: string);
 	constructor(attr: IAttrTagStyle);
-	constructor(attr: IAttrTagStyle, css: string);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("style");

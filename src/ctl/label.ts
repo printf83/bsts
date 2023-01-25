@@ -112,29 +112,19 @@ const convert = (attr: IAttrBSLabel, text: string) => {
 export class label extends TLabel {
 	constructor(); //#1
 	constructor(text: string); //#2
-	constructor(icon: string, text: string); //#3
-	constructor(attr: IAttrBSLabel, text: string); //#4
-	constructor(attr: IAttrBSLabel, icon: string, text: string); //#5
+	constructor(attr: IAttrBSLabel); //#3
+	constructor(icon: string, text: string); //#4
+
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
 			super("Label");
 		} else if (arg.length === 1) {
-			//#2
+			//#2 #3
 			super(arg[0]);
 		} else if (arg.length === 2) {
-			if (typeof arg[0] === "string" && typeof arg[1] === "string") {
-				//#3
-				let { elem, attr } = convert({ icon: arg[0] as IAttrBSIcon } as IAttrBSLabel, arg[1]);
-				super(attr, elem);
-			} else {
-				//#4
-				let { elem, attr } = convert(arg[0], arg[1]);
-				super(attr, elem);
-			}
-		} else if (arg.length === 3) {
-			//#5
-			let { elem, attr } = convert(mergeObject<IAttrBSLabel>(arg[0], { icon: arg[1] as IAttrBSIcon }), arg[2]);
+			//#4
+			let { elem, attr } = convert({ icon: arg[0] as IAttrBSIcon } as IAttrBSLabel, arg[1]);
 			super(attr, elem);
 		}
 	}

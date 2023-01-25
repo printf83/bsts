@@ -485,3 +485,7 @@ export class tag implements ITag {
 export const isTag = (obj: any): boolean => {
 	return typeof obj === "object" && "isbsts" in obj && obj["isbsts"] === true;
 };
+
+export const isAttr = (obj: any): boolean => {
+	return typeof obj === "object" && !("isbsts" in obj);
+};

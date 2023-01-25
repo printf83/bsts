@@ -1,6 +1,6 @@
 import { genBootstrapClass } from "../core/attach/attachBootstrap.js";
 import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB, bootstrapType } from "../core/base/bootstrap.js";
-import { IAttr, IElem } from "../core/base/tag.js";
+import { IAttr, IElem, isAttr } from "../core/base/tag.js";
 import { mergeClass } from "../core/fn/mergeClass.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { div } from "../tag/div.js";
@@ -36,17 +36,23 @@ const convert = (attr: IAttrBSAlert): IAttrBSAlert => {
 
 export class alert extends div {
 	constructor(); //#1
-	constructor(elem: IElem); //#2
-	constructor(attr: IAttrBSAlert, elem: IElem); //#3
+	constructor(attr: IAttrBSAlert); //#2
+	constructor(elem: IElem); //#3
+	constructor(attr: IAttrBSAlert, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
-			super(convert({}), "Button");
+			super(convert({}), "Alert");
 		} else if (arg.length === 1) {
-			//#2
-			super(convert({}), arg[0]);
+			if (isAttr(arg[0])) {
+				//#2
+				super(convert(arg[0]));
+			} else {
+				//#3
+				super(convert({}), arg[0]);
+			}
 		} else if (arg.length === 2) {
-			//#3
+			//#4
 			super(convert(arg[0]), arg[1]);
 		}
 	}

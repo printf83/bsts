@@ -1,8 +1,7 @@
-import { IAttr, IElem } from "../core/base/tag.js";
+import { IAttr, IElem, isAttr } from "../core/base/tag.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { div } from "../tag/div.js";
 import { IAttrTagLabel, label as TLabel } from "../tag/label.js";
-import { span } from "../tag/span.js";
 import { IAttrBSIcon, icon } from "./icon.js";
 
 export interface IAttrBSMsg extends IAttrTagLabel {
@@ -19,36 +18,42 @@ const fnIcon = (containerAttr: IAttr | undefined, attr: IAttrBSIcon) => {
 	return new div(containerAttr || { fontSize: 4 }, new icon(attr!));
 };
 
-const fnText = (text: string) => {
-	return new div({ display: "flex", alignItem: "center" }, new span(text));
+const fnElem = (elem: IElem) => {
+	return new div({ display: "flex", alignItem: "center" }, elem);
 };
 
-const convert = (attr: IAttrBSMsg, text: string) => {
+const convert = (attr: IAttrBSMsg) => {
 	let tElem: IElem;
 	let tAttr: IAttrBSMsg = attr;
 
 	if (attr && typeof attr.icon !== "undefined") {
-		if (text) {
+		if (attr.elem) {
 			//default position
 			attr.iconPosition = attr.iconPosition || "start";
 
 			//append icon base on position
 			switch (attr.iconPosition) {
 				case "start":
-					tElem = new div({ display: "flex", gap: 3 }, [fnIcon(attr.iconContainer, attr.icon), fnText(text)]);
+					tElem = new div({ display: "flex", gap: 3 }, [
+						fnIcon(attr.iconContainer, attr.icon),
+						fnElem(attr.elem),
+					]);
 					break;
 				case "end":
-					tElem = new div({ display: "flex", gap: 3 }, [fnText(text), fnIcon(attr.iconContainer, attr.icon)]);
+					tElem = new div({ display: "flex", gap: 3 }, [
+						fnElem(attr.elem),
+						fnIcon(attr.iconContainer, attr.icon),
+					]);
 					break;
 				case "top":
 					tElem = new div({ display: "inline-block", gap: 3 }, [
 						fnRow(fnIcon(attr.iconContainer, attr.icon)),
-						fnRow(fnText(text)),
+						fnRow(fnElem(attr.elem)),
 					]);
 					break;
 				case "bottom":
 					tElem = new div({ display: "inline-block", gap: 3 }, [
-						fnRow(fnText(text)),
+						fnRow(fnElem(attr.elem)),
 						fnRow(fnIcon(attr.iconContainer, attr.icon)),
 					]);
 					break;
@@ -59,8 +64,8 @@ const convert = (attr: IAttrBSMsg, text: string) => {
 			tElem = new icon(attr.icon);
 		}
 	} else {
-		if (text) {
-			tElem = text;
+		if (attr.elem) {
+			tElem = attr.elem;
 		} else {
 			tElem = "Message";
 		}
@@ -74,31 +79,27 @@ const convert = (attr: IAttrBSMsg, text: string) => {
 
 export class msg extends TLabel {
 	constructor(); //#1
-	constructor(text: string); //#2
-	constructor(icon: string, text: string); //#3
-	constructor(attr: IAttrBSMsg, text: string); //#4
-	constructor(attr: IAttrBSMsg, icon: string, text: string); //#5
+	constructor(attr: IAttrBSMsg); //#2
+	constructor(elem: IElem); //#3
+	constructor(icon: IAttrBSIcon, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
-			super("Label");
+			let { elem, attr } = convert({});
+			super(attr, elem);
 		} else if (arg.length === 1) {
-			//#2
-			super(arg[0]);
-		} else if (arg.length === 2) {
-			if (typeof arg[0] === "string" && typeof arg[1] === "string") {
-				//#3
-				let { elem, attr } = convert({ icon: arg[0] as IAttrBSIcon } as IAttrBSMsg, arg[1]);
+			if (isAttr(arg[0])) {
+				//#2
+				let { elem, attr } = convert(arg[0]);
 				super(attr, elem);
 			} else {
-				//#4
-				let { elem, attr } = convert(arg[0], arg[1]);
+				//#3
+				let { elem, attr } = convert(mergeObject({ elem: arg[0] }, {}));
 				super(attr, elem);
 			}
-		} else if (arg.length === 3) {
-			//#5
-			let ttt = mergeObject<IAttrBSMsg>(arg[0], { icon: arg[1] as IAttrBSIcon });
-			let { elem, attr } = convert(ttt, arg[2]);
+		} else if (arg.length === 2) {
+			//#4
+			let { elem, attr } = convert(mergeObject({ icon: arg[0], elem: arg[1] }, {}));
 			super(attr, elem);
 		}
 	}
