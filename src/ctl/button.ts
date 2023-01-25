@@ -39,9 +39,9 @@ const convert = (attr: IAttrBSButton): IAttrBSButton => {
 	}
 
 	if (attr.outline === true) {
-		attr.class = mergeClass(attr.class, genBootstrapClass("btnOutlineColor", rules.btnOutlineColor, attr.color));
+		attr.class = mergeClass(genBootstrapClass("btnOutlineColor", rules.btnOutlineColor, attr.color), attr.class);
 	} else {
-		attr.class = mergeClass(attr.class, genBootstrapClass("btnColor", rules.btnColor, attr.color));
+		attr.class = mergeClass(genBootstrapClass("btnColor", rules.btnColor, attr.color), attr.class);
 	}
 
 	delete attr.color;

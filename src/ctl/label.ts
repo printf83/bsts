@@ -1,5 +1,7 @@
-import { bootstrapType } from "../core/base/bootstrap.js";
+import { genBootstrapClass } from "../core/attach/attachBootstrap.js";
+import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB, bootstrapType } from "../core/base/bootstrap.js";
 import { IElem } from "../core/base/tag.js";
+import { mergeClass } from "../core/fn/mergeClass.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { div } from "../tag/div.js";
 import { IAttrTagLabel, label as TLabel } from "../tag/label.js";
@@ -13,7 +15,15 @@ export interface IAttrBSLabel extends IAttrTagLabel {
 	iconPosition?: "start" | "end" | "top" | "bottom";
 	iconDisplay?: IBootstrapTypeDisplay;
 	labelDisplay?: IBootstrapTypeDisplay;
+
+	color?: bootstrapType.color[number];
+	outline?: boolean;
 }
+
+const rules: bootstrapRuleDB = {
+	btnColor: new bootstrapAttachRule("btn btn-$1", bootstrapBase.btnColor.concat()),
+	btnOutlineColor: new bootstrapAttachRule("btn btn-outline-$1", bootstrapBase.btnOutlineColor.concat()),
+};
 
 const fnRow = (display: IBootstrapTypeDisplay | undefined, elem: IElem) => {
 	return new div({ row: true, display: display }, new div({ col: true, textAlign: "center" }, elem));
@@ -76,10 +86,25 @@ const convert = (attr: IAttrBSLabel, text: string) => {
 		}
 	}
 
+	//check label toggle
+	//color & outline
+	if (attr.color) {
+		if (attr.outline === true) {
+			attr.class = mergeClass(
+				genBootstrapClass("btnOutlineColor", rules.btnOutlineColor, attr.color),
+				attr.class
+			);
+		} else {
+			attr.class = mergeClass(genBootstrapClass("btnColor", rules.btnColor, attr.color), attr.class);
+		}
+	}
+
 	delete tAttr.icon;
 	delete tAttr.iconPosition;
 	delete tAttr.iconDisplay;
 	delete tAttr.labelDisplay;
+	delete tAttr.color;
+	delete tAttr.outline;
 
 	return { attr: tAttr, elem: tElem };
 };

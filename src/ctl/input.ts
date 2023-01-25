@@ -4,16 +4,34 @@ import { IAttrTagInput, input as TInput } from "../tag/input.js";
 
 export interface IAttrBSInput extends IAttrTagInput {
 	weight?: "sm" | "lg";
+	toggle?: true;
 }
 
 const convert = (attr: IAttrBSInput) => {
+	//set default type (to make sure type is not undefind)
+	attr.type = attr.type || "text";
+
+	//autocomplete off if toggle
+	if (attr.toggle) {
+		attr.autocomplete = "off";
+	}
+
 	attr = mergeObject(
 		{
 			id: attr.id || UUID(),
-			type: attr.type || "text",
+			type: attr.type,
 			class: [
+				["range", "radio", "checkbox"].indexOf(attr.type) === -1 && attr.readonly !== true
+					? "form-control"
+					: "",
+				["radio", "checkbox"].indexOf(attr.type) > -1
+					? attr.toggle === true
+						? "btn-check"
+						: "form-check-input"
+					: "",
 				attr.type === "color" ? "form-control-color" : "",
-				attr.readonly ? "form-control-plaintext" : "form-control",
+				attr.type === "range" ? "form-range" : "",
+				attr.readonly ? "form-control-plaintext" : "",
 				attr.weight ? `form-control-${attr.weight}` : "",
 			],
 		},
@@ -21,6 +39,7 @@ const convert = (attr: IAttrBSInput) => {
 	);
 
 	delete attr.weight;
+	delete attr.toggle;
 
 	return attr;
 };

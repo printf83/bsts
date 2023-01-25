@@ -27,7 +27,7 @@ const convert = (attr: IAttrBSAlert): IAttrBSAlert => {
 		attr.color = "primary";
 	}
 
-	attr.class = mergeClass(attr.class, genBootstrapClass("alertColor", rules.alertColor, attr.color));
+	attr.class = mergeClass(genBootstrapClass("alertColor", rules.alertColor, attr.color), attr.class);
 
 	delete attr.color;
 

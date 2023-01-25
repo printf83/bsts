@@ -6,9 +6,35 @@ core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 
 	core.replaceChild(body, [
-		new bs.container(
-			new bs.row(new bs.col({ col: "auto" }, new html.option({ value: "axddd", textColor: "primary" }, "a")))
-		),
+		new bs.container([
+			new bs.row(
+				new bs.col(
+					new html.div({ display: "flex", gap: 3 }, [
+						new html.select({ col: 12, options: loream.split(" ") }, ""),
+					])
+				)
+			),
+
+			new bs.row(
+				new bs.col(
+					new html.div({ display: "flex", gap: 3 }, [
+						new bs.input({ type: "checkbox", id: "chk1", toggle: true }),
+						new bs.label({ color: "primary", outline: true, for: "chk1" }, "Single toggle"),
+
+						new bs.input({ type: "checkbox", id: "chk2", toggle: true, checked: true }),
+						new bs.label({ color: "secondary", outline: true, for: "chk2" }, "Checked"),
+
+						new bs.input({ type: "radio", id: "rad1", name: "radGroup1", toggle: true, checked: true }),
+						new bs.label({ color: "success", outline: true, for: "rad1" }, "Checked success radio"),
+
+						new bs.input({ type: "radio", id: "rad2", name: "radGroup1", toggle: true }),
+						new bs.label({ color: "danger", outline: true, for: "rad2" }, "Danger radio"),
+					])
+				)
+			),
+
+			new bs.row(new bs.col({ col: "auto" }, new html.option({ value: "axddd", textColor: "primary" }, "a"))),
+		]),
 		new bs.container(
 			new bs.grid([
 				new bs.row(new bs.col([new bs.input({ type: "file" })])),

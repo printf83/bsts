@@ -1,8 +1,8 @@
 import { IAttr, IElem, tag } from "../core/base/tag.js";
-import { option } from "./option.js";
+import { IAttrTagOption, option } from "./option.js";
 
 export interface IAttrTagDatalist extends IAttr {
-	options?: string | string[];
+	options?: string | IAttrTagOption | (string | IAttrTagOption)[];
 }
 
 const convert = (attr: IAttrTagDatalist, elem: IElem) => {
@@ -11,7 +11,13 @@ const convert = (attr: IAttrTagDatalist, elem: IElem) => {
 	//convert option to tag
 	if (attr.options) {
 		let d = Array.isArray(attr.options) ? attr.options : [attr.options];
-		tElem = d.map((i) => new option(i));
+		tElem = d.map((i) => {
+			if (typeof i === "string") {
+				return new option({ value: i }, i);
+			} else {
+				return new option(i, "");
+			}
+		});
 	}
 
 	//conbine with elem
