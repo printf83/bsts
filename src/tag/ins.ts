@@ -8,6 +8,7 @@ export interface IAttrTagIns extends IAttr {
 export class ins extends tag {
 	constructor();
 	constructor(elem: IElem);
+	constructor(attr: IAttrTagIns);
 	constructor(attr: IAttrTagIns, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {

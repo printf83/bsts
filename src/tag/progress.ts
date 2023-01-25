@@ -8,6 +8,7 @@ export interface IAttrTagProgress extends IAttr {
 export class progress extends tag {
 	constructor();
 	constructor(elem: IElem);
+	constructor(attr: IAttrTagProgress);
 	constructor(attr: IAttrTagProgress, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {

@@ -1,5 +1,4 @@
 import { IAttr, tag } from "../core/base/tag.js";
-import { mergeObject } from "../core/fn/mergeObject.js";
 
 export interface IAttrTagImg extends IAttr {
 	alt?: string;
@@ -24,7 +23,6 @@ export class img extends tag {
 	constructor(); //#1
 	constructor(src: string); //#2
 	constructor(attr: IAttrTagImg); //#3
-	constructor(attr: IAttrTagImg, src: string); //#4
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
@@ -37,9 +35,6 @@ export class img extends tag {
 				//#3
 				super("img", arg[0]);
 			}
-		} else if (arg.length === 2) {
-			//#4
-			super("img", mergeObject(arg[0], { src: arg[1] } as IAttrTagImg));
 		}
 	}
 }

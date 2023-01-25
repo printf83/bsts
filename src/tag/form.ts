@@ -25,6 +25,7 @@ export interface IAttrTagForm extends IAttr {
 export class form extends tag {
 	constructor();
 	constructor(elem: IElem);
+	constructor(attr: IAttrTagForm);
 	constructor(attr: IAttrTagForm, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {

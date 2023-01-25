@@ -7,6 +7,7 @@ export interface IAttrTagMap extends IAttr {
 export class map extends tag {
 	constructor();
 	constructor(elem: IElem);
+	constructor(attr: IAttrTagMap);
 	constructor(attr: IAttrTagMap, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {

@@ -1,5 +1,4 @@
 import { IAttr, tag } from "../core/base/tag.js";
-import { mergeObject } from "../core/fn/mergeObject.js";
 
 export interface IAttrTagIframe extends IAttr {
 	allowfullscreen?: boolean;
@@ -30,7 +29,6 @@ export class iframe extends tag {
 	constructor();
 	constructor(src: string);
 	constructor(attr: IAttrTagIframe);
-	constructor(src: string, attr: IAttrTagIframe);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("iframe");
@@ -40,8 +38,6 @@ export class iframe extends tag {
 			} else {
 				super("iframe", arg[0]);
 			}
-		} else if (arg.length === 2) {
-			super("iframe", mergeObject(arg[1], { src: arg[0] } as IAttrTagIframe));
 		}
 	}
 }

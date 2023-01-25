@@ -8,6 +8,7 @@ export interface IAttrTagOptgroup extends IAttr {
 export class optgroup extends tag {
 	constructor();
 	constructor(elem: IElem);
+	constructor(attr: IAttrTagOptgroup);
 	constructor(attr: IAttrTagOptgroup, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {

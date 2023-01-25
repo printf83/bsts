@@ -8,6 +8,7 @@ export interface IAttrTagDel extends IAttr {
 export class del extends tag {
 	constructor();
 	constructor(elem: IElem);
+	constructor(attr: IAttrTagDel);
 	constructor(attr: IAttrTagDel, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {

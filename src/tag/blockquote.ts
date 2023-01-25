@@ -7,6 +7,7 @@ export interface IAttrTagBlockquote extends IAttr {
 export class blockquote extends tag {
 	constructor();
 	constructor(elem: IElem);
+	constructor(attr: IAttrTagBlockquote);
 	constructor(attr: IAttrTagBlockquote, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {

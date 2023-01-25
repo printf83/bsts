@@ -1,5 +1,4 @@
 import { IAttr, tag } from "../core/base/tag.js";
-import { mergeObject } from "../core/fn/mergeObject.js";
 
 export interface IAttrTagLink extends IAttr {
 	crossorigin?: "anonymous" | "use-credentials";
@@ -37,7 +36,6 @@ export class link extends tag {
 	constructor();
 	constructor(href: string);
 	constructor(attr: IAttrTagLink);
-	constructor(href: string, attr: IAttrTagLink);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("link");
@@ -47,8 +45,6 @@ export class link extends tag {
 			} else {
 				super("link", arg[0]);
 			}
-		} else if (arg.length === 2) {
-			super("link", mergeObject(arg[1], { href: arg[0] } as IAttrTagLink));
 		}
 	}
 }

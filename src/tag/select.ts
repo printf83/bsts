@@ -45,6 +45,7 @@ const convert = (attr: IAttrTagSelect, elem: IElem) => {
 export class select extends tag {
 	constructor();
 	constructor(elem: IElem);
+	constructor(attr: IAttrTagSelect);
 	constructor(attr: IAttrTagSelect, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {

@@ -13,6 +13,7 @@ export interface IAttrTagMeter extends IAttr {
 export class meter extends tag {
 	constructor();
 	constructor(elem: IElem);
+	constructor(attr: IAttrTagMeter);
 	constructor(attr: IAttrTagMeter, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {

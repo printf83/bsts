@@ -36,6 +36,7 @@ export interface IAttrTagArea extends IAttr {
 export class area extends tag {
 	constructor();
 	constructor(elem: IElem);
+	constructor(attr: IAttrTagArea);
 	constructor(attr: IAttrTagArea, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {

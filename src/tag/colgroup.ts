@@ -7,6 +7,7 @@ export interface IAttrTagColgroup extends IAttr {
 export class colgroup extends tag {
 	constructor();
 	constructor(elem: IElem);
+	constructor(attr: IAttrTagColgroup);
 	constructor(attr: IAttrTagColgroup, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {

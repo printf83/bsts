@@ -1,3 +1,4 @@
+import { q } from "../../tag/q.js";
 import { bootstrapType } from "./bootstrap.js";
 
 export interface IStyle {
@@ -451,6 +452,12 @@ export class tag implements ITag {
 			if (typeof arg[1] === "object" && !isTag(arg[0])) {
 				//#3
 				this.tag = arg[0];
+
+				if (arg[1].elem) {
+					this.elem = arg[1].elem;
+					delete arg[1].elem;
+				}
+
 				this.attr = arg[1];
 			} else {
 				//#4
@@ -459,6 +466,13 @@ export class tag implements ITag {
 			}
 		} else if (arg.length === 3) {
 			//#5
+
+			//remove elem from IAttr
+			if (arg[1].elem) {
+				console.warn("Remove elem from attr", arg[1]);
+				delete arg[1].elem;
+			}
+
 			this.tag = arg[0];
 			this.attr = arg[1];
 			this.elem = arg[2];

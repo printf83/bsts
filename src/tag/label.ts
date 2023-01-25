@@ -8,6 +8,7 @@ export interface IAttrTagLabel extends IAttr {
 export class label extends tag {
 	constructor();
 	constructor(elem: IElem);
+	constructor(attr: IAttrTagLabel);
 	constructor(attr: IAttrTagLabel, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {

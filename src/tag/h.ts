@@ -6,6 +6,7 @@ export class h extends tag {
 	constructor();
 	constructor(level: HLevel);
 	constructor(level: HLevel, elem: IElem);
+	constructor(level: HLevel, attr: IAttr);
 	constructor(level: HLevel, attr: IAttr, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {

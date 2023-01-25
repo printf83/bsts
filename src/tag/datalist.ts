@@ -37,6 +37,7 @@ const convert = (attr: IAttrTagDatalist, elem: IElem) => {
 export class datalist extends tag {
 	constructor();
 	constructor(elem: IElem);
+	constructor(attr: IAttrTagDatalist);
 	constructor(attr: IAttrTagDatalist, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
