@@ -6,7 +6,15 @@ core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 
 	core.replaceChild(body, [
-		new tag("div", ["sss", "sss"]),
+		new tag(
+			"div",
+			html.a.gen([
+				{ id: "a", elem: "1" },
+				{ id: "b", elem: "2" },
+				{ id: "c", elem: "3" },
+				{ id: "d", elem: "4" },
+			])
+		),
 		new bs.container([
 			new bs.row(
 				new bs.col(

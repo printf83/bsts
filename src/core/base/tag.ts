@@ -1,3 +1,5 @@
+import { input } from "../../tag/input.js";
+import { option } from "../../tag/option.js";
 import { bootstrapType } from "./bootstrap.js";
 
 export interface IStyle {
@@ -479,10 +481,6 @@ export class tag implements ITag {
 			throw Error("Unsuppoted argument length");
 		}
 	}
-
-	static gen = (tagName: string, elems: IAttr[]): tag[] => {
-		return elems.map((i) => new tag(tagName, i));
-	};
 }
 
 export const isTag = (obj: any): boolean => {

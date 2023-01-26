@@ -1,4 +1,4 @@
-import { IAttr, IElem, tag } from "../core/base/tag.js";
+import { genObject, IAttr, IElem, tag } from "../core/base/tag.js";
 
 export interface IAttrTagA extends IAttr {
 	download?: string;
@@ -48,7 +48,5 @@ export class a extends tag {
 		}
 	}
 
-	static gen = (elems: IAttr[]) => {
-		return elems.map((i) => new a(i));
-	};
+	static gen = (attrs: IAttrTagA[]) => attrs.map((i) => new a(i));
 }
