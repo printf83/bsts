@@ -1,4 +1,4 @@
-import { isTag } from "../base/tag.js";
+import { IAttr, isTag } from "../base/tag.js";
 
 const isArgMatchRule = (rule: string | string[], argType: string[]): boolean => {
 	if (argType) {
@@ -73,7 +73,7 @@ const checkArgType = (obj: any): string => {
 	} else {
 		let t = typeof obj;
 		if (t === "object") {
-			if (isTag(obj)) {
+			if (isTag<IAttr>(obj)) {
 				if (obj.hasOwnProperty("debug") && obj.debug === true) {
 					return "debug";
 				} else {

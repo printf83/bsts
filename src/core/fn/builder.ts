@@ -1,5 +1,5 @@
 import { attachAttr } from "../attach/_index.js";
-import { isTag, tag } from "../base/tag.js";
+import { IAttr, isTag, tag } from "../base/tag.js";
 import { isHTML } from "./isHTML.js";
 import { removeChildElement } from "./removeChildElement.js";
 import { removeElement } from "./removeElement.js";
@@ -19,7 +19,7 @@ export const build = (
 		if (arg.length > 0) {
 			arg.forEach((h) => {
 				if (h !== null) {
-					if (isTag(h)) {
+					if (isTag<IAttr>(h)) {
 						let e = h as tag;
 						let element = e.attr
 							? attachAttr(document.createElement(e.tag), e.attr!)
@@ -29,7 +29,7 @@ export const build = (
 							e.elem = Array.isArray(e.elem) ? e.elem : [e.elem];
 							e.elem.forEach((i) => {
 								if (i !== null) {
-									if (isTag(i)) {
+									if (isTag<IAttr>(i)) {
 										let t = build(element, i as tag);
 										element = t ? t : element;
 									} else {

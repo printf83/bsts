@@ -413,6 +413,7 @@ export interface IAttr extends IGlobal, IBootstrap {
 	on?: IEvent;
 	style?: IStyle;
 	elem?: IElem;
+	debug?: true;
 
 	//addtional
 	active?: boolean;
