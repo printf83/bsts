@@ -40,4 +40,6 @@ export class iframe extends tag {
 			}
 		}
 	}
+
+	static gen = (attrs: IAttrTagIframe[]) => attrs.map((i) => new iframe(i));
 }

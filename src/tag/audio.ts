@@ -24,4 +24,6 @@ export class audio extends tag {
 			}
 		}
 	}
+
+	static gen = (attrs: IAttrTagAudio[]) => attrs.map((i) => new audio(i));
 }

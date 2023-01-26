@@ -1,9 +1,9 @@
 import { IAttr, IElem, tag } from "../core/base/tag.js";
-import { option } from "./option.js";
+import { col } from "./col.js";
 
 export interface IAttrTagColgroup extends IAttr {
 	span?: number;
-	elem?: option[];
+	elem?: col[];
 }
 
 export class colgroup extends tag {
@@ -20,4 +20,6 @@ export class colgroup extends tag {
 			super("colgroup", arg[0], arg[1]);
 		}
 	}
+
+	static gen = (attrs: IAttrTagColgroup[]) => attrs.map((i) => new colgroup(i));
 }

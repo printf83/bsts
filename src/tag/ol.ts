@@ -22,4 +22,6 @@ export class ol extends tag {
 			super("ol", arg[0], arg[1]);
 		}
 	}
+
+	static gen = (attrs: IAttrTagOl[]) => attrs.map((i) => new ol(i));
 }

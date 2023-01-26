@@ -14,4 +14,6 @@ export class code extends tag {
 			super("code", arg[0], arg[1]);
 		}
 	}
+
+	static gen = (attrs: IAttr[]) => attrs.map((i) => new code(i));
 }

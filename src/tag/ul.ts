@@ -8,8 +8,8 @@ export interface IAttrTagUl extends IAttr {
 export class ul extends tag {
 	constructor();
 	constructor(elem: li[]);
-	constructor(attr: IAttr);
-	constructor(attr: IAttr, elem: li[]);
+	constructor(attr: IAttrTagUl);
+	constructor(attr: IAttrTagUl, elem: li[]);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("ul");
@@ -19,4 +19,6 @@ export class ul extends tag {
 			super("ul", arg[0], arg[1]);
 		}
 	}
+
+	static gen = (attrs: IAttrTagUl[]) => attrs.map((i) => new ul(i));
 }

@@ -37,4 +37,6 @@ export class img extends tag {
 			}
 		}
 	}
+
+	static gen = (attrs: IAttrTagImg[]) => attrs.map((i) => new img(i));
 }

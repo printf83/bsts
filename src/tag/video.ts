@@ -25,4 +25,6 @@ export class video extends tag {
 			}
 		}
 	}
+
+	static gen = (attrs: IAttrTagVideo[]) => attrs.map((i) => new video(i));
 }

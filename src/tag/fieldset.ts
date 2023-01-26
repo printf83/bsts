@@ -20,4 +20,6 @@ export class fieldset extends tag {
 			super("fieldset", arg[0], arg[1]);
 		}
 	}
+
+	static gen = (attrs: IAttrTagFieldset[]) => attrs.map((i) => new fieldset(i));
 }

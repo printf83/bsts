@@ -47,4 +47,6 @@ export class area extends tag {
 			super("area", arg[0], arg[1]);
 		}
 	}
+
+	static gen = (attrs: IAttrTagArea[]) => attrs.map((i) => new area(i));
 }

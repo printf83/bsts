@@ -10,4 +10,6 @@ export class hr extends tag {
 			super("hr", arg[0]);
 		}
 	}
+
+	static gen = (attrs: IAttr[]) => attrs.map((i) => new hr(i));
 }

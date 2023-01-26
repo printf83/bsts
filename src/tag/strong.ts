@@ -14,4 +14,6 @@ export class strong extends tag {
 			super("strong", arg[0], arg[1]);
 		}
 	}
+
+	static gen = (attrs: IAttr[]) => attrs.map((i) => new strong(i));
 }

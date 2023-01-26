@@ -28,4 +28,6 @@ export class button extends tag {
 			super("button", arg[0], arg[1]);
 		}
 	}
+
+	static gen = (attrs: IAttrTagButton[]) => attrs.map((i) => new button(i));
 }

@@ -1,8 +1,11 @@
 import { IAttr, IElem, tag } from "../core/base/tag.js";
+import { option } from "./option.js";
 
 export interface IAttrTagOptgroup extends IAttr {
 	disabled?: boolean;
 	label?: string;
+
+	elem?: option[];
 }
 
 export class optgroup extends tag {
@@ -19,4 +22,6 @@ export class optgroup extends tag {
 			super("optgroup", arg[0], arg[1]);
 		}
 	}
+
+	static gen = (attrs: IAttrTagOptgroup[]) => attrs.map((i) => new optgroup(i));
 }

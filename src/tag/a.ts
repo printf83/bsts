@@ -1,4 +1,4 @@
-import { genObject, IAttr, IElem, tag } from "../core/base/tag.js";
+import { IAttr, IElem, tag } from "../core/base/tag.js";
 
 export interface IAttrTagA extends IAttr {
 	download?: string;

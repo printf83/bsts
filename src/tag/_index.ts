@@ -6,6 +6,7 @@ import { b } from "./b.js";
 import { base } from "./base.js";
 import { blockquote } from "./blockquote.js";
 import { button } from "./button.js";
+import { caption } from "./caption.js";
 import { code } from "./code.js";
 import { col } from "./col.js";
 import { colgroup } from "./colgroup.js";
@@ -30,6 +31,7 @@ import { legend } from "./legend.js";
 import { li } from "./li.js";
 import { link } from "./link.js";
 import { map } from "./map.js";
+import { menu } from "./menu.js";
 import { meta } from "./meta.js";
 import { meter } from "./meter.js";
 import { obj } from "./obj.js";
@@ -50,9 +52,13 @@ import { span } from "./span.js";
 import { strong } from "./strong.js";
 import { style } from "./style.js";
 import { summary } from "./summary.js";
+import { table } from "./table.js";
+import { tbody } from "./tbody.js";
 import { td } from "./td.js";
 import { textarea } from "./textarea.js";
+import { tfoot } from "./tfoot.js";
 import { th } from "./th.js";
+import { thead } from "./thead.js";
 import { time } from "./time.js";
 import { tr } from "./tr.js";
 import { track } from "./track.js";
@@ -69,6 +75,7 @@ export const html = {
 	base,
 	blockquote,
 	button,
+	caption,
 	code,
 	col,
 	colgroup,
@@ -93,6 +100,7 @@ export const html = {
 	li,
 	link,
 	map,
+	menu,
 	meta,
 	meter,
 	obj,
@@ -113,9 +121,13 @@ export const html = {
 	strong,
 	style,
 	summary,
+	table,
+	tbody,
 	td,
 	textarea,
+	tfoot,
 	th,
+	thead,
 	time,
 	tr,
 	track,

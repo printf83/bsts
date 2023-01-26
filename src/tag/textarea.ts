@@ -42,4 +42,6 @@ export class textarea extends tag {
 			super("textarea", convert(mergeObject({ value: arg[1] }, arg[0])));
 		}
 	}
+
+	static gen = (attrs: IAttrTagTextarea[]) => attrs.map((i) => new textarea(i));
 }

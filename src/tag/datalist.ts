@@ -51,4 +51,6 @@ export class datalist extends tag {
 			super("datalist", attr, elem);
 		}
 	}
+
+	static gen = (attrs: IAttrTagDatalist[]) => attrs.map((i) => new datalist(i));
 }

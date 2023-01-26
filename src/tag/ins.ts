@@ -19,4 +19,6 @@ export class ins extends tag {
 			super("ins", arg[0], arg[1]);
 		}
 	}
+
+	static gen = (attrs: IAttrTagIns[]) => attrs.map((i) => new ins(i));
 }

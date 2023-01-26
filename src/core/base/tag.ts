@@ -1,5 +1,3 @@
-import { input } from "../../tag/input.js";
-import { option } from "../../tag/option.js";
 import { bootstrapType } from "./bootstrap.js";
 
 export interface IStyle {

@@ -36,4 +36,6 @@ export class form extends tag {
 			super("form", arg[0], arg[1]);
 		}
 	}
+
+	static gen = (attrs: IAttrTagForm[]) => attrs.map((i) => new form(i));
 }

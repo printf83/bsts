@@ -23,4 +23,6 @@ export class source extends tag {
 			}
 		}
 	}
+
+	static gen = (attrs: IAttrTagSource[]) => attrs.map((i) => new source(i));
 }

@@ -19,4 +19,6 @@ export class progress extends tag {
 			super("progress", arg[0], arg[1]);
 		}
 	}
+
+	static gen = (attrs: IAttrTagProgress[]) => attrs.map((i) => new progress(i));
 }

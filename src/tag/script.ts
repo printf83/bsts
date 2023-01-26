@@ -32,4 +32,6 @@ export class script extends tag {
 			super("script", { type: arg[0], src: arg[1] } as IAttrTagScript);
 		}
 	}
+
+	static gen = (attrs: IAttrTagScript[]) => attrs.map((i) => new script(i));
 }

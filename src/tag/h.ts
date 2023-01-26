@@ -19,4 +19,6 @@ export class h extends tag {
 			super(`h${arg[0]}`, arg[1], arg[2]);
 		}
 	}
+
+	static gen = (level: HLevel, attrs: IAttr[]) => attrs.map((i) => new h(level, i));
 }

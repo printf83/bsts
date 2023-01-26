@@ -60,4 +60,6 @@ export class select extends tag {
 			super("select", attr, elem);
 		}
 	}
+
+	static gen = (attrs: IAttrTagSelect[]) => attrs.map((i) => new select(i));
 }

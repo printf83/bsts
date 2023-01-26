@@ -23,4 +23,6 @@ export class obj extends tag {
 			super("object", arg[0], arg[1]);
 		}
 	}
+
+	static gen = (attrs: IAttrTagObj[]) => attrs.map((i) => new obj(i));
 }

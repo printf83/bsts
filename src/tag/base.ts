@@ -20,4 +20,6 @@ export class base extends tag {
 			}
 		}
 	}
+
+	static gen = (attrs: IAttrTagBase[]) => attrs.map((i) => new base(i));
 }

@@ -22,4 +22,6 @@ export class track extends tag {
 			super("track", arg[0], arg[1]);
 		}
 	}
+
+	static gen = (attrs: IAttrTagTrack[]) => attrs.map((i) => new track(i));
 }

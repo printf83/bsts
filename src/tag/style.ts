@@ -18,4 +18,6 @@ export class style extends tag {
 			super("style", arg[0], arg[1]);
 		}
 	}
+
+	static gen = (attrs: IAttrTagStyle[]) => attrs.map((i) => new style(i));
 }
