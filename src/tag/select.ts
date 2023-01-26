@@ -1,4 +1,5 @@
 import { IAttr, IElem, tag } from "../core/base/tag.js";
+import { optgroup } from "./optgroup.js";
 import { IAttrTagOption, option } from "./option.js";
 
 export interface IAttrTagSelect extends IAttr {
@@ -9,6 +10,8 @@ export interface IAttrTagSelect extends IAttr {
 	name?: string;
 	required?: boolean;
 	size?: number;
+
+	elem?: (option | optgroup)[];
 
 	options?: string | IAttrTagOption | (string | IAttrTagOption)[];
 }
@@ -44,9 +47,9 @@ const convert = (attr: IAttrTagSelect, elem: IElem) => {
 
 export class select extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: (option | optgroup)[]);
 	constructor(attr: IAttrTagSelect);
-	constructor(attr: IAttrTagSelect, elem: IElem);
+	constructor(attr: IAttrTagSelect, elem: (option | optgroup)[]);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("select");

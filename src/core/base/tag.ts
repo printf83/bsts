@@ -448,7 +448,7 @@ export class tag implements ITag {
 			//#2
 			this.tag = arg[0];
 		} else if (arg.length === 2) {
-			if (typeof arg[1] === "object" && !isTag(arg[0])) {
+			if (isAttr(arg[1])) {
 				//#3
 				this.tag = arg[0];
 

@@ -1,7 +1,9 @@
 import { IAttr, IElem, tag } from "../core/base/tag.js";
+import { option } from "./option.js";
 
 export interface IAttrTagColgroup extends IAttr {
 	span?: number;
+	elem?: option[];
 }
 
 export class colgroup extends tag {

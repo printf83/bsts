@@ -3,6 +3,8 @@ import { IAttrTagOption, option } from "./option.js";
 
 export interface IAttrTagDatalist extends IAttr {
 	options?: string | IAttrTagOption | (string | IAttrTagOption)[];
+
+	elem?: option[];
 }
 
 const convert = (attr: IAttrTagDatalist, elem: IElem) => {
@@ -36,9 +38,9 @@ const convert = (attr: IAttrTagDatalist, elem: IElem) => {
 
 export class datalist extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: option[]);
 	constructor(attr: IAttrTagDatalist);
-	constructor(attr: IAttrTagDatalist, elem: IElem);
+	constructor(attr: IAttrTagDatalist, elem: option[]);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("datalist");

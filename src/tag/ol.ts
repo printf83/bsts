@@ -1,15 +1,18 @@
-import { IAttr, IElem, tag } from "../core/base/tag.js";
+import { IAttr, tag } from "../core/base/tag.js";
+import { li } from "./li.js";
 
 export interface IAttrTagOl extends IAttr {
 	reversed?: boolean;
 	startValue?: number;
+
+	elem?: li[];
 }
 
 export class ol extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: li[]);
 	constructor(attr: IAttrTagOl);
-	constructor(attr: IAttrTagOl, elem: IElem);
+	constructor(attr: IAttrTagOl, elem: li[]);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("ol");
