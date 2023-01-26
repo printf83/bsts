@@ -19,13 +19,13 @@ core.documentReady(() => {
 				new bs.col(
 					new html.div({ display: "flex", gap: 3 }, [
 						new bs.input({ type: "checkbox", id: "chk1", toggle: true }),
-						new bs.label({ color: "primary", outline: true, for: "chk1" }, "Single toggle"),
+						new bs.label({ color: "primary", outline: true, for: "chk1", elem: "Single toggle" }),
 
 						new bs.input({ type: "checkbox", id: "chk2", toggle: true, checked: true }),
 						new bs.label({ color: "secondary", outline: true, for: "chk2" }, "Checked"),
 
 						new bs.input({ type: "radio", id: "rad1", name: "radGroup1", toggle: true, checked: true }),
-						new bs.label({ color: "success", outline: true, for: "rad1" }, "Checked success radio"),
+						new bs.label({ color: "success", outline: true, for: "rad1", elem: "Checked success radio" }),
 
 						new bs.input({ type: "radio", id: "rad2", name: "radGroup1", toggle: true }),
 						new bs.label({ color: "danger", outline: true, for: "rad2" }, "Danger radio"),
@@ -129,10 +129,12 @@ core.documentReady(() => {
 
 				new bs.row(
 					new bs.col(
-						new bs.img(
-							{ fluid: true, thumbnail: true, rounded: true },
-							"https://picsum.photos/seed/1231/800/400"
-						)
+						new bs.img({
+							fluid: true,
+							thumbnail: true,
+							rounded: true,
+							src: "https://picsum.photos/seed/1231/800/400",
+						})
 					)
 				),
 				new bs.row(new bs.col(new html.a("this is link 2"))),
@@ -204,14 +206,12 @@ core.documentReady(() => {
 						new bs.grid([
 							new bs.msg("home", "Home"),
 							new bs.msg("star", loream),
-							new bs.msg(
-								{
-									iconPosition: "top",
-									iconContainer: { fontDisplay: 1, margin: 5 },
-									icon: { icon: "star", weight: "2xl", color: "primary" },
-								},
-								loream
-							),
+							new bs.msg({
+								iconPosition: "top",
+								iconContainer: { fontDisplay: 1, margin: 5 },
+								icon: { icon: "star", weight: "2xl", color: "primary" },
+								elem: loream,
+							}),
 						])
 					)
 				),

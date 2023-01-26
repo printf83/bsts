@@ -33,16 +33,16 @@ const fnIcon = (display: IBootstrapTypeDisplay | undefined, attr: IAttrBSIcon) =
 	return new span({ display: display }, new icon(attr!));
 };
 
-const fnText = (display: IBootstrapTypeDisplay | undefined, text: string) => {
-	return new span({ display: display }, text);
+const fnElem = (display: IBootstrapTypeDisplay | undefined, elem: IElem) => {
+	return new span({ display: display }, elem);
 };
 
-const convert = (attr: IAttrBSLabel, text: string) => {
+const convert = (attr: IAttrBSLabel) => {
 	let tElem: IElem;
 	let tAttr: IAttrBSLabel = attr;
 
 	if (attr && typeof attr.icon !== "undefined") {
-		if (text) {
+		if (attr.elem) {
 			//default position
 			attr.iconPosition = attr.iconPosition || "start";
 
@@ -51,24 +51,24 @@ const convert = (attr: IAttrBSLabel, text: string) => {
 				case "start":
 					tElem = new div({ display: "flex", gap: 2, alignItem: "center" }, [
 						fnIcon(attr.iconDisplay, attr.icon),
-						fnText(attr.labelDisplay, text),
+						fnElem(attr.labelDisplay, attr.elem),
 					]);
 					break;
 				case "end":
 					tElem = new div({ display: "flex", gap: 2, alignItem: "center" }, [
-						fnText(attr.labelDisplay, text),
+						fnElem(attr.labelDisplay, attr.elem),
 						fnIcon(attr.iconDisplay, attr.icon),
 					]);
 					break;
 				case "top":
 					tElem = new div({ display: "inline-block" }, [
 						fnRow(attr.iconDisplay, fnIcon(undefined, attr.icon)),
-						fnRow(attr.labelDisplay, fnText(undefined, text)),
+						fnRow(attr.labelDisplay, fnElem(undefined, attr.elem)),
 					]);
 					break;
 				case "bottom":
 					tElem = new div({ display: "inline-block" }, [
-						fnRow(attr.labelDisplay, fnText(undefined, text)),
+						fnRow(attr.labelDisplay, fnElem(undefined, attr.elem)),
 						fnRow(attr.iconDisplay, fnIcon(undefined, attr.icon)),
 					]);
 					break;
@@ -79,8 +79,8 @@ const convert = (attr: IAttrBSLabel, text: string) => {
 			tElem = new icon(attr.icon);
 		}
 	} else {
-		if (text) {
-			tElem = text;
+		if (attr.elem) {
+			tElem = attr.elem;
 		} else {
 			tElem = "Label";
 		}
@@ -106,7 +106,10 @@ const convert = (attr: IAttrBSLabel, text: string) => {
 	delete tAttr.color;
 	delete tAttr.outline;
 
-	return { attr: tAttr, elem: tElem };
+	delete attr.elem;
+	attr.elem = tElem;
+
+	return attr;
 };
 
 export class label extends TLabel {
@@ -114,18 +117,51 @@ export class label extends TLabel {
 	constructor(text: string); //#2
 	constructor(attr: IAttrBSLabel); //#3
 	constructor(icon: string, text: string); //#4
+	constructor(attr: IAttrBSLabel, text: string); //#5
+	constructor(attr: IAttrBSLabel, icon: string, text: string); //#6
 
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
-			super("Label");
+			super(convert({}));
 		} else if (arg.length === 1) {
-			//#2 #3
-			super(arg[0]);
+			if (typeof arg[0] === "string") {
+				//#2
+				super(convert({ elem: arg[0] }));
+			} else {
+				//#3
+				super(convert(arg[0]));
+			}
 		} else if (arg.length === 2) {
-			//#4
-			let { elem, attr } = convert({ icon: arg[0] as IAttrBSIcon } as IAttrBSLabel, arg[1]);
-			super(attr, elem);
+			if (typeof arg[0] === "string" && typeof arg[1] === "string") {
+				//#4
+				super(convert({ icon: arg[0] as IAttrBSIcon, elem: arg[1] }));
+			} else {
+				//#5
+				super(
+					convert(
+						mergeObject<IAttrBSLabel>(
+							{
+								elem: arg[1],
+							},
+							arg[0]
+						)
+					)
+				);
+			}
+		} else if (arg.length === 3) {
+			//#6
+			super(
+				convert(
+					mergeObject<IAttrBSLabel>(
+						{
+							icon: arg[1] as IAttrBSIcon,
+							elem: arg[2],
+						},
+						arg[0]
+					)
+				)
+			);
 		}
 	}
 }

@@ -1,5 +1,4 @@
 import { IAttr, IElem, isAttr } from "../core/base/tag.js";
-import { mergeObject } from "../core/fn/mergeObject.js";
 import { div } from "../tag/div.js";
 import { IAttrTagLabel, label as TLabel } from "../tag/label.js";
 import { IAttrBSIcon, icon } from "./icon.js";
@@ -74,33 +73,38 @@ const convert = (attr: IAttrBSMsg) => {
 	delete tAttr.icon;
 	delete tAttr.iconPosition;
 
-	return { attr: tAttr, elem: tElem };
+	delete attr.elem;
+	attr.elem = tElem;
+
+	return attr;
 };
 
 export class msg extends TLabel {
 	constructor(); //#1
 	constructor(attr: IAttrBSMsg); //#2
 	constructor(elem: IElem); //#3
-	constructor(icon: IAttrBSIcon, elem: IElem); //#4
+	constructor(icon: string, elem: IElem); //#4
+	constructor(icon: IAttrBSIcon, elem: IElem); //#5
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
-			let { elem, attr } = convert({});
-			super(attr, elem);
+			super(convert({}));
 		} else if (arg.length === 1) {
 			if (isAttr(arg[0])) {
 				//#2
-				let { elem, attr } = convert(arg[0]);
-				super(attr, elem);
+				super(convert(arg[0]));
 			} else {
 				//#3
-				let { elem, attr } = convert(mergeObject({ elem: arg[0] }, {}));
-				super(attr, elem);
+				super(convert({ elem: arg[0] }));
 			}
 		} else if (arg.length === 2) {
-			//#4
-			let { elem, attr } = convert(mergeObject({ icon: arg[0], elem: arg[1] }, {}));
-			super(attr, elem);
+			if (typeof arg[0] === "string") {
+				//#4
+				super(convert({ icon: { icon: arg[0] }, elem: arg[1] }));
+			} else {
+				//#5
+				super(convert({ icon: arg[0], elem: arg[1] }));
+			}
 		}
 	}
 }

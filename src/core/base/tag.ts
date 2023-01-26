@@ -1,4 +1,3 @@
-import { q } from "../../tag/q.js";
 import { bootstrapType } from "./bootstrap.js";
 
 export interface IStyle {
