@@ -1,8 +1,12 @@
 import { IAttr, tag } from "../core/base/tag.js";
 
+export interface IAttrTagHr extends IAttr {
+	elem?: undefined;
+}
+
 export class hr extends tag {
 	constructor();
-	constructor(attr: IAttr);
+	constructor(attr: IAttrTagHr);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("hr");
@@ -11,5 +15,5 @@ export class hr extends tag {
 		}
 	}
 
-	static gen = (attrs: IAttr[]) => attrs.map((i) => new hr(i));
+	static gen = (attrs: IAttrTagHr[]) => attrs.map((i) => new hr(i));
 }

@@ -8,6 +8,10 @@ core.documentReady(() => {
 	core.replaceChild(body, [
 		new html.ul(new html.li("hello")),
 		new html.ol([new html.li("hello"), new html.li("world")]),
+		new html.hr({ id: "aaaa" }),
+		new bs.button({ color: "danger", elem: "Hello World" }),
+		new tag("h1", "Hello World"),
+
 		// new bs.container(
 		// 	new bs.row(
 		// 		new bs.col(

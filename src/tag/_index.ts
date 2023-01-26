@@ -36,12 +36,14 @@ import { figure } from "./figure.js";
 import { footer } from "./footer.js";
 import { form } from "./form.js";
 import { h } from "./h.js";
+import { header } from "./header.js";
 import { hr } from "./hr.js";
 import { i } from "./i.js";
 import { iframe } from "./iframe.js";
 import { img } from "./img.js";
 import { input } from "./input.js";
 import { ins } from "./ins.js";
+import { kbd } from "./kbd.js";
 import { label } from "./label.js";
 import { legend } from "./legend.js";
 import { li } from "./li.js";
@@ -60,6 +62,7 @@ import { param } from "./param.js";
 import { pre } from "./pre.js";
 import { progress } from "./progress.js";
 import { q } from "./q.js";
+import { samp } from "./samp.js";
 import { script } from "./script.js";
 import { select } from "./select.js";
 import { small } from "./small.js";
@@ -80,6 +83,7 @@ import { tr } from "./tr.js";
 import { track } from "./track.js";
 import { u } from "./u.js";
 import { ul } from "./ul.js";
+import { variable } from "./variable.js";
 import { video } from "./video.js";
 
 export const html = {
@@ -121,12 +125,14 @@ export const html = {
 	footer,
 	form,
 	h,
+	header,
 	hr,
 	i,
 	iframe,
 	img,
 	input,
 	ins,
+	kbd,
 	label,
 	legend,
 	li,
@@ -145,6 +151,7 @@ export const html = {
 	pre,
 	progress,
 	q,
+	samp,
 	script,
 	select,
 	small,
@@ -165,5 +172,6 @@ export const html = {
 	track,
 	u,
 	ul,
+	variable,
 	video,
 };
