@@ -1,7 +1,9 @@
 import { IAttr, IElem, tag } from "../core/base/tag.js";
+import { area } from "./area.js";
 
 export interface IAttrTagMap extends IAttr {
 	name?: string;
+	elem?: area[];
 }
 
 export class map extends tag {

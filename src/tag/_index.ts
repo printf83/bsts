@@ -1,19 +1,32 @@
 import { a } from "./a.js";
 import { abbr } from "./abbr.js";
+import { address } from "./address.js";
 import { area } from "./area.js";
+import { article } from "./article.js";
+import { aside } from "./aside.js";
 import { audio } from "./audio.js";
 import { b } from "./b.js";
 import { base } from "./base.js";
+import { bdi } from "./bdi.js";
+import { bdo } from "./bdo.js";
 import { blockquote } from "./blockquote.js";
+import { br } from "./br.js";
 import { button } from "./button.js";
+import { canvas } from "./canvas.js";
 import { caption } from "./caption.js";
+import { cite } from "./cite.js";
 import { code } from "./code.js";
 import { col } from "./col.js";
 import { colgroup } from "./colgroup.js";
+import { data } from "./data.js";
 import { datalist } from "./datalist.js";
+import { dd } from "./dd.js";
 import { del } from "./del.js";
 import { details } from "./details.js";
+import { dfn } from "./dfn.js";
 import { div } from "./div.js";
+import { dl } from "./dl.js";
+import { dt } from "./dt.js";
 import { em } from "./em.js";
 import { embed } from "./embed.js";
 import { fieldset } from "./fieldset.js";
@@ -69,20 +82,33 @@ import { video } from "./video.js";
 export const html = {
 	a,
 	abbr,
+	address,
 	area,
+	article,
+	aside,
 	audio,
 	b,
 	base,
+	bdi,
+	bdo,
 	blockquote,
+	br,
 	button,
+	canvas,
 	caption,
+	cite,
 	code,
 	col,
 	colgroup,
+	data,
 	datalist,
+	dd,
 	del,
 	details,
+	dfn,
 	div,
+	dl,
+	dt,
 	em,
 	embed,
 	fieldset,

@@ -1,4 +1,5 @@
 import { IAttr, tag } from "../core/base/tag.js";
+import { source } from "./source.js";
 
 export interface IAttrTagAudio extends IAttr {
 	autoplay?: boolean;
@@ -7,6 +8,8 @@ export interface IAttrTagAudio extends IAttr {
 	muted?: boolean;
 	preload?: "auto" | "metadata" | "none";
 	src?: string;
+
+	elem?: (source | string)[];
 }
 
 export class audio extends tag {
