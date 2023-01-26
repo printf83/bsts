@@ -479,6 +479,10 @@ export class tag implements ITag {
 			throw Error("Unsuppoted argument length");
 		}
 	}
+
+	static gen = (tagName: string, elems: IAttr[]): tag[] => {
+		return elems.map((i) => new tag(tagName, i));
+	};
 }
 
 export const isTag = (obj: any): boolean => {
