@@ -1,15 +1,17 @@
-import { IAttr, IElem, tag } from "../core/base/tag.js";
+import { IAttr, tag } from "../core/base/tag.js";
 import { tr } from "./tr.js";
 
+export type IElemTagTfoot = tr | tr[];
+
 export interface IAttrTagTfoot extends IAttr {
-	elem?: tr[];
+	elem?: IElemTagTfoot;
 }
 
 export class tfoot extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: IElemTagTfoot);
 	constructor(attr: IAttrTagTfoot);
-	constructor(attr: IAttrTagTfoot, elem: IElem);
+	constructor(attr: IAttrTagTfoot, elem: IElemTagTfoot);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("tfoot");

@@ -6,6 +6,8 @@ core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 
 	core.replaceChild(body, [
+		new html.ul(new html.li("hello")),
+		new html.ol([new html.li("hello"), new html.li("world")]),
 		// new bs.container(
 		// 	new bs.row(
 		// 		new bs.col(

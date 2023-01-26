@@ -1,15 +1,17 @@
 import { IAttr, tag } from "../core/base/tag.js";
 import { li } from "./li.js";
 
+export type IElemTagUl = li | li[];
+
 export interface IAttrTagUl extends IAttr {
-	elem?: li[];
+	elem?: IElemTagUl;
 }
 
 export class ul extends tag {
 	constructor();
-	constructor(elem: li[]);
+	constructor(elem: IElemTagUl);
 	constructor(attr: IAttrTagUl);
-	constructor(attr: IAttrTagUl, elem: li[]);
+	constructor(attr: IAttrTagUl, elem: IElemTagUl);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("ul");

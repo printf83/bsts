@@ -1,14 +1,16 @@
-import { IAttr, IElem, tag } from "../core/base/tag.js";
+import { IAttr, tag } from "../core/base/tag.js";
 import { IAttrTagOption, option } from "./option.js";
+
+export type IElemTagDatalist = option | option[];
 
 export interface IAttrTagDatalist extends IAttr {
 	options?: string | IAttrTagOption | (string | IAttrTagOption)[];
 
-	elem?: option[];
+	elem?: IElemTagDatalist;
 }
 
-const convert = (attr: IAttrTagDatalist, elem: IElem) => {
-	let tElem: IElem = [];
+const convert = (attr: IAttrTagDatalist, elem: IElemTagDatalist) => {
+	let tElem: IElemTagDatalist = [];
 
 	//convert option to tag
 	if (attr.options) {
@@ -32,23 +34,25 @@ const convert = (attr: IAttrTagDatalist, elem: IElem) => {
 	}
 
 	delete attr.options;
+	delete attr.elem;
 
-	return { attr, elem: tElem };
+	attr.elem = tElem;
+
+	return attr;
 };
 
 export class datalist extends tag {
 	constructor();
-	constructor(elem: option[]);
+	constructor(elem: IElemTagDatalist);
 	constructor(attr: IAttrTagDatalist);
-	constructor(attr: IAttrTagDatalist, elem: option[]);
+	constructor(attr: IAttrTagDatalist, elem: IElemTagDatalist);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("datalist");
 		} else if (arg.length === 1) {
 			super("datalist", arg[0]);
 		} else if (arg.length === 2) {
-			let { attr, elem } = convert(arg[0], arg[1]);
-			super("datalist", attr, elem);
+			super("datalist", convert(arg[0], arg[1]));
 		}
 	}
 

@@ -1,6 +1,8 @@
-import { IAttr, IElem, tag } from "../core/base/tag.js";
+import { IAttr, tag } from "../core/base/tag.js";
 import { optgroup } from "./optgroup.js";
 import { IAttrTagOption, option } from "./option.js";
+
+export type IElemTagSelect = option | optgroup | (option | optgroup)[];
 
 export interface IAttrTagSelect extends IAttr {
 	autofocus?: boolean;
@@ -11,13 +13,13 @@ export interface IAttrTagSelect extends IAttr {
 	required?: boolean;
 	size?: number;
 
-	elem?: (option | optgroup)[];
+	elem?: IElemTagSelect;
 
 	options?: string | IAttrTagOption | (string | IAttrTagOption)[];
 }
 
-const convert = (attr: IAttrTagSelect, elem: IElem) => {
-	let tElem: IElem = [];
+const convert = (attr: IAttrTagSelect, elem: IElemTagSelect) => {
+	let tElem: IElemTagSelect = [];
 
 	//convert option to tag
 	if (attr.options) {
@@ -42,22 +44,24 @@ const convert = (attr: IAttrTagSelect, elem: IElem) => {
 
 	delete attr.options;
 
-	return { attr, elem: tElem };
+	delete attr.elem;
+	attr.elem = tElem;
+
+	return attr;
 };
 
 export class select extends tag {
 	constructor();
-	constructor(elem: (option | optgroup)[]);
+	constructor(elem: IElemTagSelect);
 	constructor(attr: IAttrTagSelect);
-	constructor(attr: IAttrTagSelect, elem: (option | optgroup)[]);
+	constructor(attr: IAttrTagSelect, elem: IElemTagSelect);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("select");
 		} else if (arg.length === 1) {
 			super("select", arg[0]);
 		} else if (arg.length === 2) {
-			let { attr, elem } = convert(arg[0], arg[1]);
-			super("select", attr, elem);
+			super("select", convert(arg[0], arg[1]));
 		}
 	}
 

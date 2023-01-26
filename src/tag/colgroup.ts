@@ -1,16 +1,18 @@
-import { IAttr, IElem, tag } from "../core/base/tag.js";
+import { IAttr, tag } from "../core/base/tag.js";
 import { col } from "./col.js";
+
+export type IElemTagColgroup = col | col[];
 
 export interface IAttrTagColgroup extends IAttr {
 	span?: number;
-	elem?: col[];
+	elem?: IElemTagColgroup;
 }
 
 export class colgroup extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: IElemTagColgroup);
 	constructor(attr: IAttrTagColgroup);
-	constructor(attr: IAttrTagColgroup, elem: IElem);
+	constructor(attr: IAttrTagColgroup, elem: IElemTagColgroup);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("colgroup");

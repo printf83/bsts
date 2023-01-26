@@ -1,16 +1,18 @@
-import { IAttr, IElem, tag } from "../core/base/tag.js";
+import { IAttr, tag } from "../core/base/tag.js";
 import { dd } from "./dd.js";
 import { dt } from "./dt.js";
 
+export type IElemTagDl = dt | dd | (dt | dd)[];
+
 export interface IAttrTagDl extends IAttr {
-	elem?: (dt | dd)[];
+	elem?: IElemTagDl;
 }
 
 export class dl extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: IElemTagDl);
 	constructor(attr: IAttrTagDl);
-	constructor(attr: IAttrTagDl, elem: IElem);
+	constructor(attr: IAttrTagDl, elem: IElemTagDl);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("dl");

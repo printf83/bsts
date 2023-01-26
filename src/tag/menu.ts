@@ -1,15 +1,17 @@
 import { IAttr, tag } from "../core/base/tag.js";
 import { li } from "./li.js";
 
+export type IElemTagMenu = li | li[];
+
 export interface IAttrTagMenu extends IAttr {
-	elem?: li[];
+	elem?: IElemTagMenu;
 }
 
 export class menu extends tag {
 	constructor();
-	constructor(elem: li[]);
+	constructor(elem: IElemTagMenu);
 	constructor(attr: IAttrTagMenu);
-	constructor(attr: IAttrTagMenu, elem: li[]);
+	constructor(attr: IAttrTagMenu, elem: IElemTagMenu);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("menu");

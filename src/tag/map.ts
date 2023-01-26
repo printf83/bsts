@@ -1,16 +1,18 @@
-import { IAttr, IElem, tag } from "../core/base/tag.js";
+import { IAttr, tag } from "../core/base/tag.js";
 import { area } from "./area.js";
+
+export type IElemTagMap = area | area[];
 
 export interface IAttrTagMap extends IAttr {
 	name?: string;
-	elem?: area[];
+	elem?: IElemTagMap;
 }
 
 export class map extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: IElemTagMap);
 	constructor(attr: IAttrTagMap);
-	constructor(attr: IAttrTagMap, elem: IElem);
+	constructor(attr: IAttrTagMap, elem: IElemTagMap);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("map");

@@ -31,6 +31,8 @@ import { dt } from "./dt.js";
 import { em } from "./em.js";
 import { embed } from "./embed.js";
 import { fieldset } from "./fieldset.js";
+import { figcaption } from "./figcaption.js";
+import { figure } from "./figure.js";
 import { footer } from "./footer.js";
 import { form } from "./form.js";
 import { h } from "./h.js";
@@ -114,6 +116,8 @@ export const html = {
 	em,
 	embed,
 	fieldset,
+	figcaption,
+	figure,
 	footer,
 	form,
 	h,

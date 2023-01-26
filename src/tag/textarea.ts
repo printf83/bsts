@@ -21,6 +21,7 @@ const convert = (attr: IAttrTagTextarea): IAttrTagTextarea => {
 	//nove value to elem
 	attr.elem = attr.value;
 	delete attr.value;
+
 	return attr;
 };
 

@@ -1,18 +1,20 @@
-import { IAttr, IElem, tag } from "../core/base/tag.js";
+import { IAttr, tag } from "../core/base/tag.js";
 import { option } from "./option.js";
+
+export type IElemTagOptgroup = option | option[];
 
 export interface IAttrTagOptgroup extends IAttr {
 	disabled?: boolean;
 	label?: string;
 
-	elem?: option[];
+	elem?: IElemTagOptgroup;
 }
 
 export class optgroup extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: IElemTagOptgroup);
 	constructor(attr: IAttrTagOptgroup);
-	constructor(attr: IAttrTagOptgroup, elem: IElem);
+	constructor(attr: IAttrTagOptgroup, elem: IElemTagOptgroup);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("optgroup");
