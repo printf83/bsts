@@ -78,4 +78,6 @@ export class button extends tag {
 			super(arg[0].href ? "a" : "button", convert(arg[0]), arg[1]);
 		}
 	}
+
+	static gen = (attrs: IAttrBSButton[]) => attrs.map((i) => new button(i));
 }

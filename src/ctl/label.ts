@@ -119,7 +119,6 @@ export class label extends TLabel {
 	constructor(icon: string, text: string); //#4
 	constructor(attr: IAttrBSLabel, text: string); //#5
 	constructor(attr: IAttrBSLabel, icon: string, text: string); //#6
-
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
@@ -164,4 +163,6 @@ export class label extends TLabel {
 			);
 		}
 	}
+
+	static gen = (attrs: IAttrBSLabel[]) => attrs.map((i) => new label(i));
 }

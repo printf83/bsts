@@ -36,4 +36,6 @@ export class grid extends div {
 			super(convert(arg[0]), arg[1]);
 		}
 	}
+
+	static gen = (attrs: IAttr[]) => attrs.map((i) => new grid(i));
 }

@@ -66,4 +66,6 @@ export class input extends TInput {
 			super(convert(mergeObject(arg[0], { value: arg[1] })));
 		}
 	}
+
+	static gen = (attrs: IAttrBSInput[]) => attrs.map((i) => new input(i));
 }

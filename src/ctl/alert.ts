@@ -56,4 +56,6 @@ export class alert extends div {
 			super(convert(arg[0]), arg[1]);
 		}
 	}
+
+	static gen = (attrs: IAttrBSAlert[]) => attrs.map((i) => new alert(i));
 }
