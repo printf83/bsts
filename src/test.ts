@@ -11,6 +11,7 @@ core.documentReady(() => {
 		new html.hr({ id: "aaaa" }),
 		new bs.button({ color: "danger", elem: "Hello World" }),
 		new tag("h1", "Hello World"),
+		new html.p(loream),
 
 		// new bs.container(
 		// 	new bs.row(
