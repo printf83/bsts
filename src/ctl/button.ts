@@ -66,7 +66,7 @@ export class button extends tag {
 			//#1
 			super("button", convert({}), "Button");
 		} else if (arg.length === 1) {
-			if (isAttr(arg[0])) {
+			if (isAttr<IAttrBSButton>(arg[0])) {
 				//#2
 				super(arg[0].href ? "a" : "button", convert(arg[0]));
 			} else {

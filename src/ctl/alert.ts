@@ -44,7 +44,7 @@ export class alert extends div {
 			//#1
 			super(convert({}), "Alert");
 		} else if (arg.length === 1) {
-			if (isAttr(arg[0])) {
+			if (isAttr<IAttrBSAlert>(arg[0])) {
 				//#2
 				super(convert(arg[0]));
 			} else {

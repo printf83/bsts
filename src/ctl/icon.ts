@@ -81,7 +81,7 @@ export class icon extends tag {
 			if (typeof arg[0] === "string") {
 				//#2
 				super("i", convert({ icon: arg[0] }));
-			} else if (isAttr(arg[0])) {
+			} else if (isAttr<IAttrBSIcon>(arg[0])) {
 				//#3
 				super(arg[0].stack === true ? "span" : "i", convert(arg[0]));
 			} else {

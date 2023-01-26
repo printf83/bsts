@@ -448,7 +448,7 @@ export class tag implements ITag {
 			//#2
 			this.tag = arg[0];
 		} else if (arg.length === 2) {
-			if (isAttr(arg[1])) {
+			if (isAttr<IAttr>(arg[1])) {
 				//#3
 				this.tag = arg[0];
 
@@ -481,10 +481,10 @@ export class tag implements ITag {
 	}
 }
 
-export const isTag = (obj: any): boolean => {
+export const isTag = <T>(obj: any): obj is T => {
 	return typeof obj === "object" && !Array.isArray(obj) && "isbsts" in obj && obj["isbsts"] === true;
 };
 
-export const isAttr = (obj: any): boolean => {
+export const isAttr = <T>(obj: any): obj is T => {
 	return typeof obj === "object" && !Array.isArray(obj) && !("isbsts" in obj);
 };

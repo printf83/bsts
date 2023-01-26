@@ -24,7 +24,7 @@ export class grid extends div {
 			//#1
 			super(convert({}));
 		} else if (arg.length === 1) {
-			if (isAttr(arg[0])) {
+			if (isAttr<IAttr>(arg[0])) {
 				//#2
 				super(convert(arg[0]));
 			} else {
