@@ -1,7 +1,7 @@
 import { IAttr, IElem, tag } from "../core/base/tag.js";
 
 export interface IAttrTagBdo extends IAttr {
-	dir: "ltr" | "rtl";
+	dir?: "ltr" | "rtl";
 }
 
 export class bdo extends tag {

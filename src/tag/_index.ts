@@ -24,6 +24,7 @@ import { dd } from "./dd.js";
 import { del } from "./del.js";
 import { details } from "./details.js";
 import { dfn } from "./dfn.js";
+import { dialog } from "./dialog.js";
 import { div } from "./div.js";
 import { dl } from "./dl.js";
 import { dt } from "./dt.js";
@@ -106,6 +107,7 @@ export const html = {
 	del,
 	details,
 	dfn,
+	dialog,
 	div,
 	dl,
 	dt,
