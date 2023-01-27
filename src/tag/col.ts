@@ -2,6 +2,7 @@ import { IAttr, tag } from "../core/base/tag.js";
 
 export interface IAttrTagCol extends IAttr {
 	span?: number;
+	elem?: undefined;
 }
 
 export class col extends tag {

@@ -30,6 +30,8 @@ export interface IAttrTagLink extends IAttr {
 
 	sizes?: string;
 	type?: string;
+
+	elem?: undefined;
 }
 
 export class link extends tag {

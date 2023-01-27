@@ -18,9 +18,21 @@ export interface IAttrTagTextarea extends IAttr {
 }
 
 const convert = (attr: IAttrTagTextarea): IAttrTagTextarea => {
-	//nove value to elem
-	attr.elem = attr.value;
-	delete attr.value;
+	//move value to elem
+
+	if (attr.value) {
+		if (attr.elem) {
+			if (Array.isArray(attr.elem)) {
+				attr.elem = [...attr.elem, attr.value];
+			} else {
+				attr.elem = [attr.elem, attr.value];
+			}
+		} else {
+			attr.elem = attr.value;
+		}
+
+		delete attr.value;
+	}
 
 	return attr;
 };

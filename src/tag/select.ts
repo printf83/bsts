@@ -1,4 +1,5 @@
-import { IAttr, tag } from "../core/base/tag.js";
+import { IAttr, isAttr, tag } from "../core/base/tag.js";
+import { mergeObject } from "../core/fn/mergeObject.js";
 import { optgroup } from "./optgroup.js";
 import { IAttrTagOption, option } from "./option.js";
 
@@ -18,7 +19,7 @@ export interface IAttrTagSelect extends IAttr {
 	options?: string | IAttrTagOption | (string | IAttrTagOption)[];
 }
 
-const convert = (attr: IAttrTagSelect, elem: IElemTagSelect) => {
+const convert = (attr: IAttrTagSelect) => {
 	let tElem: IElemTagSelect = [];
 
 	//convert option to tag
@@ -34,11 +35,11 @@ const convert = (attr: IAttrTagSelect, elem: IElemTagSelect) => {
 	}
 
 	//conbine with elem
-	if (elem) {
-		if (Array.isArray(elem)) {
-			tElem = [...elem, ...tElem];
+	if (attr.elem) {
+		if (Array.isArray(attr.elem)) {
+			tElem = [...attr.elem, ...tElem];
 		} else {
-			tElem = [elem, ...tElem];
+			tElem = [attr.elem, ...tElem];
 		}
 	}
 
@@ -59,9 +60,13 @@ export class select extends tag {
 		if (arg.length === 0) {
 			super("select");
 		} else if (arg.length === 1) {
-			super("select", arg[0]);
+			if (isAttr<IAttrTagSelect>(arg[0])) {
+				super("select", convert(arg[0]));
+			} else {
+				super("select", convert({ elem: arg[0] }));
+			}
 		} else if (arg.length === 2) {
-			super("select", convert(arg[0], arg[1]));
+			super("select", convert(mergeObject({ elem: arg[1] }, arg[0])));
 		}
 	}
 

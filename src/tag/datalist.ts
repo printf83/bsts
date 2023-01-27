@@ -1,4 +1,5 @@
-import { IAttr, tag } from "../core/base/tag.js";
+import { IAttr, isAttr, tag } from "../core/base/tag.js";
+import { mergeObject } from "../core/fn/mergeObject.js";
 import { IAttrTagOption, option } from "./option.js";
 
 export type IElemTagDatalist = option | option[];
@@ -9,7 +10,7 @@ export interface IAttrTagDatalist extends IAttr {
 	elem?: IElemTagDatalist;
 }
 
-const convert = (attr: IAttrTagDatalist, elem: IElemTagDatalist) => {
+const convert = (attr: IAttrTagDatalist) => {
 	let tElem: IElemTagDatalist = [];
 
 	//convert option to tag
@@ -25,17 +26,17 @@ const convert = (attr: IAttrTagDatalist, elem: IElemTagDatalist) => {
 	}
 
 	//conbine with elem
-	if (elem) {
-		if (Array.isArray(elem)) {
-			tElem = [...elem, ...tElem];
+	if (attr.elem) {
+		if (Array.isArray(attr.elem)) {
+			tElem = [...attr.elem, ...tElem];
 		} else {
-			tElem = [elem, ...tElem];
+			tElem = [attr.elem, ...tElem];
 		}
 	}
 
 	delete attr.options;
-	delete attr.elem;
 
+	delete attr.elem;
 	attr.elem = tElem;
 
 	return attr;
@@ -50,9 +51,13 @@ export class datalist extends tag {
 		if (arg.length === 0) {
 			super("datalist");
 		} else if (arg.length === 1) {
-			super("datalist", arg[0]);
+			if (isAttr<IAttrTagDatalist>(arg[0])) {
+				super("datalist", convert(arg[0]));
+			} else {
+				super("datalist", convert({ elem: arg[0] }));
+			}
 		} else if (arg.length === 2) {
-			super("datalist", convert(arg[0], arg[1]));
+			super("datalist", convert(mergeObject({ elem: arg[1] }, arg[0])));
 		}
 	}
 

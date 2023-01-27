@@ -6,6 +6,8 @@ export interface IAttrTagSource extends IAttr {
 	src?: string;
 	srcset?: string;
 	type?: string;
+
+	elem?: undefined;
 }
 
 export class source extends tag {

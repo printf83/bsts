@@ -52,6 +52,8 @@ export interface IAttrTagInput extends IAttr {
 		| "url"
 		| "week";
 	value?: string | number;
+
+	elem?: undefined;
 }
 
 export class input extends tag {

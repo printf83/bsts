@@ -1,7 +1,8 @@
 import { IAttr, tag } from "../core/base/tag.js";
 import { source } from "./source.js";
+import { track } from "./track.js";
 
-export type IElemTagAudio = source | string | (source | string)[];
+export type IElemTagAudio = source | track | string | (source | track | string)[];
 
 export interface IAttrTagAudio extends IAttr {
 	autoplay?: boolean;
@@ -18,6 +19,9 @@ export class audio extends tag {
 	constructor();
 	constructor(src: string);
 	constructor(attr: IAttrTagAudio);
+	constructor(elem: IElemTagAudio);
+	constructor(attr: IAttrTagAudio, elem: IElemTagAudio);
+
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("audio");
@@ -27,6 +31,8 @@ export class audio extends tag {
 			} else {
 				super("audio", arg[0]);
 			}
+		} else if (arg.length === 2) {
+			super("audio", arg[0], arg[1]);
 		}
 	}
 

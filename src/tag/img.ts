@@ -17,6 +17,8 @@ export interface IAttrTagImg extends IAttr {
 	src?: string;
 	srcset?: string;
 	usemap?: string;
+
+	elem?: undefined;
 }
 
 export class img extends tag {
