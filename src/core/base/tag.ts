@@ -428,10 +428,6 @@ export interface ITag {
 
 export type IElem = string | tag | (string | tag)[];
 
-export interface ITagExt<T, U> {
-	new (attrs: U): T;
-}
-
 export class tag implements ITag {
 	public isbsts = true;
 
@@ -484,10 +480,6 @@ export class tag implements ITag {
 			throw Error("Unsuppoted argument length");
 		}
 	}
-
-	static gen2 = <T, U>(c: ITagExt<T, U>, attrs: U[]) => {
-		attrs.map((i) => new c(i));
-	};
 }
 
 export const isTag = <T>(obj: any): obj is T => {
