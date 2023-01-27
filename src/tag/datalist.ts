@@ -18,9 +18,9 @@ const convert = (attr: IAttrTagDatalist) => {
 		let d = Array.isArray(attr.options) ? attr.options : [attr.options];
 		tElem = d.map((i) => {
 			if (typeof i === "string") {
-				return new option({ value: i }, i);
+				return new option({ value: i });
 			} else {
-				return new option(i, "");
+				return new option(i);
 			}
 		});
 	}
