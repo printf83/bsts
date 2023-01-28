@@ -14,6 +14,4 @@ export class span extends tag {
 			super("span", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttr[]) => attrs.map((i) => new span(i));
 }

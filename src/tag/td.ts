@@ -20,6 +20,4 @@ export class td extends tag {
 			super("td", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagTd[]) => attrs.map((i) => new td(i));
 }

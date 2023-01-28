@@ -22,6 +22,4 @@ export class dl extends tag {
 			super("dl", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagDl[]) => attrs.map((i) => new dl(i));
 }

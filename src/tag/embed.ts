@@ -23,6 +23,4 @@ export class embed extends tag {
 			super("embed", arg[0]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagEmbed[]) => attrs.map((i) => new embed(i));
 }

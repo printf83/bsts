@@ -22,6 +22,4 @@ export class tr extends tag {
 			super("tr", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagTr[]) => attrs.map((i) => new tr(i));
 }

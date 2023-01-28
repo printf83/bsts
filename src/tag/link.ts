@@ -49,6 +49,4 @@ export class link extends tag {
 			}
 		}
 	}
-
-	static gen = (attrs: IAttrTagLink[]) => attrs.map((i) => new link(i));
 }

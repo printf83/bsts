@@ -14,6 +14,4 @@ export class address extends tag {
 			super("address", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttr[]) => attrs.map((i) => new address(i));
 }

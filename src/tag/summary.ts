@@ -14,6 +14,4 @@ export class summary extends tag {
 			super("summary", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttr[]) => attrs.map((i) => new summary(i));
 }

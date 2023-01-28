@@ -14,6 +14,4 @@ export class samp extends tag {
 			super("samp", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttr[]) => attrs.map((i) => new samp(i));
 }

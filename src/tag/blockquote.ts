@@ -18,6 +18,4 @@ export class blockquote extends tag {
 			super("blockquote", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagBlockquote[]) => attrs.map((i) => new blockquote(i));
 }

@@ -14,6 +14,4 @@ export class header extends tag {
 			super("header", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttr[]) => attrs.map((i) => new header(i));
 }

@@ -35,6 +35,4 @@ export class head extends tag {
 			super("head", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagHead[]) => attrs.map((i) => new head(i));
 }

@@ -14,6 +14,4 @@ export class section extends tag {
 			super("section", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttr[]) => attrs.map((i) => new section(i));
 }

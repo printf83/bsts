@@ -21,6 +21,4 @@ export class tfoot extends tag {
 			super("tfoot", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagTfoot[]) => attrs.map((i) => new tfoot(i));
 }

@@ -33,6 +33,4 @@ export class table extends tag {
 			super("table", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagTable[]) => attrs.map((i) => new table(i));
 }

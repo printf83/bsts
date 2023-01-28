@@ -18,6 +18,4 @@ export class time extends tag {
 			super("time", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagTime[]) => attrs.map((i) => new time(i));
 }

@@ -21,6 +21,4 @@ export class thead extends tag {
 			super("thead", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagThead[]) => attrs.map((i) => new thead(i));
 }

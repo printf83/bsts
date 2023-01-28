@@ -24,6 +24,4 @@ export class meter extends tag {
 			super("meter", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagMeter[]) => attrs.map((i) => new meter(i));
 }

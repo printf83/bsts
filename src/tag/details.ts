@@ -18,6 +18,4 @@ export class details extends tag {
 			super("details", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagDetails[]) => attrs.map((i) => new details(i));
 }

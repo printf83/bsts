@@ -60,6 +60,4 @@ export class datalist extends tag {
 			super("datalist", convert(mergeObject({ elem: arg[1] }, arg[0])));
 		}
 	}
-
-	static gen = (attrs: IAttrTagDatalist[]) => attrs.map((i) => new datalist(i));
 }

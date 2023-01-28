@@ -18,6 +18,4 @@ export class dialog extends tag {
 			super("dialog", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagDialog[]) => attrs.map((i) => new dialog(i));
 }

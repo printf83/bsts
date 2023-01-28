@@ -15,6 +15,4 @@ export class col extends tag {
 			super("col", arg[0]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagCol[]) => attrs.map((i) => new col(i));
 }

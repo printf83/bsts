@@ -19,6 +19,4 @@ export class meta extends tag {
 			super("meta", arg[0]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagMeta[]) => attrs.map((i) => new meta(i));
 }

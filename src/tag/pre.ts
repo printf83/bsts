@@ -14,6 +14,4 @@ export class pre extends tag {
 			super("pre", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttr[]) => attrs.map((i) => new pre(i));
 }

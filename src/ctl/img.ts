@@ -38,6 +38,4 @@ export class img extends TImg {
 			}
 		}
 	}
-
-	static gen = (attrs: IAttrBSImg[]) => attrs.map((i) => new img(i));
 }

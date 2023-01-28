@@ -24,6 +24,4 @@ export class optgroup extends tag {
 			super("optgroup", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagOptgroup[]) => attrs.map((i) => new optgroup(i));
 }

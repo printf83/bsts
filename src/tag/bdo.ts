@@ -18,6 +18,4 @@ export class bdo extends tag {
 			super("bdo", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagBdo[]) => attrs.map((i) => new bdo(i));
 }

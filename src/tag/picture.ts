@@ -29,6 +29,4 @@ export class picture extends tag {
 			super("picture", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagPicture[]) => attrs.map((i) => new picture(i));
 }

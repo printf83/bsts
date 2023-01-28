@@ -21,6 +21,4 @@ export class tbody extends tag {
 			super("tbody", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagTbody[]) => attrs.map((i) => new tbody(i));
 }

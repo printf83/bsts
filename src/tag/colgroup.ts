@@ -22,6 +22,4 @@ export class colgroup extends tag {
 			super("colgroup", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagColgroup[]) => attrs.map((i) => new colgroup(i));
 }

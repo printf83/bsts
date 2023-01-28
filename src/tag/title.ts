@@ -20,6 +20,4 @@ export class title extends tag {
 			super("title", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagTitle[]) => attrs.map((j) => new title(j));
 }

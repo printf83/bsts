@@ -14,6 +14,4 @@ export class ruby extends tag {
 			super("ruby", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttr[]) => attrs.map((i) => new ruby(i));
 }

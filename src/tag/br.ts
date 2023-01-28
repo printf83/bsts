@@ -14,6 +14,4 @@ export class br extends tag {
 			super("br", arg[0]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagBr[]) => attrs.map((i) => new br(i));
 }

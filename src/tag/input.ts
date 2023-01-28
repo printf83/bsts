@@ -66,6 +66,4 @@ export class input extends tag {
 			super("input", arg[0]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagInput[]) => attrs.map((i) => new input(i));
 }

@@ -14,6 +14,4 @@ export class cite extends tag {
 			super("cite", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttr[]) => attrs.map((i) => new cite(i));
 }

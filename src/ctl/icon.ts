@@ -98,6 +98,4 @@ export class icon extends tag {
 			}
 		}
 	}
-
-	static gen = (attrs: IAttrBSIcon[]) => attrs.map((i) => new icon(i));
 }

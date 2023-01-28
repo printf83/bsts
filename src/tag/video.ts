@@ -37,6 +37,4 @@ export class video extends tag {
 			super("video", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagVideo[]) => attrs.map((i) => new video(i));
 }

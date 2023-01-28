@@ -14,6 +14,4 @@ export class canvas extends tag {
 			super("canvas", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttr[]) => attrs.map((i) => new canvas(i));
 }

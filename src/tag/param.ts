@@ -18,6 +18,4 @@ export class param extends tag {
 			super("param", { name: arg[0], value: arg[1] } as IAttrTagParam);
 		}
 	}
-
-	static gen = (attrs: IAttrTagParam[]) => attrs.map((i) => new param(i));
 }

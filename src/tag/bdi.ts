@@ -14,6 +14,4 @@ export class bdi extends tag {
 			super("bdi", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttr[]) => attrs.map((i) => new bdi(i));
 }

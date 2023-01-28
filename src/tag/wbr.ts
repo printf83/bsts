@@ -14,6 +14,4 @@ export class wbr extends tag {
 			super("wbr", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttr[]) => attrs.map((i) => new wbr(i));
 }

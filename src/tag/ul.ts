@@ -21,6 +21,4 @@ export class ul extends tag {
 			super("ul", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagUl[]) => attrs.map((i) => new ul(i));
 }

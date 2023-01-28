@@ -79,5 +79,5 @@ export class button extends tag {
 		}
 	}
 
-	static gen = (attrs: IAttrBSButton[]) => attrs.map((i) => new button(i));
+	
 }

@@ -20,6 +20,4 @@ export class output extends tag {
 			super("output", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagOutput[]) => attrs.map((i) => new output(i));
 }

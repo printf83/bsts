@@ -14,6 +14,4 @@ export class template extends tag {
 			super("template", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttr[]) => attrs.map((i) => new template(i));
 }

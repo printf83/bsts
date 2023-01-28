@@ -17,20 +17,20 @@ core.documentReady(() => {
 		new bs.container(
 			new bs.row(
 				new bs.col({ display: "flex", gap: 3 }, [
-					...html.a.gen([
+					...[
 						{ id: "a", elem: "1" },
 						{ id: "b", elem: "2" },
 						{ id: "c", elem: "3" },
 						{ id: "d", elem: "4" },
-					]),
-					...bs.button.gen([
+					].map((i) => new html.a(i)),
+					...[
 						{ color: "primary", elem: new bs.label("Primary") },
 						{ color: "secondary", elem: new bs.label("Secondary") },
 						{ color: "success", elem: new bs.label("Success") },
 						{ color: "warning", elem: new bs.label("Warning") },
 						{ color: "danger", elem: new bs.label("Danger") },
 						{ color: "info", elem: new bs.label("Info") },
-					]),
+					].map((i) => new html.button(i)),
 				])
 			)
 		),

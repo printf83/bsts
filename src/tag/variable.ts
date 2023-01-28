@@ -14,6 +14,4 @@ export class variable extends tag {
 			super("var", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttr[]) => attrs.map((i) => new variable(i));
 }

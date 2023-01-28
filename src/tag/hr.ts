@@ -14,6 +14,4 @@ export class hr extends tag {
 			super("hr", arg[0]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagHr[]) => attrs.map((i) => new hr(i));
 }

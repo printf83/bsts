@@ -19,6 +19,4 @@ export class label extends tag {
 			super("label", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagLabel[]) => attrs.map((i) => new label(i));
 }

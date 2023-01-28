@@ -163,6 +163,4 @@ export class label extends TLabel {
 			);
 		}
 	}
-
-	static gen = (attrs: IAttrBSLabel[]) => attrs.map((i) => new label(i));
 }

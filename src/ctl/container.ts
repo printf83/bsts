@@ -36,8 +36,6 @@ export class container extends div {
 		}
 	}
 
-	static gen = (attrs: IAttr[]) => attrs.map((i) => new container(i));
-
 	// constructor(); //#default
 	// constructor(elem: IElem); //#0
 	// constructor(size: bootstrapType.container); //#1

@@ -21,6 +21,4 @@ export class menu extends tag {
 			super("menu", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagMenu[]) => attrs.map((i) => new menu(i));
 }

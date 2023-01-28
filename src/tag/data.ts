@@ -18,6 +18,4 @@ export class data extends tag {
 			super("data", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagData[]) => attrs.map((i) => new data(i));
 }

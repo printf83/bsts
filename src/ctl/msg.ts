@@ -107,6 +107,4 @@ export class msg extends TLabel {
 			}
 		}
 	}
-
-	static gen = (attrs: IAttrBSMsg[]) => attrs.map((i) => new msg(i));
 }

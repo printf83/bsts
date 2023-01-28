@@ -14,6 +14,4 @@ export class figcaption extends tag {
 			super("figcaption", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttr[]) => attrs.map((i) => new figcaption(i));
 }

@@ -20,6 +20,4 @@ export class option extends tag {
 			super("option", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagOption[]) => attrs.map((i) => new option(i));
 }

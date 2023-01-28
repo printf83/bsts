@@ -14,6 +14,4 @@ export class noscript extends tag {
 			super("noscript", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttr[]) => attrs.map((j) => new noscript(j));
 }

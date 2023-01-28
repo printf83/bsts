@@ -18,6 +18,4 @@ export class li extends tag {
 			super("li", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagLi[]) => attrs.map((i) => new li(i));
 }

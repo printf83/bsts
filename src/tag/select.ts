@@ -69,6 +69,4 @@ export class select extends tag {
 			super("select", convert(mergeObject({ elem: arg[1] }, arg[0])));
 		}
 	}
-
-	static gen = (attrs: IAttrTagSelect[]) => attrs.map((i) => new select(i));
 }

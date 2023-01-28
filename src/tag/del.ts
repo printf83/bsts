@@ -19,6 +19,4 @@ export class del extends tag {
 			super("del", arg[0], arg[1]);
 		}
 	}
-
-	static gen = (attrs: IAttrTagDel[]) => attrs.map((i) => new del(i));
 }
