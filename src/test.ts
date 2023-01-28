@@ -7,7 +7,6 @@ core.documentReady(() => {
 	core.replaceChild(body, [
 		new html.ul(new html.li("hello")),
 		new html.ol([new html.li("hello"), new html.li("world")]),
-		new html.ol(html.li.gen([{ elem: "AAAAA" }, { elem: "AAAAA2" }, { elem: "AAAAA3" }, { elem: "AAAAA4" }])),
 		new html.ul(["AAAAA", "AAAAA2", "AAAAA3", "AAAAA4"].map((i) => new html.li(i))),
 		new html.hr({ id: "aaaa" }),
 		new bs.button({ color: "danger", elem: "Hello World" }),
