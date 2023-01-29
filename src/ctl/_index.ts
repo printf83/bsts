@@ -1,4 +1,6 @@
 import { alert } from "./alert.js";
+import { alertlink } from "./alertlink.js";
+import { btnclose } from "./btnclose.js";
 import { button } from "./button.js";
 import { col } from "./col.js";
 import { container } from "./container.js";
@@ -22,4 +24,6 @@ export const bs = {
 	grid,
 	container,
 	input,
+	btnclose,
+	alertlink,
 };

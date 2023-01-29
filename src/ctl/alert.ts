@@ -7,6 +7,7 @@ import { div } from "../tag/div.js";
 
 export interface IAttrBSAlert extends IAttr {
 	color?: bootstrapType.color[number];
+	role?: string;
 }
 
 const rules: bootstrapRuleDB = {
@@ -14,20 +15,20 @@ const rules: bootstrapRuleDB = {
 };
 
 const convert = (attr: IAttrBSAlert): IAttrBSAlert => {
+	//add default value
+	if (!attr.role) attr.role = "alert";
+	if (!attr.color) attr.color = "primary";
+
 	//add alert class
 	attr = mergeObject(
 		{
 			class: "alert",
+			role: attr.role,
 		},
 		attr
 	);
 
-	//color
-	if (!attr.color) {
-		attr.color = "primary";
-	}
-
-	attr.class = mergeClass(genBootstrapClass("alertColor", rules.alertColor, attr.color), attr.class);
+	attr.class = mergeClass(genBootstrapClass("alertColor", rules.alertColor, attr.color!), attr.class);
 
 	delete attr.color;
 

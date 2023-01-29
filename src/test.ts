@@ -1,3 +1,4 @@
+import { alertlink } from "./ctl/alertlink.js";
 import { IAttrBSButton } from "./ctl/button.js";
 import { bs, core, html, tag } from "./index.js";
 let loream = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta tincidunt arcu eu dignissim. Suspendisse nunc tortor, semper ut commodo nec, bibendum ut quam. Vivamus porttitor egestas luctus. Morbi tincidunt tortor eu lorem gravida imperdiet. Vestibulum tincidunt hendrerit tempus. Morbi varius est ac euismod tristique. Fusce a tortor suscipit, lacinia arcu nec, aliquet tortor. Maecenas eu lorem nec ante faucibus sollicitudin. Nunc consequat ullamcorper congue. Praesent cursus velit euismod turpis ultrices, sit amet venenatis massa pharetra. Nunc maximus pharetra purus in maximus.`;
@@ -6,6 +7,16 @@ core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 
 	core.replaceChild(body, [
+		new bs.row(new bs.col()),
+
+		new bs.row(new bs.col([new bs.btnclose(), new bs.btnclose({ disabled: true })])),
+		new bs.row(
+			new bs.col({ bgColor: "dark" }, [
+				new bs.btnclose({ white: true }),
+				new bs.btnclose({ white: true, disabled: true }),
+			])
+		),
+
 		new html.ul(new html.li("hello")),
 		new html.ol([new html.li("hello"), new html.li("world")]),
 		new html.ul(["AAAAA", "AAAAA2", "AAAAA3", "AAAAA4"].map((i) => new html.li(i))),
@@ -140,7 +151,18 @@ core.documentReady(() => {
 						new html.datalist({ id: "txtTest_list", options: loream.split(" ") }),
 					])
 				),
-				new bs.row(new bs.col([new bs.alert({ color: "danger" }, new bs.msg("star", loream))])),
+				new bs.row(
+					new bs.col([
+						new bs.alert(
+							{ color: "danger" },
+							new bs.msg("star", [
+								"A simple primary alert with ",
+								new alertlink({ href: "#" }, "an example link"),
+								". Give it a click if you like.",
+							])
+						),
+					])
+				),
 				new bs.row(
 					new bs.col(
 						new bs.img({
@@ -163,14 +185,7 @@ core.documentReady(() => {
 						new bs.icon({ type: "fab", icon: "bootstrap", color: "danger" }),
 					])
 				),
-				new bs.row(
-					new bs.col([
-						new bs.icon({ stack: true, weight: "2xl" }, [
-							new bs.icon({ icon: "square", stack: 2, color: "primary" }),
-							new bs.icon({ type: "fab", icon: "twitter", stack: 1, inverse: true }),
-						]),
-					])
-				),
+
 				new bs.row(
 					new bs.col([
 						new bs.grid([

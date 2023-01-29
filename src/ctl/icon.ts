@@ -1,6 +1,8 @@
 import { bootstrapType } from "../core/base/bootstrap.js";
 import { IAttr, IElem, isAttr, tag } from "../core/base/tag.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
+import { i } from "../tag/i.js";
+import { span } from "../tag/span.js";
 
 type IAttrIconType = "fab" | "fas" | "far" | "fad" | "fal";
 
@@ -63,10 +65,14 @@ const convert = (attr: IAttrBSIcon): IAttrBSIcon => {
 	delete attr.inverse;
 	delete attr.stack;
 
-	return attr;
+	return {
+		class: "fa-svg-container",
+		elem: new i(attr as IAttr),
+		data: { class: attr.class ? (Array.isArray(attr.class) ? attr.class.join(" ") : attr.class) : undefined },
+	};
 };
 
-export class icon extends tag {
+export class icon extends span {
 	constructor(); //#1
 	constructor(icon: string); //#2
 	constructor(attr: IAttrBSIcon); //#3
@@ -76,25 +82,25 @@ export class icon extends tag {
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
-			super("i");
+			super(convert({ icon: "home" }));
 		} else if (arg.length === 1) {
 			if (typeof arg[0] === "string") {
 				//#2
-				super("i", convert({ icon: arg[0] }));
+				super(convert({ icon: arg[0] }));
 			} else if (isAttr<IAttrBSIcon>(arg[0])) {
 				//#3
-				super(arg[0].stack === true ? "span" : "i", convert(arg[0]));
+				super(convert(arg[0]));
 			} else {
 				//#4
-				super("span", convert({ stack: true }), arg[0]);
+				super(convert({ stack: true, elem: arg[0] }));
 			}
 		} else if (arg.length === 2) {
 			if (typeof arg[0] === "string") {
 				//#5
-				super("i", convert({ type: arg[0] as IAttrIconType, icon: arg[1] }));
+				super(convert({ type: arg[0] as IAttrIconType, icon: arg[1] }));
 			} else {
 				//#6
-				super(arg[0].stack === true ? "span" : "i", convert(arg[0]), arg[1]);
+				super(convert(mergeObject({ elem: arg[1] }, arg[0])));
 			}
 		}
 	}
