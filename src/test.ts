@@ -1,6 +1,7 @@
 import { alertlink } from "./ctl/alertlink.js";
 import { IAttrBSButton } from "./ctl/button.js";
 import { bs, core, html, tag } from "./index.js";
+import { h } from "./tag/h.js";
 let loream = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta tincidunt arcu eu dignissim. Suspendisse nunc tortor, semper ut commodo nec, bibendum ut quam. Vivamus porttitor egestas luctus. Morbi tincidunt tortor eu lorem gravida imperdiet. Vestibulum tincidunt hendrerit tempus. Morbi varius est ac euismod tristique. Fusce a tortor suscipit, lacinia arcu nec, aliquet tortor. Maecenas eu lorem nec ante faucibus sollicitudin. Nunc consequat ullamcorper congue. Praesent cursus velit euismod turpis ultrices, sit amet venenatis massa pharetra. Nunc maximus pharetra purus in maximus.`;
 
 core.documentReady(() => {
@@ -8,6 +9,19 @@ core.documentReady(() => {
 
 	core.replaceChild(body, [
 		new bs.row(new bs.col()),
+
+		new bs.row(
+			new bs.col([
+				new bs.alert({ color: "success", dismissible: true }, [
+					new html.h(4, { class: "alert-heading" }, "Well done"),
+					new html.p(
+						"Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content."
+					),
+					new html.hr(),
+					new html.p("Whenever you need to, be sure to use margin utilities to keep things nice and tidy."),
+				]),
+			])
+		),
 
 		new bs.row(new bs.col([new bs.btnclose(), new bs.btnclose({ disabled: true })])),
 		new bs.row(

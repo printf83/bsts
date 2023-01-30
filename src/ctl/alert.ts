@@ -4,10 +4,12 @@ import { IAttr, IElem, isAttr } from "../core/base/tag.js";
 import { mergeClass } from "../core/fn/mergeClass.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { div } from "../tag/div.js";
+import { btnclose } from "./btnclose.js";
 
 export interface IAttrBSAlert extends IAttr {
 	color?: bootstrapType.color[number];
 	role?: string;
+	dismissible?: true;
 }
 
 const rules: bootstrapRuleDB = {
@@ -22,7 +24,12 @@ const convert = (attr: IAttrBSAlert): IAttrBSAlert => {
 	//add alert class
 	attr = mergeObject(
 		{
-			class: "alert",
+			class: [
+				"alert",
+				attr.dismissible ? "alert-dismissible" : "",
+				attr.dismissible ? "fade" : "",
+				attr.dismissible ? "show" : "",
+			],
 			role: attr.role,
 		},
 		attr
@@ -30,7 +37,15 @@ const convert = (attr: IAttrBSAlert): IAttrBSAlert => {
 
 	attr.class = mergeClass(genBootstrapClass("alertColor", rules.alertColor, attr.color!), attr.class);
 
+	if (attr.dismissible) {
+		if (!attr.elem) attr.elem = [];
+		if (!Array.isArray(attr.elem)) attr.elem = [attr.elem];
+
+		attr.elem.push(new btnclose({ data: { "bs-dismiss": "alert" } }));
+	}
+
 	delete attr.color;
+	delete attr.dismissible;
 
 	return attr;
 };
