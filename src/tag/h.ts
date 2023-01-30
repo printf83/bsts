@@ -1,6 +1,6 @@
 import { IAttr, IElem, tag } from "../core/base/tag.js";
 
-type HLevel = 1 | 2 | 3 | 4 | 5 | 6;
+export type HLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
 export class h extends tag {
 	constructor();

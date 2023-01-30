@@ -1,12 +1,12 @@
-import { genBootstrapClass } from "../core/attach/attachBootstrap.js";
-import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB, bootstrapType } from "../core/base/bootstrap.js";
-import { IAttr, IElem, isAttr } from "../core/base/tag.js";
-import { mergeClass } from "../core/fn/mergeClass.js";
-import { mergeObject } from "../core/fn/mergeObject.js";
-import { div } from "../tag/div.js";
-import { btnclose } from "./btnclose.js";
+import { genBootstrapClass } from "../../core/attach/attachBootstrap.js";
+import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB, bootstrapType } from "../../core/base/bootstrap.js";
+import { IAttr, IElem, isAttr } from "../../core/base/tag.js";
+import { mergeClass } from "../../core/fn/mergeClass.js";
+import { mergeObject } from "../../core/fn/mergeObject.js";
+import { div } from "../../tag/div.js";
+import { btnclose } from "../btnclose.js";
 
-export interface IAttrBSAlert extends IAttr {
+export interface IAttrBSAlertContainer extends IAttr {
 	color?: bootstrapType.color[number];
 	role?: string;
 	dismissible?: true;
@@ -16,7 +16,7 @@ const rules: bootstrapRuleDB = {
 	alertColor: new bootstrapAttachRule("alert-$1", bootstrapBase.btnColor.concat()),
 };
 
-const convert = (attr: IAttrBSAlert): IAttrBSAlert => {
+const convert = (attr: IAttrBSAlertContainer): IAttrBSAlertContainer => {
 	//add default value
 	if (!attr.role) attr.role = "alert";
 	if (!attr.color) attr.color = "primary";
@@ -50,17 +50,17 @@ const convert = (attr: IAttrBSAlert): IAttrBSAlert => {
 	return attr;
 };
 
-export class alert extends div {
+export class container extends div {
 	constructor(); //#1
-	constructor(attr: IAttrBSAlert); //#2
+	constructor(attr: IAttrBSAlertContainer); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSAlert, elem: IElem); //#4
+	constructor(attr: IAttrBSAlertContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
 			super(convert({}), "Alert");
 		} else if (arg.length === 1) {
-			if (isAttr<IAttrBSAlert>(arg[0])) {
+			if (isAttr<IAttrBSAlertContainer>(arg[0])) {
 				//#2
 				super(convert(arg[0]));
 			} else {

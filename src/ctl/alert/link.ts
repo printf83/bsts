@@ -1,7 +1,7 @@
-import { IElem, isAttr } from "../core/base/tag.js";
-import { mergeClass } from "../core/fn/mergeClass.js";
+import { IElem, isAttr } from "../../core/base/tag.js";
+import { mergeClass } from "../../core/fn/mergeClass.js";
 
-import { a, IAttrTagA } from "../tag/a.js";
+import { a, IAttrTagA } from "../../tag/a.js";
 
 const convert = (attr: IAttrTagA): IAttrTagA => {
 	//add alert-link
@@ -9,7 +9,7 @@ const convert = (attr: IAttrTagA): IAttrTagA => {
 	return attr;
 };
 
-export class alertlink extends a {
+export class link extends a {
 	constructor(); //#1
 	constructor(attr: IAttrTagA); //#2
 	constructor(elem: IElem); //#3
