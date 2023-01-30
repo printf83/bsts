@@ -1,3 +1,4 @@
+import { select } from "./select.js";
 import { alert } from "./alert/_index.js";
 import { btnclose } from "./btnclose.js";
 import { button } from "./button.js";
@@ -24,4 +25,5 @@ export const bs = {
 	container,
 	input,
 	btnclose,
+	select,
 };

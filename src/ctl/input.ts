@@ -9,12 +9,10 @@ export interface IAttrBSInput extends IAttrTagInput {
 
 const convert = (attr: IAttrBSInput) => {
 	//set default type (to make sure type is not undefind)
-	attr.type = attr.type || "text";
+	if (!attr.type) attr.type = "text";
 
 	//autocomplete off if toggle
-	if (attr.toggle) {
-		attr.autocomplete = "off";
-	}
+	if (attr.toggle) attr.autocomplete = "off";
 
 	attr = mergeObject(
 		{
@@ -63,7 +61,7 @@ export class input extends TInput {
 			}
 		} else if (arg.length === 2) {
 			//#4
-			super(convert(mergeObject(arg[0], { value: arg[1] })));
+			super(convert(mergeObject({ value: arg[1] }, arg[0])));
 		}
 	}
 }
