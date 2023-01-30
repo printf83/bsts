@@ -34,19 +34,10 @@ export const build = (
 										element = t ? t : element;
 									} else {
 										let g = i as string;
-										if (e.tag === "pre" && isHTML(g)) {
+										if (e.tag === "pre" || isHTML(g)) {
 											element.insertAdjacentHTML("beforeend", g);
-										} else if (Array.isArray(i)) {
-											console.error(
-												"i is array. This happen when you set elem: [[tag],tag]. It should be elem:[tag,tag]",
-												i
-											);
 										} else {
-											if (isHTML(g)) {
-												element.insertAdjacentHTML("beforeend", g);
-											} else {
-												element.appendChild(document.createTextNode(g));
-											}
+											element.appendChild(document.createTextNode(g));
 										}
 									}
 								}
