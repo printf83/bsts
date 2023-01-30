@@ -6,7 +6,7 @@ core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 
 	core.replaceChild(body, [
-		new bs.row(new bs.col()),
+		new bs.row(new bs.col({ padding: 3 }, "")),
 
 		new bs.row(
 			new bs.col([
@@ -166,7 +166,7 @@ core.documentReady(() => {
 				new bs.row(
 					new bs.col([
 						new bs.alert.container(
-							{ color: "danger" },
+							{ color: "danger", dismissible: true },
 							new bs.msg("star", [
 								"A simple primary alert with ",
 								new bs.alert.link({ href: "#" }, "an example link"),

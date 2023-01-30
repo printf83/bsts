@@ -69,7 +69,7 @@ export class container extends div {
 			}
 		} else if (arg.length === 2) {
 			//#4
-			super(convert(arg[0]), arg[1]);
+			super(convert(mergeObject({ elem: arg[1] }, arg[0])));
 		}
 	}
 }

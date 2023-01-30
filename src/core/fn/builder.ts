@@ -1,6 +1,5 @@
 import { attachAttr } from "../attach/_index.js";
 import { IAttr, isTag, tag } from "../base/tag.js";
-import { isHTML } from "./isHTML.js";
 import { removeChildElement } from "./removeChildElement.js";
 import { removeElement } from "./removeElement.js";
 import { setting } from "./setting.js";
@@ -33,8 +32,12 @@ export const build = (
 										let t = build(element, i as tag);
 										element = t ? t : element;
 									} else {
+										//all text treat as html
+										// element.insertAdjacentHTML("beforeend", i as string);
+
+										//only pre is html
 										let g = i as string;
-										if (e.tag === "pre" || isHTML(g)) {
+										if (e.tag === "pre") {
 											element.insertAdjacentHTML("beforeend", g);
 										} else {
 											element.appendChild(document.createTextNode(g));
