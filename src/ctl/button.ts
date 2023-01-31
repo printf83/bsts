@@ -6,7 +6,7 @@ import { mergeObject } from "../core/fn/mergeObject.js";
 import { IAttrTagButton } from "../tag/button.js";
 
 export interface IAttrBSButton extends IAttrTagButton {
-	color?: bootstrapType.color[number];
+	color?: bootstrapType.color[number] | "link";
 	outline?: boolean;
 	weight?: "lg" | "sm";
 	toggle?: boolean;
@@ -78,6 +78,4 @@ export class button extends tag {
 			super(arg[0].href ? "a" : "button", convert(arg[0]), arg[1]);
 		}
 	}
-
-	
 }

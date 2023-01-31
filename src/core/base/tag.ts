@@ -1,3 +1,4 @@
+import { mergeObject } from "../fn/mergeObject.js";
 import { bootstrapType } from "./bootstrap.js";
 
 export interface IStyle {
@@ -305,6 +306,8 @@ export interface IGlobal {
 }
 
 export interface IBootstrap {
+	theme?: bootstrapType.theme[number];
+
 	userSelect?: bootstrapType.userSelect[number];
 	pointerEvent?: bootstrapType.pointerEvent[number];
 	position?: bootstrapType.position[number];
@@ -428,6 +431,21 @@ export interface ITag {
 
 export type IElem = string | tag | (string | tag)[];
 
+const convert = (attr: IAttr): IAttr => {
+	if (attr.theme) {
+		attr = mergeObject(
+			{
+				data: { "bs-theme": attr.theme },
+			},
+			attr
+		);
+
+		delete attr.theme;
+	}
+
+	return attr;
+};
+
 export class tag implements ITag {
 	public isbsts = true;
 
@@ -458,7 +476,7 @@ export class tag implements ITag {
 					delete arg[1].elem;
 				}
 
-				this.attr = arg[1];
+				this.attr = convert(arg[1]);
 			} else {
 				//#4
 				this.tag = arg[0];
@@ -474,7 +492,7 @@ export class tag implements ITag {
 			}
 
 			this.tag = arg[0];
-			this.attr = arg[1];
+			this.attr = convert(arg[1]);
 			this.elem = arg[2];
 		} else {
 			throw Error("Unsuppoted argument length");

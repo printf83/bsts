@@ -165,6 +165,7 @@ export namespace bootstrapBase {
 	const truefalse = [true, false] as const;
 	const trueonly = [true] as const;
 	const hundred = [100] as const;
+	export const theme = ["dark", "light"] as const;
 
 	export const viewport = ["sm", "md", "lg", "xl", "xxl"] as const;
 
@@ -759,17 +760,7 @@ export namespace bootstrapBase {
 		"xxl-12",
 	] as const;
 
-	export const color = [
-		"primary",
-		"secondary",
-		"success",
-		"danger",
-		"warning",
-		"info",
-		"light",
-		"dark",
-		"link",
-	] as const;
+	export const color = ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"] as const;
 
 	export const positionView = [
 		"start",
@@ -907,7 +898,7 @@ export namespace bootstrapBase {
 	export const textBgColor = color;
 	export const textColor = color;
 	export const linkColor = color;
-	export const bgColor = color;
+	export const bgColor = [...color, "body"] as const;
 
 	export const textTransform = ["lowercase", "uppercase", "capitalize"] as const;
 	export const textDecoration = ["underline", "line-through", "none"] as const;
@@ -973,6 +964,8 @@ export namespace bootstrapBase {
 }
 
 export namespace bootstrapType {
+	export type theme = typeof bootstrapBase.theme;
+
 	export type viewport = typeof bootstrapBase.viewport;
 	export type spacer = typeof bootstrapBase.spacer;
 	export type display = typeof bootstrapBase.display;

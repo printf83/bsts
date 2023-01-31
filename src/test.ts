@@ -1,6 +1,5 @@
 import { IAttrBSButton } from "./ctl/button.js";
 import { bs, core, html, tag } from "./index.js";
-import { IAttrTagOption } from "./tag/option.js";
 let loream = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta tincidunt arcu eu dignissim. Suspendisse nunc tortor, semper ut commodo nec, bibendum ut quam. Vivamus porttitor egestas luctus. Morbi tincidunt tortor eu lorem gravida imperdiet. Vestibulum tincidunt hendrerit tempus. Morbi varius est ac euismod tristique. Fusce a tortor suscipit, lacinia arcu nec, aliquet tortor. Maecenas eu lorem nec ante faucibus sollicitudin. Nunc consequat ullamcorper congue. Praesent cursus velit euismod turpis ultrices, sit amet venenatis massa pharetra. Nunc maximus pharetra purus in maximus.`;
 let select_option = [
 	{ value: "A", elem: "A" },
@@ -42,11 +41,16 @@ core.documentReady(() => {
 				])
 			),
 
-			new bs.row(new bs.col([new bs.btnclose(), new bs.btnclose({ disabled: true })])),
 			new bs.row(
-				new bs.col({ bgColor: "dark" }, [
-					new bs.btnclose({ white: true }),
-					new bs.btnclose({ white: true, disabled: true }),
+				new bs.col({ theme: "light", padding: 3, bgColor: "body" }, [
+					new bs.btnclose(),
+					new bs.btnclose({ disabled: true }),
+				])
+			),
+			new bs.row(
+				new bs.col({ theme: "dark", padding: 3, bgColor: "body" }, [
+					new bs.btnclose(),
+					new bs.btnclose({ disabled: true }),
 				])
 			),
 
