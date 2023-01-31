@@ -165,6 +165,7 @@ export namespace bootstrapBase {
 	const truefalse = [true, false] as const;
 	const trueonly = [true] as const;
 	const hundred = [100] as const;
+
 	export const theme = ["dark", "light"] as const;
 
 	export const viewport = ["sm", "md", "lg", "xl", "xxl"] as const;
