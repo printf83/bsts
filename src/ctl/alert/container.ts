@@ -13,7 +13,7 @@ export interface IAttrBSAlertContainer extends IAttr {
 }
 
 const rules: bootstrapRuleDB = {
-	alertColor: new bootstrapAttachRule("alert-$1", bootstrapBase.btnColor.concat()),
+	alertColor: new bootstrapAttachRule({ format: "alert-$1", value: bootstrapBase.btnColor.concat() }),
 };
 
 const convert = (attr: IAttrBSAlertContainer): IAttrBSAlertContainer => {

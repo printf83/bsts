@@ -21,8 +21,11 @@ export interface IAttrBSLabel extends IAttrTagLabel {
 }
 
 const rules: bootstrapRuleDB = {
-	btnColor: new bootstrapAttachRule("btn btn-$1", bootstrapBase.btnColor.concat()),
-	btnOutlineColor: new bootstrapAttachRule("btn btn-outline-$1", bootstrapBase.btnOutlineColor.concat()),
+	btnColor: new bootstrapAttachRule({ format: "btn btn-$1", value: bootstrapBase.btnColor.concat() }),
+	btnOutlineColor: new bootstrapAttachRule({
+		format: "btn btn-outline-$1",
+		value: bootstrapBase.btnOutlineColor.concat(),
+	}),
 };
 
 const fnRow = (display: IBootstrapTypeDisplay | undefined, elem: IElem) => {

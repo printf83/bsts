@@ -4,142 +4,368 @@ import { setting } from "../fn/setting.js";
 import { IAttachFn } from "./_index.js";
 import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB } from "../base/bootstrap.js";
 
+// const db: bootstrapRuleDB = {
+// 	userSelect: new bootstrapAttachRule("user-select-$1", bootstrapBase.userSelect.concat(), null, null, null, true),
+// 	pointerEvent: new bootstrapAttachRule("pe-$1", bootstrapBase.pointerEvent.concat()),
+// 	position: new bootstrapAttachRule("position-$1", bootstrapBase.position.concat(), null, null, null, true),
+// 	overflow: new bootstrapAttachRule("overflow-$1", bootstrapBase.overflow.concat(), null, null, null, true),
+
+// 	textAlign: new bootstrapAttachRule("text-$1", bootstrapBase.textAlign.concat(), null, null, null, true),
+// 	verticalAlign: new bootstrapAttachRule("align-$1", bootstrapBase.verticalAlign.concat(), null, null, null, true),
+
+// 	opacity: new bootstrapAttachRule("opacity-$1", bootstrapBase.opacity.concat(), null, null, null, true),
+// 	bgOpacity: new bootstrapAttachRule("bg-opacity-$1", bootstrapBase.bgOpacity.concat()),
+// 	textOpacity: new bootstrapAttachRule("text-opacity-$1", bootstrapBase.textOpacity.concat()),
+
+// 	alertColor: new bootstrapAttachRule("alert-$1", bootstrapBase.alertColor.concat()),
+
+// 	textBgColor: new bootstrapAttachRule("text-bg-$1", bootstrapBase.textBgColor.concat()),
+// 	textColor: new bootstrapAttachRule("text-$1", bootstrapBase.textColor.concat()),
+// 	linkColor: new bootstrapAttachRule("link-$1", bootstrapBase.linkColor.concat()),
+// 	bgColor: new bootstrapAttachRule("bg-$1", bootstrapBase.bgColor.concat()),
+
+// 	textTransform: new bootstrapAttachRule("text-$1", bootstrapBase.textTransform.concat(), null, null, null, true),
+// 	textDecoration: new bootstrapAttachRule(
+// 		"text-decoration-$1",
+// 		bootstrapBase.textDecoration.concat(),
+// 		null,
+// 		null,
+// 		null,
+// 		true
+// 	),
+// 	lineHeight: new bootstrapAttachRule("lh-$1", bootstrapBase.lineHeight.concat(), null, null, null, true),
+
+// 	fontSize: new bootstrapAttachRule("fs-$1", bootstrapBase.fontSize.concat(), null, null, null, true),
+// 	fontWeight: new bootstrapAttachRule("fw-$1", bootstrapBase.fontWeight.concat(), null, null, null, true),
+// 	fontDisplay: new bootstrapAttachRule("display-$1", bootstrapBase.fontSize.concat(), null, null, null, true),
+
+// 	top: new bootstrapAttachRule("top-$1", bootstrapBase.top.concat(), null, null, null, true),
+// 	bottom: new bootstrapAttachRule("bottom-$1", bootstrapBase.bottom.concat(), null, null, null, true),
+// 	start: new bootstrapAttachRule("start-$1", bootstrapBase.start.concat()),
+// 	end: new bootstrapAttachRule("end-$1", bootstrapBase.end.concat()),
+// 	tMiddle: new bootstrapAttachRule("translate-middle-$1", bootstrapBase.tMiddle.concat(), null, "translate-middle"),
+
+// 	height: new bootstrapAttachRule("h-$1", bootstrapBase.height.concat(), null, null, null, true),
+// 	width: new bootstrapAttachRule("w-$1", bootstrapBase.width.concat(), null, null, null, true),
+// 	maxHeight: new bootstrapAttachRule("mh-$1", bootstrapBase.maxHeight.concat(), null, null, null, true),
+// 	maxWidth: new bootstrapAttachRule("mw-$1", bootstrapBase.maxWidth.concat(), null, null, null, true),
+// 	minViewHeight: new bootstrapAttachRule("min-vh-$1", bootstrapBase.minViewHeight.concat()),
+// 	minViewWidth: new bootstrapAttachRule("min-vw-$1", bootstrapBase.minViewWidth.concat()),
+// 	viewHeight: new bootstrapAttachRule("vh-$1", bootstrapBase.viewHeight.concat()),
+// 	viewWidth: new bootstrapAttachRule("vw-$1", bootstrapBase.viewWidth.concat()),
+
+// 	placeholder: new bootstrapAttachRule(null, bootstrapBase.placeholder.concat(), null, "placeholder"),
+// 	placeholderAnimation: new bootstrapAttachRule("placeholder-$1", bootstrapBase.placeholderAnimation.concat()),
+// 	placeholderWeight: new bootstrapAttachRule(
+// 		"placeholder-$1",
+// 		bootstrapBase.placeholderWeight.concat(),
+// 		"placeholder $1"
+// 	),
+
+// 	shadow: new bootstrapAttachRule("shadow-$1", bootstrapBase.shadow.concat(), null, "shadow", "shadow-none"),
+
+// 	border: new bootstrapAttachRule("border-$1", bootstrapBase.border.concat(), null, "border", "border-0", true),
+// 	borderNone: new bootstrapAttachRule("border border-$1-0", bootstrapBase.borderNone.concat(), null, "border-0"),
+// 	borderColor: new bootstrapAttachRule("border-$1", bootstrapBase.borderColor.concat(), "border", null, null, true),
+// 	borderOpacity: new bootstrapAttachRule("border-opacity-$1", bootstrapBase.borderOpacity.concat(), "border"),
+// 	borderWidth: new bootstrapAttachRule("border-$1", bootstrapBase.borderWidth.concat(), "border", null, null, true),
+
+// 	rounded: new bootstrapAttachRule("rounded-$1", bootstrapBase.rounded.concat(), null, "rounded", "rounded-0"),
+// 	roundedNone: new bootstrapAttachRule(
+// 		"rounded-$1-0",
+// 		bootstrapBase.roundedNone.concat(),
+// 		"rounded",
+// 		"rounded",
+// 		"rounded-0"
+// 	),
+// 	roundedSize: new bootstrapAttachRule("rounded-$1", bootstrapBase.roundedSize.concat(), "rounded"),
+
+// 	padding: new bootstrapAttachRule("p-$1", bootstrapBase.padding.concat(), null, null, null, true),
+// 	paddingX: new bootstrapAttachRule("px-$1", bootstrapBase.paddingX.concat()),
+// 	paddingY: new bootstrapAttachRule("py-$1", bootstrapBase.paddingY.concat()),
+// 	paddingTop: new bootstrapAttachRule("pt-$1", bootstrapBase.paddingTop.concat(), null, null, null, true),
+// 	paddingBottom: new bootstrapAttachRule("pb-$1", bootstrapBase.paddingBottom.concat(), null, null, null, true),
+// 	paddingStart: new bootstrapAttachRule("ps-$1", bootstrapBase.paddingStart.concat()),
+// 	paddingEnd: new bootstrapAttachRule("pe-$1", bootstrapBase.paddingEnd.concat()),
+
+// 	margin: new bootstrapAttachRule("m-$1", bootstrapBase.margin.concat(), null, null, null, true),
+// 	marginX: new bootstrapAttachRule("mx-$1", bootstrapBase.marginX.concat()),
+// 	marginY: new bootstrapAttachRule("my-$1", bootstrapBase.marginY.concat()),
+// 	marginTop: new bootstrapAttachRule("mt-$1", bootstrapBase.marginTop.concat(), null, null, null, true),
+// 	marginBottom: new bootstrapAttachRule("mb-$1", bootstrapBase.marginBottom.concat(), null, null, null, true),
+// 	marginStart: new bootstrapAttachRule("ms-$1", bootstrapBase.marginStart.concat()),
+// 	marginEnd: new bootstrapAttachRule("me-$1", bootstrapBase.marginEnd.concat()),
+
+// 	gap: new bootstrapAttachRule("gap-$1", bootstrapBase.gap.concat()),
+// 	gutter: new bootstrapAttachRule("g-$1", bootstrapBase.gutter.concat()),
+// 	gutterX: new bootstrapAttachRule("gx-$1", bootstrapBase.gutterX.concat()),
+// 	gutterY: new bootstrapAttachRule("gy-$1", bootstrapBase.gutterY.concat()),
+
+// 	display: new bootstrapAttachRule("d-$1", bootstrapBase.display.concat(), null, null, null, true),
+// 	print: new bootstrapAttachRule("d-print-$1", bootstrapBase.print.concat()),
+// 	container: new bootstrapAttachRule("container-$1", bootstrapBase.container.concat(), null, "container"),
+
+// 	flex: new bootstrapAttachRule("flex-$1", bootstrapBase.flex.concat(), null, null, null, true),
+// 	float: new bootstrapAttachRule("float-$1", bootstrapBase.float.concat()),
+// 	order: new bootstrapAttachRule("order-$1", bootstrapBase.order.concat(), null, null, null, true),
+// 	offset: new bootstrapAttachRule("offset-$1", bootstrapBase.offset.concat()),
+
+// 	alignContent: new bootstrapAttachRule(
+// 		"align-content-$1",
+// 		bootstrapBase.alignContent.concat(),
+// 		null,
+// 		null,
+// 		null,
+// 		true
+// 	),
+// 	justifyContent: new bootstrapAttachRule(
+// 		"justify-content-$1",
+// 		bootstrapBase.justifyContent.concat(),
+// 		null,
+// 		null,
+// 		null,
+// 		true
+// 	),
+// 	alignItem: new bootstrapAttachRule("align-items-$1", bootstrapBase.alignItem.concat(), null, null, null, true),
+// 	alignSelf: new bootstrapAttachRule("align-self-$1", bootstrapBase.alignSelf.concat(), null, null, null, true),
+
+// 	visible: new bootstrapAttachRule(null, bootstrapBase.visible.concat(), null, "visible", "invisible"),
+// 	textWrap: new bootstrapAttachRule(null, bootstrapBase.textWrap.concat(), null, "text-wrap", "text-nowrap"),
+// 	fontItalic: new bootstrapAttachRule(null, bootstrapBase.fontItalic.concat(), null, "fst-italic", "fst-normal"),
+
+// 	bgGradient: new bootstrapAttachRule(null, bootstrapBase.bgGradient.concat(), null, "bg-gradient"),
+// 	wordBreak: new bootstrapAttachRule(null, bootstrapBase.wordBreak.concat(), null, "text-break", null, true),
+// 	monospace: new bootstrapAttachRule(null, bootstrapBase.monospace.concat(), null, "font-monospace"),
+
+// 	row: new bootstrapAttachRule(null, bootstrapBase.row.concat(), null, "row"),
+// 	col: new bootstrapAttachRule("col-$1", bootstrapBase.col.concat(), null, "col"),
+// 	rowCol: new bootstrapAttachRule("row-cols-$1", bootstrapBase.rowCol.concat()),
+// };
+
 const db: bootstrapRuleDB = {
-	userSelect: new bootstrapAttachRule("user-select-$1", bootstrapBase.userSelect.concat(), null, null, null, true),
-	pointerEvent: new bootstrapAttachRule("pe-$1", bootstrapBase.pointerEvent.concat()),
-	position: new bootstrapAttachRule("position-$1", bootstrapBase.position.concat(), null, null, null, true),
-	overflow: new bootstrapAttachRule("overflow-$1", bootstrapBase.overflow.concat(), null, null, null, true),
+	userSelect: new bootstrapAttachRule({
+		format: "user-select-$1",
+		value: bootstrapBase.userSelect.concat(),
+		shared: true,
+	}),
+	pointerEvent: new bootstrapAttachRule({ format: "pe-$1", value: bootstrapBase.pointerEvent.concat() }),
+	position: new bootstrapAttachRule({ format: "position-$1", value: bootstrapBase.position.concat(), shared: true }),
+	overflow: new bootstrapAttachRule({ format: "overflow-$1", value: bootstrapBase.overflow.concat(), shared: true }),
 
-	textAlign: new bootstrapAttachRule("text-$1", bootstrapBase.textAlign.concat(), null, null, null, true),
-	verticalAlign: new bootstrapAttachRule("align-$1", bootstrapBase.verticalAlign.concat(), null, null, null, true),
+	textAlign: new bootstrapAttachRule({ format: "text-$1", value: bootstrapBase.textAlign.concat(), shared: true }),
+	verticalAlign: new bootstrapAttachRule({
+		format: "align-$1",
+		value: bootstrapBase.verticalAlign.concat(),
+		shared: true,
+	}),
 
-	opacity: new bootstrapAttachRule("opacity-$1", bootstrapBase.opacity.concat(), null, null, null, true),
-	bgOpacity: new bootstrapAttachRule("bg-opacity-$1", bootstrapBase.bgOpacity.concat()),
-	textOpacity: new bootstrapAttachRule("text-opacity-$1", bootstrapBase.textOpacity.concat()),
+	opacity: new bootstrapAttachRule({ format: "opacity-$1", value: bootstrapBase.opacity.concat(), shared: true }),
+	bgOpacity: new bootstrapAttachRule({ format: "bg-opacity-$1", value: bootstrapBase.bgOpacity.concat() }),
+	textOpacity: new bootstrapAttachRule({ format: "text-opacity-$1", value: bootstrapBase.textOpacity.concat() }),
 
-	alertColor: new bootstrapAttachRule("alert-$1", bootstrapBase.alertColor.concat()),
+	alertColor: new bootstrapAttachRule({ format: "alert-$1", value: bootstrapBase.alertColor.concat() }),
 
-	textBgColor: new bootstrapAttachRule("text-bg-$1", bootstrapBase.textBgColor.concat()),
-	textColor: new bootstrapAttachRule("text-$1", bootstrapBase.textColor.concat()),
-	linkColor: new bootstrapAttachRule("link-$1", bootstrapBase.linkColor.concat()),
-	bgColor: new bootstrapAttachRule("bg-$1", bootstrapBase.bgColor.concat()),
+	textBgColor: new bootstrapAttachRule({ format: "text-bg-$1", value: bootstrapBase.textBgColor.concat() }),
+	textColor: new bootstrapAttachRule({ format: "text-$1", value: bootstrapBase.textColor.concat() }),
+	linkColor: new bootstrapAttachRule({ format: "link-$1", value: bootstrapBase.linkColor.concat() }),
+	bgColor: new bootstrapAttachRule({ format: "bg-$1", value: bootstrapBase.bgColor.concat() }),
 
-	textTransform: new bootstrapAttachRule("text-$1", bootstrapBase.textTransform.concat(), null, null, null, true),
-	textDecoration: new bootstrapAttachRule(
-		"text-decoration-$1",
-		bootstrapBase.textDecoration.concat(),
-		null,
-		null,
-		null,
-		true
-	),
-	lineHeight: new bootstrapAttachRule("lh-$1", bootstrapBase.lineHeight.concat(), null, null, null, true),
+	textTransform: new bootstrapAttachRule({
+		format: "text-$1",
+		value: bootstrapBase.textTransform.concat(),
+		shared: true,
+	}),
+	textDecoration: new bootstrapAttachRule({
+		format: "text-decoration-$1",
+		value: bootstrapBase.textDecoration.concat(),
+		shared: true,
+	}),
+	lineHeight: new bootstrapAttachRule({ format: "lh-$1", value: bootstrapBase.lineHeight.concat(), shared: true }),
 
-	fontSize: new bootstrapAttachRule("fs-$1", bootstrapBase.fontSize.concat(), null, null, null, true),
-	fontWeight: new bootstrapAttachRule("fw-$1", bootstrapBase.fontWeight.concat(), null, null, null, true),
-	fontDisplay: new bootstrapAttachRule("display-$1", bootstrapBase.fontSize.concat(), null, null, null, true),
+	fontSize: new bootstrapAttachRule({ format: "fs-$1", value: bootstrapBase.fontSize.concat(), shared: true }),
+	fontWeight: new bootstrapAttachRule({ format: "fw-$1", value: bootstrapBase.fontWeight.concat(), shared: true }),
+	fontDisplay: new bootstrapAttachRule({
+		format: "display-$1",
+		value: bootstrapBase.fontSize.concat(),
+		shared: true,
+	}),
 
-	top: new bootstrapAttachRule("top-$1", bootstrapBase.top.concat(), null, null, null, true),
-	bottom: new bootstrapAttachRule("bottom-$1", bootstrapBase.bottom.concat(), null, null, null, true),
-	start: new bootstrapAttachRule("start-$1", bootstrapBase.start.concat()),
-	end: new bootstrapAttachRule("end-$1", bootstrapBase.end.concat()),
-	tMiddle: new bootstrapAttachRule("translate-middle-$1", bootstrapBase.tMiddle.concat(), null, "translate-middle"),
+	top: new bootstrapAttachRule({ format: "top-$1", value: bootstrapBase.top.concat(), shared: true }),
+	bottom: new bootstrapAttachRule({ format: "bottom-$1", value: bootstrapBase.bottom.concat(), shared: true }),
+	start: new bootstrapAttachRule({ format: "start-$1", value: bootstrapBase.start.concat() }),
+	end: new bootstrapAttachRule({ format: "end-$1", value: bootstrapBase.end.concat() }),
+	tMiddle: new bootstrapAttachRule({
+		format: "translate-middle-$1",
+		value: bootstrapBase.tMiddle.concat(),
+		formatTrue: "translate-middle",
+	}),
 
-	height: new bootstrapAttachRule("h-$1", bootstrapBase.height.concat(), null, null, null, true),
-	width: new bootstrapAttachRule("w-$1", bootstrapBase.width.concat(), null, null, null, true),
-	maxHeight: new bootstrapAttachRule("mh-$1", bootstrapBase.maxHeight.concat(), null, null, null, true),
-	maxWidth: new bootstrapAttachRule("mw-$1", bootstrapBase.maxWidth.concat(), null, null, null, true),
-	minViewHeight: new bootstrapAttachRule("min-vh-$1", bootstrapBase.minViewHeight.concat()),
-	minViewWidth: new bootstrapAttachRule("min-vw-$1", bootstrapBase.minViewWidth.concat()),
-	viewHeight: new bootstrapAttachRule("vh-$1", bootstrapBase.viewHeight.concat()),
-	viewWidth: new bootstrapAttachRule("vw-$1", bootstrapBase.viewWidth.concat()),
+	height: new bootstrapAttachRule({ format: "h-$1", value: bootstrapBase.height.concat(), shared: true }),
+	width: new bootstrapAttachRule({ format: "w-$1", value: bootstrapBase.width.concat(), shared: true }),
+	maxHeight: new bootstrapAttachRule({ format: "mh-$1", value: bootstrapBase.maxHeight.concat(), shared: true }),
+	maxWidth: new bootstrapAttachRule({ format: "mw-$1", value: bootstrapBase.maxWidth.concat(), shared: true }),
+	minViewHeight: new bootstrapAttachRule({ format: "min-vh-$1", value: bootstrapBase.minViewHeight.concat() }),
+	minViewWidth: new bootstrapAttachRule({ format: "min-vw-$1", value: bootstrapBase.minViewWidth.concat() }),
+	viewHeight: new bootstrapAttachRule({ format: "vh-$1", value: bootstrapBase.viewHeight.concat() }),
+	viewWidth: new bootstrapAttachRule({ format: "vw-$1", value: bootstrapBase.viewWidth.concat() }),
 
-	placeholder: new bootstrapAttachRule(null, bootstrapBase.placeholder.concat(), null, "placeholder"),
-	placeholderAnimation: new bootstrapAttachRule("placeholder-$1", bootstrapBase.placeholderAnimation.concat()),
-	placeholderWeight: new bootstrapAttachRule(
-		"placeholder-$1",
-		bootstrapBase.placeholderWeight.concat(),
-		"placeholder $1"
-	),
+	placeholder: new bootstrapAttachRule({ value: bootstrapBase.placeholder.concat(), formatTrue: "placeholder" }),
+	placeholderAnimation: new bootstrapAttachRule({
+		format: "placeholder-$1",
+		value: bootstrapBase.placeholderAnimation.concat(),
+	}),
+	placeholderWeight: new bootstrapAttachRule({
+		format: "placeholder-$1",
+		value: bootstrapBase.placeholderWeight.concat(),
+		formatValue: "placeholder $1",
+	}),
 
-	shadow: new bootstrapAttachRule("shadow-$1", bootstrapBase.shadow.concat(), null, "shadow", "shadow-none"),
+	shadow: new bootstrapAttachRule({
+		format: "shadow-$1",
+		value: bootstrapBase.shadow.concat(),
+		formatValue: "shadow",
+		formatFalse: "shadow-none",
+	}),
 
-	border: new bootstrapAttachRule("border-$1", bootstrapBase.border.concat(), null, "border", "border-0", true),
-	borderNone: new bootstrapAttachRule("border border-$1-0", bootstrapBase.borderNone.concat(), null, "border-0"),
-	borderColor: new bootstrapAttachRule("border-$1", bootstrapBase.borderColor.concat(), "border", null, null, true),
-	borderOpacity: new bootstrapAttachRule("border-opacity-$1", bootstrapBase.borderOpacity.concat(), "border"),
-	borderWidth: new bootstrapAttachRule("border-$1", bootstrapBase.borderWidth.concat(), "border", null, null, true),
+	border: new bootstrapAttachRule({
+		format: "border-$1",
+		value: bootstrapBase.border.concat(),
+		formatValue: "border",
+		formatFalse: "border-0",
+		shared: true,
+	}),
+	borderNone: new bootstrapAttachRule({
+		format: "border border-$1-0",
+		value: bootstrapBase.borderNone.concat(),
+		formatTrue: "border-0",
+	}),
+	borderColor: new bootstrapAttachRule({
+		format: "border-$1",
+		value: bootstrapBase.borderColor.concat(),
+		formatValue: "border",
+		shared: true,
+	}),
+	borderOpacity: new bootstrapAttachRule({
+		format: "border-opacity-$1",
+		value: bootstrapBase.borderOpacity.concat(),
+		formatValue: "border",
+	}),
+	borderWidth: new bootstrapAttachRule({
+		format: "border-$1",
+		value: bootstrapBase.borderWidth.concat(),
+		formatValue: "border",
+		shared: true,
+	}),
 
-	rounded: new bootstrapAttachRule("rounded-$1", bootstrapBase.rounded.concat(), null, "rounded", "rounded-0"),
-	roundedNone: new bootstrapAttachRule(
-		"rounded-$1-0",
-		bootstrapBase.roundedNone.concat(),
-		"rounded",
-		"rounded",
-		"rounded-0"
-	),
-	roundedSize: new bootstrapAttachRule("rounded-$1", bootstrapBase.roundedSize.concat(), "rounded"),
+	rounded: new bootstrapAttachRule({
+		format: "rounded-$1",
+		value: bootstrapBase.rounded.concat(),
+		formatValue: "rounded",
+		formatFalse: "rounded-0",
+	}),
+	roundedNone: new bootstrapAttachRule({
+		format: "rounded-$1-0",
+		value: bootstrapBase.roundedNone.concat(),
+		formatValue: "rounded",
+		formatTrue: "rounded",
+		formatFalse: "rounded-0",
+	}),
+	roundedSize: new bootstrapAttachRule({
+		format: "rounded-$1",
+		value: bootstrapBase.roundedSize.concat(),
+		formatValue: "rounded",
+	}),
 
-	padding: new bootstrapAttachRule("p-$1", bootstrapBase.padding.concat(), null, null, null, true),
-	paddingX: new bootstrapAttachRule("px-$1", bootstrapBase.paddingX.concat()),
-	paddingY: new bootstrapAttachRule("py-$1", bootstrapBase.paddingY.concat()),
-	paddingTop: new bootstrapAttachRule("pt-$1", bootstrapBase.paddingTop.concat(), null, null, null, true),
-	paddingBottom: new bootstrapAttachRule("pb-$1", bootstrapBase.paddingBottom.concat(), null, null, null, true),
-	paddingStart: new bootstrapAttachRule("ps-$1", bootstrapBase.paddingStart.concat()),
-	paddingEnd: new bootstrapAttachRule("pe-$1", bootstrapBase.paddingEnd.concat()),
+	padding: new bootstrapAttachRule({ format: "p-$1", value: bootstrapBase.padding.concat(), shared: true }),
+	paddingX: new bootstrapAttachRule({ format: "px-$1", value: bootstrapBase.paddingX.concat() }),
+	paddingY: new bootstrapAttachRule({ format: "py-$1", value: bootstrapBase.paddingY.concat() }),
+	paddingTop: new bootstrapAttachRule({ format: "pt-$1", value: bootstrapBase.paddingTop.concat(), shared: true }),
+	paddingBottom: new bootstrapAttachRule({
+		format: "pb-$1",
+		value: bootstrapBase.paddingBottom.concat(),
+		shared: true,
+	}),
+	paddingStart: new bootstrapAttachRule({ format: "ps-$1", value: bootstrapBase.paddingStart.concat() }),
+	paddingEnd: new bootstrapAttachRule({ format: "pe-$1", value: bootstrapBase.paddingEnd.concat() }),
 
-	margin: new bootstrapAttachRule("m-$1", bootstrapBase.margin.concat(), null, null, null, true),
-	marginX: new bootstrapAttachRule("mx-$1", bootstrapBase.marginX.concat()),
-	marginY: new bootstrapAttachRule("my-$1", bootstrapBase.marginY.concat()),
-	marginTop: new bootstrapAttachRule("mt-$1", bootstrapBase.marginTop.concat(), null, null, null, true),
-	marginBottom: new bootstrapAttachRule("mb-$1", bootstrapBase.marginBottom.concat(), null, null, null, true),
-	marginStart: new bootstrapAttachRule("ms-$1", bootstrapBase.marginStart.concat()),
-	marginEnd: new bootstrapAttachRule("me-$1", bootstrapBase.marginEnd.concat()),
+	margin: new bootstrapAttachRule({ format: "m-$1", value: bootstrapBase.margin.concat(), shared: true }),
+	marginX: new bootstrapAttachRule({ format: "mx-$1", value: bootstrapBase.marginX.concat() }),
+	marginY: new bootstrapAttachRule({ format: "my-$1", value: bootstrapBase.marginY.concat() }),
+	marginTop: new bootstrapAttachRule({ format: "mt-$1", value: bootstrapBase.marginTop.concat(), shared: true }),
+	marginBottom: new bootstrapAttachRule({
+		format: "mb-$1",
+		value: bootstrapBase.marginBottom.concat(),
+		shared: true,
+	}),
+	marginStart: new bootstrapAttachRule({ format: "ms-$1", value: bootstrapBase.marginStart.concat() }),
+	marginEnd: new bootstrapAttachRule({ format: "me-$1", value: bootstrapBase.marginEnd.concat() }),
 
-	gap: new bootstrapAttachRule("gap-$1", bootstrapBase.gap.concat()),
-	gutter: new bootstrapAttachRule("g-$1", bootstrapBase.gutter.concat()),
-	gutterX: new bootstrapAttachRule("gx-$1", bootstrapBase.gutterX.concat()),
-	gutterY: new bootstrapAttachRule("gy-$1", bootstrapBase.gutterY.concat()),
+	gap: new bootstrapAttachRule({ format: "gap-$1", value: bootstrapBase.gap.concat() }),
+	gutter: new bootstrapAttachRule({ format: "g-$1", value: bootstrapBase.gutter.concat() }),
+	gutterX: new bootstrapAttachRule({ format: "gx-$1", value: bootstrapBase.gutterX.concat() }),
+	gutterY: new bootstrapAttachRule({ format: "gy-$1", value: bootstrapBase.gutterY.concat() }),
 
-	display: new bootstrapAttachRule("d-$1", bootstrapBase.display.concat(), null, null, null, true),
-	print: new bootstrapAttachRule("d-print-$1", bootstrapBase.print.concat()),
-	container: new bootstrapAttachRule("container-$1", bootstrapBase.container.concat(), null, "container"),
+	display: new bootstrapAttachRule({ format: "d-$1", value: bootstrapBase.display.concat(), shared: true }),
+	print: new bootstrapAttachRule({ format: "d-print-$1", value: bootstrapBase.print.concat() }),
+	container: new bootstrapAttachRule({
+		format: "container-$1",
+		value: bootstrapBase.container.concat(),
+		formatTrue: "container",
+	}),
 
-	flex: new bootstrapAttachRule("flex-$1", bootstrapBase.flex.concat(), null, null, null, true),
-	float: new bootstrapAttachRule("float-$1", bootstrapBase.float.concat()),
-	order: new bootstrapAttachRule("order-$1", bootstrapBase.order.concat(), null, null, null, true),
-	offset: new bootstrapAttachRule("offset-$1", bootstrapBase.offset.concat()),
+	flex: new bootstrapAttachRule({ format: "flex-$1", value: bootstrapBase.flex.concat(), shared: true }),
+	float: new bootstrapAttachRule({ format: "float-$1", value: bootstrapBase.float.concat() }),
+	order: new bootstrapAttachRule({ format: "order-$1", value: bootstrapBase.order.concat(), shared: true }),
+	offset: new bootstrapAttachRule({ format: "offset-$1", value: bootstrapBase.offset.concat() }),
 
-	alignContent: new bootstrapAttachRule(
-		"align-content-$1",
-		bootstrapBase.alignContent.concat(),
-		null,
-		null,
-		null,
-		true
-	),
-	justifyContent: new bootstrapAttachRule(
-		"justify-content-$1",
-		bootstrapBase.justifyContent.concat(),
-		null,
-		null,
-		null,
-		true
-	),
-	alignItem: new bootstrapAttachRule("align-items-$1", bootstrapBase.alignItem.concat(), null, null, null, true),
-	alignSelf: new bootstrapAttachRule("align-self-$1", bootstrapBase.alignSelf.concat(), null, null, null, true),
+	alignContent: new bootstrapAttachRule({
+		format: "align-content-$1",
+		value: bootstrapBase.alignContent.concat(),
+		shared: true,
+	}),
+	justifyContent: new bootstrapAttachRule({
+		format: "justify-content-$1",
+		value: bootstrapBase.justifyContent.concat(),
+		shared: true,
+	}),
+	alignItem: new bootstrapAttachRule({
+		format: "align-items-$1",
+		value: bootstrapBase.alignItem.concat(),
+		shared: true,
+	}),
+	alignSelf: new bootstrapAttachRule({
+		format: "align-self-$1",
+		value: bootstrapBase.alignSelf.concat(),
+		shared: true,
+	}),
 
-	visible: new bootstrapAttachRule(null, bootstrapBase.visible.concat(), null, "visible", "invisible"),
-	textWrap: new bootstrapAttachRule(null, bootstrapBase.textWrap.concat(), null, "text-wrap", "text-nowrap"),
-	fontItalic: new bootstrapAttachRule(null, bootstrapBase.fontItalic.concat(), null, "fst-italic", "fst-normal"),
+	visible: new bootstrapAttachRule({
+		value: bootstrapBase.visible.concat(),
+		formatTrue: "visible",
+		formatFalse: "invisible",
+	}),
+	textWrap: new bootstrapAttachRule({
+		value: bootstrapBase.textWrap.concat(),
+		formatTrue: "text-wrap",
+		formatFalse: "text-nowrap",
+	}),
+	fontItalic: new bootstrapAttachRule({
+		value: bootstrapBase.fontItalic.concat(),
+		formatTrue: "fst-italic",
+		formatFalse: "fst-normal",
+	}),
 
-	bgGradient: new bootstrapAttachRule(null, bootstrapBase.bgGradient.concat(), null, "bg-gradient"),
-	wordBreak: new bootstrapAttachRule(null, bootstrapBase.wordBreak.concat(), null, "text-break", null, true),
-	monospace: new bootstrapAttachRule(null, bootstrapBase.monospace.concat(), null, "font-monospace"),
+	bgGradient: new bootstrapAttachRule({ value: bootstrapBase.bgGradient.concat(), formatTrue: "bg-gradient" }),
+	wordBreak: new bootstrapAttachRule({
+		value: bootstrapBase.wordBreak.concat(),
+		formatTrue: "text-break",
+		shared: true,
+	}),
+	monospace: new bootstrapAttachRule({ value: bootstrapBase.monospace.concat(), formatTrue: "font-monospace" }),
 
-	row: new bootstrapAttachRule(null, bootstrapBase.row.concat(), null, "row"),
-	col: new bootstrapAttachRule("col-$1", bootstrapBase.col.concat(), null, "col"),
-	rowCol: new bootstrapAttachRule("row-cols-$1", bootstrapBase.rowCol.concat()),
+	row: new bootstrapAttachRule({ value: bootstrapBase.row.concat(), formatTrue: "row" }),
+	col: new bootstrapAttachRule({ format: "col-$1", value: bootstrapBase.col.concat(), formatTrue: "col" }),
+	rowCol: new bootstrapAttachRule({ format: "row-cols-$1", value: bootstrapBase.rowCol.concat() }),
 };
 
 let allowProp: (string | undefined)[] = [];
