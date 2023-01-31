@@ -7,19 +7,7 @@
 
 // 	type viewportPosition = "sm" | "md" | "lg" | "xl";
 // 	type viewport = viewportPosition | "xxl";
-// 	type baseFlex =
-// 		| "row"
-// 		| "row-reverse"
-// 		| "column"
-// 		| "column-reverse"
-// 		| "wrap"
-// 		| "wrap-reverse"
-// 		| "nowrap"
-// 		| "fill"
-// 		| "shrink-0"
-// 		| "shrink-1"
-// 		| "grow-0"
-// 		| "grow-1";
+// 	type baseFlex = "row" | "row-reverse" | "column" | "column-reverse" | "wrap" | "wrap-reverse" | "nowrap" | "fill" | "shrink-0" | "shrink-1" | "grow-0" | "grow-1";
 
 // 	type baseFloat = "start" | "end" | "none";
 // 	type baseOrder = "first" | base12 | "last";
@@ -27,17 +15,7 @@
 // 	type baseAlignContent = "start" | "end" | "center" | "between" | "around" | "stretch";
 // 	type baseJustifyContent = "start" | "end" | "center" | "between" | "around" | "evenly";
 // 	type baseSpacer = "auto" | base5;
-// 	type baseDisplay =
-// 		| "none"
-// 		| "inline"
-// 		| "inline-block"
-// 		| "block"
-// 		| "grid"
-// 		| "table"
-// 		| "table-cell"
-// 		| "table-row"
-// 		| "flex"
-// 		| "inline-flex";
+// 	type baseDisplay = "none" | "inline" | "inline-block" | "block" | "grid" | "table" | "table-cell" | "table-row" | "flex" | "inline-flex";
 // 	type baseRowCol = "auto" | base12;
 // 	type baseColor = "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "light" | "dark";
 
@@ -172,14 +150,7 @@
 // }
 
 // export class bootstrapAttachRule<T> implements IBootstrapAttachRule<T> {
-// 	constructor(
-// 		public format?: string,
-// 		public value?: T,
-// 		public formatValue?: string,
-// 		public formatTrue?: string,
-// 		public formatFalse?: string,
-// 		public shared: boolean = false
-// 	) {}
+// 	constructor(public format?: string, public value?: T, public formatValue?: string, public formatTrue?: string, public formatFalse?: string, public shared: boolean = false) {}
 // }
 
 // export interface bootstrapRuleDB<T> {
@@ -193,3 +164,17 @@
 // 	}
 // 	return false;
 // };
+
+//TESTING
+// type viewport = "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
+// type base12 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+// type Add<vp extends viewport, b12 extends base12[]> = {
+// 	[Index in keyof b12]: `${vp}${b12[Index]}`;
+// };
+
+// type Compute<Clrs extends viewport[], Names extends Array<base12>, Acc extends string[] = []> = Clrs extends [] ? Acc : Clrs extends [infer Head extends viewport, ...infer Rest extends Array<viewport>] ? Compute<Rest, Names, [...Acc, ...Add<Head, Names>]> : Acc;
+
+// function applyColor<TViewPort extends viewport, TViewPorts extends TViewPort[]>(vp: [...TViewPorts]) {
+// 	return <baseKey extends base12, baseKeyMaps extends baseKey[]>(baseKeyMap: [...baseKeyMaps]) => vp.flatMap((vpi) => baseKeyMap.map((v): `${TViewPorts[number]}${baseKey}` => `${vpi}${v}`));
+// }

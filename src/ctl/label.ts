@@ -21,7 +21,10 @@ export interface IAttrBSLabel extends IAttrTagLabel {
 }
 
 const rules: bootstrapRuleDB = {
-	btnColor: new bootstrapAttachRule({ format: "btn btn-$1", value: bootstrapBase.btnColor.concat() }),
+	btnColor: new bootstrapAttachRule({
+		format: "btn btn-$1",
+		value: bootstrapBase.btnColor.concat(),
+	}),
 	btnOutlineColor: new bootstrapAttachRule({
 		format: "btn btn-outline-$1",
 		value: bootstrapBase.btnOutlineColor.concat(),
@@ -52,28 +55,16 @@ const convert = (attr: IAttrBSLabel) => {
 			//append icon base on position
 			switch (attr.iconPosition) {
 				case "start":
-					tElem = new div({ display: "flex", gap: 2, alignItem: "center" }, [
-						fnIcon(attr.iconDisplay, attr.icon),
-						fnElem(attr.labelDisplay, attr.elem),
-					]);
+					tElem = new div({ display: "flex", gap: 2, alignItem: "center" }, [fnIcon(attr.iconDisplay, attr.icon), fnElem(attr.labelDisplay, attr.elem)]);
 					break;
 				case "end":
-					tElem = new div({ display: "flex", gap: 2, alignItem: "center" }, [
-						fnElem(attr.labelDisplay, attr.elem),
-						fnIcon(attr.iconDisplay, attr.icon),
-					]);
+					tElem = new div({ display: "flex", gap: 2, alignItem: "center" }, [fnElem(attr.labelDisplay, attr.elem), fnIcon(attr.iconDisplay, attr.icon)]);
 					break;
 				case "top":
-					tElem = new div({ display: "inline-block" }, [
-						fnRow(attr.iconDisplay, fnIcon(undefined, attr.icon)),
-						fnRow(attr.labelDisplay, fnElem(undefined, attr.elem)),
-					]);
+					tElem = new div({ display: "inline-block" }, [fnRow(attr.iconDisplay, fnIcon(undefined, attr.icon)), fnRow(attr.labelDisplay, fnElem(undefined, attr.elem))]);
 					break;
 				case "bottom":
-					tElem = new div({ display: "inline-block" }, [
-						fnRow(attr.labelDisplay, fnElem(undefined, attr.elem)),
-						fnRow(attr.iconDisplay, fnIcon(undefined, attr.icon)),
-					]);
+					tElem = new div({ display: "inline-block" }, [fnRow(attr.labelDisplay, fnElem(undefined, attr.elem)), fnRow(attr.iconDisplay, fnIcon(undefined, attr.icon))]);
 					break;
 				default:
 					throw new Error("Unknow iconPosition");
@@ -93,10 +84,7 @@ const convert = (attr: IAttrBSLabel) => {
 	//color & outline
 	if (attr.color) {
 		if (attr.outline === true) {
-			attr.class = mergeClass(
-				genBootstrapClass("btnOutlineColor", rules.btnOutlineColor, attr.color),
-				attr.class
-			);
+			attr.class = mergeClass(genBootstrapClass("btnOutlineColor", rules.btnOutlineColor, attr.color), attr.class);
 		} else {
 			attr.class = mergeClass(genBootstrapClass("btnColor", rules.btnColor, attr.color), attr.class);
 		}

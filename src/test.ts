@@ -26,33 +26,10 @@ core.documentReady(() => {
 				])
 			),
 
-			new bs.row(
-				new bs.col([
-					new bs.alert.container({ color: "success", dismissible: true }, [
-						new bs.alert.header(4, "Well done"),
-						new html.p(
-							"Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content."
-						),
-						new html.hr(),
-						new html.p(
-							"Whenever you need to, be sure to use margin utilities to keep things nice and tidy."
-						),
-					]),
-				])
-			),
+			new bs.row(new bs.col([new bs.alert.container({ color: "success", dismissible: true }, [new bs.alert.header(4, "Well done"), new html.p("Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content."), new html.hr(), new html.p("Whenever you need to, be sure to use margin utilities to keep things nice and tidy.")])])),
 
-			new bs.row(
-				new bs.col({ theme: "light", padding: 3, bgColor: "body" }, [
-					new bs.btnclose(),
-					new bs.btnclose({ disabled: true }),
-				])
-			),
-			new bs.row(
-				new bs.col({ theme: "dark", padding: 3, bgColor: "body" }, [
-					new bs.btnclose(),
-					new bs.btnclose({ disabled: true }),
-				])
-			),
+			new bs.row(new bs.col({ theme: "light", padding: 3, bgColor: "body" }, [new bs.btnclose(), new bs.btnclose({ disabled: true })])),
+			new bs.row(new bs.col({ theme: "dark", padding: 3, bgColor: "body" }, [new bs.btnclose(), new bs.btnclose({ disabled: true })])),
 
 			new html.ul(new html.li("hello")),
 			new html.ol([new html.li("hello"), new html.li("world")]),
@@ -105,7 +82,7 @@ core.documentReady(() => {
 				new bs.row(new bs.col({ col: "auto" }, new html.option({ value: "axddd", textColor: "primary" }, "a"))),
 			]),
 			new bs.container(
-				new bs.grid([
+				new bs.grid({}, [
 					new bs.row(new bs.col([new bs.input({ type: "file" })])),
 					new bs.row(
 						{
@@ -180,9 +157,7 @@ core.documentReady(() => {
 								)
 							)
 						),
-						new bs.col(
-							new bs.button({ color: "success" }, new bs.label({ for: "txtTest" }, "home", loream))
-						),
+						new bs.col(new bs.button({ color: "success" }, new bs.label({ for: "txtTest" }, "home", loream))),
 					]),
 					new bs.row(
 						new bs.col([
@@ -195,18 +170,7 @@ core.documentReady(() => {
 							new html.datalist({ id: "txtTest_list", options: loream.split(" ") }),
 						])
 					),
-					new bs.row(
-						new bs.col([
-							new bs.alert.container(
-								{ color: "danger", dismissible: true },
-								new bs.msg("star", [
-									"A simple primary alert with ",
-									new bs.alert.link({ href: "#" }, "an example link"),
-									". Give it a click if you like.",
-								])
-							),
-						])
-					),
+					new bs.row(new bs.col([new bs.alert.container({ color: "danger", dismissible: true }, new bs.msg("star", ["A simple primary alert with ", new bs.alert.link({ href: "#" }, "an example link"), ". Give it a click if you like."]))])),
 					new bs.row(
 						new bs.col(
 							new bs.img({
@@ -222,13 +186,7 @@ core.documentReady(() => {
 					new bs.row(new bs.col(new html.i("nothing even happen"))),
 					new bs.row(new bs.col(new html.i({ id: "hhhhh" }, "test i 2"))),
 					new bs.row(new bs.col(new html.progress({ max: 100, value: 55 }, "test"))),
-					new bs.row(
-						new bs.col([
-							new bs.icon("star"),
-							new bs.icon({ icon: "star", color: "primary", weight: "xl" }),
-							new bs.icon({ type: "fab", icon: "bootstrap", color: "danger" }),
-						])
-					),
+					new bs.row(new bs.col([new bs.icon("star"), new bs.icon({ icon: "star", color: "primary", weight: "xl" }), new bs.icon({ type: "fab", icon: "bootstrap", color: "danger" })])),
 
 					new bs.row(
 						new bs.col([
@@ -247,10 +205,7 @@ core.documentReady(() => {
 									new bs.label("star", "Test ON")
 								),
 								new bs.button({ color: "warning", outline: true, weight: "lg" }, "Hello World"),
-								new bs.button(
-									{ color: "warning", disabled: true, weight: "sm", type: "reset" },
-									"Hello World (DIS)"
-								),
+								new bs.button({ color: "warning", disabled: true, weight: "sm", type: "reset" }, "Hello World (DIS)"),
 								new bs.button(
 									{
 										color: "success",
@@ -262,18 +217,9 @@ core.documentReady(() => {
 									},
 									"Custom"
 								),
-								new bs.button(
-									{ color: "success", outline: true, toggle: true, disabled: true },
-									"Hello World (Dis)"
-								),
-								new bs.button(
-									{ color: "success", outline: true, toggle: true, href: "#" },
-									"Hello World"
-								),
-								new bs.button(
-									{ color: "success", outline: true, toggle: true, disabled: true, href: "#" },
-									"Hello World (Dis)"
-								),
+								new bs.button({ color: "success", outline: true, toggle: true, disabled: true }, "Hello World (Dis)"),
+								new bs.button({ color: "success", outline: true, toggle: true, href: "#" }, "Hello World"),
+								new bs.button({ color: "success", outline: true, toggle: true, disabled: true, href: "#" }, "Hello World (Dis)"),
 							]),
 						])
 					),

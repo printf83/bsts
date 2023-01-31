@@ -15,7 +15,10 @@ export interface IAttrBSButton extends IAttrTagButton {
 }
 
 const rules: bootstrapRuleDB = {
-	btnColor: new bootstrapAttachRule({ format: "btn-$1", value: bootstrapBase.btnColor.concat() }),
+	btnColor: new bootstrapAttachRule({
+		format: "btn-$1",
+		value: bootstrapBase.btnColor.concat(),
+	}),
 	btnOutlineColor: new bootstrapAttachRule({
 		format: "btn-outline-$1",
 		value: bootstrapBase.btnOutlineColor.concat(),

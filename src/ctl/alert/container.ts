@@ -1,5 +1,10 @@
 import { genBootstrapClass } from "../../core/attach/attachBootstrap.js";
-import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB, bootstrapType } from "../../core/base/bootstrap.js";
+import {
+	bootstrapAttachRule,
+	bootstrapBase,
+	bootstrapRuleDB,
+	bootstrapType,
+} from "../../core/base/bootstrap.js";
 import { IAttr, IElem, isAttr } from "../../core/base/tag.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
@@ -13,7 +18,10 @@ export interface IAttrBSAlertContainer extends IAttr {
 }
 
 const rules: bootstrapRuleDB = {
-	alertColor: new bootstrapAttachRule({ format: "alert-$1", value: bootstrapBase.btnColor.concat() }),
+	alertColor: new bootstrapAttachRule({
+		format: "alert-$1",
+		value: bootstrapBase.btnColor.concat(),
+	}),
 };
 
 const convert = (attr: IAttrBSAlertContainer): IAttrBSAlertContainer => {
@@ -35,7 +43,10 @@ const convert = (attr: IAttrBSAlertContainer): IAttrBSAlertContainer => {
 		attr
 	);
 
-	attr.class = mergeClass(genBootstrapClass("alertColor", rules.alertColor, attr.color!), attr.class);
+	attr.class = mergeClass(
+		genBootstrapClass("alertColor", rules.alertColor, attr.color!),
+		attr.class
+	);
 
 	if (attr.dismissible) {
 		if (!attr.elem) attr.elem = [];
