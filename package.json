@@ -27,8 +27,9 @@
 		"lib"
 	],
 	"scripts": {
-		"build": "tsc --project tsconfig.prod.json",
-		"debug": "tsc --project tsconfig.debug.json -watch"
+		"clear": "tsc --build --clean tsconfig.debug.json ",
+		"build": "tsc --build --clean tsconfig.prod.json && tsc --project tsconfig.prod.json",
+		"debug": "tsc --project tsconfig.debug.json --watch"
 	},
 	"devDependencies": {
 		"typescript": "^5.0.0-beta"
