@@ -23,9 +23,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            // "url": "file:///E:/print/Documents/git/bsts/index.html",
             "url": "${workspaceFolder}/index.html",
-            // "preLaunchTask": "tsc: build - tsconfig.debug.json",
             "preLaunchTask": "tsc: watch - tsconfig.debug.json",
             "webRoot": "${workspaceFolder}",
             "runtimeArgs": ["--disable-web-security"]
