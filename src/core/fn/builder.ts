@@ -6,12 +6,7 @@ import { setting } from "./setting.js";
 
 export type buildArg = tag | string | (tag | string)[];
 
-export const build = (
-	container: HTMLElement,
-	arg: buildArg,
-	append: boolean = true,
-	beforeElem: HTMLElement | null = null
-): HTMLElement => {
+export const build = (container: HTMLElement, arg: buildArg, append: boolean = true, beforeElem: HTMLElement | null = null): HTMLElement => {
 	if (arg) {
 		arg = Array.isArray(arg) ? arg : [arg];
 
@@ -20,9 +15,7 @@ export const build = (
 				if (h !== null) {
 					if (isTag<IAttr>(h)) {
 						let e = h as tag;
-						let element = e.attr
-							? attachAttr(document.createElement(e.tag), e.attr!)
-							: document.createElement(e.tag);
+						let element = e.attr ? attachAttr(document.createElement(e.tag), e.attr!) : document.createElement(e.tag);
 
 						if (e.elem) {
 							e.elem = Array.isArray(e.elem) ? e.elem : [e.elem];
