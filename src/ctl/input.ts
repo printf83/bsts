@@ -5,11 +5,19 @@ import { IAttrTagInput, input as TInput } from "../tag/input.js";
 export interface IAttrBSInput extends IAttrTagInput {
 	weight?: "sm" | "lg";
 	toggle?: true;
+	switch?: true;
+	role?: string;
 }
 
 const convert = (attr: IAttrBSInput) => {
-	//set default type (to make sure type is not undefind)
+	//set default value
 	if (!attr.type) attr.type = "text";
+
+	//set to checkbox if swithc
+	if (attr.switch) {
+		attr.type = "checkbox";
+		attr.role = "switch";
+	}
 
 	//autocomplete off if toggle
 	if (attr.toggle) attr.autocomplete = "off";
@@ -19,7 +27,8 @@ const convert = (attr: IAttrBSInput) => {
 			id: attr.id || UUID(),
 			type: attr.type,
 			class: [
-				["range", "radio", "checkbox"].indexOf(attr.type) === -1 && attr.readonly !== true
+				["range", "radio", "checkbox"].indexOf(attr.type) === -1 &&
+				attr.readonly !== true
 					? "form-control"
 					: "",
 				["radio", "checkbox"].indexOf(attr.type) > -1

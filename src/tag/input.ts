@@ -10,7 +10,10 @@ export interface IAttrTagInput extends IAttr {
 	disabled?: boolean;
 	form?: string;
 	formaction?: string;
-	formenctype?: "application/x-www-form-urlencoded" | "multipart/form-data" | "text/plain	";
+	formenctype?:
+		| "application/x-www-form-urlencoded"
+		| "multipart/form-data"
+		| "text/plain	";
 	formmethod?: "get" | "post";
 	formnovalidate?: boolean;
 	formtarget?: string;
