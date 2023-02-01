@@ -28,7 +28,7 @@
 	],
 	"scripts": {
 		"clear": "tsc --build --clean tsconfig.debug.json ",
-		"build": "tsc --build --clean tsconfig.prod.json && tsc --project tsconfig.prod.json",
+		"build": "tsc --build --clean tsconfig.debug.json && tsc --project tsconfig.prod.json",
 		"debug": "tsc --project tsconfig.debug.json --watch"
 	},
 	"devDependencies": {
