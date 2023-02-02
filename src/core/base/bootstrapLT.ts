@@ -164,3 +164,18 @@
 // 	}
 // 	return false;
 // };
+
+// const fn = () => {
+// 	let res: string[] = [];
+// 	for (var x = 0; x <= 255; x++){
+// 		res.push(`t-${x}`);
+// 	}
+// 	return res;
+// }
+// type ta = fn() as const;
+
+// let a = ["a", "b", "c"];
+
+// function aaa<const T> (aaaa:T):T{
+// 	return aaaa;
+// }
