@@ -1,5 +1,5 @@
 import { mergeObject } from "../core/fn/mergeObject.js";
-import { IAttrTagImg, img as TImg } from "../tag/img.js";
+import { IAttrTagImg, img as TImg } from "../ht/img.js";
 
 export interface IAttrBSImg extends IAttrTagImg {
 	fluid?: true;

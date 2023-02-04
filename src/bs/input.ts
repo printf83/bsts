@@ -1,6 +1,6 @@
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { UUID } from "../core/fn/uuid.js";
-import { IAttrTagInput, input as TInput } from "../tag/input.js";
+import { IAttrTagInput, input as TInput } from "../ht/input.js";
 
 export interface IAttrBSInput extends IAttrTagInput {
 	weight?: "sm" | "lg";

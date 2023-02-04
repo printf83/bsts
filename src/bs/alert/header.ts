@@ -1,7 +1,7 @@
 import { IAttr, IElem, isAttr } from "../../core/base/tag.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 
-import { h, HLevel } from "../../tag/h.js";
+import { h, HLevel } from "../../ht/h.js";
 
 const convert = (attr: IAttr): IAttr => {
 	//add alert-header

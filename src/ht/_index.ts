@@ -103,7 +103,7 @@ import { variable } from "./variable.js";
 import { video } from "./video.js";
 import { wbr } from "./wbr.js";
 
-export const html = {
+export const ht = {
 	a,
 	abbr,
 	address,

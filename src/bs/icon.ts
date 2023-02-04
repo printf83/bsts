@@ -1,8 +1,8 @@
 import { bootstrapType } from "../core/base/bootstrap.js";
 import { IAttr, IElem, isAttr } from "../core/base/tag.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
-import { i } from "../tag/i.js";
-import { span } from "../tag/span.js";
+import { i } from "../ht/i.js";
+import { span } from "../ht/span.js";
 
 type IAttrIconType = "fab" | "fas" | "far" | "fad" | "fal";
 

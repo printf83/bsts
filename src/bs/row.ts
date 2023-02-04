@@ -1,6 +1,6 @@
 import { IAttr, IElem, isAttr } from "../core/base/tag.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
-import { div } from "../tag/div.js";
+import { div } from "../ht/div.js";
 
 const convert = (attr: IAttr): IAttr => {
 	attr = mergeObject(

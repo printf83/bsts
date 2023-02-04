@@ -1,5 +1,5 @@
 import { mergeObject } from "../core/fn/mergeObject.js";
-import { button, IAttrTagButton } from "../tag/button.js";
+import { button, IAttrTagButton } from "../ht/button.js";
 
 export interface IAttrBSBtnclose extends IAttrTagButton {
 	label?: string;

@@ -1,6 +1,6 @@
 import { IAttr, IElem, isAttr } from "../core/base/tag.js";
-import { div } from "../tag/div.js";
-import { IAttrTagLabel, label as TLabel } from "../tag/label.js";
+import { div } from "../ht/div.js";
+import { IAttrTagLabel, label as TLabel } from "../ht/label.js";
 import { IAttrBSIcon, icon } from "./icon.js";
 
 export interface IAttrBSMsg extends IAttrTagLabel {

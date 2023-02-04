@@ -3,7 +3,7 @@ import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB, bootstrapType } fr
 import { IElem, isAttr, tag } from "../core/base/tag.js";
 import { mergeClass } from "../core/fn/mergeClass.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
-import { IAttrTagButton } from "../tag/button.js";
+import { IAttrTagButton } from "../ht/button.js";
 
 export interface IAttrBSButton extends IAttrTagButton {
 	color?: bootstrapType.color[number] | "link";

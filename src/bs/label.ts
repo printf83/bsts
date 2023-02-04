@@ -3,9 +3,9 @@ import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB, bootstrapType } fr
 import { IElem } from "../core/base/tag.js";
 import { mergeClass } from "../core/fn/mergeClass.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
-import { div } from "../tag/div.js";
-import { IAttrTagLabel, label as TLabel } from "../tag/label.js";
-import { span } from "../tag/span.js";
+import { div } from "../ht/div.js";
+import { IAttrTagLabel, label as TLabel } from "../ht/label.js";
+import { span } from "../ht/span.js";
 import { IAttrBSIcon, icon } from "./icon.js";
 
 type IBootstrapTypeDisplay = bootstrapType.display[number] | bootstrapType.display[number][];

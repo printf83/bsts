@@ -1,5 +1,5 @@
-import { IAttrBSButton } from "./ctl/button.js";
-import { bs, core, html, tag } from "./index.js";
+import { IAttrBSButton } from "./bs/button.js";
+import { bs, core, ht, tag } from "./index.js";
 let loream = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta tincidunt arcu eu dignissim. Suspendisse nunc tortor, semper ut commodo nec, bibendum ut quam. Vivamus porttitor egestas luctus. Morbi tincidunt tortor eu lorem gravida imperdiet. Vestibulum tincidunt hendrerit tempus. Morbi varius est ac euismod tristique. Fusce a tortor suscipit, lacinia arcu nec, aliquet tortor. Maecenas eu lorem nec ante faucibus sollicitudin. Nunc consequat ullamcorper congue. Praesent cursus velit euismod turpis ultrices, sit amet venenatis massa pharetra. Nunc maximus pharetra purus in maximus.`;
 let select_option = [
 	{ value: "A", elem: "A" },
@@ -21,7 +21,7 @@ core.documentReady(() => {
 				new bs.col([
 					new bs.select(
 						{ weight: "sm", disabled: true },
-						select_option.map((i) => new html.option(i))
+						select_option.map((i) => new ht.option(i))
 					),
 				])
 			),
@@ -32,11 +32,11 @@ core.documentReady(() => {
 						{ color: "success", dismissible: true },
 						[
 							new bs.alert.header(4, "Well done"),
-							new html.p(
+							new ht.p(
 								"Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content."
 							),
-							new html.hr(),
-							new html.p(
+							new ht.hr(),
+							new ht.p(
 								"Whenever you need to, be sure to use margin utilities to keep things nice and tidy."
 							),
 						]
@@ -57,17 +57,17 @@ core.documentReady(() => {
 				])
 			),
 
-			new html.ul(new html.li("hello")),
-			new html.ol([new html.li("hello"), new html.li("world")]),
-			new html.ul(
+			new ht.ul(new ht.li("hello")),
+			new ht.ol([new ht.li("hello"), new ht.li("world")]),
+			new ht.ul(
 				["AAAAA", "AAAAA2", "AAAAA3", "AAAAA4"].map(
-					(i) => new html.li(i)
+					(i) => new ht.li(i)
 				)
 			),
-			new html.hr({ id: "aaaa" }),
+			new ht.hr({ id: "aaaa" }),
 			new bs.button({ color: "danger", elem: "Hello World" }),
 			new tag("h1", "Hello World"),
-			new html.p(loream),
+			new ht.p(loream),
 
 			new bs.container(
 				new bs.row(
@@ -77,7 +77,7 @@ core.documentReady(() => {
 							{ id: "b", elem: "2" },
 							{ id: "c", elem: "3" },
 							{ id: "d", elem: "4" },
-						].map((i) => new html.a(i)),
+						].map((i) => new ht.a(i)),
 						...[
 							{ color: "primary", elem: new bs.label("Primary") },
 							{
@@ -95,7 +95,7 @@ core.documentReady(() => {
 			new bs.container([
 				new bs.row(
 					new bs.col(
-						new html.div({ display: "flex", gap: 3 }, [
+						new ht.div({ display: "flex", gap: 3 }, [
 							new bs.input({
 								type: "checkbox",
 								id: "chk1",
@@ -149,14 +149,14 @@ core.documentReady(() => {
 				),
 				new bs.row(
 					new bs.col([
-						new html.div({ class: "form-check" }, [
+						new ht.div({ class: "form-check" }, [
 							new bs.input({ type: "checkbox", id: "chk1a" }),
 							new bs.label(
 								{ class: "form-check-label", for: "chk1a" },
 								"Chk1"
 							),
 						]),
-						new html.div({ class: "form-check" }, [
+						new ht.div({ class: "form-check" }, [
 							new bs.input({
 								type: "checkbox",
 								id: "chk2a",
@@ -174,7 +174,7 @@ core.documentReady(() => {
 				),
 				new bs.row(
 					new bs.col([
-						new html.div({ class: "form-check" }, [
+						new ht.div({ class: "form-check" }, [
 							new bs.input({
 								type: "radio",
 								id: "chk12",
@@ -185,7 +185,7 @@ core.documentReady(() => {
 								"Chk12"
 							),
 						]),
-						new html.div({ class: "form-check" }, [
+						new ht.div({ class: "form-check" }, [
 							new bs.input({
 								type: "radio",
 								id: "chk22",
@@ -204,14 +204,14 @@ core.documentReady(() => {
 				),
 				new bs.row(
 					new bs.col([
-						new html.div({ class: ["form-check", "form-switch"] }, [
+						new ht.div({ class: ["form-check", "form-switch"] }, [
 							new bs.input({ switch: true, id: "chk123" }),
 							new bs.label(
 								{ class: "form-check-label", for: "chk123" },
 								"Chk123"
 							),
 						]),
-						new html.div({ class: ["form-check", "form-switch"] }, [
+						new ht.div({ class: ["form-check", "form-switch"] }, [
 							new bs.input({
 								switch: true,
 								id: "chk223",
@@ -229,7 +229,7 @@ core.documentReady(() => {
 				),
 				new bs.row(
 					new bs.col([
-						new html.div(
+						new ht.div(
 							{
 								class: [
 									"form-check",
@@ -248,7 +248,7 @@ core.documentReady(() => {
 								),
 							]
 						),
-						new html.div(
+						new ht.div(
 							{
 								class: [
 									"form-check",
@@ -275,7 +275,7 @@ core.documentReady(() => {
 				),
 				new bs.row(
 					new bs.col([
-						new html.div(
+						new ht.div(
 							{
 								class: [
 									"form-check",
@@ -294,7 +294,7 @@ core.documentReady(() => {
 								),
 							]
 						),
-						new html.div(
+						new ht.div(
 							{
 								class: [
 									"form-check",
@@ -322,7 +322,7 @@ core.documentReady(() => {
 				new bs.row(
 					new bs.col(
 						{ col: "auto" },
-						new html.option(
+						new ht.option(
 							{ value: "axddd", textColor: "primary" },
 							"a"
 						)
@@ -353,7 +353,7 @@ core.documentReady(() => {
 								},
 								"hello"
 							),
-							new html.h(
+							new ht.h(
 								1,
 								{
 									col: 3,
@@ -368,7 +368,7 @@ core.documentReady(() => {
 								},
 								"world"
 							),
-							new html.h(
+							new ht.h(
 								2,
 								{
 									col: 3,
@@ -377,7 +377,7 @@ core.documentReady(() => {
 								},
 								"2"
 							),
-							new html.h(
+							new ht.h(
 								3,
 								{
 									col: 3,
@@ -391,7 +391,7 @@ core.documentReady(() => {
 					),
 					new bs.row(
 						new bs.col(
-							new html.hr({
+							new ht.hr({
 								title: "test",
 								style: { backgroundColor: "red" },
 							})
@@ -399,7 +399,7 @@ core.documentReady(() => {
 					),
 					new bs.row(
 						new bs.col(
-							new html.a(
+							new ht.a(
 								{ href: "#", linkColor: "danger" },
 								"this is link"
 							)
@@ -470,7 +470,7 @@ core.documentReady(() => {
 								weight: "lg",
 								list: "txtTest_list",
 							}),
-							new html.datalist({
+							new ht.datalist({
 								id: "txtTest_list",
 								options: loream.split(" "),
 							}),
@@ -501,19 +501,19 @@ core.documentReady(() => {
 							})
 						)
 					),
-					new bs.row(new bs.col(new html.a("this is link 2"))),
+					new bs.row(new bs.col(new ht.a("this is link 2"))),
 					new bs.row(
 						new bs.col(
-							new html.b({ title: "test" }, "this is bold")
+							new ht.b({ title: "test" }, "this is bold")
 						)
 					),
-					new bs.row(new bs.col(new html.i("nothing even happen"))),
+					new bs.row(new bs.col(new ht.i("nothing even happen"))),
 					new bs.row(
-						new bs.col(new html.i({ id: "hhhhh" }, "test i 2"))
+						new bs.col(new ht.i({ id: "hhhhh" }, "test i 2"))
 					),
 					new bs.row(
 						new bs.col(
-							new html.progress({ max: 100, value: 55 }, "test")
+							new ht.progress({ max: 100, value: 55 }, "test")
 						)
 					),
 					new bs.row(

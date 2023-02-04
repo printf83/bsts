@@ -8,7 +8,7 @@ import {
 import { IAttr, IElem, isAttr } from "../../core/base/tag.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
-import { div } from "../../tag/div.js";
+import { div } from "../../ht/div.js";
 import { btnclose } from "../btnclose.js";
 
 export interface IAttrBSAlertContainer extends IAttr {

@@ -1,7 +1,7 @@
 import { isAttr } from "../core/base/tag.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { UUID } from "../core/fn/uuid.js";
-import { IAttrTagSelect, IElemTagSelect, select as TSelect } from "../tag/select.js";
+import { IAttrTagSelect, IElemTagSelect, select as TSelect } from "../ht/select.js";
 
 export interface IAttrBSSelect extends IAttrTagSelect {
 	weight?: "sm" | "lg";

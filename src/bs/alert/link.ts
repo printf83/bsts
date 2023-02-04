@@ -1,7 +1,7 @@
 import { IElem, isAttr } from "../../core/base/tag.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 
-import { a, IAttrTagA } from "../../tag/a.js";
+import { a, IAttrTagA } from "../../ht/a.js";
 
 const convert = (attr: IAttrTagA): IAttrTagA => {
 	//add alert-link
