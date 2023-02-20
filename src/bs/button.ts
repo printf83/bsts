@@ -1,5 +1,10 @@
 import { genBootstrapClass } from "../core/attach/attachBootstrap.js";
-import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB, bootstrapType } from "../core/base/bootstrap.js";
+import {
+	bootstrapAttachRule,
+	bootstrapBase,
+	bootstrapRuleDB,
+	bootstrapType,
+} from "../core/base/bootstrap.js";
 import { IElem, isAttr, tag } from "../core/base/tag.js";
 import { mergeClass } from "../core/fn/mergeClass.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
@@ -40,14 +45,22 @@ const convert = (attr: IAttrBSButton): IAttrBSButton => {
 	);
 
 	//color & outline
-	if (!attr.color) {
-		attr.color = "primary";
-	}
+	attr.color = attr.color || "primary";
 
 	if (attr.outline === true) {
-		attr.class = mergeClass(genBootstrapClass("btnOutlineColor", rules.btnOutlineColor, attr.color), attr.class);
+		attr.class = mergeClass(
+			genBootstrapClass(
+				"btnOutlineColor",
+				rules.btnOutlineColor,
+				attr.color
+			),
+			attr.class
+		);
 	} else {
-		attr.class = mergeClass(genBootstrapClass("btnColor", rules.btnColor, attr.color), attr.class);
+		attr.class = mergeClass(
+			genBootstrapClass("btnColor", rules.btnColor, attr.color),
+			attr.class
+		);
 	}
 
 	delete attr.color;

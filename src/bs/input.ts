@@ -11,7 +11,7 @@ export interface IAttrBSInput extends IAttrTagInput {
 
 const convert = (attr: IAttrBSInput) => {
 	//set default value
-	if (!attr.type) attr.type = "text";
+	attr.type = attr.type || "text";
 
 	//set to checkbox if swithc
 	if (attr.switch) {
