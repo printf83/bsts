@@ -20,7 +20,7 @@ core.documentReady(() => {
 			new bs.row(
 				new bs.col([
 					new bs.select(
-						{ weight: "sm", disabled: true },
+						{ weight: "sm" },
 						select_option.map((i) => new ht.option(i))
 					),
 				])
@@ -60,9 +60,7 @@ core.documentReady(() => {
 			new ht.ul(new ht.li("hello")),
 			new ht.ol([new ht.li("hello"), new ht.li("world")]),
 			new ht.ul(
-				["AAAAA", "AAAAA2", "AAAAA3", "AAAAA4"].map(
-					(i) => new ht.li(i)
-				)
+				["AAAAA", "AAAAA2", "AAAAA3", "AAAAA4"].map((i) => new ht.li(i))
 			),
 			new ht.hr({ id: "aaaa" }),
 			new bs.button({ color: "danger", elem: "Hello World" }),
@@ -503,9 +501,7 @@ core.documentReady(() => {
 					),
 					new bs.row(new bs.col(new ht.a("this is link 2"))),
 					new bs.row(
-						new bs.col(
-							new ht.b({ title: "test" }, "this is bold")
-						)
+						new bs.col(new ht.b({ title: "test" }, "this is bold"))
 					),
 					new bs.row(new bs.col(new ht.i("nothing even happen"))),
 					new bs.row(
