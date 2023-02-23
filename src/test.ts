@@ -16,7 +16,31 @@ core.documentReady(() => {
 		body,
 		new bs.row({ gap: 3 }, [
 			new bs.row(new bs.col({ padding: 3 }, "")),
-			new bs.row(new bs.col([new bs.textarea({ rows: 3 }, loream)])),
+			new bs.row(
+				new bs.col([new bs.textarea({ rows: 3, weight: "lg" }, loream)])
+			),
+			new bs.row(
+				new bs.col(
+					new ht.div({ class: "dropdown" }, [
+						new bs.button(
+							{
+								class: "dropdown-toggle",
+								color: "secondary",
+								data: { "bs-toggle": "dropdown" },
+								aria: { expanded: "false" },
+							},
+							"Dropdown button"
+						),
+						new bs.dropdown.menu([
+							new bs.dropdown.item("Action"),
+							new bs.dropdown.item("Another action"),
+							new bs.dropdown.item("Something else here"),
+							new bs.dropdown.divider(),
+							new bs.dropdown.item("Separated link"),
+						]),
+					])
+				)
+			),
 		])
 	);
 
