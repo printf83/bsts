@@ -1,8 +1,6 @@
-import { IElem, isAttr } from "../../core/base/tag.js";
+import { isAttr } from "../../core/base/tag.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
-import { a, IAttrTagA } from "../../ht/a.js";
-import { IAttrTagLi, li } from "../../ht/li.js";
 import { IAttrTagUl, ul } from "../../ht/ul.js";
 import { divider } from "./divider.js";
 import { item } from "./item.js";
