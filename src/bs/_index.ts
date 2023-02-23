@@ -11,6 +11,7 @@ import { input } from "./input.js";
 import { label } from "./label.js";
 import { msg } from "./msg.js";
 import { row } from "./row.js";
+import { textarea } from "./textarea.js";
 
 export const bs = {
 	icon,
@@ -26,4 +27,5 @@ export const bs = {
 	input,
 	btnclose,
 	select,
+	textarea,
 };

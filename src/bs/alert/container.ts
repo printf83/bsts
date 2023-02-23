@@ -49,7 +49,7 @@ const convert = (attr: IAttrBSAlertContainer): IAttrBSAlertContainer => {
 	);
 
 	if (attr.dismissible) {
-		if (!attr.elem) attr.elem = [];
+		attr.elem = attr.elem || [];
 		if (!Array.isArray(attr.elem)) attr.elem = [attr.elem];
 
 		attr.elem.push(new btnclose({ data: { "bs-dismiss": "alert" } }));
