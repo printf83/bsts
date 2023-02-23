@@ -22,14 +22,9 @@ core.documentReady(() => {
 			new bs.row(
 				new bs.col(
 					new ht.div({ class: "dropdown" }, [
-						new bs.button(
-							{
-								class: "dropdown-toggle",
-								color: "secondary",
-								data: { "bs-toggle": "dropdown" },
-								aria: { expanded: "false" },
-							},
-							"Dropdown button"
+						new bs.dropdown.toggle.button(
+							{ color: "danger" },
+							"Dropdown button X"
 						),
 						new bs.dropdown.menu([
 							new bs.dropdown.item("Action"),
