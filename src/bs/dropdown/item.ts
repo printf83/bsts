@@ -6,6 +6,7 @@ import { IAttrTagLi, li } from "../../ht/li.js";
 
 const convert = (attr: IAttrTagA): IAttrTagLi => {
 	attr.class = mergeClass(attr.class, "dropdown-item");
+	attr.href = attr.href || "#";
 
 	//return as li attr
 	return {
