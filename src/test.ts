@@ -21,18 +21,26 @@ core.documentReady(() => {
 			),
 			new bs.row(
 				new bs.col(
-					new ht.div({ class: "dropdown" }, [
-						new bs.dropdown.toggle(
-							{ color: "danger" },
-							"Dropdown button X"
+					new ht.div({ class: "btn-group" }, [
+						// new bs.button({ color: "danger" }, "Dropdown button X"),
+						new bs.dropdown.toggle({
+							// split: true,
+							color: "danger",
+						}),
+						new bs.dropdown.menu(
+							{
+								dark: true,
+								positionView: ["start", "md-center", "lg-end"],
+							},
+							[
+								new bs.dropdown.header("Hello"),
+								new bs.dropdown.item("Action"),
+								new bs.dropdown.item("Another action"),
+								new bs.dropdown.item("Something else here"),
+								new bs.dropdown.divider(),
+								new bs.dropdown.item("Separated link"),
+							]
 						),
-						new bs.dropdown.menu([
-							new bs.dropdown.item("Action"),
-							new bs.dropdown.item("Another action"),
-							new bs.dropdown.item("Something else here"),
-							new bs.dropdown.divider(),
-							new bs.dropdown.item("Separated link"),
-						]),
 					])
 				)
 			),
