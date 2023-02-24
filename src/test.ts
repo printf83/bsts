@@ -22,7 +22,7 @@ core.documentReady(() => {
 			new bs.row(
 				new bs.col(
 					new ht.div({ class: "dropdown" }, [
-						new bs.dropdown.toggle.button(
+						new bs.dropdown.toggle(
 							{ color: "danger" },
 							"Dropdown button X"
 						),

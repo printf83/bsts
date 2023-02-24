@@ -1,6 +1,6 @@
-import { IElem, isAttr } from "../../../core/base/tag.js";
-import { mergeObject } from "../../../core/fn/mergeObject.js";
-import { button as TButton, IAttrBSButton } from "../../button.js";
+import { IElem, isAttr } from "../../core/base/tag.js";
+import { mergeObject } from "../../core/fn/mergeObject.js";
+import { button, IAttrBSButton } from "../button.js";
 
 const convert = (attr: IAttrBSButton): IAttrBSButton => {
 	attr = mergeObject(
@@ -17,7 +17,7 @@ const convert = (attr: IAttrBSButton): IAttrBSButton => {
 	return attr;
 };
 
-export class button extends TButton {
+export class toggle extends button {
 	constructor(); //#1
 	constructor(attr: IAttrBSButton); //#2
 	constructor(elem: IElem); //#3

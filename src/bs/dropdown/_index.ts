@@ -1,7 +1,7 @@
 import { divider } from "./divider.js";
 import { item } from "./item.js";
 import { menu } from "./menu.js";
-import { toggle } from "./toggle/_index.js";
+import { toggle } from "./toggle.js";
 
 export const dropdown = {
 	item,
