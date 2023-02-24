@@ -44,6 +44,26 @@ core.documentReady(() => {
 					])
 				)
 			),
+
+			new bs.row(
+				new bs.col(
+					new ht.div({ class: "btn-group" }, [
+						new bs.button("Dropdown button X"),
+						new bs.dropdown.toggle({
+							split: true,
+							menuAutoClose: "manual",
+						}),
+						new bs.dropdown.menu(
+							{
+								positionView: ["start", "md-center", "lg-end"],
+								textColor: "muted",
+								padding: 3,
+							},
+							[new ht.div("Hello"), new ht.div("World")]
+						),
+					])
+				)
+			),
 		])
 	);
 

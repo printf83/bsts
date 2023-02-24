@@ -6,16 +6,21 @@ import { button, IAttrBSButton } from "../button.js";
 export interface IAttrBSDropdownToggle extends IAttrBSButton {
 	menuOffset?: string;
 	menuReference?: "toggle" | "parent";
-	menuAutoClose?: boolean | "inside" | "outside";
+	menuAutoClose?: "true" | "false" | "auto" | "manual" | "inside" | "outside";
 	split?: boolean;
 }
 
 const convert = (attr: IAttrBSDropdownToggle): IAttrBSButton => {
+	if (attr.menuAutoClose) {
+		if (attr.menuAutoClose === "auto") attr.menuAutoClose = "true";
+		if (attr.menuAutoClose === "manual") attr.menuAutoClose = "false";
+	}
+
 	attr = mergeObject(
 		{
 			class: [
 				"dropdown-toggle",
-				attr.toggle ? "dropdown-toggle-split" : "",
+				attr.split ? "dropdown-toggle-split" : "",
 			],
 			data: {
 				"bs-toggle": "dropdown",

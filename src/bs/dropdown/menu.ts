@@ -1,7 +1,6 @@
-import { IElem, isAttr } from "../../core/base/tag.js";
+import { IAttr, IElem, isAttr } from "../../core/base/tag.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
-import { IAttrTagUl, ul } from "../../ht/ul.js";
 import {
 	bootstrapAttachRule,
 	bootstrapBase,
