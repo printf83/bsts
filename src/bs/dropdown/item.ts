@@ -2,19 +2,15 @@ import { IElem, isAttr } from "../../core/base/tag.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
 import { a, IAttrTagA } from "../../ht/a.js";
-import { IAttrTagLi, li } from "../../ht/li.js";
 
-const convert = (attr: IAttrTagA): IAttrTagLi => {
+const convert = (attr: IAttrTagA): IAttrTagA => {
 	attr.class = mergeClass(attr.class, "dropdown-item");
 	attr.href = attr.href || "#";
 
-	//return as li attr
-	return {
-		elem: new a(attr),
-	};
+	return attr;
 };
 
-export class item extends li {
+export class item extends a {
 	constructor(); //#1
 	constructor(attr: IAttrTagA); //#2
 	constructor(elem: IElem); //#3

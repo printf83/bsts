@@ -1,9 +1,7 @@
-import { isAttr } from "../../core/base/tag.js";
+import { IElem, isAttr } from "../../core/base/tag.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
 import { IAttrTagUl, ul } from "../../ht/ul.js";
-import { divider } from "./divider.js";
-import { item } from "./item.js";
 import {
 	bootstrapAttachRule,
 	bootstrapBase,
@@ -11,15 +9,13 @@ import {
 	bootstrapType,
 } from "../../core/base/bootstrap.js";
 import { genBootstrapClass } from "../../core/attach/attachBootstrap.js";
+import { div } from "../../ht/div.js";
 
-export type IAttrBSDropdownMenuElem = item | divider | (item | divider)[];
-
-export interface IAttrBSDropdownMenu extends IAttrTagUl {
+export interface IAttrBSDropdownMenu extends IAttr {
 	positionView?:
 		| bootstrapType.positionView[number]
 		| bootstrapType.positionView[number][];
 	dark?: true;
-	elem?: IAttrBSDropdownMenuElem;
 }
 
 const rules: bootstrapRuleDB = {
@@ -52,11 +48,11 @@ const convert = (attr: IAttrBSDropdownMenu): IAttrBSDropdownMenu => {
 	return attr;
 };
 
-export class menu extends ul {
+export class menu extends div {
 	constructor(); //#1
 	constructor(attr: IAttrBSDropdownMenu); //#2
-	constructor(elem: IAttrBSDropdownMenuElem); //#3
-	constructor(attr: IAttrBSDropdownMenu, elem: IAttrBSDropdownMenuElem); //#4
+	constructor(elem: IElem); //#3
+	constructor(attr: IAttrBSDropdownMenu, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
