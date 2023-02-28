@@ -13,6 +13,8 @@ import { msg } from "./msg.js";
 import { row } from "./row.js";
 import { textarea } from "./textarea.js";
 import { dropdown } from "./dropdown/_index.js";
+import { btngroup } from "./btngroup.js";
+import { inputgroup } from "./inputgroup/_index.js";
 
 export const bs = {
 	icon,
@@ -30,4 +32,6 @@ export const bs = {
 	select,
 	textarea,
 	dropdown,
+	btngroup,
+	inputgroup,
 };

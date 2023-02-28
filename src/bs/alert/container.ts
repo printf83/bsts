@@ -1,12 +1,5 @@
-import { genBootstrapClass } from "../../core/attach/attachBootstrap.js";
-import {
-	bootstrapAttachRule,
-	bootstrapBase,
-	bootstrapRuleDB,
-	bootstrapType,
-} from "../../core/base/bootstrap.js";
+import { bootstrapType } from "../../core/base/bootstrap.js";
 import { IAttr, IElem, isAttr } from "../../core/base/tag.js";
-import { mergeClass } from "../../core/fn/mergeClass.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
 import { div } from "../../ht/div.js";
 import { btnclose } from "../btnclose.js";
@@ -17,23 +10,17 @@ export interface IAttrBSAlertContainer extends IAttr {
 	dismissible?: true;
 }
 
-const rules: bootstrapRuleDB = {
-	alertColor: new bootstrapAttachRule({
-		format: "alert-$1",
-		value: bootstrapBase.btnColor.concat(),
-	}),
-};
-
 const convert = (attr: IAttrBSAlertContainer): IAttrBSAlertContainer => {
 	//add default value
-	if (!attr.role) attr.role = "alert";
-	if (!attr.color) attr.color = "primary";
+	attr.role = attr.role || "alert";
+	attr.color = attr.color || "primary";
 
 	//add alert class
 	attr = mergeObject(
 		{
 			class: [
 				"alert",
+				attr.color ? `alert-${attr.color}` : "",
 				attr.dismissible ? "alert-dismissible" : "",
 				attr.dismissible ? "fade" : "",
 				attr.dismissible ? "show" : "",
@@ -41,11 +28,6 @@ const convert = (attr: IAttrBSAlertContainer): IAttrBSAlertContainer => {
 			role: attr.role,
 		},
 		attr
-	);
-
-	attr.class = mergeClass(
-		genBootstrapClass("alertColor", rules.alertColor, attr.color!),
-		attr.class
 	);
 
 	if (attr.dismissible) {

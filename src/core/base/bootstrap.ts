@@ -750,6 +750,8 @@ export namespace bootstrapBase {
 	export const linkColor = color;
 	export const bgColor = [...color, "body"] as const;
 
+	export const dropdownDirection = ["up", "start", "end"] as const;
+
 	export const textTransform = [
 		"lowercase",
 		"uppercase",

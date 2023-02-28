@@ -17,11 +17,146 @@ core.documentReady(() => {
 		new bs.row({ gap: 3 }, [
 			new bs.row(new bs.col({ padding: 3 }, "")),
 			new bs.row(
-				new bs.col([new bs.textarea({ rows: 3, weight: "lg" }, loream)])
+				new bs.col([
+					new bs.inputgroup.container(
+						{ marginBottom: 3, weight: "sm" },
+						[
+							new bs.inputgroup.text(
+								{ id: "inputGroup-sizing-small" },
+								"Small"
+							),
+							new bs.input({
+								type: "text",
+								aria: {
+									label: "Sizing example input",
+									describedby: "inputGroup-sizing-small",
+								},
+							}),
+						]
+					),
+					new bs.inputgroup.container({ marginBottom: 3 }, [
+						new bs.inputgroup.text(
+							{ id: "inputGroup-sizing-default" },
+							"Default"
+						),
+						new bs.input({
+							type: "text",
+							aria: {
+								label: "Sizing example input",
+								describedby: "inputGroup-sizing-default",
+							},
+						}),
+					]),
+					new bs.inputgroup.container(
+						{ marginBottom: 3, weight: "lg" },
+						[
+							new bs.inputgroup.text(
+								{ id: "inputGroup-sizing-large" },
+								"Large"
+							),
+							new bs.input({
+								type: "text",
+								aria: {
+									label: "Sizing example input",
+									describedby: "inputGroup-sizing-large",
+								},
+							}),
+						]
+					),
+				])
 			),
+
+			new bs.row(
+				new bs.col([
+					new bs.inputgroup.container({ marginBottom: 3 }, [
+						new bs.inputgroup.text(
+							new bs.input({
+								type: "checkbox",
+								marginTop: 0,
+								aria: {
+									label: "Checkbox for following text input",
+								},
+							})
+						),
+						new bs.input({
+							type: "text",
+							aria: {
+								label: "Text input with checkbox",
+							},
+						}),
+					]),
+					new bs.inputgroup.container(
+						{ marginBottom: 3, weight: "lg" },
+						[
+							new bs.inputgroup.text(
+								new bs.input({
+									type: "radio",
+									marginTop: 0,
+									aria: {
+										label: "Radio button for following text input",
+									},
+								})
+							),
+							new bs.input({
+								type: "text",
+								aria: {
+									label: "Text input with radio button",
+								},
+							}),
+						]
+					),
+				])
+			),
+
 			new bs.row(
 				new bs.col(
-					new ht.div({ class: "btn-group" }, [
+					new bs.inputgroup.container({ marginBottom: 3 }, [
+						new bs.inputgroup.text("First and last name"),
+						new bs.input({
+							type: "text",
+							aria: {
+								label: "First name",
+							},
+						}),
+						new bs.input({
+							type: "text",
+							aria: {
+								label: "Last name",
+							},
+						}),
+					])
+				)
+			),
+
+			new bs.row(
+				new bs.col(
+					new bs.inputgroup.container({ marginBottom: 3 }, [
+						new bs.dropdown.toggle({
+							elem: "Dropdown",
+							outline: true,
+							color: "secondary",
+						}),
+						new bs.dropdown.menu([
+							new bs.dropdown.header("Hello"),
+							new bs.dropdown.item({ active: true }, "Action"),
+							new bs.dropdown.item("Another action"),
+							new bs.dropdown.item("Something else here"),
+							new bs.dropdown.divider(),
+							new bs.dropdown.item("Separated link"),
+						]),
+						new bs.input({
+							type: "text",
+							aria: {
+								label: "Text input with dropdown button",
+							},
+						}),
+					])
+				)
+			),
+
+			new bs.row(
+				new bs.col(
+					new bs.dropdown.container({ drop: "up", center: true }, [
 						// new bs.button({ color: "danger" }, "Dropdown button X"),
 						new bs.dropdown.toggle({
 							// split: true,
@@ -34,7 +169,10 @@ core.documentReady(() => {
 							},
 							[
 								new bs.dropdown.header("Hello"),
-								new bs.dropdown.item("Action"),
+								new bs.dropdown.item(
+									{ active: true },
+									"Action"
+								),
 								new bs.dropdown.item("Another action"),
 								new bs.dropdown.item("Something else here"),
 								new bs.dropdown.divider(),
@@ -47,21 +185,35 @@ core.documentReady(() => {
 
 			new bs.row(
 				new bs.col(
-					new ht.div({ class: "btn-group" }, [
-						new bs.button("Dropdown button X"),
-						new bs.dropdown.toggle({
-							split: true,
-							menuAutoClose: "manual",
-						}),
-						new bs.dropdown.menu(
-							{
-								positionView: ["start", "md-center", "lg-end"],
-								textColor: "muted",
-								padding: 3,
+					new bs.dropdown.container(
+						{
+							drop: "start",
+							on: {
+								"hidden.bs.dropdown": function () {
+									alert("Test hidden.bs.dropdown event");
+								},
 							},
-							[new ht.div("Hello"), new ht.div("World")]
-						),
-					])
+						},
+						[
+							new bs.dropdown.toggle({
+								split: true,
+								menuAutoClose: "manual",
+							}),
+							new bs.dropdown.menu(
+								{
+									positionView: [
+										"start",
+										"md-center",
+										"lg-end",
+									],
+									textColor: "muted",
+									padding: 3,
+								},
+								[new ht.div("Hello"), new ht.div("World")]
+							),
+							new bs.button("Dropdown button X"),
+						]
+					)
 				)
 			),
 		])

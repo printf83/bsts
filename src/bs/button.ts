@@ -1,12 +1,5 @@
-import { genBootstrapClass } from "../core/attach/attachBootstrap.js";
-import {
-	bootstrapAttachRule,
-	bootstrapBase,
-	bootstrapRuleDB,
-	bootstrapType,
-} from "../core/base/bootstrap.js";
+import { bootstrapType } from "../core/base/bootstrap.js";
 import { IElem, isAttr, tag } from "../core/base/tag.js";
-import { mergeClass } from "../core/fn/mergeClass.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { IAttrTagButton } from "../ht/button.js";
 
@@ -19,23 +12,22 @@ export interface IAttrBSButton extends IAttrTagButton {
 	role?: "button";
 }
 
-const rules: bootstrapRuleDB = {
-	btnColor: new bootstrapAttachRule({
-		format: "btn-$1",
-		value: bootstrapBase.btnColor.concat(),
-	}),
-	btnOutlineColor: new bootstrapAttachRule({
-		format: "btn-outline-$1",
-		value: bootstrapBase.btnOutlineColor.concat(),
-	}),
-};
-
 const convert = (attr: IAttrBSButton): IAttrBSButton => {
+	//default button color
+
+	attr.color = attr.color || "primary";
 	//add btn class
 	//weight,role,toggle
 	attr = mergeObject(
 		{
-			class: ["btn", attr.weight ? `btn-${attr.weight}` : ""],
+			class: [
+				"btn",
+				attr.weight ? `btn-${attr.weight}` : "",
+				attr.color && attr.outline !== true ? `btn-${attr.color}` : "",
+				attr.color && attr.outline === true
+					? `btn-outline-${attr.color}`
+					: "",
+			],
 			role: attr.href ? "button" : undefined,
 			data: {
 				"bs-toggle": attr.toggle ? "button" : undefined,
@@ -43,25 +35,6 @@ const convert = (attr: IAttrBSButton): IAttrBSButton => {
 		},
 		attr
 	);
-
-	//color & outline
-	attr.color = attr.color || "primary";
-
-	if (attr.outline === true) {
-		attr.class = mergeClass(
-			genBootstrapClass(
-				"btnOutlineColor",
-				rules.btnOutlineColor,
-				attr.color
-			),
-			attr.class
-		);
-	} else {
-		attr.class = mergeClass(
-			genBootstrapClass("btnColor", rules.btnColor, attr.color),
-			attr.class
-		);
-	}
 
 	delete attr.color;
 	delete attr.outline;

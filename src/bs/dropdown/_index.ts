@@ -1,3 +1,4 @@
+import { container } from "./container.js";
 import { divider } from "./divider.js";
 import { header } from "./header.js";
 import { item } from "./item.js";
@@ -10,4 +11,5 @@ export const dropdown = {
 	menu,
 	toggle,
 	header,
+	container,
 };
