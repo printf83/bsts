@@ -16,6 +16,7 @@ import { dropdown } from "./dropdown/_index.js";
 import { btngroup } from "./btngroup.js";
 import { inputgroup } from "./inputgroup/_index.js";
 import { formfloating } from "./formfloating.js";
+import { card } from "./card/_index.js";
 
 export const bs = {
 	icon,
@@ -36,4 +37,5 @@ export const bs = {
 	btngroup,
 	inputgroup,
 	formfloating,
+	card,
 };
