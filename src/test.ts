@@ -419,6 +419,43 @@ core.documentReady(() => {
 					])
 				)
 			),
+
+			new bs.row(
+				new bs.col({ col: 6 }, [
+					new ht.p({ display: "flex", gap: 1 }, [
+						new bs.collapse.toggle(
+							{
+								link: true,
+								target: "#cE1",
+								control: "cE1",
+							},
+							"First"
+						),
+						new bs.collapse.toggle(
+							{
+								target: "#cE2",
+								control: "cE2",
+							},
+							"Second"
+						),
+						new bs.collapse.toggle(
+							{
+								target: ".multi-collapse",
+								control: "cE1 cE2",
+							},
+							"Both"
+						),
+					]),
+					new bs.collapse.container(
+						{ id: "cE1", class: "multi-collapse" },
+						new bs.card.container(new bs.card.body("1"))
+					),
+					new bs.collapse.container(
+						{ id: "cE2", class: "multi-collapse" },
+						new bs.card.container(new bs.card.body("2"))
+					),
+				])
+			),
 		])
 	);
 
