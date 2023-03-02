@@ -1,6 +1,6 @@
-import { link } from "../alert/link.js";
-import { container } from "../container.js";
-import { img } from "../img.js";
+import { link } from "./link.js";
+import { container } from "./container.js";
+import { img } from "./img.js";
 import { body } from "./body.js";
 import { footer } from "./footer.js";
 import { header } from "./header.js";
@@ -8,6 +8,8 @@ import { list } from "./list/_index.js";
 import { subtitle } from "./subtitle.js";
 import { text } from "./text.js";
 import { title } from "./title.js";
+import { imgoverlay } from "./imgoverlay.js";
+import { group } from "./group.js";
 
 export const card = {
 	body,
@@ -20,4 +22,6 @@ export const card = {
 	list,
 	header,
 	footer,
+	imgoverlay,
+	group,
 };

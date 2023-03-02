@@ -9,12 +9,38 @@ let select_option = [
 	{ value: "E", elem: "E" },
 ];
 
+let fnCard = (txt: string, src: string, footer?: true) => {
+	return new bs.card.container([
+		new bs.card.img({ src: src, location: "top" }),
+		new bs.card.body([
+			new bs.card.title("Card title"),
+			new bs.card.text(txt),
+			!footer
+				? new bs.card.text(
+						new ht.small(
+							{ textColor: "muted" },
+							"Last updated 3 mins ago"
+						)
+				  )
+				: "",
+		]),
+		footer
+			? new bs.card.footer(
+					new ht.small(
+						{ textColor: "muted" },
+						"Last updated 3 mins ago"
+					)
+			  )
+			: "",
+	]);
+};
+
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 
 	core.replaceChild(
 		body,
-		new bs.row({ gap: 3 }, [
+		new bs.row({ paddingY: 5, gap: 3 }, [
 			new bs.row(new bs.col({ padding: 3 }, "")),
 			new bs.row(
 				new bs.col([
@@ -227,6 +253,168 @@ core.documentReady(() => {
 						new bs.label(
 							{ for: "floatingSelectGrid" },
 							"Works with selects"
+						),
+					])
+				)
+			),
+
+			new bs.row(
+				new bs.col(
+					{ col: 6 },
+					new bs.card.container({ style: { width: "18rem" } }, [
+						new bs.card.img({
+							location: "top",
+							src: "https://picsum.photos/seed/1231/200/200",
+						}),
+
+						new bs.card.body([
+							new bs.card.title("Card title"),
+							new bs.card.text(
+								"Some quick example text to build on the card title and make up the bulk of the card's content."
+							),
+						]),
+
+						new bs.card.list.group({ flush: true }, [
+							new bs.card.list.item("An item"),
+							new bs.card.list.item("A second item"),
+							new bs.card.list.item("A third item"),
+						]),
+
+						new bs.card.body([
+							new bs.card.link({ href: "#" }, "Card link"),
+							new bs.card.link({ href: "#" }, "Another link"),
+						]),
+					])
+				)
+			),
+
+			new bs.row(
+				new bs.col(
+					{ col: 6 },
+					new bs.card.container(
+						{ textAlign: "center", style: { width: "18rem" } },
+						[
+							new bs.card.header("Featured"),
+							new bs.card.body([
+								new bs.card.title("Special title treatment"),
+								new bs.card.text(
+									"With supporting text below as a natural lead-in to additional content."
+								),
+								new bs.button({ href: "#" }, "Go somewhere"),
+							]),
+							new bs.card.footer(
+								{ textColor: "muted" },
+								"2 days ago"
+							),
+						]
+					)
+				)
+			),
+
+			new bs.row(
+				new bs.col(
+					{ col: 6 },
+					new bs.card.container([
+						new bs.card.img({
+							rounded: true,
+							src: "https://picsum.photos/seed/1231/400/100",
+						}),
+						new bs.card.imgoverlay([
+							new bs.card.title("Card title"),
+							new bs.card.text(
+								"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+							),
+							new bs.card.text(
+								new ht.small("Last updated 3 mins ago")
+							),
+						]),
+					])
+				)
+			),
+
+			new bs.row(
+				new bs.col(
+					{ col: 6 },
+					new bs.card.container([
+						new bs.row({ gap: 0 }, [
+							new bs.col(
+								{ col: "md-4" },
+								new bs.card.img({
+									fluid: true,
+									rounded: "start",
+									src: "https://picsum.photos/seed/1231/200/200",
+								})
+							),
+							new bs.col(
+								{
+									col: "md-8",
+								},
+								new bs.card.body([
+									new bs.card.title("Card title"),
+									new bs.card.text(
+										"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+									),
+									new bs.card.text(
+										new ht.small("Last updated 3 mins ago")
+									),
+								])
+							),
+						]),
+					])
+				)
+			),
+
+			new bs.row(
+				new bs.col(
+					{ col: 4 },
+					new bs.card.container({ borderColor: "success" }, [
+						new bs.card.header("Header"),
+						new bs.card.body([
+							new bs.card.title("Card title"),
+							new bs.card.text(
+								"Some quick example text to build on the card title and make up the bulk of the card's content."
+							),
+						]),
+					])
+				)
+			),
+
+			new bs.row(
+				new bs.col(
+					new bs.card.group([
+						fnCard(
+							"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
+							"https://picsum.photos/seed/1232/200/150"
+						),
+						fnCard(
+							"This card has supporting text below as a natural lead-in to additional content.",
+							"https://picsum.photos/seed/1233/200/150"
+						),
+						fnCard(
+							"This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.",
+							"https://picsum.photos/seed/1234/200/150"
+						),
+					])
+				)
+			),
+
+			new bs.row(
+				new bs.col(
+					new bs.card.group([
+						fnCard(
+							"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
+							"https://picsum.photos/seed/1232/200/150",
+							true
+						),
+						fnCard(
+							"This card has supporting text below as a natural lead-in to additional content.",
+							"https://picsum.photos/seed/1233/200/150",
+							true
+						),
+						fnCard(
+							"This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.",
+							"https://picsum.photos/seed/1234/200/150",
+							true
 						),
 					])
 				)

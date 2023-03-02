@@ -3,11 +3,18 @@ import { mergeClass } from "../../../core/fn/mergeClass.js";
 import { IAttrTagUl, IElemTagUl, ul } from "../../../ht/ul.js";
 
 export interface IAttrBSCardListGroup extends IAttrTagUl {
-	flush?: true;
+	flush?: boolean;
 }
 
 const convert = (attr: IAttrBSCardListGroup): IAttrTagUl => {
-	attr.class = mergeClass(attr.class, "list-group");
+	if (attr.flush === undefined) {
+		attr.flush = true;
+	}
+
+	attr.class = mergeClass(attr.class, [
+		"list-group",
+		attr.flush ? "list-group-flush" : "",
+	]);
 
 	delete attr.flush;
 

@@ -1,23 +1,23 @@
-import { IElem, isAttr } from "../../core/base/tag.js";
+import { IAttr, IElem, isAttr } from "../../core/base/tag.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
-import { a, IAttrTagA } from "../../ht/a.js";
+import { div } from "../../ht/div.js";
 
-const convert = (attr: IAttrTagA): IAttrTagA => {
-	attr.class = mergeClass(attr.class, "card-link");
+const convert = (attr: IAttr): IAttr => {
+	attr.class = mergeClass(attr.class, "card-group");
 	return attr;
 };
 
-export class link extends a {
+export class group extends div {
 	constructor(); //#1
-	constructor(attr: IAttrTagA); //#2
+	constructor(attr: IAttr); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrTagA, elem: IElem); //#4
+	constructor(attr: IAttr, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
 			super(convert({}));
 		} else if (arg.length === 1) {
-			if (isAttr<IAttrTagA>(arg[0])) {
+			if (isAttr<IAttr>(arg[0])) {
 				//#2
 				super(convert(arg[0]));
 			} else {

@@ -1,9 +1,9 @@
 import { isAttr } from "../../core/base/tag.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
-import { IAttrBSImg, img } from "../../bs/img.js";
+import { IAttrBSImg, img as TImg } from "../../bs/img.js";
 
 export interface IAttrBSCardImg extends IAttrBSImg {
-	location?: "top";
+	location?: "top" | "bottom";
 }
 
 const convert = (attr: IAttrBSCardImg): IAttrBSImg => {
@@ -16,7 +16,7 @@ const convert = (attr: IAttrBSCardImg): IAttrBSImg => {
 	return attr;
 };
 
-export class text extends img {
+export class img extends TImg {
 	constructor(); //#1
 	constructor(src: string); //#2
 	constructor(attr: IAttrBSCardImg); //#3

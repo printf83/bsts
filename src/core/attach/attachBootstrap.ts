@@ -2,7 +2,12 @@ import { keyOfType } from "./../fn/keyOfType.js";
 import { addClassIntoElement } from "../fn/addClassIntoElement.js";
 import { setting } from "../fn/setting.js";
 import { IAttachFn } from "./_index.js";
-import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB, isBootstrapType } from "../base/bootstrap.js";
+import {
+	bootstrapAttachRule,
+	bootstrapBase,
+	bootstrapRuleDB,
+	isBootstrapType,
+} from "../base/bootstrap.js";
 
 const db: bootstrapRuleDB = {
 	userSelect: new bootstrapAttachRule({
@@ -10,27 +15,67 @@ const db: bootstrapRuleDB = {
 		value: bootstrapBase.userSelect.concat(),
 		shared: true,
 	}),
-	pointerEvent: new bootstrapAttachRule({ format: "pe-$1", value: bootstrapBase.pointerEvent.concat() }),
-	position: new bootstrapAttachRule({ format: "position-$1", value: bootstrapBase.position.concat(), shared: true }),
-	overflow: new bootstrapAttachRule({ format: "overflow-$1", value: bootstrapBase.overflow.concat(), shared: true }),
+	pointerEvent: new bootstrapAttachRule({
+		format: "pe-$1",
+		value: bootstrapBase.pointerEvent.concat(),
+	}),
+	position: new bootstrapAttachRule({
+		format: "position-$1",
+		value: bootstrapBase.position.concat(),
+		shared: true,
+	}),
+	overflow: new bootstrapAttachRule({
+		format: "overflow-$1",
+		value: bootstrapBase.overflow.concat(),
+		shared: true,
+	}),
 
-	textAlign: new bootstrapAttachRule({ format: "text-$1", value: bootstrapBase.textAlign.concat(), shared: true }),
+	textAlign: new bootstrapAttachRule({
+		format: "text-$1",
+		value: bootstrapBase.textAlign.concat(),
+		shared: true,
+	}),
 	verticalAlign: new bootstrapAttachRule({
 		format: "align-$1",
 		value: bootstrapBase.verticalAlign.concat(),
 		shared: true,
 	}),
 
-	opacity: new bootstrapAttachRule({ format: "opacity-$1", value: bootstrapBase.opacity.concat(), shared: true }),
-	bgOpacity: new bootstrapAttachRule({ format: "bg-opacity-$1", value: bootstrapBase.bgOpacity.concat() }),
-	textOpacity: new bootstrapAttachRule({ format: "text-opacity-$1", value: bootstrapBase.textOpacity.concat() }),
+	opacity: new bootstrapAttachRule({
+		format: "opacity-$1",
+		value: bootstrapBase.opacity.concat(),
+		shared: true,
+	}),
+	bgOpacity: new bootstrapAttachRule({
+		format: "bg-opacity-$1",
+		value: bootstrapBase.bgOpacity.concat(),
+	}),
+	textOpacity: new bootstrapAttachRule({
+		format: "text-opacity-$1",
+		value: bootstrapBase.textOpacity.concat(),
+	}),
 
-	alertColor: new bootstrapAttachRule({ format: "alert-$1", value: bootstrapBase.alertColor.concat() }),
+	alertColor: new bootstrapAttachRule({
+		format: "alert-$1",
+		value: bootstrapBase.alertColor.concat(),
+	}),
 
-	textBgColor: new bootstrapAttachRule({ format: "text-bg-$1", value: bootstrapBase.textBgColor.concat() }),
-	textColor: new bootstrapAttachRule({ format: "text-$1", value: bootstrapBase.textColor.concat() }),
-	linkColor: new bootstrapAttachRule({ format: "link-$1", value: bootstrapBase.linkColor.concat() }),
-	bgColor: new bootstrapAttachRule({ format: "bg-$1", value: bootstrapBase.bgColor.concat() }),
+	textBgColor: new bootstrapAttachRule({
+		format: "text-bg-$1",
+		value: bootstrapBase.textBgColor.concat(),
+	}),
+	textColor: new bootstrapAttachRule({
+		format: "text-$1",
+		value: bootstrapBase.textColor.concat(),
+	}),
+	linkColor: new bootstrapAttachRule({
+		format: "link-$1",
+		value: bootstrapBase.linkColor.concat(),
+	}),
+	bgColor: new bootstrapAttachRule({
+		format: "bg-$1",
+		value: bootstrapBase.bgColor.concat(),
+	}),
 
 	textTransform: new bootstrapAttachRule({
 		format: "text-$1",
@@ -42,36 +87,93 @@ const db: bootstrapRuleDB = {
 		value: bootstrapBase.textDecoration.concat(),
 		shared: true,
 	}),
-	lineHeight: new bootstrapAttachRule({ format: "lh-$1", value: bootstrapBase.lineHeight.concat(), shared: true }),
+	lineHeight: new bootstrapAttachRule({
+		format: "lh-$1",
+		value: bootstrapBase.lineHeight.concat(),
+		shared: true,
+	}),
 
-	fontSize: new bootstrapAttachRule({ format: "fs-$1", value: bootstrapBase.fontSize.concat(), shared: true }),
-	fontWeight: new bootstrapAttachRule({ format: "fw-$1", value: bootstrapBase.fontWeight.concat(), shared: true }),
+	fontSize: new bootstrapAttachRule({
+		format: "fs-$1",
+		value: bootstrapBase.fontSize.concat(),
+		shared: true,
+	}),
+	fontWeight: new bootstrapAttachRule({
+		format: "fw-$1",
+		value: bootstrapBase.fontWeight.concat(),
+		shared: true,
+	}),
 	fontDisplay: new bootstrapAttachRule({
 		format: "display-$1",
 		value: bootstrapBase.fontSize.concat(),
 		shared: true,
 	}),
 
-	top: new bootstrapAttachRule({ format: "top-$1", value: bootstrapBase.top.concat(), shared: true }),
-	bottom: new bootstrapAttachRule({ format: "bottom-$1", value: bootstrapBase.bottom.concat(), shared: true }),
-	start: new bootstrapAttachRule({ format: "start-$1", value: bootstrapBase.start.concat() }),
-	end: new bootstrapAttachRule({ format: "end-$1", value: bootstrapBase.end.concat() }),
+	top: new bootstrapAttachRule({
+		format: "top-$1",
+		value: bootstrapBase.top.concat(),
+		shared: true,
+	}),
+	bottom: new bootstrapAttachRule({
+		format: "bottom-$1",
+		value: bootstrapBase.bottom.concat(),
+		shared: true,
+	}),
+	start: new bootstrapAttachRule({
+		format: "start-$1",
+		value: bootstrapBase.start.concat(),
+	}),
+	end: new bootstrapAttachRule({
+		format: "end-$1",
+		value: bootstrapBase.end.concat(),
+	}),
 	tMiddle: new bootstrapAttachRule({
 		format: "translate-middle-$1",
 		value: bootstrapBase.tMiddle.concat(),
 		formatTrue: "translate-middle",
 	}),
 
-	height: new bootstrapAttachRule({ format: "h-$1", value: bootstrapBase.height.concat(), shared: true }),
-	width: new bootstrapAttachRule({ format: "w-$1", value: bootstrapBase.width.concat(), shared: true }),
-	maxHeight: new bootstrapAttachRule({ format: "mh-$1", value: bootstrapBase.maxHeight.concat(), shared: true }),
-	maxWidth: new bootstrapAttachRule({ format: "mw-$1", value: bootstrapBase.maxWidth.concat(), shared: true }),
-	minViewHeight: new bootstrapAttachRule({ format: "min-vh-$1", value: bootstrapBase.minViewHeight.concat() }),
-	minViewWidth: new bootstrapAttachRule({ format: "min-vw-$1", value: bootstrapBase.minViewWidth.concat() }),
-	viewHeight: new bootstrapAttachRule({ format: "vh-$1", value: bootstrapBase.viewHeight.concat() }),
-	viewWidth: new bootstrapAttachRule({ format: "vw-$1", value: bootstrapBase.viewWidth.concat() }),
+	height: new bootstrapAttachRule({
+		format: "h-$1",
+		value: bootstrapBase.height.concat(),
+		shared: true,
+	}),
+	width: new bootstrapAttachRule({
+		format: "w-$1",
+		value: bootstrapBase.width.concat(),
+		shared: true,
+	}),
+	maxHeight: new bootstrapAttachRule({
+		format: "mh-$1",
+		value: bootstrapBase.maxHeight.concat(),
+		shared: true,
+	}),
+	maxWidth: new bootstrapAttachRule({
+		format: "mw-$1",
+		value: bootstrapBase.maxWidth.concat(),
+		shared: true,
+	}),
+	minViewHeight: new bootstrapAttachRule({
+		format: "min-vh-$1",
+		value: bootstrapBase.minViewHeight.concat(),
+	}),
+	minViewWidth: new bootstrapAttachRule({
+		format: "min-vw-$1",
+		value: bootstrapBase.minViewWidth.concat(),
+	}),
+	viewHeight: new bootstrapAttachRule({
+		format: "vh-$1",
+		value: bootstrapBase.viewHeight.concat(),
+	}),
+	viewWidth: new bootstrapAttachRule({
+		format: "vw-$1",
+		value: bootstrapBase.viewWidth.concat(),
+	}),
 
-	placeholder: new bootstrapAttachRule({ value: bootstrapBase.placeholder.concat(), formatTrue: "placeholder" }),
+	placeholder: new bootstrapAttachRule({
+		value: bootstrapBase.placeholder.concat(),
+		formatTrue: "placeholder",
+	}),
 	placeholderAnimation: new bootstrapAttachRule({
 		format: "placeholder-$1",
 		value: bootstrapBase.placeholderAnimation.concat(),
@@ -122,7 +224,7 @@ const db: bootstrapRuleDB = {
 	rounded: new bootstrapAttachRule({
 		format: "rounded-$1",
 		value: bootstrapBase.rounded.concat(),
-		formatValue: "rounded",
+		formatTrue: "rounded",
 		formatFalse: "rounded-0",
 	}),
 	roundedNone: new bootstrapAttachRule({
@@ -138,47 +240,120 @@ const db: bootstrapRuleDB = {
 		formatValue: "rounded",
 	}),
 
-	padding: new bootstrapAttachRule({ format: "p-$1", value: bootstrapBase.padding.concat(), shared: true }),
-	paddingX: new bootstrapAttachRule({ format: "px-$1", value: bootstrapBase.paddingX.concat() }),
-	paddingY: new bootstrapAttachRule({ format: "py-$1", value: bootstrapBase.paddingY.concat() }),
-	paddingTop: new bootstrapAttachRule({ format: "pt-$1", value: bootstrapBase.paddingTop.concat(), shared: true }),
+	padding: new bootstrapAttachRule({
+		format: "p-$1",
+		value: bootstrapBase.padding.concat(),
+		shared: true,
+	}),
+	paddingX: new bootstrapAttachRule({
+		format: "px-$1",
+		value: bootstrapBase.paddingX.concat(),
+	}),
+	paddingY: new bootstrapAttachRule({
+		format: "py-$1",
+		value: bootstrapBase.paddingY.concat(),
+	}),
+	paddingTop: new bootstrapAttachRule({
+		format: "pt-$1",
+		value: bootstrapBase.paddingTop.concat(),
+		shared: true,
+	}),
 	paddingBottom: new bootstrapAttachRule({
 		format: "pb-$1",
 		value: bootstrapBase.paddingBottom.concat(),
 		shared: true,
 	}),
-	paddingStart: new bootstrapAttachRule({ format: "ps-$1", value: bootstrapBase.paddingStart.concat() }),
-	paddingEnd: new bootstrapAttachRule({ format: "pe-$1", value: bootstrapBase.paddingEnd.concat() }),
+	paddingStart: new bootstrapAttachRule({
+		format: "ps-$1",
+		value: bootstrapBase.paddingStart.concat(),
+	}),
+	paddingEnd: new bootstrapAttachRule({
+		format: "pe-$1",
+		value: bootstrapBase.paddingEnd.concat(),
+	}),
 
-	margin: new bootstrapAttachRule({ format: "m-$1", value: bootstrapBase.margin.concat(), shared: true }),
-	marginX: new bootstrapAttachRule({ format: "mx-$1", value: bootstrapBase.marginX.concat() }),
-	marginY: new bootstrapAttachRule({ format: "my-$1", value: bootstrapBase.marginY.concat() }),
-	marginTop: new bootstrapAttachRule({ format: "mt-$1", value: bootstrapBase.marginTop.concat(), shared: true }),
+	margin: new bootstrapAttachRule({
+		format: "m-$1",
+		value: bootstrapBase.margin.concat(),
+		shared: true,
+	}),
+	marginX: new bootstrapAttachRule({
+		format: "mx-$1",
+		value: bootstrapBase.marginX.concat(),
+	}),
+	marginY: new bootstrapAttachRule({
+		format: "my-$1",
+		value: bootstrapBase.marginY.concat(),
+	}),
+	marginTop: new bootstrapAttachRule({
+		format: "mt-$1",
+		value: bootstrapBase.marginTop.concat(),
+		shared: true,
+	}),
 	marginBottom: new bootstrapAttachRule({
 		format: "mb-$1",
 		value: bootstrapBase.marginBottom.concat(),
 		shared: true,
 	}),
-	marginStart: new bootstrapAttachRule({ format: "ms-$1", value: bootstrapBase.marginStart.concat() }),
-	marginEnd: new bootstrapAttachRule({ format: "me-$1", value: bootstrapBase.marginEnd.concat() }),
+	marginStart: new bootstrapAttachRule({
+		format: "ms-$1",
+		value: bootstrapBase.marginStart.concat(),
+	}),
+	marginEnd: new bootstrapAttachRule({
+		format: "me-$1",
+		value: bootstrapBase.marginEnd.concat(),
+	}),
 
-	gap: new bootstrapAttachRule({ format: "gap-$1", value: bootstrapBase.gap.concat() }),
-	gutter: new bootstrapAttachRule({ format: "g-$1", value: bootstrapBase.gutter.concat() }),
-	gutterX: new bootstrapAttachRule({ format: "gx-$1", value: bootstrapBase.gutterX.concat() }),
-	gutterY: new bootstrapAttachRule({ format: "gy-$1", value: bootstrapBase.gutterY.concat() }),
+	gap: new bootstrapAttachRule({
+		format: "gap-$1",
+		value: bootstrapBase.gap.concat(),
+	}),
+	gutter: new bootstrapAttachRule({
+		format: "g-$1",
+		value: bootstrapBase.gutter.concat(),
+	}),
+	gutterX: new bootstrapAttachRule({
+		format: "gx-$1",
+		value: bootstrapBase.gutterX.concat(),
+	}),
+	gutterY: new bootstrapAttachRule({
+		format: "gy-$1",
+		value: bootstrapBase.gutterY.concat(),
+	}),
 
-	display: new bootstrapAttachRule({ format: "d-$1", value: bootstrapBase.display.concat(), shared: true }),
-	print: new bootstrapAttachRule({ format: "d-print-$1", value: bootstrapBase.print.concat() }),
+	display: new bootstrapAttachRule({
+		format: "d-$1",
+		value: bootstrapBase.display.concat(),
+		shared: true,
+	}),
+	print: new bootstrapAttachRule({
+		format: "d-print-$1",
+		value: bootstrapBase.print.concat(),
+	}),
 	container: new bootstrapAttachRule({
 		format: "container-$1",
 		value: bootstrapBase.container.concat(),
 		formatTrue: "container",
 	}),
 
-	flex: new bootstrapAttachRule({ format: "flex-$1", value: bootstrapBase.flex.concat(), shared: true }),
-	float: new bootstrapAttachRule({ format: "float-$1", value: bootstrapBase.float.concat() }),
-	order: new bootstrapAttachRule({ format: "order-$1", value: bootstrapBase.order.concat(), shared: true }),
-	offset: new bootstrapAttachRule({ format: "offset-$1", value: bootstrapBase.offset.concat() }),
+	flex: new bootstrapAttachRule({
+		format: "flex-$1",
+		value: bootstrapBase.flex.concat(),
+		shared: true,
+	}),
+	float: new bootstrapAttachRule({
+		format: "float-$1",
+		value: bootstrapBase.float.concat(),
+	}),
+	order: new bootstrapAttachRule({
+		format: "order-$1",
+		value: bootstrapBase.order.concat(),
+		shared: true,
+	}),
+	offset: new bootstrapAttachRule({
+		format: "offset-$1",
+		value: bootstrapBase.offset.concat(),
+	}),
 
 	alignContent: new bootstrapAttachRule({
 		format: "align-content-$1",
@@ -217,17 +392,33 @@ const db: bootstrapRuleDB = {
 		formatFalse: "fst-normal",
 	}),
 
-	bgGradient: new bootstrapAttachRule({ value: bootstrapBase.bgGradient.concat(), formatTrue: "bg-gradient" }),
+	bgGradient: new bootstrapAttachRule({
+		value: bootstrapBase.bgGradient.concat(),
+		formatTrue: "bg-gradient",
+	}),
 	wordBreak: new bootstrapAttachRule({
 		value: bootstrapBase.wordBreak.concat(),
 		formatTrue: "text-break",
 		shared: true,
 	}),
-	monospace: new bootstrapAttachRule({ value: bootstrapBase.monospace.concat(), formatTrue: "font-monospace" }),
+	monospace: new bootstrapAttachRule({
+		value: bootstrapBase.monospace.concat(),
+		formatTrue: "font-monospace",
+	}),
 
-	row: new bootstrapAttachRule({ value: bootstrapBase.row.concat(), formatTrue: "row" }),
-	col: new bootstrapAttachRule({ format: "col-$1", value: bootstrapBase.col.concat(), formatTrue: "col" }),
-	rowCol: new bootstrapAttachRule({ format: "row-cols-$1", value: bootstrapBase.rowCol.concat() }),
+	row: new bootstrapAttachRule({
+		value: bootstrapBase.row.concat(),
+		formatTrue: "row",
+	}),
+	col: new bootstrapAttachRule({
+		format: "col-$1",
+		value: bootstrapBase.col.concat(),
+		formatTrue: "col",
+	}),
+	rowCol: new bootstrapAttachRule({
+		format: "row-cols-$1",
+		value: bootstrapBase.rowCol.concat(),
+	}),
 };
 
 let allowProp: (string | undefined)[] = [];
@@ -244,7 +435,12 @@ const allow = (key: string) => {
 	return false;
 };
 
-const addBootstrapClass = (key: string, rule: bootstrapAttachRule, data: string | number | boolean, elem: HTMLElement) => {
+const addBootstrapClass = (
+	key: string,
+	rule: bootstrapAttachRule,
+	data: string | number | boolean,
+	elem: HTMLElement
+) => {
 	// if (rule.value!.findIndex((i) => data === i) > -1) {
 	if (rule.value && isBootstrapType(data, rule.value)) {
 		if (rule.formatValue) {
@@ -261,11 +457,17 @@ const addBootstrapClass = (key: string, rule: bootstrapAttachRule, data: string 
 			}
 		} else {
 			if (rule.format) {
-				elem = addClassIntoElement(elem, rule.format!.replace(/\$1/g, data.toString()));
+				elem = addClassIntoElement(
+					elem,
+					rule.format!.replace(/\$1/g, data.toString())
+				);
 			}
 		}
 	} else {
-		if (setting.DEBUG) console.warn(`${key}:"${data}" is not supported value for bootstrap property`);
+		if (setting.DEBUG)
+			console.warn(
+				`${key}:"${data}" is not supported value for bootstrap property`
+			);
 	}
 
 	return elem;
@@ -293,7 +495,11 @@ export const attachBootstrap: IAttachFn = (key, elem, attr) => {
 	return { attr, elem };
 };
 
-export const genBootstrapClass = (key: string, rule: bootstrapAttachRule, value: string | number | boolean | (string | number | boolean)[]) => {
+export const genBootstrapClass = (
+	key: string,
+	rule: bootstrapAttachRule,
+	value: string | number | boolean | (string | number | boolean)[]
+) => {
 	let result: string[] = [];
 
 	if (value) {
@@ -326,7 +532,10 @@ export const genBootstrapClass = (key: string, rule: bootstrapAttachRule, value:
 					}
 				}
 			} else {
-				if (setting.DEBUG) console.warn(`${key}:"${d}" is not supported value for bootstrap property`);
+				if (setting.DEBUG)
+					console.warn(
+						`${key}:"${d}" is not supported value for bootstrap property`
+					);
 			}
 		});
 	}
