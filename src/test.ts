@@ -317,7 +317,7 @@ core.documentReady(() => {
 					new bs.card.container([
 						new bs.card.img({
 							rounded: true,
-							src: "https://picsum.photos/seed/1231/400/100",
+							src: "https://picsum.photos/seed/1231/400/220",
 						}),
 						new bs.card.imgoverlay([
 							new bs.card.title("Card title"),
@@ -342,7 +342,7 @@ core.documentReady(() => {
 								new bs.card.img({
 									fluid: true,
 									rounded: "start",
-									src: "https://picsum.photos/seed/1231/200/200",
+									src: "https://picsum.photos/seed/1231/100/280",
 								})
 							),
 							new bs.col(

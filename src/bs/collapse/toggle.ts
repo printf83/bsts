@@ -1,6 +1,5 @@
 import { IElem, isAttr } from "../../core/base/tag.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
-import { span } from "../../ht/span.js";
 import { button, IAttrBSButton } from "../button.js";
 
 export interface IAttrBSCollapseToggle extends IAttrBSButton {
