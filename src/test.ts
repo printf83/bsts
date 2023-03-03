@@ -1,463 +1,495 @@
 // import { IAttrBSButton } from "./bs/button.js";
 import { bs, core, ht } from "./index.js";
 // let loream = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta tincidunt arcu eu dignissim. Suspendisse nunc tortor, semper ut commodo nec, bibendum ut quam. Vivamus porttitor egestas luctus. Morbi tincidunt tortor eu lorem gravida imperdiet. Vestibulum tincidunt hendrerit tempus. Morbi varius est ac euismod tristique. Fusce a tortor suscipit, lacinia arcu nec, aliquet tortor. Maecenas eu lorem nec ante faucibus sollicitudin. Nunc consequat ullamcorper congue. Praesent cursus velit euismod turpis ultrices, sit amet venenatis massa pharetra. Nunc maximus pharetra purus in maximus.`;
-let select_option = [
-	{ value: "A", elem: "A" },
-	{ value: "B", elem: "B" },
-	{ value: "C", elem: "C" },
-	{ value: "D", elem: "D" },
-	{ value: "E", elem: "E" },
-];
+// let select_option = [
+// 	{ value: "A", elem: "A" },
+// 	{ value: "B", elem: "B" },
+// 	{ value: "C", elem: "C" },
+// 	{ value: "D", elem: "D" },
+// 	{ value: "E", elem: "E" },
+// ];
 
-let fnCard = (txt: string, src: string, footer?: true) => {
-	return new bs.card.container([
-		new bs.card.img({ src: src, location: "top" }),
-		new bs.card.body([
-			new bs.card.title("Card title"),
-			new bs.card.text(txt),
-			!footer
-				? new bs.card.text(
-						new ht.small(
-							{ textColor: "muted" },
-							"Last updated 3 mins ago"
-						)
-				  )
-				: "",
-		]),
-		footer
-			? new bs.card.footer(
-					new ht.small(
-						{ textColor: "muted" },
-						"Last updated 3 mins ago"
-					)
-			  )
-			: "",
-	]);
-};
+// let fnCard = (txt: string, src: string, footer?: true) => {
+// 	return new bs.card.container([
+// 		new bs.card.img({ src: src, location: "top" }),
+// 		new bs.card.body([
+// 			new bs.card.title("Card title"),
+// 			new bs.card.text(txt),
+// 			!footer
+// 				? new bs.card.text(
+// 						new ht.small(
+// 							{ textColor: "muted" },
+// 							"Last updated 3 mins ago"
+// 						)
+// 				  )
+// 				: "",
+// 		]),
+// 		footer
+// 			? new bs.card.footer(
+// 					new ht.small(
+// 						{ textColor: "muted" },
+// 						"Last updated 3 mins ago"
+// 					)
+// 			  )
+// 			: "",
+// 	]);
+// };
 
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 
+	// core.replaceChild(body,
+	// 	new bs.row({ paddingY: 5, gap: 3 }, [
+	// 		// new bs.row(new bs.col([])),
+	// 	]));
+
 	core.replaceChild(
 		body,
 		new bs.row({ paddingY: 5, gap: 3 }, [
-			new bs.row(new bs.col({ padding: 3 }, "")),
+			// new bs.row(new bs.col([])),
 			new bs.row(
 				new bs.col([
-					new bs.inputgroup.container(
-						{ marginBottom: 3, weight: "sm" },
-						[
-							new bs.inputgroup.text(
-								{ id: "inputGroup-sizing-small" },
-								"Small"
-							),
-							new bs.input({
-								type: "text",
-								aria: {
-									label: "Sizing example input",
-									describedby: "inputGroup-sizing-small",
-								},
-							}),
-						]
-					),
-					new bs.inputgroup.container({ marginBottom: 3 }, [
-						new bs.inputgroup.text(
-							{ id: "inputGroup-sizing-default" },
-							"Default"
+					new bs.list.group({ horizontal: "md" }, [
+						new bs.list.item(
+							{ action: true, active: true },
+							"An item"
 						),
-						new bs.input({
-							type: "text",
-							aria: {
-								label: "Sizing example input",
-								describedby: "inputGroup-sizing-default",
-							},
-						}),
+						new bs.list.item({ action: true }, "A second item"),
+						new bs.list.item(
+							{ action: true, color: "warning" },
+							"A third item"
+						),
+						new bs.list.item(
+							{ action: true, color: "success" },
+							"A fourth item"
+						),
+						new bs.list.item({ action: true }, "And a fifth one"),
 					]),
-					new bs.inputgroup.container(
-						{ marginBottom: 3, weight: "lg" },
-						[
-							new bs.inputgroup.text(
-								{ id: "inputGroup-sizing-large" },
-								"Large"
-							),
-							new bs.input({
-								type: "text",
-								aria: {
-									label: "Sizing example input",
-									describedby: "inputGroup-sizing-large",
-								},
-							}),
-						]
-					),
-				])
-			),
-
-			new bs.row(
-				new bs.col([
-					new bs.inputgroup.container({ marginBottom: 3 }, [
-						new bs.inputgroup.text(
-							new bs.input({
-								type: "checkbox",
-								marginTop: 0,
-								aria: {
-									label: "Checkbox for following text input",
-								},
-							})
-						),
-						new bs.input({
-							type: "text",
-							aria: {
-								label: "Text input with checkbox",
-							},
-						}),
-					]),
-					new bs.inputgroup.container(
-						{ marginBottom: 3, weight: "lg" },
-						[
-							new bs.inputgroup.text(
-								new bs.input({
-									type: "radio",
-									marginTop: 0,
-									aria: {
-										label: "Radio button for following text input",
-									},
-								})
-							),
-							new bs.input({
-								type: "text",
-								aria: {
-									label: "Text input with radio button",
-								},
-							}),
-						]
-					),
-				])
-			),
-
-			new bs.row(
-				new bs.col(
-					new bs.inputgroup.container({ marginBottom: 3 }, [
-						new bs.inputgroup.text("First and last name"),
-						new bs.input({
-							type: "text",
-							aria: {
-								label: "First name",
-							},
-						}),
-						new bs.input({
-							type: "text",
-							aria: {
-								label: "Last name",
-							},
-						}),
-					])
-				)
-			),
-
-			new bs.row(
-				new bs.col(
-					new bs.inputgroup.container({ marginBottom: 3 }, [
-						new bs.dropdown.toggle({
-							elem: "Dropdown",
-							outline: true,
-							color: "secondary",
-						}),
-						new bs.dropdown.menu([
-							new bs.dropdown.header("Hello"),
-							new bs.dropdown.item({ active: true }, "Action"),
-							new bs.dropdown.item("Another action"),
-							new bs.dropdown.item("Something else here"),
-							new bs.dropdown.divider(),
-							new bs.dropdown.item("Separated link"),
-						]),
-						new bs.input({
-							type: "text",
-							aria: {
-								label: "Text input with dropdown button",
-							},
-						}),
-					])
-				)
-			),
-
-			new bs.row(
-				new bs.col(
-					new bs.dropdown.container({ drop: "up", center: true }, [
-						// new bs.button({ color: "danger" }, "Dropdown button X"),
-						new bs.dropdown.toggle({
-							// split: true,
-							color: "danger",
-						}),
-						new bs.dropdown.menu(
-							{
-								dark: true,
-								positionView: ["start", "md-center", "lg-end"],
-							},
-							[
-								new bs.dropdown.header("Hello"),
-								new bs.dropdown.item(
-									{ active: true },
-									"Action"
-								),
-								new bs.dropdown.item("Another action"),
-								new bs.dropdown.item("Something else here"),
-								new bs.dropdown.divider(),
-								new bs.dropdown.item("Separated link"),
-							]
-						),
-					])
-				)
-			),
-
-			new bs.row(
-				new bs.col(
-					new bs.dropdown.container(
-						{
-							drop: "start",
-							on: {
-								"hidden.bs.dropdown": function () {
-									alert("Test hidden.bs.dropdown event");
-								},
-							},
-						},
-						[
-							new bs.dropdown.toggle({
-								split: true,
-								menuAutoClose: "manual",
-							}),
-							new bs.dropdown.menu(
-								{
-									positionView: [
-										"start",
-										"md-center",
-										"lg-end",
-									],
-									textColor: "muted",
-									padding: 3,
-								},
-								[new ht.div("Hello"), new ht.div("World")]
-							),
-							new bs.button("Dropdown button X"),
-						]
-					)
-				)
-			),
-
-			new bs.row(
-				new bs.col(
-					new bs.formfloating([
-						new bs.select(
-							{ id: "floatingSelectGrid", class: "is-invalid" },
-							select_option.map((i) => new ht.option(i))
-						),
-						new bs.label(
-							{ for: "floatingSelectGrid" },
-							"Works with selects"
-						),
-					])
-				)
-			),
-
-			new bs.row(
-				new bs.col(
-					{ col: 6 },
-					new bs.card.container({ style: { width: "18rem" } }, [
-						new bs.card.img({
-							location: "top",
-							src: "https://picsum.photos/seed/1231/200/200",
-						}),
-
-						new bs.card.body([
-							new bs.card.title("Card title"),
-							new bs.card.text(
-								"Some quick example text to build on the card title and make up the bulk of the card's content."
-							),
-						]),
-
-						new bs.list.group({ flush: true }, [
-							new bs.list.item("An item"),
-							new bs.list.item("A second item"),
-							new bs.list.item("A third item"),
-						]),
-
-						new bs.card.body([
-							new bs.card.link({ href: "#" }, "Card link"),
-							new bs.card.link({ href: "#" }, "Another link"),
-						]),
-					])
-				)
-			),
-
-			new bs.row(
-				new bs.col(
-					{ col: 6 },
-					new bs.card.container(
-						{ textAlign: "center", style: { width: "18rem" } },
-						[
-							new bs.card.header("Featured"),
-							new bs.card.body([
-								new bs.card.title("Special title treatment"),
-								new bs.card.text(
-									"With supporting text below as a natural lead-in to additional content."
-								),
-								new bs.button({ href: "#" }, "Go somewhere"),
-							]),
-							new bs.card.footer(
-								{ textColor: "muted" },
-								"2 days ago"
-							),
-						]
-					)
-				)
-			),
-
-			new bs.row(
-				new bs.col(
-					{ col: 6 },
-					new bs.card.container([
-						new bs.card.img({
-							rounded: true,
-							src: "https://picsum.photos/seed/1231/400/220",
-						}),
-						new bs.card.imgoverlay([
-							new bs.card.title("Card title"),
-							new bs.card.text(
-								"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
-							),
-							new bs.card.text(
-								new ht.small("Last updated 3 mins ago")
-							),
-						]),
-					])
-				)
-			),
-
-			new bs.row(
-				new bs.col(
-					{ col: 6 },
-					new bs.card.container([
-						new bs.row({ gap: 0 }, [
-							new bs.col(
-								{ col: "md-4" },
-								new bs.card.img({
-									fluid: true,
-									rounded: "start",
-									src: "https://picsum.photos/seed/1231/100/280",
-								})
-							),
-							new bs.col(
-								{
-									col: "md-8",
-								},
-								new bs.card.body([
-									new bs.card.title("Card title"),
-									new bs.card.text(
-										"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
-									),
-									new bs.card.text(
-										new ht.small("Last updated 3 mins ago")
-									),
-								])
-							),
-						]),
-					])
-				)
-			),
-
-			new bs.row(
-				new bs.col(
-					{ col: 4 },
-					new bs.card.container({ borderColor: "success" }, [
-						new bs.card.header("Header"),
-						new bs.card.body([
-							new bs.card.title("Card title"),
-							new bs.card.text(
-								"Some quick example text to build on the card title and make up the bulk of the card's content."
-							),
-						]),
-					])
-				)
-			),
-
-			new bs.row(
-				new bs.col(
-					new bs.card.group([
-						fnCard(
-							"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-							"https://picsum.photos/seed/1232/200/150"
-						),
-						fnCard(
-							"This card has supporting text below as a natural lead-in to additional content.",
-							"https://picsum.photos/seed/1233/200/150"
-						),
-						fnCard(
-							"This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.",
-							"https://picsum.photos/seed/1234/200/150"
-						),
-					])
-				)
-			),
-
-			new bs.row(
-				new bs.col(
-					new bs.card.group([
-						fnCard(
-							"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-							"https://picsum.photos/seed/1232/200/150",
-							true
-						),
-						fnCard(
-							"This card has supporting text below as a natural lead-in to additional content.",
-							"https://picsum.photos/seed/1233/200/150",
-							true
-						),
-						fnCard(
-							"This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.",
-							"https://picsum.photos/seed/1234/200/150",
-							true
-						),
-					])
-				)
-			),
-
-			new bs.row(
-				new bs.col({ col: 6 }, [
-					new ht.p({ display: "flex", gap: 1 }, [
-						new bs.collapse.toggle(
-							{
-								link: true,
-								target: "#cE1",
-								control: "cE1",
-							},
-							"First"
-						),
-						new bs.collapse.toggle(
-							{
-								target: "#cE2",
-								control: "cE2",
-							},
-							"Second"
-						),
-						new bs.collapse.toggle(
-							{
-								target: ".multi-collapse",
-								control: "cE1 cE2",
-							},
-							"Both"
-						),
-					]),
-					new bs.collapse.container(
-						{ id: "cE1", class: "multi-collapse" },
-						new bs.card.container(new bs.card.body("1"))
-					),
-					new bs.collapse.container(
-						{ id: "cE2", class: "multi-collapse" },
-						new bs.card.container(new bs.card.body("2"))
-					),
 				])
 			),
 		])
 	);
+
+	// core.replaceChild(
+	// 	body,
+	// 	new bs.row({ paddingY: 5, gap: 3 }, [
+	// 		new bs.row(new bs.col({ padding: 3 }, "")),
+	// 		new bs.row(
+	// 			new bs.col([
+	// 				new bs.inputgroup.container(
+	// 					{ marginBottom: 3, weight: "sm" },
+	// 					[
+	// 						new bs.inputgroup.text(
+	// 							{ id: "inputGroup-sizing-small" },
+	// 							"Small"
+	// 						),
+	// 						new bs.input({
+	// 							type: "text",
+	// 							aria: {
+	// 								label: "Sizing example input",
+	// 								describedby: "inputGroup-sizing-small",
+	// 							},
+	// 						}),
+	// 					]
+	// 				),
+	// 				new bs.inputgroup.container({ marginBottom: 3 }, [
+	// 					new bs.inputgroup.text(
+	// 						{ id: "inputGroup-sizing-default" },
+	// 						"Default"
+	// 					),
+	// 					new bs.input({
+	// 						type: "text",
+	// 						aria: {
+	// 							label: "Sizing example input",
+	// 							describedby: "inputGroup-sizing-default",
+	// 						},
+	// 					}),
+	// 				]),
+	// 				new bs.inputgroup.container(
+	// 					{ marginBottom: 3, weight: "lg" },
+	// 					[
+	// 						new bs.inputgroup.text(
+	// 							{ id: "inputGroup-sizing-large" },
+	// 							"Large"
+	// 						),
+	// 						new bs.input({
+	// 							type: "text",
+	// 							aria: {
+	// 								label: "Sizing example input",
+	// 								describedby: "inputGroup-sizing-large",
+	// 							},
+	// 						}),
+	// 					]
+	// 				),
+	// 			])
+	// 		),
+
+	// 		new bs.row(
+	// 			new bs.col([
+	// 				new bs.inputgroup.container({ marginBottom: 3 }, [
+	// 					new bs.inputgroup.text(
+	// 						new bs.input({
+	// 							type: "checkbox",
+	// 							marginTop: 0,
+	// 							aria: {
+	// 								label: "Checkbox for following text input",
+	// 							},
+	// 						})
+	// 					),
+	// 					new bs.input({
+	// 						type: "text",
+	// 						aria: {
+	// 							label: "Text input with checkbox",
+	// 						},
+	// 					}),
+	// 				]),
+	// 				new bs.inputgroup.container(
+	// 					{ marginBottom: 3, weight: "lg" },
+	// 					[
+	// 						new bs.inputgroup.text(
+	// 							new bs.input({
+	// 								type: "radio",
+	// 								marginTop: 0,
+	// 								aria: {
+	// 									label: "Radio button for following text input",
+	// 								},
+	// 							})
+	// 						),
+	// 						new bs.input({
+	// 							type: "text",
+	// 							aria: {
+	// 								label: "Text input with radio button",
+	// 							},
+	// 						}),
+	// 					]
+	// 				),
+	// 			])
+	// 		),
+
+	// 		new bs.row(
+	// 			new bs.col(
+	// 				new bs.inputgroup.container({ marginBottom: 3 }, [
+	// 					new bs.inputgroup.text("First and last name"),
+	// 					new bs.input({
+	// 						type: "text",
+	// 						aria: {
+	// 							label: "First name",
+	// 						},
+	// 					}),
+	// 					new bs.input({
+	// 						type: "text",
+	// 						aria: {
+	// 							label: "Last name",
+	// 						},
+	// 					}),
+	// 				])
+	// 			)
+	// 		),
+
+	// 		new bs.row(
+	// 			new bs.col(
+	// 				new bs.inputgroup.container({ marginBottom: 3 }, [
+	// 					new bs.dropdown.toggle({
+	// 						elem: "Dropdown",
+	// 						outline: true,
+	// 						color: "secondary",
+	// 					}),
+	// 					new bs.dropdown.menu([
+	// 						new bs.dropdown.header("Hello"),
+	// 						new bs.dropdown.item({ active: true }, "Action"),
+	// 						new bs.dropdown.item("Another action"),
+	// 						new bs.dropdown.item("Something else here"),
+	// 						new bs.dropdown.divider(),
+	// 						new bs.dropdown.item("Separated link"),
+	// 					]),
+	// 					new bs.input({
+	// 						type: "text",
+	// 						aria: {
+	// 							label: "Text input with dropdown button",
+	// 						},
+	// 					}),
+	// 				])
+	// 			)
+	// 		),
+
+	// 		new bs.row(
+	// 			new bs.col(
+	// 				new bs.dropdown.container({ drop: "up", center: true }, [
+	// 					// new bs.button({ color: "danger" }, "Dropdown button X"),
+	// 					new bs.dropdown.toggle({
+	// 						// split: true,
+	// 						color: "danger",
+	// 					}),
+	// 					new bs.dropdown.menu(
+	// 						{
+	// 							dark: true,
+	// 							positionView: ["start", "md-center", "lg-end"],
+	// 						},
+	// 						[
+	// 							new bs.dropdown.header("Hello"),
+	// 							new bs.dropdown.item(
+	// 								{ active: true },
+	// 								"Action"
+	// 							),
+	// 							new bs.dropdown.item("Another action"),
+	// 							new bs.dropdown.item("Something else here"),
+	// 							new bs.dropdown.divider(),
+	// 							new bs.dropdown.item("Separated link"),
+	// 						]
+	// 					),
+	// 				])
+	// 			)
+	// 		),
+
+	// 		new bs.row(
+	// 			new bs.col(
+	// 				new bs.dropdown.container(
+	// 					{
+	// 						drop: "start",
+	// 						on: {
+	// 							"hidden.bs.dropdown": function () {
+	// 								alert("Test hidden.bs.dropdown event");
+	// 							},
+	// 						},
+	// 					},
+	// 					[
+	// 						new bs.dropdown.toggle({
+	// 							split: true,
+	// 							menuAutoClose: "manual",
+	// 						}),
+	// 						new bs.dropdown.menu(
+	// 							{
+	// 								positionView: [
+	// 									"start",
+	// 									"md-center",
+	// 									"lg-end",
+	// 								],
+	// 								textColor: "muted",
+	// 								padding: 3,
+	// 							},
+	// 							[new ht.div("Hello"), new ht.div("World")]
+	// 						),
+	// 						new bs.button("Dropdown button X"),
+	// 					]
+	// 				)
+	// 			)
+	// 		),
+
+	// 		new bs.row(
+	// 			new bs.col(
+	// 				new bs.formfloating([
+	// 					new bs.select(
+	// 						{ id: "floatingSelectGrid", class: "is-invalid" },
+	// 						select_option.map((i) => new ht.option(i))
+	// 					),
+	// 					new bs.label(
+	// 						{ for: "floatingSelectGrid" },
+	// 						"Works with selects"
+	// 					),
+	// 				])
+	// 			)
+	// 		),
+
+	// 		new bs.row(
+	// 			new bs.col(
+	// 				{ col: 6 },
+	// 				new bs.card.container({ style: { width: "18rem" } }, [
+	// 					new bs.card.img({
+	// 						location: "top",
+	// 						src: "https://picsum.photos/seed/1231/200/200",
+	// 					}),
+
+	// 					new bs.card.body([
+	// 						new bs.card.title("Card title"),
+	// 						new bs.card.text(
+	// 							"Some quick example text to build on the card title and make up the bulk of the card's content."
+	// 						),
+	// 					]),
+
+	// 					new bs.list.group({ flush: true }, [
+	// 						new bs.list.item("An item"),
+	// 						new bs.list.item("A second item"),
+	// 						new bs.list.item("A third item"),
+	// 					]),
+
+	// 					new bs.card.body([
+	// 						new bs.card.link({ href: "#" }, "Card link"),
+	// 						new bs.card.link({ href: "#" }, "Another link"),
+	// 					]),
+	// 				])
+	// 			)
+	// 		),
+
+	// 		new bs.row(
+	// 			new bs.col(
+	// 				{ col: 6 },
+	// 				new bs.card.container(
+	// 					{ textAlign: "center", style: { width: "18rem" } },
+	// 					[
+	// 						new bs.card.header("Featured"),
+	// 						new bs.card.body([
+	// 							new bs.card.title("Special title treatment"),
+	// 							new bs.card.text(
+	// 								"With supporting text below as a natural lead-in to additional content."
+	// 							),
+	// 							new bs.button({ href: "#" }, "Go somewhere"),
+	// 						]),
+	// 						new bs.card.footer(
+	// 							{ textColor: "muted" },
+	// 							"2 days ago"
+	// 						),
+	// 					]
+	// 				)
+	// 			)
+	// 		),
+
+	// 		new bs.row(
+	// 			new bs.col(
+	// 				{ col: 6 },
+	// 				new bs.card.container([
+	// 					new bs.card.img({
+	// 						rounded: true,
+	// 						src: "https://picsum.photos/seed/1231/400/220",
+	// 					}),
+	// 					new bs.card.imgoverlay([
+	// 						new bs.card.title("Card title"),
+	// 						new bs.card.text(
+	// 							"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+	// 						),
+	// 						new bs.card.text(
+	// 							new ht.small("Last updated 3 mins ago")
+	// 						),
+	// 					]),
+	// 				])
+	// 			)
+	// 		),
+
+	// 		new bs.row(
+	// 			new bs.col(
+	// 				{ col: 6 },
+	// 				new bs.card.container([
+	// 					new bs.row({ gap: 0 }, [
+	// 						new bs.col(
+	// 							{ col: "md-4" },
+	// 							new bs.card.img({
+	// 								fluid: true,
+	// 								rounded: "start",
+	// 								src: "https://picsum.photos/seed/1231/100/280",
+	// 							})
+	// 						),
+	// 						new bs.col(
+	// 							{
+	// 								col: "md-8",
+	// 							},
+	// 							new bs.card.body([
+	// 								new bs.card.title("Card title"),
+	// 								new bs.card.text(
+	// 									"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+	// 								),
+	// 								new bs.card.text(
+	// 									new ht.small("Last updated 3 mins ago")
+	// 								),
+	// 							])
+	// 						),
+	// 					]),
+	// 				])
+	// 			)
+	// 		),
+
+	// 		new bs.row(
+	// 			new bs.col(
+	// 				{ col: 4 },
+	// 				new bs.card.container({ borderColor: "success" }, [
+	// 					new bs.card.header("Header"),
+	// 					new bs.card.body([
+	// 						new bs.card.title("Card title"),
+	// 						new bs.card.text(
+	// 							"Some quick example text to build on the card title and make up the bulk of the card's content."
+	// 						),
+	// 					]),
+	// 				])
+	// 			)
+	// 		),
+
+	// 		new bs.row(
+	// 			new bs.col(
+	// 				new bs.card.group([
+	// 					fnCard(
+	// 						"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
+	// 						"https://picsum.photos/seed/1232/200/150"
+	// 					),
+	// 					fnCard(
+	// 						"This card has supporting text below as a natural lead-in to additional content.",
+	// 						"https://picsum.photos/seed/1233/200/150"
+	// 					),
+	// 					fnCard(
+	// 						"This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.",
+	// 						"https://picsum.photos/seed/1234/200/150"
+	// 					),
+	// 				])
+	// 			)
+	// 		),
+
+	// 		new bs.row(
+	// 			new bs.col(
+	// 				new bs.card.group([
+	// 					fnCard(
+	// 						"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
+	// 						"https://picsum.photos/seed/1232/200/150",
+	// 						true
+	// 					),
+	// 					fnCard(
+	// 						"This card has supporting text below as a natural lead-in to additional content.",
+	// 						"https://picsum.photos/seed/1233/200/150",
+	// 						true
+	// 					),
+	// 					fnCard(
+	// 						"This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.",
+	// 						"https://picsum.photos/seed/1234/200/150",
+	// 						true
+	// 					),
+	// 				])
+	// 			)
+	// 		),
+
+	// 		new bs.row(
+	// 			new bs.col({ col: 6 }, [
+	// 				new ht.p({ display: "flex", gap: 1 }, [
+	// 					new bs.collapse.toggle(
+	// 						{
+	// 							link: true,
+	// 							target: "#cE1",
+	// 							control: "cE1",
+	// 						},
+	// 						"First"
+	// 					),
+	// 					new bs.collapse.toggle(
+	// 						{
+	// 							target: "#cE2",
+	// 							control: "cE2",
+	// 						},
+	// 						"Second"
+	// 					),
+	// 					new bs.collapse.toggle(
+	// 						{
+	// 							target: ".multi-collapse",
+	// 							control: "cE1 cE2",
+	// 						},
+	// 						"Both"
+	// 					),
+	// 				]),
+	// 				new bs.collapse.container(
+	// 					{ id: "cE1", class: "multi-collapse" },
+	// 					new bs.card.container(new bs.card.body("1"))
+	// 				),
+	// 				new bs.collapse.container(
+	// 					{ id: "cE2", class: "multi-collapse" },
+	// 					new bs.card.container(new bs.card.body("2"))
+	// 				),
+	// 			])
+	// 		),
+	// 	])
+	// );
 
 	// core.replaceChild(
 	// 	body,

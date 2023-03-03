@@ -365,20 +365,40 @@ export interface IBootstrap {
 	roundedSize?: bootstrapType.roundedSize[number];
 
 	padding?: bootstrapType.padding[number] | bootstrapType.padding[number][];
-	paddingX?: bootstrapType.paddingX[number] | bootstrapType.paddingX[number][];
-	paddingY?: bootstrapType.paddingY[number] | bootstrapType.paddingY[number][];
-	paddingTop?: bootstrapType.paddingTop[number] | bootstrapType.paddingTop[number][];
-	paddingBottom?: bootstrapType.paddingBottom[number] | bootstrapType.paddingBottom[number][];
-	paddingStart?: bootstrapType.paddingStart[number] | bootstrapType.paddingStart[number][];
-	paddingEnd?: bootstrapType.paddingEnd[number] | bootstrapType.paddingEnd[number][];
+	paddingX?:
+		| bootstrapType.paddingX[number]
+		| bootstrapType.paddingX[number][];
+	paddingY?:
+		| bootstrapType.paddingY[number]
+		| bootstrapType.paddingY[number][];
+	paddingTop?:
+		| bootstrapType.paddingTop[number]
+		| bootstrapType.paddingTop[number][];
+	paddingBottom?:
+		| bootstrapType.paddingBottom[number]
+		| bootstrapType.paddingBottom[number][];
+	paddingStart?:
+		| bootstrapType.paddingStart[number]
+		| bootstrapType.paddingStart[number][];
+	paddingEnd?:
+		| bootstrapType.paddingEnd[number]
+		| bootstrapType.paddingEnd[number][];
 
 	margin?: bootstrapType.margin[number] | bootstrapType.margin[number][];
 	marginX?: bootstrapType.marginX[number] | bootstrapType.marginX[number][];
 	marginY?: bootstrapType.marginY[number] | bootstrapType.marginY[number][];
-	marginTop?: bootstrapType.marginTop[number] | bootstrapType.marginTop[number][];
-	marginBottom?: bootstrapType.marginBottom[number] | bootstrapType.marginBottom[number][];
-	marginStart?: bootstrapType.marginStart[number] | bootstrapType.marginStart[number][];
-	marginEnd?: bootstrapType.marginEnd[number] | bootstrapType.marginEnd[number][];
+	marginTop?:
+		| bootstrapType.marginTop[number]
+		| bootstrapType.marginTop[number][];
+	marginBottom?:
+		| bootstrapType.marginBottom[number]
+		| bootstrapType.marginBottom[number][];
+	marginStart?:
+		| bootstrapType.marginStart[number]
+		| bootstrapType.marginStart[number][];
+	marginEnd?:
+		| bootstrapType.marginEnd[number]
+		| bootstrapType.marginEnd[number][];
 
 	gap?: bootstrapType.gap[number] | bootstrapType.gap[number][];
 	gutter?: bootstrapType.gutter[number] | bootstrapType.gutter[number];
@@ -394,10 +414,18 @@ export interface IBootstrap {
 	order?: bootstrapType.order[number] | bootstrapType.order[number][];
 	offset?: bootstrapType.offset[number] | bootstrapType.offset[number][];
 
-	alignContent?: bootstrapType.alignContent[number] | bootstrapType.alignContent[number][];
-	justifyContent?: bootstrapType.justifyContent[number] | bootstrapType.justifyContent[number][];
-	alignItem?: bootstrapType.alignItem[number] | bootstrapType.alignItem[number][];
-	alignSelf?: bootstrapType.alignSelf[number] | bootstrapType.alignSelf[number][];
+	alignContent?:
+		| bootstrapType.alignContent[number]
+		| bootstrapType.alignContent[number][];
+	justifyContent?:
+		| bootstrapType.justifyContent[number]
+		| bootstrapType.justifyContent[number][];
+	alignItem?:
+		| bootstrapType.alignItem[number]
+		| bootstrapType.alignItem[number][];
+	alignSelf?:
+		| bootstrapType.alignSelf[number]
+		| bootstrapType.alignSelf[number][];
 
 	visible?: bootstrapType.visible[number];
 	textWrap?: bootstrapType.textWrap[number];
@@ -420,6 +448,7 @@ export interface IAttr extends IGlobal, IBootstrap {
 
 	//addtional
 	active?: boolean;
+	disabled?: boolean;
 }
 
 export interface ITag {
@@ -501,7 +530,12 @@ export class tag implements ITag {
 }
 
 export const isTag = <T>(obj: any): obj is T => {
-	return typeof obj === "object" && !Array.isArray(obj) && "isbsts" in obj && obj["isbsts"] === true;
+	return (
+		typeof obj === "object" &&
+		!Array.isArray(obj) &&
+		"isbsts" in obj &&
+		obj["isbsts"] === true
+	);
 };
 
 export const isAttr = <T>(obj: any): obj is T => {
