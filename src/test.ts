@@ -49,7 +49,7 @@ core.documentReady(() => {
 			// new bs.row(new bs.col([])),
 			new bs.row(
 				new bs.col([
-					new bs.list.group({ horizontal: "md" }, [
+					new bs.list.group([
 						new bs.list.item(
 							{ action: true, active: true },
 							"An item"
