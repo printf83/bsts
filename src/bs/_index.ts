@@ -18,6 +18,7 @@ import { inputgroup } from "./inputgroup/_index.js";
 import { formfloating } from "./formfloating.js";
 import { card } from "./card/_index.js";
 import { collapse } from "./collapse/_index.js";
+import { list } from "./list/_index.js";
 
 export const bs = {
 	icon,
@@ -40,4 +41,5 @@ export const bs = {
 	formfloating,
 	card,
 	collapse,
+	list,
 };

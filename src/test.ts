@@ -274,10 +274,10 @@ core.documentReady(() => {
 							),
 						]),
 
-						new bs.card.list.group({ flush: true }, [
-							new bs.card.list.item("An item"),
-							new bs.card.list.item("A second item"),
-							new bs.card.list.item("A third item"),
+						new bs.list.group({ flush: true }, [
+							new bs.list.item("An item"),
+							new bs.list.item("A second item"),
+							new bs.list.item("A third item"),
 						]),
 
 						new bs.card.body([

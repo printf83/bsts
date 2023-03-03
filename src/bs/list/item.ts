@@ -1,6 +1,6 @@
-import { IElem, isAttr } from "../../../core/base/tag.js";
-import { mergeClass } from "../../../core/fn/mergeClass.js";
-import { IAttrTagLi, li } from "../../../ht/li.js";
+import { IElem, isAttr } from "../../core/base/tag.js";
+import { mergeClass } from "../../core/fn/mergeClass.js";
+import { IAttrTagLi, li } from "../../ht/li.js";
 
 const convert = (attr: IAttrTagLi): IAttrTagLi => {
 	attr.class = mergeClass(attr.class, "list-group-item");
