@@ -3,35 +3,29 @@ import { IElem, isAttr } from "../../core/base/tag.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { IAttrTagLi, li } from "../../ht/li.js";
 
-export interface IAttrListItem extends IAttrTagLi {
-	action?: boolean;
-	color?: bootstrapType.color[number];
+export interface IAttrBSNavItem extends IAttrTagLi {
+	role?: "presentation";
 }
 
-const convert = (attr: IAttrListItem): IAttrTagLi => {
-	attr.class = mergeClass(attr.class, [
-		"list-group-item",
-		attr.action ? "list-group-item-action" : "",
-		attr.color ? `list-group-item-${attr.color}` : "",
-	]);
+const convert = (attr: IAttrBSNavItem): IAttrTagLi => {
+	attr.class = mergeClass(attr.class, "nav-item");
 
-	delete attr.action;
-	delete attr.color;
+	attr.role = attr.role || "presentation";
 
 	return attr;
 };
 
 export class item extends li {
 	constructor(); //#1
-	constructor(attr: IAttrListItem); //#2
+	constructor(attr: IAttrBSNavItem); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrListItem, elem: IElem); //#4
+	constructor(attr: IAttrBSNavItem, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
 			super(convert({}));
 		} else if (arg.length === 1) {
-			if (isAttr<IAttrListItem>(arg[0])) {
+			if (isAttr<IAttrBSNavItem>(arg[0])) {
 				//#2
 				super(convert(arg[0]));
 			} else {

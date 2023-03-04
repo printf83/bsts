@@ -38,7 +38,7 @@ export class group extends ul {
 			//#1
 			super(convert({}));
 		} else if (arg.length === 1) {
-			if (isAttr<IAttrTagUl>(arg[0])) {
+			if (isAttr<IAttrBSCardListGroup>(arg[0])) {
 				//#2
 				super(convert(arg[0]));
 			} else {
