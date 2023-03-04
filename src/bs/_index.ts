@@ -20,6 +20,7 @@ import { card } from "./card/_index.js";
 import { collapse } from "./collapse/_index.js";
 import { list } from "./list/_index.js";
 import { badge } from "./badge.js";
+import { visuallyhidden } from "./visuallyhidden.js";
 
 export const bs = {
 	icon,
@@ -44,4 +45,5 @@ export const bs = {
 	collapse,
 	list,
 	badge,
+	visuallyhidden,
 };
