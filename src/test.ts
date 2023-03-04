@@ -114,10 +114,7 @@ core.documentReady(() => {
 								borderColor: "light",
 								rounded: "circle",
 							},
-							new ht.span(
-								{ class: "visually-hidden" },
-								"New alerts"
-							)
+							new bs.visuallyhidden("New alerts")
 						),
 					]),
 				])
@@ -135,7 +132,9 @@ core.documentReady(() => {
 			new bs.row(
 				new bs.col(
 					new bs.dropdown.container({ drop: "up", center: true }, [
+						new bs.button({ color: "danger" }, "Dropdown"),
 						new bs.dropdown.toggle({
+							split: true,
 							color: "danger",
 						}),
 						new bs.dropdown.menu(

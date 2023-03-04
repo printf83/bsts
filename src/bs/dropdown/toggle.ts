@@ -1,7 +1,7 @@
 import { IElem, isAttr } from "../../core/base/tag.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
-import { span } from "../../ht/span.js";
 import { button, IAttrBSButton } from "../button.js";
+import { visuallyhidden } from "../visuallyhidden.js";
 
 export interface IAttrBSDropdownToggle extends IAttrBSButton {
 	menuOffset?: string;
@@ -34,10 +34,7 @@ const convert = (attr: IAttrBSDropdownToggle): IAttrBSButton => {
 	);
 
 	if (attr.split) {
-		attr.elem = new span({
-			class: "visually-hidden",
-			elem: attr.elem || "Toggle dropdown",
-		});
+		attr.elem = new visuallyhidden(attr.elem || "Toggle dropdown");
 	} else {
 		attr.elem = attr.elem || "Dropdown";
 	}
