@@ -6,7 +6,12 @@ import { setting } from "./setting.js";
 
 export type buildArg = tag | string | (tag | string)[];
 
-export const build = (container: HTMLElement, arg: buildArg, append: boolean = true, beforeElem: HTMLElement | null = null): HTMLElement => {
+export const build = (
+	container: HTMLElement,
+	arg: buildArg,
+	append: boolean = true,
+	beforeElem: HTMLElement | null = null
+): HTMLElement => {
 	if (arg) {
 		arg = Array.isArray(arg) ? arg : [arg];
 
@@ -15,7 +20,9 @@ export const build = (container: HTMLElement, arg: buildArg, append: boolean = t
 				if (h !== null) {
 					if (isTag<IAttr>(h)) {
 						let e = h as tag;
-						let element = e.attr ? attachAttr(document.createElement(e.tag), e.attr!) : document.createElement(e.tag);
+						let element = e.attr
+							? attachAttr(document.createElement(e.tag), e.attr!)
+							: document.createElement(e.tag);
 
 						if (e.elem) {
 							e.elem = Array.isArray(e.elem) ? e.elem : [e.elem];
@@ -31,9 +38,16 @@ export const build = (container: HTMLElement, arg: buildArg, append: boolean = t
 										//only pre is html
 										let g = i as string;
 										if (e.tag === "pre") {
-											element.insertAdjacentHTML("beforeend", g);
+											element.insertAdjacentHTML(
+												"beforeend",
+												g + "\n"
+											);
 										} else {
-											element.appendChild(document.createTextNode(g));
+											element.appendChild(
+												document.createTextNode(
+													g + "\n"
+												)
+											);
 										}
 									}
 								}
@@ -54,7 +68,10 @@ export const build = (container: HTMLElement, arg: buildArg, append: boolean = t
 									container.insertBefore(element, beforeElem);
 									beforeElem = element;
 								} else {
-									container.insertBefore(element, container.firstChild);
+									container.insertBefore(
+										element,
+										container.firstChild
+									);
 								}
 							} else {
 								container.appendChild(element);
@@ -84,14 +101,20 @@ export const html = (arg: buildArg): string => {
 	return result;
 };
 
-export const appendChild = (container: HTMLElement, arg: buildArg): HTMLElement => {
+export const appendChild = (
+	container: HTMLElement,
+	arg: buildArg
+): HTMLElement => {
 	if (setting.DEBUG) console.time("appendChild");
 	container = build(container, arg);
 	if (setting.DEBUG) console.timeEnd("appendChild");
 	return container;
 };
 
-export const prependChild = (container: HTMLElement, arg: buildArg): HTMLElement => {
+export const prependChild = (
+	container: HTMLElement,
+	arg: buildArg
+): HTMLElement => {
 	if (setting.DEBUG) console.time("prependChild");
 	container = build(container, arg, false);
 	if (setting.DEBUG) console.timeEnd("prependChild");
@@ -107,7 +130,10 @@ export const replaceWith = (elem: HTMLElement, arg: buildArg): HTMLElement => {
 	return parent;
 };
 
-export const replaceChild = (container: HTMLElement, arg: buildArg): HTMLElement => {
+export const replaceChild = (
+	container: HTMLElement,
+	arg: buildArg
+): HTMLElement => {
 	if (setting.DEBUG) console.time("replaceChild");
 	removeChildElement(container);
 	container = build(container, arg);

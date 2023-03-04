@@ -1,4 +1,5 @@
 // import { IAttrBSButton } from "./bs/button.js";
+import { HLevel } from "./ht/h.js";
 import { bs, core, ht } from "./index.js";
 // let loream = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta tincidunt arcu eu dignissim. Suspendisse nunc tortor, semper ut commodo nec, bibendum ut quam. Vivamus porttitor egestas luctus. Morbi tincidunt tortor eu lorem gravida imperdiet. Vestibulum tincidunt hendrerit tempus. Morbi varius est ac euismod tristique. Fusce a tortor suscipit, lacinia arcu nec, aliquet tortor. Maecenas eu lorem nec ante faucibus sollicitudin. Nunc consequat ullamcorper congue. Praesent cursus velit euismod turpis ultrices, sit amet venenatis massa pharetra. Nunc maximus pharetra purus in maximus.`;
 // let select_option = [
@@ -66,6 +67,96 @@ core.documentReady(() => {
 						new bs.list.item({ action: true }, "And a fifth one"),
 					]),
 				])
+			),
+
+			new bs.row(
+				new bs.col(
+					[1, 2, 3, 4, 5, 6].map((i) => {
+						return new ht.h(i as HLevel, [
+							"Example heading",
+							new bs.badge({ bgColor: "secondary" }, "New"),
+						]);
+					})
+				)
+			),
+
+			new bs.row(
+				new bs.col([
+					new bs.button({ position: "relative" }, [
+						"Inbox",
+						new bs.badge(
+							{
+								position: "absolute",
+								bgColor: "danger",
+								top: 0,
+								start: 100,
+								tMiddle: true,
+								rounded: "pill",
+							},
+							"99+"
+						),
+					]),
+				])
+			),
+
+			new bs.row(
+				new bs.col([
+					new bs.button({ position: "relative" }, [
+						"Profile",
+						new bs.badge(
+							{
+								position: "absolute",
+								bgColor: "danger",
+								top: 0,
+								start: 100,
+								padding: 2,
+								tMiddle: true,
+								borderColor: "light",
+								rounded: "circle",
+							},
+							new ht.span(
+								{ class: "visually-hidden" },
+								"New alerts"
+							)
+						),
+					]),
+				])
+			),
+
+			new bs.row(
+				new bs.col([
+					new bs.button([
+						"Notification",
+						new bs.badge({ textBgColor: "secondary" }, "4"),
+					]),
+				])
+			),
+
+			new bs.row(
+				new bs.col(
+					new bs.dropdown.container({ drop: "up", center: true }, [
+						new bs.dropdown.toggle({
+							color: "danger",
+						}),
+						new bs.dropdown.menu(
+							{
+								dark: true,
+								positionView: ["start", "md-center", "lg-end"],
+							},
+							[
+								new bs.dropdown.header("Hello"),
+								new bs.dropdown.item(
+									{ active: true },
+									"Action"
+								),
+								new bs.dropdown.item("Another action"),
+								new bs.dropdown.item("Something else here"),
+								new bs.dropdown.divider(),
+								new bs.dropdown.item("Separated link"),
+							]
+						),
+					])
+				)
 			),
 		])
 	);

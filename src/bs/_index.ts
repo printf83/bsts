@@ -19,6 +19,7 @@ import { formfloating } from "./formfloating.js";
 import { card } from "./card/_index.js";
 import { collapse } from "./collapse/_index.js";
 import { list } from "./list/_index.js";
+import { badge } from "./badge.js";
 
 export const bs = {
 	icon,
@@ -42,4 +43,5 @@ export const bs = {
 	card,
 	collapse,
 	list,
+	badge,
 };
