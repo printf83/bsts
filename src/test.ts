@@ -157,7 +157,7 @@ core.documentReady(() => {
 							new bs.card.nav(
 								{
 									role: "tablist",
-									type: "tab",
+									type: "pill",
 								},
 								[
 									new bs.nav.header.button(
@@ -182,6 +182,20 @@ core.documentReady(() => {
 											id: "card-nav-contact-tab",
 											target: "#card-nav-contact",
 											control: "card-nav-contact",
+											on: {
+												"show.bs.tab": function () {
+													let i =
+														document.getElementById(
+															"card-nav-contact"
+														);
+													core.replaceChild(
+														i!,
+														new ht.span(
+															`Item update by JS on ${new Date().toString()}`
+														)
+													);
+												},
+											},
 										},
 										"Contact"
 									),
