@@ -10,31 +10,31 @@ let loream = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque p
 // 	{ value: "E", elem: "E" },
 // ];
 
-let fnCard = (txt: string, src: string, footer?: true) => {
-	return new bs.card.container([
-		new bs.card.img({ src: src, location: "top" }),
-		new bs.card.body([
-			new bs.card.title("Card title"),
-			new bs.card.text(txt),
-			!footer
-				? new bs.card.text(
-						new ht.small(
-							{ textColor: "muted" },
-							"Last updated 3 mins ago"
-						)
-				  )
-				: "",
-		]),
-		footer
-			? new bs.card.footer(
-					new ht.small(
-						{ textColor: "muted" },
-						"Last updated 3 mins ago"
-					)
-			  )
-			: "",
-	]);
-};
+// let fnCard = (txt: string, src: string, footer?: true) => {
+// 	return new bs.card.container([
+// 		new bs.card.img({ src: src, location: "top" }),
+// 		new bs.card.body([
+// 			new bs.card.title("Card title"),
+// 			new bs.card.text(txt),
+// 			!footer
+// 				? new bs.card.text(
+// 						new ht.small(
+// 							{ textColor: "muted" },
+// 							"Last updated 3 mins ago"
+// 						)
+// 				  )
+// 				: "",
+// 		]),
+// 		footer
+// 			? new bs.card.footer(
+// 					new ht.small(
+// 						{ textColor: "muted" },
+// 						"Last updated 3 mins ago"
+// 					)
+// 			  )
+// 			: "",
+// 	]);
+// };
 
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
