@@ -8,7 +8,7 @@ export interface IAttrBSButton extends IAttrTagButton {
 	outline?: boolean;
 	dismiss?: "modal" | "alert" | "offcanvas" | "toast";
 	weight?: "lg" | "sm";
-	toggle?: "button" | "tab" | "modal";
+	toggle?: true | "button" | "tab" | "modal";
 	href?: string;
 	role?: "button" | "tab";
 	target?: string;
@@ -37,7 +37,11 @@ const convert = (attr: IAttrBSButton): IAttrBSButton => {
 			],
 			role: attr.role,
 			data: {
-				"bs-toggle": attr.toggle,
+				"bs-toggle": attr.toggle
+					? attr.toggle === true
+						? "button"
+						: attr.toggle
+					: undefined,
 				"bs-target": attr.target,
 				"bs-dismiss": attr.dismiss,
 			},
