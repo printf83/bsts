@@ -29,7 +29,7 @@ const convert = (attr: IAttrBSModal): IAttr => {
 			tabindex: "-1",
 			data: {
 				"bs-backdrop": attr.static ? "static" : undefined,
-				"bs-keyboard": attr.static ? "static" : undefined,
+				"bs-keyboard": attr.static ? "false" : undefined,
 			},
 			aria: {
 				hidden: attr.debug ? undefined : "true",

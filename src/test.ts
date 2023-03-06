@@ -63,7 +63,11 @@ core.documentReady(() => {
 					),
 
 					new bs.modal.container(
-						{ id: "exampleModal", labelledby: "exampleModalTitle" },
+						{
+							id: "exampleModal",
+							labelledby: "exampleModalTitle",
+							static: true,
+						},
 						[
 							new bs.modal.header(
 								{ close: true },
