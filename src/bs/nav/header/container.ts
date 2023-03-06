@@ -1,5 +1,4 @@
 import { isAttr } from "../../../core/base/tag.js";
-import { mergeClass } from "../../../core/fn/mergeClass.js";
 import { mergeObject } from "../../../core/fn/mergeObject.js";
 import { IAttrTagUl, IElemTagUl, ul } from "../../../ht/ul.js";
 
@@ -11,23 +10,20 @@ export interface IAttrBSNavContainer extends IAttrTagUl {
 }
 
 const convert = (attr: IAttrBSNavContainer): IAttrTagUl => {
-	attr.class = mergeClass(attr.class, [
-		"nav",
-		attr.type ? `nav-${attr.type}s` : "",
-		attr.itemWidth ? `nav-${attr.itemWidth}` : "",
-		attr.vertical ? "flex-column" : "",
-	]);
-
-	if (attr.vertical) {
-		attr = mergeObject(
-			{
-				aria: { orientation: "vertical" },
+	attr = mergeObject(
+		{
+			class: [
+				"nav",
+				attr.type ? `nav-${attr.type}s` : "",
+				attr.itemWidth ? `nav-${attr.itemWidth}` : "",
+				attr.vertical ? "flex-column" : "",
+			],
+			aria: {
+				orientation: attr.vertical ? "vertical" : undefined,
 			},
-			attr
-		);
-	}
-
-	// attr.role = attr.role || "tablist";
+		},
+		attr
+	);
 
 	delete attr.type;
 	delete attr.itemWidth;

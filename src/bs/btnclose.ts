@@ -4,6 +4,7 @@ import { button, IAttrTagButton } from "../ht/button.js";
 export interface IAttrBSBtnclose extends IAttrTagButton {
 	label?: string;
 	elem?: undefined;
+	white?: boolean;
 }
 
 const convert = (attr: IAttrBSBtnclose): IAttrBSBtnclose => {
@@ -15,13 +16,14 @@ const convert = (attr: IAttrBSBtnclose): IAttrBSBtnclose => {
 	//white
 	attr = mergeObject(
 		{
-			class: ["btn-close"],
+			class: ["btn-close", attr.white ? "btn-close-white" : ""],
 			aria: { label: attr.label },
 		},
 		attr
 	);
 
 	delete attr.label;
+	delete attr.white;
 
 	return attr;
 };
