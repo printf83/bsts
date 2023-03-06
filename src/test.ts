@@ -42,6 +42,11 @@ core.documentReady(() => {
 	// core.replaceChild(body,
 	// 	new bs.row({ paddingY: 5, gap: 3 }, [
 	// 		// new bs.row(new bs.col([])),
+	// 		// new bs.row(new bs.col([])),
+	// 		// new bs.row(new bs.col([])),
+	// 		// new bs.row(new bs.col([])),
+	// 		// new bs.row(new bs.col([])),
+	// 		// new bs.row(new bs.col([])),
 	// 	]));
 
 	core.replaceChild(
@@ -49,206 +54,43 @@ core.documentReady(() => {
 		new bs.row({ paddingY: 5, gap: 3 }, [
 			new bs.row(
 				new bs.col([
-					new bs.nav.header.container({ type: "pill" }, [
-						new bs.nav.header.item(
-							new bs.nav.header.link({ active: true }, "Active")
-						),
-						new bs.nav.header.item({ dropdown: true }, [
-							new bs.nav.header.link(
-								{ dropdown: true },
-								"Dropdown"
-							),
-							new bs.dropdown.menu([
-								new bs.dropdown.item("Action"),
-								new bs.dropdown.item("Another action"),
-								new bs.dropdown.item("Something else here"),
-								new bs.dropdown.divider(),
-								new bs.dropdown.item("Separated link"),
-							]),
-						]),
-						new bs.nav.header.item(new bs.nav.header.link("Link")),
-						new bs.nav.header.item(
-							new bs.nav.header.link(
-								{ disabled: true },
-								"Disabled"
-							)
-						),
-					]),
-				])
-			),
-			new bs.row(
-				new bs.col([
-					new bs.nav.header.container(
-						{ role: "tablist", marginBottom: 3, type: "tab" },
+					new bs.button(
+						{
+							toggle: "modal",
+							target: "#exampleModal",
+						},
+						"Launch demo modal"
+					),
+
+					new bs.modal.container(
+						{ id: "exampleModal", labelledby: "exampleModalTitle" },
 						[
-							new bs.nav.header.button(
-								{
-									active: true,
-									id: "nav-home-tab",
-									target: "#nav-home",
-									control: "nav-home",
-								},
-								"Home"
+							new bs.modal.header(
+								{ close: true },
+								new bs.modal.title(
+									{ id: "exampleModalTitle" },
+									"Modal title"
+								)
 							),
-							new bs.nav.header.button(
-								{
-									id: "nav-profile-tab",
-									target: "#nav-profile",
-									control: "nav-profile",
-								},
-								"Profile"
-							),
-							new bs.nav.header.button(
-								{
-									id: "nav-contact-tab",
-									target: "#nav-contact",
-									control: "nav-contact",
-								},
-								"Contact"
-							),
-							new bs.nav.header.button(
-								{
-									disabled: true,
-									id: "nav-disabled-tab",
-									target: "#nav-disabled",
-									control: "nav-disabled",
-								},
-								"Disabled"
-							),
+							new bs.modal.body([
+								new ht.p(
+									"Woo-hoo, you're reading this text in a modal!"
+								),
+							]),
+							new bs.modal.footer([
+								new bs.button(
+									{ color: "secondary", dismiss: "modal" },
+									"Close"
+								),
+								new bs.button(
+									{ color: "primary" },
+									"Save changes"
+								),
+							]),
 						]
 					),
-					new bs.nav.content.container([
-						new bs.nav.content.item(
-							{
-								active: true,
-								id: "nav-home",
-								labelledby: "nav-home-tab",
-							},
-							"Tab 1 content"
-						),
-						new bs.nav.content.item(
-							{
-								id: "nav-profile",
-								labelledby: "nav-profile-tab",
-							},
-							"Tab 2 content"
-						),
-						new bs.nav.content.item(
-							{
-								id: "nav-contact",
-								labelledby: "nav-contact-tab",
-							},
-							"Tab 3 content"
-						),
-						new bs.nav.content.item(
-							{
-								id: "nav-disabled",
-								labelledby: "nav-disabled-tab",
-							},
-							"Tab 4 content"
-						),
-					]),
 				])
 			),
-			new bs.row(
-				new bs.col([
-					new bs.card.container([
-						new bs.card.header([
-							new bs.card.nav(
-								{
-									role: "tablist",
-									type: "pill",
-								},
-								[
-									new bs.nav.header.button(
-										{
-											active: true,
-											id: "card-nav-home-tab",
-											target: "#card-nav-home",
-											control: "card-nav-home",
-										},
-										"Home"
-									),
-									new bs.nav.header.button(
-										{
-											id: "card-nav-profile-tab",
-											target: "#card-nav-profile",
-											control: "card-nav-profile",
-										},
-										"Profile"
-									),
-									new bs.nav.header.button(
-										{
-											id: "card-nav-contact-tab",
-											target: "#card-nav-contact",
-											control: "card-nav-contact",
-											on: {
-												"show.bs.tab": function () {
-													let i =
-														document.getElementById(
-															"card-nav-contact"
-														);
-													core.replaceChild(
-														i!,
-														new ht.span(
-															`Item update by JS on ${new Date().toString()}`
-														)
-													);
-												},
-											},
-										},
-										"Contact"
-									),
-									new bs.nav.header.button(
-										{
-											disabled: true,
-											id: "card-nav-disabled-tab",
-											target: "#card-nav-disabled",
-											control: "card-nav-disabled",
-										},
-										"Disabled"
-									),
-								]
-							),
-						]),
-						new bs.card.body([
-							new bs.nav.content.container([
-								new bs.nav.content.item(
-									{
-										active: true,
-										id: "card-nav-home",
-										labelledby: "card-nav-home-tab",
-									},
-									"Tab 1 content"
-								),
-								new bs.nav.content.item(
-									{
-										id: "card-nav-profile",
-										labelledby: "card-nav-profile-tab",
-									},
-									"Tab 2 content"
-								),
-								new bs.nav.content.item(
-									{
-										id: "card-nav-contact",
-										labelledby: "card-nav-contact-tab",
-									},
-									"Tab 3 content"
-								),
-								new bs.nav.content.item(
-									{
-										id: "card-nav-disabled",
-										labelledby: "card-nav-disabled-tab",
-									},
-									"Tab 4 content"
-								),
-							]),
-						]),
-					]),
-				])
-			),
-			// new bs.row(new bs.col([])),
-			// new bs.row(new bs.col([])),
 			// new bs.row(new bs.col([])),
 			// new bs.row(new bs.col([])),
 			// new bs.row(new bs.col([])),
@@ -256,6 +98,219 @@ core.documentReady(() => {
 			// new bs.row(new bs.col([])),
 		])
 	);
+
+	// core.replaceChild(
+	// 	body,
+	// 	new bs.row({ paddingY: 5, gap: 3 }, [
+	// 		new bs.row(
+	// 			new bs.col([
+	// 				new bs.nav.header.container({ type: "pill" }, [
+	// 					new bs.nav.header.item(
+	// 						new bs.nav.header.link({ active: true }, "Active")
+	// 					),
+	// 					new bs.nav.header.item({ dropdown: true }, [
+	// 						new bs.nav.header.link(
+	// 							{ dropdown: true },
+	// 							"Dropdown"
+	// 						),
+	// 						new bs.dropdown.menu([
+	// 							new bs.dropdown.item("Action"),
+	// 							new bs.dropdown.item("Another action"),
+	// 							new bs.dropdown.item("Something else here"),
+	// 							new bs.dropdown.divider(),
+	// 							new bs.dropdown.item("Separated link"),
+	// 						]),
+	// 					]),
+	// 					new bs.nav.header.item(new bs.nav.header.link("Link")),
+	// 					new bs.nav.header.item(
+	// 						new bs.nav.header.link(
+	// 							{ disabled: true },
+	// 							"Disabled"
+	// 						)
+	// 					),
+	// 				]),
+	// 			])
+	// 		),
+	// 		new bs.row(
+	// 			new bs.col([
+	// 				new bs.nav.header.container(
+	// 					{ role: "tablist", marginBottom: 3, type: "tab" },
+	// 					[
+	// 						new bs.nav.header.button(
+	// 							{
+	// 								active: true,
+	// 								id: "nav-home-tab",
+	// 								target: "#nav-home",
+	// 								control: "nav-home",
+	// 							},
+	// 							"Home"
+	// 						),
+	// 						new bs.nav.header.button(
+	// 							{
+	// 								id: "nav-profile-tab",
+	// 								target: "#nav-profile",
+	// 								control: "nav-profile",
+	// 							},
+	// 							"Profile"
+	// 						),
+	// 						new bs.nav.header.button(
+	// 							{
+	// 								id: "nav-contact-tab",
+	// 								target: "#nav-contact",
+	// 								control: "nav-contact",
+	// 							},
+	// 							"Contact"
+	// 						),
+	// 						new bs.nav.header.button(
+	// 							{
+	// 								disabled: true,
+	// 								id: "nav-disabled-tab",
+	// 								target: "#nav-disabled",
+	// 								control: "nav-disabled",
+	// 							},
+	// 							"Disabled"
+	// 						),
+	// 					]
+	// 				),
+	// 				new bs.nav.content.container([
+	// 					new bs.nav.content.item(
+	// 						{
+	// 							active: true,
+	// 							id: "nav-home",
+	// 							labelledby: "nav-home-tab",
+	// 						},
+	// 						"Tab 1 content"
+	// 					),
+	// 					new bs.nav.content.item(
+	// 						{
+	// 							id: "nav-profile",
+	// 							labelledby: "nav-profile-tab",
+	// 						},
+	// 						"Tab 2 content"
+	// 					),
+	// 					new bs.nav.content.item(
+	// 						{
+	// 							id: "nav-contact",
+	// 							labelledby: "nav-contact-tab",
+	// 						},
+	// 						"Tab 3 content"
+	// 					),
+	// 					new bs.nav.content.item(
+	// 						{
+	// 							id: "nav-disabled",
+	// 							labelledby: "nav-disabled-tab",
+	// 						},
+	// 						"Tab 4 content"
+	// 					),
+	// 				]),
+	// 			])
+	// 		),
+	// 		new bs.row(
+	// 			new bs.col([
+	// 				new bs.card.container([
+	// 					new bs.card.header([
+	// 						new bs.card.nav(
+	// 							{
+	// 								role: "tablist",
+	// 								type: "pill",
+	// 							},
+	// 							[
+	// 								new bs.nav.header.button(
+	// 									{
+	// 										active: true,
+	// 										id: "card-nav-home-tab",
+	// 										target: "#card-nav-home",
+	// 										control: "card-nav-home",
+	// 									},
+	// 									"Home"
+	// 								),
+	// 								new bs.nav.header.button(
+	// 									{
+	// 										id: "card-nav-profile-tab",
+	// 										target: "#card-nav-profile",
+	// 										control: "card-nav-profile",
+	// 									},
+	// 									"Profile"
+	// 								),
+	// 								new bs.nav.header.button(
+	// 									{
+	// 										id: "card-nav-contact-tab",
+	// 										target: "#card-nav-contact",
+	// 										control: "card-nav-contact",
+	// 										on: {
+	// 											"show.bs.tab": function () {
+	// 												let i =
+	// 													document.getElementById(
+	// 														"card-nav-contact"
+	// 													);
+	// 												core.replaceChild(
+	// 													i!,
+	// 													new ht.span(
+	// 														`Item update by JS on ${new Date().toString()}`
+	// 													)
+	// 												);
+	// 											},
+	// 										},
+	// 									},
+	// 									"Contact"
+	// 								),
+	// 								new bs.nav.header.button(
+	// 									{
+	// 										disabled: true,
+	// 										id: "card-nav-disabled-tab",
+	// 										target: "#card-nav-disabled",
+	// 										control: "card-nav-disabled",
+	// 									},
+	// 									"Disabled"
+	// 								),
+	// 							]
+	// 						),
+	// 					]),
+	// 					new bs.card.body([
+	// 						new bs.nav.content.container([
+	// 							new bs.nav.content.item(
+	// 								{
+	// 									active: true,
+	// 									id: "card-nav-home",
+	// 									labelledby: "card-nav-home-tab",
+	// 								},
+	// 								"Tab 1 content"
+	// 							),
+	// 							new bs.nav.content.item(
+	// 								{
+	// 									id: "card-nav-profile",
+	// 									labelledby: "card-nav-profile-tab",
+	// 								},
+	// 								"Tab 2 content"
+	// 							),
+	// 							new bs.nav.content.item(
+	// 								{
+	// 									id: "card-nav-contact",
+	// 									labelledby: "card-nav-contact-tab",
+	// 								},
+	// 								"Tab 3 content"
+	// 							),
+	// 							new bs.nav.content.item(
+	// 								{
+	// 									id: "card-nav-disabled",
+	// 									labelledby: "card-nav-disabled-tab",
+	// 								},
+	// 								"Tab 4 content"
+	// 							),
+	// 						]),
+	// 					]),
+	// 				]),
+	// 			])
+	// 		),
+	// 		// new bs.row(new bs.col([])),
+	// 		// new bs.row(new bs.col([])),
+	// 		// new bs.row(new bs.col([])),
+	// 		// new bs.row(new bs.col([])),
+	// 		// new bs.row(new bs.col([])),
+	// 		// new bs.row(new bs.col([])),
+	// 		// new bs.row(new bs.col([])),
+	// 	])
+	// );
 
 	// core.replaceChild(
 	// 	body,

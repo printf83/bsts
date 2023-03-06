@@ -17,7 +17,8 @@ const convert = (attr: IAttrBSBtnclose): IAttrBSBtnclose => {
 	attr = mergeObject(
 		{
 			class: ["btn-close"],
-			aria: { label: attr.label, "bs-dismiss": attr.dismiss },
+			data: { "bs-dismiss": attr.dismiss },
+			aria: { label: attr.label },
 		},
 		attr
 	);

@@ -6,6 +6,7 @@ import { IAttrTagButton } from "../ht/button.js";
 export interface IAttrBSButton extends IAttrTagButton {
 	color?: bootstrapType.color[number] | "link";
 	outline?: boolean;
+	dismiss?: "modal" | "alert";
 	weight?: "lg" | "sm";
 	toggle?: "button" | "tab" | "modal";
 	href?: string;
@@ -38,6 +39,7 @@ const convert = (attr: IAttrBSButton): IAttrBSButton => {
 			data: {
 				"bs-toggle": attr.toggle,
 				"bs-target": attr.target,
+				"bs-dismiss": attr.dismiss,
 			},
 		},
 		attr
@@ -47,6 +49,8 @@ const convert = (attr: IAttrBSButton): IAttrBSButton => {
 	delete attr.outline;
 	delete attr.weight;
 	delete attr.toggle;
+	delete attr.target;
+	delete attr.dismiss;
 
 	// dont delete
 	// delete a.href;

@@ -23,6 +23,8 @@ const convert = (attr: IAttrBSModalHeader): IAttr => {
 		}
 	}
 
+	delete attr.close;
+
 	return attr;
 };
 
