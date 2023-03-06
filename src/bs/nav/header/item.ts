@@ -1,14 +1,20 @@
-import { bootstrapType } from "../../../core/base/bootstrap.js";
 import { IElem, isAttr } from "../../../core/base/tag.js";
 import { mergeClass } from "../../../core/fn/mergeClass.js";
 import { IAttrTagLi, li } from "../../../ht/li.js";
 
 export interface IAttrBSNavItem extends IAttrTagLi {
 	role?: "presentation";
+	dropdown?: boolean;
 }
 
 const convert = (attr: IAttrBSNavItem): IAttrTagLi => {
-	attr.class = mergeClass(attr.class, "nav-item");
+	attr.class = mergeClass(attr.class, [
+		"nav-item",
+		attr.dropdown ? "dropdown" : "",
+	]);
+
+	delete attr.dropdown;
+
 	return attr;
 };
 

@@ -7,15 +7,19 @@ export interface IAttrBSNavContentItem extends IAttr {
 	role?: "tabpanel";
 	labelledby?: string;
 	tabindex?: string;
+	animation?: "fade";
 }
 
 const convert = (attr: IAttrBSNavContentItem): IAttr => {
 	attr.role = attr.role || "tabpanel";
 	attr.tabindex = attr.tabindex || "0";
+	attr.animation = attr.animation || "fade";
 
 	attr.class = mergeClass(attr.class, [
 		"tab-pane",
 		attr.active ? "active" : "",
+		attr.active ? "show" : "",
+		attr.animation ? attr.animation : "",
 	]);
 
 	delete attr.active;

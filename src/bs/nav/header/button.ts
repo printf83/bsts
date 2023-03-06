@@ -1,32 +1,31 @@
 import { IElem, isAttr } from "../../../core/base/tag.js";
 import { mergeObject } from "../../../core/fn/mergeObject.js";
 import { UUID } from "../../../core/fn/uuid.js";
-import { button as TButton, IAttrBSButton } from "../../button.js";
+import { button as TButton, IAttrTagButton } from "../../../ht/button.js";
 
-export interface IAttrBSNavButton extends IAttrBSButton {
+export interface IAttrBSNavButton extends IAttrTagButton {
+	active?: boolean;
 	target?: string;
 	control?: string;
+	role?: "tab";
 }
 
-const convert = (attr: IAttrBSNavButton): IAttrBSButton => {
+const convert = (attr: IAttrBSNavButton): IAttrTagButton => {
 	attr = mergeObject(
 		{
 			id: attr.id || UUID(),
-			class: ["nav-link"],
-			href: attr.href || "#",
+			class: ["nav-link", attr.active ? "active" : ""],
 			aria: {
 				controls: attr.control,
 				selected: attr.active ? "true" : "false",
 			},
-			toggle: true,
 			role: "tab",
-			data: { "bs-target": attr.target },
+			data: { "bs-target": attr.target, "bs-toggle": "tab" },
 		},
 		attr
 	);
 
 	delete attr.active;
-	delete attr.disabled;
 
 	return attr;
 };
@@ -39,7 +38,7 @@ export class button extends TButton {
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
-			super(convert({ elem: "Dropdown item" }));
+			super(convert({ elem: "Button" }));
 		} else if (arg.length === 1) {
 			if (isAttr<IAttrBSNavButton>(arg[0])) {
 				//#2

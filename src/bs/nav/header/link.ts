@@ -3,27 +3,38 @@ import { mergeObject } from "../../../core/fn/mergeObject.js";
 import { a, IAttrTagA } from "../../../ht/a.js";
 
 export interface IAttrBSNavLink extends IAttrTagA {
-	role?: "tab";
+	role?: "tab" | "button";
 	active?: boolean;
 	disabled?: boolean;
+	dropdown?: boolean;
 }
 
 const convert = (attr: IAttrBSNavLink): IAttrTagA => {
+	if (attr.dropdown) {
+		attr.role = "button";
+	}
+
 	attr = mergeObject(
 		{
 			class: [
 				"nav-link",
 				attr.active ? "active" : "",
 				attr.disabled ? "disabled" : "",
+				attr.dropdown ? "dropdown-toggle" : "",
 			],
 			href: attr.href || "#",
-			aria: { current: attr.active ? "page" : undefined },
+			aria: {
+				current: attr.active ? "page" : undefined,
+				expanded: attr.dropdown ? "false" : undefined,
+			},
+			data: { "bs-toggle": attr.dropdown ? "dropdown" : undefined },
 		},
 		attr
 	);
 
 	delete attr.active;
 	delete attr.disabled;
+	delete attr.dropdown;
 
 	return attr;
 };

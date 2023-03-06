@@ -47,118 +47,235 @@ core.documentReady(() => {
 	core.replaceChild(
 		body,
 		new bs.row({ paddingY: 5, gap: 3 }, [
-			// new bs.row(new bs.col([])),
 			new bs.row(
 				new bs.col([
-					new bs.list.group([
-						new bs.list.item(
-							{ action: true, active: true },
-							"An item"
+					new bs.nav.header.container({ type: "pill" }, [
+						new bs.nav.header.item(
+							new bs.nav.header.link({ active: true }, "Active")
 						),
-						new bs.list.item({ action: true }, "A second item"),
-						new bs.list.item(
-							{ action: true, color: "warning" },
-							"A third item"
-						),
-						new bs.list.item(
-							{ action: true, color: "success" },
-							"A fourth item"
-						),
-						new bs.list.item({ action: true }, "And a fifth one"),
-					]),
-				])
-			),
-
-			new bs.row(
-				new bs.col(
-					[1, 2, 3, 4, 5, 6].map((i) => {
-						return new ht.h(i as HLevel, [
-							"Example heading",
-							new bs.badge({ bgColor: "secondary" }, "New"),
-						]);
-					})
-				)
-			),
-
-			new bs.row(
-				new bs.col([
-					new bs.button({ position: "relative" }, [
-						"Inbox",
-						new bs.badge(
-							{
-								position: "absolute",
-								bgColor: "danger",
-								top: 0,
-								start: 100,
-								tMiddle: true,
-								rounded: "pill",
-							},
-							"99+"
-						),
-					]),
-				])
-			),
-
-			new bs.row(
-				new bs.col([
-					new bs.button({ position: "relative" }, [
-						"Profile",
-						new bs.badge(
-							{
-								position: "absolute",
-								bgColor: "danger",
-								top: 0,
-								start: 100,
-								padding: 2,
-								tMiddle: true,
-								borderColor: "light",
-								rounded: "circle",
-							},
-							new bs.visuallyhidden("New alerts")
-						),
-					]),
-				])
-			),
-
-			new bs.row(
-				new bs.col([
-					new bs.button([
-						"Notification",
-						new bs.badge({ textBgColor: "secondary" }, "4"),
-					]),
-				])
-			),
-
-			new bs.row(
-				new bs.col(
-					new bs.dropdown.container({ drop: "up", center: true }, [
-						new bs.button({ color: "danger" }, "Dropdown"),
-						new bs.dropdown.toggle({
-							split: true,
-							color: "danger",
-						}),
-						new bs.dropdown.menu(
-							{
-								dark: true,
-								positionView: ["start", "md-center", "lg-end"],
-							},
-							[
-								new bs.dropdown.header("Hello"),
-								new bs.dropdown.item(
-									{ active: true },
-									"Action"
-								),
+						new bs.nav.header.item({ dropdown: true }, [
+							new bs.nav.header.link(
+								{ dropdown: true },
+								"Dropdown"
+							),
+							new bs.dropdown.menu([
+								new bs.dropdown.item("Action"),
 								new bs.dropdown.item("Another action"),
 								new bs.dropdown.item("Something else here"),
 								new bs.dropdown.divider(),
 								new bs.dropdown.item("Separated link"),
-							]
+							]),
+						]),
+						new bs.nav.header.item(new bs.nav.header.link("Link")),
+						new bs.nav.header.item(
+							new bs.nav.header.link(
+								{ disabled: true },
+								"Disabled"
+							)
 						),
-					])
-				)
+					]),
+				])
 			),
+			new bs.row(
+				new bs.col([
+					new bs.nav.header.container(
+						{ role: "tablist", marginBottom: 3, type: "tab" },
+						[
+							new bs.nav.header.button(
+								{
+									active: true,
+									id: "nav-home-tab",
+									target: "#nav-home",
+									control: "nav-home",
+								},
+								"Home"
+							),
+							new bs.nav.header.button(
+								{
+									id: "nav-profile-tab",
+									target: "#nav-profile",
+									control: "nav-profile",
+								},
+								"Profile"
+							),
+							new bs.nav.header.button(
+								{
+									id: "nav-contact-tab",
+									target: "#nav-contact",
+									control: "nav-contact",
+								},
+								"Contact"
+							),
+							new bs.nav.header.button(
+								{
+									disabled: true,
+									id: "nav-disabled-tab",
+									target: "#nav-disabled",
+									control: "nav-disabled",
+								},
+								"Disabled"
+							),
+						]
+					),
+					new bs.nav.content.container([
+						new bs.nav.content.item(
+							{
+								active: true,
+								id: "nav-home",
+								labelledby: "nav-home-tab",
+							},
+							"Tab 1 content"
+						),
+						new bs.nav.content.item(
+							{
+								id: "nav-profile",
+								labelledby: "nav-profile-tab",
+							},
+							"Tab 2 content"
+						),
+						new bs.nav.content.item(
+							{
+								id: "nav-contact",
+								labelledby: "nav-contact-tab",
+							},
+							"Tab 3 content"
+						),
+						new bs.nav.content.item(
+							{
+								id: "nav-disabled",
+								labelledby: "nav-disabled-tab",
+							},
+							"Tab 4 content"
+						),
+					]),
+				])
+			),
+			// new bs.row(new bs.col([])),
+			// new bs.row(new bs.col([])),
+			// new bs.row(new bs.col([])),
+			// new bs.row(new bs.col([])),
+			// new bs.row(new bs.col([])),
+			// new bs.row(new bs.col([])),
+			// new bs.row(new bs.col([])),
+			// new bs.row(new bs.col([])),
 		])
 	);
+
+	// core.replaceChild(
+	// 	body,
+	// 	new bs.row({ paddingY: 5, gap: 3 }, [
+	// 		// new bs.row(new bs.col([])),
+	// 		new bs.row(
+	// 			new bs.col([
+	// 				new bs.list.group([
+	// 					new bs.list.item(
+	// 						{ action: true, active: true },
+	// 						"An item"
+	// 					),
+	// 					new bs.list.item({ action: true }, "A second item"),
+	// 					new bs.list.item(
+	// 						{ action: true, color: "warning" },
+	// 						"A third item"
+	// 					),
+	// 					new bs.list.item(
+	// 						{ action: true, color: "success" },
+	// 						"A fourth item"
+	// 					),
+	// 					new bs.list.item({ action: true }, "And a fifth one"),
+	// 				]),
+	// 			])
+	// 		),
+
+	// 		new bs.row(
+	// 			new bs.col(
+	// 				[1, 2, 3, 4, 5, 6].map((i) => {
+	// 					return new ht.h(i as HLevel, [
+	// 						"Example heading",
+	// 						new bs.badge({ bgColor: "secondary" }, "New"),
+	// 					]);
+	// 				})
+	// 			)
+	// 		),
+
+	// 		new bs.row(
+	// 			new bs.col([
+	// 				new bs.button({ position: "relative" }, [
+	// 					"Inbox",
+	// 					new bs.badge(
+	// 						{
+	// 							position: "absolute",
+	// 							bgColor: "danger",
+	// 							top: 0,
+	// 							start: 100,
+	// 							tMiddle: true,
+	// 							rounded: "pill",
+	// 						},
+	// 						"99+"
+	// 					),
+	// 				]),
+	// 			])
+	// 		),
+
+	// 		new bs.row(
+	// 			new bs.col([
+	// 				new bs.button({ position: "relative" }, [
+	// 					"Profile",
+	// 					new bs.badge(
+	// 						{
+	// 							position: "absolute",
+	// 							bgColor: "danger",
+	// 							top: 0,
+	// 							start: 100,
+	// 							padding: 2,
+	// 							tMiddle: true,
+	// 							borderColor: "light",
+	// 							rounded: "circle",
+	// 						},
+	// 						new bs.visuallyhidden("New alerts")
+	// 					),
+	// 				]),
+	// 			])
+	// 		),
+
+	// 		new bs.row(
+	// 			new bs.col([
+	// 				new bs.button([
+	// 					"Notification",
+	// 					new bs.badge({ textBgColor: "secondary" }, "4"),
+	// 				]),
+	// 			])
+	// 		),
+
+	// 		new bs.row(
+	// 			new bs.col(
+	// 				new bs.dropdown.container({ drop: "up", center: true }, [
+	// 					new bs.button({ color: "danger" }, "Dropdown"),
+	// 					new bs.dropdown.toggle({
+	// 						split: true,
+	// 						color: "danger",
+	// 					}),
+	// 					new bs.dropdown.menu(
+	// 						{
+	// 							dark: true,
+	// 							positionView: ["start", "md-center", "lg-end"],
+	// 						},
+	// 						[
+	// 							new bs.dropdown.header("Hello"),
+	// 							new bs.dropdown.item(
+	// 								{ active: true },
+	// 								"Action"
+	// 							),
+	// 							new bs.dropdown.item("Another action"),
+	// 							new bs.dropdown.item("Something else here"),
+	// 							new bs.dropdown.divider(),
+	// 							new bs.dropdown.item("Separated link"),
+	// 						]
+	// 					),
+	// 				])
+	// 			)
+	// 		),
+	// 	])
+	// );
 
 	// core.replaceChild(
 	// 	body,

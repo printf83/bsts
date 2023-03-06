@@ -28,8 +28,7 @@ const convert = (attr: IAttrBSNavContainer): IAttrTagUl => {
 		);
 	}
 
-	attr.id = attr.id || UUID();
-	attr.role = attr.role || "tablist";
+	// attr.role = attr.role || "tablist";
 
 	delete attr.type;
 	delete attr.itemWidth;
