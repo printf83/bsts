@@ -1,9 +1,8 @@
-import { bootstrapType } from "../../core/base/bootstrap.js";
-import { isAttr } from "../../core/base/tag.js";
-import { mergeClass } from "../../core/fn/mergeClass.js";
-import { mergeObject } from "../../core/fn/mergeObject.js";
-import { UUID } from "../../core/fn/uuid.js";
-import { IAttrTagUl, IElemTagUl, ul } from "../../ht/ul.js";
+import { isAttr } from "../../../core/base/tag.js";
+import { mergeClass } from "../../../core/fn/mergeClass.js";
+import { mergeObject } from "../../../core/fn/mergeObject.js";
+import { UUID } from "../../../core/fn/uuid.js";
+import { IAttrTagUl, IElemTagUl, ul } from "../../../ht/ul.js";
 
 export interface IAttrBSNavContainer extends IAttrTagUl {
 	type?: "tab" | "pill";
@@ -39,7 +38,7 @@ const convert = (attr: IAttrBSNavContainer): IAttrTagUl => {
 	return attr;
 };
 
-export class header extends ul {
+export class container extends ul {
 	constructor(); //#1
 	constructor(attr: IAttrBSNavContainer); //#2
 	constructor(elem: IElemTagUl); //#3

@@ -1,7 +1,7 @@
-import { bootstrapType } from "../../core/base/bootstrap.js";
-import { IElem, isAttr } from "../../core/base/tag.js";
-import { mergeClass } from "../../core/fn/mergeClass.js";
-import { IAttrTagLi, li } from "../../ht/li.js";
+import { bootstrapType } from "../../../core/base/bootstrap.js";
+import { IElem, isAttr } from "../../../core/base/tag.js";
+import { mergeClass } from "../../../core/fn/mergeClass.js";
+import { IAttrTagLi, li } from "../../../ht/li.js";
 
 export interface IAttrBSNavItem extends IAttrTagLi {
 	role?: "presentation";
@@ -9,9 +9,6 @@ export interface IAttrBSNavItem extends IAttrTagLi {
 
 const convert = (attr: IAttrBSNavItem): IAttrTagLi => {
 	attr.class = mergeClass(attr.class, "nav-item");
-
-	attr.role = attr.role || "presentation";
-
 	return attr;
 };
 

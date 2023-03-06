@@ -9,13 +9,15 @@ export interface IAttrBSButton extends IAttrTagButton {
 	weight?: "lg" | "sm";
 	toggle?: boolean;
 	href?: string;
-	role?: "button";
+	role?: "button" | "tab";
 }
 
 const convert = (attr: IAttrBSButton): IAttrBSButton => {
 	//default button color
 
 	attr.color = attr.color || "primary";
+	attr.role = attr.href ? attr.role || "button" : attr.role;
+
 	//add btn class
 	//weight,role,toggle
 	attr = mergeObject(
@@ -28,9 +30,9 @@ const convert = (attr: IAttrBSButton): IAttrBSButton => {
 					? `btn-outline-${attr.color}`
 					: "",
 			],
-			role: attr.href ? "button" : undefined,
+			role: attr.href ? attr.role : undefined,
 			data: {
-				"bs-toggle": attr.toggle ? "button" : undefined,
+				"bs-toggle": attr.toggle ? attr.role : undefined,
 			},
 		},
 		attr

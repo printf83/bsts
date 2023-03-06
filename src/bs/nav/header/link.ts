@@ -1,20 +1,34 @@
-import { IElem, isAttr } from "../../core/base/tag.js";
-import { mergeClass } from "../../core/fn/mergeClass.js";
-import { mergeObject } from "../../core/fn/mergeObject.js";
-import { a, IAttrTagA } from "../../ht/a.js";
+import { IElem, isAttr } from "../../../core/base/tag.js";
+import { mergeObject } from "../../../core/fn/mergeObject.js";
+import { a, IAttrTagA } from "../../../ht/a.js";
 
 export interface IAttrBSNavLink extends IAttrTagA {
 	role?: "tab";
+	active?: boolean;
+	disabled?: boolean;
 }
 
 const convert = (attr: IAttrBSNavLink): IAttrTagA => {
-	attr.class = mergeClass(attr.class, "nav-link");
-	attr.href = attr.href || "#";
+	attr = mergeObject(
+		{
+			class: [
+				"nav-link",
+				attr.active ? "active" : "",
+				attr.disabled ? "disabled" : "",
+			],
+			href: attr.href || "#",
+			aria: { current: attr.active ? "page" : undefined },
+		},
+		attr
+	);
+
+	delete attr.active;
+	delete attr.disabled;
 
 	return attr;
 };
 
-export class item extends a {
+export class link extends a {
 	constructor(); //#1
 	constructor(attr: IAttrBSNavLink); //#2
 	constructor(elem: IElem); //#3
