@@ -4,7 +4,6 @@ import { button, IAttrTagButton } from "../ht/button.js";
 export interface IAttrBSBtnclose extends IAttrTagButton {
 	label?: string;
 	elem?: undefined;
-	dismiss?: "modal" | "alert" | "offcanvas" | "toast";
 }
 
 const convert = (attr: IAttrBSBtnclose): IAttrBSBtnclose => {
@@ -17,14 +16,12 @@ const convert = (attr: IAttrBSBtnclose): IAttrBSBtnclose => {
 	attr = mergeObject(
 		{
 			class: ["btn-close"],
-			data: { "bs-dismiss": attr.dismiss },
 			aria: { label: attr.label },
 		},
 		attr
 	);
 
 	delete attr.label;
-	delete attr.dismiss;
 
 	return attr;
 };
