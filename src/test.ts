@@ -150,7 +150,89 @@ core.documentReady(() => {
 					]),
 				])
 			),
-			// new bs.row(new bs.col([])),
+			new bs.row(
+				new bs.col([
+					new bs.card.container([
+						new bs.card.header([
+							new bs.card.nav(
+								{
+									role: "tablist",
+									type: "tab",
+								},
+								[
+									new bs.nav.header.button(
+										{
+											active: true,
+											id: "card-nav-home-tab",
+											target: "#card-nav-home",
+											control: "card-nav-home",
+										},
+										"Home"
+									),
+									new bs.nav.header.button(
+										{
+											id: "card-nav-profile-tab",
+											target: "#card-nav-profile",
+											control: "card-nav-profile",
+										},
+										"Profile"
+									),
+									new bs.nav.header.button(
+										{
+											id: "card-nav-contact-tab",
+											target: "#card-nav-contact",
+											control: "card-nav-contact",
+										},
+										"Contact"
+									),
+									new bs.nav.header.button(
+										{
+											disabled: true,
+											id: "card-nav-disabled-tab",
+											target: "#card-nav-disabled",
+											control: "card-nav-disabled",
+										},
+										"Disabled"
+									),
+								]
+							),
+						]),
+						new bs.card.body([
+							new bs.nav.content.container([
+								new bs.nav.content.item(
+									{
+										active: true,
+										id: "card-nav-home",
+										labelledby: "card-nav-home-tab",
+									},
+									"Tab 1 content"
+								),
+								new bs.nav.content.item(
+									{
+										id: "card-nav-profile",
+										labelledby: "card-nav-profile-tab",
+									},
+									"Tab 2 content"
+								),
+								new bs.nav.content.item(
+									{
+										id: "card-nav-contact",
+										labelledby: "card-nav-contact-tab",
+									},
+									"Tab 3 content"
+								),
+								new bs.nav.content.item(
+									{
+										id: "card-nav-disabled",
+										labelledby: "card-nav-disabled-tab",
+									},
+									"Tab 4 content"
+								),
+							]),
+						]),
+					]),
+				])
+			),
 			// new bs.row(new bs.col([])),
 			// new bs.row(new bs.col([])),
 			// new bs.row(new bs.col([])),

@@ -9,6 +9,7 @@ import { text } from "./text.js";
 import { title } from "./title.js";
 import { imgoverlay } from "./imgoverlay.js";
 import { group } from "./group.js";
+import { nav } from "./nav.js";
 
 export const card = {
 	body,
@@ -22,4 +23,5 @@ export const card = {
 	footer,
 	imgoverlay,
 	group,
+	nav,
 };
