@@ -50,7 +50,7 @@ const convert = (attr: IAttrBSModal): IAttr => {
 				attr.fullscreen
 					? attr.fullscreen === true
 						? "modal-fullscreen"
-						: `modal-fullscreen-${attr.weight}-down`
+						: `modal-fullscreen-${attr.fullscreen}-down`
 					: "",
 				attr.scrollable ? "modal-dialog-scrollable" : "",
 				attr.centered ? "modal-dialog-centered" : "",
