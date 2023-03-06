@@ -7,16 +7,20 @@ export interface IAttrBSButton extends IAttrTagButton {
 	color?: bootstrapType.color[number] | "link";
 	outline?: boolean;
 	weight?: "lg" | "sm";
-	toggle?: boolean;
+	toggle?: "button" | "tab" | "modal";
 	href?: string;
 	role?: "button" | "tab";
+	target?: string;
 }
 
 const convert = (attr: IAttrBSButton): IAttrBSButton => {
 	//default button color
 
 	attr.color = attr.color || "primary";
-	attr.role = attr.href ? attr.role || "button" : attr.role;
+
+	if (attr.href) {
+		attr.role = attr.role || "button";
+	}
 
 	//add btn class
 	//weight,role,toggle
@@ -30,9 +34,10 @@ const convert = (attr: IAttrBSButton): IAttrBSButton => {
 					? `btn-outline-${attr.color}`
 					: "",
 			],
-			role: attr.href ? attr.role : undefined,
+			role: attr.role,
 			data: {
-				"bs-toggle": attr.toggle ? attr.role : undefined,
+				"bs-toggle": attr.toggle,
+				"bs-target": attr.target,
 			},
 		},
 		attr

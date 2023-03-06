@@ -22,6 +22,7 @@ import { list } from "./list/_index.js";
 import { badge } from "./badge.js";
 import { visuallyhidden } from "./visuallyhidden.js";
 import { nav } from "./nav/_index.js";
+import { modal } from "./modal/_index.js";
 
 export const bs = {
 	icon,
@@ -48,4 +49,5 @@ export const bs = {
 	badge,
 	visuallyhidden,
 	nav,
+	modal,
 };
