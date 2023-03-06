@@ -2,13 +2,13 @@ import { IAttrBSButton } from "./bs/button.js";
 import { HLevel } from "./ht/h.js";
 import { bs, core, ht, tag } from "./index.js";
 let loream = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta tincidunt arcu eu dignissim. Suspendisse nunc tortor, semper ut commodo nec, bibendum ut quam. Vivamus porttitor egestas luctus. Morbi tincidunt tortor eu lorem gravida imperdiet. Vestibulum tincidunt hendrerit tempus. Morbi varius est ac euismod tristique. Fusce a tortor suscipit, lacinia arcu nec, aliquet tortor. Maecenas eu lorem nec ante faucibus sollicitudin. Nunc consequat ullamcorper congue. Praesent cursus velit euismod turpis ultrices, sit amet venenatis massa pharetra. Nunc maximus pharetra purus in maximus.`;
-let select_option = [
-	{ value: "A", elem: "A" },
-	{ value: "B", elem: "B" },
-	{ value: "C", elem: "C" },
-	{ value: "D", elem: "D" },
-	{ value: "E", elem: "E" },
-];
+// let select_option = [
+// 	{ value: "A", elem: "A" },
+// 	{ value: "B", elem: "B" },
+// 	{ value: "C", elem: "C" },
+// 	{ value: "D", elem: "D" },
+// 	{ value: "E", elem: "E" },
+// ];
 
 let fnCard = (txt: string, src: string, footer?: true) => {
 	return new bs.card.container([
@@ -645,7 +645,13 @@ core.documentReady(() => {
 					new bs.formfloating([
 						new bs.select(
 							{ id: "floatingSelectGrid", class: "is-invalid" },
-							select_option.map((i) => new ht.option(i))
+							[
+								{ value: "A", elem: "A" },
+								{ value: "B", elem: "B" },
+								{ value: "C", elem: "C" },
+								{ value: "D", elem: "D" },
+								{ value: "E", elem: "E" },
+							].map((i) => new ht.option(i))
 						),
 						new bs.label(
 							{ for: "floatingSelectGrid" },
@@ -864,8 +870,15 @@ core.documentReady(() => {
 			new bs.row(
 				new bs.col([
 					new bs.select(
-						{ weight: "sm" },
-						select_option.map((i) => new ht.option(i))
+						[
+							{ value: "A", elem: "A" },
+							{ value: "B", elem: "B" },
+							{ value: "C", elem: "C" },
+							{ value: "D", elem: "D" },
+							{ value: "E", elem: "E" },
+						].map((i) => {
+							return new ht.option(i);
+						})
 					),
 				])
 			),
