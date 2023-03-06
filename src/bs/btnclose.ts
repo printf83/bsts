@@ -4,7 +4,7 @@ import { button, IAttrTagButton } from "../ht/button.js";
 export interface IAttrBSBtnclose extends IAttrTagButton {
 	label?: string;
 	elem?: undefined;
-	dismiss?: "modal" | "alert";
+	dismiss?: "modal" | "alert" | "offcanvas" | "toast";
 }
 
 const convert = (attr: IAttrBSBtnclose): IAttrBSBtnclose => {

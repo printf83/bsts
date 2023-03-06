@@ -6,7 +6,7 @@ import { IAttrTagButton } from "../ht/button.js";
 export interface IAttrBSButton extends IAttrTagButton {
 	color?: bootstrapType.color[number] | "link";
 	outline?: boolean;
-	dismiss?: "modal" | "alert";
+	dismiss?: "modal" | "alert" | "offcanvas" | "toast";
 	weight?: "lg" | "sm";
 	toggle?: "button" | "tab" | "modal";
 	href?: string;
