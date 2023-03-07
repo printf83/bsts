@@ -55,78 +55,108 @@ core.documentReady(() => {
 		new bs.row({ paddingY: 5, gap: 3 }, [
 			new bs.row(
 				new bs.col([
-					new ht.div(
-						{
-							zIndex: 3,
-							position: "absolute",
-							padding: 5,
-							roundedSize: 3,
-							bgColor: "secondary",
-							border: true,
-							// opacity: 25,
-							style: { marginTop: "10px", marginLeft: "10px" },
-						},
-						""
-					),
-					new ht.div(
-						{
-							zIndex: 2,
-							position: "absolute",
-							padding: 5,
-							roundedSize: 3,
-							bgColor: "secondary",
-							border: true,
-							// opacity: 25,
-							style: { marginTop: "20px", marginLeft: "20px" },
-						},
-						""
-					),
-					new ht.div(
-						{
-							zIndex: 1,
-							position: "absolute",
-							padding: 5,
-							roundedSize: 3,
-							bgColor: "secondary",
-							border: true,
-							// opacity: 25,
-							style: { marginTop: "30px", marginLeft: "30px" },
-						},
-						""
-					),
-					new ht.div(
-						{
-							zIndex: 0,
-							position: "absolute",
-							padding: 5,
-							roundedSize: 3,
-							bgColor: "secondary",
-							border: true,
-							// opacity: 25,
-							style: { marginTop: "40px", marginLeft: "40px" },
-						},
-						""
-					),
-					new ht.div(
-						{
-							zIndex: "n1",
-							position: "absolute",
-							padding: 5,
-							roundedSize: 3,
-							bgColor: "secondary",
-							border: true,
-							// opacity: 25,
-							style: { marginTop: "50px", marginLeft: "50px" },
-						},
-						""
-					),
+					...[
+						"primary",
+						"primary-emphasis",
+						"primary-secondary",
+						"primary-tertiary",
+						"secondary",
+						"secondary-emphasis",
+						"success",
+						"success-emphasis",
+						"danger",
+						"danger-emphasis",
+						"warning",
+						"warning-emphasis",
+						"info",
+						"info-emphasis",
+						"light",
+						"light-emphasis",
+						"dark",
+						"dark-emphasis",
+						"body",
+						"muted",
+						"body-emphasis",
+						"body-secondary",
+						"body-tertiary",
+					].map((i) => {
+						return new ht.div({ class: `bg-${i}` }, `.bg-${i}`);
+					}),
 				])
 			),
 			// new bs.row(new bs.col([])),
 			// new bs.row(new bs.col([])),
 			// new bs.row(new bs.col([])),
 			// new bs.row(new bs.col([])),
-			// new bs.row(new bs.col([])),
+			// new bs.row(
+			// 	new bs.col([
+			// 		new ht.div(
+			// 			{
+			// 				zIndex: 3,
+			// 				position: "absolute",
+			// 				padding: 5,
+			// 				roundedSize: 3,
+			// 				bgColor: "secondary",
+			// 				border: true,
+			// 				// opacity: 25,
+			// 				style: { marginTop: "10px", marginLeft: "10px" },
+			// 			},
+			// 			""
+			// 		),
+			// 		new ht.div(
+			// 			{
+			// 				zIndex: 2,
+			// 				position: "absolute",
+			// 				padding: 5,
+			// 				roundedSize: 3,
+			// 				bgColor: "secondary",
+			// 				border: true,
+			// 				// opacity: 25,
+			// 				style: { marginTop: "20px", marginLeft: "20px" },
+			// 			},
+			// 			""
+			// 		),
+			// 		new ht.div(
+			// 			{
+			// 				zIndex: 1,
+			// 				position: "absolute",
+			// 				padding: 5,
+			// 				roundedSize: 3,
+			// 				bgColor: "secondary",
+			// 				border: true,
+			// 				// opacity: 25,
+			// 				style: { marginTop: "30px", marginLeft: "30px" },
+			// 			},
+			// 			""
+			// 		),
+			// 		new ht.div(
+			// 			{
+			// 				zIndex: 0,
+			// 				position: "absolute",
+			// 				padding: 5,
+			// 				roundedSize: 3,
+			// 				bgColor: "secondary",
+			// 				border: true,
+			// 				// opacity: 25,
+			// 				style: { marginTop: "40px", marginLeft: "40px" },
+			// 			},
+			// 			""
+			// 		),
+			// 		new ht.div(
+			// 			{
+			// 				zIndex: "n1",
+			// 				position: "absolute",
+			// 				padding: 5,
+			// 				roundedSize: 3,
+			// 				bgColor: "secondary",
+			// 				border: true,
+			// 				// opacity: 25,
+			// 				style: { marginTop: "50px", marginLeft: "50px" },
+			// 			},
+			// 			""
+			// 		),
+			// 	])
+			// ),
 		])
 	);
 
