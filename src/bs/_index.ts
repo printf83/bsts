@@ -25,6 +25,7 @@ import { nav } from "./nav/_index.js";
 import { modal } from "./modal/_index.js";
 import { toast } from "./toast/_index.js";
 import { progress } from "./progress/_index.js";
+import { popover } from "./popover.js";
 
 export const bs = {
 	icon,
@@ -54,4 +55,5 @@ export const bs = {
 	modal,
 	toast,
 	progress,
+	popover,
 };

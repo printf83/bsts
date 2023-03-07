@@ -1,3 +1,5 @@
+// import { Popover } from "bootstrap";
+
 import { attachAttr } from "../attach/_index.js";
 import { IAttr, isTag, tag } from "../base/tag.js";
 import { removeChildElement } from "./removeChildElement.js";
@@ -5,6 +7,15 @@ import { removeElement } from "./removeElement.js";
 import { setting } from "./setting.js";
 
 export type buildArg = tag | string | (tag | string)[];
+
+// export const init = (container: HTMLElement) => {
+// 	const popoverTriggerList = container.querySelectorAll(
+// 		'[data-bs-toggle="popover"]'
+// 	);
+// 	const popoverList = [...popoverTriggerList].map(
+// 		(popoverTriggerEl) => new Popover(popoverTriggerEl)
+// 	);
+// };
 
 export const build = (
 	container: HTMLElement,

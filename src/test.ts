@@ -1,8 +1,8 @@
-import { IAttrBSButton } from "./bs/button.js";
-import { bootstrapType } from "./core/base/bootstrap.js";
-import { HLevel } from "./ht/h.js";
-import { bs, core, ht, tag } from "./index.js";
-let loream = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta tincidunt arcu eu dignissim. Suspendisse nunc tortor, semper ut commodo nec, bibendum ut quam. Vivamus porttitor egestas luctus. Morbi tincidunt tortor eu lorem gravida imperdiet. Vestibulum tincidunt hendrerit tempus. Morbi varius est ac euismod tristique. Fusce a tortor suscipit, lacinia arcu nec, aliquet tortor. Maecenas eu lorem nec ante faucibus sollicitudin. Nunc consequat ullamcorper congue. Praesent cursus velit euismod turpis ultrices, sit amet venenatis massa pharetra. Nunc maximus pharetra purus in maximus.`;
+// import { IAttrBSButton } from "./bs/button.js";
+// import { bootstrapType } from "./core/base/bootstrap.js";
+// import { HLevel } from "./ht/h.js";
+import { bs, core } from "./index.js";
+// let loream = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta tincidunt arcu eu dignissim. Suspendisse nunc tortor, semper ut commodo nec, bibendum ut quam. Vivamus porttitor egestas luctus. Morbi tincidunt tortor eu lorem gravida imperdiet. Vestibulum tincidunt hendrerit tempus. Morbi varius est ac euismod tristique. Fusce a tortor suscipit, lacinia arcu nec, aliquet tortor. Maecenas eu lorem nec ante faucibus sollicitudin. Nunc consequat ullamcorper congue. Praesent cursus velit euismod turpis ultrices, sit amet venenatis massa pharetra. Nunc maximus pharetra purus in maximus.`;
 // let select_option = [
 // 	{ value: "A", elem: "A" },
 // 	{ value: "B", elem: "B" },
@@ -11,31 +11,31 @@ let loream = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque p
 // 	{ value: "E", elem: "E" },
 // ];
 
-let fnCard = (txt: string, src: string, footer?: true) => {
-	return new bs.card.container([
-		new bs.card.img({ src: src, location: "top" }),
-		new bs.card.body([
-			new bs.card.title("Card title"),
-			new bs.card.text(txt),
-			!footer
-				? new bs.card.text(
-						new ht.small(
-							{ textColor: "muted" },
-							"Last updated 3 mins ago"
-						)
-				  )
-				: "",
-		]),
-		footer
-			? new bs.card.footer(
-					new ht.small(
-						{ textColor: "muted" },
-						"Last updated 3 mins ago"
-					)
-			  )
-			: "",
-	]);
-};
+// let fnCard = (txt: string, src: string, footer?: true) => {
+// 	return new bs.card.container([
+// 		new bs.card.img({ src: src, location: "top" }),
+// 		new bs.card.body([
+// 			new bs.card.title("Card title"),
+// 			new bs.card.text(txt),
+// 			!footer
+// 				? new bs.card.text(
+// 						new ht.small(
+// 							{ textColor: "muted" },
+// 							"Last updated 3 mins ago"
+// 						)
+// 				  )
+// 				: "",
+// 		]),
+// 		footer
+// 			? new bs.card.footer(
+// 					new ht.small(
+// 						{ textColor: "muted" },
+// 						"Last updated 3 mins ago"
+// 					)
+// 			  )
+// 			: "",
+// 	]);
+// };
 
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
@@ -56,149 +56,178 @@ core.documentReady(() => {
 		new bs.row({ paddingY: 5, gap: 3 }, [
 			new bs.row(
 				new bs.col([
-					...[0, 25, 50, 75, 100].map((i) => {
-						return new bs.progress.container(
-							{
-								label: "Basic sample",
-								value: i,
-								min: 0,
-								max: 100,
-								marginBottom: 3,
-							},
-							new bs.progress.bar({ style: { width: `${i}%` } })
-						);
-					}),
-				])
-			),
-			new bs.row(
-				new bs.col([
-					...[1, 20].map((i) => {
-						return new bs.progress.container(
-							{
-								label: `Example ${i}px high`,
-								value: 25,
-								min: 0,
-								max: 100,
-								marginBottom: 3,
-								style: { height: `${i}px` },
-							},
-							new bs.progress.bar({ style: { width: `25%` } })
-						);
-					}),
-				])
-			),
-			new bs.row(
-				new bs.col([
-					new bs.progress.container(
+					new bs.popover(
 						{
-							label: "Example with label",
-							value: 25,
-							min: 0,
-							max: 100,
-							marginBottom: 3,
+							inline: true,
+							trigger: ["hover", "focus"],
+							placement: "bottom",
+							title: "Popover title",
+							content:
+								"And here's some amazing content. It's very engaging. Right?",
 						},
-						new bs.progress.bar({ style: { width: `25%` } }, "25%")
+						new bs.button(
+							{ color: "danger", weight: "lg", disabled: true },
+							"Click to toggle popover"
+						)
 					),
 				])
 			),
-			new bs.row(
-				new bs.col([
-					...["success", "info", "warning", "danger"].map((i, ix) => {
-						let val = [25, 50, 75, 100][ix];
-
-						return new bs.progress.container(
-							{
-								label: "Basic sample",
-								value: val,
-								min: 0,
-								max: 100,
-								marginBottom: 3,
-							},
-							new bs.progress.bar({
-								color: i as bootstrapType.color[number],
-								style: { width: `${val}%` },
-							})
-						);
-					}),
-				])
-			),
-			new bs.row(
-				new bs.col([
-					new bs.progress.stacked([
-						...["success", "warning", "danger"].map((i, ix) => {
-							let val = [15, 30, 20][ix];
-
-							return new bs.progress.container(
-								{
-									label: `Segment #${ix + 1}`,
-									value: val,
-									min: 0,
-									max: 100,
-									style: { width: `${val}%` },
-								},
-								new bs.progress.bar({
-									color: i as bootstrapType.color[number],
-								})
-							);
-						}),
-					]),
-				])
-			),
-			new bs.row(
-				new bs.col([
-					...[undefined, "success", "info", "warning", "danger"].map(
-						(i, ix) => {
-							let val = [10, 25, 50, 75, 100][ix];
-
-							return new bs.progress.container(
-								{
-									label: `${
-										i ? i : "Default"
-									} striped example`,
-									value: val,
-									min: 0,
-									max: 100,
-									marginBottom: 3,
-								},
-								new bs.progress.bar({
-									color: i as bootstrapType.color[number],
-									striped: true,
-									style: { width: `${val}%` },
-								})
-							);
-						}
-					),
-				])
-			),
-			new bs.row(
-				new bs.col([
-					...[undefined, "success", "info", "warning", "danger"].map(
-						(i, ix) => {
-							let val = [10, 25, 50, 75, 100][ix];
-
-							return new bs.progress.container(
-								{
-									label: `${
-										i ? i : "Default"
-									} striped example`,
-									value: val,
-									min: 0,
-									max: 100,
-									marginBottom: 3,
-								},
-								new bs.progress.bar({
-									color: i as bootstrapType.color[number],
-									striped: true,
-									animated: true,
-									style: { width: `${val}%` },
-								})
-							);
-						}
-					),
-				])
-			),
+			// new bs.row(new bs.col([])),
+			// new bs.row(new bs.col([])),
+			// new bs.row(new bs.col([])),
+			// new bs.row(new bs.col([])),
+			// new bs.row(new bs.col([])),
 		])
 	);
+
+	// core.appendChild(
+	// 	body,
+	// 	new bs.row({ paddingY: 5, gap: 3 }, [
+	// 		new bs.row(
+	// 			new bs.col([
+	// 				...[0, 25, 50, 75, 100].map((i) => {
+	// 					return new bs.progress.container(
+	// 						{
+	// 							label: "Basic sample",
+	// 							value: i,
+	// 							min: 0,
+	// 							max: 100,
+	// 							marginBottom: 3,
+	// 						},
+	// 						new bs.progress.bar({ style: { width: `${i}%` } })
+	// 					);
+	// 				}),
+	// 			])
+	// 		),
+	// 		new bs.row(
+	// 			new bs.col([
+	// 				...[1, 20].map((i) => {
+	// 					return new bs.progress.container(
+	// 						{
+	// 							label: `Example ${i}px high`,
+	// 							value: 25,
+	// 							min: 0,
+	// 							max: 100,
+	// 							marginBottom: 3,
+	// 							style: { height: `${i}px` },
+	// 						},
+	// 						new bs.progress.bar({ style: { width: `25%` } })
+	// 					);
+	// 				}),
+	// 			])
+	// 		),
+	// 		new bs.row(
+	// 			new bs.col([
+	// 				new bs.progress.container(
+	// 					{
+	// 						label: "Example with label",
+	// 						value: 25,
+	// 						min: 0,
+	// 						max: 100,
+	// 						marginBottom: 3,
+	// 					},
+	// 					new bs.progress.bar({ style: { width: `25%` } }, "25%")
+	// 				),
+	// 			])
+	// 		),
+	// 		new bs.row(
+	// 			new bs.col([
+	// 				...["success", "info", "warning", "danger"].map((i, ix) => {
+	// 					let val = [25, 50, 75, 100][ix];
+
+	// 					return new bs.progress.container(
+	// 						{
+	// 							label: "Basic sample",
+	// 							value: val,
+	// 							min: 0,
+	// 							max: 100,
+	// 							marginBottom: 3,
+	// 						},
+	// 						new bs.progress.bar({
+	// 							color: i as bootstrapType.color[number],
+	// 							style: { width: `${val}%` },
+	// 						})
+	// 					);
+	// 				}),
+	// 			])
+	// 		),
+	// 		new bs.row(
+	// 			new bs.col([
+	// 				new bs.progress.stacked([
+	// 					...["success", "warning", "danger"].map((i, ix) => {
+	// 						let val = [15, 30, 20][ix];
+
+	// 						return new bs.progress.container(
+	// 							{
+	// 								label: `Segment #${ix + 1}`,
+	// 								value: val,
+	// 								min: 0,
+	// 								max: 100,
+	// 								style: { width: `${val}%` },
+	// 							},
+	// 							new bs.progress.bar({
+	// 								color: i as bootstrapType.color[number],
+	// 							})
+	// 						);
+	// 					}),
+	// 				]),
+	// 			])
+	// 		),
+	// 		new bs.row(
+	// 			new bs.col([
+	// 				...[undefined, "success", "info", "warning", "danger"].map(
+	// 					(i, ix) => {
+	// 						let val = [10, 25, 50, 75, 100][ix];
+
+	// 						return new bs.progress.container(
+	// 							{
+	// 								label: `${
+	// 									i ? i : "Default"
+	// 								} striped example`,
+	// 								value: val,
+	// 								min: 0,
+	// 								max: 100,
+	// 								marginBottom: 3,
+	// 							},
+	// 							new bs.progress.bar({
+	// 								color: i as bootstrapType.color[number],
+	// 								striped: true,
+	// 								style: { width: `${val}%` },
+	// 							})
+	// 						);
+	// 					}
+	// 				),
+	// 			])
+	// 		),
+	// 		new bs.row(
+	// 			new bs.col([
+	// 				...[undefined, "success", "info", "warning", "danger"].map(
+	// 					(i, ix) => {
+	// 						let val = [10, 25, 50, 75, 100][ix];
+
+	// 						return new bs.progress.container(
+	// 							{
+	// 								label: `${
+	// 									i ? i : "Default"
+	// 								} striped example`,
+	// 								value: val,
+	// 								min: 0,
+	// 								max: 100,
+	// 								marginBottom: 3,
+	// 							},
+	// 							new bs.progress.bar({
+	// 								color: i as bootstrapType.color[number],
+	// 								striped: true,
+	// 								animated: true,
+	// 								style: { width: `${val}%` },
+	// 							})
+	// 						);
+	// 					}
+	// 				),
+	// 			])
+	// 		),
+	// 	])
+	// );
 
 	// core.appendChild(
 	// 	body,
