@@ -32,8 +32,6 @@
 		"debug": "tsc --project tsconfig.debug.json --watch"
 	},
 	"devDependencies": {
-		"@popperjs/core": "^2.11.6",
-		"bootstrap": "^5.3.0-alpha1",
 		"typescript": "^5.0.0-beta"
 	}
 }
