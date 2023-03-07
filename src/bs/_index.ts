@@ -24,6 +24,7 @@ import { visuallyhidden } from "./visuallyhidden.js";
 import { nav } from "./nav/_index.js";
 import { modal } from "./modal/_index.js";
 import { toast } from "./toast/_index.js";
+import { progress } from "./progress/_index.js";
 
 export const bs = {
 	icon,
@@ -52,4 +53,5 @@ export const bs = {
 	nav,
 	modal,
 	toast,
+	progress,
 };

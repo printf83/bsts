@@ -1,4 +1,5 @@
 import { IAttrBSButton } from "./bs/button.js";
+import { bootstrapType } from "./core/base/bootstrap.js";
 import { HLevel } from "./ht/h.js";
 import { bs, core, ht, tag } from "./index.js";
 let loream = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta tincidunt arcu eu dignissim. Suspendisse nunc tortor, semper ut commodo nec, bibendum ut quam. Vivamus porttitor egestas luctus. Morbi tincidunt tortor eu lorem gravida imperdiet. Vestibulum tincidunt hendrerit tempus. Morbi varius est ac euismod tristique. Fusce a tortor suscipit, lacinia arcu nec, aliquet tortor. Maecenas eu lorem nec ante faucibus sollicitudin. Nunc consequat ullamcorper congue. Praesent cursus velit euismod turpis ultrices, sit amet venenatis massa pharetra. Nunc maximus pharetra purus in maximus.`;
@@ -55,110 +56,259 @@ core.documentReady(() => {
 		new bs.row({ paddingY: 5, gap: 3 }, [
 			new bs.row(
 				new bs.col([
-					...[
-						"primary",
-						"primary-emphasis",
-						"primary-secondary",
-						"primary-tertiary",
-						"secondary",
-						"secondary-emphasis",
-						"success",
-						"success-emphasis",
-						"danger",
-						"danger-emphasis",
-						"warning",
-						"warning-emphasis",
-						"info",
-						"info-emphasis",
-						"light",
-						"light-emphasis",
-						"dark",
-						"dark-emphasis",
-						"body",
-						"muted",
-						"body-emphasis",
-						"body-secondary",
-						"body-tertiary",
-					].map((i) => {
-						return new ht.div({ class: `bg-${i}` }, `.bg-${i}`);
+					...[0, 25, 50, 75, 100].map((i) => {
+						return new bs.progress.container(
+							{
+								label: "Basic sample",
+								value: i,
+								min: 0,
+								max: 100,
+								marginBottom: 3,
+							},
+							new bs.progress.bar({ style: { width: `${i}%` } })
+						);
 					}),
 				])
 			),
-			// new bs.row(new bs.col([])),
-			// new bs.row(new bs.col([])),
-			// new bs.row(new bs.col([])),
-			// new bs.row(new bs.col([])),
-			// new bs.row(
-			// 	new bs.col([
-			// 		new ht.div(
-			// 			{
-			// 				zIndex: 3,
-			// 				position: "absolute",
-			// 				padding: 5,
-			// 				roundedSize: 3,
-			// 				bgColor: "secondary",
-			// 				border: true,
-			// 				// opacity: 25,
-			// 				style: { marginTop: "10px", marginLeft: "10px" },
-			// 			},
-			// 			""
-			// 		),
-			// 		new ht.div(
-			// 			{
-			// 				zIndex: 2,
-			// 				position: "absolute",
-			// 				padding: 5,
-			// 				roundedSize: 3,
-			// 				bgColor: "secondary",
-			// 				border: true,
-			// 				// opacity: 25,
-			// 				style: { marginTop: "20px", marginLeft: "20px" },
-			// 			},
-			// 			""
-			// 		),
-			// 		new ht.div(
-			// 			{
-			// 				zIndex: 1,
-			// 				position: "absolute",
-			// 				padding: 5,
-			// 				roundedSize: 3,
-			// 				bgColor: "secondary",
-			// 				border: true,
-			// 				// opacity: 25,
-			// 				style: { marginTop: "30px", marginLeft: "30px" },
-			// 			},
-			// 			""
-			// 		),
-			// 		new ht.div(
-			// 			{
-			// 				zIndex: 0,
-			// 				position: "absolute",
-			// 				padding: 5,
-			// 				roundedSize: 3,
-			// 				bgColor: "secondary",
-			// 				border: true,
-			// 				// opacity: 25,
-			// 				style: { marginTop: "40px", marginLeft: "40px" },
-			// 			},
-			// 			""
-			// 		),
-			// 		new ht.div(
-			// 			{
-			// 				zIndex: "n1",
-			// 				position: "absolute",
-			// 				padding: 5,
-			// 				roundedSize: 3,
-			// 				bgColor: "secondary",
-			// 				border: true,
-			// 				// opacity: 25,
-			// 				style: { marginTop: "50px", marginLeft: "50px" },
-			// 			},
-			// 			""
-			// 		),
-			// 	])
-			// ),
+			new bs.row(
+				new bs.col([
+					...[1, 20].map((i) => {
+						return new bs.progress.container(
+							{
+								label: `Example ${i}px high`,
+								value: 25,
+								min: 0,
+								max: 100,
+								marginBottom: 3,
+								style: { height: `${i}px` },
+							},
+							new bs.progress.bar({ style: { width: `25%` } })
+						);
+					}),
+				])
+			),
+			new bs.row(
+				new bs.col([
+					new bs.progress.container(
+						{
+							label: "Example with label",
+							value: 25,
+							min: 0,
+							max: 100,
+							marginBottom: 3,
+						},
+						new bs.progress.bar({ style: { width: `25%` } }, "25%")
+					),
+				])
+			),
+			new bs.row(
+				new bs.col([
+					...["success", "info", "warning", "danger"].map((i, ix) => {
+						let val = [25, 50, 75, 100][ix];
+
+						return new bs.progress.container(
+							{
+								label: "Basic sample",
+								value: val,
+								min: 0,
+								max: 100,
+								marginBottom: 3,
+							},
+							new bs.progress.bar({
+								color: i as bootstrapType.color[number],
+								style: { width: `${val}%` },
+							})
+						);
+					}),
+				])
+			),
+			new bs.row(
+				new bs.col([
+					new bs.progress.stacked([
+						...["success", "warning", "danger"].map((i, ix) => {
+							let val = [15, 30, 20][ix];
+
+							return new bs.progress.container(
+								{
+									label: `Segment #${ix + 1}`,
+									value: val,
+									min: 0,
+									max: 100,
+									style: { width: `${val}%` },
+								},
+								new bs.progress.bar({
+									color: i as bootstrapType.color[number],
+								})
+							);
+						}),
+					]),
+				])
+			),
+			new bs.row(
+				new bs.col([
+					...[undefined, "success", "info", "warning", "danger"].map(
+						(i, ix) => {
+							let val = [10, 25, 50, 75, 100][ix];
+
+							return new bs.progress.container(
+								{
+									label: `${
+										i ? i : "Default"
+									} striped example`,
+									value: val,
+									min: 0,
+									max: 100,
+									marginBottom: 3,
+								},
+								new bs.progress.bar({
+									color: i as bootstrapType.color[number],
+									striped: true,
+									style: { width: `${val}%` },
+								})
+							);
+						}
+					),
+				])
+			),
+			new bs.row(
+				new bs.col([
+					...[undefined, "success", "info", "warning", "danger"].map(
+						(i, ix) => {
+							let val = [10, 25, 50, 75, 100][ix];
+
+							return new bs.progress.container(
+								{
+									label: `${
+										i ? i : "Default"
+									} striped example`,
+									value: val,
+									min: 0,
+									max: 100,
+									marginBottom: 3,
+								},
+								new bs.progress.bar({
+									color: i as bootstrapType.color[number],
+									striped: true,
+									animated: true,
+									style: { width: `${val}%` },
+								})
+							);
+						}
+					),
+				])
+			),
 		])
 	);
+
+	// core.appendChild(
+	// 	body,
+	// 	new bs.row({ paddingY: 5, gap: 3 }, [
+	// 		new bs.row(
+	// 			new bs.col([
+	// 				...[
+	// 					"primary",
+	// 					"primary-emphasis",
+	// 					"primary-secondary",
+	// 					"primary-tertiary",
+	// 					"secondary",
+	// 					"secondary-emphasis",
+	// 					"success",
+	// 					"success-emphasis",
+	// 					"danger",
+	// 					"danger-emphasis",
+	// 					"warning",
+	// 					"warning-emphasis",
+	// 					"info",
+	// 					"info-emphasis",
+	// 					"light",
+	// 					"light-emphasis",
+	// 					"dark",
+	// 					"dark-emphasis",
+	// 					"body",
+	// 					"muted",
+	// 					"body-emphasis",
+	// 					"body-secondary",
+	// 					"body-tertiary",
+	// 				].map((i) => {
+	// 					return new ht.div({ class: `bg-${i}` }, `.bg-${i}`);
+	// 				}),
+	// 			])
+	// 		),
+	// 		// new bs.row(new bs.col([])),
+	// 		// new bs.row(new bs.col([])),
+	// 		// new bs.row(new bs.col([])),
+	// 		// new bs.row(new bs.col([])),
+	// 		// new bs.row(
+	// 		// 	new bs.col([
+	// 		// 		new ht.div(
+	// 		// 			{
+	// 		// 				zIndex: 3,
+	// 		// 				position: "absolute",
+	// 		// 				padding: 5,
+	// 		// 				roundedSize: 3,
+	// 		// 				bgColor: "secondary",
+	// 		// 				border: true,
+	// 		// 				// opacity: 25,
+	// 		// 				style: { marginTop: "10px", marginLeft: "10px" },
+	// 		// 			},
+	// 		// 			""
+	// 		// 		),
+	// 		// 		new ht.div(
+	// 		// 			{
+	// 		// 				zIndex: 2,
+	// 		// 				position: "absolute",
+	// 		// 				padding: 5,
+	// 		// 				roundedSize: 3,
+	// 		// 				bgColor: "secondary",
+	// 		// 				border: true,
+	// 		// 				// opacity: 25,
+	// 		// 				style: { marginTop: "20px", marginLeft: "20px" },
+	// 		// 			},
+	// 		// 			""
+	// 		// 		),
+	// 		// 		new ht.div(
+	// 		// 			{
+	// 		// 				zIndex: 1,
+	// 		// 				position: "absolute",
+	// 		// 				padding: 5,
+	// 		// 				roundedSize: 3,
+	// 		// 				bgColor: "secondary",
+	// 		// 				border: true,
+	// 		// 				// opacity: 25,
+	// 		// 				style: { marginTop: "30px", marginLeft: "30px" },
+	// 		// 			},
+	// 		// 			""
+	// 		// 		),
+	// 		// 		new ht.div(
+	// 		// 			{
+	// 		// 				zIndex: 0,
+	// 		// 				position: "absolute",
+	// 		// 				padding: 5,
+	// 		// 				roundedSize: 3,
+	// 		// 				bgColor: "secondary",
+	// 		// 				border: true,
+	// 		// 				// opacity: 25,
+	// 		// 				style: { marginTop: "40px", marginLeft: "40px" },
+	// 		// 			},
+	// 		// 			""
+	// 		// 		),
+	// 		// 		new ht.div(
+	// 		// 			{
+	// 		// 				zIndex: "n1",
+	// 		// 				position: "absolute",
+	// 		// 				padding: 5,
+	// 		// 				roundedSize: 3,
+	// 		// 				bgColor: "secondary",
+	// 		// 				border: true,
+	// 		// 				// opacity: 25,
+	// 		// 				style: { marginTop: "50px", marginLeft: "50px" },
+	// 		// 			},
+	// 		// 			""
+	// 		// 		),
+	// 		// 	])
+	// 		// ),
+	// 	])
+	// );
 
 	// core.appendChild(
 	// 	body,
