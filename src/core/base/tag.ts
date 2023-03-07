@@ -436,6 +436,7 @@ export interface IBootstrap {
 	row?: bootstrapType.row[number];
 	col?: bootstrapType.col[number] | bootstrapType.col[number][];
 	rowCol?: bootstrapType.rowCol[number] | bootstrapType.rowCol[number][];
+	zIndex?: bootstrapType.zindex[number];
 }
 
 export interface IAttr extends IGlobal, IBootstrap {

@@ -419,6 +419,11 @@ const db: bootstrapRuleDB = {
 		format: "row-cols-$1",
 		value: bootstrapBase.rowCol.concat(),
 	}),
+	zIndex: new bootstrapAttachRule({
+		format: "z-$1",
+		value: bootstrapBase.alignSelf.concat(),
+		shared: true,
+	}),
 };
 
 let allowProp: (string | undefined)[] = [];

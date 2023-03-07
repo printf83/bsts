@@ -859,6 +859,8 @@ export namespace bootstrapBase {
 		"xxl",
 		"fluid",
 	] as const;
+
+	export const zindex = [0, 1, 2, 3, "n1"] as const;
 }
 
 export namespace bootstrapType {
@@ -969,6 +971,8 @@ export namespace bootstrapType {
 
 	export type print = typeof bootstrapBase.print;
 	export type container = typeof bootstrapBase.container;
+
+	export type zindex = typeof bootstrapBase.zindex;
 }
 
 export interface IBootstrapAttachRule {
