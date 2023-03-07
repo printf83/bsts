@@ -56,18 +56,17 @@ core.documentReady(() => {
 		new bs.row({ paddingY: 5, gap: 3 }, [
 			new bs.row(
 				new bs.col([
-					new bs.popover(
+					new bs.tooltip(
 						{
 							inline: true,
 							trigger: ["hover", "focus"],
 							placement: "bottom",
-							title: "Popover title",
 							content:
 								"And here's some amazing content. It's very engaging. Right?",
 						},
 						new bs.button(
 							{ color: "danger", weight: "lg", disabled: true },
-							"Click to toggle popover"
+							"Click to toggle tooltip"
 						)
 					),
 				])
