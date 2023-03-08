@@ -448,8 +448,8 @@ export interface IAttr extends IGlobal, IBootstrap {
 	debug?: true;
 
 	//addtional
-	active?: boolean;
-	disabled?: boolean;
+	// active?: boolean;
+	// disabled?: boolean;
 }
 
 export interface ITag {

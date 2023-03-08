@@ -9,7 +9,7 @@ export interface IAttrBSInput extends IAttrTagInput {
 	role?: string;
 }
 
-const convert = (attr: IAttrBSInput) => {
+const convert = (attr: IAttrBSInput): IAttrTagInput => {
 	//set default value
 	attr.type = attr.type || "text";
 

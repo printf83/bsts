@@ -43,7 +43,8 @@ export const attachBoolean: IAttachFn = (key, elem, attr) => {
 			if (attr[k] === true) {
 				elem.setAttribute(key, key);
 			} else {
-				if (setting.DEBUG) console.log(`Attribute ${key}:${attr[k]} is FALSE`);
+				if (setting.DEBUG)
+					console.log(`Attribute ${key}:${attr[k]} is FALSE`);
 			}
 
 			delete attr[k];

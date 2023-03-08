@@ -12,6 +12,8 @@ export interface IAttrBSButton extends IAttrTagButton {
 	href?: string;
 	role?: "button" | "tab";
 	target?: string;
+
+	active?: boolean;
 }
 
 const convert = (attr: IAttrBSButton): IAttrBSButton => {
@@ -34,8 +36,10 @@ const convert = (attr: IAttrBSButton): IAttrBSButton => {
 				attr.color && attr.outline === true
 					? `btn-outline-${attr.color}`
 					: "",
+				attr.disabled && attr.href ? "disabled" : "",
+				attr.active ? "active" : "",
 			],
-			role: attr.role,
+			role: attr.href && attr.role ? attr.role : undefined,
 			data: {
 				"bs-toggle": attr.toggle
 					? attr.toggle === true
@@ -45,6 +49,11 @@ const convert = (attr: IAttrBSButton): IAttrBSButton => {
 				"bs-target": attr.target,
 				"bs-dismiss": attr.dismiss,
 			},
+			aria: {
+				disabled: attr.disabled && attr.href ? "true" : undefined,
+				pressed: attr.active ? "true" : undefined,
+			},
+			tabindex: attr.disabled && attr.href ? "-1" : undefined,
 		},
 		attr
 	);
@@ -55,6 +64,12 @@ const convert = (attr: IAttrBSButton): IAttrBSButton => {
 	delete attr.toggle;
 	delete attr.target;
 	delete attr.dismiss;
+
+	delete attr.active;
+
+	if (attr.href) {
+		delete attr.disabled;
+	}
 
 	// dont delete
 	// delete a.href;
