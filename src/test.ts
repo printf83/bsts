@@ -1,7 +1,7 @@
 // import { IAttrBSButton } from "./bs/button.js";
 // import { bootstrapType } from "./core/base/bootstrap.js";
 // import { HLevel } from "./ht/h.js";
-import { bs, core } from "./index.js";
+import { bs, core, ht } from "./index.js";
 // let loream = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta tincidunt arcu eu dignissim. Suspendisse nunc tortor, semper ut commodo nec, bibendum ut quam. Vivamus porttitor egestas luctus. Morbi tincidunt tortor eu lorem gravida imperdiet. Vestibulum tincidunt hendrerit tempus. Morbi varius est ac euismod tristique. Fusce a tortor suscipit, lacinia arcu nec, aliquet tortor. Maecenas eu lorem nec ante faucibus sollicitudin. Nunc consequat ullamcorper congue. Praesent cursus velit euismod turpis ultrices, sit amet venenatis massa pharetra. Nunc maximus pharetra purus in maximus.`;
 // let select_option = [
 // 	{ value: "A", elem: "A" },
@@ -56,21 +56,119 @@ core.documentReady(() => {
 		new bs.row({ paddingY: 5, gap: 3 }, [
 			new bs.row(
 				new bs.col([
-					new bs.tooltip(
+					new bs.offcanvas.toggle(
 						{
-							inline: true,
-							trigger: ["hover", "focus"],
-							placement: "bottom",
-							content:
-								"And here's some amazing content. It's very engaging. Right?",
+							link: true,
+							target: "#offcanvasExample",
+							control: "offcanvasExample",
+							marginEnd: 3,
 						},
-						new bs.button(
-							{ color: "danger", weight: "lg", disabled: true },
-							"Click to toggle tooltip"
-						)
+						"Link with href"
+					),
+					new bs.offcanvas.toggle(
+						{
+							target: "#offcanvasExample",
+							control: "offcanvasExample",
+						},
+						"Link with data-bs-target"
+					),
+
+					new bs.offcanvas.container(
+						{
+							id: "offcanvasExample",
+							labelledby: "offcanvasExampleTitle",
+						},
+						[
+							new bs.offcanvas.header([
+								new bs.offcanvas.title(
+									{
+										id: "offcanvasExampleTitle",
+									},
+									"Offcanvas"
+								),
+								new bs.offcanvas.btnclose({ white: true }),
+							]),
+							new bs.offcanvas.body([
+								new ht.p(
+									"Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc."
+								),
+								new bs.dropdown.container([
+									new bs.dropdown.toggle(
+										{ color: "secondary" },
+										"Dropdown button"
+									),
+									new bs.dropdown.menu({ dark: true }, [
+										new bs.dropdown.item("Action"),
+										new bs.dropdown.item("Another action"),
+										new bs.dropdown.item(
+											"Something else here"
+										),
+									]),
+								]),
+							]),
+						]
 					),
 				])
 			),
+
+			new bs.row(
+				new bs.col([
+					new bs.offcanvas.toggle(
+						{
+							target: "#offcanvasExample2",
+							control: "offcanvasExample2",
+							display: "lg-none",
+						},
+						"Toggle offcanvas"
+					),
+
+					new bs.alert.container(
+						{ color: "info", display: ["none", "lg-block"] },
+						"Resize your browser to show the responsive offcanvas toggle."
+					),
+
+					new bs.offcanvas.container(
+						{
+							id: "offcanvasExample2",
+							labelledby: "offcanvasExampleTitle2",
+							hide: "lg",
+							placement: "end",
+						},
+						[
+							new bs.offcanvas.header([
+								new bs.offcanvas.title(
+									{
+										id: "offcanvasExampleTitle2",
+									},
+									"Offcanvas"
+								),
+								new bs.offcanvas.btnclose({
+									target: "#offcanvasExample2", //important for bs.offcanvas.container.hide
+								}),
+							]),
+							new bs.offcanvas.body([
+								new ht.p(
+									"Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc."
+								),
+								new bs.dropdown.container([
+									new bs.dropdown.toggle(
+										{ color: "secondary" },
+										"Dropdown button"
+									),
+									new bs.dropdown.menu({ dark: true }, [
+										new bs.dropdown.item("Action"),
+										new bs.dropdown.item("Another action"),
+										new bs.dropdown.item(
+											"Something else here"
+										),
+									]),
+								]),
+							]),
+						]
+					),
+				])
+			),
+
 			// new bs.row(new bs.col([])),
 			// new bs.row(new bs.col([])),
 			// new bs.row(new bs.col([])),
@@ -78,6 +176,34 @@ core.documentReady(() => {
 			// new bs.row(new bs.col([])),
 		])
 	);
+
+	// core.appendChild(
+	// 	body,
+	// 	new bs.row({ paddingY: 5, gap: 3 }, [
+	// 		new bs.row(
+	// 			new bs.col([
+	// 				new bs.tooltip(
+	// 					{
+	// 						inline: true,
+	// 						trigger: ["hover", "focus"],
+	// 						placement: "bottom",
+	// 						content:
+	// 							"And here's some amazing content. It's very engaging. Right?",
+	// 					},
+	// 					new bs.button(
+	// 						{ color: "danger", weight: "lg", disabled: true },
+	// 						"Click to toggle tooltip"
+	// 					)
+	// 				),
+	// 			])
+	// 		),
+	// 		// new bs.row(new bs.col([])),
+	// 		// new bs.row(new bs.col([])),
+	// 		// new bs.row(new bs.col([])),
+	// 		// new bs.row(new bs.col([])),
+	// 		// new bs.row(new bs.col([])),
+	// 	])
+	// );
 
 	// core.appendChild(
 	// 	body,

@@ -2,10 +2,10 @@
   "compilerOptions": {
     "target": "ES2016",
     "module": "ESNext",
-    "moduleResolution": "nodenext",
+    // "moduleResolution": "nodenext",
     "outDir": "./lib",
-    "sourceMap": true,
-    "declaration": true,
+    // "sourceMap": true,
+    // "declaration": true,
     
 
     "strict": true,

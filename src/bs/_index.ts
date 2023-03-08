@@ -27,6 +27,7 @@ import { toast } from "./toast/_index.js";
 import { progress } from "./progress/_index.js";
 import { popover } from "./popover.js";
 import { tooltip } from "./tooltip.js";
+import { offcanvas } from "./offcanvas/_index.js";
 
 export const bs = {
 	icon,
@@ -58,4 +59,5 @@ export const bs = {
 	progress,
 	popover,
 	tooltip,
+	offcanvas,
 };

@@ -3,7 +3,7 @@ import { mergeObject } from "../../core/fn/mergeObject.js";
 import { UUID } from "../../core/fn/uuid.js";
 import { div } from "../../ht/div.js";
 
-export interface IAttrBSModal extends IAttr {
+export interface IAttrBSModalContainer extends IAttr {
 	static?: boolean;
 	weight?: "sm" | "lg" | "xl";
 	fullscreen?: true | "sm" | "md" | "lg" | "xl" | "xxl";
@@ -15,7 +15,7 @@ export interface IAttrBSModal extends IAttr {
 	debug?: true;
 }
 
-const convert = (attr: IAttrBSModal): IAttr => {
+const convert = (attr: IAttrBSModalContainer): IAttr => {
 	attr.animation = attr.animation || true;
 
 	attr = mergeObject(
@@ -72,15 +72,15 @@ const convert = (attr: IAttrBSModal): IAttr => {
 
 export class container extends div {
 	constructor(); //#1
-	constructor(attr: IAttrBSModal); //#2
+	constructor(attr: IAttrBSModalContainer); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSModal, elem: IElem); //#4
+	constructor(attr: IAttrBSModalContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
 			super(convert({}));
 		} else if (arg.length === 1) {
-			if (isAttr<IAttrBSModal>(arg[0])) {
+			if (isAttr<IAttrBSModalContainer>(arg[0])) {
 				//#2
 				super(convert(arg[0]));
 			} else {
