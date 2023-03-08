@@ -1,3 +1,4 @@
+import { bootstrapType } from "../../core/base/bootstrap.js";
 import { IAttr, IElem, isAttr } from "../../core/base/tag.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
 import { UUID } from "../../core/fn/uuid.js";
@@ -5,7 +6,7 @@ import { div } from "../../ht/div.js";
 
 export interface IAttrBSOffcanvasContainer extends IAttr {
 	placement?: "start" | "end" | "top" | "bottom";
-	hide?: boolean | "sm" | "md" | "lg" | "xl" | "xxl";
+	hide?: boolean | bootstrapType.viewport[number];
 	dark?: boolean;
 	backdrop?: boolean | "static";
 	scroll?: boolean;

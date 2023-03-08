@@ -28,6 +28,7 @@ import { progress } from "./progress/_index.js";
 import { popover } from "./popover.js";
 import { tooltip } from "./tooltip.js";
 import { offcanvas } from "./offcanvas/_index.js";
+import { navbar } from "./navbar/_index.js";
 
 export const bs = {
 	icon,
@@ -60,4 +61,5 @@ export const bs = {
 	popover,
 	tooltip,
 	offcanvas,
+	navbar,
 };

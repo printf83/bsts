@@ -61,12 +61,12 @@ export const build = (
 										if (e.tag === "pre") {
 											element.insertAdjacentHTML(
 												"beforeend",
-												g + "\n"
+												"\n" + g + "\n"
 											);
 										} else {
 											element.appendChild(
 												document.createTextNode(
-													g + "\n"
+													"\n" + g + "\n"
 												)
 											);
 										}

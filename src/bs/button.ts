@@ -17,10 +17,6 @@ export interface IAttrBSButton extends IAttrTagButton {
 }
 
 const convert = (attr: IAttrBSButton): IAttrBSButton => {
-	//default button color
-
-	attr.color = attr.color || "primary";
-
 	if (attr.href) {
 		attr.role = attr.role || "button";
 	}
@@ -30,7 +26,7 @@ const convert = (attr: IAttrBSButton): IAttrBSButton => {
 	attr = mergeObject(
 		{
 			class: [
-				"btn",
+				attr.color ? "btn" : "",
 				attr.weight ? `btn-${attr.weight}` : "",
 				attr.color && attr.outline !== true ? `btn-${attr.color}` : "",
 				attr.color && attr.outline === true

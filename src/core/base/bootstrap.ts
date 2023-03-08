@@ -767,7 +767,13 @@ export namespace bootstrapBase {
 		"muted",
 	] as const;
 	export const linkColor = color;
-	export const bgColor = [...color, "body"] as const;
+	export const bgColor = [
+		...color,
+		"body",
+		"body-emphasis",
+		"body-secondary",
+		"body-tertiary",
+	] as const;
 
 	export const dropdownDirection = ["up", "start", "end"] as const;
 
