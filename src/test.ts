@@ -47,6 +47,81 @@ core.documentReady(() => {
 		body,
 		new bs.row({ paddingY: 5, gap: 3 }, [
 			new bs.row(
+				new bs.col([
+					new bs.breadcrumb.container(
+						{ marginBottom: 3, label: "Breadcrumb 1" },
+						[new bs.breadcrumb.item({ active: true }, "Home")]
+					),
+
+					new bs.breadcrumb.container(
+						{ marginBottom: 3, label: "Breadcrumb 2" },
+						[
+							new bs.breadcrumb.item({ href: "#" }, "Home"),
+							new bs.breadcrumb.item({ active: true }, "Library"),
+						]
+					),
+
+					new bs.breadcrumb.container(
+						{ marginBottom: 3, label: "Breadcrumb 3" },
+						[
+							new bs.breadcrumb.item({ href: "#" }, "Home"),
+							new bs.breadcrumb.item({ href: "#" }, "Library"),
+							new bs.breadcrumb.item({ active: true }, "Data"),
+						]
+					),
+				])
+			),
+			new bs.row(
+				new bs.col([
+					new bs.breadcrumb.container(
+						{
+							marginBottom: 3,
+							label: "Breadcrumb 1",
+							divider: "''",
+						},
+						[
+							new bs.breadcrumb.item({ href: "#" }, "Home"),
+							new bs.breadcrumb.item({ active: true }, "Library"),
+						]
+					),
+
+					new bs.breadcrumb.container(
+						{
+							marginBottom: 3,
+							label: "Breadcrumb 2",
+							divider: "'>'",
+						},
+						[
+							new bs.breadcrumb.item({ href: "#" }, "Home"),
+							new bs.breadcrumb.item({ active: true }, "Library"),
+						]
+					),
+
+					new bs.breadcrumb.container(
+						{
+							marginBottom: 3,
+							label: "Breadcrumb 3",
+							divider: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E")`,
+						},
+						[
+							new bs.breadcrumb.item({ href: "#" }, "Home"),
+							new bs.breadcrumb.item({ href: "#" }, "Library"),
+							new bs.breadcrumb.item({ active: true }, "Data"),
+						]
+					),
+				])
+			),
+			// new bs.row(new bs.col([])),
+			// new bs.row(new bs.col([])),
+			// new bs.row(new bs.col([])),
+			// new bs.row(new bs.col([])),
+		])
+	);
+
+	core.appendChild(
+		body,
+		new bs.row({ paddingY: 5, gap: 3 }, [
+			new bs.row(
 				new bs.col({ marginBottom: 3 }, [
 					new bs.navbar.container({ bgColor: "body-tertiary" }, [
 						new bs.navbar.brand({ href: "#" }, "Navbar"),
