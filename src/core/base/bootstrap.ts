@@ -605,6 +605,17 @@ export namespace bootstrapBase {
 		"dark",
 	] as const;
 
+	export const colorEmphasis = [
+		"primary-emphasis",
+		"secondary-emphasis",
+		"success-emphasis",
+		"danger-emphasis",
+		"warning-emphasis",
+		"info-emphasis",
+		"light-emphasis",
+		"dark-emphasis",
+	] as const;
+
 	export const positionView = [
 		"start",
 		"sm-start",
@@ -746,7 +757,15 @@ export namespace bootstrapBase {
 	export const alertColor = color;
 
 	export const textBgColor = color;
-	export const textColor = [...color, "muted"] as const;
+	export const textColor = [
+		...color,
+		...colorEmphasis,
+		"body",
+		"body-emphasis",
+		"body-secondary",
+		"body-tertiary",
+		"muted",
+	] as const;
 	export const linkColor = color;
 	export const bgColor = [...color, "body"] as const;
 
