@@ -1,6 +1,7 @@
 // import { Popover, Tooltip } from "bootstrap";
 // import { bootstrap } from "../../../node_modules/bootstrap";
-import { bootstrap } from "bootstrap";
+// import { Popover, Tooltip } from "bootstrap";
+// import * as bootstrap from "bootstrap";
 
 import { attachAttr } from "../attach/_index.js";
 import { IAttr, isTag, tag } from "../base/tag.js";
@@ -10,21 +11,21 @@ import { setting } from "./setting.js";
 
 export type buildArg = tag | string | (tag | string)[];
 
-export const init = (container: HTMLElement) => {
-	const popoverTriggerList = container.querySelectorAll(
-		'[data-bs-toggle="popover"]'
-	);
-	[...popoverTriggerList].map(
-		(popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl)
-	);
+// export const init = (container: HTMLElement) => {
+// 	const popoverTriggerList = container.querySelectorAll(
+// 		'[data-bs-toggle="popover"]'
+// 	);
+// 	[...popoverTriggerList].map(
+// 		(popoverTriggerEl) => new Popover(popoverTriggerEl)
+// 	);
 
-	const tooltipTriggerList = document.querySelectorAll(
-		'[data-bs-toggle="tooltip"]'
-	);
-	[...tooltipTriggerList].map(
-		(tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
-	);
-};
+// 	const tooltipTriggerList = document.querySelectorAll(
+// 		'[data-bs-toggle="tooltip"]'
+// 	);
+// 	[...tooltipTriggerList].map(
+// 		(tooltipTriggerEl) => new Tooltip(tooltipTriggerEl)
+// 	);
+// };
 
 export const build = (
 	container: HTMLElement,
