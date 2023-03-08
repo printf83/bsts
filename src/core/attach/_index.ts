@@ -4,8 +4,6 @@ import { attachHref } from "./attachHref.js";
 import { attachAria } from "./attachAria.js";
 import { attachData } from "./attachData.js";
 import { attachBoolean } from "./attachBoolean.js";
-// import { attachDisabled } from "./attachDisabled.js";
-// import { attachActive } from "./attachActive.js";
 import { setting } from "../fn/setting.js";
 import { attachBootstrap } from "./attachBootstrap.js";
 import { attachEvent } from "./attachEvent.js";
@@ -38,8 +36,6 @@ const cleanupAttr: IAttachFn = (key, elem, attr) => {
 const attrFn: IAttachFn[] = [
 	cleanupAttr,
 	attachAlias,
-	// attachActive,
-	// attachDisabled,
 	attachBoolean,
 	attachData,
 	attachAria,

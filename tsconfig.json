@@ -4,8 +4,8 @@
     "module": "ESNext",
     // "moduleResolution": "nodenext",
     "outDir": "./lib",
-    // "sourceMap": true,
-    // "declaration": true,
+    "sourceMap": true,
+    "declaration": true,
     
 
     "strict": true,
