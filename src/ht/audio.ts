@@ -2,7 +2,11 @@ import { IAttr, tag } from "../core/base/tag.js";
 import { source } from "./source.js";
 import { track } from "./track.js";
 
-export type IElemTagAudio = source | track | string | (source | track | string)[];
+export type IElemTagAudio =
+	| source
+	| track
+	| string
+	| (source | track | string)[];
 
 export interface IAttrTagAudio extends IAttr {
 	autoplay?: boolean;

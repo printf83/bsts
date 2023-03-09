@@ -2,7 +2,11 @@ import { IAttr, tag } from "../core/base/tag.js";
 import { source } from "./source.js";
 import { track } from "./track.js";
 
-export type IElemTagVideo = source | track | string | (source | track | string)[];
+export type IElemTagVideo =
+	| source
+	| track
+	| string
+	| (source | track | string)[];
 
 export interface IAttrTagVideo extends IAttr {
 	autoplay?: boolean;

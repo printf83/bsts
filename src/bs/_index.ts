@@ -31,7 +31,7 @@ import { offcanvas } from "./offcanvas/_index.js";
 import { navbar } from "./navbar/_index.js";
 import { breadcrumb } from "./breadcrumb/_index.js";
 
-export const bs = {
+export const bootstrap = {
 	icon,
 	button,
 	label,

@@ -18,14 +18,12 @@
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts.git"
 	},
-	"main": "lib/index.js",
+	"main": "lib/_index.js",
 	"exports": {
-		"require": "./lib/index.js",
-		"default": "./lib/index.js"
+		"require": "./lib/_index.js",
+		"default": "./lib/_index.js"
 	},
-	"files": [
-		"lib"
-	],
+
 	"scripts": {
 		"clear": "tsc --build --clean tsconfig.json ",
 		"build": "tsc --build --clean tsconfig.json && tsc --project tsconfig.json",

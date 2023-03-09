@@ -1,8 +1,3 @@
-// import { Popover, Tooltip } from "bootstrap";
-// import { bootstrap } from "../../../node_modules/bootstrap";
-// import { Popover, Tooltip } from "bootstrap";
-// import * as bootstrap from "bootstrap";
-
 import { attachAttr } from "../attach/_index.js";
 import { IAttr, isTag, tag } from "../base/tag.js";
 import { removeChildElement } from "./removeChildElement.js";

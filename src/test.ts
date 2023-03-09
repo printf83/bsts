@@ -1,17 +1,17 @@
 import { IAttrBSButton } from "./bs/button.js";
 import { bootstrapBase, bootstrapType } from "./core/base/bootstrap.js";
 import { HLevel } from "./ht/h.js";
-import { bs, core, ht, tag } from "./index.js";
+import { b, core, h, tag } from "./_index.js";
 let loream = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta tincidunt arcu eu dignissim. Suspendisse nunc tortor, semper ut commodo nec, bibendum ut quam. Vivamus porttitor egestas luctus. Morbi tincidunt tortor eu lorem gravida imperdiet. Vestibulum tincidunt hendrerit tempus. Morbi varius est ac euismod tristique. Fusce a tortor suscipit, lacinia arcu nec, aliquet tortor. Maecenas eu lorem nec ante faucibus sollicitudin. Nunc consequat ullamcorper congue. Praesent cursus velit euismod turpis ultrices, sit amet venenatis massa pharetra. Nunc maximus pharetra purus in maximus.`;
 let fnCard = (txt: string, src: string, footer?: true) => {
-	return new bs.card.container([
-		new bs.card.img({ src: src, location: "top" }),
-		new bs.card.body([
-			new bs.card.title("Card title"),
-			new bs.card.text(txt),
+	return new b.card.container([
+		new b.card.img({ src: src, location: "top" }),
+		new b.card.body([
+			new b.card.title("Card title"),
+			new b.card.text(txt),
 			!footer
-				? new bs.card.text(
-						new ht.small(
+				? new b.card.text(
+						new h.small(
 							{ textColor: "muted" },
 							"Last updated 3 mins ago"
 						)
@@ -19,8 +19,8 @@ let fnCard = (txt: string, src: string, footer?: true) => {
 				: "",
 		]),
 		footer
-			? new bs.card.footer(
-					new ht.small(
+			? new b.card.footer(
+					new h.small(
 						{ textColor: "muted" },
 						"Last updated 3 mins ago"
 					)
@@ -31,7 +31,7 @@ let fnCard = (txt: string, src: string, footer?: true) => {
 
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
-	core.replaceChild(body, new bs.row());
+	core.replaceChild(body, new b.row());
 
 	// core.appendChild(body,
 	// 	new bs.row({ paddingY: 5, gap: 3 }, [
@@ -45,68 +45,68 @@ core.documentReady(() => {
 
 	core.appendChild(
 		body,
-		new bs.row({ paddingY: 5, gap: 3 }, [
-			new bs.row(
-				new bs.col([
-					new bs.breadcrumb.container(
+		new b.row({ paddingY: 5, gap: 3 }, [
+			new b.row(
+				new b.col([
+					new b.breadcrumb.container(
 						{ marginBottom: 3, label: "Breadcrumb 1" },
-						[new bs.breadcrumb.item({ active: true }, "Home")]
+						[new b.breadcrumb.item({ active: true }, "Home")]
 					),
 
-					new bs.breadcrumb.container(
+					new b.breadcrumb.container(
 						{ marginBottom: 3, label: "Breadcrumb 2" },
 						[
-							new bs.breadcrumb.item({ href: "#" }, "Home"),
-							new bs.breadcrumb.item({ active: true }, "Library"),
+							new b.breadcrumb.item({ href: "#" }, "Home"),
+							new b.breadcrumb.item({ active: true }, "Library"),
 						]
 					),
 
-					new bs.breadcrumb.container(
+					new b.breadcrumb.container(
 						{ marginBottom: 3, label: "Breadcrumb 3" },
 						[
-							new bs.breadcrumb.item({ href: "#" }, "Home"),
-							new bs.breadcrumb.item({ href: "#" }, "Library"),
-							new bs.breadcrumb.item({ active: true }, "Data"),
+							new b.breadcrumb.item({ href: "#" }, "Home"),
+							new b.breadcrumb.item({ href: "#" }, "Library"),
+							new b.breadcrumb.item({ active: true }, "Data"),
 						]
 					),
 				])
 			),
-			new bs.row(
-				new bs.col([
-					new bs.breadcrumb.container(
+			new b.row(
+				new b.col([
+					new b.breadcrumb.container(
 						{
 							marginBottom: 3,
 							label: "Breadcrumb 1",
 							divider: "''",
 						},
 						[
-							new bs.breadcrumb.item({ href: "#" }, "Home"),
-							new bs.breadcrumb.item({ active: true }, "Library"),
+							new b.breadcrumb.item({ href: "#" }, "Home"),
+							new b.breadcrumb.item({ active: true }, "Library"),
 						]
 					),
 
-					new bs.breadcrumb.container(
+					new b.breadcrumb.container(
 						{
 							marginBottom: 3,
 							label: "Breadcrumb 2",
 							divider: "'>'",
 						},
 						[
-							new bs.breadcrumb.item({ href: "#" }, "Home"),
-							new bs.breadcrumb.item({ active: true }, "Library"),
+							new b.breadcrumb.item({ href: "#" }, "Home"),
+							new b.breadcrumb.item({ active: true }, "Library"),
 						]
 					),
 
-					new bs.breadcrumb.container(
+					new b.breadcrumb.container(
 						{
 							marginBottom: 3,
 							label: "Breadcrumb 3",
 							divider: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E")`,
 						},
 						[
-							new bs.breadcrumb.item({ href: "#" }, "Home"),
-							new bs.breadcrumb.item({ href: "#" }, "Library"),
-							new bs.breadcrumb.item({ active: true }, "Data"),
+							new b.breadcrumb.item({ href: "#" }, "Home"),
+							new b.breadcrumb.item({ href: "#" }, "Library"),
+							new b.breadcrumb.item({ active: true }, "Data"),
 						]
 					),
 				])
@@ -120,26 +120,26 @@ core.documentReady(() => {
 
 	core.appendChild(
 		body,
-		new bs.row({ paddingY: 5, gap: 3 }, [
-			new bs.row(
-				new bs.col({ marginBottom: 3 }, [
-					new bs.navbar.container({ bgColor: "body-tertiary" }, [
-						new bs.navbar.brand({ href: "#" }, "Navbar"),
+		new b.row({ paddingY: 5, gap: 3 }, [
+			new b.row(
+				new b.col({ marginBottom: 3 }, [
+					new b.navbar.container({ bgColor: "body-tertiary" }, [
+						new b.navbar.brand({ href: "#" }, "Navbar"),
 					]),
 				])
 			),
-			new bs.row(
-				new bs.col({ marginBottom: 3 }, [
-					new bs.navbar.container({ bgColor: "body-tertiary" }, [
-						new bs.navbar.brand("Navbar"),
+			new b.row(
+				new b.col({ marginBottom: 3 }, [
+					new b.navbar.container({ bgColor: "body-tertiary" }, [
+						new b.navbar.brand("Navbar"),
 					]),
 				])
 			),
-			new bs.row(
-				new bs.col({ marginBottom: 3 }, [
-					new bs.navbar.container({ bgColor: "body-tertiary" }, [
-						new bs.navbar.brand({ href: "#" }, [
-							new bs.img({
+			new b.row(
+				new b.col({ marginBottom: 3 }, [
+					new b.navbar.container({ bgColor: "body-tertiary" }, [
+						new b.navbar.brand({ href: "#" }, [
+							new b.img({
 								src: "https://picsum.photos/seed/6548/30/24",
 								display: "inline-block",
 								verticalAlign: "text-top",
@@ -149,38 +149,38 @@ core.documentReady(() => {
 					]),
 				])
 			),
-			new bs.row(
-				new bs.col({ marginBottom: 3 }, [
-					new bs.navbar.container(
+			new b.row(
+				new b.col({ marginBottom: 3 }, [
+					new b.navbar.container(
 						{ bgColor: "body-tertiary", expand: "lg" },
 						[
-							new bs.navbar.brand({ href: "#" }, "Navbar"),
-							new bs.navbar.toggle.collapse({
+							new b.navbar.brand({ href: "#" }, "Navbar"),
+							new b.navbar.toggle.collapse({
 								target: "#navbarNav",
 								control: "navbarNav",
 							}),
-							new bs.navbar.collapse({ id: "navbarNav" }, [
-								new bs.navbar.itemcontainer([
-									new bs.nav.header.item(
-										new bs.nav.header.link(
+							new b.navbar.collapse({ id: "navbarNav" }, [
+								new b.navbar.itemcontainer([
+									new b.nav.header.item(
+										new b.nav.header.link(
 											{ active: true, href: "#" },
 											"Home"
 										)
 									),
-									new bs.nav.header.item(
-										new bs.nav.header.link(
+									new b.nav.header.item(
+										new b.nav.header.link(
 											{ href: "#" },
 											"Features"
 										)
 									),
-									new bs.nav.header.item(
-										new bs.nav.header.link(
+									new b.nav.header.item(
+										new b.nav.header.link(
 											{ href: "#" },
 											"Pricing"
 										)
 									),
-									new bs.nav.header.item(
-										new bs.nav.header.link(
+									new b.nav.header.item(
+										new b.nav.header.link(
 											{ disabled: true },
 											"Disabled"
 										)
@@ -191,55 +191,55 @@ core.documentReady(() => {
 					),
 				])
 			),
-			new bs.row(
-				new bs.col({ marginBottom: 3 }, [
-					new bs.navbar.container(
+			new b.row(
+				new b.col({ marginBottom: 3 }, [
+					new b.navbar.container(
 						{ bgColor: "body-tertiary", expand: "lg" },
 						[
-							new bs.navbar.brand({ href: "#" }, "Navbar"),
-							new bs.navbar.toggle.collapse({
+							new b.navbar.brand({ href: "#" }, "Navbar"),
+							new b.navbar.toggle.collapse({
 								target: "#navbarNav",
 								control: "navbarNav",
 							}),
-							new bs.navbar.collapse({ id: "navbarNav" }, [
-								new bs.navbar.itemcontainer([
-									new bs.nav.header.item(
-										new bs.nav.header.link(
+							new b.navbar.collapse({ id: "navbarNav" }, [
+								new b.navbar.itemcontainer([
+									new b.nav.header.item(
+										new b.nav.header.link(
 											{ active: true, href: "#" },
 											"Home"
 										)
 									),
-									new bs.nav.header.item(
-										new bs.nav.header.link(
+									new b.nav.header.item(
+										new b.nav.header.link(
 											{ href: "#" },
 											"Features"
 										)
 									),
-									new bs.nav.header.item(
-										new bs.nav.header.link(
+									new b.nav.header.item(
+										new b.nav.header.link(
 											{ href: "#" },
 											"Pricing"
 										)
 									),
-									new bs.nav.header.item(
+									new b.nav.header.item(
 										{
 											dropdown: true,
 										},
 										[
-											new bs.nav.header.link(
+											new b.nav.header.link(
 												{ dropdown: true },
 												"Dropdown link"
 											),
-											new bs.dropdown.menu([
-												new bs.dropdown.item(
+											new b.dropdown.menu([
+												new b.dropdown.item(
 													{ href: "#" },
 													"Action"
 												),
-												new bs.dropdown.item(
+												new b.dropdown.item(
 													{ href: "#" },
 													"Another action"
 												),
-												new bs.dropdown.item(
+												new b.dropdown.item(
 													{ href: "#" },
 													"Something else here"
 												),
@@ -252,11 +252,11 @@ core.documentReady(() => {
 					),
 				])
 			),
-			new bs.row(
-				new bs.col([
-					new bs.navbar.container({ bgColor: "body-tertiary" }, [
-						new ht.form({ display: "flex" }, [
-							new bs.input(
+			new b.row(
+				new b.col([
+					new b.navbar.container({ bgColor: "body-tertiary" }, [
+						new h.form({ display: "flex" }, [
+							new b.input(
 								{
 									marginEnd: 2,
 									type: "search",
@@ -265,7 +265,7 @@ core.documentReady(() => {
 								},
 								""
 							),
-							new bs.button(
+							new b.button(
 								{
 									outline: true,
 									color: "success",
@@ -277,12 +277,12 @@ core.documentReady(() => {
 					]),
 				])
 			),
-			new bs.row(
-				new bs.col([
-					new bs.navbar.container({ bgColor: "body-tertiary" }, [
-						new bs.navbar.brand("Navbar"),
-						new ht.form({ display: "flex" }, [
-							new bs.input(
+			new b.row(
+				new b.col([
+					new b.navbar.container({ bgColor: "body-tertiary" }, [
+						new b.navbar.brand("Navbar"),
+						new h.form({ display: "flex" }, [
+							new b.input(
 								{
 									marginEnd: 2,
 									type: "search",
@@ -291,7 +291,7 @@ core.documentReady(() => {
 								},
 								""
 							),
-							new bs.button(
+							new b.button(
 								{
 									outline: true,
 									color: "success",
@@ -303,12 +303,12 @@ core.documentReady(() => {
 					]),
 				])
 			),
-			new bs.row(
-				new bs.col([
-					new bs.navbar.container({ bgColor: "body-tertiary" }, [
-						new bs.inputgroup.container([
-							new bs.inputgroup.text({ id: "basic-addon1" }, "@"),
-							new bs.input({
+			new b.row(
+				new b.col([
+					new b.navbar.container({ bgColor: "body-tertiary" }, [
+						new b.inputgroup.container([
+							new b.inputgroup.text({ id: "basic-addon1" }, "@"),
+							new b.input({
 								placeholderText: "Username",
 								aria: {
 									label: "Username",
@@ -319,16 +319,16 @@ core.documentReady(() => {
 					]),
 				])
 			),
-			new bs.row(
-				new bs.col([
-					new bs.navbar.container(
+			new b.row(
+				new b.col([
+					new b.navbar.container(
 						{
 							bgColor: "body-tertiary",
 							container: "fluid",
 							justifyContent: "start",
 						},
 						[
-							new bs.button(
+							new b.button(
 								{
 									outline: true,
 									color: "success",
@@ -336,7 +336,7 @@ core.documentReady(() => {
 								},
 								"Main button"
 							),
-							new bs.button(
+							new b.button(
 								{
 									outline: true,
 									color: "secondary",
@@ -349,70 +349,68 @@ core.documentReady(() => {
 					),
 				])
 			),
-			new bs.row(
-				new bs.col([
-					new bs.navbar.container({ bgColor: "body-tertiary" }, [
-						new bs.navbar.text(
-							"Navbar text with an inline element"
-						),
+			new b.row(
+				new b.col([
+					new b.navbar.container({ bgColor: "body-tertiary" }, [
+						new b.navbar.text("Navbar text with an inline element"),
 					]),
 				])
 			),
-			new bs.row(
-				new bs.col({ marginBottom: 3 }, [
-					new bs.navbar.container(
+			new b.row(
+				new b.col({ marginBottom: 3 }, [
+					new b.navbar.container(
 						{
 							bgColor: "primary",
 							expand: "lg",
 							placement: "sticky-top",
 						},
 						[
-							new bs.navbar.brand({ href: "#" }, "Navbar"),
-							new bs.navbar.toggle.collapse({
+							new b.navbar.brand({ href: "#" }, "Navbar"),
+							new b.navbar.toggle.collapse({
 								target: "#navbarNav",
 								control: "navbarNav",
 							}),
-							new bs.navbar.collapse({ id: "navbarNav" }, [
-								new bs.navbar.itemcontainer(
+							new b.navbar.collapse({ id: "navbarNav" }, [
+								new b.navbar.itemcontainer(
 									{ scroll: true, scrollHeight: "100px" },
 									[
-										new bs.nav.header.item(
-											new bs.nav.header.link(
+										new b.nav.header.item(
+											new b.nav.header.link(
 												{ active: true, href: "#" },
 												"Home"
 											)
 										),
-										new bs.nav.header.item(
-											new bs.nav.header.link(
+										new b.nav.header.item(
+											new b.nav.header.link(
 												{ href: "#" },
 												"Features"
 											)
 										),
-										new bs.nav.header.item(
-											new bs.nav.header.link(
+										new b.nav.header.item(
+											new b.nav.header.link(
 												{ href: "#" },
 												"Pricing"
 											)
 										),
-										new bs.nav.header.item(
+										new b.nav.header.item(
 											{
 												dropdown: true,
 											},
 											[
-												new bs.nav.header.link(
+												new b.nav.header.link(
 													{ dropdown: true },
 													"Dropdown link"
 												),
-												new bs.dropdown.menu([
-													new bs.dropdown.item(
+												new b.dropdown.menu([
+													new b.dropdown.item(
 														{ href: "#" },
 														"Action"
 													),
-													new bs.dropdown.item(
+													new b.dropdown.item(
 														{ href: "#" },
 														"Another action"
 													),
-													new bs.dropdown.item(
+													new b.dropdown.item(
 														{ href: "#" },
 														"Something else here"
 													),
@@ -432,10 +430,10 @@ core.documentReady(() => {
 
 	core.appendChild(
 		body,
-		new bs.row({ paddingY: 5, gap: 3 }, [
-			new bs.row(
-				new bs.col([
-					new bs.offcanvas.toggle(
+		new b.row({ paddingY: 5, gap: 3 }, [
+			new b.row(
+				new b.col([
+					new b.offcanvas.toggle(
 						{
 							link: true,
 							target: "#offcanvasExample",
@@ -444,7 +442,7 @@ core.documentReady(() => {
 						},
 						"Link with href"
 					),
-					new bs.offcanvas.toggle(
+					new b.offcanvas.toggle(
 						{
 							target: "#offcanvasExample",
 							control: "offcanvasExample",
@@ -452,34 +450,34 @@ core.documentReady(() => {
 						"Link with data-bs-target"
 					),
 
-					new bs.offcanvas.container(
+					new b.offcanvas.container(
 						{
 							id: "offcanvasExample",
 							labelledby: "offcanvasExampleTitle",
 						},
 						[
-							new bs.offcanvas.header([
-								new bs.offcanvas.title(
+							new b.offcanvas.header([
+								new b.offcanvas.title(
 									{
 										id: "offcanvasExampleTitle",
 									},
 									"Offcanvas"
 								),
-								new bs.offcanvas.btnclose({ white: true }),
+								new b.offcanvas.btnclose({ white: true }),
 							]),
-							new bs.offcanvas.body([
-								new ht.p(
+							new b.offcanvas.body([
+								new h.p(
 									"Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc."
 								),
-								new bs.dropdown.container([
-									new bs.dropdown.toggle(
+								new b.dropdown.container([
+									new b.dropdown.toggle(
 										{ color: "secondary" },
 										"Dropdown button"
 									),
-									new bs.dropdown.menu({ dark: true }, [
-										new bs.dropdown.item("Action"),
-										new bs.dropdown.item("Another action"),
-										new bs.dropdown.item(
+									new b.dropdown.menu({ dark: true }, [
+										new b.dropdown.item("Action"),
+										new b.dropdown.item("Another action"),
+										new b.dropdown.item(
 											"Something else here"
 										),
 									]),
@@ -490,9 +488,9 @@ core.documentReady(() => {
 				])
 			),
 
-			new bs.row(
-				new bs.col([
-					new bs.offcanvas.toggle(
+			new b.row(
+				new b.col([
+					new b.offcanvas.toggle(
 						{
 							target: "#offcanvasExample2",
 							control: "offcanvasExample2",
@@ -501,12 +499,12 @@ core.documentReady(() => {
 						"Toggle offcanvas"
 					),
 
-					new bs.alert.container(
+					new b.alert.container(
 						{ color: "info", display: ["none", "lg-block"] },
 						"Resize your browser to show the responsive offcanvas toggle."
 					),
 
-					new bs.offcanvas.container(
+					new b.offcanvas.container(
 						{
 							id: "offcanvasExample2",
 							labelledby: "offcanvasExampleTitle2",
@@ -514,30 +512,30 @@ core.documentReady(() => {
 							placement: "end",
 						},
 						[
-							new bs.offcanvas.header([
-								new bs.offcanvas.title(
+							new b.offcanvas.header([
+								new b.offcanvas.title(
 									{
 										id: "offcanvasExampleTitle2",
 									},
 									"Offcanvas"
 								),
-								new bs.offcanvas.btnclose({
+								new b.offcanvas.btnclose({
 									target: "#offcanvasExample2", //important for bs.offcanvas.container.hide
 								}),
 							]),
-							new bs.offcanvas.body([
-								new ht.p(
+							new b.offcanvas.body([
+								new h.p(
 									"Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc."
 								),
-								new bs.dropdown.container([
-									new bs.dropdown.toggle(
+								new b.dropdown.container([
+									new b.dropdown.toggle(
 										{ color: "secondary" },
 										"Dropdown button"
 									),
-									new bs.dropdown.menu({ dark: true }, [
-										new bs.dropdown.item("Action"),
-										new bs.dropdown.item("Another action"),
-										new bs.dropdown.item(
+									new b.dropdown.menu({ dark: true }, [
+										new b.dropdown.item("Action"),
+										new b.dropdown.item("Another action"),
+										new b.dropdown.item(
 											"Something else here"
 										),
 									]),
@@ -558,10 +556,10 @@ core.documentReady(() => {
 
 	core.appendChild(
 		body,
-		new bs.row({ paddingY: 5, gap: 3 }, [
-			new bs.row(
-				new bs.col([
-					new bs.tooltip(
+		new b.row({ paddingY: 5, gap: 3 }, [
+			new b.row(
+				new b.col([
+					new b.tooltip(
 						{
 							inline: true,
 							trigger: "click",
@@ -569,16 +567,16 @@ core.documentReady(() => {
 							content:
 								"And here's some amazing content. It's very engaging. Right?",
 						},
-						new bs.button(
+						new b.button(
 							{ color: "danger", weight: "lg" },
 							"Click to toggle tooltip"
 						)
 					),
 				])
 			),
-			new bs.row(
-				new bs.col([
-					new bs.popover(
+			new b.row(
+				new b.col([
+					new b.popover(
 						{
 							inline: true,
 							trigger: "click",
@@ -587,7 +585,7 @@ core.documentReady(() => {
 							content:
 								"And here's some amazing content. It's very engaging. Right?",
 						},
-						new bs.button(
+						new b.button(
 							{ color: "warning", weight: "lg" },
 							"Click to toggle popover"
 						)
@@ -599,11 +597,11 @@ core.documentReady(() => {
 
 	core.appendChild(
 		body,
-		new bs.row({ paddingY: 5, gap: 3 }, [
-			new bs.row(
-				new bs.col([
+		new b.row({ paddingY: 5, gap: 3 }, [
+			new b.row(
+				new b.col([
 					...[0, 25, 50, 75, 100].map((i) => {
-						return new bs.progress.container(
+						return new b.progress.container(
 							{
 								label: "Basic sample",
 								value: i,
@@ -611,15 +609,15 @@ core.documentReady(() => {
 								max: 100,
 								marginBottom: 3,
 							},
-							new bs.progress.bar({ style: { width: `${i}%` } })
+							new b.progress.bar({ style: { width: `${i}%` } })
 						);
 					}),
 				])
 			),
-			new bs.row(
-				new bs.col([
+			new b.row(
+				new b.col([
 					...[1, 20].map((i) => {
-						return new bs.progress.container(
+						return new b.progress.container(
 							{
 								label: `Example ${i}px high`,
 								value: 25,
@@ -628,14 +626,14 @@ core.documentReady(() => {
 								marginBottom: 3,
 								style: { height: `${i}px` },
 							},
-							new bs.progress.bar({ style: { width: `25%` } })
+							new b.progress.bar({ style: { width: `25%` } })
 						);
 					}),
 				])
 			),
-			new bs.row(
-				new bs.col([
-					new bs.progress.container(
+			new b.row(
+				new b.col([
+					new b.progress.container(
 						{
 							label: "Example with label",
 							value: 25,
@@ -643,16 +641,16 @@ core.documentReady(() => {
 							max: 100,
 							marginBottom: 3,
 						},
-						new bs.progress.bar({ style: { width: `25%` } }, "25%")
+						new b.progress.bar({ style: { width: `25%` } }, "25%")
 					),
 				])
 			),
-			new bs.row(
-				new bs.col([
+			new b.row(
+				new b.col([
 					...["success", "info", "warning", "danger"].map((i, ix) => {
 						let val = [25, 50, 75, 100][ix];
 
-						return new bs.progress.container(
+						return new b.progress.container(
 							{
 								label: "Basic sample",
 								value: val,
@@ -660,7 +658,7 @@ core.documentReady(() => {
 								max: 100,
 								marginBottom: 3,
 							},
-							new bs.progress.bar({
+							new b.progress.bar({
 								color: i as bootstrapType.color[number],
 								style: { width: `${val}%` },
 							})
@@ -668,13 +666,13 @@ core.documentReady(() => {
 					}),
 				])
 			),
-			new bs.row(
-				new bs.col([
-					new bs.progress.stacked([
+			new b.row(
+				new b.col([
+					new b.progress.stacked([
 						...["success", "warning", "danger"].map((i, ix) => {
 							let val = [15, 30, 20][ix];
 
-							return new bs.progress.container(
+							return new b.progress.container(
 								{
 									label: `Segment #${ix + 1}`,
 									value: val,
@@ -682,7 +680,7 @@ core.documentReady(() => {
 									max: 100,
 									style: { width: `${val}%` },
 								},
-								new bs.progress.bar({
+								new b.progress.bar({
 									color: i as bootstrapType.color[number],
 								})
 							);
@@ -690,13 +688,13 @@ core.documentReady(() => {
 					]),
 				])
 			),
-			new bs.row(
-				new bs.col([
+			new b.row(
+				new b.col([
 					...[undefined, "success", "info", "warning", "danger"].map(
 						(i, ix) => {
 							let val = [10, 25, 50, 75, 100][ix];
 
-							return new bs.progress.container(
+							return new b.progress.container(
 								{
 									label: `${
 										i ? i : "Default"
@@ -706,7 +704,7 @@ core.documentReady(() => {
 									max: 100,
 									marginBottom: 3,
 								},
-								new bs.progress.bar({
+								new b.progress.bar({
 									color: i as bootstrapType.color[number],
 									striped: true,
 									style: { width: `${val}%` },
@@ -716,13 +714,13 @@ core.documentReady(() => {
 					),
 				])
 			),
-			new bs.row(
-				new bs.col([
+			new b.row(
+				new b.col([
 					...[undefined, "success", "info", "warning", "danger"].map(
 						(i, ix) => {
 							let val = [10, 25, 50, 75, 100][ix];
 
-							return new bs.progress.container(
+							return new b.progress.container(
 								{
 									label: `${
 										i ? i : "Default"
@@ -732,7 +730,7 @@ core.documentReady(() => {
 									max: 100,
 									marginBottom: 3,
 								},
-								new bs.progress.bar({
+								new b.progress.bar({
 									color: i as bootstrapType.color[number],
 									striped: true,
 									animated: true,
@@ -748,9 +746,9 @@ core.documentReady(() => {
 
 	core.appendChild(
 		body,
-		new bs.row({ paddingY: 5, gap: 3 }, [
-			new bs.row(
-				new bs.col([
+		new b.row({ paddingY: 5, gap: 3 }, [
+			new b.row(
+				new b.col([
 					...[
 						"primary",
 						"primary-emphasis",
@@ -782,9 +780,9 @@ core.documentReady(() => {
 						}
 
 						if (isLit(i)) {
-							return new ht.div({ textColor: i }, `.text-${i}`);
+							return new h.div({ textColor: i }, `.text-${i}`);
 						} else {
-							return new ht.div(
+							return new h.div(
 								{ class: `text-${i}` },
 								`.text-${i}`
 							);
@@ -870,12 +868,12 @@ core.documentReady(() => {
 
 	core.appendChild(
 		body,
-		new bs.row({ paddingY: 5, gap: 3 }, [
-			new bs.row(
-				new bs.col([
-					new bs.toast.container([
-						new bs.toast.item({ debug: true, color: "danger" }, [
-							new bs.toast.header([
+		new b.row({ paddingY: 5, gap: 3 }, [
+			new b.row(
+				new b.col([
+					new b.toast.container([
+						new b.toast.item({ debug: true, color: "danger" }, [
+							new b.toast.header([
 								// new bs.icon({
 								// 	icon: "bootstrap",
 								// 	type: "fab",
@@ -883,14 +881,14 @@ core.documentReady(() => {
 								// }),
 								// new bs.toast.title("Bootstrap"),
 
-								new bs.toast.title(
-									new bs.label("home", "Bootstrap")
+								new b.toast.title(
+									new b.label("home", "Bootstrap")
 								),
 
-								new bs.toast.time("11 min ago"),
-								new bs.toast.btnclose(),
+								new b.toast.time("11 min ago"),
+								new b.toast.btnclose(),
 							]),
-							new bs.toast.body(
+							new b.toast.body(
 								"Hello, world! This is a toast message."
 							),
 						]),
@@ -907,10 +905,10 @@ core.documentReady(() => {
 
 	core.appendChild(
 		body,
-		new bs.row({ paddingY: 5, gap: 3 }, [
-			new bs.row(
-				new bs.col([
-					new bs.button(
+		new b.row({ paddingY: 5, gap: 3 }, [
+			new b.row(
+				new b.col([
+					new b.button(
 						{
 							color: "primary",
 							toggle: "modal",
@@ -919,7 +917,7 @@ core.documentReady(() => {
 						"Launch demo modal"
 					),
 
-					new bs.modal.container(
+					new b.modal.container(
 						{
 							id: "exampleModal",
 							labelledby: "exampleModalTitle",
@@ -929,24 +927,24 @@ core.documentReady(() => {
 							fullscreen: "sm",
 						},
 						[
-							new bs.modal.header(
+							new b.modal.header(
 								{ close: true },
-								new bs.modal.title(
+								new b.modal.title(
 									{ id: "exampleModalTitle" },
 									"Modal title"
 								)
 							),
-							new bs.modal.body([
-								new ht.p(loream),
+							new b.modal.body([
+								new h.p(loream),
 								// new ht.p(loream),
 								// new ht.p(loream),
 							]),
-							new bs.modal.footer([
-								new bs.button(
+							new b.modal.footer([
+								new b.button(
 									{ color: "secondary", dismiss: "modal" },
 									"Close"
 								),
-								new bs.button(
+								new b.button(
 									{ color: "primary" },
 									"Save changes"
 								),
@@ -965,29 +963,29 @@ core.documentReady(() => {
 
 	core.appendChild(
 		body,
-		new bs.row({ paddingY: 5, gap: 3 }, [
-			new bs.row(
-				new bs.col([
-					new bs.nav.header.container({ type: "pill" }, [
-						new bs.nav.header.item(
-							new bs.nav.header.link({ active: true }, "Active")
+		new b.row({ paddingY: 5, gap: 3 }, [
+			new b.row(
+				new b.col([
+					new b.nav.header.container({ type: "pill" }, [
+						new b.nav.header.item(
+							new b.nav.header.link({ active: true }, "Active")
 						),
-						new bs.nav.header.item({ dropdown: true }, [
-							new bs.nav.header.link(
+						new b.nav.header.item({ dropdown: true }, [
+							new b.nav.header.link(
 								{ dropdown: true },
 								"Dropdown"
 							),
-							new bs.dropdown.menu([
-								new bs.dropdown.item("Action"),
-								new bs.dropdown.item("Another action"),
-								new bs.dropdown.item("Something else here"),
-								new bs.dropdown.divider(),
-								new bs.dropdown.item("Separated link"),
+							new b.dropdown.menu([
+								new b.dropdown.item("Action"),
+								new b.dropdown.item("Another action"),
+								new b.dropdown.item("Something else here"),
+								new b.dropdown.divider(),
+								new b.dropdown.item("Separated link"),
 							]),
 						]),
-						new bs.nav.header.item(new bs.nav.header.link("Link")),
-						new bs.nav.header.item(
-							new bs.nav.header.link(
+						new b.nav.header.item(new b.nav.header.link("Link")),
+						new b.nav.header.item(
+							new b.nav.header.link(
 								{ disabled: true },
 								"Disabled"
 							)
@@ -995,12 +993,12 @@ core.documentReady(() => {
 					]),
 				])
 			),
-			new bs.row(
-				new bs.col([
-					new bs.nav.header.container(
+			new b.row(
+				new b.col([
+					new b.nav.header.container(
 						{ role: "tablist", marginBottom: 3, type: "tab" },
 						[
-							new bs.nav.header.button(
+							new b.nav.header.button(
 								{
 									active: true,
 									id: "nav-home-tab",
@@ -1009,7 +1007,7 @@ core.documentReady(() => {
 								},
 								"Home"
 							),
-							new bs.nav.header.button(
+							new b.nav.header.button(
 								{
 									id: "nav-profile-tab",
 									target: "#nav-profile",
@@ -1017,7 +1015,7 @@ core.documentReady(() => {
 								},
 								"Profile"
 							),
-							new bs.nav.header.button(
+							new b.nav.header.button(
 								{
 									id: "nav-contact-tab",
 									target: "#nav-contact",
@@ -1025,7 +1023,7 @@ core.documentReady(() => {
 								},
 								"Contact"
 							),
-							new bs.nav.header.button(
+							new b.nav.header.button(
 								{
 									disabled: true,
 									id: "nav-disabled-tab",
@@ -1036,8 +1034,8 @@ core.documentReady(() => {
 							),
 						]
 					),
-					new bs.nav.content.container([
-						new bs.nav.content.item(
+					new b.nav.content.container([
+						new b.nav.content.item(
 							{
 								active: true,
 								id: "nav-home",
@@ -1045,21 +1043,21 @@ core.documentReady(() => {
 							},
 							"Tab 1 content"
 						),
-						new bs.nav.content.item(
+						new b.nav.content.item(
 							{
 								id: "nav-profile",
 								labelledby: "nav-profile-tab",
 							},
 							"Tab 2 content"
 						),
-						new bs.nav.content.item(
+						new b.nav.content.item(
 							{
 								id: "nav-contact",
 								labelledby: "nav-contact-tab",
 							},
 							"Tab 3 content"
 						),
-						new bs.nav.content.item(
+						new b.nav.content.item(
 							{
 								id: "nav-disabled",
 								labelledby: "nav-disabled-tab",
@@ -1069,17 +1067,17 @@ core.documentReady(() => {
 					]),
 				])
 			),
-			new bs.row(
-				new bs.col([
-					new bs.card.container([
-						new bs.card.header([
-							new bs.card.nav(
+			new b.row(
+				new b.col([
+					new b.card.container([
+						new b.card.header([
+							new b.card.nav(
 								{
 									role: "tablist",
 									type: "pill",
 								},
 								[
-									new bs.nav.header.button(
+									new b.nav.header.button(
 										{
 											active: true,
 											id: "card-nav-home-tab",
@@ -1088,7 +1086,7 @@ core.documentReady(() => {
 										},
 										"Home"
 									),
-									new bs.nav.header.button(
+									new b.nav.header.button(
 										{
 											id: "card-nav-profile-tab",
 											target: "#card-nav-profile",
@@ -1096,7 +1094,7 @@ core.documentReady(() => {
 										},
 										"Profile"
 									),
-									new bs.nav.header.button(
+									new b.nav.header.button(
 										{
 											id: "card-nav-contact-tab",
 											target: "#card-nav-contact",
@@ -1109,7 +1107,7 @@ core.documentReady(() => {
 														);
 													core.replaceChild(
 														i!,
-														new ht.span(
+														new h.span(
 															`Item update by JS on ${new Date().toString()}`
 														)
 													);
@@ -1118,7 +1116,7 @@ core.documentReady(() => {
 										},
 										"Contact"
 									),
-									new bs.nav.header.button(
+									new b.nav.header.button(
 										{
 											disabled: true,
 											id: "card-nav-disabled-tab",
@@ -1130,9 +1128,9 @@ core.documentReady(() => {
 								]
 							),
 						]),
-						new bs.card.body([
-							new bs.nav.content.container([
-								new bs.nav.content.item(
+						new b.card.body([
+							new b.nav.content.container([
+								new b.nav.content.item(
 									{
 										active: true,
 										id: "card-nav-home",
@@ -1140,21 +1138,21 @@ core.documentReady(() => {
 									},
 									"Tab 1 content"
 								),
-								new bs.nav.content.item(
+								new b.nav.content.item(
 									{
 										id: "card-nav-profile",
 										labelledby: "card-nav-profile-tab",
 									},
 									"Tab 2 content"
 								),
-								new bs.nav.content.item(
+								new b.nav.content.item(
 									{
 										id: "card-nav-contact",
 										labelledby: "card-nav-contact-tab",
 									},
 									"Tab 3 content"
 								),
-								new bs.nav.content.item(
+								new b.nav.content.item(
 									{
 										id: "card-nav-disabled",
 										labelledby: "card-nav-disabled-tab",
@@ -1178,45 +1176,45 @@ core.documentReady(() => {
 
 	core.appendChild(
 		body,
-		new bs.row({ paddingY: 5, gap: 3 }, [
+		new b.row({ paddingY: 5, gap: 3 }, [
 			// new bs.row(new bs.col([])),
-			new bs.row(
-				new bs.col([
-					new bs.list.group([
-						new bs.list.item(
+			new b.row(
+				new b.col([
+					new b.list.group([
+						new b.list.item(
 							{ action: true, active: true },
 							"An item"
 						),
-						new bs.list.item({ action: true }, "A second item"),
-						new bs.list.item(
+						new b.list.item({ action: true }, "A second item"),
+						new b.list.item(
 							{ action: true, color: "warning" },
 							"A third item"
 						),
-						new bs.list.item(
+						new b.list.item(
 							{ action: true, color: "success" },
 							"A fourth item"
 						),
-						new bs.list.item({ action: true }, "And a fifth one"),
+						new b.list.item({ action: true }, "And a fifth one"),
 					]),
 				])
 			),
 
-			new bs.row(
-				new bs.col(
+			new b.row(
+				new b.col(
 					[1, 2, 3, 4, 5, 6].map((i) => {
-						return new ht.h(i as HLevel, [
+						return new h.h(i as HLevel, [
 							"Example heading",
-							new bs.badge({ bgColor: "secondary" }, "New"),
+							new b.badge({ bgColor: "secondary" }, "New"),
 						]);
 					})
 				)
 			),
 
-			new bs.row(
-				new bs.col([
-					new bs.button({ color: "primary", position: "relative" }, [
+			new b.row(
+				new b.col([
+					new b.button({ color: "primary", position: "relative" }, [
 						"Inbox",
-						new bs.badge(
+						new b.badge(
 							{
 								position: "absolute",
 								bgColor: "danger",
@@ -1231,11 +1229,11 @@ core.documentReady(() => {
 				])
 			),
 
-			new bs.row(
-				new bs.col([
-					new bs.button({ color: "primary", position: "relative" }, [
+			new b.row(
+				new b.col([
+					new b.button({ color: "primary", position: "relative" }, [
 						"Profile",
-						new bs.badge(
+						new b.badge(
 							{
 								position: "absolute",
 								bgColor: "danger",
@@ -1246,44 +1244,41 @@ core.documentReady(() => {
 								borderColor: "light",
 								rounded: "circle",
 							},
-							new bs.visuallyhidden("New alerts")
+							new b.visuallyhidden("New alerts")
 						),
 					]),
 				])
 			),
 
-			new bs.row(
-				new bs.col([
-					new bs.button({ color: "primary" }, [
+			new b.row(
+				new b.col([
+					new b.button({ color: "primary" }, [
 						"Notification",
-						new bs.badge({ textBgColor: "secondary" }, "4"),
+						new b.badge({ textBgColor: "secondary" }, "4"),
 					]),
 				])
 			),
 
-			new bs.row(
-				new bs.col(
-					new bs.dropdown.container({ drop: "up", center: true }, [
-						new bs.button({ color: "danger" }, "Dropdown"),
-						new bs.dropdown.toggle({
+			new b.row(
+				new b.col(
+					new b.dropdown.container({ drop: "up", center: true }, [
+						new b.button({ color: "danger" }, "Dropdown"),
+						new b.dropdown.toggle({
 							split: true,
 							color: "danger",
 						}),
-						new bs.dropdown.menu(
+						new b.dropdown.menu(
 							{
 								dark: true,
 								positionView: ["start", "md-center", "lg-end"],
 							},
 							[
-								new bs.dropdown.header("Hello"),
-								new bs.dropdown.item(
-									{ active: true },
-									"Action"
-								),
-								new bs.dropdown.item("Another action"),
-								new bs.dropdown.item("Something else here"),
-								new bs.dropdown.divider(),
-								new bs.dropdown.item("Separated link"),
+								new b.dropdown.header("Hello"),
+								new b.dropdown.item({ active: true }, "Action"),
+								new b.dropdown.item("Another action"),
+								new b.dropdown.item("Something else here"),
+								new b.dropdown.divider(),
+								new b.dropdown.item("Separated link"),
 							]
 						),
 					])
@@ -1294,18 +1289,18 @@ core.documentReady(() => {
 
 	core.appendChild(
 		body,
-		new bs.row({ paddingY: 5, gap: 3 }, [
-			new bs.row(new bs.col({ padding: 3 }, "")),
-			new bs.row(
-				new bs.col([
-					new bs.inputgroup.container(
+		new b.row({ paddingY: 5, gap: 3 }, [
+			new b.row(new b.col({ padding: 3 }, "")),
+			new b.row(
+				new b.col([
+					new b.inputgroup.container(
 						{ marginBottom: 3, weight: "sm" },
 						[
-							new bs.inputgroup.text(
+							new b.inputgroup.text(
 								{ id: "inputGroup-sizing-small" },
 								"Small"
 							),
-							new bs.input({
+							new b.input({
 								type: "text",
 								aria: {
 									label: "Sizing example input",
@@ -1314,12 +1309,12 @@ core.documentReady(() => {
 							}),
 						]
 					),
-					new bs.inputgroup.container({ marginBottom: 3 }, [
-						new bs.inputgroup.text(
+					new b.inputgroup.container({ marginBottom: 3 }, [
+						new b.inputgroup.text(
 							{ id: "inputGroup-sizing-default" },
 							"Default"
 						),
-						new bs.input({
+						new b.input({
 							type: "text",
 							aria: {
 								label: "Sizing example input",
@@ -1327,14 +1322,14 @@ core.documentReady(() => {
 							},
 						}),
 					]),
-					new bs.inputgroup.container(
+					new b.inputgroup.container(
 						{ marginBottom: 3, weight: "lg" },
 						[
-							new bs.inputgroup.text(
+							new b.inputgroup.text(
 								{ id: "inputGroup-sizing-large" },
 								"Large"
 							),
-							new bs.input({
+							new b.input({
 								type: "text",
 								aria: {
 									label: "Sizing example input",
@@ -1346,11 +1341,11 @@ core.documentReady(() => {
 				])
 			),
 
-			new bs.row(
-				new bs.col([
-					new bs.inputgroup.container({ marginBottom: 3 }, [
-						new bs.inputgroup.text(
-							new bs.input({
+			new b.row(
+				new b.col([
+					new b.inputgroup.container({ marginBottom: 3 }, [
+						new b.inputgroup.text(
+							new b.input({
 								type: "checkbox",
 								marginTop: 0,
 								aria: {
@@ -1358,18 +1353,18 @@ core.documentReady(() => {
 								},
 							})
 						),
-						new bs.input({
+						new b.input({
 							type: "text",
 							aria: {
 								label: "Text input with checkbox",
 							},
 						}),
 					]),
-					new bs.inputgroup.container(
+					new b.inputgroup.container(
 						{ marginBottom: 3, weight: "lg" },
 						[
-							new bs.inputgroup.text(
-								new bs.input({
+							new b.inputgroup.text(
+								new b.input({
 									type: "radio",
 									marginTop: 0,
 									aria: {
@@ -1377,7 +1372,7 @@ core.documentReady(() => {
 									},
 								})
 							),
-							new bs.input({
+							new b.input({
 								type: "text",
 								aria: {
 									label: "Text input with radio button",
@@ -1388,17 +1383,17 @@ core.documentReady(() => {
 				])
 			),
 
-			new bs.row(
-				new bs.col(
-					new bs.inputgroup.container({ marginBottom: 3 }, [
-						new bs.inputgroup.text("First and last name"),
-						new bs.input({
+			new b.row(
+				new b.col(
+					new b.inputgroup.container({ marginBottom: 3 }, [
+						new b.inputgroup.text("First and last name"),
+						new b.input({
 							type: "text",
 							aria: {
 								label: "First name",
 							},
 						}),
-						new bs.input({
+						new b.input({
 							type: "text",
 							aria: {
 								label: "Last name",
@@ -1408,23 +1403,23 @@ core.documentReady(() => {
 				)
 			),
 
-			new bs.row(
-				new bs.col(
-					new bs.inputgroup.container({ marginBottom: 3 }, [
-						new bs.dropdown.toggle({
+			new b.row(
+				new b.col(
+					new b.inputgroup.container({ marginBottom: 3 }, [
+						new b.dropdown.toggle({
 							elem: "Dropdown",
 							outline: true,
 							color: "secondary",
 						}),
-						new bs.dropdown.menu([
-							new bs.dropdown.header("Hello"),
-							new bs.dropdown.item({ active: true }, "Action"),
-							new bs.dropdown.item("Another action"),
-							new bs.dropdown.item("Something else here"),
-							new bs.dropdown.divider(),
-							new bs.dropdown.item("Separated link"),
+						new b.dropdown.menu([
+							new b.dropdown.header("Hello"),
+							new b.dropdown.item({ active: true }, "Action"),
+							new b.dropdown.item("Another action"),
+							new b.dropdown.item("Something else here"),
+							new b.dropdown.divider(),
+							new b.dropdown.item("Separated link"),
 						]),
-						new bs.input({
+						new b.input({
 							type: "text",
 							aria: {
 								label: "Text input with dropdown button",
@@ -1434,38 +1429,35 @@ core.documentReady(() => {
 				)
 			),
 
-			new bs.row(
-				new bs.col(
-					new bs.dropdown.container({ drop: "up", center: true }, [
+			new b.row(
+				new b.col(
+					new b.dropdown.container({ drop: "up", center: true }, [
 						// new bs.button({ color: "danger" }, "Dropdown button X"),
-						new bs.dropdown.toggle({
+						new b.dropdown.toggle({
 							// split: true,
 							color: "danger",
 						}),
-						new bs.dropdown.menu(
+						new b.dropdown.menu(
 							{
 								dark: true,
 								positionView: ["start", "md-center", "lg-end"],
 							},
 							[
-								new bs.dropdown.header("Hello"),
-								new bs.dropdown.item(
-									{ active: true },
-									"Action"
-								),
-								new bs.dropdown.item("Another action"),
-								new bs.dropdown.item("Something else here"),
-								new bs.dropdown.divider(),
-								new bs.dropdown.item("Separated link"),
+								new b.dropdown.header("Hello"),
+								new b.dropdown.item({ active: true }, "Action"),
+								new b.dropdown.item("Another action"),
+								new b.dropdown.item("Something else here"),
+								new b.dropdown.divider(),
+								new b.dropdown.item("Separated link"),
 							]
 						),
 					])
 				)
 			),
 
-			new bs.row(
-				new bs.col(
-					new bs.dropdown.container(
+			new b.row(
+				new b.col(
+					new b.dropdown.container(
 						{
 							drop: "start",
 							on: {
@@ -1475,11 +1467,11 @@ core.documentReady(() => {
 							},
 						},
 						[
-							new bs.dropdown.toggle({
+							new b.dropdown.toggle({
 								split: true,
 								menuAutoClose: "manual",
 							}),
-							new bs.dropdown.menu(
+							new b.dropdown.menu(
 								{
 									positionView: [
 										"start",
@@ -1489,18 +1481,18 @@ core.documentReady(() => {
 									textColor: "muted",
 									padding: 3,
 								},
-								[new ht.div("Hello"), new ht.div("World")]
+								[new h.div("Hello"), new h.div("World")]
 							),
-							new bs.button("Dropdown button X"),
+							new b.button("Dropdown button X"),
 						]
 					)
 				)
 			),
 
-			new bs.row(
-				new bs.col(
-					new bs.formfloating([
-						new bs.select(
+			new b.row(
+				new b.col(
+					new b.formfloating([
+						new b.select(
 							{ id: "floatingSelectGrid", class: "is-invalid" },
 							[
 								{ value: "A", elem: "A" },
@@ -1508,9 +1500,9 @@ core.documentReady(() => {
 								{ value: "C", elem: "C" },
 								{ value: "D", elem: "D" },
 								{ value: "E", elem: "E" },
-							].map((i) => new ht.option(i))
+							].map((i) => new h.option(i))
 						),
-						new bs.label(
+						new b.label(
 							{ for: "floatingSelectGrid" },
 							"Works with selects"
 						),
@@ -1518,51 +1510,51 @@ core.documentReady(() => {
 				)
 			),
 
-			new bs.row(
-				new bs.col(
+			new b.row(
+				new b.col(
 					{ col: 6 },
-					new bs.card.container({ style: { width: "18rem" } }, [
-						new bs.card.img({
+					new b.card.container({ style: { width: "18rem" } }, [
+						new b.card.img({
 							location: "top",
 							src: "https://picsum.photos/seed/1231/200/200",
 						}),
 
-						new bs.card.body([
-							new bs.card.title("Card title"),
-							new bs.card.text(
+						new b.card.body([
+							new b.card.title("Card title"),
+							new b.card.text(
 								"Some quick example text to build on the card title and make up the bulk of the card's content."
 							),
 						]),
 
-						new bs.list.group({ flush: true }, [
-							new bs.list.item("An item"),
-							new bs.list.item("A second item"),
-							new bs.list.item("A third item"),
+						new b.list.group({ flush: true }, [
+							new b.list.item("An item"),
+							new b.list.item("A second item"),
+							new b.list.item("A third item"),
 						]),
 
-						new bs.card.body([
-							new bs.card.link({ href: "#" }, "Card link"),
-							new bs.card.link({ href: "#" }, "Another link"),
+						new b.card.body([
+							new b.card.link({ href: "#" }, "Card link"),
+							new b.card.link({ href: "#" }, "Another link"),
 						]),
 					])
 				)
 			),
 
-			new bs.row(
-				new bs.col(
+			new b.row(
+				new b.col(
 					{ col: 6 },
-					new bs.card.container(
+					new b.card.container(
 						{ textAlign: "center", style: { width: "18rem" } },
 						[
-							new bs.card.header("Featured"),
-							new bs.card.body([
-								new bs.card.title("Special title treatment"),
-								new bs.card.text(
+							new b.card.header("Featured"),
+							new b.card.body([
+								new b.card.title("Special title treatment"),
+								new b.card.text(
 									"With supporting text below as a natural lead-in to additional content."
 								),
-								new bs.button({ href: "#" }, "Go somewhere"),
+								new b.button({ href: "#" }, "Go somewhere"),
 							]),
-							new bs.card.footer(
+							new b.card.footer(
 								{ textColor: "muted" },
 								"2 days ago"
 							),
@@ -1571,51 +1563,51 @@ core.documentReady(() => {
 				)
 			),
 
-			new bs.row(
-				new bs.col(
+			new b.row(
+				new b.col(
 					{ col: 6 },
-					new bs.card.container([
-						new bs.card.img({
+					new b.card.container([
+						new b.card.img({
 							rounded: true,
 							src: "https://picsum.photos/seed/1231/400/220",
 						}),
-						new bs.card.imgoverlay([
-							new bs.card.title("Card title"),
-							new bs.card.text(
+						new b.card.imgoverlay([
+							new b.card.title("Card title"),
+							new b.card.text(
 								"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
 							),
-							new bs.card.text(
-								new ht.small("Last updated 3 mins ago")
+							new b.card.text(
+								new h.small("Last updated 3 mins ago")
 							),
 						]),
 					])
 				)
 			),
 
-			new bs.row(
-				new bs.col(
+			new b.row(
+				new b.col(
 					{ col: 6 },
-					new bs.card.container([
-						new bs.row({ gap: 0 }, [
-							new bs.col(
+					new b.card.container([
+						new b.row({ gap: 0 }, [
+							new b.col(
 								{ col: "md-4" },
-								new bs.card.img({
+								new b.card.img({
 									fluid: true,
 									rounded: "start",
 									src: "https://picsum.photos/seed/1231/100/280",
 								})
 							),
-							new bs.col(
+							new b.col(
 								{
 									col: "md-8",
 								},
-								new bs.card.body([
-									new bs.card.title("Card title"),
-									new bs.card.text(
+								new b.card.body([
+									new b.card.title("Card title"),
+									new b.card.text(
 										"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
 									),
-									new bs.card.text(
-										new ht.small("Last updated 3 mins ago")
+									new b.card.text(
+										new h.small("Last updated 3 mins ago")
 									),
 								])
 							),
@@ -1624,14 +1616,14 @@ core.documentReady(() => {
 				)
 			),
 
-			new bs.row(
-				new bs.col(
+			new b.row(
+				new b.col(
 					{ col: 4 },
-					new bs.card.container({ borderColor: "success" }, [
-						new bs.card.header("Header"),
-						new bs.card.body([
-							new bs.card.title("Card title"),
-							new bs.card.text(
+					new b.card.container({ borderColor: "success" }, [
+						new b.card.header("Header"),
+						new b.card.body([
+							new b.card.title("Card title"),
+							new b.card.text(
 								"Some quick example text to build on the card title and make up the bulk of the card's content."
 							),
 						]),
@@ -1639,9 +1631,9 @@ core.documentReady(() => {
 				)
 			),
 
-			new bs.row(
-				new bs.col(
-					new bs.card.group([
+			new b.row(
+				new b.col(
+					new b.card.group([
 						fnCard(
 							"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
 							"https://picsum.photos/seed/1232/200/150"
@@ -1658,9 +1650,9 @@ core.documentReady(() => {
 				)
 			),
 
-			new bs.row(
-				new bs.col(
-					new bs.card.group([
+			new b.row(
+				new b.col(
+					new b.card.group([
 						fnCard(
 							"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
 							"https://picsum.photos/seed/1232/200/150",
@@ -1680,10 +1672,10 @@ core.documentReady(() => {
 				)
 			),
 
-			new bs.row(
-				new bs.col({ col: 6 }, [
-					new ht.p({ display: "flex", gap: 1 }, [
-						new bs.collapse.toggle(
+			new b.row(
+				new b.col({ col: 6 }, [
+					new h.p({ display: "flex", gap: 1 }, [
+						new b.collapse.toggle(
 							{
 								link: true,
 								target: "#cE1",
@@ -1691,14 +1683,14 @@ core.documentReady(() => {
 							},
 							"First"
 						),
-						new bs.collapse.toggle(
+						new b.collapse.toggle(
 							{
 								target: "#cE2",
 								control: "cE2",
 							},
 							"Second"
 						),
-						new bs.collapse.toggle(
+						new b.collapse.toggle(
 							{
 								target: ".multi-collapse",
 								control: "cE1 cE2",
@@ -1706,13 +1698,13 @@ core.documentReady(() => {
 							"Both"
 						),
 					]),
-					new bs.collapse.container(
+					new b.collapse.container(
 						{ id: "cE1", class: "multi-collapse" },
-						new bs.card.container(new bs.card.body("1"))
+						new b.card.container(new b.card.body("1"))
 					),
-					new bs.collapse.container(
+					new b.collapse.container(
 						{ id: "cE2", class: "multi-collapse" },
-						new bs.card.container(new bs.card.body("2"))
+						new b.card.container(new b.card.body("2"))
 					),
 				])
 			),
@@ -1721,12 +1713,12 @@ core.documentReady(() => {
 
 	core.appendChild(
 		body,
-		new bs.row({ gap: 3 }, [
-			new bs.row(new bs.col({ padding: 3 }, "")),
+		new b.row({ gap: 3 }, [
+			new b.row(new b.col({ padding: 3 }, "")),
 
-			new bs.row(
-				new bs.col([
-					new bs.select(
+			new b.row(
+				new b.col([
+					new b.select(
 						[
 							{ value: "A", elem: "A" },
 							{ value: "B", elem: "B" },
@@ -1734,23 +1726,23 @@ core.documentReady(() => {
 							{ value: "D", elem: "D" },
 							{ value: "E", elem: "E" },
 						].map((i) => {
-							return new ht.option(i);
+							return new h.option(i);
 						})
 					),
 				])
 			),
 
-			new bs.row(
-				new bs.col([
-					new bs.alert.container(
+			new b.row(
+				new b.col([
+					new b.alert.container(
 						{ color: "success", dismissible: true },
 						[
-							new bs.alert.header(4, "Well done"),
-							new ht.p(
+							new b.alert.header(4, "Well done"),
+							new h.p(
 								"Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content."
 							),
-							new ht.hr(),
-							new ht.p(
+							new h.hr(),
+							new h.p(
 								"Whenever you need to, be sure to use margin utilities to keep things nice and tidy."
 							),
 						]
@@ -1758,75 +1750,75 @@ core.documentReady(() => {
 				])
 			),
 
-			new bs.row(
-				new bs.col({ theme: "light", padding: 3, bgColor: "body" }, [
-					new bs.btnclose(),
-					new bs.btnclose({ disabled: true }),
+			new b.row(
+				new b.col({ theme: "light", padding: 3, bgColor: "body" }, [
+					new b.btnclose(),
+					new b.btnclose({ disabled: true }),
 				])
 			),
-			new bs.row(
-				new bs.col({ theme: "dark", padding: 3, bgColor: "body" }, [
-					new bs.btnclose(),
-					new bs.btnclose({ disabled: true }),
+			new b.row(
+				new b.col({ theme: "dark", padding: 3, bgColor: "body" }, [
+					new b.btnclose(),
+					new b.btnclose({ disabled: true }),
 				])
 			),
 
-			new ht.ul(new ht.li("hello")),
-			new ht.ol([new ht.li("hello"), new ht.li("world")]),
-			new ht.ul(
-				["AAAAA", "AAAAA2", "AAAAA3", "AAAAA4"].map((i) => new ht.li(i))
+			new h.ul(new h.li("hello")),
+			new h.ol([new h.li("hello"), new h.li("world")]),
+			new h.ul(
+				["AAAAA", "AAAAA2", "AAAAA3", "AAAAA4"].map((i) => new h.li(i))
 			),
-			new ht.hr({ id: "aaaa" }),
-			new bs.button({ color: "danger", elem: "Hello World" }),
+			new h.hr({ id: "aaaa" }),
+			new b.button({ color: "danger", elem: "Hello World" }),
 			new tag("h1", "Hello World"),
-			new ht.p(loream),
+			new h.p(loream),
 
-			new bs.container(
-				new bs.row(
-					new bs.col({ display: "flex", gap: 3 }, [
+			new b.container(
+				new b.row(
+					new b.col({ display: "flex", gap: 3 }, [
 						...[
 							{ id: "a", elem: "1" },
 							{ id: "b", elem: "2" },
 							{ id: "c", elem: "3" },
 							{ id: "d", elem: "4" },
-						].map((i) => new ht.a(i)),
+						].map((i) => new h.a(i)),
 						...[
-							{ color: "primary", elem: new bs.label("Primary") },
+							{ color: "primary", elem: new b.label("Primary") },
 							{
 								color: "secondary",
-								elem: new bs.label("Secondary"),
+								elem: new b.label("Secondary"),
 							},
-							{ color: "success", elem: new bs.label("Success") },
-							{ color: "warning", elem: new bs.label("Warning") },
-							{ color: "danger", elem: new bs.label("Danger") },
-							{ color: "info", elem: new bs.label("Info") },
-						].map((i) => new bs.button(i as IAttrBSButton)),
+							{ color: "success", elem: new b.label("Success") },
+							{ color: "warning", elem: new b.label("Warning") },
+							{ color: "danger", elem: new b.label("Danger") },
+							{ color: "info", elem: new b.label("Info") },
+						].map((i) => new b.button(i as IAttrBSButton)),
 					])
 				)
 			),
-			new bs.container([
-				new bs.row(
-					new bs.col(
-						new ht.div({ display: "flex", gap: 3 }, [
-							new bs.input({
+			new b.container([
+				new b.row(
+					new b.col(
+						new h.div({ display: "flex", gap: 3 }, [
+							new b.input({
 								disabled: true,
 								type: "checkbox",
 								id: "chk1",
 								toggle: true,
 							}),
-							new bs.label({
+							new b.label({
 								color: "primary",
 								outline: true,
 								for: "chk1",
 								elem: "Single toggle",
 							}),
-							new bs.input({
+							new b.input({
 								type: "checkbox",
 								id: "chk2",
 								toggle: true,
 								checked: true,
 							}),
-							new bs.label(
+							new b.label(
 								{
 									color: "secondary",
 									outline: true,
@@ -1834,52 +1826,52 @@ core.documentReady(() => {
 								},
 								"Checked"
 							),
-							new bs.input({
+							new b.input({
 								type: "radio",
 								id: "rad1",
 								name: "radGroup1",
 								toggle: true,
 								checked: true,
 							}),
-							new bs.label({
+							new b.label({
 								color: "success",
 								outline: true,
 								for: "rad1",
 								elem: "Checked success radio",
 							}),
-							new bs.input({
+							new b.input({
 								type: "radio",
 								id: "rad2",
 								name: "radGroup1",
 								toggle: true,
 							}),
-							new bs.label(
+							new b.label(
 								{ color: "danger", outline: true, for: "rad2" },
 								"Danger radio"
 							),
 						])
 					)
 				),
-				new bs.row(
-					new bs.col([
-						new ht.div({ class: "form-check" }, [
-							new bs.input({
+				new b.row(
+					new b.col([
+						new h.div({ class: "form-check" }, [
+							new b.input({
 								type: "checkbox",
 								id: "chk1a",
 								disabled: true,
 							}),
-							new bs.label(
+							new b.label(
 								{ class: "form-check-label", for: "chk1a" },
 								"Chk1"
 							),
 						]),
-						new ht.div({ class: "form-check" }, [
-							new bs.input({
+						new h.div({ class: "form-check" }, [
+							new b.input({
 								type: "checkbox",
 								id: "chk2a",
 								checked: true,
 							}),
-							new bs.label(
+							new b.label(
 								{
 									class: "form-check-label",
 									for: "chk2a",
@@ -1889,27 +1881,27 @@ core.documentReady(() => {
 						]),
 					])
 				),
-				new bs.row(
-					new bs.col([
-						new ht.div({ class: "form-check" }, [
-							new bs.input({
+				new b.row(
+					new b.col([
+						new h.div({ class: "form-check" }, [
+							new b.input({
 								type: "radio",
 								id: "chk12",
 								name: "aaa",
 							}),
-							new bs.label(
+							new b.label(
 								{ class: "form-check-label", for: "chk12" },
 								"Chk12"
 							),
 						]),
-						new ht.div({ class: "form-check" }, [
-							new bs.input({
+						new h.div({ class: "form-check" }, [
+							new b.input({
 								type: "radio",
 								id: "chk22",
 								checked: true,
 								name: "aaa",
 							}),
-							new bs.label(
+							new b.label(
 								{
 									class: "form-check-label",
 									for: "chk22",
@@ -1919,22 +1911,22 @@ core.documentReady(() => {
 						]),
 					])
 				),
-				new bs.row(
-					new bs.col([
-						new ht.div({ class: ["form-check", "form-switch"] }, [
-							new bs.input({ switch: true, id: "chk123" }),
-							new bs.label(
+				new b.row(
+					new b.col([
+						new h.div({ class: ["form-check", "form-switch"] }, [
+							new b.input({ switch: true, id: "chk123" }),
+							new b.label(
 								{ class: "form-check-label", for: "chk123" },
 								"Chk123"
 							),
 						]),
-						new ht.div({ class: ["form-check", "form-switch"] }, [
-							new bs.input({
+						new h.div({ class: ["form-check", "form-switch"] }, [
+							new b.input({
 								switch: true,
 								id: "chk223",
 								checked: true,
 							}),
-							new bs.label(
+							new b.label(
 								{
 									class: "form-check-label",
 									for: "chk223",
@@ -1944,9 +1936,9 @@ core.documentReady(() => {
 						]),
 					])
 				),
-				new bs.row(
-					new bs.col([
-						new ht.div(
+				new b.row(
+					new b.col([
+						new h.div(
 							{
 								class: [
 									"form-check",
@@ -1955,8 +1947,8 @@ core.documentReady(() => {
 								],
 							},
 							[
-								new bs.input({ switch: true, id: "chk1234" }),
-								new bs.label(
+								new b.input({ switch: true, id: "chk1234" }),
+								new b.label(
 									{
 										class: "form-check-label",
 										for: "chk1234",
@@ -1965,7 +1957,7 @@ core.documentReady(() => {
 								),
 							]
 						),
-						new ht.div(
+						new h.div(
 							{
 								class: [
 									"form-check",
@@ -1974,12 +1966,12 @@ core.documentReady(() => {
 								],
 							},
 							[
-								new bs.input({
+								new b.input({
 									switch: true,
 									id: "chk2234",
 									checked: true,
 								}),
-								new bs.label(
+								new b.label(
 									{
 										class: "form-check-label",
 										for: "chk2234",
@@ -1990,9 +1982,9 @@ core.documentReady(() => {
 						),
 					])
 				),
-				new bs.row(
-					new bs.col([
-						new ht.div(
+				new b.row(
+					new b.col([
+						new h.div(
 							{
 								class: [
 									"form-check",
@@ -2001,8 +1993,8 @@ core.documentReady(() => {
 								],
 							},
 							[
-								new bs.input({ switch: true, id: "chk12345" }),
-								new bs.label(
+								new b.input({ switch: true, id: "chk12345" }),
+								new b.label(
 									{
 										class: "form-check-label",
 										for: "chk12345",
@@ -2011,7 +2003,7 @@ core.documentReady(() => {
 								),
 							]
 						),
-						new ht.div(
+						new h.div(
 							{
 								class: [
 									"form-check",
@@ -2020,12 +2012,12 @@ core.documentReady(() => {
 								],
 							},
 							[
-								new bs.input({
+								new b.input({
 									switch: true,
 									id: "chk22345",
 									checked: true,
 								}),
-								new bs.label(
+								new b.label(
 									{
 										class: "form-check-label",
 										for: "chk22345",
@@ -2036,31 +2028,31 @@ core.documentReady(() => {
 						),
 					])
 				),
-				new bs.row(
-					new bs.col(
+				new b.row(
+					new b.col(
 						{ col: "auto" },
-						new ht.option(
+						new h.option(
 							{ value: "axddd", textColor: "primary" },
 							"a"
 						)
 					)
 				),
 			]),
-			new bs.container(
-				new bs.grid({}, [
-					new bs.row(
-						new bs.col([
-							new bs.input({ type: "file", disabled: true }),
+			new b.container(
+				new b.grid({}, [
+					new b.row(
+						new b.col([
+							new b.input({ type: "file", disabled: true }),
 						])
 					),
-					new bs.row(
+					new b.row(
 						{
 							style: {
 								height: "60px !important",
 							},
 						},
 						[
-							new bs.col(
+							new b.col(
 								{
 									col: 3,
 									textColor: "warning",
@@ -2074,7 +2066,7 @@ core.documentReady(() => {
 								},
 								"hello"
 							),
-							new ht.h(
+							new h.h(
 								1,
 								{
 									col: 3,
@@ -2089,7 +2081,7 @@ core.documentReady(() => {
 								},
 								"world"
 							),
-							new ht.h(
+							new h.h(
 								2,
 								{
 									col: 3,
@@ -2098,7 +2090,7 @@ core.documentReady(() => {
 								},
 								"2"
 							),
-							new ht.h(
+							new h.h(
 								3,
 								{
 									col: 3,
@@ -2110,25 +2102,25 @@ core.documentReady(() => {
 							),
 						]
 					),
-					new bs.row(
-						new bs.col(
-							new ht.hr({
+					new b.row(
+						new b.col(
+							new h.hr({
 								title: "test",
 								style: { backgroundColor: "red" },
 							})
 						)
 					),
-					new bs.row(
-						new bs.col(
-							new ht.a(
+					new b.row(
+						new b.col(
+							new h.a(
 								{ href: "#", linkColor: "danger" },
 								"this is link"
 							)
 						)
 					),
-					new bs.row(
-						new bs.col(
-							new bs.input({
+					new b.row(
+						new b.col(
+							new b.input({
 								disabled: true,
 								type: "range",
 								min: 30,
@@ -2137,9 +2129,9 @@ core.documentReady(() => {
 							})
 						)
 					),
-					new bs.row([
-						new bs.col(
-							new bs.label(
+					new b.row([
+						new b.col(
+							new b.label(
 								{
 									for: "txtTest",
 									icon: { icon: "home", weight: "2xl" },
@@ -2151,22 +2143,22 @@ core.documentReady(() => {
 								"Home"
 							)
 						),
-						new bs.col(
-							new bs.label(
+						new b.col(
+							new b.label(
 								{ for: "txtTest", textColor: "success" },
 								"home",
 								"Home"
 							)
 						),
-						new bs.col(
-							new bs.label({ for: "txtTest" }, "hello bs label")
+						new b.col(
+							new b.label({ for: "txtTest" }, "hello bs label")
 						),
 					]),
-					new bs.row([
-						new bs.col(
-							new bs.button(
+					new b.row([
+						new b.col(
+							new b.button(
 								{ color: "danger" },
-								new bs.label(
+								new b.label(
 									{
 										iconPosition: "top",
 										labelDisplay: ["sm-none", "md-flex"],
@@ -2177,35 +2169,35 @@ core.documentReady(() => {
 								)
 							)
 						),
-						new bs.col(
-							new bs.button(
+						new b.col(
+							new b.button(
 								{ color: "success", disabled: true },
-								new bs.label({ for: "txtTest" }, "home", loream)
+								new b.label({ for: "txtTest" }, "home", loream)
 							)
 						),
 					]),
-					new bs.row(
-						new bs.col([
-							new bs.input({
+					new b.row(
+						new b.col([
+							new b.input({
 								disabled: true,
 								id: "txtTest",
 								type: "text",
 								weight: "lg",
 								list: "txtTest_list",
 							}),
-							new ht.datalist({
+							new h.datalist({
 								id: "txtTest_list",
 								options: loream.split(" "),
 							}),
 						])
 					),
-					new bs.row(
-						new bs.col([
-							new bs.alert.container(
+					new b.row(
+						new b.col([
+							new b.alert.container(
 								{ color: "danger", dismissible: true },
-								new bs.msg("star", [
+								new b.msg("star", [
 									"A simple primary alert with ",
-									new bs.alert.link(
+									new b.alert.link(
 										{ href: "#" },
 										"an example link"
 									),
@@ -2214,9 +2206,9 @@ core.documentReady(() => {
 							),
 						])
 					),
-					new bs.row(
-						new bs.col(
-							new bs.img({
+					new b.row(
+						new b.col(
+							new b.img({
 								fluid: true,
 								thumbnail: true,
 								rounded: true,
@@ -2224,28 +2216,26 @@ core.documentReady(() => {
 							})
 						)
 					),
-					new bs.row(new bs.col(new ht.a("this is link 2"))),
-					new bs.row(
-						new bs.col(new ht.b({ title: "test" }, "this is bold"))
+					new b.row(new b.col(new h.a("this is link 2"))),
+					new b.row(
+						new b.col(new h.b({ title: "test" }, "this is bold"))
 					),
-					new bs.row(new bs.col(new ht.i("nothing even happen"))),
-					new bs.row(
-						new bs.col(new ht.i({ id: "hhhhh" }, "test i 2"))
-					),
-					new bs.row(
-						new bs.col(
-							new ht.progress({ max: 100, value: 55 }, "test")
+					new b.row(new b.col(new h.i("nothing even happen"))),
+					new b.row(new b.col(new h.i({ id: "hhhhh" }, "test i 2"))),
+					new b.row(
+						new b.col(
+							new h.progress({ max: 100, value: 55 }, "test")
 						)
 					),
-					new bs.row(
-						new bs.col([
-							new bs.icon("star"),
-							new bs.icon({
+					new b.row(
+						new b.col([
+							new b.icon("star"),
+							new b.icon({
 								icon: "star",
 								color: "primary",
 								weight: "xl",
 							}),
-							new bs.icon({
+							new b.icon({
 								type: "fab",
 								icon: "bootstrap",
 								color: "danger",
@@ -2253,14 +2243,14 @@ core.documentReady(() => {
 						])
 					),
 
-					new bs.row(
-						new bs.col([
-							new bs.grid([
-								new bs.button(),
-								new bs.button(
-									new bs.label("home", "Hello World")
+					new b.row(
+						new b.col([
+							new b.grid([
+								new b.button(),
+								new b.button(
+									new b.label("home", "Hello World")
 								),
-								new bs.button(
+								new b.button(
 									{
 										color: "danger",
 										on: {
@@ -2269,9 +2259,9 @@ core.documentReady(() => {
 											},
 										},
 									},
-									new bs.label("star", "Test ON")
+									new b.label("star", "Test ON")
 								),
-								new bs.button(
+								new b.button(
 									{
 										color: "warning",
 										outline: true,
@@ -2279,7 +2269,7 @@ core.documentReady(() => {
 									},
 									"Hello World"
 								),
-								new bs.button(
+								new b.button(
 									{
 										color: "warning",
 										disabled: true,
@@ -2288,7 +2278,7 @@ core.documentReady(() => {
 									},
 									"Hello World (DIS)"
 								),
-								new bs.button(
+								new b.button(
 									{
 										color: "success",
 										style: {
@@ -2299,7 +2289,7 @@ core.documentReady(() => {
 									},
 									"Custom"
 								),
-								new bs.button(
+								new b.button(
 									{
 										color: "success",
 										outline: true,
@@ -2308,7 +2298,7 @@ core.documentReady(() => {
 									},
 									"Hello World (Dis)"
 								),
-								new bs.button(
+								new b.button(
 									{
 										color: "success",
 										outline: true,
@@ -2317,7 +2307,7 @@ core.documentReady(() => {
 									},
 									"Hello World"
 								),
-								new bs.button(
+								new b.button(
 									{
 										color: "success",
 										outline: true,
@@ -2330,12 +2320,12 @@ core.documentReady(() => {
 							]),
 						])
 					),
-					new bs.row(
-						new bs.col(
-							new bs.grid([
-								new bs.msg("home", "Home"),
-								new bs.msg("star", loream),
-								new bs.msg({
+					new b.row(
+						new b.col(
+							new b.grid([
+								new b.msg("home", "Home"),
+								new b.msg("star", loream),
+								new b.msg({
 									iconPosition: "top",
 									iconContainer: {
 										fontDisplay: 1,

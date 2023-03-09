@@ -4,7 +4,10 @@ export interface IAttrTagForm extends IAttr {
 	acceptCharset?: string;
 	action?: string;
 	autocomplete?: "on" | "off";
-	enctype?: "application/x-www-form-urlencoded" | "multipart/form-data" | "text/plain	";
+	enctype?:
+		| "application/x-www-form-urlencoded"
+		| "multipart/form-data"
+		| "text/plain	";
 	method?: "get" | "post";
 	name?: string;
 	novalidate?: boolean;
