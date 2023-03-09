@@ -365,40 +365,20 @@ export interface IBootstrap {
 	roundedSize?: bootstrapType.roundedSize[number];
 
 	padding?: bootstrapType.padding[number] | bootstrapType.padding[number][];
-	paddingX?:
-		| bootstrapType.paddingX[number]
-		| bootstrapType.paddingX[number][];
-	paddingY?:
-		| bootstrapType.paddingY[number]
-		| bootstrapType.paddingY[number][];
-	paddingTop?:
-		| bootstrapType.paddingTop[number]
-		| bootstrapType.paddingTop[number][];
-	paddingBottom?:
-		| bootstrapType.paddingBottom[number]
-		| bootstrapType.paddingBottom[number][];
-	paddingStart?:
-		| bootstrapType.paddingStart[number]
-		| bootstrapType.paddingStart[number][];
-	paddingEnd?:
-		| bootstrapType.paddingEnd[number]
-		| bootstrapType.paddingEnd[number][];
+	paddingX?: bootstrapType.paddingX[number] | bootstrapType.paddingX[number][];
+	paddingY?: bootstrapType.paddingY[number] | bootstrapType.paddingY[number][];
+	paddingTop?: bootstrapType.paddingTop[number] | bootstrapType.paddingTop[number][];
+	paddingBottom?: bootstrapType.paddingBottom[number] | bootstrapType.paddingBottom[number][];
+	paddingStart?: bootstrapType.paddingStart[number] | bootstrapType.paddingStart[number][];
+	paddingEnd?: bootstrapType.paddingEnd[number] | bootstrapType.paddingEnd[number][];
 
 	margin?: bootstrapType.margin[number] | bootstrapType.margin[number][];
 	marginX?: bootstrapType.marginX[number] | bootstrapType.marginX[number][];
 	marginY?: bootstrapType.marginY[number] | bootstrapType.marginY[number][];
-	marginTop?:
-		| bootstrapType.marginTop[number]
-		| bootstrapType.marginTop[number][];
-	marginBottom?:
-		| bootstrapType.marginBottom[number]
-		| bootstrapType.marginBottom[number][];
-	marginStart?:
-		| bootstrapType.marginStart[number]
-		| bootstrapType.marginStart[number][];
-	marginEnd?:
-		| bootstrapType.marginEnd[number]
-		| bootstrapType.marginEnd[number][];
+	marginTop?: bootstrapType.marginTop[number] | bootstrapType.marginTop[number][];
+	marginBottom?: bootstrapType.marginBottom[number] | bootstrapType.marginBottom[number][];
+	marginStart?: bootstrapType.marginStart[number] | bootstrapType.marginStart[number][];
+	marginEnd?: bootstrapType.marginEnd[number] | bootstrapType.marginEnd[number][];
 
 	gap?: bootstrapType.gap[number] | bootstrapType.gap[number][];
 	gutter?: bootstrapType.gutter[number] | bootstrapType.gutter[number];
@@ -414,18 +394,10 @@ export interface IBootstrap {
 	order?: bootstrapType.order[number] | bootstrapType.order[number][];
 	offset?: bootstrapType.offset[number] | bootstrapType.offset[number][];
 
-	alignContent?:
-		| bootstrapType.alignContent[number]
-		| bootstrapType.alignContent[number][];
-	justifyContent?:
-		| bootstrapType.justifyContent[number]
-		| bootstrapType.justifyContent[number][];
-	alignItem?:
-		| bootstrapType.alignItem[number]
-		| bootstrapType.alignItem[number][];
-	alignSelf?:
-		| bootstrapType.alignSelf[number]
-		| bootstrapType.alignSelf[number][];
+	alignContent?: bootstrapType.alignContent[number] | bootstrapType.alignContent[number][];
+	justifyContent?: bootstrapType.justifyContent[number] | bootstrapType.justifyContent[number][];
+	alignItem?: bootstrapType.alignItem[number] | bootstrapType.alignItem[number][];
+	alignSelf?: bootstrapType.alignSelf[number] | bootstrapType.alignSelf[number][];
 
 	visible?: bootstrapType.visible[number];
 	textWrap?: bootstrapType.textWrap[number];
@@ -482,59 +454,101 @@ export class tag implements ITag {
 
 	constructor(); //#1
 	constructor(tag: string); //#2
-	constructor(tag: string, attr: IAttr); //#3
-	constructor(tag: string, elem: IElem); //#4
-	constructor(tag: string, attr: IAttr, elem: IElem); //#5
+	constructor(tag: string, attr?: IAttr); //#3
+	// constructor(tag: string, elem: IElem); //#4
+	// constructor(tag: string, attr: IAttr, elem: IElem); //#5
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			//#1
-			this.tag = "div";
-		} else if (arg.length === 1) {
-			//#2
-			this.tag = arg[0];
-		} else if (arg.length === 2) {
-			if (isAttr<IAttr>(arg[1])) {
-				//#3
+		if (arg) {
+			if (arg.length === 1) {
+				this.tag = arg[0];
+			} else if (arg.length === 2) {
 				this.tag = arg[0];
 
-				if (arg[1].elem) {
+				if (arg[1]) {
 					this.elem = arg[1].elem;
 					delete arg[1].elem;
+					this.attr = arg[1];
 				}
-
-				this.attr = convert(arg[1]);
 			} else {
-				//#4
-				this.tag = arg[0];
-				this.elem = arg[1];
+				this.tag = "div";
 			}
-		} else if (arg.length === 3) {
-			//#5
-
-			//remove elem from IAttr
-			if (arg[1].elem) {
-				console.warn("Remove elem from attr", arg[1]);
-				delete arg[1].elem;
-			}
-
-			this.tag = arg[0];
-			this.attr = convert(arg[1]);
-			this.elem = arg[2];
 		} else {
-			throw Error("Unsuppoted argument length");
+			this.tag = "div";
 		}
+		// if (arg.length === 0) {
+		// 	//#1
+		// 	this.tag = "div";
+		// } else if (arg.length === 1) {
+		// 	//#2
+		// 	this.tag = arg[0];
+		// } else if (arg.length === 2) {
+		// 	if (isAttr<IAttr>(arg[1])) {
+		// 		//#3
+		// 		this.tag = arg[0];
+
+		// 		if (arg[1].elem) {
+		// 			this.elem = arg[1].elem;
+		// 			delete arg[1].elem;
+		// 		}
+
+		// 		this.attr = convert(arg[1]);
+		// 	} else {
+		// 		//#4
+		// 		this.tag = arg[0];
+		// 		this.elem = arg[1];
+		// 	}
+		// } else if (arg.length === 3) {
+		// 	//#5
+
+		// 	//remove elem from IAttr
+		// 	if (arg[1].elem) {
+		// 		console.warn("Remove elem from attr", arg[1]);
+		// 		delete arg[1].elem;
+		// 	}
+
+		// 	this.tag = arg[0];
+		// 	this.attr = convert(arg[1]);
+		// 	this.elem = arg[2];
+		// } else {
+		// 	throw Error("Unsuppoted argument length");
+		// }
 	}
 }
 
 export const isTag = <T>(obj: any): obj is T => {
-	return (
-		typeof obj === "object" &&
-		!Array.isArray(obj) &&
-		"isbsts" in obj &&
-		obj["isbsts"] === true
-	);
+	return typeof obj === "object" && !Array.isArray(obj) && "isbsts" in obj && obj["isbsts"] === true;
 };
 
 export const isAttr = <T>(obj: any): obj is T => {
 	return typeof obj === "object" && !Array.isArray(obj) && !("isbsts" in obj);
+};
+
+export const consNoElem = <T extends IAttr>(arg: any[]): T => {
+	if (arg.length === 1) {
+		return arg[0] as T;
+	} else {
+		return {} as T;
+	}
+};
+
+export const cons = <T extends IAttr>(arg: any[]): T => {
+	// if (arg.length === 1) {
+	// 	return arg[0] as T;
+	// } else if (arg.length === 2) {
+	// 	return mergeObject<T>({ elem: arg[1] } as T, arg[0]);
+	// } else {
+	// 	return {} as T;
+	// }
+
+	return <T>consProp("elem", arg);
+};
+
+export const consProp = <T extends IAttr>(prop: string, arg: any[]): T => {
+	if (arg.length === 1) {
+		return arg[0] as T;
+	} else if (arg.length === 2) {
+		return mergeObject<T>({ [prop]: arg[1] } as T, arg[0]);
+	} else {
+		return {} as T;
+	}
 };

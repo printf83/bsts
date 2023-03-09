@@ -1,4 +1,5 @@
 import { IAttr, IElem, tag } from "../core/base/tag.js";
+import { mergeObject } from "../core/fn/mergeObject.js";
 
 export type HLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -16,7 +17,7 @@ export class h extends tag {
 		} else if (arg.length === 2) {
 			super(`h${arg[0]}`, arg[1]);
 		} else if (arg.length === 3) {
-			super(`h${arg[0]}`, arg[1], arg[2]);
+			super(`h${arg[0]}`, mergeObject({ elem: arg[2] }, arg[1]));
 		}
 	}
 }

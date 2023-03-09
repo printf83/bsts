@@ -3,8 +3,6 @@ import { IAttr, tag } from "../core/base/tag.js";
 export interface IAttrTagEmbed extends IAttr {
 	src?: string;
 	type?: string;
-
-	elem?: undefined;
 }
 
 export class embed extends tag {

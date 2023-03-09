@@ -1,4 +1,4 @@
-import { IAttr, IElem, tag } from "../core/base/tag.js";
+import { cons, IAttr, IElem, tag } from "../core/base/tag.js";
 
 export interface IAttrTagTrack extends IAttr {
 	default?: boolean;

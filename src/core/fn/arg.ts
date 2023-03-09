@@ -2,9 +2,10 @@ import { IAttrBSBtnclose } from "../../bs/btnclose.js";
 import { IAttr, isAttr } from "../base/tag.js";
 import { mergeObject } from "./mergeObject.js";
 
-export type IConvertFnBtnclose = <T extends IAttrBSBtnclose>(attr: T) => IAttrBSBtnclose;
-
-export const conBtnclose = <T extends IAttrBSBtnclose>(fn: IConvertFnBtnclose, arg?: any[]) => {
+export const conBtnclose = <T extends IAttrBSBtnclose>(
+	fn: <T extends IAttrBSBtnclose>(attr: T) => IAttrBSBtnclose,
+	arg?: any[]
+) => {
 	if (arg) {
 		if (arg.length === 1) {
 			return fn(arg[0] as T);

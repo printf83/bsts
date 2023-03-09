@@ -1,4 +1,4 @@
-import { IAttr, tag } from "../core/base/tag.js";
+import { consNoElem, IAttr, tag } from "../core/base/tag.js";
 
 export interface IAttrTagInput extends IAttr {
 	accept?: string;
@@ -10,10 +10,7 @@ export interface IAttrTagInput extends IAttr {
 	disabled?: boolean;
 	form?: string;
 	formaction?: string;
-	formenctype?:
-		| "application/x-www-form-urlencoded"
-		| "multipart/form-data"
-		| "text/plain	";
+	formenctype?: "application/x-www-form-urlencoded" | "multipart/form-data" | "text/plain	";
 	formmethod?: "get" | "post";
 	formnovalidate?: boolean;
 	formtarget?: string;
@@ -63,10 +60,6 @@ export class input extends tag {
 	constructor();
 	constructor(attr: IAttrTagInput);
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			super("input");
-		} else if (arg.length === 1) {
-			super("input", arg[0]);
-		}
+		super("input", consNoElem<IAttrTagInput>(arg));
 	}
 }

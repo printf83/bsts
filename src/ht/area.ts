@@ -1,4 +1,4 @@
-import { IAttr, IElem, tag } from "../core/base/tag.js";
+import { cons, IAttr, IElem, tag } from "../core/base/tag.js";
 
 export interface IAttrTagArea extends IAttr {
 	alt?: string;
@@ -39,12 +39,6 @@ export class area extends tag {
 	constructor(attr: IAttrTagArea);
 	constructor(attr: IAttrTagArea, elem: IElem);
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			super("area");
-		} else if (arg.length === 1) {
-			super("area", arg[0]);
-		} else if (arg.length === 2) {
-			super("area", arg[0], arg[1]);
-		}
+		super("area", cons<IAttrTagArea>(arg));
 	}
 }
