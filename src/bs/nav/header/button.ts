@@ -1,4 +1,5 @@
-import { IElem, isAttr } from "../../../core/base/tag.js";
+import { IElem } from "../../../core/base/tag.js";
+import { conElem } from "../../../core/fn/arg.js";
 import { mergeObject } from "../../../core/fn/mergeObject.js";
 import { UUID } from "../../../core/fn/uuid.js";
 import { button as TButton, IAttrTagButton } from "../../../ht/button.js";
@@ -36,20 +37,6 @@ export class button extends TButton {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSNavButton, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			//#1
-			super(convert({ elem: "Button" }));
-		} else if (arg.length === 1) {
-			if (isAttr<IAttrBSNavButton>(arg[0])) {
-				//#2
-				super(convert(arg[0]));
-			} else {
-				//#3
-				super(convert({ elem: arg[0] }));
-			}
-		} else if (arg.length === 2) {
-			//#4
-			super(convert(mergeObject({ elem: arg[1] }, arg[0])));
-		}
+		super(conElem<IAttrBSNavButton>(convert, arg));
 	}
 }

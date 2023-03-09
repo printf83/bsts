@@ -1,21 +1,15 @@
-import { IAttr, isAttr, tag } from "../core/base/tag.js";
+import { IAttr, IElem, isAttr, tag } from "../core/base/tag.js";
 import { mergeClass } from "../core/fn/mergeClass.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
-import { li } from "./li.js";
-
-export type IElemTagUl = li | li[];
 
 export interface IAttrTagUl extends IAttr {
 	unstyle?: boolean;
 	inline?: boolean;
-	elem?: IElemTagUl;
 }
 
 const convert = (attr: IAttrTagUl): IAttr => {
-	attr.class = mergeClass(attr.class, [
-		attr.unstyle ? "list-unstyle" : "",
-		attr.inline ? "list-inline" : "",
-	]);
+	attr.class = mergeClass(attr.class, [attr.unstyle ? "list-unstyle" : "", attr.inline ? "list-inline" : ""]);
+
 	delete attr.unstyle;
 	delete attr.inline;
 
@@ -24,9 +18,9 @@ const convert = (attr: IAttrTagUl): IAttr => {
 
 export class ul extends tag {
 	constructor();
-	constructor(elem: IElemTagUl);
+	constructor(elem: IElem);
 	constructor(attr: IAttrTagUl);
-	constructor(attr: IAttrTagUl, elem: IElemTagUl);
+	constructor(attr: IAttrTagUl, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("ul", convert({}));

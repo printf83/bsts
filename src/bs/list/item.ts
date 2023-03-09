@@ -1,5 +1,6 @@
 import { bootstrapType } from "../../core/base/bootstrap.js";
-import { IElem, isAttr } from "../../core/base/tag.js";
+import { IElem } from "../../core/base/tag.js";
+import { conElem } from "../../core/fn/arg.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
 import { IAttrTagLi, li } from "../../ht/li.js";
 
@@ -39,20 +40,6 @@ export class item extends li {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSListItem, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			//#1
-			super(convert({}));
-		} else if (arg.length === 1) {
-			if (isAttr<IAttrBSListItem>(arg[0])) {
-				//#2
-				super(convert(arg[0]));
-			} else {
-				//#3
-				super(convert({}), arg[0]);
-			}
-		} else if (arg.length === 2) {
-			//#4
-			super(convert(arg[0]), arg[1]);
-		}
+		super(conElem<IAttrBSListItem>(convert, arg));
 	}
 }

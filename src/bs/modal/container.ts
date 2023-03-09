@@ -1,5 +1,6 @@
 import { bootstrapType } from "../../core/base/bootstrap.js";
-import { IAttr, IElem, isAttr } from "../../core/base/tag.js";
+import { IAttr, IElem } from "../../core/base/tag.js";
+import { conElem } from "../../core/fn/arg.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
 import { UUID } from "../../core/fn/uuid.js";
 import { div } from "../../ht/div.js";
@@ -22,11 +23,7 @@ const convert = (attr: IAttrBSModalContainer): IAttr => {
 	attr = mergeObject(
 		{
 			id: attr.id || UUID(),
-			class: [
-				"modal",
-				attr.animation ? "fade" : "",
-				attr.debug ? "show" : "",
-			],
+			class: ["modal", attr.animation ? "fade" : "", attr.debug ? "show" : ""],
 			tabindex: "-1",
 			data: {
 				"bs-backdrop": attr.static ? "static" : undefined,
@@ -57,9 +54,7 @@ const convert = (attr: IAttrBSModalContainer): IAttr => {
 				attr.centered ? "modal-dialog-centered" : "",
 			],
 		},
-		attr.elem
-			? new div({ class: "modal-content" }, attr.elem)
-			: new div({ class: "modal-content" })
+		attr.elem ? new div({ class: "modal-content" }, attr.elem) : new div({ class: "modal-content" })
 	);
 
 	delete attr.static;
@@ -77,20 +72,6 @@ export class container extends div {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSModalContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			//#1
-			super(convert({}));
-		} else if (arg.length === 1) {
-			if (isAttr<IAttrBSModalContainer>(arg[0])) {
-				//#2
-				super(convert(arg[0]));
-			} else {
-				//#3
-				super(convert({ elem: arg[0] }));
-			}
-		} else if (arg.length === 2) {
-			//#4
-			super(convert(mergeObject({ elem: arg[1] }, arg[0])));
-		}
+		super(conElem<IAttrBSModalContainer>(convert, arg));
 	}
 }

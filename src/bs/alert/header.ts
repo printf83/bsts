@@ -33,10 +33,7 @@ export class header extends h {
 			}
 		} else if (arg.length === 3) {
 			//#4
-			super(
-				arg[0] as HLevel,
-				convert(mergeObject({ elem: arg[1] }, arg[0]))
-			);
+			super(arg[0] as HLevel, convert(mergeObject({ elem: arg[1] }, arg[0])));
 		}
 	}
 }

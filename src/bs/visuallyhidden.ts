@@ -1,4 +1,5 @@
-import { IAttr, IElem, isAttr, tag } from "../core/base/tag.js";
+import { IAttr, IElem, tag } from "../core/base/tag.js";
+import { conElem, conElemT } from "../core/fn/arg.js";
 import { mergeClass } from "../core/fn/mergeClass.js";
 
 export interface IAttrBSVisuallyhidden extends IAttr {
@@ -6,14 +7,12 @@ export interface IAttrBSVisuallyhidden extends IAttr {
 	href?: string;
 }
 
-const convert = (attr: IAttrBSVisuallyhidden): IAttr => {
+const convert = (attr: IAttrBSVisuallyhidden) => {
 	if (attr.href) {
 		attr.focusable = attr.focusable || true;
 	}
 
-	attr.class = mergeClass(attr.class, [
-		attr.focusable ? "visually-hidden-focusable" : "visually-hidden",
-	]);
+	attr.class = mergeClass(attr.class, [attr.focusable ? "visually-hidden-focusable" : "visually-hidden"]);
 
 	delete attr.focusable;
 
@@ -26,20 +25,9 @@ export class visuallyhidden extends tag {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSVisuallyhidden, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			//#1
-			super("span", convert({}));
-		} else if (arg.length === 1) {
-			if (isAttr<IAttrBSVisuallyhidden>(arg[0])) {
-				//#2
-				super(arg[0].href ? "a" : "span", convert(arg[0]));
-			} else {
-				//#3
-				super("span", convert({}), arg[0]);
-			}
-		} else if (arg.length === 2) {
-			//#4
-			super(arg[0].href ? "a" : "span", convert(arg[0]), arg[1]);
-		}
+		super(
+			conElemT<IAttrBSVisuallyhidden>("span", "a", (i) => (i.href ? true : false), arg),
+			conElem<IAttrBSVisuallyhidden>(convert, arg)
+		);
 	}
 }

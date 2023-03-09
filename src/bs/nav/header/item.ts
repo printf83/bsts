@@ -1,4 +1,5 @@
-import { IElem, isAttr } from "../../../core/base/tag.js";
+import { IElem } from "../../../core/base/tag.js";
+import { conElem } from "../../../core/fn/arg.js";
 import { mergeClass } from "../../../core/fn/mergeClass.js";
 import { IAttrTagLi, li } from "../../../ht/li.js";
 
@@ -8,10 +9,7 @@ export interface IAttrBSNavItem extends IAttrTagLi {
 }
 
 const convert = (attr: IAttrBSNavItem): IAttrTagLi => {
-	attr.class = mergeClass(attr.class, [
-		"nav-item",
-		attr.dropdown ? "dropdown" : "",
-	]);
+	attr.class = mergeClass(attr.class, ["nav-item", attr.dropdown ? "dropdown" : ""]);
 
 	delete attr.dropdown;
 
@@ -24,20 +22,6 @@ export class item extends li {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSNavItem, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			//#1
-			super(convert({}));
-		} else if (arg.length === 1) {
-			if (isAttr<IAttrBSNavItem>(arg[0])) {
-				//#2
-				super(convert(arg[0]));
-			} else {
-				//#3
-				super(convert({}), arg[0]);
-			}
-		} else if (arg.length === 2) {
-			//#4
-			super(convert(arg[0]), arg[1]);
-		}
+		super(conElem<IAttrBSNavItem>(convert, arg));
 	}
 }

@@ -1,14 +1,15 @@
+import { IAttr } from "../../core/base/tag.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
-import { hr, IAttrTagHr } from "../../ht/hr.js";
+import { hr } from "../../ht/hr.js";
 
-const convert = (attr: IAttrTagHr): IAttrTagHr => {
+const convert = (attr: IAttr): IAttr => {
 	attr.class = mergeClass(attr.class, "dropdown-divider");
 	return attr;
 };
 
 export class divider extends hr {
 	constructor(); //#1
-	constructor(attr: IAttrTagHr); //#2
+	constructor(attr: IAttr); //#2
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1

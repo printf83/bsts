@@ -1,4 +1,5 @@
-import { IElem, isAttr } from "../../core/base/tag.js";
+import { IElem } from "../../core/base/tag.js";
+import { conElem } from "../../core/fn/arg.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
 import { button, IAttrBSButton } from "../button.js";
 
@@ -35,20 +36,6 @@ export class toggle extends button {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSCollapseToggle, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			//#1
-			super(convert({}));
-		} else if (arg.length === 1) {
-			if (isAttr<IAttrBSCollapseToggle>(arg[0])) {
-				//#2
-				super(convert(arg[0]));
-			} else {
-				//#3
-				super(convert({ elem: arg[0] }));
-			}
-		} else if (arg.length === 2) {
-			//#4
-			super(convert(mergeObject({ elem: arg[1] }, arg[0])));
-		}
+		super(conElem<IAttrBSCollapseToggle>(convert, arg));
 	}
 }

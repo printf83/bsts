@@ -1,12 +1,8 @@
 import { IAttr, tag } from "../core/base/tag.js";
 
-export interface IAttrTagHr extends IAttr {
-	elem?: undefined;
-}
-
 export class hr extends tag {
 	constructor();
-	constructor(attr: IAttrTagHr);
+	constructor(attr: IAttr);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			super("hr");

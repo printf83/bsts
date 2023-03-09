@@ -1,9 +1,24 @@
+import { IAttrBSBtnclose } from "../../bs/btnclose.js";
 import { IAttr, isAttr } from "../base/tag.js";
 import { mergeObject } from "./mergeObject.js";
 
-export type IConvertFn = <T extends IAttr>(attr: T) => IAttr;
+export type IConvertFnBtnclose = <T extends IAttrBSBtnclose>(attr: T) => IAttrBSBtnclose;
 
-export const con4 = <T extends IAttr>(fn: IConvertFn, arg?: any[]) => {
+export const conBtnclose = <T extends IAttrBSBtnclose>(fn: IConvertFnBtnclose, arg?: any[]) => {
+	if (arg) {
+		if (arg.length === 1) {
+			return fn(arg[0] as T);
+		} else {
+			return fn({});
+		}
+	} else {
+		return fn({});
+	}
+};
+
+// export type IConvertFn = <T extends IAttr>(attr: T) => IAttr;
+
+export const conElem = <T extends IAttr>(fn: <T extends IAttr>(attr: T) => IAttr, arg?: any[]) => {
 	if (arg) {
 		if (arg.length === 1) {
 			if (isAttr<T>(arg[0])) {
@@ -20,12 +35,8 @@ export const con4 = <T extends IAttr>(fn: IConvertFn, arg?: any[]) => {
 		return fn({});
 	}
 };
-export const con4T = <T extends IAttr>(
-	t1: string,
-	t2: string,
-	fn: (i: T) => boolean,
-	arg?: any[]
-) => {
+
+export const conElemT = <T extends IAttr>(t1: string, t2: string, fn: (i: T) => boolean, arg?: any[]) => {
 	if (arg) {
 		if (arg.length === 1) {
 			if (isAttr<T>(arg[0])) {

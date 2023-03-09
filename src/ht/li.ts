@@ -4,14 +4,11 @@ import { mergeObject } from "../core/fn/mergeObject.js";
 
 export interface IAttrTagLi extends IAttr {
 	value?: string;
-
 	inline?: boolean;
 }
 
 const convert = (attr: IAttrTagLi): IAttr => {
-	attr.class = mergeClass(attr.class, [
-		attr.inline ? "list-inline-item" : "",
-	]);
+	attr.class = mergeClass(attr.class, [attr.inline ? "list-inline-item" : ""]);
 
 	delete attr.inline;
 

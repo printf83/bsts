@@ -1,4 +1,5 @@
-import { IElem, isAttr } from "../../core/base/tag.js";
+import { IElem } from "../../core/base/tag.js";
+import { conElem } from "../../core/fn/arg.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
 import { button, IAttrBSButton } from "../button.js";
 import { visuallyhidden } from "../visuallyhidden.js";
@@ -18,10 +19,7 @@ const convert = (attr: IAttrBSDropdownToggle): IAttrBSButton => {
 
 	attr = mergeObject(
 		{
-			class: [
-				"dropdown-toggle",
-				attr.split ? "dropdown-toggle-split" : "",
-			],
+			class: ["dropdown-toggle", attr.split ? "dropdown-toggle-split" : ""],
 			data: {
 				"bs-toggle": "dropdown",
 				"bs-offset": attr.menuOffset,
@@ -53,20 +51,6 @@ export class toggle extends button {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSDropdownToggle, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			//#1
-			super(convert({}));
-		} else if (arg.length === 1) {
-			if (isAttr<IAttrBSDropdownToggle>(arg[0])) {
-				//#2
-				super(convert(arg[0]));
-			} else {
-				//#3
-				super(convert({ elem: arg[0] }));
-			}
-		} else if (arg.length === 2) {
-			//#4
-			super(convert(mergeObject({ elem: arg[1] }, arg[0])));
-		}
+		super(conElem<IAttrBSDropdownToggle>(convert, arg));
 	}
 }

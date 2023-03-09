@@ -1,5 +1,6 @@
 import { bootstrapType } from "../../core/base/bootstrap.js";
-import { IAttr, IElem, isAttr } from "../../core/base/tag.js";
+import { IAttr, IElem } from "../../core/base/tag.js";
+import { conElem } from "../../core/fn/arg.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
 import { div } from "../../ht/div.js";
 import { btnclose } from "../btnclose.js";
@@ -10,7 +11,7 @@ export interface IAttrBSAlertContainer extends IAttr {
 	dismissible?: true;
 }
 
-const convert = (attr: IAttrBSAlertContainer): IAttrBSAlertContainer => {
+const convert = (attr: IAttrBSAlertContainer) => {
 	//add default value
 	attr.role = attr.role || "alert";
 	attr.color = attr.color || "primary";
@@ -49,20 +50,6 @@ export class container extends div {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSAlertContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			//#1
-			super(convert({ elem: "Alert" }));
-		} else if (arg.length === 1) {
-			if (isAttr<IAttrBSAlertContainer>(arg[0])) {
-				//#2
-				super(convert(arg[0]));
-			} else {
-				//#3
-				super(convert({ elem: arg[0] }));
-			}
-		} else if (arg.length === 2) {
-			//#4
-			super(convert(mergeObject({ elem: arg[1] }, arg[0])));
-		}
+		super(conElem<IAttrBSAlertContainer>(convert, arg));
 	}
 }

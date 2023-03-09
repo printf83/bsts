@@ -1,10 +1,8 @@
-import { IAttr, IElem, isAttr } from "../../core/base/tag.js";
+import { IAttr, IElem } from "../../core/base/tag.js";
+import { conElem } from "../../core/fn/arg.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { UUID } from "../../core/fn/uuid.js";
-import {
-	container as TCollapseContainer,
-	IAttrBSCollapseContainer,
-} from "../collapse/container.js";
+import { container as TCollapseContainer, IAttrBSCollapseContainer } from "../collapse/container.js";
 
 const convert = (attr: IAttrBSCollapseContainer): IAttr => {
 	attr.id = attr.id || UUID();
@@ -21,20 +19,6 @@ export class collapse extends TCollapseContainer {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSCollapseContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			//#1
-			super(convert({}));
-		} else if (arg.length === 1) {
-			if (isAttr<IAttrBSCollapseContainer>(arg[0])) {
-				//#2
-				super(convert(arg[0]));
-			} else {
-				//#3
-				super(convert({}), arg[0]);
-			}
-		} else if (arg.length === 2) {
-			//#4
-			super(convert(arg[0]), arg[1]);
-		}
+		super(conElem<IAttrBSCollapseContainer>(convert, arg));
 	}
 }

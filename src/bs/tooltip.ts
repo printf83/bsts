@@ -1,4 +1,5 @@
-import { IAttr, IElem, isAttr } from "../core/base/tag.js";
+import { IAttr, IElem } from "../core/base/tag.js";
+import { conElem } from "../core/fn/arg.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { span } from "../ht/span.js";
 
@@ -11,7 +12,7 @@ export interface IAttrBSPopover extends IAttr {
 	parent?: string;
 }
 
-const convert = (attr: IAttrBSPopover): IAttr => {
+const convert = (attr: IAttrBSPopover) => {
 	attr = mergeObject(
 		{
 			display: attr.inline ? "inline-block" : undefined,
@@ -48,20 +49,6 @@ export class tooltip extends span {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSPopover, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			//#1
-			super(convert({}));
-		} else if (arg.length === 1) {
-			if (isAttr<IAttrBSPopover>(arg[0])) {
-				//#2
-				super(convert(arg[0]));
-			} else {
-				//#3
-				super(convert({}), arg[0]);
-			}
-		} else if (arg.length === 2) {
-			//#4
-			super(convert(arg[0]), arg[1]);
-		}
+		super(conElem<IAttrBSPopover>(convert, arg));
 	}
 }
