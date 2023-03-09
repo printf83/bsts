@@ -6,7 +6,7 @@
     "outDir": "./lib",
     "sourceMap": true,
     "declaration": true,
-    
+  
 
     "strict": true,
     "alwaysStrict": true,
