@@ -1,5 +1,7 @@
 import { bootstrapType } from "../core/base/bootstrap.js";
-import { IElem, isAttr, tag } from "../core/base/tag.js";
+import { IElem, tag } from "../core/base/tag.js";
+// import { IAttr, IElem, isAttr, tag } from "../core/base/tag.js";
+import { con4, con4T, IConvertFn } from "../core/fn/arg.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { IAttrTagButton } from "../ht/button.js";
 
@@ -17,7 +19,7 @@ export interface IAttrBSButton extends IAttrTagButton {
 	defColor?: boolean;
 }
 
-const convert = (attr: IAttrBSButton): IAttrBSButton => {
+const convert: IConvertFn = (attr: IAttrBSButton) => {
 	if (attr.defColor !== false) {
 		attr.color = attr.color || "primary";
 	}
@@ -85,20 +87,30 @@ export class button extends tag {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSButton, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			//#1
-			super("button", convert({}), "Button");
-		} else if (arg.length === 1) {
-			if (isAttr<IAttrBSButton>(arg[0])) {
-				//#2
-				super(arg[0].href ? "a" : "button", convert(arg[0]));
-			} else {
-				//#3
-				super("button", convert({}), arg[0]);
-			}
-		} else if (arg.length === 2) {
-			//#4
-			super(arg[0].href ? "a" : "button", convert(arg[0]), arg[1]);
-		}
+		// if (arg.length === 0) {
+		// 	//#1
+		// 	super("button", convert({}), "Button");
+		// } else if (arg.length === 1) {
+		// 	if (isAttr<IAttrBSButton>(arg[0])) {
+		// 		//#2
+		// 		super(arg[0].href ? "a" : "button", convert(arg[0]));
+		// 	} else {
+		// 		//#3
+		// 		super("button", convert({}), arg[0]);
+		// 	}
+		// } else if (arg.length === 2) {
+		// 	//#4
+		// 	super(arg[0].href ? "a" : "button", convert(arg[0]), arg[1]);
+		// }
+
+		super(
+			con4T<IAttrBSButton>(
+				"button",
+				"a",
+				(i) => (i.href ? true : false),
+				arg
+			),
+			con4<IAttrBSButton>(convert, arg)
+		);
 	}
 }

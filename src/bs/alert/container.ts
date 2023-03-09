@@ -51,14 +51,14 @@ export class container extends div {
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
-			super(convert({}), "Alert");
+			super(convert({ elem: "Alert" }));
 		} else if (arg.length === 1) {
 			if (isAttr<IAttrBSAlertContainer>(arg[0])) {
 				//#2
 				super(convert(arg[0]));
 			} else {
 				//#3
-				super(convert({}), arg[0]);
+				super(convert({ elem: arg[0] }));
 			}
 		} else if (arg.length === 2) {
 			//#4
