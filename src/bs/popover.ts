@@ -4,7 +4,7 @@ import { span } from "../ht/span.js";
 
 export interface IAttrBSPopover extends IAttr {
 	inline?: boolean;
-	trigger?: "hover" | "focus" | ("hover" | "focus")[];
+	trigger?: "hover" | "focus" | "click" | ("hover" | "focus" | "click")[];
 	title?: string;
 	content?: string;
 	placement?: "right" | "left" | "top" | "bottom";
@@ -23,6 +23,7 @@ const convert = (attr: IAttrBSPopover): IAttr => {
 				"bs-title": attr.title,
 				"bs-content": attr.content,
 				"bs-container": attr.parent,
+				"bs-placement": attr.placement,
 				"bs-trigger": attr.trigger
 					? Array.isArray(attr.trigger)
 						? attr.trigger.join(" ")

@@ -11,21 +11,21 @@ import { setting } from "./setting.js";
 
 export type buildArg = tag | string | (tag | string)[];
 
-// export const init = (container: HTMLElement) => {
-// 	const popoverTriggerList = container.querySelectorAll(
-// 		'[data-bs-toggle="popover"]'
-// 	);
-// 	[...popoverTriggerList].map(
-// 		(popoverTriggerEl) => new Popover(popoverTriggerEl)
-// 	);
+export const init = (container: HTMLElement) => {
+	const popoverTriggerList = container.querySelectorAll(
+		'[data-bs-toggle="popover"]'
+	);
+	[...popoverTriggerList].map(
+		(popoverTriggerEl) => new window.bootstrap.Popover(popoverTriggerEl)
+	);
 
-// 	const tooltipTriggerList = document.querySelectorAll(
-// 		'[data-bs-toggle="tooltip"]'
-// 	);
-// 	[...tooltipTriggerList].map(
-// 		(tooltipTriggerEl) => new Tooltip(tooltipTriggerEl)
-// 	);
-// };
+	const tooltipTriggerList = document.querySelectorAll(
+		'[data-bs-toggle="tooltip"]'
+	);
+	[...tooltipTriggerList].map(
+		(tooltipTriggerEl) => new window.bootstrap.Tooltip(tooltipTriggerEl)
+	);
+};
 
 export const build = (
 	container: HTMLElement,

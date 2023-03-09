@@ -32,8 +32,7 @@
 		"debug": "tsc --project tsconfig.json --watch"
 	},
 	"devDependencies": {
+		"@types/bootstrap": "^5.2.6",
 		"typescript": "^5.0.0-beta"
-	},
-	"dependencies": {
 	}
 }

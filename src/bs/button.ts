@@ -14,9 +14,14 @@ export interface IAttrBSButton extends IAttrTagButton {
 	target?: string;
 
 	active?: boolean;
+	defColor?: boolean;
 }
 
 const convert = (attr: IAttrBSButton): IAttrBSButton => {
+	if (attr.defColor !== false) {
+		attr.color = attr.color || "primary";
+	}
+
 	if (attr.href) {
 		attr.role = attr.role || "button";
 	}

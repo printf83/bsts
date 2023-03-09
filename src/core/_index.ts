@@ -2,7 +2,13 @@
 // import { isTag } from "./base/tag.js";
 // import { addClassIntoElement } from "./fn/addClassIntoElement.js";
 // import { args } from "./fn/args.js";
-import { appendChild, prependChild, replaceChild, replaceWith } from "./fn/builder.js";
+import {
+	init,
+	appendChild,
+	prependChild,
+	replaceChild,
+	replaceWith,
+} from "./fn/builder.js";
 // import { camel2Dash } from "./fn/camel2Dash.js";
 // import { capitalize } from "./fn/capitalize.js";
 // import { codeMarker } from "./fn/codeMarker.js";
@@ -77,6 +83,7 @@ export const core = {
 	// attachAttr,
 	// html,
 	// build,
+	init,
 	appendChild,
 	prependChild,
 	replaceChild,
