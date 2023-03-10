@@ -467,7 +467,7 @@ export class tag implements ITag {
 				if (arg[1]) {
 					this.elem = arg[1].elem;
 					delete arg[1].elem;
-					this.attr = arg[1];
+					this.attr = convert(arg[1]);
 				}
 			} else {
 				this.tag = "div";

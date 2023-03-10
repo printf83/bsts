@@ -1573,7 +1573,7 @@ core.documentReady(() => {
 			new h.ul(["AAAAA", "AAAAA2", "AAAAA3", "AAAAA4"].map((i) => new h.li(i))),
 			new h.hr({ id: "aaaa" }),
 			new b.button({ color: "danger", elem: "Hello World" }),
-			new tag("h1", "Hello World"),
+			new tag("h1", { elem: "Hello World" }),
 			new h.p(loream),
 
 			new b.container(
@@ -1933,7 +1933,7 @@ core.documentReady(() => {
 							}),
 							new h.datalist({
 								id: "txtTest_list",
-								options: loream.split(" "),
+								elem: loream.split(" ").map((i) => new h.option(i)),
 							}),
 						])
 					),
