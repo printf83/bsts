@@ -6,6 +6,6 @@ export class footer extends tag {
 	constructor(attr: IAttr);
 	constructor(attr: IAttr, elem: IElem);
 	constructor(...arg: any[]) {
-		super("footer", cons<IAttr>(arg));
+		super("footer", cons(arg));
 	}
 }

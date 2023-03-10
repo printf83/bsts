@@ -6,6 +6,6 @@ export class figure extends tag {
 	constructor(attr: IAttr);
 	constructor(attr: IAttr, elem: IElem);
 	constructor(...arg: any[]) {
-		super("figure", cons<IAttr>(arg));
+		super("figure", cons(arg));
 	}
 }

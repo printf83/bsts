@@ -10,12 +10,6 @@ export class time extends tag {
 	constructor(attr: IAttrTagTime);
 	constructor(attr: IAttrTagTime, elem: IElem);
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			super("time");
-		} else if (arg.length === 1) {
-			super("time", arg[0]);
-		} else if (arg.length === 2) {
-			super("time", arg[0], arg[1]);
-		}
+		super("time", cons<IAttrTagTime>(arg));
 	}
 }

@@ -12,12 +12,6 @@ export class td extends tag {
 	constructor(attr: IAttrTagTd);
 	constructor(attr: IAttrTagTd, elem: IElem);
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			super("td");
-		} else if (arg.length === 1) {
-			super("td", arg[0]);
-		} else if (arg.length === 2) {
-			super("td", arg[0], arg[1]);
-		}
+		super("td", cons<IAttrTagTd>(arg));
 	}
 }

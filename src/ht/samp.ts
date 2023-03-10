@@ -6,12 +6,6 @@ export class samp extends tag {
 	constructor(attr: IAttr);
 	constructor(attr: IAttr, elem: IElem);
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			super("samp");
-		} else if (arg.length === 1) {
-			super("samp", arg[0]);
-		} else if (arg.length === 2) {
-			super("samp", arg[0], arg[1]);
-		}
+		super("samp", cons(arg));
 	}
 }

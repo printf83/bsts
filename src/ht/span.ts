@@ -6,12 +6,6 @@ export class span extends tag {
 	constructor(attr: IAttr);
 	constructor(attr: IAttr, elem: IElem);
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			super("span");
-		} else if (arg.length === 1) {
-			super("span", arg[0]);
-		} else if (arg.length === 2) {
-			super("span", arg[0], arg[1]);
-		}
+		super("span", cons(arg));
 	}
 }

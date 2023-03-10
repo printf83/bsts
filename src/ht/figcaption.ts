@@ -6,6 +6,6 @@ export class figcaption extends tag {
 	constructor(attr: IAttr);
 	constructor(attr: IAttr, elem: IElem);
 	constructor(...arg: any[]) {
-		super("figcaption", cons<IAttr>(arg));
+		super("figcaption", cons(arg));
 	}
 }

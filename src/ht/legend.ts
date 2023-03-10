@@ -6,6 +6,6 @@ export class legend extends tag {
 	constructor(attr: IAttr);
 	constructor(attr: IAttr, elem: IElem);
 	constructor(...arg: any[]) {
-		super("legend", cons<IAttr>(arg));
+		super("legend", cons(arg));
 	}
 }

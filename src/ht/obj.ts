@@ -1,7 +1,4 @@
-import { IAttr, tag } from "../core/base/tag.js";
-import { param } from "./param.js";
-
-export type IElemTagObj = param | param[];
+import { cons, IAttr, IElem, tag } from "../core/base/tag.js";
 
 export interface IAttrTagObj extends IAttr {
 	dataText?: string;
@@ -10,22 +7,14 @@ export interface IAttrTagObj extends IAttr {
 	type?: string;
 	typemustmatch?: boolean;
 	usemap?: string;
-
-	elem?: IElemTagObj;
 }
 
 export class obj extends tag {
 	constructor();
-	constructor(elem: IElemTagObj);
+	constructor(elem: IElem);
 	constructor(attr: IAttrTagObj);
-	constructor(attr: IAttrTagObj, elem: IElemTagObj);
+	constructor(attr: IAttrTagObj, elem: IElem);
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			super("object");
-		} else if (arg.length === 1) {
-			super("object", arg[0]);
-		} else if (arg.length === 2) {
-			super("object", arg[0], arg[1]);
-		}
+		super("object", cons<IAttrTagObj>(arg));
 	}
 }

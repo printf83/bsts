@@ -6,12 +6,6 @@ export class section extends tag {
 	constructor(attr: IAttr);
 	constructor(attr: IAttr, elem: IElem);
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			super("section");
-		} else if (arg.length === 1) {
-			super("section", arg[0]);
-		} else if (arg.length === 2) {
-			super("section", arg[0], arg[1]);
-		}
+		super("section", cons(arg));
 	}
 }

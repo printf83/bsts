@@ -16,12 +16,6 @@ export class meter extends tag {
 	constructor(attr: IAttrTagMeter);
 	constructor(attr: IAttrTagMeter, elem: IElem);
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			super("meter");
-		} else if (arg.length === 1) {
-			super("meter", arg[0]);
-		} else if (arg.length === 2) {
-			super("meter", arg[0], arg[1]);
-		}
+		super("meter", cons<IAttrTagMeter>(arg));
 	}
 }

@@ -16,12 +16,6 @@ export class select extends tag {
 	constructor(attr: IAttrTagSelect);
 	constructor(attr: IAttrTagSelect, elem: IElem);
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			super("select");
-		} else if (arg.length === 1) {
-			super("select", arg[0]);
-		} else if (arg.length === 2) {
-			super("select", arg[0], arg[1]);
-		}
+		super("select", cons<IAttrTagSelect>(arg));
 	}
 }

@@ -6,12 +6,6 @@ export class s extends tag {
 	constructor(attr: IAttr);
 	constructor(attr: IAttr, elem: IElem);
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			super("s");
-		} else if (arg.length === 1) {
-			super("s", arg[0]);
-		} else if (arg.length === 2) {
-			super("s", arg[0], arg[1]);
-		}
+		super("s", cons(arg));
 	}
 }

@@ -1,4 +1,4 @@
-import { IAttr, tag } from "../core/base/tag.js";
+import { consProp, IAttr, tag } from "../core/base/tag.js";
 
 export interface IAttrTagSource extends IAttr {
 	media?: string;
@@ -14,15 +14,8 @@ export class source extends tag {
 	constructor();
 	constructor(src: string);
 	constructor(attr: IAttrTagSource);
+	constructor(attr: IAttrTagSource, src: string);
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			super("source");
-		} else if (arg.length === 1) {
-			if (typeof arg[0] === "string") {
-				super("source", { src: arg[0] } as IAttrTagSource);
-			} else {
-				super("source", arg[0]);
-			}
-		}
+		super("source", consProp<IAttrTagSource>("src", arg));
 	}
 }

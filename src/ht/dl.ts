@@ -6,6 +6,6 @@ export class dl extends tag {
 	constructor(attr: IAttr);
 	constructor(attr: IAttr, elem: IElem);
 	constructor(...arg: any[]) {
-		super("dl", cons<IAttr>(arg));
+		super("dl", cons(arg));
 	}
 }

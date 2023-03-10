@@ -1,6 +1,5 @@
-import { IAttr, IElem, isAttr, tag } from "../core/base/tag.js";
+import { cons, IAttr, IElem, tag } from "../core/base/tag.js";
 import { mergeClass } from "../core/fn/mergeClass.js";
-import { mergeObject } from "../core/fn/mergeObject.js";
 
 export interface IAttrTagOl extends IAttr {
 	unstyle?: boolean;
@@ -24,16 +23,6 @@ export class ol extends tag {
 	constructor(attr: IAttrTagOl);
 	constructor(attr: IAttrTagOl, elem: IElem);
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			super("ol", convert({}));
-		} else if (arg.length === 1) {
-			if (isAttr<IAttrTagOl>(arg[0])) {
-				super("ol", convert(arg[0]));
-			} else {
-				super("ol", convert({ elem: arg[0] }));
-			}
-		} else if (arg.length === 2) {
-			super("ol", mergeObject({ elem: arg[1] }, arg[0]));
-		}
+		super("ol", convert(cons<IAttrTagOl>(arg)));
 	}
 }

@@ -14,12 +14,6 @@ export class track extends tag {
 	constructor(attr: IAttrTagTrack);
 	constructor(attr: IAttrTagTrack, elem: IElem);
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			super("track");
-		} else if (arg.length === 1) {
-			super("track", arg[0]);
-		} else if (arg.length === 2) {
-			super("track", arg[0], arg[1]);
-		}
+		super("track", cons<IAttrTagTrack>(arg));
 	}
 }

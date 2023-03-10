@@ -1,4 +1,4 @@
-import { IAttr, tag } from "../core/base/tag.js";
+import { consNoElem, IAttr, tag } from "../core/base/tag.js";
 
 export interface IAttrTagScript extends IAttr {
 	async?: boolean;
@@ -22,14 +22,7 @@ export interface IAttrTagScript extends IAttr {
 export class script extends tag {
 	constructor();
 	constructor(attr: IAttrTagScript);
-	constructor(type: string, src: string);
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			super("script");
-		} else if (arg.length === 1) {
-			super("script", arg[0]);
-		} else if (arg.length === 2) {
-			super("script", { type: arg[0], src: arg[1] } as IAttrTagScript);
-		}
+		super("script", consNoElem<IAttrTagScript>(arg));
 	}
 }

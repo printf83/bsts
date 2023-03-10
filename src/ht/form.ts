@@ -28,6 +28,6 @@ export class form extends tag {
 	constructor(attr: IAttrTagForm);
 	constructor(attr: IAttrTagForm, elem: IElem);
 	constructor(...arg: any[]) {
-		super("form", cons<IAttr>(arg));
+		super("form", cons<IAttrTagForm>(arg));
 	}
 }

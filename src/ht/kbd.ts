@@ -6,6 +6,6 @@ export class kbd extends tag {
 	constructor(attr: IAttr);
 	constructor(attr: IAttr, elem: IElem);
 	constructor(...arg: any[]) {
-		super("kbd", cons<IAttr>(arg));
+		super("kbd", cons(arg));
 	}
 }
