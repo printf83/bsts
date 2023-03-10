@@ -1023,20 +1023,12 @@ core.documentReady(() => {
 					]),
 				])
 			),
-			// new bs.row(new bs.col([])),
-			// new bs.row(new bs.col([])),
-			// new bs.row(new bs.col([])),
-			// new bs.row(new bs.col([])),
-			// new bs.row(new bs.col([])),
-			// new bs.row(new bs.col([])),
-			// new bs.row(new bs.col([])),
 		])
 	);
 
 	core.appendChild(
 		body,
 		new b.row({ paddingY: 5, gap: 3 }, [
-			// new bs.row(new bs.col([])),
 			new b.row(
 				new b.col([
 					new b.list.group([
@@ -1057,6 +1049,7 @@ core.documentReady(() => {
 				)
 			),
 
+			//=====================
 			new b.row(
 				new b.col([
 					new b.button({ color: "primary", position: "relative" }, [
@@ -1134,6 +1127,7 @@ core.documentReady(() => {
 		])
 	);
 
+	//===========================
 	core.appendChild(
 		body,
 		new b.row({ paddingY: 5, gap: 3 }, [

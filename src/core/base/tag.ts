@@ -545,7 +545,11 @@ export const cons = <T extends IAttr>(arg: any[]): T => {
 
 export const consProp = <T extends IAttr>(prop: string, arg: any[]): T => {
 	if (arg.length === 1) {
-		return arg[0] as T;
+		if (isAttr<T>(arg[0])) {
+			return arg[0] as T;
+		} else {
+			return { [prop]: arg[0] } as T;
+		}
 	} else if (arg.length === 2) {
 		return mergeObject<T>({ [prop]: arg[1] } as T, arg[0]);
 	} else {
