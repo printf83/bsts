@@ -13,7 +13,7 @@ export interface IAttrBSPopover extends IAttr {
 	parent?: string;
 }
 
-const convert = (attr: IAttrBSPopover): IAttr => {
+const convert = (attr: IAttrBSPopover) => {
 	attr = mergeObject(
 		{
 			display: attr.inline ? "inline-block" : undefined,

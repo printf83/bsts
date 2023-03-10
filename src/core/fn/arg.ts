@@ -17,24 +17,41 @@ export const conBtnclose = <T extends IAttrBSBtnclose>(
 	}
 };
 
-// export type IConvertFn = <T extends IAttr>(attr: T) => IAttr;
-
-export const conElem = <T extends IAttr>(fn: <T extends IAttr>(attr: T) => IAttr, arg?: any[]) => {
+export const conProp = <T extends IAttr>(prop: string, fn: <T extends IAttr>(attr: T) => IAttr, arg?: any[]) => {
 	if (arg) {
 		if (arg.length === 1) {
 			if (isAttr<T>(arg[0])) {
-				return fn(arg[0]);
+				return fn(arg[0] as T);
 			} else {
-				return fn({ elem: arg[0] });
+				return fn({ [prop]: arg[0] } as T);
 			}
 		} else if (arg.length === 2) {
-			return fn(mergeObject({ elem: arg[1] }, arg[0]));
+			return fn(mergeObject<T>({ [prop]: arg[1] } as T, arg[0] as T));
 		} else {
-			return fn({});
+			return fn({} as T);
 		}
 	} else {
-		return fn({});
+		return fn({} as T);
 	}
+};
+
+export const conElem = <T extends IAttr>(fn: <T extends IAttr>(attr: T) => IAttr, arg?: any[]) => {
+	// if (arg) {
+	// 	if (arg.length === 1) {
+	// 		if (isAttr<T>(arg[0])) {
+	// 			return fn(arg[0]);
+	// 		} else {
+	// 			return fn({ elem: arg[0] });
+	// 		}
+	// 	} else if (arg.length === 2) {
+	// 		return fn(mergeObject({ elem: arg[1] }, arg[0]));
+	// 	} else {
+	// 		return fn({});
+	// 	}
+	// } else {
+	// 	return fn({});
+	// }
+	return conProp<T>("elem", fn, arg);
 };
 
 export const conElemT = <T extends IAttr>(t1: string, t2: string, fn: (i: T) => boolean, arg?: any[]) => {
