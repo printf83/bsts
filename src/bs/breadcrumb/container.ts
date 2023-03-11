@@ -1,5 +1,5 @@
 import { IAttr, IElem } from "../../core/base/tag.js";
-import { conElem } from "../../core/fn/arg.js";
+import { conProp } from "../../core/fn/arg.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
 import { nav } from "../../ht/nav.js";
 import { ol } from "../../ht/ol.js";
@@ -44,6 +44,6 @@ export class container extends nav {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSBreadcrumbContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(conElem<IAttrBSBreadcrumbContainer>(convert, arg));
+		super(conProp<IAttrBSBreadcrumbContainer>("elem", convert, arg));
 	}
 }

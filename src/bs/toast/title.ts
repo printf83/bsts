@@ -1,5 +1,5 @@
 import { IAttr, IElem } from "../../core/base/tag.js";
-import { conElem } from "../../core/fn/arg.js";
+import { conProp } from "../../core/fn/arg.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
 import { strong } from "../../ht/strong.js";
 
@@ -14,6 +14,6 @@ export class title extends strong {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttr, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(conElem(convert, arg));
+		super(conProp("elem", convert, arg));
 	}
 }

@@ -1,11 +1,7 @@
-import { IAttrBSBtnclose } from "../../bs/btnclose.js";
+// import { IAttrBSBtnclose } from "../../bs/btnclose.js";
 import { IAttr, isAttr } from "../base/tag.js";
 import { mergeObject } from "./mergeObject.js";
-
-export const conBtnclose = <T extends IAttrBSBtnclose>(
-	fn: <T extends IAttrBSBtnclose>(attr: T) => IAttrBSBtnclose,
-	arg?: any[]
-) => {
+export const conNoElem = <T extends IAttr>(fn: <T extends IAttr>(attr: T) => IAttr, arg?: any[]) => {
 	if (arg) {
 		if (arg.length === 1) {
 			return fn(arg[0] as T);
@@ -16,6 +12,20 @@ export const conBtnclose = <T extends IAttrBSBtnclose>(
 		return fn({});
 	}
 };
+// export const conNoElem = <T extends IAttrBSBtnclose>(
+// 	fn: <T extends IAttrBSBtnclose>(attr: T) => IAttrBSBtnclose,
+// 	arg?: any[]
+// ) => {
+// 	if (arg) {
+// 		if (arg.length === 1) {
+// 			return fn(arg[0] as T);
+// 		} else {
+// 			return fn({});
+// 		}
+// 	} else {
+// 		return fn({});
+// 	}
+// };
 
 export const conProp = <T extends IAttr>(prop: string, fn: <T extends IAttr>(attr: T) => IAttr, arg?: any[]) => {
 	if (arg) {

@@ -1,10 +1,9 @@
-import { conBtnclose } from "../core/fn/arg.js";
+import { conNoElem } from "../core/fn/arg.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { button, IAttrTagButton } from "../ht/button.js";
 
 export interface IAttrBSBtnclose extends IAttrTagButton {
 	label?: string;
-	elem?: undefined;
 	white?: boolean;
 }
 
@@ -33,6 +32,6 @@ export class btnclose extends button {
 	constructor(); //#1
 	constructor(attr: IAttrBSBtnclose); //#2
 	constructor(...arg: any[]) {
-		super(conBtnclose(convert, arg));
+		super(conNoElem(convert, arg));
 	}
 }

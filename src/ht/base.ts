@@ -1,4 +1,4 @@
-import { consProp, IAttr, tag } from "../core/base/tag.js";
+import { consNoElem, IAttr, tag } from "../core/base/tag.js";
 
 export interface IAttrTagBase extends IAttr {
 	href?: string;
@@ -7,10 +7,8 @@ export interface IAttrTagBase extends IAttr {
 
 export class base extends tag {
 	constructor();
-	constructor(href: string);
 	constructor(attr: IAttrTagBase);
-	constructor(attr: IAttrTagBase, href: string);
 	constructor(...arg: any[]) {
-		super("base", consProp<IAttrTagBase>("href", arg));
+		super("base", consNoElem<IAttrTagBase>(arg));
 	}
 }

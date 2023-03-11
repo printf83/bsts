@@ -1,6 +1,6 @@
 import { bootstrapType } from "../../core/base/bootstrap.js";
 import { IElem } from "../../core/base/tag.js";
-import { conElem } from "../../core/fn/arg.js";
+import { conProp } from "../../core/fn/arg.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { IAttrTagUl, ul } from "../../ht/ul.js";
 
@@ -35,6 +35,6 @@ export class group extends ul {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSCardListGroup, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(conElem<IAttrBSCardListGroup>(convert, arg));
+		super(conProp<IAttrBSCardListGroup>("elem", convert, arg));
 	}
 }

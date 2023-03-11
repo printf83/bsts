@@ -1,5 +1,5 @@
 import { IElem } from "../core/base/tag.js";
-import { conElem } from "../core/fn/arg.js";
+import { conProp } from "../core/fn/arg.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { UUID } from "../core/fn/uuid.js";
 import { IAttrTagSelect, select as TSelect } from "../ht/select.js";
@@ -23,11 +23,11 @@ const convert = (attr: IAttrBSSelect) => {
 };
 
 export class select extends TSelect {
-	constructor(); //#1
-	constructor(attr: IAttrBSSelect); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSSelect, elem: IElem); //#4
+	constructor();
+	constructor(elem: IElem);
+	constructor(attr: IAttrBSSelect);
+	constructor(attr: IAttrBSSelect, elem: IElem);
 	constructor(...arg: any[]) {
-		super(conElem<IAttrBSSelect>(convert, arg));
+		super(conProp<IAttrBSSelect>("elem", convert, arg));
 	}
 }

@@ -1,5 +1,5 @@
 import { IAttr, IElem } from "../../core/base/tag.js";
-import { conElem } from "../../core/fn/arg.js";
+import { conProp } from "../../core/fn/arg.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { btngroup } from "../btngroup.js";
 
@@ -26,6 +26,6 @@ export class container extends btngroup {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSDropdownContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(conElem<IAttrBSDropdownContainer>(convert, arg));
+		super(conProp<IAttrBSDropdownContainer>("elem", convert, arg));
 	}
 }

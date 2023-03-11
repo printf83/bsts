@@ -1,5 +1,5 @@
 import { IAttr, IElem } from "../../core/base/tag.js";
-import { conElem } from "../../core/fn/arg.js";
+import { conProp } from "../../core/fn/arg.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { UUID } from "../../core/fn/uuid.js";
 import { container as TCollapseContainer, IAttrBSCollapseContainer } from "../collapse/container.js";
@@ -19,6 +19,6 @@ export class collapse extends TCollapseContainer {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSCollapseContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(conElem<IAttrBSCollapseContainer>(convert, arg));
+		super(conProp<IAttrBSCollapseContainer>("elem", convert, arg));
 	}
 }

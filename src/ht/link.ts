@@ -1,4 +1,4 @@
-import { consProp, IAttr, tag } from "../core/base/tag.js";
+import { consNoElem, IAttr, tag } from "../core/base/tag.js";
 
 export interface IAttrTagLink extends IAttr {
 	crossorigin?: "anonymous" | "use-credentials";
@@ -30,15 +30,12 @@ export interface IAttrTagLink extends IAttr {
 
 	sizes?: string;
 	type?: string;
-
-	elem?: undefined;
 }
 
 export class link extends tag {
 	constructor();
-	constructor(href: string);
 	constructor(attr: IAttrTagLink);
 	constructor(...arg: any[]) {
-		super("link", consProp<IAttrTagLink>("href", arg));
+		super("link", consNoElem<IAttrTagLink>(arg));
 	}
 }

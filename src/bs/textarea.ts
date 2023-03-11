@@ -1,3 +1,4 @@
+import { conProp } from "../core/fn/arg.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { UUID } from "../core/fn/uuid.js";
 import { IAttrTagTextarea, textarea as TTextarea } from "../ht/textarea.js";
@@ -30,20 +31,6 @@ export class textarea extends TTextarea {
 	constructor(attr: IAttrBSTextarea); //#3
 	constructor(attr: IAttrBSTextarea, value: string); //#4
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			//#1
-			super(convert({}));
-		} else if (arg.length === 1) {
-			if (typeof arg[0] === "string") {
-				//#2
-				super(convert({ value: arg[0] }));
-			} else {
-				//#3
-				super(convert(arg[0]));
-			}
-		} else if (arg.length === 2) {
-			//#4
-			super(convert(mergeObject({ value: arg[1] }, arg[0])));
-		}
+		super(conProp<IAttrBSTextarea>("value", convert, arg));
 	}
 }

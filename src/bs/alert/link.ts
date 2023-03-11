@@ -1,5 +1,5 @@
 import { IElem } from "../../core/base/tag.js";
-import { conElem } from "../../core/fn/arg.js";
+import { conProp } from "../../core/fn/arg.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { a, IAttrTagA } from "../../ht/a.js";
 
@@ -14,6 +14,6 @@ export class link extends a {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrTagA, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(conElem<IAttrTagA>(convert, arg));
+		super(conProp<IAttrTagA>("elem", convert, arg));
 	}
 }

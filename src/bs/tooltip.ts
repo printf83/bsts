@@ -1,5 +1,5 @@
 import { IAttr, IElem } from "../core/base/tag.js";
-import { conElem } from "../core/fn/arg.js";
+import { conProp } from "../core/fn/arg.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { span } from "../ht/span.js";
 
@@ -49,6 +49,6 @@ export class tooltip extends span {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSPopover, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(conElem<IAttrBSPopover>(convert, arg));
+		super(conProp<IAttrBSPopover>("elem", convert, arg));
 	}
 }

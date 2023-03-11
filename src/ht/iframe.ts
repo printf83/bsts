@@ -1,4 +1,4 @@
-import { consProp, IAttr, tag } from "../core/base/tag.js";
+import { consNoElem, IAttr, tag } from "../core/base/tag.js";
 
 export interface IAttrTagIframe extends IAttr {
 	allowfullscreen?: boolean;
@@ -27,10 +27,8 @@ export interface IAttrTagIframe extends IAttr {
 
 export class iframe extends tag {
 	constructor();
-	constructor(src: string);
 	constructor(attr: IAttrTagIframe);
-	constructor(attr: IAttrTagIframe, src: string);
 	constructor(...arg: any[]) {
-		super("iframe", consProp<IAttrTagIframe>("src", arg));
+		super("iframe", consNoElem<IAttrTagIframe>(arg));
 	}
 }

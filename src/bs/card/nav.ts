@@ -1,5 +1,5 @@
 import { IElem } from "../../core/base/tag.js";
-import { conElem } from "../../core/fn/arg.js";
+import { conProp } from "../../core/fn/arg.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { container as BSNavHeaderContainer, IAttrBSNavContainer } from "../nav/header/container.js";
 
@@ -17,6 +17,6 @@ export class nav extends BSNavHeaderContainer {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSNavContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(conElem<IAttrBSNavContainer>(convert, arg));
+		super(conProp<IAttrBSNavContainer>("elem", convert, arg));
 	}
 }

@@ -1,3 +1,4 @@
+import { conProp } from "../core/fn/arg.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { UUID } from "../core/fn/uuid.js";
 import { IAttrTagInput, input as TInput } from "../ht/input.js";
@@ -9,7 +10,7 @@ export interface IAttrBSInput extends IAttrTagInput {
 	role?: string;
 }
 
-const convert = (attr: IAttrBSInput): IAttrTagInput => {
+const convert = (attr: IAttrBSInput) => {
 	//set default value
 	attr.type = attr.type || "text";
 
@@ -27,8 +28,7 @@ const convert = (attr: IAttrBSInput): IAttrTagInput => {
 			id: attr.id || UUID(),
 			type: attr.type,
 			class: [
-				["range", "radio", "checkbox"].indexOf(attr.type) === -1 &&
-				attr.readonly !== true
+				["range", "radio", "checkbox"].indexOf(attr.type) === -1 && attr.readonly !== true
 					? "form-control"
 					: "",
 				["radio", "checkbox"].indexOf(attr.type) > -1
@@ -57,20 +57,6 @@ export class input extends TInput {
 	constructor(attr: IAttrBSInput); //#3
 	constructor(attr: IAttrBSInput, value: string); //#4
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			//#1
-			super(convert({}));
-		} else if (arg.length === 1) {
-			if (typeof arg[0] === "string") {
-				//#2
-				super(convert({ value: arg[0] }));
-			} else {
-				//#3
-				super(convert(arg[0]));
-			}
-		} else if (arg.length === 2) {
-			//#4
-			super(convert(mergeObject({ value: arg[1] }, arg[0])));
-		}
+		super(conProp<IAttrBSInput>("value", convert, arg));
 	}
 }
