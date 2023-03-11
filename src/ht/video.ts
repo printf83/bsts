@@ -1,4 +1,4 @@
-import { cons, IAttr, IElem, tag } from "../core/base/tag.js";
+import { consProp, IAttr, IElem, tag } from "../core/base/tag.js";
 
 export interface IAttrTagVideo extends IAttr {
 	autoplay?: boolean;
@@ -16,6 +16,6 @@ export class video extends tag {
 	constructor(attr: IAttrTagVideo); //#4
 	constructor(attr: IAttrTagVideo, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super("video", cons<IAttrTagVideo>(arg));
+		super("video", consProp<IAttrTagVideo>("elem", arg));
 	}
 }

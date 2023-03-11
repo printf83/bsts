@@ -1,4 +1,4 @@
-import { cons, IAttr, IElem, tag } from "../core/base/tag.js";
+import { consProp, IAttr, IElem, tag } from "../core/base/tag.js";
 
 export interface IAttrTagAudio extends IAttr {
 	autoplay?: boolean;
@@ -16,6 +16,6 @@ export class audio extends tag {
 	constructor(attr: IAttrTagAudio, elem: IElem);
 
 	constructor(...arg: any[]) {
-		super("audio", cons(arg));
+		super("audio", consProp("elem", arg));
 	}
 }

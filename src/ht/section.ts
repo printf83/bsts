@@ -1,4 +1,4 @@
-import { cons, IAttr, IElem, tag } from "../core/base/tag.js";
+import { consProp, IAttr, IElem, tag } from "../core/base/tag.js";
 
 export class section extends tag {
 	constructor();
@@ -6,6 +6,6 @@ export class section extends tag {
 	constructor(attr: IAttr);
 	constructor(attr: IAttr, elem: IElem);
 	constructor(...arg: any[]) {
-		super("section", cons(arg));
+		super("section", consProp("elem", arg));
 	}
 }

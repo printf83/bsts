@@ -1,4 +1,4 @@
-import { cons, IAttr, IElem, tag } from "../core/base/tag.js";
+import { consProp, IAttr, IElem, tag } from "../core/base/tag.js";
 
 export interface IAttrTagLabel extends IAttr {
 	for?: string;
@@ -11,6 +11,6 @@ export class label extends tag {
 	constructor(attr: IAttrTagLabel);
 	constructor(attr: IAttrTagLabel, elem: IElem);
 	constructor(...arg: any[]) {
-		super("label", cons<IAttrTagLabel>(arg));
+		super("label", consProp<IAttrTagLabel>("elem", arg));
 	}
 }

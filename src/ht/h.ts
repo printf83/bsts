@@ -1,4 +1,4 @@
-import { cons, IAttr, IElem, tag } from "../core/base/tag.js";
+import { consProp, IAttr, IElem, tag } from "../core/base/tag.js";
 
 export type HLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -12,7 +12,7 @@ export class h extends tag {
 		if (arg) {
 			if (arg.length > 1) {
 				let l = arg.shift();
-				super(`h${l}`, cons(arg));
+				super(`h${l}`, consProp("elem", arg));
 			} else {
 				super(`h${arg[0]}`);
 			}

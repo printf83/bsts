@@ -1,4 +1,4 @@
-import { cons, IAttr, IElem, tag } from "../core/base/tag.js";
+import { consProp, IAttr, IElem, tag } from "../core/base/tag.js";
 
 export interface IAttrTagMap extends IAttr {
 	name?: string;
@@ -10,6 +10,6 @@ export class map extends tag {
 	constructor(attr: IAttrTagMap);
 	constructor(attr: IAttrTagMap, elem: IElem);
 	constructor(...arg: any[]) {
-		super("map", cons<IAttrTagMap>(arg));
+		super("map", consProp<IAttrTagMap>("elem", arg));
 	}
 }

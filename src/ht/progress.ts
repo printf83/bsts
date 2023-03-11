@@ -1,4 +1,4 @@
-import { cons, IAttr, IElem, tag } from "../core/base/tag.js";
+import { consProp, IAttr, IElem, tag } from "../core/base/tag.js";
 
 export interface IAttrTagProgress extends IAttr {
 	max?: number;
@@ -11,6 +11,6 @@ export class progress extends tag {
 	constructor(attr: IAttrTagProgress);
 	constructor(attr: IAttrTagProgress, elem: IElem);
 	constructor(...arg: any[]) {
-		super("progress", cons<IAttrTagProgress>(arg));
+		super("progress", consProp<IAttrTagProgress>("elem", arg));
 	}
 }

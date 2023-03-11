@@ -1,4 +1,4 @@
-import { cons, IAttr, IElem, tag } from "../core/base/tag.js";
+import { consProp, IAttr, IElem, tag } from "../core/base/tag.js";
 
 export interface IAttrTagTd extends IAttr {
 	colspan?: number;
@@ -12,6 +12,6 @@ export class td extends tag {
 	constructor(attr: IAttrTagTd);
 	constructor(attr: IAttrTagTd, elem: IElem);
 	constructor(...arg: any[]) {
-		super("td", cons<IAttrTagTd>(arg));
+		super("td", consProp<IAttrTagTd>("elem", arg));
 	}
 }

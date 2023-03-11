@@ -1,4 +1,4 @@
-import { cons, IAttr, IElem, tag } from "../core/base/tag.js";
+import { consProp, IAttr, IElem, tag } from "../core/base/tag.js";
 
 export interface IAttrTagOptgroup extends IAttr {
 	disabled?: boolean;
@@ -11,6 +11,6 @@ export class optgroup extends tag {
 	constructor(attr: IAttrTagOptgroup);
 	constructor(attr: IAttrTagOptgroup, elem: IElem);
 	constructor(...arg: any[]) {
-		super("optgroup", cons<IAttrTagOptgroup>(arg));
+		super("optgroup", consProp<IAttrTagOptgroup>("elem", arg));
 	}
 }

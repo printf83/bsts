@@ -1,4 +1,4 @@
-import { cons, IAttr, IElem, tag } from "../core/base/tag.js";
+import { consProp, IAttr, IElem, tag } from "../core/base/tag.js";
 
 export interface IAttrTagSelect extends IAttr {
 	autofocus?: boolean;
@@ -16,6 +16,6 @@ export class select extends tag {
 	constructor(attr: IAttrTagSelect);
 	constructor(attr: IAttrTagSelect, elem: IElem);
 	constructor(...arg: any[]) {
-		super("select", cons<IAttrTagSelect>(arg));
+		super("select", consProp<IAttrTagSelect>("elem", arg));
 	}
 }

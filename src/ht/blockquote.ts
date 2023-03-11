@@ -1,4 +1,4 @@
-import { cons, IAttr, IElem, tag } from "../core/base/tag.js";
+import { consProp, IAttr, IElem, tag } from "../core/base/tag.js";
 import { mergeClass } from "../core/fn/mergeClass.js";
 
 export interface IAttrTagBlockquote extends IAttr {
@@ -16,6 +16,6 @@ export class blockquote extends tag {
 	constructor(attr: IAttrTagBlockquote);
 	constructor(attr: IAttrTagBlockquote, elem: IElem);
 	constructor(...arg: any[]) {
-		super("blockquote", convert(cons<IAttrTagBlockquote>(arg)));
+		super("blockquote", convert(consProp<IAttrTagBlockquote>("elem", arg)));
 	}
 }

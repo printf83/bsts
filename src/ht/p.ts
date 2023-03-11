@@ -1,4 +1,4 @@
-import { cons, IAttr, IElem, tag } from "../core/base/tag.js";
+import { consProp, IAttr, IElem, tag } from "../core/base/tag.js";
 import { mergeClass } from "../core/fn/mergeClass.js";
 
 export interface IAttrTagP extends IAttr {
@@ -17,6 +17,6 @@ export class p extends tag {
 	constructor(attr: IAttrTagP);
 	constructor(attr: IAttrTagP, elem: IElem);
 	constructor(...arg: any[]) {
-		super("p", convert(cons<IAttrTagP>(arg)));
+		super("p", convert(consProp<IAttrTagP>("elem", arg)));
 	}
 }

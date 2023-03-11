@@ -1,4 +1,4 @@
-import { cons, IAttr, IElem, tag } from "../core/base/tag.js";
+import { consProp, IAttr, IElem, tag } from "../core/base/tag.js";
 
 export interface IAttrTagTrack extends IAttr {
 	default?: boolean;
@@ -14,6 +14,6 @@ export class track extends tag {
 	constructor(attr: IAttrTagTrack);
 	constructor(attr: IAttrTagTrack, elem: IElem);
 	constructor(...arg: any[]) {
-		super("track", cons<IAttrTagTrack>(arg));
+		super("track", consProp<IAttrTagTrack>("elem", arg));
 	}
 }

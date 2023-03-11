@@ -1,4 +1,4 @@
-import { cons, IAttr, IElem, tag } from "../core/base/tag.js";
+import { consProp, IAttr, IElem, tag } from "../core/base/tag.js";
 
 export interface IAttrTagFieldset extends IAttr {
 	disabled?: boolean;
@@ -12,6 +12,6 @@ export class fieldset extends tag {
 	constructor(attr: IAttrTagFieldset);
 	constructor(attr: IAttrTagFieldset, elem: IElem);
 	constructor(...arg: any[]) {
-		super("fieldset", cons<IAttrTagFieldset>(arg));
+		super("fieldset", consProp<IAttrTagFieldset>("elem", arg));
 	}
 }

@@ -1,4 +1,4 @@
-import { cons, IAttr, tag } from "../core/base/tag.js";
+import { consProp, IAttr, tag } from "../core/base/tag.js";
 
 export interface IAttrTagStyle extends IAttr {
 	media?: string;
@@ -9,7 +9,8 @@ export class style extends tag {
 	constructor();
 	constructor(elem: string);
 	constructor(attr: IAttrTagStyle);
+	constructor(attr: IAttrTagStyle, elem: string);
 	constructor(...arg: any[]) {
-		super("style", cons<IAttrTagStyle>(arg));
+		super("style", consProp<IAttrTagStyle>("elem", arg));
 	}
 }
