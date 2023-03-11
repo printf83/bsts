@@ -1,5 +1,5 @@
 import { IAttr, IElem, tag } from "../core/base/tag.js";
-import { conElem, conElemT } from "../core/fn/arg.js";
+import { conPropTag, conProp } from "../core/fn/arg.js";
 import { mergeClass } from "../core/fn/mergeClass.js";
 
 export interface IAttrBSVisuallyhidden extends IAttr {
@@ -26,8 +26,8 @@ export class visuallyhidden extends tag {
 	constructor(attr: IAttrBSVisuallyhidden, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		super(
-			conElemT<IAttrBSVisuallyhidden>("span", "a", (i) => (i.href ? true : false), arg),
-			conElem<IAttrBSVisuallyhidden>(convert, arg)
+			conPropTag<IAttrBSVisuallyhidden>("span", "a", (i) => (i.href ? true : false), arg),
+			conProp<IAttrBSVisuallyhidden>("elem", convert, arg)
 		);
 	}
 }

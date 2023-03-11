@@ -1,5 +1,5 @@
 import { IAttr, IElem, tag } from "../../core/base/tag.js";
-import { conElem, conElemT } from "../../core/fn/arg.js";
+import { conProp, conPropTag } from "../../core/fn/arg.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 
 export interface IAttrBSNavbarBrand extends IAttr {
@@ -18,8 +18,8 @@ export class brand extends tag {
 	constructor(attr: IAttrBSNavbarBrand, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		super(
-			conElemT<IAttrBSNavbarBrand>("span", "a", (i) => (i.href ? true : false), arg),
-			conElem<IAttrBSNavbarBrand>(convert, arg)
+			conPropTag<IAttrBSNavbarBrand>("span", "a", (i) => (i.href ? true : false), arg),
+			conProp<IAttrBSNavbarBrand>("elem", convert, arg)
 		);
 	}
 }
