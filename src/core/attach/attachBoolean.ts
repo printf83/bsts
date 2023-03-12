@@ -2,7 +2,7 @@ import { keyOfType } from "./../fn/keyOfType.js";
 import { setting } from "../fn/setting.js";
 import { IAttachFn } from "./_index.js";
 
-const db = [
+const dbBoolean = [
 	"allowfullscreen",
 	"allowpaymentrequest",
 	"async",
@@ -36,15 +36,14 @@ const db = [
 ];
 
 export const attachBoolean: IAttachFn = (key, elem, attr) => {
-	if (db.indexOf(key) > -1) {
+	if (dbBoolean.indexOf(key) > -1) {
 		let k = keyOfType(key, attr);
 
 		if (attr && typeof attr[k] !== "undefined") {
 			if (attr[k] === true) {
 				elem.setAttribute(key, key);
 			} else {
-				if (setting.DEBUG)
-					console.log(`Attribute ${key}:${attr[k]} is FALSE`);
+				if (setting.DEBUG) console.log(`Attribute ${key}:${attr[k]} is FALSE`);
 			}
 
 			delete attr[k];

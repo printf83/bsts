@@ -1,7 +1,7 @@
 import { keyOfType } from "../fn/keyOfType.js";
 import { IAttachFn } from "./_index.js";
 
-const db: { [key: string]: string } = {
+const dbAlias: { [key: string]: string } = {
 	placeholderText: "placeholder",
 	dataText: "data",
 	startValue: "start",
@@ -9,11 +9,11 @@ const db: { [key: string]: string } = {
 
 export const attachAlias: IAttachFn = (key, elem, attr) => {
 	if (attr && typeof attr !== "undefined") {
-		if (key in db) {
+		if (key in dbAlias) {
 			let a = keyOfType(key, attr);
-			let b = keyOfType(key, db);
+			let b = keyOfType(key, dbAlias);
 			if (typeof attr[a] !== "undefined") {
-				elem.setAttribute(db[b], attr[a]!.toString());
+				elem.setAttribute(dbAlias[b], attr[a]!.toString());
 				delete attr[a];
 			}
 

@@ -9,7 +9,7 @@ import {
 	isBootstrapType,
 } from "../base/bootstrap.js";
 
-const db: bootstrapRuleDB = {
+const dbRule: bootstrapRuleDB = {
 	userSelect: new bootstrapAttachRule({
 		format: "user-select-$1",
 		value: bootstrapBase.userSelect.concat(),
@@ -430,7 +430,7 @@ let allowProp: (string | undefined)[] = [];
 
 const allow = (key: string) => {
 	if (allowProp.length === 0) {
-		allowProp = Object.keys(db);
+		allowProp = Object.keys(dbRule);
 	}
 
 	if (allowProp.indexOf(key) > -1) {
@@ -481,7 +481,7 @@ const addBootstrapClass = (
 export const attachBootstrap: IAttachFn = (key, elem, attr) => {
 	if (allow(key)) {
 		let a = keyOfType(key, attr);
-		let b = keyOfType(key, db);
+		let b = keyOfType(key, dbRule);
 		let data: (string | number | boolean)[] = [];
 
 		if (!Array.isArray(attr[a])) {
@@ -491,7 +491,7 @@ export const attachBootstrap: IAttachFn = (key, elem, attr) => {
 		}
 
 		data.forEach((i) => {
-			elem = addBootstrapClass(key, db[b], i, elem);
+			elem = addBootstrapClass(key, dbRule[b], i, elem);
 		});
 
 		delete attr[a];
