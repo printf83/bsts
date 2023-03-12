@@ -455,8 +455,6 @@ export class tag implements ITag {
 	constructor(); //#1
 	constructor(tag: string); //#2
 	constructor(tag: string, attr?: IAttr); //#3
-	// constructor(tag: string, elem: IElem); //#4
-	// constructor(tag: string, attr: IAttr, elem: IElem); //#5
 	constructor(...arg: any[]) {
 		if (arg) {
 			if (arg.length === 1) {
