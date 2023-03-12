@@ -6,6 +6,7 @@ import { btnclose } from "./btnclose.js";
 import { btngroup } from "./btngroup.js";
 import { button } from "./button.js";
 import { card } from "./card/_index.js";
+import { carousel } from "./carousel/_index.js";
 import { col } from "./col.js";
 import { collapse } from "./collapse/_index.js";
 import { container } from "./container.js";
@@ -65,5 +66,6 @@ export const bootstrap = {
 	offcanvas,
 	navbar,
 	breadcrumb,
-	accordion
+	accordion,
+	carousel,
 };

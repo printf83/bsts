@@ -76,7 +76,34 @@ core.documentReady(() => {
 					]),
 				])
 			),
-			// new b.row(new b.col([])),
+			new b.row(
+				new b.col([
+					new b.carousel.container({ id: "carouselExample" }, [
+						new b.carousel.indicators.container([
+							...[0, 1, 2, 3, 4, 5, 6].map((_i, ix) => {
+								return new b.carousel.indicators.button({
+									target: "#carouselExample",
+									slide: ix,
+									active: ix === 0 ? true : undefined,
+								});
+							}),
+						]),
+						new b.carousel.inner.container([
+							...[1234, 1231, 6123, 9918, 5123, 1254, 5158].map((i, ix) => {
+								return new b.carousel.inner.item.container({ active: ix === 0 ? true : undefined }, [
+									new b.carousel.inner.item.img({ src: `https://picsum.photos/seed/${i}/400/200` }),
+									new b.carousel.inner.item.caption([
+										new h.h(5, `Slide #${ix + 1}`),
+										new h.p(`Some representative placeholder content for the slide #${ix + 1}.`),
+									]),
+								]);
+							}),
+						]),
+						new b.carousel.inner.control.prev({ target: "#carouselExample" }),
+						new b.carousel.inner.control.next({ target: "#carouselExample" }),
+					]),
+				])
+			),
 			// new b.row(new b.col([])),
 			// new b.row(new b.col([])),
 			// new b.row(new b.col([])),
