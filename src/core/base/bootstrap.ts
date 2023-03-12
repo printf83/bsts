@@ -610,6 +610,17 @@ export namespace bootstrapBase {
 		"dark-emphasis",
 	] as const;
 
+	export const colorSubtle = [
+		"primary-subtle",
+		"secondary-subtle",
+		"success-subtle",
+		"danger-subtle",
+		"warning-subtle",
+		"info-subtle",
+		"light-subtle",
+		"dark-subtle",
+	] as const;
+
 	export const positionView = [
 		"start",
 		"sm-start",
@@ -754,7 +765,16 @@ export namespace bootstrapBase {
 		"muted",
 	] as const;
 	export const linkColor = color;
-	export const bgColor = [...color, "body", "body-emphasis", "body-secondary", "body-tertiary"] as const;
+	export const bgColor = [
+		...color,
+		...colorSubtle,
+		"body",
+		"body-secondary",
+		"body-tertiary",
+		"black",
+		"white",
+		"transparent",
+	] as const;
 
 	export const dropdownDirection = ["up", "start", "end"] as const;
 
