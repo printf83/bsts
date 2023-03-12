@@ -1,3 +1,6 @@
+import { mergeObject } from "../fn/mergeObject.js";
+import { IAttr, isAttr } from "./tag.js";
+
 export namespace bootstrapBase {
 	const base5 = [0, 1, 2, 3, 4, 5] as const;
 	const truefalse = [true, false] as const;
@@ -594,16 +597,7 @@ export namespace bootstrapBase {
 		"xxl-12",
 	] as const;
 
-	export const color = [
-		"primary",
-		"secondary",
-		"success",
-		"danger",
-		"warning",
-		"info",
-		"light",
-		"dark",
-	] as const;
+	export const color = ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"] as const;
 
 	export const colorEmphasis = [
 		"primary-emphasis",
@@ -739,14 +733,7 @@ export namespace bootstrapBase {
 	export const overflow = ["auto", "hidden", "scroll"] as const;
 
 	export const textAlign = positionView;
-	export const verticalAlign = [
-		"baseline",
-		"top",
-		"middle",
-		"bottom",
-		"text-top",
-		"text-bottom",
-	] as const;
+	export const verticalAlign = ["baseline", "top", "middle", "bottom", "text-top", "text-bottom"] as const;
 
 	export const opacity = [0, 25, 50, 75, 100] as const;
 	export const bgOpacity = [10, 25, 50, 75, 100] as const;
@@ -767,37 +754,17 @@ export namespace bootstrapBase {
 		"muted",
 	] as const;
 	export const linkColor = color;
-	export const bgColor = [
-		...color,
-		"body",
-		"body-emphasis",
-		"body-secondary",
-		"body-tertiary",
-	] as const;
+	export const bgColor = [...color, "body", "body-emphasis", "body-secondary", "body-tertiary"] as const;
 
 	export const dropdownDirection = ["up", "start", "end"] as const;
 
-	export const textTransform = [
-		"lowercase",
-		"uppercase",
-		"capitalize",
-	] as const;
-	export const textDecoration = [
-		"underline",
-		"line-through",
-		"none",
-	] as const;
+	export const textTransform = ["lowercase", "uppercase", "capitalize"] as const;
+	export const textDecoration = ["underline", "line-through", "none"] as const;
 	export const lineHeight = [1, "sm", "base", "lg"] as const;
 
 	export const fontSize = [1, 2, 3, 4, 5, 6] as const;
 	export const fontDisplay = fontSize;
-	export const fontWeight = [
-		"bold",
-		"bolder",
-		"normal",
-		"light",
-		"lighter",
-	] as const;
+	export const fontWeight = ["bold", "bolder", "normal", "light", "lighter"] as const;
 
 	export const top = [0, 50, 100] as const;
 	export const bottom = top;
@@ -820,36 +787,13 @@ export namespace bootstrapBase {
 
 	export const shadow = [true, false, "none", "sm", "lg", "inset"] as const;
 	export const borderNone = [true, "top", "end", "bottom", "start"] as const;
-	export const border = [
-		true,
-		false,
-		"top",
-		"end",
-		"bottom",
-		"start",
-	] as const;
+	export const border = [true, false, "top", "end", "bottom", "start"] as const;
 
 	export const borderColor = color;
 	export const borderOpacity = [10, 25, 50, 75] as const;
 	export const borderWidth = base5;
-	export const roundedNone = [
-		true,
-		false,
-		"top",
-		"end",
-		"bottom",
-		"start",
-	] as const;
-	export const rounded = [
-		true,
-		false,
-		"top",
-		"end",
-		"bottom",
-		"start",
-		"circle",
-		"pill",
-	] as const;
+	export const roundedNone = [true, false, "top", "end", "bottom", "start"] as const;
+	export const rounded = [true, false, "top", "end", "bottom", "start", "circle", "pill"] as const;
 	export const roundedSize = base5;
 
 	export const padding = spacer;
@@ -874,16 +818,7 @@ export namespace bootstrapBase {
 	export const gutterY = spacer;
 
 	export const print = display;
-	export const container = [
-		true,
-		"xs",
-		"sm",
-		"md",
-		"lg",
-		"xl",
-		"xxl",
-		"fluid",
-	] as const;
+	export const container = [true, "xs", "sm", "md", "lg", "xl", "xxl", "fluid"] as const;
 
 	export const zindex = [0, 1, 2, 3, "n1"] as const;
 }
@@ -958,8 +893,7 @@ export namespace bootstrapType {
 	export type viewHeight = typeof bootstrapBase.viewHeight;
 	export type viewWidth = typeof bootstrapBase.viewWidth;
 
-	export type placeholderAnimation =
-		typeof bootstrapBase.placeholderAnimation;
+	export type placeholderAnimation = typeof bootstrapBase.placeholderAnimation;
 	export type placeholderWeight = typeof bootstrapBase.placeholderWeight;
 
 	export type shadow = typeof bootstrapBase.shadow;
@@ -1039,4 +973,52 @@ export const isBootstrapType = <T extends string | number | boolean>(
 		return listOfPossible.includes(valueToCheck);
 	}
 	return false;
+};
+
+export const bsConsNoElemArg = <T extends IAttr>(fn: <T extends IAttr>(attr: T) => IAttr, arg?: any[]) => {
+	if (arg) {
+		if (arg.length === 1) {
+			return fn(arg[0] as T);
+		} else {
+			return fn({});
+		}
+	} else {
+		return fn({});
+	}
+};
+
+export const bsConstArg = <T extends IAttr>(prop: string, fn: <T extends IAttr>(attr: T) => IAttr, arg?: any[]) => {
+	if (arg) {
+		if (arg.length === 1) {
+			if (isAttr<T>(arg[0])) {
+				return fn(arg[0] as T);
+			} else {
+				return fn({ [prop]: arg[0] } as T);
+			}
+		} else if (arg.length === 2) {
+			return fn(mergeObject<T>({ [prop]: arg[1] } as T, arg[0] as T));
+		} else {
+			return fn({} as T);
+		}
+	} else {
+		return fn({} as T);
+	}
+};
+
+export const bsConstArgTag = <T extends IAttr>(t1: string, t2: string, fn: (i: T) => boolean, arg?: any[]) => {
+	if (arg) {
+		if (arg.length === 1) {
+			if (isAttr<T>(arg[0])) {
+				return fn(arg[0]) ? t2 : t1;
+			} else {
+				return t1;
+			}
+		} else if (arg.length === 2) {
+			return fn(arg[0]) ? t2 : t1;
+		} else {
+			return t1;
+		}
+	} else {
+		return t1;
+	}
 };

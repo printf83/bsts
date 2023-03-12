@@ -7,19 +7,11 @@ import { setting } from "./setting.js";
 export type buildArg = tag | string | (tag | string)[];
 
 export const init = (container: HTMLElement) => {
-	const popoverTriggerList = container.querySelectorAll(
-		'[data-bs-toggle="popover"]'
-	);
-	[...popoverTriggerList].map(
-		(popoverTriggerEl) => new window.bootstrap.Popover(popoverTriggerEl)
-	);
+	const popoverTriggerList = container.querySelectorAll('[data-bs-toggle="popover"]');
+	[...popoverTriggerList].map((popoverTriggerEl) => new window.bootstrap.Popover(popoverTriggerEl));
 
-	const tooltipTriggerList = document.querySelectorAll(
-		'[data-bs-toggle="tooltip"]'
-	);
-	[...tooltipTriggerList].map(
-		(tooltipTriggerEl) => new window.bootstrap.Tooltip(tooltipTriggerEl)
-	);
+	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+	[...tooltipTriggerList].map((tooltipTriggerEl) => new window.bootstrap.Tooltip(tooltipTriggerEl));
 };
 
 export const build = (
@@ -54,16 +46,9 @@ export const build = (
 										//only pre is html
 										let g = i as string;
 										if (e.tag === "pre") {
-											element.insertAdjacentHTML(
-												"beforeend",
-												"\n" + g + "\n"
-											);
+											element.insertAdjacentHTML("beforeend", "\n" + g + "\n");
 										} else {
-											element.appendChild(
-												document.createTextNode(
-													"\n" + g + "\n"
-												)
-											);
+											element.appendChild(document.createTextNode("\n" + g + "\n"));
 										}
 									}
 								}
@@ -84,10 +69,7 @@ export const build = (
 									container.insertBefore(element, beforeElem);
 									beforeElem = element;
 								} else {
-									container.insertBefore(
-										element,
-										container.firstChild
-									);
+									container.insertBefore(element, container.firstChild);
 								}
 							} else {
 								container.appendChild(element);
@@ -117,20 +99,14 @@ export const html = (arg: buildArg): string => {
 	return result;
 };
 
-export const appendChild = (
-	container: HTMLElement,
-	arg: buildArg
-): HTMLElement => {
+export const appendChild = (container: HTMLElement, arg: buildArg): HTMLElement => {
 	if (setting.DEBUG) console.time("appendChild");
 	container = build(container, arg);
 	if (setting.DEBUG) console.timeEnd("appendChild");
 	return container;
 };
 
-export const prependChild = (
-	container: HTMLElement,
-	arg: buildArg
-): HTMLElement => {
+export const prependChild = (container: HTMLElement, arg: buildArg): HTMLElement => {
 	if (setting.DEBUG) console.time("prependChild");
 	container = build(container, arg, false);
 	if (setting.DEBUG) console.timeEnd("prependChild");
@@ -146,10 +122,7 @@ export const replaceWith = (elem: HTMLElement, arg: buildArg): HTMLElement => {
 	return parent;
 };
 
-export const replaceChild = (
-	container: HTMLElement,
-	arg: buildArg
-): HTMLElement => {
+export const replaceChild = (container: HTMLElement, arg: buildArg): HTMLElement => {
 	if (setting.DEBUG) console.time("replaceChild");
 	removeChildElement(container);
 	container = build(container, arg);
