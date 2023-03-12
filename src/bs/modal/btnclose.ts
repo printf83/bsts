@@ -1,4 +1,4 @@
-import { conNoElem } from "../../core/fn/arg.js";
+import { conNoElem } from "../../core/base/bootstrap.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
 import { btnclose as TBtnclose, IAttrBSBtnclose } from "../btnclose.js";
 

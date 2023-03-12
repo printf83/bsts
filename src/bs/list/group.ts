@@ -1,6 +1,6 @@
 import { bootstrapType } from "../../core/base/bootstrap.js";
 import { IElem } from "../../core/base/tag.js";
-import { conProp } from "../../core/fn/arg.js";
+import { conProp } from "../../core/base/bootstrap.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { IAttrTagUl, ul } from "../../ht/ul.js";
 

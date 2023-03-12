@@ -1,6 +1,5 @@
-import { bootstrapType } from "../core/base/bootstrap.js";
+import { bootstrapType, conProp, conPropTag } from "../core/base/bootstrap.js";
 import { IElem, tag } from "../core/base/tag.js";
-import { conProp, conPropTag } from "../core/fn/arg.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { IAttrTagButton } from "../ht/button.js";
 

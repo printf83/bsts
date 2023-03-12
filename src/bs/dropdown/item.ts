@@ -1,5 +1,5 @@
 import { IElem } from "../../core/base/tag.js";
-import { conProp } from "../../core/fn/arg.js";
+import { conProp } from "../../core/base/bootstrap.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
 import { a, IAttrTagA } from "../../ht/a.js";
 

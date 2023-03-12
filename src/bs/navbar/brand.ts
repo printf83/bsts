@@ -1,5 +1,5 @@
+import { conProp, conPropTag } from "../../core/base/bootstrap.js";
 import { IAttr, IElem, tag } from "../../core/base/tag.js";
-import { conProp, conPropTag } from "../../core/fn/arg.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 
 export interface IAttrBSNavbarBrand extends IAttr {

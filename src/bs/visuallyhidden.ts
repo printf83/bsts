@@ -1,5 +1,5 @@
+import { conProp, conPropTag } from "../core/base/bootstrap.js";
 import { IAttr, IElem, tag } from "../core/base/tag.js";
-import { conPropTag, conProp } from "../core/fn/arg.js";
 import { mergeClass } from "../core/fn/mergeClass.js";
 
 export interface IAttrBSVisuallyhidden extends IAttr {

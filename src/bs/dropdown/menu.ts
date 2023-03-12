@@ -3,7 +3,7 @@ import { mergeClass } from "../../core/fn/mergeClass.js";
 import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB, bootstrapType } from "../../core/base/bootstrap.js";
 import { genBootstrapClass } from "../../core/attach/attachBootstrap.js";
 import { div } from "../../ht/div.js";
-import { conProp } from "../../core/fn/arg.js";
+import { conProp } from "../../core/base/bootstrap.js";
 
 export interface IAttrBSDropdownMenu extends IAttr {
 	positionView?: bootstrapType.positionView[number] | bootstrapType.positionView[number][];

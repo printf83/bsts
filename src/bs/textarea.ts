@@ -1,4 +1,4 @@
-import { conProp } from "../core/fn/arg.js";
+import { conProp } from "../core/base/bootstrap.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { UUID } from "../core/fn/uuid.js";
 import { IAttrTagTextarea, textarea as TTextarea } from "../ht/textarea.js";
