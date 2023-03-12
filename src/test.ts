@@ -38,14 +38,24 @@ core.documentReady(() => {
 				new b.col([
 					new b.button(
 						{
-							color: "danger",
+							marginEnd: 2,
 							on: {
 								click: () => {
-									alert("Hello world");
+									document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", "dark");
 								},
 							},
 						},
-						new b.label({ icon: { icon: "home" } }, "Click Me")
+						new b.label({ icon: { icon: "moon" } }, "Dark")
+					),
+					new b.button(
+						{
+							on: {
+								click: () => {
+									document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", "light");
+								},
+							},
+						},
+						new b.label({ icon: { icon: "sun" } }, "Light")
 					),
 				])
 			),
@@ -445,7 +455,7 @@ core.documentReady(() => {
 								),
 								new b.dropdown.container([
 									new b.dropdown.toggle({ color: "secondary" }, "Dropdown button"),
-									new b.dropdown.menu({ dark: true }, [
+									new b.dropdown.menu({ theme: "dark" }, [
 										new b.dropdown.item("Action"),
 										new b.dropdown.item("Another action"),
 										new b.dropdown.item("Something else here"),
@@ -469,7 +479,7 @@ core.documentReady(() => {
 					),
 
 					new b.alert.container(
-						{ color: "info", display: ["none", "lg-block"] },
+						{ color: "info", callout: true, display: ["none", "lg-block"] },
 						"Resize your browser to show the responsive offcanvas toggle."
 					),
 
@@ -496,9 +506,9 @@ core.documentReady(() => {
 								new h.p(
 									"Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc."
 								),
-								new b.dropdown.container([
+								new b.dropdown.container({ theme: "dark" }, [
 									new b.dropdown.toggle({ color: "secondary" }, "Dropdown button"),
-									new b.dropdown.menu({ dark: true }, [
+									new b.dropdown.menu([
 										new b.dropdown.item("Action"),
 										new b.dropdown.item("Another action"),
 										new b.dropdown.item("Something else here"),
@@ -728,14 +738,54 @@ core.documentReady(() => {
 						}
 
 						if (isLit(i)) {
-							return new h.div({ textColor: i }, `.text-${i}`);
+							return new h.div({ textColor: i, padding: 3 }, `.text-${i}`);
 						} else {
-							return new h.div({ class: `text-${i}` }, `.text-${i}`);
+							return new h.div({ class: `text-${i}`, padding: 3 }, `.text-${i} (Unsupported)`);
 						}
 					}),
 				])
 			),
-			// new bs.row(new bs.col([])),
+			new b.row(
+				new b.col([
+					...[
+						"primary",
+						"primary-subtle",
+						"secondary",
+						"secondary-subtle",
+						"success",
+						"success-subtle",
+						"danger",
+						"danger-subtle",
+						"warning",
+						"warning-subtle",
+						"info",
+						"info-subtle",
+						"light",
+						"light-subtle",
+						"dark",
+						"dark-subtle",
+						"body-secondary",
+						"body-tertiary",
+						"body",
+						"black",
+						"white",
+						"transparent",
+					].map((i) => {
+						let lits = bootstrapBase.bgColor.concat();
+						type Lit = typeof bootstrapBase.bgColor[number];
+
+						function isLit(str: string): str is Lit {
+							return !!lits.find((lit) => str === lit);
+						}
+
+						if (isLit(i)) {
+							return new h.div({ bgColor: i, padding: 3 }, `.bg-${i}`);
+						} else {
+							return new h.div({ class: `bg-${i}`, padding: 3 }, `.bg-${i} (Unsupported)`);
+						}
+					}),
+				])
+			),
 			// new bs.row(new bs.col([])),
 			// new bs.row(new bs.col([])),
 			// new bs.row(new bs.col([])),
@@ -1164,7 +1214,7 @@ core.documentReady(() => {
 						}),
 						new b.dropdown.menu(
 							{
-								dark: true,
+								theme: "dark",
 								positionView: ["start", "md-center", "lg-end"],
 							},
 							[
@@ -1309,7 +1359,7 @@ core.documentReady(() => {
 
 			new b.row(
 				new b.col(
-					new b.dropdown.container({ drop: "up", center: true }, [
+					new b.dropdown.container({ drop: "up", center: true, theme: "dark" }, [
 						// new bs.button({ color: "danger" }, "Dropdown button X"),
 						new b.dropdown.toggle({
 							// split: true,
@@ -1317,7 +1367,6 @@ core.documentReady(() => {
 						}),
 						new b.dropdown.menu(
 							{
-								dark: true,
 								positionView: ["start", "md-center", "lg-end"],
 							},
 							[
@@ -1600,6 +1649,51 @@ core.documentReady(() => {
 						),
 						new h.hr(),
 						new h.p("Whenever you need to, be sure to use margin utilities to keep things nice and tidy."),
+					]),
+				])
+			),
+
+			new b.row(
+				new b.col([
+					new b.alert.container({ color: "info", callout: true }, [
+						new h.strong("This is an info callout."),
+						new h.span("Example text to show it in action."),
+					]),
+				])
+			),
+
+			new b.row(
+				new b.col([
+					new b.alert.container({ color: "warning", callout: true }, [
+						new h.strong("This is a warning callout."),
+						new h.span("Example text to show it in action."),
+					]),
+				])
+			),
+
+			new b.row(
+				new b.col([
+					new b.alert.container({ color: "danger", callout: true }, [
+						new h.strong("This is a danger callout."),
+						new h.span("Example text to show it in action."),
+					]),
+				])
+			),
+
+			new b.row(
+				new b.col([
+					new b.alert.container({ color: "success", callout: true }, [
+						new h.strong("This is a success callout."),
+						new h.span("Example text to show it in action."),
+					]),
+				])
+			),
+
+			new b.row(
+				new b.col([
+					new b.alert.container({ color: "primary", callout: true }, [
+						new h.strong("This is a primary callout."),
+						new h.span("Example text to show it in action."),
 					]),
 				])
 			),

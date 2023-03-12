@@ -354,8 +354,8 @@ export interface IBootstrap {
 
 	shadow?: bootstrapType.shadow[number];
 
-	border?: bootstrapType.border[number];
-	borderNone?: bootstrapType.borderNone[number];
+	border?: bootstrapType.border[number] | bootstrapType.border[number][];
+	borderNone?: bootstrapType.borderNone[number] | bootstrapType.borderNone[number][];
 	borderColor?: bootstrapType.borderColor[number];
 	borderOpacity?: bootstrapType.borderOpacity[number];
 	borderWidth?: bootstrapType.borderWidth[number];

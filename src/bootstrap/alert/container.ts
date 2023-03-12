@@ -6,6 +6,7 @@ import { div } from "../../html/div.js";
 import { btnclose } from "../btnclose.js";
 
 export interface IAttrBSAlertContainer extends IAttr {
+	callout?: boolean;
 	color?: bootstrapType.color[number];
 	role?: string;
 	dismissible?: true;
@@ -27,6 +28,10 @@ const convert = (attr: IAttrBSAlertContainer) => {
 				attr.dismissible ? "show" : "",
 			],
 			role: attr.role,
+			border: attr.callout ? [false, "start"] : attr.border,
+			borderWidth: attr.callout ? 4 : attr.borderWidth,
+			borderColor: attr.callout ? attr.color : attr.borderColor,
+			rounded: attr.callout ? false : attr.rounded,
 		},
 		attr
 	);
@@ -38,6 +43,7 @@ const convert = (attr: IAttrBSAlertContainer) => {
 		attr.elem.push(new btnclose({ data: { "bs-dismiss": "alert" } }));
 	}
 
+	delete attr.callout;
 	delete attr.color;
 	delete attr.dismissible;
 

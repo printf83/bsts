@@ -7,7 +7,6 @@ import { bsConstArg } from "../../core/base/bootstrap.js";
 
 export interface IAttrBSDropdownMenu extends IAttr {
 	positionView?: bootstrapType.positionView[number] | bootstrapType.positionView[number][];
-	dark?: true;
 }
 
 const rules: bootstrapRuleDB = {
@@ -18,7 +17,7 @@ const rules: bootstrapRuleDB = {
 };
 
 const convert = (attr: IAttrBSDropdownMenu) => {
-	attr.class = mergeClass(attr.class, ["dropdown-menu", attr.dark ? "dropdown-menu-dark" : ""]);
+	attr.class = mergeClass(attr.class, ["dropdown-menu"]);
 
 	if (attr.positionView) {
 		attr.class = mergeClass(
@@ -27,7 +26,6 @@ const convert = (attr: IAttrBSDropdownMenu) => {
 		);
 	}
 
-	delete attr.dark;
 	delete attr.positionView;
 
 	return attr;
