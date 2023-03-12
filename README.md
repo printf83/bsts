@@ -6,7 +6,7 @@ This library is just to create bootstrap 5.3 HTML but in TS way.
 example button :
 
 ```
-import {core, b} from "@printf83/bsts"
+import {core, b, h} from "@printf83/bsts"
 
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
