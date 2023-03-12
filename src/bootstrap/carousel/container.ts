@@ -10,11 +10,13 @@ export interface IAttrBSCarousel extends IAttr {
 }
 
 const convert = (attr: IAttrBSCarousel) => {
+	attr.autoPlay = attr.autoPlay !== false ? true : false;
+
 	attr = mergeObject(
 		{
 			class: ["carousel", "slide"],
 			data: {
-				"bs-ride": attr.autoPlay === true ? "carousel" : attr.autoPlay === false ? "true" : undefined,
+				"bs-ride": attr.autoPlay === true ? "carousel" : "true",
 				"bs-touch": attr.disableTouch ? "false" : undefined,
 			},
 		},

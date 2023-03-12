@@ -2,12 +2,7 @@ import { keyOfType } from "./../fn/keyOfType.js";
 import { addClassIntoElement } from "../fn/addClassIntoElement.js";
 import { setting } from "../fn/setting.js";
 import { IAttachFn } from "./_index.js";
-import {
-	bootstrapAttachRule,
-	bootstrapBase,
-	bootstrapRuleDB,
-	isBootstrapType,
-} from "../base/bootstrap.js";
+import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB, isBootstrapType } from "../base/bootstrap.js";
 
 const dbRule: bootstrapRuleDB = {
 	userSelect: new bootstrapAttachRule({
@@ -424,6 +419,10 @@ const dbRule: bootstrapRuleDB = {
 		value: bootstrapBase.alignSelf.concat(),
 		shared: true,
 	}),
+	objectFit: new bootstrapAttachRule({
+		format: "object-fit-$1",
+		value: bootstrapBase.objectFit.concat(),
+	}),
 };
 
 let allowProp: (string | undefined)[] = [];
@@ -462,17 +461,11 @@ const addBootstrapClass = (
 			}
 		} else {
 			if (rule.format) {
-				elem = addClassIntoElement(
-					elem,
-					rule.format!.replace(/\$1/g, data.toString())
-				);
+				elem = addClassIntoElement(elem, rule.format!.replace(/\$1/g, data.toString()));
 			}
 		}
 	} else {
-		if (setting.DEBUG)
-			console.warn(
-				`${key}:"${data}" is not supported value for bootstrap property`
-			);
+		if (setting.DEBUG) console.warn(`${key}:"${data}" is not supported value for bootstrap property`);
 	}
 
 	return elem;
@@ -537,10 +530,7 @@ export const genBootstrapClass = (
 					}
 				}
 			} else {
-				if (setting.DEBUG)
-					console.warn(
-						`${key}:"${d}" is not supported value for bootstrap property`
-					);
+				if (setting.DEBUG) console.warn(`${key}:"${d}" is not supported value for bootstrap property`);
 			}
 		});
 	}

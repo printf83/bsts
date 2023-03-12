@@ -821,6 +821,38 @@ export namespace bootstrapBase {
 	export const container = [true, "xs", "sm", "md", "lg", "xl", "xxl", "fluid"] as const;
 
 	export const zindex = [0, 1, 2, 3, "n1"] as const;
+	export const objectFit = [
+		"contain",
+		"cover",
+		"fill",
+		"scale",
+		"none",
+		"sm-contain",
+		"sm-cover",
+		"sm-fill",
+		"sm-scale",
+		"sm-none",
+		"md-contain",
+		"md-cover",
+		"md-fill",
+		"md-scale",
+		"md-none",
+		"lg-contain",
+		"lg-cover",
+		"lg-fill",
+		"lg-scale",
+		"lg-none",
+		"xl-contain",
+		"xl-cover",
+		"xl-fill",
+		"xl-scale",
+		"xl-none",
+		"xxl-contain",
+		"xxl-cover",
+		"xxl-fill",
+		"xxl-scale",
+		"xxl-none",
+	] as const;
 }
 
 export namespace bootstrapType {
@@ -932,6 +964,7 @@ export namespace bootstrapType {
 	export type container = typeof bootstrapBase.container;
 
 	export type zindex = typeof bootstrapBase.zindex;
+	export type objectFit = typeof bootstrapBase.objectFit;
 }
 
 export interface IBootstrapAttachRule {
