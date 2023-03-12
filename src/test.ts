@@ -52,13 +52,16 @@ core.documentReady(() => {
 			new b.row(
 				new b.col([
 					new b.accordion.container({ id: "accordionExample" }, [
-						...["One", "Two", "Three"].map((i, ix) => {
+						...["One", "Two", "Three", "Four", "Five"].map((i, ix) => {
 							return new b.accordion.item([
 								new b.accordion.header(
 									{ id: `heading${i}`, target: `#collapse${i}`, control: `collapse${i}` },
 									`Accordion Item #${ix + 1}`
 								),
-								new b.accordion.body({ id: `collapse${i}` }, `This is body for accordion #${ix + 1}`),
+								new b.accordion.body(
+									{ id: `collapse${i}`, parent: "#accordionExample" },
+									`This is body for accordion #${ix + 1}`
+								),
 							]);
 						}),
 					]),
