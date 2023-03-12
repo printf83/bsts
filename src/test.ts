@@ -1981,7 +1981,7 @@ core.documentReady(() => {
 					new b.row(
 						new b.col([
 							new b.grid([
-								new b.button(),
+								new b.button("Hello"),
 								new b.button(new b.label({ icon: { icon: "home" } }, "Hello World")),
 								new b.button(
 									{
