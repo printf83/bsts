@@ -771,7 +771,7 @@ core.documentReady(() => {
 								// }),
 								// new bs.toast.title("Bootstrap"),
 
-								new b.toast.title(new b.label("home", "Bootstrap")),
+								new b.toast.title(new b.label({ icon: { icon: "home" } }, "Bootstrap")),
 
 								new b.toast.time("11 min ago"),
 								new b.toast.btnclose(),
@@ -1891,7 +1891,9 @@ core.documentReady(() => {
 								"Home"
 							)
 						),
-						new b.col(new b.label({ for: "txtTest", textColor: "success" }, "home", "Home")),
+						new b.col(
+							new b.label({ for: "txtTest", textColor: "success", icon: { icon: "home" } }, "Home")
+						),
 						new b.col(new b.label({ for: "txtTest" }, "hello bs label")),
 					]),
 					new b.row([
@@ -1903,8 +1905,8 @@ core.documentReady(() => {
 										iconPosition: "top",
 										labelDisplay: ["sm-none", "md-flex"],
 										iconDisplay: ["sm-flex", "md-none"],
+										icon: { icon: "home" },
 									},
-									"home",
 									"Home"
 								)
 							)
@@ -1912,7 +1914,7 @@ core.documentReady(() => {
 						new b.col(
 							new b.button(
 								{ color: "success", disabled: true },
-								new b.label({ for: "txtTest" }, "home", loream)
+								new b.label({ for: "txtTest", icon: { icon: "home" } }, loream)
 							)
 						),
 					]),
@@ -1978,7 +1980,7 @@ core.documentReady(() => {
 						new b.col([
 							new b.grid([
 								new b.button(),
-								new b.button(new b.label("home", "Hello World")),
+								new b.button(new b.label({ icon: { icon: "home" } }, "Hello World")),
 								new b.button(
 									{
 										color: "danger",
@@ -1988,7 +1990,7 @@ core.documentReady(() => {
 											},
 										},
 									},
-									new b.label("star", "Test ON")
+									new b.label({ icon: { icon: "star" } }, "Test ON")
 								),
 								new b.button(
 									{

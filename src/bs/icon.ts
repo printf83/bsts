@@ -1,5 +1,5 @@
-import { bootstrapType } from "../core/base/bootstrap.js";
-import { IAttr, IElem, isAttr } from "../core/base/tag.js";
+import { bootstrapType, bsConstArg } from "../core/base/bootstrap.js";
+import { IAttr, IElem } from "../core/base/tag.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { i } from "../ht/i.js";
 import { span } from "../ht/span.js";
@@ -73,35 +73,44 @@ const convert = (attr: IAttrBSIcon) => {
 };
 
 export class icon extends span {
-	constructor(); //#1
-	constructor(icon: string); //#2
-	constructor(attr: IAttrBSIcon); //#3
-	constructor(elem: IElem); //#4
-	constructor(type: string, icon: string); //#5
-	constructor(attr: IAttrBSIcon, elem: IElem); //#6
+	constructor();
+	constructor(attr: IAttrBSIcon);
+	constructor(elem: IElem);
+	constructor(attr: IAttrBSIcon, elem: IElem);
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			//#1
-			super(convert({ icon: "home" }));
-		} else if (arg.length === 1) {
-			if (typeof arg[0] === "string") {
-				//#2
-				super(convert({ icon: arg[0] }));
-			} else if (isAttr<IAttrBSIcon>(arg[0])) {
-				//#3
-				super(convert(arg[0]));
-			} else {
-				//#4
-				super(convert({ stack: true, elem: arg[0] }));
-			}
-		} else if (arg.length === 2) {
-			if (typeof arg[0] === "string") {
-				//#5
-				super(convert({ type: arg[0] as IAttrIconType, icon: arg[1] }));
-			} else {
-				//#6
-				super(convert(mergeObject({ elem: arg[1] }, arg[0])));
-			}
-		}
+		super(bsConstArg("elem", convert, arg));
 	}
 }
+// export class icon extends span {
+// 	constructor(); //#1
+// 	constructor(icon: string); //#2
+// 	constructor(attr: IAttrBSIcon); //#3
+// 	constructor(elem: IElem); //#4
+// 	constructor(type: string, icon: string); //#5
+// 	constructor(attr: IAttrBSIcon, elem: IElem); //#6
+// 	constructor(...arg: any[]) {
+// 		if (arg.length === 0) {
+// 			//#1
+// 			super(convert({ icon: "home" }));
+// 		} else if (arg.length === 1) {
+// 			if (typeof arg[0] === "string") {
+// 				//#2
+// 				super(convert({ icon: arg[0] }));
+// 			} else if (isAttr<IAttrBSIcon>(arg[0])) {
+// 				//#3
+// 				super(convert(arg[0]));
+// 			} else {
+// 				//#4
+// 				super(convert({ stack: true, elem: arg[0] }));
+// 			}
+// 		} else if (arg.length === 2) {
+// 			if (typeof arg[0] === "string") {
+// 				//#5
+// 				super(convert({ type: arg[0] as IAttrIconType, icon: arg[1] }));
+// 			} else {
+// 				//#6
+// 				super(convert(mergeObject({ elem: arg[1] }, arg[0])));
+// 			}
+// 		}
+// 	}
+// }
