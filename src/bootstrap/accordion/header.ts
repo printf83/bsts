@@ -11,9 +11,11 @@ const convert = (attr: IAttrBSCollapseToggle) => {
 	attr.elem = new toggle(
 		{
 			class: "accordion-button",
+			defColor: false,
 			link: attr.link,
 			target: attr.target,
 			control: attr.control,
+			expanded: attr.expanded,
 		},
 		attr.elem ? attr.elem : ""
 	);
@@ -21,6 +23,7 @@ const convert = (attr: IAttrBSCollapseToggle) => {
 	delete attr.link;
 	delete attr.target;
 	delete attr.control;
+	delete attr.expanded;
 
 	return attr;
 };

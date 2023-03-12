@@ -51,15 +51,24 @@ core.documentReady(() => {
 			),
 			new b.row(
 				new b.col([
-					new b.accordion.container({ id: "accordionExample" }, [
-						...["One", "Two", "Three", "Four", "Five"].map((i, ix) => {
+					new b.accordion.container({ id: "accordionExample", flush: false }, [
+						...["home", "star", "image", "bomb", "car"].map((i, ix) => {
 							return new b.accordion.item([
 								new b.accordion.header(
-									{ id: `heading${i}`, target: `#collapse${i}`, control: `collapse${i}` },
-									`Accordion Item #${ix + 1}`
+									{
+										id: `heading${i}`,
+										target: `#collapse${i}`,
+										control: `collapse${i}`,
+										expanded: ix === 0 ? true : false,
+									},
+									new b.label({ icon: { icon: i } }, `Accordion Item #${ix + 1}`)
 								),
 								new b.accordion.body(
-									{ id: `collapse${i}`, parent: "#accordionExample" },
+									{
+										id: `collapse${i}`,
+										parent: "#accordionExample",
+										show: ix === 0 ? true : false,
+									},
 									`This is body for accordion #${ix + 1}`
 								),
 							]);

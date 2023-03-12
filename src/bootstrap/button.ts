@@ -59,8 +59,8 @@ const convert = (attr: IAttrBSButton) => {
 	delete attr.toggle;
 	delete attr.target;
 	delete attr.dismiss;
-
 	delete attr.active;
+	delete attr.defColor;
 
 	if (attr.href) {
 		delete attr.disabled;
