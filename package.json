@@ -23,7 +23,6 @@
 		"require": "./lib/_index.js",
 		"default": "./lib/_index.js"
 	},
-
 	"scripts": {
 		"clear": "tsc --build --clean tsconfig.json ",
 		"build": "tsc --build --clean tsconfig.json && tsc --project tsconfig.json",
