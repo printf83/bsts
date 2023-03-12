@@ -1,4 +1,4 @@
-import { consNoElem, IAttr, tag } from "../core/base/tag.js";
+import { tagConsNoElemArg, IAttr, tag } from "../core/base/tag.js";
 
 export interface IAttrTagInput extends IAttr {
 	accept?: string;
@@ -58,6 +58,6 @@ export class input extends tag {
 	constructor();
 	constructor(attr: IAttrTagInput);
 	constructor(...arg: any[]) {
-		super("input", consNoElem<IAttrTagInput>(arg));
+		super("input", tagConsNoElemArg<IAttrTagInput>(arg));
 	}
 }

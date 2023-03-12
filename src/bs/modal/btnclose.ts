@@ -1,4 +1,4 @@
-import { conNoElem } from "../../core/base/bootstrap.js";
+import { bsConsNoElemArg } from "../../core/base/bootstrap.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
 import { btnclose as TBtnclose, IAttrBSBtnclose } from "../btnclose.js";
 
@@ -25,6 +25,6 @@ export class btnclose extends TBtnclose {
 	constructor(); //#1
 	constructor(attr: IAttrBSModalBtnclose); //#2
 	constructor(...arg: any[]) {
-		super(conNoElem(convert, arg));
+		super(bsConsNoElemArg(convert, arg));
 	}
 }

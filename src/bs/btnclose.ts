@@ -1,4 +1,4 @@
-import { conNoElem } from "../core/base/bootstrap.js";
+import { bsConsNoElemArg } from "../core/base/bootstrap.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { button, IAttrTagButton } from "../ht/button.js";
 
@@ -32,6 +32,6 @@ export class btnclose extends button {
 	constructor(); //#1
 	constructor(attr: IAttrBSBtnclose); //#2
 	constructor(...arg: any[]) {
-		super(conNoElem(convert, arg));
+		super(bsConsNoElemArg(convert, arg));
 	}
 }

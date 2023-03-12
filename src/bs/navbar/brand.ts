@@ -1,4 +1,4 @@
-import { conProp, conPropTag } from "../../core/base/bootstrap.js";
+import { bsConstArg, bsConstArgTag } from "../../core/base/bootstrap.js";
 import { IAttr, IElem, tag } from "../../core/base/tag.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 
@@ -18,8 +18,8 @@ export class brand extends tag {
 	constructor(attr: IAttrBSNavbarBrand, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		super(
-			conPropTag<IAttrBSNavbarBrand>("span", "a", (i) => (i.href ? true : false), arg),
-			conProp<IAttrBSNavbarBrand>("elem", convert, arg)
+			bsConstArgTag<IAttrBSNavbarBrand>("span", "a", (i) => (i.href ? true : false), arg),
+			bsConstArg<IAttrBSNavbarBrand>("elem", convert, arg)
 		);
 	}
 }

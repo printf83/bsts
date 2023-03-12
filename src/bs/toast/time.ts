@@ -1,5 +1,5 @@
 import { IAttr, IElem } from "../../core/base/tag.js";
-import { conProp } from "../../core/base/bootstrap.js";
+import { bsConstArg } from "../../core/base/bootstrap.js";
 import { small } from "../../ht/small.js";
 
 const convert = (attr: IAttr): IAttr => {
@@ -16,6 +16,6 @@ export class time extends small {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttr, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(conProp("elem", convert, arg));
+		super(bsConstArg("elem", convert, arg));
 	}
 }

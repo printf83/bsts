@@ -1,6 +1,6 @@
 import { bootstrapType } from "../../core/base/bootstrap.js";
 import { IAttr, IElem } from "../../core/base/tag.js";
-import { conProp } from "../../core/base/bootstrap.js";
+import { bsConstArg } from "../../core/base/bootstrap.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { div } from "../../ht/div.js";
 import { nav } from "../../ht/nav.js";
@@ -41,6 +41,6 @@ export class container extends nav {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSNavbarContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(conProp<IAttrBSNavbarContainer>("elem", convert, arg));
+		super(bsConstArg<IAttrBSNavbarContainer>("elem", convert, arg));
 	}
 }

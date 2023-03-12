@@ -1,5 +1,5 @@
 import { IElem } from "../../core/base/tag.js";
-import { conProp } from "../../core/base/bootstrap.js";
+import { bsConstArg } from "../../core/base/bootstrap.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
 import { button, IAttrBSButton } from "../button.js";
 import { visuallyhidden } from "../visuallyhidden.js";
@@ -51,6 +51,6 @@ export class toggle extends button {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSDropdownToggle, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(conProp<IAttrBSDropdownToggle>("elem", convert, arg));
+		super(bsConstArg<IAttrBSDropdownToggle>("elem", convert, arg));
 	}
 }

@@ -1,4 +1,4 @@
-import { consProp, IAttr, IElem, tag } from "../core/base/tag.js";
+import { tagConsArg, IAttr, IElem, tag } from "../core/base/tag.js";
 
 export interface IAttrTagArea extends IAttr {
 	alt?: string;
@@ -39,6 +39,6 @@ export class area extends tag {
 	constructor(attr: IAttrTagArea);
 	constructor(attr: IAttrTagArea, elem: IElem);
 	constructor(...arg: any[]) {
-		super("area", consProp<IAttrTagArea>("elem", arg));
+		super("area", tagConsArg<IAttrTagArea>("elem", arg));
 	}
 }

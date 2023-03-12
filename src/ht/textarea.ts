@@ -1,4 +1,4 @@
-import { consNoElem, IAttr, tag } from "../core/base/tag.js";
+import { tagConsNoElemArg, IAttr, tag } from "../core/base/tag.js";
 
 export interface IAttrTagTextarea extends IAttr {
 	autofocus?: boolean;
@@ -40,6 +40,6 @@ export class textarea extends tag {
 	constructor();
 	constructor(attr: IAttrTagTextarea);
 	constructor(...arg: any[]) {
-		super("textarea", convert(consNoElem<IAttrTagTextarea>(arg)));
+		super("textarea", convert(tagConsNoElemArg<IAttrTagTextarea>(arg)));
 	}
 }

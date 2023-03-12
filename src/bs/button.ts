@@ -1,4 +1,4 @@
-import { bootstrapType, conProp, conPropTag } from "../core/base/bootstrap.js";
+import { bootstrapType, bsConstArg, bsConstArgTag } from "../core/base/bootstrap.js";
 import { IElem, tag } from "../core/base/tag.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { IAttrTagButton } from "../ht/button.js";
@@ -80,8 +80,8 @@ export class button extends tag {
 	constructor(attr: IAttrBSButton, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		super(
-			conPropTag<IAttrBSButton>("button", "a", (i) => (i.href ? true : false), arg),
-			conProp<IAttrBSButton>("elem", convert, arg)
+			bsConstArgTag<IAttrBSButton>("button", "a", (i) => (i.href ? true : false), arg),
+			bsConstArg<IAttrBSButton>("elem", convert, arg)
 		);
 	}
 }

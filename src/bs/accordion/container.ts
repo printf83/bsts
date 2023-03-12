@@ -1,5 +1,5 @@
 import { IAttr, IElem } from "../../core/base/tag.js";
-import { conProp } from "../../core/base/bootstrap.js";
+import { bsConstArg } from "../../core/base/bootstrap.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { UUID } from "../../core/fn/uuid.js";
 import { div } from "../../ht/div.js";
@@ -24,6 +24,6 @@ export class container extends div {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSAccordionContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(conProp<IAttrBSAccordionContainer>("elem", convert, arg));
+		super(bsConstArg<IAttrBSAccordionContainer>("elem", convert, arg));
 	}
 }

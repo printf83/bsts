@@ -1,5 +1,5 @@
 import { IAttr, IElem } from "../../core/base/tag.js";
-import { conProp } from "../../core/base/bootstrap.js";
+import { bsConstArg } from "../../core/base/bootstrap.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { div } from "../../ht/div.js";
 
@@ -15,6 +15,6 @@ export class header extends div {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttr, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(conProp("elem", convert, arg));
+		super(bsConstArg("elem", convert, arg));
 	}
 }

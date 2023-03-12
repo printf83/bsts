@@ -1,5 +1,5 @@
 import { IElem } from "../../core/base/tag.js";
-import { conProp } from "../../core/base/bootstrap.js";
+import { bsConstArg } from "../../core/base/bootstrap.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
 import { button, IAttrBSButton } from "../button.js";
 
@@ -36,6 +36,6 @@ export class toggle extends button {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSCollapseToggle, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(conProp<IAttrBSCollapseToggle>("elem", convert, arg));
+		super(bsConstArg<IAttrBSCollapseToggle>("elem", convert, arg));
 	}
 }

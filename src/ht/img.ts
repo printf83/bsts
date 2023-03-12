@@ -1,4 +1,4 @@
-import { consNoElem, IAttr, tag } from "../core/base/tag.js";
+import { tagConsNoElemArg, IAttr, tag } from "../core/base/tag.js";
 
 export interface IAttrTagImg extends IAttr {
 	alt?: string;
@@ -23,6 +23,6 @@ export class img extends tag {
 	constructor(); //#1
 	constructor(attr: IAttrTagImg); //#3
 	constructor(...arg: any[]) {
-		super("img", consNoElem<IAttrTagImg>(arg));
+		super("img", tagConsNoElemArg<IAttrTagImg>(arg));
 	}
 }

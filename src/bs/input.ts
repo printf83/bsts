@@ -1,4 +1,4 @@
-import { conProp } from "../core/base/bootstrap.js";
+import { bsConstArg } from "../core/base/bootstrap.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { UUID } from "../core/fn/uuid.js";
 import { IAttrTagInput, input as TInput } from "../ht/input.js";
@@ -57,6 +57,6 @@ export class input extends TInput {
 	constructor(attr: IAttrBSInput); //#3
 	constructor(attr: IAttrBSInput, value: string); //#4
 	constructor(...arg: any[]) {
-		super(conProp<IAttrBSInput>("value", convert, arg));
+		super(bsConstArg<IAttrBSInput>("value", convert, arg));
 	}
 }

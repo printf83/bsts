@@ -1,4 +1,4 @@
-import { consProp, IAttr, IElem, tag } from "../core/base/tag.js";
+import { tagConsArg, IAttr, IElem, tag } from "../core/base/tag.js";
 
 export interface IAttrTagDel extends IAttr {
 	cite?: string;
@@ -11,6 +11,6 @@ export class del extends tag {
 	constructor(attr: IAttrTagDel);
 	constructor(attr: IAttrTagDel, elem: IElem);
 	constructor(...arg: any[]) {
-		super("del", consProp("elem", arg));
+		super("del", tagConsArg("elem", arg));
 	}
 }

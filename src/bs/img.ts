@@ -1,4 +1,4 @@
-import { conProp } from "../core/base/bootstrap.js";
+import { bsConstArg } from "../core/base/bootstrap.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { IAttrTagImg, img as TImg } from "../ht/img.js";
 
@@ -27,6 +27,6 @@ export class img extends TImg {
 	constructor(attr: IAttrBSImg); //#3
 	constructor(attr: IAttrBSImg, src: string); //#3
 	constructor(...arg: any[]) {
-		super(conProp<IAttrBSImg>("src", convert, arg));
+		super(bsConstArg<IAttrBSImg>("src", convert, arg));
 	}
 }

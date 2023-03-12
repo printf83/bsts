@@ -1,4 +1,4 @@
-import { consProp, IAttr, IElem, tag } from "../core/base/tag.js";
+import { tagConsArg, IAttr, IElem, tag } from "../core/base/tag.js";
 
 export interface IAttrTagBdo extends IAttr {
 	dir?: "ltr" | "rtl";
@@ -10,6 +10,6 @@ export class bdo extends tag {
 	constructor(attr: IAttrTagBdo);
 	constructor(attr: IAttrTagBdo, elem: IElem);
 	constructor(...arg: any[]) {
-		super("bdo", consProp<IAttrTagBdo>("elem", arg));
+		super("bdo", tagConsArg<IAttrTagBdo>("elem", arg));
 	}
 }

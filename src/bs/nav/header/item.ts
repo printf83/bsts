@@ -1,5 +1,5 @@
 import { IElem } from "../../../core/base/tag.js";
-import { conProp } from "../../../core/base/bootstrap.js";
+import { bsConstArg } from "../../../core/base/bootstrap.js";
 import { mergeClass } from "../../../core/fn/mergeClass.js";
 import { IAttrTagLi, li } from "../../../ht/li.js";
 
@@ -22,6 +22,6 @@ export class item extends li {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSNavItem, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(conProp<IAttrBSNavItem>("elem", convert, arg));
+		super(bsConstArg<IAttrBSNavItem>("elem", convert, arg));
 	}
 }

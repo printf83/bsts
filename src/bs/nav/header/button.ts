@@ -1,5 +1,5 @@
 import { IElem } from "../../../core/base/tag.js";
-import { conProp } from "../../../core/base/bootstrap.js";
+import { bsConstArg } from "../../../core/base/bootstrap.js";
 import { mergeObject } from "../../../core/fn/mergeObject.js";
 import { UUID } from "../../../core/fn/uuid.js";
 import { button as TButton, IAttrTagButton } from "../../../ht/button.js";
@@ -37,6 +37,6 @@ export class button extends TButton {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSNavButton, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(conProp<IAttrBSNavButton>("elem", convert, arg));
+		super(bsConstArg<IAttrBSNavButton>("elem", convert, arg));
 	}
 }

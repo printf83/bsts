@@ -975,7 +975,7 @@ export const isBootstrapType = <T extends string | number | boolean>(
 	return false;
 };
 
-export const conNoElem = <T extends IAttr>(fn: <T extends IAttr>(attr: T) => IAttr, arg?: any[]) => {
+export const bsConsNoElemArg = <T extends IAttr>(fn: <T extends IAttr>(attr: T) => IAttr, arg?: any[]) => {
 	if (arg) {
 		if (arg.length === 1) {
 			return fn(arg[0] as T);
@@ -987,7 +987,7 @@ export const conNoElem = <T extends IAttr>(fn: <T extends IAttr>(attr: T) => IAt
 	}
 };
 
-export const conProp = <T extends IAttr>(prop: string, fn: <T extends IAttr>(attr: T) => IAttr, arg?: any[]) => {
+export const bsConstArg = <T extends IAttr>(prop: string, fn: <T extends IAttr>(attr: T) => IAttr, arg?: any[]) => {
 	if (arg) {
 		if (arg.length === 1) {
 			if (isAttr<T>(arg[0])) {
@@ -1005,7 +1005,7 @@ export const conProp = <T extends IAttr>(prop: string, fn: <T extends IAttr>(att
 	}
 };
 
-export const conPropTag = <T extends IAttr>(t1: string, t2: string, fn: (i: T) => boolean, arg?: any[]) => {
+export const bsConstArgTag = <T extends IAttr>(t1: string, t2: string, fn: (i: T) => boolean, arg?: any[]) => {
 	if (arg) {
 		if (arg.length === 1) {
 			if (isAttr<T>(arg[0])) {

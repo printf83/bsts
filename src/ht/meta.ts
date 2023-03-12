@@ -1,4 +1,4 @@
-import { consNoElem, IAttr, tag } from "../core/base/tag.js";
+import { tagConsNoElemArg, IAttr, tag } from "../core/base/tag.js";
 
 export interface IAttrTagMeta extends IAttr {
 	charset?: string;
@@ -13,6 +13,6 @@ export class meta extends tag {
 	constructor();
 	constructor(attr: IAttrTagMeta);
 	constructor(...arg: any[]) {
-		super("meta", consNoElem<IAttrTagMeta>(arg));
+		super("meta", tagConsNoElemArg<IAttrTagMeta>(arg));
 	}
 }

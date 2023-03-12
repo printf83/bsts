@@ -1,4 +1,4 @@
-import { conProp, conPropTag } from "../core/base/bootstrap.js";
+import { bsConstArg, bsConstArgTag } from "../core/base/bootstrap.js";
 import { IAttr, IElem, tag } from "../core/base/tag.js";
 import { mergeClass } from "../core/fn/mergeClass.js";
 
@@ -26,8 +26,8 @@ export class visuallyhidden extends tag {
 	constructor(attr: IAttrBSVisuallyhidden, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		super(
-			conPropTag<IAttrBSVisuallyhidden>("span", "a", (i) => (i.href ? true : false), arg),
-			conProp<IAttrBSVisuallyhidden>("elem", convert, arg)
+			bsConstArgTag<IAttrBSVisuallyhidden>("span", "a", (i) => (i.href ? true : false), arg),
+			bsConstArg<IAttrBSVisuallyhidden>("elem", convert, arg)
 		);
 	}
 }

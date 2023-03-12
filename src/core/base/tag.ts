@@ -523,7 +523,7 @@ export const isAttr = <T>(obj: any): obj is T => {
 	return typeof obj === "object" && !Array.isArray(obj) && !("isbsts" in obj);
 };
 
-export const consNoElem = <T extends IAttr>(arg: any[]): T => {
+export const tagConsNoElemArg = <T extends IAttr>(arg: any[]): T => {
 	if (arg.length === 1) {
 		return arg[0] as T;
 	} else {
@@ -531,7 +531,7 @@ export const consNoElem = <T extends IAttr>(arg: any[]): T => {
 	}
 };
 
-export const consProp = <T extends IAttr>(prop: string, arg: any[]): T => {
+export const tagConsArg = <T extends IAttr>(prop: string, arg: any[]): T => {
 	if (arg.length === 1) {
 		if (isAttr<T>(arg[0])) {
 			return arg[0] as T;

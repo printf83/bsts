@@ -1,4 +1,4 @@
-import { consProp, IAttr, IElem, tag } from "../core/base/tag.js";
+import { tagConsArg, IAttr, IElem, tag } from "../core/base/tag.js";
 
 export interface IAttrTagForm extends IAttr {
 	acceptCharset?: string;
@@ -28,6 +28,6 @@ export class form extends tag {
 	constructor(attr: IAttrTagForm);
 	constructor(attr: IAttrTagForm, elem: IElem);
 	constructor(...arg: any[]) {
-		super("form", consProp<IAttrTagForm>("elem", arg));
+		super("form", tagConsArg<IAttrTagForm>("elem", arg));
 	}
 }
