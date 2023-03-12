@@ -1,8 +1,8 @@
 // import { b, core} from "./_index.js";
 import { b, core, h, t } from "./_index.js";
-import { IAttrBSButton } from "./bootstrap/button.js";
 import { bootstrapBase, bootstrapType } from "./core/base/bootstrap.js";
 import { HLevel } from "./html/h.js";
+import { IAttrBSButton } from "./bootstrap/button.js";
 
 let loream = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta tincidunt arcu eu dignissim. Suspendisse nunc tortor, semper ut commodo nec, bibendum ut quam. Vivamus porttitor egestas luctus. Morbi tincidunt tortor eu lorem gravida imperdiet. Vestibulum tincidunt hendrerit tempus. Morbi varius est ac euismod tristique. Fusce a tortor suscipit, lacinia arcu nec, aliquet tortor. Maecenas eu lorem nec ante faucibus sollicitudin. Nunc consequat ullamcorper congue. Praesent cursus velit euismod turpis ultrices, sit amet venenatis massa pharetra. Nunc maximus pharetra purus in maximus.`;
 let fnCard = (txt: string, src: string, footer?: true) => {
