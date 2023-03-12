@@ -2,7 +2,7 @@ import { IAttr } from "../../core/base/tag.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { hr } from "../../ht/hr.js";
 
-const convert = (attr: IAttr): IAttr => {
+const convert = (attr: IAttr) => {
 	attr.class = mergeClass(attr.class, "dropdown-divider");
 	return attr;
 };

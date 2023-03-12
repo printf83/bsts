@@ -8,7 +8,7 @@ export interface IAttrBSCollapseContainer extends IAttr {
 	horizontal?: true;
 }
 
-const convert = (attr: IAttrBSCollapseContainer): IAttr => {
+const convert = (attr: IAttrBSCollapseContainer) => {
 	attr.id = attr.id || UUID();
 	attr.class = mergeClass(attr.class, ["collapse", attr.horizontal ? "collapse-horizontal" : ""]);
 

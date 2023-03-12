@@ -3,7 +3,7 @@ import { bsConstArg } from "../../core/base/bootstrap.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { a, IAttrTagA } from "../../ht/a.js";
 
-const convert = (attr: IAttrTagA): IAttrTagA => {
+const convert = (attr: IAttrTagA) => {
 	attr.class = mergeClass(attr.class, "card-link");
 	return attr;
 };

@@ -14,7 +14,7 @@ export interface IAttrBSToastItem extends IAttr {
 	debug?: true;
 }
 
-const convert = (attr: IAttrBSToastItem): IAttr => {
+const convert = (attr: IAttrBSToastItem) => {
 	attr = mergeObject(
 		{
 			class: ["toast", attr.debug ? "show" : ""],

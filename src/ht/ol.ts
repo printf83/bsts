@@ -8,7 +8,7 @@ export interface IAttrTagOl extends IAttr {
 	startValue?: number;
 }
 
-const convert = (attr: IAttrTagOl): IAttr => {
+const convert = (attr: IAttrTagOl) => {
 	attr.class = mergeClass(attr.class, [attr.unstyle ? "list-unstyle" : "", attr.inline ? "list-inline" : ""]);
 
 	delete attr.unstyle;

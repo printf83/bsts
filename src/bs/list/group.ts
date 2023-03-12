@@ -10,7 +10,7 @@ export interface IAttrBSCardListGroup extends IAttrTagUl {
 	horizontal?: boolean | bootstrapType.viewport[number];
 }
 
-const convert = (attr: IAttrBSCardListGroup): IAttrTagUl => {
+const convert = (attr: IAttrBSCardListGroup) => {
 	attr.class = mergeClass(attr.class, [
 		"list-group",
 		attr.flush ? "list-group-flush" : "",

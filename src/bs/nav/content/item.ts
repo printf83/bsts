@@ -11,7 +11,7 @@ export interface IAttrBSNavContentItem extends IAttr {
 	animation?: boolean;
 }
 
-const convert = (attr: IAttrBSNavContentItem): IAttr => {
+const convert = (attr: IAttrBSNavContentItem) => {
 	attr.role = attr.role || "tabpanel";
 	attr.tabindex = attr.tabindex || "0";
 	attr.animation = attr.animation || true;

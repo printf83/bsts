@@ -6,7 +6,7 @@ export interface IAttrBSModalBtnclose extends IAttrBSBtnclose {
 	dismiss?: "modal";
 }
 
-const convert = (attr: IAttrBSModalBtnclose): IAttrBSBtnclose => {
+const convert = (attr: IAttrBSModalBtnclose) => {
 	attr.dismiss = attr.dismiss || "modal";
 
 	attr = mergeObject(

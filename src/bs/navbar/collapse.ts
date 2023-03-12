@@ -1,10 +1,10 @@
-import { IAttr, IElem } from "../../core/base/tag.js";
+import { IElem } from "../../core/base/tag.js";
 import { bsConstArg } from "../../core/base/bootstrap.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { UUID } from "../../core/fn/uuid.js";
 import { container as TCollapseContainer, IAttrBSCollapseContainer } from "../collapse/container.js";
 
-const convert = (attr: IAttrBSCollapseContainer): IAttr => {
+const convert = (attr: IAttrBSCollapseContainer) => {
 	attr.id = attr.id || UUID();
 	attr.class = mergeClass(attr.class, "navbar-collapse");
 

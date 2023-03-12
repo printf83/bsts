@@ -8,7 +8,7 @@ export interface IAttrBSDropdownItem extends IAttrTagA {
 	disabled?: boolean;
 }
 
-const convert = (attr: IAttrBSDropdownItem): IAttrTagA => {
+const convert = (attr: IAttrBSDropdownItem) => {
 	attr = mergeObject(
 		{
 			class: ["dropdown-item", attr.active ? "active" : "", attr.disabled ? "disabled" : ""],

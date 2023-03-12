@@ -10,7 +10,7 @@ export interface IAttrBSProgressBar extends IAttr {
 	animated?: boolean;
 }
 
-const convert = (attr: IAttrBSProgressBar): IAttr => {
+const convert = (attr: IAttrBSProgressBar) => {
 	attr = mergeObject(
 		{
 			class: [

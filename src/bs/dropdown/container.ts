@@ -8,7 +8,7 @@ export interface IAttrBSDropdownContainer extends IAttr {
 	center?: true;
 }
 
-const convert = (attr: IAttrBSDropdownContainer): IAttr => {
+const convert = (attr: IAttrBSDropdownContainer) => {
 	attr.class = mergeClass(attr.class, [
 		attr.drop && attr.drop !== "down" ? `drop${attr.drop}` : "",
 		attr.center && attr.drop !== "start" && attr.drop !== "end" ? `drop${attr.drop}-center` : "",

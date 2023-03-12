@@ -6,7 +6,7 @@ export interface IAttrBSToastBtnclose extends IAttrBSBtnclose {
 	dismiss?: "toast";
 }
 
-const convert = (attr: IAttrBSToastBtnclose): IAttrBSBtnclose => {
+const convert = (attr: IAttrBSToastBtnclose) => {
 	attr.dismiss = attr.dismiss || "toast";
 
 	attr = mergeObject(

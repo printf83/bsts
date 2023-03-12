@@ -8,7 +8,7 @@ export interface IAttrBSNavbarItemcontainer extends IAttrTagUl {
 	scrollHeight?: string;
 }
 
-const convert = (attr: IAttrBSNavbarItemcontainer): IAttrTagUl => {
+const convert = (attr: IAttrBSNavbarItemcontainer) => {
 	attr = mergeObject(
 		{
 			class: ["navbar-nav", attr.scroll ? "navbar-nav-scroll" : ""],

@@ -9,7 +9,7 @@ export interface IAttrBSInputGroupContainer extends IAttr {
 	noWarp?: true;
 }
 
-const convert = (attr: IAttrBSInputGroupContainer): IAttr => {
+const convert = (attr: IAttrBSInputGroupContainer) => {
 	attr.class = mergeClass(attr.class, ["input-group", attr.weight ? `input-group-${attr.weight}` : ""]);
 
 	if (attr.noWarp) {

@@ -23,7 +23,7 @@ export interface IAttrBSIcon extends IAttr {
 	stack?: true | 1 | 2;
 }
 
-const convert = (attr: IAttrBSIcon): IAttrBSIcon => {
+const convert = (attr: IAttrBSIcon) => {
 	attr = mergeObject(
 		{
 			class: [

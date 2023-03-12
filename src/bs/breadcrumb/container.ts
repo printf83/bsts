@@ -9,7 +9,7 @@ export interface IAttrBSBreadcrumbContainer extends IAttr {
 	divider?: string;
 }
 
-const convert = (attr: IAttrBSBreadcrumbContainer): IAttr => {
+const convert = (attr: IAttrBSBreadcrumbContainer) => {
 	attr = mergeObject(
 		{
 			aria: { label: attr.label },

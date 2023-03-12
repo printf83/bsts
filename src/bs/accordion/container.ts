@@ -8,7 +8,7 @@ export interface IAttrBSAccordionContainer extends IAttr {
 	flush?: boolean;
 }
 
-const convert = (attr: IAttrBSAccordionContainer): IAttr => {
+const convert = (attr: IAttrBSAccordionContainer) => {
 	attr.id = attr.id || UUID();
 
 	attr.class = mergeClass(attr.class, ["accordion", attr.flush ? "accordion-flush" : ""]);

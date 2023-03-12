@@ -11,7 +11,7 @@ export interface IAttrBSDropdownToggle extends IAttrBSButton {
 	split?: boolean;
 }
 
-const convert = (attr: IAttrBSDropdownToggle): IAttrBSButton => {
+const convert = (attr: IAttrBSDropdownToggle) => {
 	if (attr.menuAutoClose) {
 		if (attr.menuAutoClose === "auto") attr.menuAutoClose = "true";
 		if (attr.menuAutoClose === "manual") attr.menuAutoClose = "false";

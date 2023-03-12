@@ -9,7 +9,7 @@ export interface IAttrBSBreadcrumbItem extends IAttr {
 	href?: string;
 }
 
-const convert = (attr: IAttrBSBreadcrumbItem): IAttr => {
+const convert = (attr: IAttrBSBreadcrumbItem) => {
 	attr = mergeObject(
 		{
 			class: ["breadcrumb-item", attr.active ? "active" : ""],

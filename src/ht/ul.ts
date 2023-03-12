@@ -6,7 +6,7 @@ export interface IAttrTagUl extends IAttr {
 	inline?: boolean;
 }
 
-const convert = (attr: IAttrTagUl): IAttr => {
+const convert = (attr: IAttrTagUl) => {
 	attr.class = mergeClass(attr.class, [attr.unstyle ? "list-unstyle" : "", attr.inline ? "list-inline" : ""]);
 
 	delete attr.unstyle;

@@ -10,7 +10,7 @@ export interface IAttrBSNavbarContainer extends IAttr {
 	placement?: "fixed-top" | "fixed-bottom" | "sticky-top" | "sticky-bottom";
 }
 
-const convert = (attr: IAttrBSNavbarContainer): IAttr => {
+const convert = (attr: IAttrBSNavbarContainer) => {
 	attr.container = attr.container || "fluid";
 
 	attr.class = mergeClass(attr.class, [

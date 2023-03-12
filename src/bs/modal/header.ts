@@ -8,7 +8,7 @@ export interface IAttrBSModalHeader extends IAttr {
 	close?: boolean;
 }
 
-const convert = (attr: IAttrBSModalHeader): IAttr => {
+const convert = (attr: IAttrBSModalHeader) => {
 	attr.class = mergeClass(attr.class, "modal-header");
 
 	if (attr.close) {

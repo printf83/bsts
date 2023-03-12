@@ -6,7 +6,7 @@ export interface IAttrBSNavbarBrand extends IAttr {
 	href?: string;
 }
 
-const convert = (attr: IAttrBSNavbarBrand): IAttr => {
+const convert = (attr: IAttrBSNavbarBrand) => {
 	attr.class = mergeClass(attr.class, ["navbar-brand"]);
 	return attr;
 };

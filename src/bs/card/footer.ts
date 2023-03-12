@@ -3,7 +3,7 @@ import { bsConstArg } from "../../core/base/bootstrap.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { div } from "../../ht/div.js";
 
-const convert = (attr: IAttr): IAttr => {
+const convert = (attr: IAttr) => {
 	attr.class = mergeClass(attr.class, "card-footer");
 	return attr;
 };

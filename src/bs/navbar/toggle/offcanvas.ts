@@ -1,18 +1,13 @@
 import { IElem, isAttr } from "../../../core/base/tag.js";
 import { mergeObject } from "../../../core/fn/mergeObject.js";
 import { span } from "../../../ht/span.js";
-import {
-	IAttrBSOffcanvasToggle,
-	toggle as TOffcanvasToggle,
-} from "../../offcanvas/toggle.js";
+import { IAttrBSOffcanvasToggle, toggle as TOffcanvasToggle } from "../../offcanvas/toggle.js";
 
-const convert = (attr: IAttrBSOffcanvasToggle): IAttrBSOffcanvasToggle => {
+const convert = (attr: IAttrBSOffcanvasToggle) => {
 	attr = mergeObject(
 		{
 			class: "navbar-toggler",
-			elem: attr.elem
-				? attr.elem
-				: new span({ class: "navbar-toggler-icon" }),
+			elem: attr.elem ? attr.elem : new span({ class: "navbar-toggler-icon" }),
 			aria: { expanded: "false", label: "Toggle navigation" },
 		},
 		attr

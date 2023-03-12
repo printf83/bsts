@@ -17,7 +17,7 @@ const rules: bootstrapRuleDB = {
 	}),
 };
 
-const convert = (attr: IAttrBSDropdownMenu): IAttrBSDropdownMenu => {
+const convert = (attr: IAttrBSDropdownMenu) => {
 	attr.class = mergeClass(attr.class, ["dropdown-menu", attr.dark ? "dropdown-menu-dark" : ""]);
 
 	if (attr.positionView) {

@@ -3,7 +3,7 @@ import { bsConstArg } from "../../core/base/bootstrap.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { span } from "../../ht/span.js";
 
-const convert = (attr: IAttr): IAttr => {
+const convert = (attr: IAttr) => {
 	attr.class = mergeClass(attr.class, "input-group-text");
 	return attr;
 };

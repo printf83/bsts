@@ -1,18 +1,13 @@
 import { IElem, isAttr } from "../../../core/base/tag.js";
 import { mergeObject } from "../../../core/fn/mergeObject.js";
 import { span } from "../../../ht/span.js";
-import {
-	IAttrBSCollapseToggle,
-	toggle as TCollapseToggle,
-} from "../../collapse/toggle.js";
+import { IAttrBSCollapseToggle, toggle as TCollapseToggle } from "../../collapse/toggle.js";
 
-const convert = (attr: IAttrBSCollapseToggle): IAttrBSCollapseToggle => {
+const convert = (attr: IAttrBSCollapseToggle) => {
 	attr = mergeObject(
 		{
 			class: "navbar-toggler",
-			elem: attr.elem
-				? attr.elem
-				: new span({ class: "navbar-toggler-icon" }),
+			elem: attr.elem ? attr.elem : new span({ class: "navbar-toggler-icon" }),
 			aria: { expanded: "false", label: "Toggle navigation" },
 		},
 		attr

@@ -6,7 +6,7 @@ export interface IAttrBSCardImg extends IAttrBSImg {
 	location?: "top" | "bottom";
 }
 
-const convert = (attr: IAttrBSCardImg): IAttrBSImg => {
+const convert = (attr: IAttrBSCardImg) => {
 	if (attr.location) {
 		attr.class = mergeClass(attr.class, [`card-img-${attr.location}`]);
 	}

@@ -4,7 +4,7 @@ import { mergeObject } from "../../core/fn/mergeObject.js";
 
 import { h, HLevel } from "../../ht/h.js";
 
-const convert = (attr: IAttr): IAttr => {
+const convert = (attr: IAttr) => {
 	//add alert-header
 	attr.class = mergeClass(attr.class, "alert-header");
 	return attr;

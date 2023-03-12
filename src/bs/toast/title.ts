@@ -3,7 +3,7 @@ import { bsConstArg } from "../../core/base/bootstrap.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
 import { strong } from "../../ht/strong.js";
 
-const convert = (attr: IAttr): IAttr => {
+const convert = (attr: IAttr) => {
 	attr = mergeObject({ marginEnd: "auto" }, attr);
 	return attr;
 };

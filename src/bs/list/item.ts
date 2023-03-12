@@ -11,7 +11,7 @@ export interface IAttrBSListItem extends IAttrTagLi {
 	color?: bootstrapType.color[number];
 }
 
-const convert = (attr: IAttrBSListItem): IAttrTagLi => {
+const convert = (attr: IAttrBSListItem) => {
 	attr = mergeObject(
 		{
 			class: [

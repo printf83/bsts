@@ -9,7 +9,7 @@ export interface IAttrBSCollapseToggle extends IAttrBSButton {
 	control?: string;
 }
 
-const convert = (attr: IAttrBSCollapseToggle): IAttrBSButton => {
+const convert = (attr: IAttrBSCollapseToggle) => {
 	attr = mergeObject(
 		{
 			data: {

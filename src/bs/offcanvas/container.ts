@@ -14,7 +14,7 @@ export interface IAttrBSOffcanvasContainer extends IAttr {
 	labelledby?: string;
 }
 
-const convert = (attr: IAttrBSOffcanvasContainer): IAttr => {
+const convert = (attr: IAttrBSOffcanvasContainer) => {
 	attr.placement = attr.placement || "start";
 
 	attr = mergeObject(

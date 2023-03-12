@@ -7,7 +7,7 @@ export interface IAttrBSBtnclose extends IAttrTagButton {
 	white?: boolean;
 }
 
-const convert = (attr: IAttrBSBtnclose): IAttrBSBtnclose => {
+const convert = (attr: IAttrBSBtnclose) => {
 	//default value
 	attr.label = attr.label || "Close";
 	attr.type = attr.type || "button";

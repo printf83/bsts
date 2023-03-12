@@ -11,7 +11,7 @@ export interface IAttrBSNavButton extends IAttrTagButton {
 	role?: "tab";
 }
 
-const convert = (attr: IAttrBSNavButton): IAttrTagButton => {
+const convert = (attr: IAttrBSNavButton) => {
 	attr = mergeObject(
 		{
 			id: attr.id || UUID(),

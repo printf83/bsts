@@ -10,7 +10,7 @@ export interface IAttrBSNavContainer extends IAttrTagUl {
 	role?: "tablist";
 }
 
-const convert = (attr: IAttrBSNavContainer): IAttrTagUl => {
+const convert = (attr: IAttrBSNavContainer) => {
 	attr = mergeObject(
 		{
 			class: [

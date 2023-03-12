@@ -10,7 +10,7 @@ export interface IAttrBSNavLink extends IAttrTagA {
 	dropdown?: boolean;
 }
 
-const convert = (attr: IAttrBSNavLink): IAttrTagA => {
+const convert = (attr: IAttrBSNavLink) => {
 	if (attr.dropdown) {
 		attr.role = "button";
 	}

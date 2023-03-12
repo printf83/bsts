@@ -11,7 +11,7 @@ export interface IAttrBSProgressContainer extends IAttr {
 	max?: number;
 }
 
-const convert = (attr: IAttrBSProgressContainer): IAttr => {
+const convert = (attr: IAttrBSProgressContainer) => {
 	attr = mergeObject(
 		{
 			class: "progress",

@@ -2,7 +2,7 @@ import { IAttr, IElem } from "../../core/base/tag.js";
 import { bsConstArg } from "../../core/base/bootstrap.js";
 import { small } from "../../ht/small.js";
 
-const convert = (attr: IAttr): IAttr => {
+const convert = (attr: IAttr) => {
 	if (!attr.elem) {
 		//TODO: create timer and show
 	}

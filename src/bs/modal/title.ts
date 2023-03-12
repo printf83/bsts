@@ -4,7 +4,7 @@ import { mergeClass } from "../../core/fn/mergeClass.js";
 import { UUID } from "../../core/fn/uuid.js";
 import { h } from "../../ht/h.js";
 
-const convert = (attr: IAttr): IAttr => {
+const convert = (attr: IAttr) => {
 	attr.id = attr.id || UUID();
 	attr.class = mergeClass(attr.class, "modal-title");
 	return attr;

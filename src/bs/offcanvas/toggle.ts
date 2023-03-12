@@ -9,7 +9,7 @@ export interface IAttrBSOffcanvasToggle extends IAttrBSButton {
 	control?: string;
 }
 
-const convert = (attr: IAttrBSOffcanvasToggle): IAttrBSButton => {
+const convert = (attr: IAttrBSOffcanvasToggle) => {
 	attr = mergeObject(
 		{
 			data: {

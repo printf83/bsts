@@ -429,7 +429,7 @@ export interface ITag {
 
 export type IElem = string | tag | (string | tag)[];
 
-const convert = (attr: IAttr): IAttr => {
+const convert = (attr: IAttr) => {
 	if (attr.theme) {
 		attr = mergeObject(
 			{
