@@ -22,7 +22,7 @@ const convert = (attr: IAttrBSAccordionBody) => {
 		attr
 	);
 
-	attr.elem = new div({ class: "accordion-body" }, attr.elem ? attr.elem : undefined);
+	attr.elem = new div({ class: "accordion-body" }, attr.elem ? attr.elem : "");
 
 	delete attr.labelledby;
 	delete attr.parent;
