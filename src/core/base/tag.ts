@@ -287,7 +287,7 @@ export interface IData {
 
 export interface IGlobal {
 	id?: string;
-	class?: string | string[];
+	class?: string | (string | undefined)[];
 	accesskey?: string;
 	contenteditable?: "true";
 	dir?: string;

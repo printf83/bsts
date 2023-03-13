@@ -1,17 +1,18 @@
 import { removeEmptyArray } from "./removeEmptyArray.js";
 
-export const manageClass = (value: string | string[]): string[] => {
+export const manageClass = (value: string | undefined | (string | undefined)[]): string[] => {
 	let result: string[] = [];
+	let t: (string | undefined)[];
 	let i: string[] = [];
 
 	if (Array.isArray(value)) {
-		i = value;
+		t = value;
 	} else {
-		i = [value];
+		t = [value];
 	}
 
 	//remove null
-	i = removeEmptyArray(i);
+	i = removeEmptyArray(t);
 
 	//make sure every class not have whitespace
 	if (i && i.length > 0) {
@@ -37,7 +38,10 @@ export const manageClass = (value: string | string[]): string[] => {
 	return result && result.length > 0 ? result : [];
 };
 
-export const addClassIntoElement = (elem: HTMLElement, value: string | string[]): HTMLElement => {
+export const addClassIntoElement = (
+	elem: HTMLElement,
+	value: string | undefined | (string | undefined)[]
+): HTMLElement => {
 	try {
 		let i = manageClass(value);
 		if (i && i.length > 0) {

@@ -1,7 +1,7 @@
 import { removeEmptyArray } from "./removeEmptyArray.js";
 
-const string2Array = (d: string | string[] | undefined) => {
-	let result: string[] | undefined;
+const string2Array = (d: string | undefined | (string | undefined)[]) => {
+	let result: undefined | (string | undefined)[];
 	if (typeof d === "string") {
 		result = d.split(" ");
 	} else {
@@ -11,7 +11,10 @@ const string2Array = (d: string | string[] | undefined) => {
 	return result;
 };
 
-export const mergeClass = (target: string | string[] | undefined, source: string | string[] | undefined): string[] => {
+export const mergeClass = (
+	target: string | undefined | (string | undefined)[],
+	source: string | undefined | (string | undefined)[]
+): string[] => {
 	target = string2Array(target);
 	source = string2Array(source);
 
