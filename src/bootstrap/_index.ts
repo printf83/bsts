@@ -25,6 +25,7 @@ import { nav } from "./nav/_index.js";
 import { navbar } from "./navbar/_index.js";
 import { offcanvas } from "./offcanvas/_index.js";
 import { pagination } from "./pagination/_index.js";
+import { pill } from "./pill.js";
 import { popover } from "./popover.js";
 import { progress } from "./progress/_index.js";
 import { row } from "./row.js";
@@ -70,4 +71,5 @@ export const bootstrap = {
 	accordion,
 	carousel,
 	pagination,
+	pill,
 };

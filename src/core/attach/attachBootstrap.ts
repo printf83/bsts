@@ -232,7 +232,6 @@ const dbRule: bootstrapRuleDB = {
 	roundedSize: new bootstrapAttachRule({
 		format: "rounded-$1",
 		value: bootstrapBase.roundedSize.concat(),
-		formatValue: "rounded",
 	}),
 
 	padding: new bootstrapAttachRule({
