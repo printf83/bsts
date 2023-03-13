@@ -419,7 +419,6 @@ export interface IAttr extends IGlobal, IBootstrap {
 	on?: IEvent;
 	style?: IStyle;
 	elem?: IElem;
-	debug?: true;
 }
 
 export interface ITag {
@@ -475,43 +474,6 @@ export class tag implements ITag {
 		} else {
 			this.tag = "div";
 		}
-		// if (arg.length === 0) {
-		// 	//#1
-		// 	this.tag = "div";
-		// } else if (arg.length === 1) {
-		// 	//#2
-		// 	this.tag = arg[0];
-		// } else if (arg.length === 2) {
-		// 	if (isAttr<IAttr>(arg[1])) {
-		// 		//#3
-		// 		this.tag = arg[0];
-
-		// 		if (arg[1].elem) {
-		// 			this.elem = arg[1].elem;
-		// 			delete arg[1].elem;
-		// 		}
-
-		// 		this.attr = convert(arg[1]);
-		// 	} else {
-		// 		//#4
-		// 		this.tag = arg[0];
-		// 		this.elem = arg[1];
-		// 	}
-		// } else if (arg.length === 3) {
-		// 	//#5
-
-		// 	//remove elem from IAttr
-		// 	if (arg[1].elem) {
-		// 		console.warn("Remove elem from attr", arg[1]);
-		// 		delete arg[1].elem;
-		// 	}
-
-		// 	this.tag = arg[0];
-		// 	this.attr = convert(arg[1]);
-		// 	this.elem = arg[2];
-		// } else {
-		// 	throw Error("Unsuppoted argument length");
-		// }
 	}
 }
 

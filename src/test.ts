@@ -1,4 +1,4 @@
-import { b, core, h } from "./_index.js";
+import { b, core } from "./_index.js";
 // import { b, core, h, t } from "./_index.js";
 // import { bootstrapBase, bootstrapType } from "./core/base/bootstrap.js";
 // import { HLevel } from "./html/h.js";
@@ -151,7 +151,7 @@ core.documentReady(() => {
 			),
 			new b.row(
 				new b.col([
-					new b.pagination.container({ label: "Page navigation example",justifyContent:"end" }, [
+					new b.pagination.container({ label: "Page navigation example", justifyContent: "end" }, [
 						new b.pagination.item(
 							{ label: "Previous", disabled: true },
 							new b.icon({ icon: "chevron-left", aria: { hidden: "true" } })

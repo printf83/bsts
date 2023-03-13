@@ -12,6 +12,8 @@ export interface IAttrBSOffcanvasContainer extends IAttr {
 	backdrop?: boolean | "static";
 	scroll?: boolean;
 	labelledby?: string;
+
+	debug?: boolean;
 }
 
 const convert = (attr: IAttrBSOffcanvasContainer) => {
@@ -53,6 +55,7 @@ const convert = (attr: IAttrBSOffcanvasContainer) => {
 	delete attr.backdrop;
 	delete attr.scroll;
 	delete attr.labelledby;
+	delete attr.debug;
 
 	return attr;
 };
