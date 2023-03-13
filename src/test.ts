@@ -72,7 +72,7 @@ core.documentReady(() => {
 		new b.row({ paddingY: 5, gap: 3 }, [
 			new b.row(
 				new b.col([
-					new b.pill({ icon: { icon: "home" }, color: "primary" }, "Hello"),
+					new b.pill({ icon: { icon: "home" }, iconPosition: "end", color: "primary" }, "Hello"),
 					new b.pill({ icon: { icon: "bomb" }, color: "secondary" }, "Hello"),
 					new b.pill({ icon: { icon: "car" }, color: "success" }, "Hello"),
 					new b.pill(
