@@ -1,3 +1,4 @@
+import { bootstrapType } from "./core/base/bootstrap.js";
 import { b, core } from "./_index.js";
 // import { b, core, h, t } from "./_index.js";
 // import { bootstrapBase, bootstrapType } from "./core/base/bootstrap.js";
@@ -72,23 +73,19 @@ core.documentReady(() => {
 		new b.row({ paddingY: 5, gap: 3 }, [
 			new b.row(
 				new b.col([
-					new b.pill({ icon: { icon: "home" }, iconPosition: "end", color: "primary" }, "Hello"),
-					new b.pill({ icon: { icon: "bomb" }, color: "secondary" }, "Hello"),
-					new b.pill({ icon: { icon: "car" }, color: "success" }, "Hello"),
-					new b.pill(
-						{
-							icon: { icon: "cloud" },
-							color: "danger",
-							on: {
-								click: () => {
-									alert("hello");
-								},
+					...["home", "bomb", "car", "cloud", "user", "key"].map((i, ix) => {
+						let c = ["primary", "secondary", "success", "danger", "warning", "info"][ix];
+						return new b.pill(
+							{
+								icon: { icon: i },
+								color: c as bootstrapType.color[number],
+								margin: 1,
+								// rounded: 5,
+								// iconPosition: "start",
 							},
-						},
-						"Hello"
-					),
-					new b.pill({ icon: { icon: "user" }, color: "warning" }, "Hello"),
-					new b.pill({ icon: { icon: "key" }, color: "info" }, "Hello"),
+							`${c} ${i}`
+						);
+					}),
 				])
 			),
 			// new b.row(new b.col([])),
