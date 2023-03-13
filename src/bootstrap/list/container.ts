@@ -4,13 +4,13 @@ import { bsConstArg } from "../../core/base/bootstrap.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { IAttrTagUl, ul } from "../../html/ul.js";
 
-export interface IAttrBSCardListGroup extends IAttrTagUl {
+export interface IAttrBSListContainer extends IAttrTagUl {
 	flush?: boolean;
 	numbered?: boolean;
 	horizontal?: boolean | bootstrapType.viewport[number];
 }
 
-const convert = (attr: IAttrBSCardListGroup) => {
+const convert = (attr: IAttrBSListContainer) => {
 	attr.class = mergeClass(attr.class, [
 		"list-group",
 		attr.flush ? "list-group-flush" : "",
@@ -29,12 +29,12 @@ const convert = (attr: IAttrBSCardListGroup) => {
 	return attr;
 };
 
-export class group extends ul {
+export class container extends ul {
 	constructor(); //#1
-	constructor(attr: IAttrBSCardListGroup); //#2
+	constructor(attr: IAttrBSListContainer); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSCardListGroup, elem: IElem); //#4
+	constructor(attr: IAttrBSListContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSCardListGroup>("elem", convert, arg));
+		super(bsConstArg<IAttrBSListContainer>("elem", convert, arg));
 	}
 }
