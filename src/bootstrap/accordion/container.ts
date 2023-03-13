@@ -11,7 +11,7 @@ export interface IAttrBSAccordionContainer extends IAttr {
 const convert = (attr: IAttrBSAccordionContainer) => {
 	attr.id = attr.id || UUID();
 
-	attr.class = mergeClass(attr.class, ["accordion", attr.flush ? "accordion-flush" : ""]);
+	attr.class = mergeClass(attr.class, ["accordion", attr.flush ? "accordion-flush" : undefined]);
 
 	delete attr.flush;
 

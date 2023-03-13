@@ -15,7 +15,7 @@ const convert = (attr: IAttrBSNavButton) => {
 	attr = mergeObject(
 		{
 			id: attr.id || UUID(),
-			class: ["nav-link", attr.active ? "active" : ""],
+			class: ["nav-link", attr.active ? "active" : undefined],
 			aria: {
 				controls: attr.control,
 				selected: attr.active ? "true" : "false",

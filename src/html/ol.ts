@@ -9,7 +9,10 @@ export interface IAttrTagOl extends IAttr {
 }
 
 const convert = (attr: IAttrTagOl) => {
-	attr.class = mergeClass(attr.class, [attr.unstyle ? "list-unstyle" : "", attr.inline ? "list-inline" : ""]);
+	attr.class = mergeClass(attr.class, [
+		attr.unstyle ? "list-unstyle" : undefined,
+		attr.inline ? "list-inline" : undefined,
+	]);
 
 	delete attr.unstyle;
 	delete attr.inline;

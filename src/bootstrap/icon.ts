@@ -27,24 +27,28 @@ const convert = (attr: IAttrBSIcon) => {
 	attr = mergeObject(
 		{
 			class: [
-				attr.type ? attr.type : attr.icon ? "fas" : "",
-				attr.icon ? `fa-${attr.icon}` : "",
-				attr.weight ? `fa-${attr.weight}` : "",
-				attr.fixwidth !== false ? "fa-fw" : "",
-				attr.spin ? "fa-spin" : "",
-				attr.bounce ? "fa-bounce" : "",
-				attr.flip ? "fa-flip" : "",
-				attr.shake ? "fa-shake" : "",
-				attr.inverse ? "fa-inverse" : "",
-				!attr.beat && attr.fade ? "fa-fade" : "",
-				attr.beat && !attr.fade ? "fa-beat" : "",
-				attr.beat && attr.fade ? "fa-beat-fade" : "",
+				attr.type ? attr.type : attr.icon ? "fas" : undefined,
+				attr.icon ? `fa-${attr.icon}` : undefined,
+				attr.weight ? `fa-${attr.weight}` : undefined,
+				attr.fixwidth !== false ? "fa-fw" : undefined,
+				attr.spin ? "fa-spin" : undefined,
+				attr.bounce ? "fa-bounce" : undefined,
+				attr.flip ? "fa-flip" : undefined,
+				attr.shake ? "fa-shake" : undefined,
+				attr.inverse ? "fa-inverse" : undefined,
+				!attr.beat && attr.fade ? "fa-fade" : undefined,
+				attr.beat && !attr.fade ? "fa-beat" : undefined,
+				attr.beat && attr.fade ? "fa-beat-fade" : undefined,
 				attr.rotate
 					? typeof attr.rotate === "number"
 						? `fa-rotate-${attr.rotate.toString()}`
 						: `fa-flip-${attr.rotate.toString()}`
-					: "",
-				attr.stack ? (typeof attr.stack === "number" ? `fa-stack-${attr.stack.toString()}x` : "fa-stack") : "",
+					: undefined,
+				attr.stack
+					? typeof attr.stack === "number"
+						? `fa-stack-${attr.stack.toString()}x`
+						: "fa-stack"
+					: undefined,
 			],
 			textColor: attr.color,
 		},

@@ -12,9 +12,9 @@ const convert = (attr: IAttrBSTextarea) => {
 		{
 			id: attr.id || UUID(),
 			class: [
-				attr.readonly !== true ? "form-control" : "",
-				attr.readonly ? "form-control-plaintext" : "",
-				attr.weight ? `form-control-${attr.weight}` : "",
+				attr.readonly !== true ? "form-control" : undefined,
+				attr.readonly ? "form-control-plaintext" : undefined,
+				attr.weight ? `form-control-${attr.weight}` : undefined,
 			],
 		},
 		attr

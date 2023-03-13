@@ -13,7 +13,7 @@ export interface IAttrBSCarouselIndicatorsButton extends IAttrTagButton {
 const convert = (attr: IAttrBSCarouselIndicatorsButton) => {
 	attr = mergeObject(
 		{
-			class: [attr.active ? "active" : ""],
+			class: [attr.active ? "active" : undefined],
 			aria: {
 				current: attr.active ? "true" : undefined,
 				label: attr.label,

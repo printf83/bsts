@@ -19,9 +19,9 @@ const convert = (attr: IAttrBSNavLink) => {
 		{
 			class: [
 				"nav-link",
-				attr.active ? "active" : "",
-				attr.disabled ? "disabled" : "",
-				attr.dropdown ? "dropdown-toggle" : "",
+				attr.active ? "active" : undefined,
+				attr.disabled ? "disabled" : undefined,
+				attr.dropdown ? "dropdown-toggle" : undefined,
 			],
 			href: attr.href || "#",
 			aria: {

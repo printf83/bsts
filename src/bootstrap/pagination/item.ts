@@ -14,7 +14,7 @@ export interface IAttrBSPaginationItem extends IAttrTagLi {
 
 const convert = (attr: IAttrBSPaginationItem) => {
 	let liAttr: IAttrTagLi = {
-		class: ["page-item", attr.active ? "active" : "", attr.disabled ? "disabled" : ""],
+		class: ["page-item", attr.active ? "active" : undefined, attr.disabled ? "disabled" : undefined],
 		aria: { current: attr.active ? "page" : undefined },
 	};
 

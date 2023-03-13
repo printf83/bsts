@@ -15,14 +15,14 @@ const convert = (attr: IAttrBSAccordionBody) => {
 	attr = mergeObject(
 		{
 			id: attr.id || UUID(),
-			class: ["accordion-collapse", attr.show ? "show" : ""],
+			class: ["accordion-collapse", attr.show ? "show" : undefined],
 			data: { "bs-parent": attr.parent },
 			aria: { labelledby: attr.labelledby },
 		},
 		attr
 	);
 
-	attr.elem = new div({ class: "accordion-body" }, attr.elem ? attr.elem : "");
+	attr.elem = new div({ class: "accordion-body" }, attr.elem ? attr.elem : undefined);
 
 	delete attr.labelledby;
 	delete attr.parent;

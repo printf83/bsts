@@ -18,9 +18,9 @@ const convert = (attr: IAttrBSNavContentItem) => {
 
 	attr.class = mergeClass(attr.class, [
 		"tab-pane",
-		attr.active ? "active" : "",
-		attr.active ? "show" : "",
-		attr.animation ? "fade" : "",
+		attr.active ? "active" : undefined,
+		attr.active ? "show" : undefined,
+		attr.animation ? "fade" : undefined,
 	]);
 
 	delete attr.active;

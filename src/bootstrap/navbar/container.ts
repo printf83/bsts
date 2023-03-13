@@ -15,14 +15,14 @@ const convert = (attr: IAttrBSNavbarContainer) => {
 
 	attr.class = mergeClass(attr.class, [
 		"navbar",
-		attr.placement ? attr.placement : "",
-		attr.expand ? `navbar-expand-${attr.expand}` : "",
+		attr.placement ? attr.placement : undefined,
+		attr.expand ? `navbar-expand-${attr.expand}` : undefined,
 	]);
 
 	attr.elem = new div({
 		container: attr.container,
 		justifyContent: attr.justifyContent,
-		elem: attr.elem ? attr.elem : "",
+		elem: attr.elem ? attr.elem : undefined,
 	});
 
 	delete attr.placement;

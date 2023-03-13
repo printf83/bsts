@@ -22,10 +22,10 @@ const convert = (attr: IAttrBSAlertContainer) => {
 		{
 			class: [
 				"alert",
-				attr.color ? `alert-${attr.color}` : "",
-				attr.dismissible ? "alert-dismissible" : "",
-				attr.dismissible ? "fade" : "",
-				attr.dismissible ? "show" : "",
+				attr.color ? `alert-${attr.color}` : undefined,
+				attr.dismissible ? "alert-dismissible" : undefined,
+				attr.dismissible ? "fade" : undefined,
+				attr.dismissible ? "show" : undefined,
 			],
 			role: attr.role,
 			border: attr.callout ? [false, "start"] : attr.border,

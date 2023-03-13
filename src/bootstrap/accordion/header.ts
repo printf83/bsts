@@ -17,7 +17,7 @@ const convert = (attr: IAttrBSCollapseToggle) => {
 			control: attr.control,
 			expanded: attr.expanded,
 		},
-		attr.elem ? attr.elem : ""
+		attr.elem ? attr.elem : undefined
 	);
 
 	delete attr.link;

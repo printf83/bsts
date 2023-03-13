@@ -7,7 +7,7 @@ export interface IAttrTagLi extends IAttr {
 }
 
 const convert = (attr: IAttrTagLi) => {
-	attr.class = mergeClass(attr.class, [attr.inline ? "list-inline-item" : ""]);
+	attr.class = mergeClass(attr.class, [attr.inline ? "list-inline-item" : undefined]);
 
 	delete attr.inline;
 

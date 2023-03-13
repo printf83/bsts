@@ -15,9 +15,9 @@ const convert = (attr: IAttrBSNavContainer) => {
 		{
 			class: [
 				"nav",
-				attr.type ? `nav-${attr.type}s` : "",
-				attr.itemWidth ? `nav-${attr.itemWidth}` : "",
-				attr.vertical ? "flex-column" : "",
+				attr.type ? `nav-${attr.type}s` : undefined,
+				attr.itemWidth ? `nav-${attr.itemWidth}` : undefined,
+				attr.vertical ? "flex-column" : undefined,
 			],
 			aria: {
 				orientation: attr.vertical ? "vertical" : undefined,

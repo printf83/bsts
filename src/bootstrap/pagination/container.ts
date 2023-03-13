@@ -19,7 +19,7 @@ const convert = (attr: IAttrBSPaginationContainer) => {
 	delete attr.label;
 
 	//convert attr for ul
-	attr.class = mergeClass(attr.class, ["pagination", attr.weight ? `pagination-${attr.weight}` : ""]);
+	attr.class = mergeClass(attr.class, ["pagination", attr.weight ? `pagination-${attr.weight}` : undefined]);
 
 	delete attr.weight;
 

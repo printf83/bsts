@@ -11,7 +11,7 @@ export interface IAttrBSDropdownItem extends IAttrTagA {
 const convert = (attr: IAttrBSDropdownItem) => {
 	attr = mergeObject(
 		{
-			class: ["dropdown-item", attr.active ? "active" : "", attr.disabled ? "disabled" : ""],
+			class: ["dropdown-item", attr.active ? "active" : undefined, attr.disabled ? "disabled" : undefined],
 			href: attr.href || "#",
 			aria: { current: attr.active ? "true" : undefined },
 		},

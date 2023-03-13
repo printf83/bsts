@@ -10,7 +10,7 @@ export interface IAttrBSInputGroupContainer extends IAttr {
 }
 
 const convert = (attr: IAttrBSInputGroupContainer) => {
-	attr.class = mergeClass(attr.class, ["input-group", attr.weight ? `input-group-${attr.weight}` : ""]);
+	attr.class = mergeClass(attr.class, ["input-group", attr.weight ? `input-group-${attr.weight}` : undefined]);
 
 	if (attr.noWarp) {
 		attr = mergeObject({ flex: "nowrap" }, attr);

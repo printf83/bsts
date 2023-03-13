@@ -15,8 +15,8 @@ const convert = (attr: IAttrBSProgressBar) => {
 		{
 			class: [
 				"progress-bar",
-				attr.striped ? "progress-bar-striped" : "",
-				attr.striped && attr.animated ? "progress-bar-animated" : "",
+				attr.striped ? "progress-bar-striped" : undefined,
+				attr.striped && attr.animated ? "progress-bar-animated" : undefined,
 			],
 			bgColor: attr.color,
 		},

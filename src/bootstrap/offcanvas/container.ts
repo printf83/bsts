@@ -23,10 +23,10 @@ const convert = (attr: IAttrBSOffcanvasContainer) => {
 		{
 			id: attr.id || UUID(),
 			class: [
-				!attr.hide ? "offcanvas" : "",
-				attr.hide === false ? "show" : "",
-				attr.hide ? (attr.hide === true ? "" : `offcanvas-${attr.hide}`) : "",
-				attr.placement ? `offcanvas-${attr.placement}` : "",
+				!attr.hide ? "offcanvas" : undefined,
+				attr.hide === false ? "show" : undefined,
+				attr.hide ? (attr.hide === true ? "" : `offcanvas-${attr.hide}`) : undefined,
+				attr.placement ? `offcanvas-${attr.placement}` : undefined,
 			],
 			tabindex: "-1",
 			textBgColor: attr.textBgColor || attr.dark ? "dark" : undefined,

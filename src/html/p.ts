@@ -6,7 +6,7 @@ export interface IAttrTagP extends IAttr {
 }
 
 const convert = (attr: IAttrTagP) => {
-	attr.class = mergeClass(attr.class, attr.lead ? "lead" : "");
+	attr.class = mergeClass(attr.class, attr.lead ? "lead" : undefined);
 	delete attr.lead;
 	return attr;
 };

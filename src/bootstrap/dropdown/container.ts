@@ -10,8 +10,8 @@ export interface IAttrBSDropdownContainer extends IAttr {
 
 const convert = (attr: IAttrBSDropdownContainer) => {
 	attr.class = mergeClass(attr.class, [
-		attr.drop && attr.drop !== "down" ? `drop${attr.drop}` : "",
-		attr.center && attr.drop !== "start" && attr.drop !== "end" ? `drop${attr.drop}-center` : "",
+		attr.drop && attr.drop !== "down" ? `drop${attr.drop}` : undefined,
+		attr.center && attr.drop !== "start" && attr.drop !== "end" ? `drop${attr.drop}-center` : undefined,
 	]);
 
 	delete attr.drop;

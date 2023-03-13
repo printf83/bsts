@@ -11,7 +11,7 @@ export interface IAttrBSCarouselInnerItemContainer extends IAttr {
 const convert = (attr: IAttrBSCarouselInnerItemContainer) => {
 	attr = mergeObject(
 		{
-			class: ["carousel-item", attr.active ? "active" : ""],
+			class: ["carousel-item", attr.active ? "active" : undefined],
 			data: { "bs-interval": attr.interval },
 		},
 		attr

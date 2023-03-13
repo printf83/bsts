@@ -6,7 +6,7 @@ export interface IAttrTagAbbr extends IAttr {
 }
 
 const convert = (attr: IAttrTagAbbr) => {
-	attr.class = mergeClass(attr.class, attr.small ? "initialism" : "");
+	attr.class = mergeClass(attr.class, attr.small ? "initialism" : undefined);
 	delete attr.small;
 	return attr;
 };

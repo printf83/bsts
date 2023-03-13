@@ -19,7 +19,7 @@ const convert = (attr: IAttrBSDropdownToggle) => {
 
 	attr = mergeObject(
 		{
-			class: ["dropdown-toggle", attr.split ? "dropdown-toggle-split" : ""],
+			class: ["dropdown-toggle", attr.split ? "dropdown-toggle-split" : undefined],
 			data: {
 				"bs-toggle": "dropdown",
 				"bs-offset": attr.menuOffset,

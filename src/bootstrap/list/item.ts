@@ -16,10 +16,10 @@ const convert = (attr: IAttrBSListItem) => {
 		{
 			class: [
 				"list-group-item",
-				attr.action ? "list-group-item-action" : "",
-				attr.color ? `list-group-item-${attr.color}` : "",
-				attr.active ? "active" : "",
-				attr.disabled ? "disabled" : "",
+				attr.action ? "list-group-item-action" : undefined,
+				attr.color ? `list-group-item-${attr.color}` : undefined,
+				attr.active ? "active" : undefined,
+				attr.disabled ? "disabled" : undefined,
 			],
 			aria: { disabled: attr.disabled ? "true" : undefined },
 		},

@@ -16,7 +16,7 @@ const convert = (attr: IAttrBSBtnclose) => {
 	//white
 	attr = mergeObject(
 		{
-			class: ["btn-close", attr.white ? "btn-close-white" : ""],
+			class: ["btn-close", attr.white ? "btn-close-white" : undefined],
 			aria: { label: attr.label },
 		},
 		attr

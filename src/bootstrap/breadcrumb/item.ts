@@ -12,7 +12,7 @@ export interface IAttrBSBreadcrumbItem extends IAttr {
 const convert = (attr: IAttrBSBreadcrumbItem) => {
 	attr = mergeObject(
 		{
-			class: ["breadcrumb-item", attr.active ? "active" : ""],
+			class: ["breadcrumb-item", attr.active ? "active" : undefined],
 			aria: { current: attr.active ? "page" : undefined },
 		},
 		attr

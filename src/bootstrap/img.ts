@@ -10,7 +10,7 @@ export interface IAttrBSImg extends IAttrTagImg {
 const convert = (attr: IAttrBSImg) => {
 	attr = mergeObject(
 		{
-			class: [attr.fluid ? "img-fluid" : "", attr.thumbnail ? "img-thumbnail" : ""],
+			class: [attr.fluid ? "img-fluid" : undefined, attr.thumbnail ? "img-thumbnail" : undefined],
 		},
 		attr
 	);

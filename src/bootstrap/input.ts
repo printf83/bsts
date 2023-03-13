@@ -30,16 +30,16 @@ const convert = (attr: IAttrBSInput) => {
 			class: [
 				["range", "radio", "checkbox"].indexOf(attr.type) === -1 && attr.readonly !== true
 					? "form-control"
-					: "",
+					: undefined,
 				["radio", "checkbox"].indexOf(attr.type) > -1
 					? attr.toggle === true
 						? "btn-check"
 						: "form-check-input"
-					: "",
-				attr.type === "color" ? "form-control-color" : "",
-				attr.type === "range" ? "form-range" : "",
-				attr.readonly ? "form-control-plaintext" : "",
-				attr.weight ? `form-control-${attr.weight}` : "",
+					: undefined,
+				attr.type === "color" ? "form-control-color" : undefined,
+				attr.type === "range" ? "form-range" : undefined,
+				attr.readonly ? "form-control-plaintext" : undefined,
+				attr.weight ? `form-control-${attr.weight}` : undefined,
 			],
 		},
 		attr

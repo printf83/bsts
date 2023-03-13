@@ -9,7 +9,7 @@ export interface IAttrBSNavItem extends IAttrTagLi {
 }
 
 const convert = (attr: IAttrBSNavItem) => {
-	attr.class = mergeClass(attr.class, ["nav-item", attr.dropdown ? "dropdown" : ""]);
+	attr.class = mergeClass(attr.class, ["nav-item", attr.dropdown ? "dropdown" : undefined]);
 
 	delete attr.dropdown;
 

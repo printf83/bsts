@@ -12,7 +12,7 @@ const convert = (attr: IAttrBSSelect) => {
 	attr = mergeObject(
 		{
 			id: attr.id || UUID(),
-			class: ["form-select", attr.weight ? `form-select-${attr.weight}` : ""],
+			class: ["form-select", attr.weight ? `form-select-${attr.weight}` : undefined],
 		},
 		attr
 	);

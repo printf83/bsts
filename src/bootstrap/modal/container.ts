@@ -23,7 +23,7 @@ const convert = (attr: IAttrBSModalContainer) => {
 	attr = mergeObject(
 		{
 			id: attr.id || UUID(),
-			class: ["modal", attr.animation ? "fade" : "", attr.debug ? "show" : ""],
+			class: ["modal", attr.animation ? "fade" : undefined, attr.debug ? "show" : undefined],
 			tabindex: "-1",
 			data: {
 				"bs-backdrop": attr.static ? "static" : undefined,
@@ -44,14 +44,14 @@ const convert = (attr: IAttrBSModalContainer) => {
 		{
 			class: [
 				"modal-dialog",
-				attr.weight ? `modal-${attr.weight}` : "",
+				attr.weight ? `modal-${attr.weight}` : undefined,
 				attr.fullscreen
 					? attr.fullscreen === true
 						? "modal-fullscreen"
 						: `modal-fullscreen-${attr.fullscreen}-down`
-					: "",
-				attr.scrollable ? "modal-dialog-scrollable" : "",
-				attr.centered ? "modal-dialog-centered" : "",
+					: undefined,
+				attr.scrollable ? "modal-dialog-scrollable" : undefined,
+				attr.centered ? "modal-dialog-centered" : undefined,
 			],
 		},
 		attr.elem ? new div({ class: "modal-content" }, attr.elem) : new div({ class: "modal-content" })

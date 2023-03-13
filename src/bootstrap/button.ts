@@ -31,12 +31,12 @@ const convert = (attr: IAttrBSButton) => {
 	attr = mergeObject(
 		{
 			class: [
-				attr.color ? "btn" : "",
-				attr.weight ? `btn-${attr.weight}` : "",
-				attr.color && attr.outline !== true ? `btn-${attr.color}` : "",
-				attr.color && attr.outline === true ? `btn-outline-${attr.color}` : "",
-				attr.disabled && attr.href ? "disabled" : "",
-				attr.active ? "active" : "",
+				attr.color ? "btn" : undefined,
+				attr.weight ? `btn-${attr.weight}` : undefined,
+				attr.color && attr.outline !== true ? `btn-${attr.color}` : undefined,
+				attr.color && attr.outline === true ? `btn-outline-${attr.color}` : undefined,
+				attr.disabled && attr.href ? "disabled" : undefined,
+				attr.active ? "active" : undefined,
 			],
 			role: attr.href && attr.role ? attr.role : undefined,
 			data: {
