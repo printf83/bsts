@@ -889,7 +889,7 @@ export namespace bootstrapBase {
 	export const gutterY = spacer;
 
 	export const print = display;
-	export const container = [true, "xs", "sm", "md", "lg", "xl", "xxl", "fluid"] as const;
+	export const container = [true, "xs", ...viewport, "fluid"] as const;
 
 	export const zindex = [0, 1, 2, 3, "n1"] as const;
 	export const objectFit = [

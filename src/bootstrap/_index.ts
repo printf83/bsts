@@ -30,6 +30,7 @@ import { popover } from "./popover.js";
 import { progress } from "./progress/_index.js";
 import { row } from "./row.js";
 import { select } from "./select.js";
+import { table } from "./table/_index.js";
 import { textarea } from "./textarea.js";
 import { toast } from "./toast/_index.js";
 import { tooltip } from "./tooltip.js";
@@ -72,4 +73,5 @@ export const bootstrap = {
 	carousel,
 	pagination,
 	pill,
+	table,
 };

@@ -20,13 +20,13 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
+            // "skipFiles": [
+            //     "<node_internals>/**"
+            // ],
             "url": "${workspaceFolder}/index.html",
             "preLaunchTask": "tsc: watch - tsconfig.debug.json",
             "webRoot": "${workspaceFolder}",
-            "runtimeArgs": ["--disable-web-security"]
+            // "runtimeArgs": ["--disable-web-security"]
 
         },
     ]
