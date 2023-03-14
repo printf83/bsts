@@ -19,7 +19,7 @@ const convert = (attr: IAttrBSTableContainer) => {
 		attr.color ? `table-${attr.color}` : undefined,
 		attr.striped ? (attr.striped === "row" ? "table-striped" : "table-striped-columns") : undefined,
 		attr.hoverable ? "table-hover" : undefined,
-		attr.bordered ? (attr.bordered === true ? "table-bordered" : "table-borderless") : undefined,
+		attr.bordered !== undefined ? (attr.bordered === true ? "table-bordered" : "table-borderless") : undefined,
 		attr.small ? "table-sm" : undefined,
 		attr.responsive
 			? attr.responsive === true

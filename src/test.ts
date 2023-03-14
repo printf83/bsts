@@ -88,7 +88,59 @@ core.documentReady(() => {
 					}),
 				])
 			),
-			// new b.row(new b.col([])),
+			new b.row(
+				new b.col([
+					new b.table.container(
+						{
+							striped: "row",
+							hoverable: true,
+							small: true,
+						},
+						[
+							new b.table.caption("Table title"),
+							new b.table.thead([
+								new b.table.tr([
+									new b.table.th({ scope: "col" }, "#"),
+									new b.table.th({ scope: "col" }, "First"),
+									new b.table.th({ scope: "col" }, "Last"),
+									new b.table.th({ scope: "col" }, "Handle"),
+								]),
+							]),
+							new b.table.tbody({ divider: true }, [
+								...[
+									["1", "Mark", "Otto", "@mdo"],
+									["2", "Jacob", "Thornton", "@fat"],
+									["3", "Larry the Bird", "", "@twitter"],
+									["4", "Hamzah", "Aziezs", "@printf83"],
+									["5", "Ali", "", "@ali"],
+									["6", "Siti", "Aminah", "@siti"],
+									["7", "Raju", "", "@raju"],
+									["8", "Chong", "", "@chong"],
+								].map((i, ix) => {
+									// let col = [
+									// 	"primary",
+									// 	"secondary",
+									// 	"success",
+									// 	"danger",
+									// 	"warning",
+									// 	"info",
+									// 	"light",
+									// 	"dark",
+									// ][ix];
+
+									// return new b.table.tr({ color: col as bootstrapType.color[number] }, [
+									return new b.table.tr({ active: ix === 3 ? true : undefined }, [
+										new b.table.th({ scope: "row" }, i[0]),
+										new b.table.td({ colspan: i[2] === "" ? 2 : undefined }, i[1]),
+										i[2] !== "" ? new b.table.td(i[2]) : "",
+										new b.table.td(i[3]),
+									]);
+								}),
+							]),
+						]
+					),
+				])
+			),
 			// new b.row(new b.col([])),
 			// new b.row(new b.col([])),
 			// new b.row(new b.col([])),

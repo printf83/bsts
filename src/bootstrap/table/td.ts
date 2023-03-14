@@ -10,7 +10,6 @@ export interface IAttrBSTableTd extends IAttrTagTd {
 
 const convert = (attr: IAttrBSTableTd) => {
 	attr.class = mergeClass(attr.class, [
-		"table",
 		attr.color ? `table-${attr.color}` : undefined,
 		attr.active ? "table-active" : undefined,
 	]);

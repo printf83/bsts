@@ -1,3 +1,4 @@
+import { caption } from "../../html/caption.js";
 import { tfoot } from "../../html/tfoot.js";
 import { th } from "../../html/th.js";
 import { thead } from "../../html/thead.js";
@@ -14,4 +15,5 @@ export const table = {
 	thead,
 	tfoot,
 	th,
+	caption,
 };
