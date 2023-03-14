@@ -90,6 +90,24 @@ core.documentReady(() => {
 			),
 			new b.row(
 				new b.col([
+					...["home", "bomb", "car", "cloud", "user", "key"].map((i, ix) => {
+						let c = ["primary", "secondary", "success", "danger", "warning", "info"][ix];
+						return new b.pill(
+							{
+								icon: { icon: i },
+								color: c as bootstrapType.color[number],
+								margin: 1,
+								type: 2,
+								// rounded: 5,
+								// iconPosition: "start",
+							},
+							`${c} ${i}`
+						);
+					}),
+				])
+			),
+			new b.row(
+				new b.col([
 					new b.table.container(
 						{
 							striped: "row",
@@ -98,7 +116,7 @@ core.documentReady(() => {
 						},
 						[
 							new b.table.caption("Table title"),
-							new b.table.thead([
+							new b.table.thead({ color: "primary" }, [
 								new b.table.tr([
 									new b.table.th({ scope: "col" }, "#"),
 									new b.table.th({ scope: "col" }, "First"),

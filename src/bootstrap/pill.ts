@@ -11,6 +11,7 @@ export interface IAttrBSPill extends IAttr {
 	iconPosition?: "start" | "end" | "top" | "bottom";
 	color?: bootstrapType.color[number];
 	weight?: "md" | "lg";
+	type?: 1 | 2;
 }
 
 const fnRow = (elem: IElem) => {
@@ -21,6 +22,7 @@ const fnIcon = (
 	color: bootstrapType.color[number] | undefined,
 	iconPosition: "start" | "end" | "top" | "bottom" | undefined,
 	rounded: bootstrapType.rounded[number] | undefined,
+	type: 1 | 2 | undefined,
 	attr: IAttrBSIcon
 ) => {
 	let r: bootstrapType.rounded[number];
@@ -51,11 +53,15 @@ const fnIcon = (
 		r = false;
 	}
 
+	if (type === 2) {
+		attr.textColor = attr.textColor || color;
+	}
+
 	return new span(
 		{
-			bgOpacity: 75,
+			bgOpacity: type === 2 ? 25 : 75,
 			bgColor: color,
-			textBgColor: color as bootstrapType.textBgColor[number],
+			textBgColor: type === 2 ? undefined : (color as bootstrapType.textBgColor[number]),
 			rounded: r,
 			paddingX: 2,
 			paddingY: iconPosition === "top" || iconPosition === "bottom" ? 3 : 1,
@@ -121,26 +127,26 @@ const convert = (attr: IAttrBSPill) => {
 			switch (attr.iconPosition) {
 				case "start":
 					tElem = new small({ display: "flex", alignItem: "center" }, [
-						fnIcon(attr.color, attr.iconPosition, attr.rounded, attr.icon),
+						fnIcon(attr.color, attr.iconPosition, attr.rounded, attr.type, attr.icon),
 						fnElem(attr.color, attr.iconPosition, attr.rounded, attr.elem),
 					]);
 					break;
 				case "end":
 					tElem = new small({ display: "flex", alignItem: "center" }, [
 						fnElem(attr.color, attr.iconPosition, attr.rounded, attr.elem),
-						fnIcon(attr.color, attr.iconPosition, attr.rounded, attr.icon),
+						fnIcon(attr.color, attr.iconPosition, attr.rounded, attr.type, attr.icon),
 					]);
 					break;
 				case "top":
 					tElem = new div({ display: "inline-block" }, [
-						fnRow(fnIcon(attr.color, attr.iconPosition, attr.rounded, attr.icon)),
+						fnRow(fnIcon(attr.color, attr.iconPosition, attr.rounded, attr.type, attr.icon)),
 						fnRow(fnElem(attr.color, attr.iconPosition, attr.rounded, attr.elem)),
 					]);
 					break;
 				case "bottom":
 					tElem = new div({ display: "inline-block" }, [
 						fnRow(fnElem(attr.color, attr.iconPosition, attr.rounded, attr.elem)),
-						fnRow(fnIcon(attr.color, attr.iconPosition, attr.rounded, attr.icon)),
+						fnRow(fnIcon(attr.color, attr.iconPosition, attr.rounded, attr.type, attr.icon)),
 					]);
 					break;
 				default:
