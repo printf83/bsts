@@ -6,12 +6,14 @@ This library is just to create bootstrap 5.3 HTML but in TS way.
 example button :
 
 ```
-import {core, b, h} from "@printf83/bsts"
+import {core, b, h} from "@printf83/bsts";
 
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 	core.replaceChild(body, new h.div([
-        new b.button({id:"button1",color:"primary"},"Button");
+        new h.p("This is example p tag"),
+        new h.p({lead:true,data:{test:"test-data"}},"This is example p tag with attribute"),
+        new b.button({id:"btn1",color:"primary"},"Button");
     ]));
 });
 ```
