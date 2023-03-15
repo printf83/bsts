@@ -77,7 +77,7 @@ core.documentReady(() => {
 						let c = ["primary", "secondary", "success", "danger", "warning", "info"][ix];
 						return new b.pill(
 							{
-								icon: { icon: i },
+								icon: i,
 								color: c as bootstrapType.color[number],
 								margin: 1,
 								// rounded: 5,
@@ -94,12 +94,11 @@ core.documentReady(() => {
 						let c = ["primary", "secondary", "success", "danger", "warning", "info"][ix];
 						return new b.pill(
 							{
-								icon: { icon: i },
+								icon: i,
 								color: c as bootstrapType.color[number],
 								margin: 1,
-								type: 2,
 								// rounded: 5,
-								// iconPosition: "start",
+								iconPosition: "top",
 							},
 							`${c} ${i}`
 						);
@@ -161,9 +160,10 @@ core.documentReady(() => {
 			),
 			new b.row(
 				new b.col([
-					b.button.gen[1](b.icon.solid("home", { spin:true }), "Home", (_e) => {
+					b.button.gen[1](b.icon.solid("home", { spin: true }), "Home", (_e) => {
 						alert("Onclick");
 					}),
+					new b.button(new b.label({ icon: "bomb" }, "Bomb")),
 				])
 			),
 			// new b.row(new b.col([])),
