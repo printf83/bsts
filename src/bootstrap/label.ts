@@ -1,5 +1,5 @@
 import { bootstrapType, bsConstArg } from "../core/base/bootstrap.js";
-import { IElem } from "../core/base/tag.js";
+import { IElem, isAttr } from "../core/base/tag.js";
 import { mergeClass } from "../core/fn/mergeClass.js";
 import { div } from "../html/div.js";
 import { IAttrTagLabel, label as TLabel } from "../html/label.js";
@@ -9,7 +9,7 @@ import { IAttrBSIcon, icon } from "./icon.js";
 type IBootstrapTypeDisplay = bootstrapType.display[number] | bootstrapType.display[number][];
 
 export interface IAttrBSLabel extends IAttrTagLabel {
-	icon?: IAttrBSIcon;
+	icon?: string | IAttrBSIcon | icon;
 	iconPosition?: "start" | "end" | "top" | "bottom";
 	iconDisplay?: IBootstrapTypeDisplay;
 	labelDisplay?: IBootstrapTypeDisplay;
@@ -22,8 +22,16 @@ const fnRow = (display: IBootstrapTypeDisplay | undefined, elem: IElem) => {
 	return new div({ row: true, display: display }, new div({ col: true, textAlign: "center" }, elem));
 };
 
-const fnIcon = (display: IBootstrapTypeDisplay | undefined, attr: IAttrBSIcon) => {
-	return new span({ display: display }, new icon(attr!));
+const fnIcon = (display: IBootstrapTypeDisplay | undefined, attr: string | IAttrBSIcon | icon) => {
+	if (typeof attr === "string") {
+		attr = { icon: attr } as IAttrBSIcon;
+	}
+
+	if (isAttr<IAttrBSIcon>(attr)) {
+		return new span({ display: display }, new icon(attr!));
+	} else {
+		return new span({ display: display }, attr!);
+	}
 };
 
 const fnElem = (display: IBootstrapTypeDisplay | undefined, elem: IElem) => {
@@ -69,7 +77,19 @@ const convert = (attr: IAttrBSLabel) => {
 					throw new Error("Unknow iconPosition");
 			}
 		} else {
-			tElem = new icon(attr.icon);
+			if (attr.icon) {
+				if (typeof attr.icon === "string") {
+					attr.icon = { icon: attr.icon } as IAttrBSIcon;
+				}
+
+				if (isAttr<IAttrBSIcon>(attr.icon)) {
+					tElem = new icon(attr.icon);
+				} else {
+					tElem = attr.icon;
+				}
+			} else {
+				tElem = "";
+			}
 		}
 	} else {
 		if (attr.elem) {

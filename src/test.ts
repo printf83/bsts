@@ -159,7 +159,13 @@ core.documentReady(() => {
 					),
 				])
 			),
-			// new b.row(new b.col([])),
+			new b.row(
+				new b.col([
+					b.button.gen[1](b.icon.solid("home", { spin:true }), "Home", (_e) => {
+						alert("Onclick");
+					}),
+				])
+			),
 			// new b.row(new b.col([])),
 			// new b.row(new b.col([])),
 			// new b.row(new b.col([])),

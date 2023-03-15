@@ -76,6 +76,16 @@ const convert = (attr: IAttrBSIcon) => {
 	};
 };
 
+const genStaticIcon = (t: IAttrIconType, i: string, a?: IAttrBSIcon) => {
+	if (a) {
+		delete a.type;
+		delete a.icon;
+		return new icon(mergeObject({ type: t, icon: i }, a));
+	} else {
+		return new icon({ type: t, icon: i });
+	}
+};
+
 export class icon extends span {
 	constructor();
 	constructor(attr: IAttrBSIcon);
@@ -84,4 +94,10 @@ export class icon extends span {
 	constructor(...arg: any[]) {
 		super(bsConstArg("elem", convert, arg));
 	}
+
+	static brand = (i: string, attr?: IAttrBSIcon) => genStaticIcon("fab", i, attr);
+	static solid = (i: string, attr?: IAttrBSIcon) => genStaticIcon("fas", i, attr);
+	static duo = (i: string, attr?: IAttrBSIcon) => genStaticIcon("fad", i, attr);
+	static light = (i: string, attr?: IAttrBSIcon) => genStaticIcon("fal", i, attr);
+	static reg = (i: string, attr?: IAttrBSIcon) => genStaticIcon("far", i, attr);
 }

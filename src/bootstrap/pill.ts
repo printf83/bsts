@@ -1,5 +1,5 @@
 import { bootstrapType, bsConstArg } from "../core/base/bootstrap.js";
-import { IAttr, IElem } from "../core/base/tag.js";
+import { IAttr, IElem, isAttr } from "../core/base/tag.js";
 import { mergeObject } from "../core/fn/mergeObject.js";
 import { div } from "../html/div.js";
 import { small } from "../html/small.js";
@@ -7,7 +7,7 @@ import { span } from "../html/span.js";
 import { IAttrBSIcon, icon } from "./icon.js";
 
 export interface IAttrBSPill extends IAttr {
-	icon?: IAttrBSIcon;
+	icon?: string | IAttrBSIcon | icon;
 	iconPosition?: "start" | "end" | "top" | "bottom";
 	color?: bootstrapType.color[number];
 	weight?: "md" | "lg";
@@ -23,27 +23,38 @@ const fnIcon = (
 	iconPosition: "start" | "end" | "top" | "bottom" | undefined,
 	rounded: bootstrapType.rounded[number] | undefined,
 	type: 1 | 2 | undefined,
-	attr: IAttrBSIcon
+	attr: string | IAttrBSIcon | icon
 ) => {
+	if (typeof attr === "string") {
+		attr = { icon: attr } as IAttrBSIcon;
+	}
+
+	let a: IAttrBSIcon = {};
+	if (isAttr<IAttrBSIcon>(attr)) {
+		a = attr;
+	} else {
+		a = attr.attr as IAttrBSIcon;
+	}
+
 	let r: bootstrapType.rounded[number];
 	let n: number = typeof rounded === "number" ? rounded : 1;
 
 	switch (iconPosition) {
 		case "end":
 			r = `end-${n}` as bootstrapType.rounded[number];
-			attr.weight = attr.weight || "sm";
+			a.weight = a.weight || "sm";
 			break;
 		case "start":
 			r = `start-${n}` as bootstrapType.rounded[number];
-			attr.weight = attr.weight || "sm";
+			a.weight = a.weight || "sm";
 			break;
 		case "top":
 			r = `top-${n}` as bootstrapType.rounded[number];
-			attr.weight = attr.weight || "2xl";
+			a.weight = a.weight || "2xl";
 			break;
 		case "bottom":
 			r = `bottom-${n}` as bootstrapType.rounded[number];
-			attr.weight = attr.weight || "2xl";
+			a.weight = a.weight || "2xl";
 			break;
 		default:
 			r = `start-${n}` as bootstrapType.rounded[number];
@@ -54,7 +65,7 @@ const fnIcon = (
 	}
 
 	if (type === 2) {
-		attr.textColor = attr.textColor || color;
+		a.textColor = a.textColor || color;
 	}
 
 	return new span(
@@ -67,7 +78,7 @@ const fnIcon = (
 			paddingY: iconPosition === "top" || iconPosition === "bottom" ? 3 : 1,
 			display: iconPosition === "top" || iconPosition === "bottom" ? "block" : undefined,
 		},
-		new icon(attr!)
+		new icon(a!)
 	);
 };
 
@@ -153,7 +164,19 @@ const convert = (attr: IAttrBSPill) => {
 					throw new Error("Unknow iconPosition");
 			}
 		} else {
-			tElem = new icon(attr.icon);
+			if (attr.icon) {
+				if (typeof attr.icon === "string") {
+					attr.icon = { icon: attr.icon } as IAttrBSIcon;
+				}
+
+				if (isAttr<IAttrBSIcon>(attr.icon)) {
+					tElem = new icon(attr.icon);
+				} else {
+					tElem = attr.icon;
+				}
+			} else {
+				tElem = "";
+			}
 		}
 	} else {
 		if (attr.elem) {
