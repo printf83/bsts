@@ -1,11 +1,11 @@
 import { bootstrapType } from "./core/base/bootstrap.js";
-import { b, core } from "./_index.js";
+import { b, core, h } from "./_index.js";
 // import { b, core, h, t } from "./_index.js";
 // import { bootstrapBase, bootstrapType } from "./core/base/bootstrap.js";
 // import { HLevel } from "./html/h.js";
 // import { IAttrBSButton } from "./bootstrap/button.js";
 
-// let loream = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta tincidunt arcu eu dignissim. Suspendisse nunc tortor, semper ut commodo nec, bibendum ut quam. Vivamus porttitor egestas luctus. Morbi tincidunt tortor eu lorem gravida imperdiet. Vestibulum tincidunt hendrerit tempus. Morbi varius est ac euismod tristique. Fusce a tortor suscipit, lacinia arcu nec, aliquet tortor. Maecenas eu lorem nec ante faucibus sollicitudin. Nunc consequat ullamcorper congue. Praesent cursus velit euismod turpis ultrices, sit amet venenatis massa pharetra. Nunc maximus pharetra purus in maximus.`;
+let loream = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta tincidunt arcu eu dignissim. Suspendisse nunc tortor, semper ut commodo nec, bibendum ut quam. Vivamus porttitor egestas luctus. Morbi tincidunt tortor eu lorem gravida imperdiet. Vestibulum tincidunt hendrerit tempus. Morbi varius est ac euismod tristique. Fusce a tortor suscipit, lacinia arcu nec, aliquet tortor. Maecenas eu lorem nec ante faucibus sollicitudin. Nunc consequat ullamcorper congue. Praesent cursus velit euismod turpis ultrices, sit amet venenatis massa pharetra. Nunc maximus pharetra purus in maximus.`;
 // let fnCard = (txt: string, src: string, footer?: true) => {
 // 	return new b.card.container([
 // 		new b.card.img({ src: src, location: "top" }),
@@ -72,14 +72,13 @@ core.documentReady(() => {
 		body,
 		new b.row({ paddingY: 5, gap: 3 }, [
 			new b.row(
-				new b.col([
+				new b.col({ display: "grid", gap: 2 }, [
 					...["home", "bomb", "car", "cloud", "user", "key"].map((i, ix) => {
 						let c = ["primary", "secondary", "success", "danger", "warning", "info"][ix];
 						return new b.pill(
 							{
 								icon: i,
 								color: c as bootstrapType.color[number],
-								margin: 1,
 								// rounded: 5,
 								// iconPosition: "start",
 							},
@@ -89,15 +88,13 @@ core.documentReady(() => {
 				])
 			),
 			new b.row(
-				new b.col([
+				new b.col({ display: "flex", gap: 2 }, [
 					...["home", "bomb", "car", "cloud", "user", "key"].map((i, ix) => {
 						let c = ["primary", "secondary", "success", "danger", "warning", "info"][ix];
 						return new b.pill(
 							{
 								icon: i,
 								color: c as bootstrapType.color[number],
-								margin: 1,
-								// rounded: 5,
 								iconPosition: "top",
 							},
 							`${c} ${i}`
@@ -159,14 +156,51 @@ core.documentReady(() => {
 				])
 			),
 			new b.row(
-				new b.col([
+				new b.col({ display: "flex", gap: 2 }, [
 					b.button.gen[1](b.icon.solid("home", { spin: true }), "Home", (_e) => {
 						alert("Onclick");
 					}),
 					new b.button(new b.label({ icon: "bomb" }, "Bomb")),
 				])
 			),
-			// new b.row(new b.col([])),
+			new b.row(
+				new b.col([
+					new b.row([
+						new b.col({ col: 4 }, [
+							new h.div(
+								{
+									id: "simple-list-example",
+									display: "flex",
+									flex: "column",
+									gap: 2,
+									textAlign: "center",
+								},
+								[0, 1, 2, 3, 4, 5].map((i) => {
+									return new b.button({ href: `#simple-list-item-${i}` }, `Item ${i + 1}`);
+								})
+							),
+						]),
+						new b.col(
+							{ col: 8 },
+							new b.scrollspy(
+								{
+									target: "#simple-list-example",
+									offset: 0,
+									smooth: true,
+									overflow: "auto",
+									style: { maxHeight: "300px" },
+								},
+								[0, 1, 2, 3, 4, 5].map((i) => {
+									return new h.div({ id: `simple-list-item-${i}` }, [
+										new h.h(4, `Item ${i + 1}`),
+										new h.p(loream),
+									]);
+								})
+							)
+						),
+					]),
+				])
+			),
 			// new b.row(new b.col([])),
 			// new b.row(new b.col([])),
 		])

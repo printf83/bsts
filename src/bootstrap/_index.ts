@@ -29,6 +29,7 @@ import { pill } from "./pill.js";
 import { popover } from "./popover.js";
 import { progress } from "./progress/_index.js";
 import { row } from "./row.js";
+import { scrollspy } from "./scrollspy.js";
 import { select } from "./select.js";
 import { table } from "./table/_index.js";
 import { textarea } from "./textarea.js";
@@ -74,4 +75,5 @@ export const bootstrap = {
 	pagination,
 	pill,
 	table,
+	scrollspy,
 };
