@@ -1,5 +1,8 @@
 index.html
+index.css
 favicon.png
 favicon.svg
 src/*
 lib/test.*
+.prettierrc
+.vscode/*
