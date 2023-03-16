@@ -31,7 +31,7 @@ export const addEvent = (name: string, elem: HTMLElementWithEventDB, fn: EventLi
 	elem.eventDB[name] = fn;
 
 	//add event to element
-	elem.addEventListener(name, fn, false);
+	elem.addEventListener(name, fn, true);
 
 	//log
 	if (setting.DEBUG) console.log(`Attach ${name} event to ${elemInfo(elem)}`);

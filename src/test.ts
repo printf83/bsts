@@ -1,4 +1,5 @@
 // import { bootstrapType } from "./core/base/bootstrap.js";
+import { bootstrapType } from "./core/base/bootstrap.js";
 import { b, core } from "./_index.js";
 // import { b, core, h, t } from "./_index.js";
 // import { bootstrapBase, bootstrapType } from "./core/base/bootstrap.js";
@@ -37,6 +38,17 @@ let themeToggle = (active: boolean, value: string, icon: string, label: string) 
 	];
 };
 
+// let previewManager = (e: IElem) => {
+// 	return new h.div(
+// 		{
+// 			display: "flex",
+// 			padding: 4,
+// 			gap: 2,
+// 		},
+// 		e
+// 	);
+// };
+
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 	core.replaceChild(body, new b.row());
@@ -71,7 +83,16 @@ core.documentReady(() => {
 		new b.row({ paddingY: 5, gap: 3 }, [
 			new b.row(
 				new b.col([
-					new b.example.container({
+					new b.example.title("Flex"),
+					new b.example.description(
+						"Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with a full suite of responsive flexbox utilities. For more complex implementations, custom CSS may be necessary."
+					),
+
+
+					new b.example.subtitle("Enable flex behaviors "),
+					new b.example.text("Apply display utilities to create a flexbox container and transform direct children elements into flex items. Flex containers and items are able to be modified further with additional flex properties."),
+
+					new b.example.code({
 						output: () => {
 							return new b.table.container(
 								{
@@ -116,11 +137,23 @@ core.documentReady(() => {
 			),
 			new b.row(
 				new b.col([
-					new b.example.container({
+					new b.example.code({
 						showOutput: false,
 						output: () => {
 							let x: number = 1 + 2;
 							return x;
+						},
+					}),
+				])
+			),
+
+			new b.row(
+				new b.col([
+					new b.example.code({
+						output: () => {
+							return ["primary", "secondary", "success", "danger", "info", "warning"].map(
+								(i) => new b.button({ color: i as bootstrapType.color[number] }, "Button")
+							);
 						},
 					}),
 				])

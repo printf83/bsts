@@ -1,86 +1,190 @@
-import { IAttr, IElem } from "../../core/base/tag.js";
-import { bsConstArg } from "../../core/base/bootstrap.js";
-import { code as TCode } from "../../html/code.js";
-import { pre } from "../../html/pre.js";
-import { mergeObject } from "../../core/fn/mergeObject.js";
+import { IAttr, IElem, tag } from "../../core/base/tag.js";
+import { bsConsNoElemArg } from "../../core/base/bootstrap.js";
+import { div } from "../../html/div.js";
+import { card } from "../card/_index.js";
+import { list } from "../list/_index.js";
+import { UUID } from "../../core/fn/uuid.js";
+import { replaceChild } from "../../core/fn/builder.js";
+import { preview } from "./preview.js";
+import { item } from "../list/item.js";
+import { small } from "../../html/small.js";
+import { a } from "../../html/a.js";
+import { icon } from "../icon.js";
 
-type IAttrBSExampleCodeType = "js" | "ts" | "html" | "css";
-
-export interface IAttrBSExampleCode extends IAttr {
-	type?: IAttrBSExampleCodeType;
+export interface IAttrBSExampleExt {
+	name?: string;
+	output?: Function;
 }
 
-declare var js_beautify: {
-	(js_source_text: string, options?: js_beautify.JSBeautifyOptions): string;
-	js: (js_source_text: string, options?: js_beautify.JSBeautifyOptions) => string;
-	js_beautify: (js_source_text: string, options?: js_beautify.JSBeautifyOptions) => string;
+export interface IAttrBSExampleContainer extends IAttr {
+	lib?: string | string[];
+	css?: string;
+	extention?: IAttrBSExampleExt | IAttrBSExampleExt[];
+	output?: Function;
+	manager?: Function;
+
+	showOutput?: boolean;
+	showScript?: boolean;
+	showManager?: boolean;
+	showHTML?: boolean;
+}
+
+declare var PR: {
+	prettyPrint: () => void;
 };
 
-declare var css_beautify: {
-	(js_source_text: string, options?: js_beautify.CSSBeautifyOptions): string;
-	css: (js_source_text: string, options?: js_beautify.CSSBeautifyOptions) => string;
-	css_beautify: (js_source_text: string, options?: js_beautify.CSSBeautifyOptions) => string;
+const getOutputHTML = (target: HTMLElement): void => {
+	let html = target.closest(".example")?.getElementsByClassName("example-output")[0].innerHTML;
+	replaceChild(target, new preview({ type: "html" }, html ? html : ""));
+	PR.prettyPrint();
 };
 
-declare var html_beautify: {
-	(js_source_text: string, options?: js_beautify.JSBeautifyOptions): string;
-	html: (js_source_text: string, options?: js_beautify.HTMLBeautifyOptions) => string;
-	html_beautify: (js_source_text: string, options?: js_beautify.HTMLBeautifyOptions) => string;
+const itemCodeCopy = (e: Event) => {
+	e.stopPropagation();
+	e.preventDefault();
+
+	return false;
 };
 
-const beautify = (type: IAttrBSExampleCodeType | undefined, source_text: string): string => {
-	switch (type) {
-		case "html":
-			source_text = source_text.replace(/\>/g, ">\n");
-			source_text = source_text.replace(/\</g, "\n<");
+const itemCode = (
+	collapseable: boolean,
+	title: string,
+	elem: IElem,
+	onshow?: (target: HTMLElement) => void
+): item[] => {
+	let id = UUID();
 
-			return html_beautify(source_text, {
-				preserve_newlines: false,
-				end_with_newline: true,
-				indent_size: 2,
-			}) as string;
+	return [
+		new list.item(
+			{
+				display: "flex",
+				verticalAlign: "middle",
+				bgColor: "body-tertiary",
+				data: {
+					"bs-toggle": collapseable ? "collapse" : undefined,
+					"bs-target": collapseable ? `#${id}` : undefined,
+				},
+				aria: {
+					expended: collapseable ? "false" : undefined,
+					controls: collapseable ? id : undefined,
+				},
+			},
+			[
+				new small(
+					{
+						marginEnd: "auto",
+						display: "inline-block",
+						monospace: true,
+						textTransform: "uppercase",
+						textColor: "secondary",
+					},
+					title
+				),
 
-		case "css":
-			return css_beautify(source_text, {
-				preserve_newlines: false,
-				end_with_newline: true,
-				indent_size: 4,
-			}) as string;
+				!collapseable
+					? new small(new a({ href: "#", on: { click: itemCodeCopy } }, icon.reg("clipboard")))
+					: "",
+			]
+		),
+		new list.item(
+			{
+				bgColor: "body-tertiary",
+				class: [collapseable ? "collapse" : undefined],
+				id: collapseable ? id : undefined,
+				data: { loaded: "false" },
+				on: {
+					"show.bs.collapse": onshow
+						? (e) => {
+								let target = e.target as HTMLElement;
+								if (target.getAttribute("data-loaded") === "false") {
+									target.setAttribute("data-loaded", "true");
+									onshow(target);
+									console.log("load");
+								}
+						  }
+						: undefined,
+				},
+			},
+			elem
+		),
+	];
+};
 
-		default:
-			return js_beautify(source_text, {
-				preserve_newlines: false,
-				end_with_newline: true,
-				indent_size: 4,
-			}) as string;
-			break;
+const itemOutput = (manager: boolean, str: string) => {
+	if (manager) {
+		return new list.item({ class: `example-output`, padding: 0, overflow: "hidden" }, str);
+	} else {
+		return new list.item({ class: `example-output`, padding: 4, overflow: "hidden", display: "flex", gap: 2 }, str);
 	}
 };
 
-const convert = (attr: IAttrBSExampleCode) => {
-	attr = mergeObject(
-		{
-			style: { maxHeight: "300px", display: "block", overflow: "auto" },
-		},
-		attr
-	);
+const convert = (attr: IAttrBSExampleContainer) => {
+	let id = UUID();
 
-	attr.elem = new TCode(
-		{ class: ["prettyprint", `lang-${attr.type}`], margin: 0, lang: attr.type, border: false },
-		attr.elem ? (typeof attr.elem === "string" ? beautify(attr.type, attr.elem) : attr.elem) : ""
-	);
+	attr.showOutput = attr.showOutput === undefined ? true : attr.showOutput;
+	attr.showScript = attr.showScript === undefined ? true : attr.showScript;
+	attr.showHTML = attr.showHTML === undefined ? true : attr.showHTML;
+	attr.showManager = attr.showManager === undefined ? true : attr.showManager;
 
-	delete attr.type;
+	let e: tag[] = [];
+
+	if (attr.output && attr.showOutput) {
+		if (attr.manager) {
+			e.push(itemOutput(true, attr.manager(attr.output())));
+		} else {
+			e.push(itemOutput(false, attr.output()));
+		}
+	}
+
+	if (attr.output && attr.showOutput && attr.showHTML) {
+		e.push(...itemCode(true, "HTML", "Loading...", getOutputHTML));
+	}
+
+	if (attr.css) {
+		e.push(...itemCode(true, "CSS", new preview({ type: "css" }, attr.css)));
+	}
+
+	if (attr.extention) {
+		let f: IAttrBSExampleExt[] = [];
+		if (Array.isArray(attr.extention)) {
+			f = attr.extention;
+		} else {
+			f = [attr.extention];
+		}
+
+		f.forEach((i) => {
+			if (i && i.name && i.output) {
+				e.push(...itemCode(true, i.name, i.output.toString()));
+			}
+		});
+	}
+
+	if (attr.output && attr.showScript && attr.manager && attr.showManager) {
+		e.push(...itemCode(true, "Manager", new preview({ type: "ts" }, attr.manager.toString())));
+	}
+
+	if (attr.output && attr.showScript) {
+		e.push(...itemCode(false, "Typescript", new preview({ type: "ts" }, attr.output.toString())));
+	}
+
+	attr.elem = [new card.container({ id: id, class: "example" }, [new list.container({ flush: true }, e)])];
+
+	delete attr.lib;
+	delete attr.css;
+	delete attr.extention;
+	delete attr.output;
+
+	delete attr.showHTML;
+	delete attr.showScript;
+	delete attr.showOutput;
 
 	return attr;
 };
 
-export class code extends pre {
-	constructor(); //#1
-	constructor(attr: IAttrBSExampleCode); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSExampleCode, elem: IElem); //#4
+export class code extends div {
+	constructor();
+	constructor(attr: IAttrBSExampleContainer);
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSExampleCode>("elem", convert, arg));
+		super(bsConsNoElemArg<IAttrBSExampleContainer>(convert, arg));
 	}
 }
