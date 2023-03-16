@@ -4,9 +4,10 @@ import { div } from "../../html/div.js";
 import { card } from "../card/_index.js";
 import { list } from "../list/_index.js";
 import { UUID } from "../../core/fn/uuid.js";
-import { htmlContainer } from "./htmlContainer.js";
-import { scriptContainer } from "./scriptContainer.js";
+// import { htmlContainer } from "./htmlContainer.js";
+// import { scriptContainer } from "./scriptContainer.js";
 import { replaceChild } from "../../core/fn/builder.js";
+import { code } from "./code.js";
 
 export interface IAttrBSExampleContainer extends IAttr {
 	lib?: string | string[];
@@ -30,9 +31,14 @@ const itemHeader = (targetId: string, title: string) => {
 	);
 };
 
+declare var PR: {
+	prettyPrint: () => void;
+};
+
 const getOutputHTML = (target: HTMLElement): void => {
 	let html = target.closest(".example")?.getElementsByClassName("example-output")[0].innerHTML;
-	replaceChild(target, new htmlContainer(html ? html : ""));
+	replaceChild(target, new code({ type: "html" }, html ? html : ""));
+	PR.prettyPrint();
 };
 
 const itemContent = (id: string, elem: IElem, onshow?: (target: HTMLElement) => void) => {
@@ -42,7 +48,7 @@ const itemContent = (id: string, elem: IElem, onshow?: (target: HTMLElement) => 
 			class: [id ? "collapse" : undefined],
 			id: id ? `${id}` : undefined,
 			on: {
-				"shown.bs.collapse":
+				"show.bs.collapse":
 					id && onshow
 						? (e) => {
 								let target = e.target as HTMLElement;
@@ -70,7 +76,7 @@ const convert = (attr: IAttrBSExampleContainer) => {
 				attr.output ? itemHeader(`${id}_html`, "HTML") : "",
 				attr.output ? itemContent(`${id}_html`, "Loading...", getOutputHTML) : "",
 				attr.output ? itemHeader("", "Typescript") : "",
-				attr.output ? itemContent("", new scriptContainer(ts)) : "",
+				attr.output ? itemContent("", new code({ type: "ts" }, ts)) : "",
 			]),
 		]),
 	];

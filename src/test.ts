@@ -75,9 +75,43 @@ core.documentReady(() => {
 				new b.col([
 					new b.example.container({
 						output: () => {
-							let title = "Hello";
-							let ico = "home";
-							return [new b.button([new b.label({ icon: ico }, title)])];
+							return new b.table.container(
+								{
+									striped: "row",
+									hoverable: true,
+									small: true,
+								},
+								[
+									new b.table.caption("Table title"),
+									new b.table.thead({ color: "primary" }, [
+										new b.table.tr([
+											new b.table.th({ scope: "col" }, "#"),
+											new b.table.th({ scope: "col" }, "First"),
+											new b.table.th({ scope: "col" }, "Last"),
+											new b.table.th({ scope: "col" }, "Handle"),
+										]),
+									]),
+									new b.table.tbody({ divider: true }, [
+										...[
+											["1", "Mark", "Otto", "@mdo"],
+											["2", "Jacob", "Thornton", "@fat"],
+											["3", "Larry the Bird", "", "@twitter"],
+											["4", "Hamzah", "Aziezs", "@printf83"],
+											["5", "Ali", "", "@ali"],
+											["6", "Siti", "Aminah", "@siti"],
+											["7", "Raju", "", "@raju"],
+											["8", "Chong", "", "@chong"],
+										].map((i, ix) => {
+											return new b.table.tr({ active: ix === 3 ? true : undefined }, [
+												new b.table.th({ scope: "row" }, i[0]),
+												new b.table.td({ colspan: i[2] === "" ? 2 : undefined }, i[1]),
+												i[2] !== "" ? new b.table.td(i[2]) : "",
+												new b.table.td(i[3]),
+											]);
+										}),
+									]),
+								]
+							);
 						},
 					}),
 				])
