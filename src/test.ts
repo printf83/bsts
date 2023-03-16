@@ -114,7 +114,17 @@ core.documentReady(() => {
 					}),
 				])
 			),
-			// new b.row(new b.col([])),
+			new b.row(
+				new b.col([
+					new b.example.container({
+						showOutput: false,
+						output: () => {
+							let x: number = 1 + 2;
+							return x;
+						},
+					}),
+				])
+			),
 			// new b.row(new b.col([])),
 			// new b.row(new b.col([])),
 			// new b.row(new b.col([])),

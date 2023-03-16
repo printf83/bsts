@@ -91,11 +91,11 @@ const itemOutput = (str: string) => {
 const convert = (attr: IAttrBSExampleContainer) => {
 	let id = UUID();
 
-	attr.showExtention = attr.showExtention || true;
-	attr.showOutput = attr.showOutput || true;
-	attr.showScript = attr.showScript || true;
-	attr.showHTML = attr.showHTML || true;
-	attr.showCSS = attr.showCSS || true;
+	attr.showExtention = attr.showExtention === undefined ? true : attr.showExtention;
+	attr.showOutput = attr.showOutput === undefined ? true : attr.showOutput;
+	attr.showScript = attr.showScript === undefined ? true : attr.showScript;
+	attr.showHTML = attr.showHTML === undefined ? true : attr.showHTML;
+	attr.showCSS = attr.showCSS === undefined ? true : attr.showCSS;
 
 	let e: tag[] = [];
 
