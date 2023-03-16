@@ -422,6 +422,35 @@ const dbRule: bootstrapRuleDB = {
 		format: "object-fit-$1",
 		value: bootstrapBase.objectFit.concat(),
 	}),
+	ratio: new bootstrapAttachRule({
+		format: "ratio-$1",
+		value: bootstrapBase.ratio.concat(),
+		formatValue: "ratio",
+	}),
+	fixed: new bootstrapAttachRule({
+		format: "fixed-$1",
+		value: bootstrapBase.fixed.concat(),
+	}),
+	sticky: new bootstrapAttachRule({
+		format: "sticky-$1",
+		value: bootstrapBase.sticky.concat(),
+	}),
+	clearfix: new bootstrapAttachRule({
+		value: bootstrapBase.clearfix.concat(),
+		formatTrue: "clearfix",
+	}),
+	truncate: new bootstrapAttachRule({
+		value: bootstrapBase.truncate.concat(),
+		formatTrue: "text-truncate",
+	}),
+	visually: new bootstrapAttachRule({
+		format: "visually-$1",
+		value: bootstrapBase.visually.concat(),
+	}),
+	stack: new bootstrapAttachRule({
+		format: "$1stack",
+		value: bootstrapBase.stack.concat(),
+	}),
 };
 
 let allowProp: (string | undefined)[] = [];

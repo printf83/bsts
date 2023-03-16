@@ -411,6 +411,13 @@ export interface IBootstrap {
 
 	zIndex?: bootstrapType.zindex[number];
 	objectFit?: bootstrapType.objectFit[number] | bootstrapType.objectFit[number][];
+	ratio?: bootstrapType.ratio[number];
+	fixed?: bootstrapType.fixed[number];
+	sticky?: bootstrapType.sticky[number] | bootstrapType.sticky[number][];
+	clearfix?: bootstrapType.clearfix[number];
+	truncate?: bootstrapType.truncate[number];
+	visually?: bootstrapType.visually[number];
+	stack?: bootstrapType.stack[number];
 }
 
 export interface IAttr extends IGlobal, IBootstrap {

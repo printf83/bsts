@@ -39,12 +39,12 @@ const getOutputHTML = (target: HTMLElement): void => {
 	PR.prettyPrint();
 };
 
-const itemCodeCopy = (e: Event) => {
+function itemCodeCopy(e: Event) {
 	e.stopPropagation();
 	e.preventDefault();
 
 	return false;
-};
+}
 
 const itemCode = (
 	collapseable: boolean,
@@ -160,11 +160,11 @@ const convert = (attr: IAttrBSExampleContainer) => {
 	}
 
 	if (attr.output && attr.showScript && attr.manager && attr.showManager) {
-		e.push(...itemCode(true, "Manager", new preview({ type: "ts" }, attr.manager.toString())));
+		e.push(...itemCode(true, "Manager", new preview({ type: "js" }, attr.manager.toString())));
 	}
 
 	if (attr.output && attr.showScript) {
-		e.push(...itemCode(false, "Typescript", new preview({ type: "ts" }, attr.output.toString())));
+		e.push(...itemCode(false, "JS", new preview({ type: "js" }, attr.output.toString())));
 	}
 
 	attr.elem = [new card.container({ id: id, class: "example" }, [new list.container({ flush: true }, e)])];

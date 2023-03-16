@@ -1,4 +1,6 @@
+import { bootstrapType } from "../core/base/bootstrap.js";
 import { IAttr, IElem, tag, tagConsArg } from "../core/base/tag.js";
+import { mergeClass } from "../core/fn/mergeClass.js";
 
 export interface IAttrTagA extends IAttr {
 	download?: string;
@@ -31,7 +33,21 @@ export interface IAttrTagA extends IAttr {
 		| "tag";
 	target?: "_blank" | "_parent" | "_self" | "_top";
 	type?: string;
+	color?: bootstrapType.linkColor[number];
+	stretched?: true;
 }
+
+const convert = (attr: IAttrTagA) => {
+	attr.class = mergeClass(attr.class, [
+		attr.color ? `link-${attr.color}` : undefined,
+		attr.stretched ? "stretched-link" : undefined,
+	]);
+
+	delete attr.color;
+	delete attr.stretched;
+
+	return attr;
+};
 
 export class a extends tag {
 	constructor();
@@ -39,6 +55,6 @@ export class a extends tag {
 	constructor(attr: IAttrTagA);
 	constructor(attr: IAttrTagA, elem: IElem);
 	constructor(...arg: any[]) {
-		super("a", tagConsArg<IAttrTagA>("elem", arg));
+		super("a", convert(tagConsArg<IAttrTagA>("elem", arg)));
 	}
 }

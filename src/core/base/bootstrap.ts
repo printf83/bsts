@@ -924,6 +924,27 @@ export namespace bootstrapBase {
 		"xxl-scale",
 		"xxl-none",
 	] as const;
+
+	export const ratio = ["1x1", "4x3", "16x9", "21x9"] as const;
+	export const fixed = ["top", "bottom"] as const;
+	export const sticky = [
+		"top",
+		"bottom",
+		"sm-top",
+		"md-top",
+		"lg-top",
+		"xl-top",
+		"xxl-top",
+		"sm-bottom",
+		"md-bottom",
+		"lg-bottom",
+		"xl-bottom",
+		"xxl-bottom",
+	];
+	export const clearfix = trueonly;
+	export const truncate = trueonly;
+	export const visually = ["hidden", "hidden-focusable"] as const;
+	export const stack = ["h", "v"] as const;
 }
 
 export namespace bootstrapType {
@@ -1036,6 +1057,13 @@ export namespace bootstrapType {
 
 	export type zindex = typeof bootstrapBase.zindex;
 	export type objectFit = typeof bootstrapBase.objectFit;
+	export type ratio = typeof bootstrapBase.ratio;
+	export type fixed = typeof bootstrapBase.fixed;
+	export type sticky = typeof bootstrapBase.sticky;
+	export type clearfix = typeof bootstrapBase.clearfix;
+	export type truncate = typeof bootstrapBase.truncate;
+	export type visually = typeof bootstrapBase.visually;
+	export type stack = typeof bootstrapBase.stack;
 }
 
 export interface IBootstrapAttachRule {
