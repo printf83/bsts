@@ -30,6 +30,7 @@
 	},
 	"devDependencies": {
 		"@types/bootstrap": "^5.2.6",
+		"@types/js-beautify": "^1.13.3",
 		"typescript": "^5.0.0-beta"
 	}
 }

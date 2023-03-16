@@ -68,24 +68,27 @@ core.documentReady(() => {
 	// 		// new b.row(new b.col([])),
 	// 	]));
 
-	
-	core.appendChild(body,
+	core.appendChild(
+		body,
 		new b.row({ paddingY: 5, gap: 3 }, [
-			new b.row(new b.col([
-				new b.example.container({
-					output: () => {
-						let title = "Hello";
-						let ico = "home";
-						return [new b.button(new b.label({ icon: ico }, title))];
-					}
-				})
-			])),
+			new b.row(
+				new b.col([
+					new b.example.container({
+						output: () => {
+							let title = "Hello";
+							let ico = "home";
+							return [new b.button([new b.label({ icon: ico }, title)])];
+						},
+					}),
+				])
+			),
 			// new b.row(new b.col([])),
 			// new b.row(new b.col([])),
 			// new b.row(new b.col([])),
 			// new b.row(new b.col([])),
 			// new b.row(new b.col([])),
-		]));
+		])
+	);
 
 	// core.appendChild(
 	// 	body,

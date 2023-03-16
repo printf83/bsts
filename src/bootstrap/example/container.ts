@@ -1,27 +1,76 @@
 import { IAttr, IElem } from "../../core/base/tag.js";
 import { bsConsNoElemArg } from "../../core/base/bootstrap.js";
 import { div } from "../../html/div.js";
-import { code } from "../../html/code.js";
 import { card } from "../card/_index.js";
 import { list } from "../list/_index.js";
+import { UUID } from "../../core/fn/uuid.js";
+import { htmlContainer } from "./htmlContainer.js";
+import { scriptContainer } from "./scriptContainer.js";
+import { replaceChild } from "../../core/fn/builder.js";
 
 export interface IAttrBSExampleContainer extends IAttr {
 	lib?: string | string[];
 	output?: Function;
 }
 
+const itemHeader = (targetId: string, title: string) => {
+	return new list.item(
+		{
+			bgColor: "light-subtle",
+			data: {
+				"bs-toggle": targetId ? "collapse" : undefined,
+				"bs-target": targetId ? `#${targetId}` : undefined,
+			},
+			aria: {
+				expended: targetId ? "false" : undefined,
+				controls: targetId ? `${targetId}` : undefined,
+			},
+		},
+		title
+	);
+};
+
+const getOutputHTML = (target: HTMLElement): void => {
+	let html = target.closest(".example")?.getElementsByClassName("example-output")[0].innerHTML;
+	replaceChild(target, new htmlContainer(html ? html : ""));
+};
+
+const itemContent = (id: string, elem: IElem, onshow?: (target: HTMLElement) => void) => {
+	return new list.item(
+		{
+			bgColor: "light-subtle",
+			class: [id ? "collapse" : undefined],
+			id: id ? `${id}` : undefined,
+			on: {
+				"shown.bs.collapse":
+					id && onshow
+						? (e) => {
+								let target = e.target as HTMLElement;
+								onshow(target);
+						  }
+						: undefined,
+			},
+		},
+		elem
+	);
+};
+
+const outputContent = (str: string) => {
+	return new list.item({ class: `example-output`, padding: 3, display: "flex", gap: 2 }, str);
+};
+
 const convert = (attr: IAttrBSExampleContainer) => {
 	let ts = attr.output ? attr.output.toString() : "";
-	// let elem: IElem = [new div(attr.output ? attr.output() : ""), new div([new code(ts ? ts : "")])];
+	let id = UUID();
+
 	let elem: IElem = [
-		new card.container([
+		new card.container({ id: id, class: "example" }, [
 			new list.container({ flush: true }, [
-				new list.item({ padding: 3, display: "flex", gap: 2 }, attr.output ? attr.output() : ""),
-				new list.item({ bgColor: "light-subtle" }, "TS"),
-				new list.item(
-					{ bgColor: "light-subtle" },
-					new code({ style: { maxHeight: "200px" }, overflow: "auto" }, ts)
-				),
+				attr.output ? outputContent(attr.output()) : "",
+				attr.output ? itemHeader(`${id}_html`, "HTML") : "",
+				attr.output ? itemContent(`${id}_html`, "Loading...", getOutputHTML) : "",
+				attr.output ? itemHeader("", "Typescript") : "",
+				attr.output ? itemContent("", new scriptContainer(ts)) : "",
 			]),
 		]),
 	];
@@ -29,6 +78,7 @@ const convert = (attr: IAttrBSExampleContainer) => {
 	attr.elem = elem;
 
 	delete attr.lib;
+	delete attr.output;
 
 	return attr;
 };
