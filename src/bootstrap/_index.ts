@@ -36,6 +36,7 @@ import { table } from "./table/_index.js";
 import { textarea } from "./textarea.js";
 import { toast } from "./toast/_index.js";
 import { tooltip } from "./tooltip.js";
+import { verticalrule } from "./verticalrule.js";
 import { visuallyhidden } from "./visuallyhidden.js";
 
 export const bootstrap = {
@@ -78,4 +79,5 @@ export const bootstrap = {
 	table,
 	scrollspy,
 	example,
+	verticalrule,
 };

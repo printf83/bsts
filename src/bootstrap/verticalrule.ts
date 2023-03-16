@@ -8,7 +8,7 @@ const convert = (attr: IAttr) => {
 	return attr;
 };
 
-export class container extends div {
+export class verticalrule extends div {
 	constructor(); //#1
 	constructor(attr: IAttr); //#2
 	constructor(...arg: any[]) {
