@@ -17,6 +17,25 @@ import { b, core } from "./_index.js";
 // 		footer ? new b.card.footer(new h.small({ textColor: "muted" }, "Last updated 3 mins ago")) : "",
 // 	]);
 // };
+let themeToggle = (active: boolean, value: string, icon: string, label: string) => {
+	let id = core.UUID();
+
+	return [
+		new b.input({
+			type: "radio",
+			name: "theme",
+			toggle: true,
+			checked: active,
+			id: id,
+			on: {
+				change: () => {
+					document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", value);
+				},
+			},
+		}),
+		new b.label({ for: id, icon: icon, color: "primary" }, label),
+	];
+};
 
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
@@ -28,30 +47,9 @@ core.documentReady(() => {
 			new b.row(
 				new b.col([
 					new b.btngroup([
-						new b.input({
-							type: "radio",
-							name: "theme",
-							toggle: true,
-							id: "rad_theme_dark",
-							on: {
-								change: () => {
-									document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", "dark");
-								},
-							},
-						}),
-						new b.label({ for: "rad_theme_dark", icon: { icon: "moon" }, color: "primary" }, "Dark"),
-						new b.input({
-							type: "radio",
-							name: "theme",
-							toggle: true,
-							id: "rad_theme_light",
-							on: {
-								change: () => {
-									document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", "light");
-								},
-							},
-						}),
-						new b.label({ for: "rad_theme_light", icon: { icon: "sun" }, color: "primary" }, "Light"),
+						...themeToggle(true, "auto", "circle-half-stroke", "Auto"),
+						...themeToggle(false, "dark", "moon", "Dark"),
+						...themeToggle(false, "light", "sun", "Light"),
 					]),
 				])
 			),

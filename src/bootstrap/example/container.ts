@@ -4,32 +4,29 @@ import { div } from "../../html/div.js";
 import { card } from "../card/_index.js";
 import { list } from "../list/_index.js";
 import { UUID } from "../../core/fn/uuid.js";
-// import { htmlContainer } from "./htmlContainer.js";
-// import { scriptContainer } from "./scriptContainer.js";
 import { replaceChild } from "../../core/fn/builder.js";
 import { code } from "./code.js";
+import { label } from "../label.js";
+import { item as listItem } from "../list/item.js";
+import { IAttrBSIcon, icon } from "../icon.js";
+
+export interface IAttrBSExampleExt {
+	name: string;
+	output: Function;
+}
 
 export interface IAttrBSExampleContainer extends IAttr {
 	lib?: string | string[];
+	css?: string;
+	extention?: IAttrBSExampleExt | IAttrBSExampleExt[];
 	output?: Function;
-}
 
-const itemHeader = (targetId: string, title: string) => {
-	return new list.item(
-		{
-			bgColor: "light-subtle",
-			data: {
-				"bs-toggle": targetId ? "collapse" : undefined,
-				"bs-target": targetId ? `#${targetId}` : undefined,
-			},
-			aria: {
-				expended: targetId ? "false" : undefined,
-				controls: targetId ? `${targetId}` : undefined,
-			},
-		},
-		title
-	);
-};
+	showExtention?: boolean;
+	showOutput?: boolean;
+	showScript?: boolean;
+	showHTML?: boolean;
+	showCSS?: boolean;
+}
 
 declare var PR: {
 	prettyPrint: () => void;
@@ -41,24 +38,63 @@ const getOutputHTML = (target: HTMLElement): void => {
 	PR.prettyPrint();
 };
 
-const itemContent = (id: string, elem: IElem, onshow?: (target: HTMLElement) => void) => {
-	return new list.item(
-		{
-			bgColor: "light-subtle",
-			class: [id ? "collapse" : undefined],
-			id: id ? `${id}` : undefined,
-			on: {
-				"show.bs.collapse":
-					id && onshow
+const item = (
+	collapseable: boolean,
+	ico: string | IAttrBSIcon | icon,
+	title: string,
+	elem: IElem,
+	onshow?: (target: HTMLElement) => void
+): listItem[] => {
+	let id = UUID();
+
+	return [
+		new list.item(
+			{
+				bgColor: "body-tertiary",
+				data: {
+					"bs-toggle": collapseable ? "collapse" : undefined,
+					"bs-target": collapseable ? `#${id}` : undefined,
+				},
+				aria: {
+					expended: collapseable ? "false" : undefined,
+					controls: collapseable ? id : undefined,
+				},
+			},
+			new label({ icon: ico }, title)
+		),
+		new list.item(
+			{
+				bgColor: "body-tertiary",
+				class: [collapseable ? "collapse" : undefined],
+				id: collapseable ? id : undefined,
+				on: {
+					"show.bs.collapse": onshow
 						? (e) => {
 								let target = e.target as HTMLElement;
 								onshow(target);
 						  }
 						: undefined,
+				},
 			},
-		},
-		elem
-	);
+			elem
+		),
+	];
+};
+
+const getExt = (ext: IAttrBSExampleExt | IAttrBSExampleExt[]): listItem[] => {
+	let e: IAttrBSExampleExt[] = [];
+	if (Array.isArray(ext)) {
+		e = ext;
+	} else {
+		e = [ext];
+	}
+
+	let res: listItem[] = [];
+	e.forEach((i) => {
+		res.push(...item(true, "link", i!.name, i!.output.toString()));
+	});
+
+	return res;
 };
 
 const outputContent = (str: string) => {
@@ -66,17 +102,36 @@ const outputContent = (str: string) => {
 };
 
 const convert = (attr: IAttrBSExampleContainer) => {
-	let ts = attr.output ? attr.output.toString() : "";
 	let id = UUID();
+
+	attr.showExtention = attr.showExtention || true;
+	attr.showOutput = attr.showOutput || true;
+	attr.showScript = attr.showScript || true;
+	attr.showHTML = attr.showHTML || true;
+	attr.showCSS = attr.showCSS || true;
 
 	let elem: IElem = [
 		new card.container({ id: id, class: "example" }, [
 			new list.container({ flush: true }, [
-				attr.output ? outputContent(attr.output()) : "",
-				attr.output ? itemHeader(`${id}_html`, "HTML") : "",
-				attr.output ? itemContent(`${id}_html`, "Loading...", getOutputHTML) : "",
-				attr.output ? itemHeader("", "Typescript") : "",
-				attr.output ? itemContent("", new code({ type: "ts" }, ts)) : "",
+				attr.output && attr.showOutput ? outputContent(attr.output()) : "",
+				...(attr.output && attr.showOutput && attr.showHTML
+					? item(true, "code", "HTML", "Loading...", getOutputHTML)
+					: []),
+
+				...(attr.css && attr.showCSS
+					? item(true, { type: "fab", icon: "square-js" }, "CSS", new code({ type: "css" }, attr.css))
+					: []),
+
+				...(attr.extention && attr.showExtention ? getExt(attr.extention) : []),
+
+				...(attr.output && attr.showScript
+					? item(
+							false,
+							{ type: "fab", icon: "square-js" },
+							"Typescript",
+							new code({ type: "ts" }, attr.output.toString())
+					  )
+					: []),
 			]),
 		]),
 	];
@@ -84,7 +139,14 @@ const convert = (attr: IAttrBSExampleContainer) => {
 	attr.elem = elem;
 
 	delete attr.lib;
+	delete attr.css;
+	delete attr.extention;
 	delete attr.output;
+	delete attr.showHTML;
+	delete attr.showScript;
+	delete attr.showOutput;
+	delete attr.showCSS;
+	delete attr.showExtention;
 
 	return attr;
 };
