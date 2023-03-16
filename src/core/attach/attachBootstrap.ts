@@ -447,9 +447,13 @@ const dbRule: bootstrapRuleDB = {
 		format: "visually-$1",
 		value: bootstrapBase.visually.concat(),
 	}),
-	stack: new bootstrapAttachRule({
-		format: "$1stack",
-		value: bootstrapBase.stack.concat(),
+	vstack: new bootstrapAttachRule({
+		value: bootstrapBase.vstack.concat(),
+		formatTrue: "vstack",
+	}),
+	hstack: new bootstrapAttachRule({
+		value: bootstrapBase.hstack.concat(),
+		formatTrue: "hstack",
 	}),
 };
 

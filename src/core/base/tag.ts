@@ -417,7 +417,8 @@ export interface IBootstrap {
 	clearfix?: bootstrapType.clearfix[number];
 	truncate?: bootstrapType.truncate[number];
 	visually?: bootstrapType.visually[number];
-	stack?: bootstrapType.stack[number];
+	vstack?: bootstrapType.vstack[number];
+	hstack?: bootstrapType.hstack[number];
 }
 
 export interface IAttr extends IGlobal, IBootstrap {

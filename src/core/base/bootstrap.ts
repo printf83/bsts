@@ -943,8 +943,9 @@ export namespace bootstrapBase {
 	];
 	export const clearfix = trueonly;
 	export const truncate = trueonly;
+	export const vstack = trueonly;
+	export const hstack = trueonly;
 	export const visually = ["hidden", "hidden-focusable"] as const;
-	export const stack = ["h", "v"] as const;
 }
 
 export namespace bootstrapType {
@@ -1063,7 +1064,8 @@ export namespace bootstrapType {
 	export type clearfix = typeof bootstrapBase.clearfix;
 	export type truncate = typeof bootstrapBase.truncate;
 	export type visually = typeof bootstrapBase.visually;
-	export type stack = typeof bootstrapBase.stack;
+	export type vstack = typeof bootstrapBase.vstack;
+	export type hstack = typeof bootstrapBase.hstack;
 }
 
 export interface IBootstrapAttachRule {
