@@ -1,19 +1,42 @@
 import { IAttr, IElem } from "../core/base/tag.js";
 import { bsConstArg } from "../core/base/bootstrap.js";
-import { mergeClass } from "../core/fn/mergeClass.js";
 import { div } from "../html/div.js";
+import { mergeObject } from "../core/fn/mergeObject.js";
 
-const convert = (attr: IAttr) => {
-	attr.class = mergeClass(attr.class, "btn-group");
+export interface IAttrBSBtngroup extends IAttr {
+	role?: "group" | "toolbar";
+	label?: string;
+	labelledby?: string;
+	weight?: "sm" | "lg";
+	vertical?: boolean;
+}
+const convert = (attr: IAttrBSBtngroup) => {
+	attr = mergeObject(
+		{
+			class: [
+				attr.vertical ? "btn-group-vertical" : "btn-group",
+				attr.weight ? `btn-group-${attr.weight}` : undefined,
+			],
+			role: attr.role,
+			aria: { label: attr.label, labelledby: attr.labelledby },
+		},
+		attr
+	);
+	delete attr.role;
+	delete attr.label;
+	delete attr.labelledby;
+	delete attr.weight;
+	delete attr.vertical;
+
 	return attr;
 };
 
 export class btngroup extends div {
 	constructor(); //#1
-	constructor(attr: IAttr); //#2
+	constructor(attr: IAttrBSBtngroup); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttr, elem: IElem); //#4
+	constructor(attr: IAttrBSBtngroup, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg("elem", convert, arg));
+		super(bsConstArg<IAttrBSBtngroup>("elem", convert, arg));
 	}
 }

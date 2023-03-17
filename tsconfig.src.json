@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2016",
+    "module": "ESNext",
+    "moduleResolution": "nodenext",
+    "outDir": "./lib",
+    "sourceMap": true,
+    "declaration": true,
+
+    "strict": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
+    
+  },
+  "include": [
+    "./src/**/*.ts"
+  ]
+}
+
+
+

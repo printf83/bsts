@@ -3,6 +3,7 @@ index.css
 favicon.png
 favicon.svg
 src/*
-lib/test.*
+doc/*
+client/*
 .prettierrc
 .vscode/*

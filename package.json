@@ -18,15 +18,15 @@
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts.git"
 	},
-	"main": "lib/_index.js",
+	"main": "lib/index.js",
 	"exports": {
-		"require": "./lib/_index.js",
-		"default": "./lib/_index.js"
+		"require": "./lib/index.js",
+		"default": "./lib/index.js"
 	},
 	"scripts": {
-		"clear": "tsc --build --clean tsconfig.json ",
-		"build": "tsc --build --clean tsconfig.json && tsc --project tsconfig.json",
-		"debug": "tsc --project tsconfig.json --watch"
+		"clear": "tsc --build --clean tsconfig.src.json && tsc --build --clean tsconfig.doc.json",
+		"build": "tsc --build --clean tsconfig.src.json && tsc --project tsconfig.src.json && tsc --build --clean tsconfig.doc.json && tsc --project tsconfig.doc.json",
+		"debug": "tsc --project tsconfig.doc.json --watch"
 	},
 	"devDependencies": {
 		"@types/bootstrap": "^5.2.6",
