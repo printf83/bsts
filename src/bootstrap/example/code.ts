@@ -1,4 +1,4 @@
-import { IAttr, IElem, tag } from "../../core/base/tag.js";
+import { IAttr, tag } from "../../core/base/tag.js";
 import { bsConsNoElemArg } from "../../core/base/bootstrap.js";
 import { div } from "../../html/div.js";
 import { card } from "../card/_index.js";
@@ -10,6 +10,7 @@ import { item } from "../list/item.js";
 import { small } from "../../html/small.js";
 import { a } from "../../html/a.js";
 import { icon } from "../icon.js";
+import { tooltip } from "../tooltip.js";
 
 export interface IAttrBSExampleExt {
 	name?: string;
@@ -47,45 +48,72 @@ function itemCodeCopy(e: Event) {
 }
 
 const itemCode = (
+	header: boolean,
 	collapseable: boolean,
 	title: string,
-	elem: IElem,
+	elem: string | tag | (string | tag)[],
 	onshow?: (target: HTMLElement) => void
 ): item[] => {
 	let id = UUID();
 
-	return [
-		new list.item(
-			{
-				display: "flex",
-				verticalAlign: "middle",
-				bgColor: "body-tertiary",
-				data: {
-					"bs-toggle": collapseable ? "collapse" : undefined,
-					"bs-target": collapseable ? `#${id}` : undefined,
-				},
-				aria: {
-					expended: collapseable ? "false" : undefined,
-					controls: collapseable ? id : undefined,
-				},
-			},
-			[
-				new small(
-					{
-						marginEnd: "auto",
-						display: "inline-block",
-						monospace: true,
-						textTransform: "uppercase",
-						textColor: "secondary",
-					},
-					title
-				),
+	let res: item[] = [];
 
-				!collapseable
-					? new small(new a({ href: "#", on: { click: itemCodeCopy } }, icon.reg("clipboard")))
-					: "",
-			]
-		),
+	if (header) {
+		res.push(
+			new list.item(
+				{
+					display: "flex",
+					verticalAlign: "middle",
+					bgColor: "body-tertiary",
+					data: {
+						"bs-toggle": collapseable ? "collapse" : undefined,
+						"bs-target": collapseable ? `#${id}` : undefined,
+					},
+					aria: {
+						expended: collapseable ? "false" : undefined,
+						controls: collapseable ? id : undefined,
+					},
+				},
+				[
+					new small(
+						{
+							marginEnd: "auto",
+							display: "inline-block",
+							monospace: true,
+							textTransform: "uppercase",
+							textColor: "secondary",
+						},
+						title
+					),
+
+					!collapseable
+						? new tooltip(
+								{ content: "Copy to clipboard" },
+								new small(new a({ href: "#", on: { click: itemCodeCopy } }, icon.reg("clipboard")))
+						  )
+						: "",
+				]
+			)
+		);
+	} else {
+		if (!collapseable) {
+			if (!Array.isArray(elem)) {
+				elem = [elem];
+			}
+
+			elem.unshift(
+				new small(
+					{ position: "relative", float: "end" },
+					new tooltip(
+						{ content: "Copy to clipboard" },
+						new a({ href: "#", on: { click: itemCodeCopy } }, icon.reg("clipboard"))
+					)
+				)
+			);
+		}
+	}
+
+	res.push(
 		new list.item(
 			{
 				bgColor: "body-tertiary",
@@ -106,8 +134,10 @@ const itemCode = (
 				},
 			},
 			elem
-		),
-	];
+		)
+	);
+
+	return res;
 };
 
 const itemOutput = (manager: boolean, str: string) => {
@@ -137,11 +167,11 @@ const convert = (attr: IAttrBSExampleContainer) => {
 	}
 
 	if (attr.output && attr.showOutput && attr.showHTML) {
-		e.push(...itemCode(true, "HTML", "Loading...", getOutputHTML));
+		e.push(...itemCode(e.length > 0, true, "HTML", "Loading...", getOutputHTML));
 	}
 
 	if (attr.css) {
-		e.push(...itemCode(true, "CSS", new preview({ type: "css" }, attr.css)));
+		e.push(...itemCode(e.length > 0, true, "CSS", new preview({ type: "css" }, attr.css)));
 	}
 
 	if (attr.extention) {
@@ -154,17 +184,17 @@ const convert = (attr: IAttrBSExampleContainer) => {
 
 		f.forEach((i) => {
 			if (i && i.name && i.output) {
-				e.push(...itemCode(true, i.name, i.output.toString()));
+				e.push(...itemCode(e.length > 0, true, i.name, i.output.toString()));
 			}
 		});
 	}
 
 	if (attr.output && attr.showScript && attr.manager && attr.showManager) {
-		e.push(...itemCode(true, "Manager", new preview({ type: "js" }, attr.manager.toString())));
+		e.push(...itemCode(e.length > 0, true, "Manager", new preview({ type: "js" }, attr.manager.toString())));
 	}
 
 	if (attr.output && attr.showScript) {
-		e.push(...itemCode(false, "JS", new preview({ type: "js" }, attr.output.toString())));
+		e.push(...itemCode(e.length > 0, false, "JS", new preview({ type: "js" }, attr.output.toString())));
 	}
 
 	attr.elem = [new card.container({ id: id, class: "example" }, [new list.container({ flush: true }, e)])];

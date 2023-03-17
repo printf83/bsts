@@ -7,7 +7,7 @@ import { h } from "../../html/h.js";
 
 const convert = (attr: IAttr) => {
 	attr.id = attr.id || UUID();
-	attr = mergeObject({ class: "subtitle", marginTop: 5 }, attr);
+	attr = mergeObject({ class: "example-subtitle", marginTop: 5 }, attr);
 
 	if (attr.elem) {
 		let strElem: string = "";
@@ -31,7 +31,7 @@ const convert = (attr: IAttr) => {
 					href: `#${attr.id}`,
 					aria: { label: `Link to this section: ${strElem}` },
 				},
-				"#"
+				""
 			)
 		);
 
@@ -47,6 +47,6 @@ export class subtitle extends h {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttr, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(2, bsConstArg("elem", convert, arg));
+		super(3, bsConstArg("elem", convert, arg));
 	}
 }

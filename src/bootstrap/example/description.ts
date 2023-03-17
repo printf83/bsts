@@ -4,7 +4,7 @@ import { mergeObject } from "../../core/fn/mergeObject.js";
 import { IAttrTagP, p } from "../../html/p.js";
 
 const convert = (attr: IAttrTagP) => {
-	attr = mergeObject({ class: "description", lead: true }, attr);
+	attr = mergeObject({ class: "example-description", lead: true }, attr);
 	return attr;
 };
 

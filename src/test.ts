@@ -82,12 +82,12 @@ core.documentReady(() => {
 		new b.row({ paddingY: 5, gap: 3 }, [
 			new b.row(
 				new b.col([
-					new b.example.title("Flex"),
+					new b.example.pagetitle("Flex"),
 					new b.example.description(
 						"Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with a full suite of responsive flexbox utilities. For more complex implementations, custom CSS may be necessary."
 					),
 
-					new b.example.subtitle("Enable flex behaviors "),
+					new b.example.title("Enable flex behaviors "),
 					new b.example.text(
 						"Apply display utilities to create a flexbox container and transform direct children elements into flex items. Flex containers and items are able to be modified further with additional flex properties."
 					),
@@ -137,6 +137,11 @@ core.documentReady(() => {
 			),
 			new b.row(
 				new b.col([
+					new b.example.subtitle("Subtitle"),
+					new b.example.text(
+						"Apply display utilities to create a flexbox container and transform direct children elements into flex items. Flex containers and items are able to be modified further with additional flex properties."
+					),
+
 					new b.example.code({
 						showOutput: false,
 						output: () => {
@@ -149,6 +154,10 @@ core.documentReady(() => {
 
 			new b.row(
 				new b.col([
+					new b.example.subtitle("Subtitle"),
+					new b.example.text(
+						"Apply display utilities to create a flexbox container and transform direct children elements into flex items. Flex containers and items are able to be modified further with additional flex properties."
+					),
 					new b.example.code({
 						output: () => {
 							return ["primary", "secondary", "success", "danger", "info", "warning"].map(
