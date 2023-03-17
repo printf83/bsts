@@ -31,27 +31,27 @@ declare var html_beautify: {
 const beautify = (type: IAttrBSExampleCodeType | undefined, source_text: string): string => {
 	switch (type) {
 		case "html":
-			source_text = source_text.replace(/\>/g, ">\n");
-			source_text = source_text.replace(/\</g, "\n<");
+			// source_text = source_text.replace(/\>/g, ">\n");
+			// source_text = source_text.replace(/\</g, "\n<");
 
 			return html_beautify(source_text, {
-				preserve_newlines: false,
+				preserve_newlines: true,
 				end_with_newline: true,
 				indent_size: 2,
 			}) as string;
 
 		case "css":
 			return css_beautify(source_text, {
-				preserve_newlines: false,
+				preserve_newlines: true,
 				end_with_newline: true,
-				indent_size: 4,
+				indent_size: 2,
 			}) as string;
 
 		default:
 			return js_beautify(source_text, {
-				preserve_newlines: false,
+				preserve_newlines: true,
 				end_with_newline: true,
-				indent_size: 4,
+				indent_size: 2,
 			}) as string;
 			break;
 	}
