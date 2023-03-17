@@ -7,3 +7,4 @@ doc/*
 client/*
 .prettierrc
 .vscode/*
+tsconfig.*.json
