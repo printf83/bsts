@@ -5,7 +5,6 @@ import { mergeObject } from "../../../core/fn/mergeObject.js";
 
 export interface IAttrBSCarouselIndicatorsButton extends IAttrTagButton {
 	active?: boolean;
-	label?: string;
 	slide?: number;
 	target?: string;
 }
@@ -16,7 +15,6 @@ const convert = (attr: IAttrBSCarouselIndicatorsButton) => {
 			class: [attr.active ? "active" : undefined],
 			aria: {
 				current: attr.active ? "true" : undefined,
-				label: attr.label,
 			},
 			data: {
 				"bs-target": attr.target,
@@ -27,7 +25,6 @@ const convert = (attr: IAttrBSCarouselIndicatorsButton) => {
 	);
 
 	delete attr.active;
-	delete attr.label;
 	delete attr.slide;
 	delete attr.target;
 

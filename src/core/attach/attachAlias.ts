@@ -3,6 +3,7 @@ import { IAttachFn } from "./_index.js";
 
 const dbAlias: { [key: string]: string } = {
 	placeholderText: "placeholder",
+	attrLabel: "label",
 	dataText: "data",
 	startValue: "start",
 };

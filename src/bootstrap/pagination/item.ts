@@ -3,13 +3,12 @@ import { bsConstArg } from "../../core/base/bootstrap.js";
 import { IAttrTagLi, li } from "../../html/li.js";
 import { span } from "../../html/span.js";
 import { a } from "../../html/a.js";
-import { mergeObject } from "../../core/fn/mergeObject.js";
+import { mergeClass } from "../../core/fn/mergeClass.js";
 
 export interface IAttrBSPaginationItem extends IAttrTagLi {
 	active?: boolean;
 	disabled?: boolean;
 	href?: string;
-	label?: string;
 }
 
 const convert = (attr: IAttrBSPaginationItem) => {
@@ -21,9 +20,7 @@ const convert = (attr: IAttrBSPaginationItem) => {
 	delete attr.active;
 	delete attr.disabled;
 
-	attr = mergeObject({ class: "page-link", aria: { label: attr.label } }, attr);
-
-	delete attr.label;
+	attr.class = mergeClass(attr.class, "page-link");
 
 	if (attr.href) {
 		liAttr.elem = new a(attr);

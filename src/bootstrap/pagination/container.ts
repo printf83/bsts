@@ -5,14 +5,13 @@ import { IAttrTagUl, ul } from "../../html/ul.js";
 import { nav } from "../../html/nav.js";
 
 export interface IAttrBSPaginationContainer extends IAttrTagUl {
-	label?: string;
 	weight?: "sm" | "lg";
 }
 
 const convert = (attr: IAttrBSPaginationContainer) => {
 	//nav only prop is label
 	let navAttr: IAttr = {
-		aria: { label: attr.label },
+		label: attr.label,
 	};
 
 	//remove label for ul

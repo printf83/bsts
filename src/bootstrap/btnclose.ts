@@ -1,9 +1,8 @@
 import { bsConsNoElemArg } from "../core/base/bootstrap.js";
-import { mergeObject } from "../core/fn/mergeObject.js";
+import { mergeClass } from "../core/fn/mergeClass.js";
 import { button, IAttrTagButton } from "../html/button.js";
 
 export interface IAttrBSBtnclose extends IAttrTagButton {
-	label?: string;
 	white?: boolean;
 }
 
@@ -14,15 +13,8 @@ const convert = (attr: IAttrBSBtnclose) => {
 
 	//add btn-close class
 	//white
-	attr = mergeObject(
-		{
-			class: ["btn-close", attr.white ? "btn-close-white" : undefined],
-			aria: { label: attr.label },
-		},
-		attr
-	);
+	attr.class = mergeClass(attr.class, ["btn-close", attr.white ? "btn-close-white" : undefined]);
 
-	delete attr.label;
 	delete attr.white;
 
 	return attr;

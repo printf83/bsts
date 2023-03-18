@@ -305,6 +305,11 @@ export interface IGlobal {
 	truespeed?: boolean;
 }
 
+export interface IGlobalAria {
+	label?: string;
+	labelledby?: string;
+}
+
 export interface IBootstrap {
 	theme?: bootstrapType.theme[number];
 
@@ -421,7 +426,7 @@ export interface IBootstrap {
 	hstack?: bootstrapType.hstack[number];
 }
 
-export interface IAttr extends IGlobal, IBootstrap {
+export interface IAttr extends IGlobal, IGlobalAria, IBootstrap {
 	data?: IData;
 	aria?: IAria;
 	on?: IEvent;
@@ -439,15 +444,21 @@ export interface ITag {
 export type IElem = string | tag | (string | tag)[];
 
 const convert = (attr: IAttr) => {
-	if (attr.theme) {
+	if (attr.theme || attr.label || attr.labelledby) {
 		attr = mergeObject(
 			{
 				data: { "bs-theme": attr.theme },
+				aria: {
+					label: attr.label,
+					labelledby: attr.labelledby,
+				},
 			},
 			attr
 		);
 
 		delete attr.theme;
+		delete attr.label;
+		delete attr.labelledby;
 	}
 
 	return attr;

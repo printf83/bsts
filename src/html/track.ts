@@ -4,9 +4,19 @@ export interface IAttrTagTrack extends IAttr {
 	default?: boolean;
 	kind?: "captions" | "chapters" | "descriptions" | "metadata" | "subtitles";
 	label?: string;
+	attrLabel?: string;
 	src?: string;
 	srclang?: string;
 }
+
+const convert = (attr: IAttrTagTrack) => {
+	if (attr.label) {
+		attr.attrLabel = attr.label;
+		delete attr.label;
+	}
+
+	return attr;
+};
 
 export class track extends tag {
 	constructor();
@@ -14,6 +24,6 @@ export class track extends tag {
 	constructor(attr: IAttrTagTrack);
 	constructor(attr: IAttrTagTrack, elem: IElem);
 	constructor(...arg: any[]) {
-		super("track", tagConsArg<IAttrTagTrack>("elem", arg));
+		super("track", convert(tagConsArg<IAttrTagTrack>("elem", arg)));
 	}
 }

@@ -5,8 +5,6 @@ import { mergeObject } from "../core/fn/mergeObject.js";
 
 export interface IAttrBSBtngroup extends IAttr {
 	role?: "group" | "toolbar";
-	label?: string;
-	labelledby?: string;
 	weight?: "sm" | "lg";
 	vertical?: boolean;
 }
@@ -18,13 +16,10 @@ const convert = (attr: IAttrBSBtngroup) => {
 				attr.weight ? `btn-group-${attr.weight}` : undefined,
 			],
 			role: attr.role,
-			aria: { label: attr.label, labelledby: attr.labelledby },
 		},
 		attr
 	);
 	delete attr.role;
-	delete attr.label;
-	delete attr.labelledby;
 	delete attr.weight;
 	delete attr.vertical;
 

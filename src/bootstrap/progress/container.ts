@@ -5,7 +5,6 @@ import { div } from "../../html/div.js";
 
 export interface IAttrBSProgressContainer extends IAttr {
 	role?: "progressbar";
-	label?: string;
 	value?: number;
 	min?: number;
 	max?: number;
@@ -17,7 +16,6 @@ const convert = (attr: IAttrBSProgressContainer) => {
 			class: "progress",
 			role: attr.role || "progressbar",
 			aria: {
-				label: attr.label,
 				valuenow: attr.value,
 				valuemin: attr.min,
 				valuemax: attr.max,
@@ -26,7 +24,6 @@ const convert = (attr: IAttrBSProgressContainer) => {
 		attr
 	);
 
-	delete attr.label;
 	delete attr.value;
 	delete attr.min;
 	delete attr.max;

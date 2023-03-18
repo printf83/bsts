@@ -5,14 +5,12 @@ import { nav } from "../../html/nav.js";
 import { ol } from "../../html/ol.js";
 
 export interface IAttrBSBreadcrumbContainer extends IAttr {
-	label?: string;
 	divider?: string;
 }
 
 const convert = (attr: IAttrBSBreadcrumbContainer) => {
 	attr = mergeObject(
 		{
-			aria: { label: attr.label },
 			style: {
 				"--bs-breadcrumb-divider": attr.divider ? attr.divider : undefined,
 			},
