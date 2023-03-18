@@ -94,7 +94,10 @@ const itemCode = (
 					!collapseable
 						? new tooltip(
 								{ content: "Copy to clipboard" },
-								new a({ href: "#", on: { click: itemCodeCopy } }, icon.reg("clipboard"))
+								new a(
+									{ href: "#", color: "secondary", on: { click: itemCodeCopy } },
+									icon.reg("clipboard", { weight: "lg" })
+								)
 						  )
 						: "",
 				]
@@ -111,7 +114,10 @@ const itemCode = (
 					{ position: "relative", float: "end" },
 					new tooltip(
 						{ content: "Copy to clipboard" },
-						new a({ href: "#", on: { click: itemCodeCopy } }, icon.reg("clipboard"))
+						new a(
+							{ href: "#", color: "secondary", on: { click: itemCodeCopy } },
+							icon.reg("clipboard", { weight: "lg" })
+						)
 					)
 				)
 			);
