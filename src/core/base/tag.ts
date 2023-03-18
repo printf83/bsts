@@ -308,6 +308,9 @@ export interface IGlobal {
 export interface IGlobalAria {
 	label?: string;
 	labelledby?: string;
+	ownby?: string;
+	describedby?: string;
+	controlby?: string;
 }
 
 export interface IBootstrap {
@@ -444,13 +447,16 @@ export interface ITag {
 export type IElem = string | tag | (string | tag)[];
 
 const convert = (attr: IAttr) => {
-	if (attr.theme || attr.label || attr.labelledby) {
+	if (attr.theme || attr.label || attr.labelledby || attr.ownby || attr.describedby || attr.controlby) {
 		attr = mergeObject(
 			{
 				data: { "bs-theme": attr.theme },
 				aria: {
 					label: attr.label,
 					labelledby: attr.labelledby,
+					owns: attr.ownby,
+					describedby: attr.describedby,
+					controls: attr.controlby,
 				},
 			},
 			attr
@@ -459,6 +465,9 @@ const convert = (attr: IAttr) => {
 		delete attr.theme;
 		delete attr.label;
 		delete attr.labelledby;
+		delete attr.ownby;
+		delete attr.describedby;
+		delete attr.controlby;
 	}
 
 	return attr;

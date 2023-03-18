@@ -12,8 +12,6 @@ export interface IAttrBSModalContainer extends IAttr {
 	centered?: boolean;
 	scrollable?: boolean;
 	animation?: boolean;
-	labelledby?: string;
-	describedby?: string;
 	debug?: true;
 }
 
@@ -31,8 +29,6 @@ const convert = (attr: IAttrBSModalContainer) => {
 			},
 			aria: {
 				hidden: attr.debug ? undefined : "true",
-				labelledby: attr.labelledby,
-				describedby: attr.describedby,
 			},
 			position: attr.debug ? "static" : undefined,
 			display: attr.debug ? "block" : undefined,
@@ -59,8 +55,6 @@ const convert = (attr: IAttrBSModalContainer) => {
 
 	delete attr.static;
 	delete attr.animation;
-	delete attr.labelledby;
-	delete attr.describedby;
 	delete attr.debug;
 
 	return attr;
