@@ -132,6 +132,19 @@ core.documentReady(() => {
 						"Apply display utilities to create a flexbox container and transform direct children elements into flex items. Flex containers and items are able to be modified further with additional flex properties."
 					),
 					new b.example.code({
+						strOutput: `() => {
+							return [
+								"primary",
+								"secondary",
+								"success",
+								"danger",
+								"info",
+								"warning",
+								"light",
+								"dark",
+								"link",
+							].map((i) => new b.button({ color: i as IAttrBSButton["color"] }, i));
+						}`,
 						output: () => {
 							return [
 								"primary",

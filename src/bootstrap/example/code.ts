@@ -11,10 +11,12 @@ import { small } from "../../html/small.js";
 import { a } from "../../html/a.js";
 import { icon } from "../icon.js";
 import { tooltip } from "../tooltip.js";
+import { span } from "../../html/span.js";
 
 export interface IAttrBSExampleExt {
 	name?: string;
 	output?: Function;
+	strOutput?: string;
 }
 
 export interface IAttrBSExampleContainer extends IAttr {
@@ -23,6 +25,8 @@ export interface IAttrBSExampleContainer extends IAttr {
 	extention?: IAttrBSExampleExt | IAttrBSExampleExt[];
 	output?: Function;
 	manager?: Function;
+	strOutput?: string;
+	strManager?: string;
 
 	showOutput?: boolean;
 	showScript?: boolean;
@@ -64,6 +68,7 @@ const itemCode = (
 				{
 					display: "flex",
 					verticalAlign: "middle",
+					justifyContent: "between",
 					bgColor: "body-tertiary",
 					data: {
 						"bs-toggle": collapseable ? "collapse" : undefined,
@@ -75,21 +80,21 @@ const itemCode = (
 					},
 				},
 				[
-					new small(
-						{
-							marginEnd: "auto",
-							display: "inline-block",
-							monospace: true,
-							textTransform: "uppercase",
-							textColor: "secondary",
-						},
-						title
+					new span(
+						new small(
+							{
+								monospace: true,
+								textTransform: "uppercase",
+								textColor: "secondary",
+							},
+							title
+						)
 					),
 
 					!collapseable
 						? new tooltip(
 								{ content: "Copy to clipboard" },
-								new small(new a({ href: "#", on: { click: itemCodeCopy } }, icon.reg("clipboard")))
+								new a({ href: "#", on: { click: itemCodeCopy } }, icon.reg("clipboard"))
 						  )
 						: "",
 				]
@@ -102,7 +107,7 @@ const itemCode = (
 			}
 
 			elem.unshift(
-				new small(
+				new span(
 					{ position: "relative", float: "end" },
 					new tooltip(
 						{ content: "Copy to clipboard" },
@@ -127,7 +132,6 @@ const itemCode = (
 								if (target.getAttribute("data-loaded") === "false") {
 									target.setAttribute("data-loaded", "true");
 									onshow(target);
-									console.log("load");
 								}
 						  }
 						: undefined,
@@ -183,18 +187,38 @@ const convert = (attr: IAttrBSExampleContainer) => {
 		}
 
 		f.forEach((i) => {
-			if (i && i.name && i.output) {
-				e.push(...itemCode(e.length > 0, true, i.name, i.output.toString()));
+			if (i && i.name && (i.output || i.strOutput)) {
+				e.push(...itemCode(e.length > 0, true, i.name, i.strOutput ? i.strOutput : i.output!.toString()));
 			}
 		});
 	}
 
-	if (attr.output && attr.showScript && attr.manager && attr.showManager) {
-		e.push(...itemCode(e.length > 0, true, "Manager", new preview({ type: "js" }, attr.manager.toString())));
+	if ((attr.output || attr.strOutput) && attr.showScript && (attr.manager || attr.strManager) && attr.showManager) {
+		e.push(
+			...itemCode(
+				e.length > 0,
+				true,
+				"Manager",
+				new preview(
+					{ type: attr.strManager ? "ts" : "js" },
+					attr.strManager ? attr.strManager : attr.manager!.toString()
+				)
+			)
+		);
 	}
 
-	if (attr.output && attr.showScript) {
-		e.push(...itemCode(e.length > 0, false, "JS", new preview({ type: "js" }, attr.output.toString())));
+	if ((attr.output || attr.strOutput) && attr.showScript) {
+		e.push(
+			...itemCode(
+				e.length > 0,
+				false,
+				"Source",
+				new preview(
+					{ type: attr.strOutput ? "ts" : "js" },
+					attr.strOutput ? attr.strOutput : attr.output!.toString()
+				)
+			)
+		);
 	}
 
 	attr.elem = [new card.container({ id: id, class: "example" }, [new list.container({ flush: true }, e)])];
@@ -202,7 +226,10 @@ const convert = (attr: IAttrBSExampleContainer) => {
 	delete attr.lib;
 	delete attr.css;
 	delete attr.extention;
+	delete attr.manager;
+	delete attr.strManager;
 	delete attr.output;
+	delete attr.strOutput;
 
 	delete attr.showHTML;
 	delete attr.showScript;
