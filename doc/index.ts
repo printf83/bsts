@@ -1,4 +1,5 @@
 import { IAttrBSButton } from "../lib/bootstrap/button.js";
+import { IAttrBSIcon } from "../lib/bootstrap/icon.js";
 import { b, core, h } from "../lib/index.js";
 
 core.documentReady(() => {
@@ -39,6 +40,7 @@ core.documentReady(() => {
 					new b.offcanvas.container(
 						{
 							id: "bsNavbar",
+							textBgColor: "primary",
 							placement: "end",
 							hide: "lg",
 							flex: "grow-1",
@@ -52,18 +54,104 @@ core.documentReady(() => {
 							]),
 							new b.offcanvas.body({ padding: [4, "lg-0"], paddingTop: 0 }, [
 								new h.hr({ display: "lg-none", textColor: "light" }),
-								new b.navbar.itemcontainer({ flex: "wrap" }, [
-									new b.navbar.item({ col: [6, "lg-auto"] }, [
-										new b.navbar.link({ paddingY: 2, paddingX: [0, "lg-2"], href: "#" }, "Docs"),
+								new b.navbar.itemcontainer(
+									{ flex: ["wrap", "row"], class: "bs-navbar-nav" },
+									[
+										{ href: "#", label: "Docs", active: true },
+										{ href: "#", label: "Examples" },
+										{ href: "#", label: "Icons" },
+										{ href: "#", label: "Themes" },
+										{ href: "#", label: "Blog" },
+									].map((i) => {
+										return new b.navbar.item({ col: [6, "lg-auto"] }, [
+											new b.navbar.link(
+												{ paddingY: 2, paddingX: [0, "lg-2"], href: i.href, active: i.active },
+												i.label
+											),
+										]);
+									})
+								),
+								new h.hr({ display: "lg-none", textColor: "light" }),
+								new b.navbar.itemcontainer({ flex: ["row", "wrap"], marginStart: "md-auto" }, [
+									...[
+										{ href: "#", icon: { type: "fab", icon: "github" }, label: "Github" },
+										{ href: "#", icon: { type: "fab", icon: "twitter" }, label: "Twitter" },
+										{ href: "#", icon: { type: "fab", icon: "bootstrap" }, label: "Bootstrap" },
+									].map((i) => {
+										return new b.navbar.item({ col: [6, "lg-auto"] }, [
+											new b.navbar.link(
+												{ paddingY: 2, paddingX: [0, "lg-2"], href: i.href },
+												new b.label(
+													{ icon: i.icon as IAttrBSIcon, labelDisplay: "lg-none" },
+													i.label
+												)
+											),
+										]);
+									}),
+									new b.navbar.item(
+										{
+											paddingY: [2, "lg-1"],
+											col: [12, "lg-auto"],
+										},
+										[
+											new b.verticalrule({
+												display: ["none", "lg-flex"],
+												height: 100,
+												marginX: "lg-2",
+												textColor: "light",
+											}),
+											new h.hr({ display: "lg-none", marginY: 2, textColor: "light" }),
+										]
+									),
+									new b.navbar.item({ dropdown: true }, [
+										new b.dropdown.toggle(
+											{
+												color: "link",
+												class: "nav-link",
+												paddingY: 2,
+												paddingX: [0, "lg-2"],
+											},
+											"Bootstrap 5.3"
+										),
+										new b.dropdown.menu({ positionView: "end" }, [
+											new b.dropdown.item("Latest (5.3.x)"),
+										]),
 									]),
-									new b.navbar.item({ col: [6, "lg-auto"] }, [
-										new b.navbar.link({ paddingY: 2, paddingX: [0, "lg-2"], href: "#" }, "Docs"),
-									]),
-									new b.navbar.item({ col: [6, "lg-auto"] }, [
-										new b.navbar.link({ paddingY: 2, paddingX: [0, "lg-2"], href: "#" }, "Docs"),
+									new b.navbar.item(
+										{
+											paddingY: [2, "lg-1"],
+											col: [12, "lg-auto"],
+										},
+										[
+											new b.verticalrule({
+												display: ["none", "lg-flex"],
+												height: 100,
+												marginX: "lg-2",
+												textColor: "light",
+											}),
+											new h.hr({ display: "lg-none", marginY: 2, textColor: "light" }),
+										]
+									),
+									new b.navbar.item({ dropdown: true }, [
+										new b.dropdown.toggle(
+											{
+												id: "bs-theme",
+												color: "link",
+												class: "nav-link",
+												paddingY: 2,
+												paddingX: [0, "lg-2"],
+												display: "flex",
+												alignItem: "center",
+											},
+											new b.label({ icon: "moon" }, "Toggle theme")
+										),
+										new b.dropdown.menu({ positionView: "end" }, [
+											new b.dropdown.item(new b.label({ icon: "sun" }, "Light")),
+											new b.dropdown.item(new b.label({ icon: "moon" }, "Dark")),
+											new b.dropdown.item(new b.label({ icon: "circle-half-stroke" }, "Auto")),
+										]),
 									]),
 								]),
-								new h.hr({ display: "lg-none", textColor: "light" }),
 							]),
 						]
 					),
@@ -95,8 +183,75 @@ core.documentReady(() => {
 										paddingBottom: [3, "md-2"],
 										paddingEnd: "lg-2",
 									},
+
+									// ...[
+									// 	new h.li({ class: "bs-links-group", paddingY: 2 }, [
+									// 		new h.strong(
+									// 			{
+									// 				class: "bs-links-heading",
+									// 				display: "flex",
+									// 				width: 100,
+									// 				alignItem: "center",
+									// 				fontWeight: "semibold",
+									// 			},
+									// 			new b.label({ icon: "home" }, "Getting started")
+									// 		),
+									// 		new h.ul(
+									// 			{
+									// 				unstyle: true,
+									// 				fontWeight: "normal",
+									// 				paddingBottom: 2,
+									// 			},
+									// 			[
+									// 				new h.li(
+									// 					new h.a(
+									// 						{
+									// 							class: "bs-links-link",
+									// 							display: "inline-block",
+									// 							rounded: true,
+									// 							href: "#",
+									// 						},
+									// 						"Introduction"
+									// 					)
+									// 				),
+									// 			]
+									// 		),
+									// 	]),
+									// ],
+
 									[
-										new h.li({ class: "bs-links-group", paddingY: 2 }, [
+										{
+											label: "Getting started",
+											icon: { icon: "book-open", color: "primary" },
+											item: [
+												{ label: "Introduction", href: "#" },
+												{ label: "Download", href: "#", active: true },
+												{ label: "Contents", href: "#" },
+												{ label: "Browser & devices", href: "#" },
+												{ label: "Javascript", href: "#" },
+												{ label: "Webpack", href: "#" },
+												{ label: "Parcel", href: "#" },
+												{ label: "Vite", href: "#" },
+												{ label: "Accessibility", href: "#" },
+												{ label: "RFS", href: "#" },
+												{ label: "RTL", href: "#" },
+												{ label: "Contribute", href: "#" },
+											],
+										},
+										{
+											label: "Component",
+											icon: { icon: "hard-drive", color: "info" },
+											item: [
+												{ label: "Accordion", href: "#" },
+												{ label: "Alerts", href: "#" },
+												{ label: "Badge", href: "#" },
+												{ label: "Breadcrumb", href: "#" },
+												{ label: "Button", href: "#" },
+												{ label: "Button group", href: "#" },
+											],
+										},
+									].map((i) => {
+										return new h.li({ class: "bs-links-group", paddingY: 2 }, [
 											new h.strong(
 												{
 													class: "bs-links-heading",
@@ -105,7 +260,7 @@ core.documentReady(() => {
 													alignItem: "center",
 													fontWeight: "semibold",
 												},
-												new b.label({ icon: "home" }, "Getting started")
+												new b.label({ icon: i.icon }, i.label)
 											),
 											new h.ul(
 												{
@@ -113,22 +268,26 @@ core.documentReady(() => {
 													fontWeight: "normal",
 													paddingBottom: 2,
 												},
-												[
-													new h.li(
+												i.item.map((j) => {
+													return new h.li(
 														new h.a(
 															{
-																class: "bs-links-link",
+																class: [
+																	"bs-links-link",
+																	j.active ? "active" : undefined,
+																],
 																display: "inline-block",
 																rounded: true,
-																href: "#",
+																href: j.href,
+																aria: { current: j.active ? "page" : undefined },
 															},
-															"Introduction"
+															j.label
 														)
-													),
-												]
+													);
+												})
 											),
-										]),
-									]
+										]);
+									})
 								),
 							]),
 						]),
