@@ -1,4 +1,4 @@
-import { b, core, h } from "../lib/index.js";
+import { b, core } from "../lib/index.js";
 
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
