@@ -189,30 +189,28 @@ const dbRule: bootstrapRuleDB = {
 	border: new bootstrapAttachRule({
 		format: "border-$1",
 		value: bootstrapBase.border.concat(),
-		formatValue: "border",
+		formatTrue: "border",
 		formatFalse: "border-0",
 		shared: true,
 	}),
 	borderNone: new bootstrapAttachRule({
-		format: "border border-$1-0",
+		format: "border-$1-0",
 		value: bootstrapBase.borderNone.concat(),
 		formatTrue: "border-0",
+		formatFalse: "border",
 	}),
 	borderColor: new bootstrapAttachRule({
 		format: "border-$1",
 		value: bootstrapBase.borderColor.concat(),
-		formatValue: "border",
 		shared: true,
 	}),
 	borderOpacity: new bootstrapAttachRule({
 		format: "border-opacity-$1",
 		value: bootstrapBase.borderOpacity.concat(),
-		formatValue: "border",
 	}),
 	borderWidth: new bootstrapAttachRule({
 		format: "border-$1",
 		value: bootstrapBase.borderWidth.concat(),
-		formatValue: "border",
 		shared: true,
 	}),
 
@@ -225,7 +223,6 @@ const dbRule: bootstrapRuleDB = {
 	roundedNone: new bootstrapAttachRule({
 		format: "rounded-$1-0",
 		value: bootstrapBase.roundedNone.concat(),
-		formatValue: "rounded",
 		formatTrue: "rounded",
 		formatFalse: "rounded-0",
 	}),

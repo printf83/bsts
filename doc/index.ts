@@ -1,17 +1,27 @@
+import { IAttrBSButton } from "../lib/bootstrap/button.js";
 import { b, core, h } from "../lib/index.js";
 
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 	core.replaceChild(body, [
-		new b.navbar.containerHeader({ expand: "lg", sticky: "top", textBgColor: "primary", bgGradient: true }, [
+		new b.navbar.containerHeader({ expand: "lg", sticky: "top", textBgColor: "primary" }, [
 			new b.navbar.innercontainerNav(
-				{ container: "xxl", flex: ["wrap", "lg-nowrap"], aria: { label: "Main navigation" } },
+				{
+					class: "bs-gutter",
+					container: "xxl",
+					flex: ["wrap", "lg-nowrap"],
+					label: "Main navigation",
+				},
 				[
-					new b.navbar.toggle.offcanvas({
-						target: "#bsSidebar",
-						control: "bsSidebar",
-						aria: { label: "Toggle docs navigation" },
-					}),
+					new h.div({ class: "bs-navbar-toggle" }, [
+						new b.navbar.toggle.offcanvas({
+							padding: 2,
+							target: "#bsSidebar",
+							control: "bsSidebar",
+							label: "Toggle docs navigation",
+						}),
+					]),
+
 					new b.navbar.brand(
 						{ href: "#", label: "Bootstrap", marginEnd: ["lg-2", 0], padding: 0 },
 						b.icon.brand("bootstrap", { weight: "xl" })
@@ -61,8 +71,8 @@ core.documentReady(() => {
 			),
 		]),
 
-		new h.div({ container: "xxl", marginTop: 3, marginY: "md-4" }, [
-			new h.aside([
+		new h.div({ class: ["bs-gutter", "bs-layout"], container: "xxl", marginTop: 3, marginY: "md-4" }, [
+			new h.aside({ class: "bs-sidebar" }, [
 				new b.offcanvas.container(
 					{
 						id: "bsSidebar",
@@ -76,7 +86,7 @@ core.documentReady(() => {
 							new b.offcanvas.btnclose({ target: "#bsSidebar" }),
 						]),
 						new b.offcanvas.body([
-							new h.nav({ id: "bs_docs_nav", width: 100, label: "Docs navication" }, [
+							new h.nav({ id: "bs_docs_nav", class: "bs-links", width: 100, label: "Docs navication" }, [
 								new h.ul(
 									{
 										class: "bs-links-nav",
@@ -85,7 +95,40 @@ core.documentReady(() => {
 										paddingBottom: [3, "md-2"],
 										paddingEnd: "lg-2",
 									},
-									[new h.li({ class: "bs-links-group", paddingY: 2 }, "Item 1")]
+									[
+										new h.li({ class: "bs-links-group", paddingY: 2 }, [
+											new h.strong(
+												{
+													class: "bs-links-heading",
+													display: "flex",
+													width: 100,
+													alignItem: "center",
+													fontWeight: "semibold",
+												},
+												new b.label({ icon: "home" }, "Getting started")
+											),
+											new h.ul(
+												{
+													unstyle: true,
+													fontWeight: "normal",
+													paddingBottom: 2,
+												},
+												[
+													new h.li(
+														new h.a(
+															{
+																class: "bs-links-link",
+																display: "inline-block",
+																rounded: true,
+																href: "#",
+															},
+															"Introduction"
+														)
+													),
+												]
+											),
+										]),
+									]
 								),
 							]),
 						]),
@@ -115,6 +158,21 @@ core.documentReady(() => {
 					new b.example.text(
 						"Get started by including Bootstrap’s production-ready CSS and JavaScript via CDN without the need for any build steps. See it in practice with this Bootstrap CodePen demo."
 					),
+					new b.example.code({
+						output: () => {
+							return [
+								"primary",
+								"secondary",
+								"success",
+								"danger",
+								"info",
+								"warning",
+								"light",
+								"dark",
+								"link",
+							].map((i) => new b.button({ color: i as IAttrBSButton["color"] }, i));
+						},
+					}),
 				]),
 			]),
 		]),

@@ -784,7 +784,7 @@ export namespace bootstrapBase {
 
 	export const fontSize = [1, 2, 3, 4, 5, 6] as const;
 	export const fontDisplay = fontSize;
-	export const fontWeight = ["bold", "bolder", "normal", "light", "lighter"] as const;
+	export const fontWeight = ["bold", "bolder", "semibold", "normal", "light", "lighter"] as const;
 
 	export const top = [0, 50, 100] as const;
 	export const bottom = top;
