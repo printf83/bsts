@@ -8,6 +8,8 @@ const convert = (attr: IAttrBSOffcanvasToggle) => {
 		{
 			defColor: false,
 			class: "navbar-toggler",
+			padding: 2,
+			border: false,
 			elem: attr.elem ? attr.elem : new span({ class: "navbar-toggler-icon" }),
 			aria: { expanded: "false", label: "Toggle navigation" },
 		},

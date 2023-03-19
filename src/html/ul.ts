@@ -8,7 +8,7 @@ export interface IAttrTagUl extends IAttr {
 
 const convert = (attr: IAttrTagUl) => {
 	attr.class = mergeClass(attr.class, [
-		attr.unstyle ? "list-unstyle" : undefined,
+		attr.unstyle ? "list-unstyled" : undefined,
 		attr.inline ? "list-inline" : undefined,
 	]);
 

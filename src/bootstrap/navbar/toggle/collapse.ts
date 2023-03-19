@@ -7,6 +7,8 @@ const convert = (attr: IAttrBSCollapseToggle) => {
 	attr = mergeObject(
 		{
 			defColor: false,
+			padding: 2,
+			border: false,
 			class: "navbar-toggler",
 			elem: attr.elem ? attr.elem : new span({ class: "navbar-toggler-icon" }),
 			aria: { expanded: "false", label: "Toggle navigation" },
