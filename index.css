@@ -1,3 +1,12 @@
+@media (max-width: 768px) {
+.example.card {
+        margin: 0 -1.5rem 1rem;
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0
+    }
+}
+
 .anchor-link:focus,
 .anchor-link:hover,
 :hover>.anchor-link,

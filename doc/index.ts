@@ -2,10 +2,16 @@ import { IAttrBSButton } from "../lib/bootstrap/button.js";
 import { IAttrBSIcon } from "../lib/bootstrap/icon.js";
 import { b, core, h } from "../lib/index.js";
 
+const changeTheme = (value: string, icon: string) => {
+	let bsTheme = document.getElementById("bs-theme") as HTMLElement;
+	core.replaceChild(bsTheme, new b.label({ icon: icon, labelDisplay: "lg-none" }, "Toggle theme"));
+	document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", value);
+};
+
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 	core.replaceChild(body, [
-		new b.navbar.containerHeader({ expand: "lg", sticky: "top", bgColor: "primary" }, [
+		new b.navbar.containerHeader({ expand: "lg", sticky: "top", bgColor: "primary", shadow: "sm" }, [
 			new b.navbar.innercontainerNav(
 				{
 					class: "bs-gutter",
@@ -15,12 +21,15 @@ core.documentReady(() => {
 				},
 				[
 					new h.div({ class: "bs-navbar-toggle" }, [
-						new b.navbar.toggle.offcanvas({
-							padding: 2,
-							target: "#bsSidebar",
-							control: "bsSidebar",
-							label: "Toggle docs navigation",
-						}),
+						new b.navbar.toggle.offcanvas(
+							{
+								padding: 2,
+								target: "#bsSidebar",
+								control: "bsSidebar",
+								label: "Toggle docs navigation",
+							},
+							b.icon.solid("bars")
+						),
 					]),
 
 					new b.navbar.brand(
@@ -28,14 +37,17 @@ core.documentReady(() => {
 						b.icon.brand("bootstrap", { weight: "xl" })
 					),
 					new h.div({ display: "flex" }, [
-						new b.navbar.toggle.offcanvas({
-							display: ["flex", "lg-none"],
-							order: 3,
-							padding: 2,
-							target: "#bsNavbar",
-							controlby: "bsNavbar",
-							label: "Toggle navigation",
-						}),
+						new b.navbar.toggle.offcanvas(
+							{
+								display: ["flex", "lg-none"],
+								order: 3,
+								padding: 2,
+								target: "#bsNavbar",
+								controlby: "bsNavbar",
+								label: "Toggle navigation",
+							},
+							b.icon.solid("ellipsis-vertical")
+						),
 					]),
 					new b.offcanvas.container(
 						{
@@ -151,11 +163,25 @@ core.documentReady(() => {
 											},
 											new b.label({ icon: "moon", labelDisplay: "lg-none" }, "Toggle theme")
 										),
-										new b.dropdown.menu({ positionView: "end" }, [
-											new b.dropdown.item(new b.label({ icon: "sun" }, "Light")),
-											new b.dropdown.item(new b.label({ icon: "moon" }, "Dark")),
-											new b.dropdown.item(new b.label({ icon: "circle-half-stroke" }, "Auto")),
-										]),
+										new b.dropdown.menu(
+											{ positionView: "end" },
+											[
+												{ value: "light", icon: "sun", label: "Light" },
+												{ value: "dark", icon: "moon", label: "Dark" },
+												{ value: "auto", icon: "circle-half-stroke", label: "Auto" },
+											].map((i) => {
+												return new b.dropdown.item(
+													{
+														on: {
+															click: (_e) => {
+																changeTheme(i.value, i.icon);
+															},
+														},
+													},
+													new b.label({ icon: i.icon }, i.label)
+												);
+											})
+										),
 									]),
 								]),
 							]),
@@ -268,7 +294,13 @@ core.documentReady(() => {
 			]),
 			new h.main({ order: 1, class: "bs-main" }, [
 				new h.div({ class: "bs-intro", paddingTop: 2, paddingStart: "lg-2" }, [
-					new b.example.pagetitle("Get started with Bootstrap"),
+					new b.example.pagetitle(
+						{
+							sourceUrl: "#",
+							addedVersion: "5.3",
+						},
+						"Get started"
+					),
 					new b.example.description(
 						"Bootstrap is a powerful, feature-packed frontend toolkit. Build anything—from prototype to production—in minutes."
 					),
