@@ -9,6 +9,39 @@ const changeTheme = (value: string, icon: string) => {
 	document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", value);
 };
 
+const translate = (str: string) => {
+	let reg = /\{\{(.*?)}\}/gm;
+
+	if (str.match(reg)) {
+		let matchResult: RegExpExecArray | null;
+		let result: string[] = [];
+		let lastIndex: number = 0;
+
+		while ((matchResult = reg.exec(str)) !== null) {
+			result.push(str.slice(lastIndex, matchResult.index));
+			result.push(str.slice(matchResult.index, reg.lastIndex));
+			lastIndex = reg.lastIndex;
+		}
+
+		result.push(str.slice(lastIndex));
+
+		return result.map((i) => {
+			if (i.startsWith("{{")) {
+				let c = i.indexOf("::");
+				if (c > 0) {
+					return new h.a({ href: i.slice(2, c) }, i.slice(c + 2, i.length - 2));
+				} else {
+					return new h.code(i.slice(2, -2));
+				}
+			} else {
+				return i;
+			}
+		});
+	} else {
+		return str;
+	}
+};
+
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 	core.replaceChild(body, [
@@ -383,7 +416,9 @@ core.documentReady(() => {
 				new h.div({ class: "bs-content", paddingStart: "lg-2" }, [
 					new example.title("Quick start "),
 					new example.text(
-						"Get started by including Bootstrap’s production-ready CSS and JavaScript via CDN without the need for any build steps. See it in practice with this Bootstrap CodePen demo."
+						translate(
+							"Get started by including Bootstrap’s production-ready CSS and JavaScript via CDN {{without}} the {{need for any}} build steps. See it in practice with this Bootstrap {{http://www.codepane.com::CodePen}} demo."
+						)
 					),
 					new example.code({
 						output: () => {

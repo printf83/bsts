@@ -46,9 +46,11 @@ export const build = (
 										//only pre is html
 										let g = i as string;
 										if (e.tag === "pre") {
-											element.insertAdjacentHTML("beforeend", "\n" + g + "\n");
+											// element.insertAdjacentHTML("beforeend", "\n" + g + "\n");
+											element.insertAdjacentHTML("beforeend", g);
 										} else {
-											element.appendChild(document.createTextNode("\n" + g + "\n"));
+											// element.appendChild(document.createTextNode("\n" + g + "\n"));
+											element.appendChild(document.createTextNode(g));
 										}
 									}
 								}
