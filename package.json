@@ -24,8 +24,8 @@
 		"default": "./lib/index.js"
 	},
 	"scripts": {
-		"clear": "tsc --build --clean tsconfig.src.json && tsc --build --clean tsconfig.doc.json",
-		"build": "tsc --build --clean tsconfig.src.json && tsc --project tsconfig.src.json && tsc --build --clean tsconfig.doc.json && tsc --project tsconfig.doc.json",
+		"clear": "tsc --build --clean tsconfig.src.json && tsc --build --clean tsconfig.doc.json && clear",
+		"build": "tsc --project tsconfig.src.json && tsc --project tsconfig.doc.json",
 		"src": "tsc --project tsconfig.src.json --watch",
 		"doc": "tsc --project tsconfig.doc.json --watch"
 	},

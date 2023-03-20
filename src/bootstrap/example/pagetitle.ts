@@ -1,10 +1,10 @@
-import { button } from "../../../lib/bootstrap/button.js";
-import { div } from "../../../lib/html/div.js";
-import { small } from "../../../lib/html/small.js";
-import { span } from "../../../lib/html/span.js";
-import { bsConstArg } from "../../core/base/bootstrap.js";
 import { IAttr, IElem, tag } from "../../core/base/tag.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
+import { button } from "../../bootstrap/button.js";
+import { div } from "../../html/div.js";
+import { small } from "../../html/small.js";
+import { span } from "../../html/span.js";
+import { bsConstArg } from "../../core/base/bootstrap.js";
 import { h } from "../../html/h.js";
 
 export interface IAttrBSExamplePagetitle extends IAttr {
