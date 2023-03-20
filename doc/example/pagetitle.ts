@@ -1,11 +1,11 @@
-import { IAttr, IElem, tag } from "../../core/base/tag.js";
-import { mergeObject } from "../../core/fn/mergeObject.js";
-import { button } from "../../bootstrap/button.js";
-import { div } from "../../html/div.js";
-import { small } from "../../html/small.js";
-import { span } from "../../html/span.js";
-import { bsConstArg } from "../../core/base/bootstrap.js";
-import { h } from "../../html/h.js";
+import { IAttr, IElem, tag } from "../../src/core/base/tag.js";
+import { mergeObject } from "../../src/core/fn/mergeObject.js";
+import { button } from "../../src/bootstrap/button.js";
+import { div } from "../../src/html/div.js";
+import { small } from "../../src/html/small.js";
+import { span } from "../../src/html/span.js";
+import { bsConstArg } from "../../src/core/base/bootstrap.js";
+import { h } from "../../src/html/h.js";
 
 export interface IAttrBSExamplePagetitle extends IAttr {
 	sourceUrl?: string;

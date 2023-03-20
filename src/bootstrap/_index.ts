@@ -11,7 +11,6 @@ import { col } from "./col.js";
 import { collapse } from "./collapse/_index.js";
 import { container } from "./container.js";
 import { dropdown } from "./dropdown/_index.js";
-import { example } from "./example/_index.js";
 import { formfloating } from "./formfloating.js";
 import { grid } from "./grid.js";
 import { icon } from "./icon.js";
@@ -78,6 +77,5 @@ export const bootstrap = {
 	pill,
 	table,
 	scrollspy,
-	example,
 	verticalrule,
 };

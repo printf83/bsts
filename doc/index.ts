@@ -1,6 +1,7 @@
-import { IAttrBSButton } from "../lib/bootstrap/button.js";
-import { IAttrBSIcon } from "../lib/bootstrap/icon.js";
-import { b, core, h } from "../lib/index.js";
+import { IAttrBSButton } from "../src/bootstrap/button.js";
+import { IAttrBSIcon } from "../src/bootstrap/icon.js";
+import { b, core, h } from "../src/index.js";
+import { example } from "./example/_index.js";
 
 const changeTheme = (value: string, icon: string) => {
 	let bsTheme = document.getElementById("bs-theme") as HTMLElement;
@@ -11,7 +12,7 @@ const changeTheme = (value: string, icon: string) => {
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 	core.replaceChild(body, [
-		new b.navbar.containerHeader({ expand: "lg", sticky: "top", bgColor: "primary", shadow: "sm" }, [
+		new b.navbar.containerHeader({ expand: "lg", sticky: "top", bgColor: "primary", shadow: "sm", theme: "dark" }, [
 			new b.navbar.innercontainerNav(
 				{
 					class: "bs-gutter",
@@ -294,14 +295,14 @@ core.documentReady(() => {
 			]),
 			new h.main({ order: 1, class: "bs-main" }, [
 				new h.div({ class: "bs-intro", paddingTop: 2, paddingStart: "lg-2" }, [
-					new b.example.pagetitle(
+					new example.pagetitle(
 						{
 							sourceUrl: "#",
 							addedVersion: "5.3",
 						},
 						"Get started"
 					),
-					new b.example.description(
+					new example.description(
 						"Bootstrap is a powerful, feature-packed frontend toolkit. Build anything—from prototype to production—in minutes."
 					),
 				]),
@@ -380,11 +381,11 @@ core.documentReady(() => {
 					]
 				),
 				new h.div({ class: "bs-content", paddingStart: "lg-2" }, [
-					new b.example.title("Quick start "),
-					new b.example.text(
+					new example.title("Quick start "),
+					new example.text(
 						"Get started by including Bootstrap’s production-ready CSS and JavaScript via CDN without the need for any build steps. See it in practice with this Bootstrap CodePen demo."
 					),
-					new b.example.code({
+					new example.code({
 						output: () => {
 							return [
 								"primary",

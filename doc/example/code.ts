@@ -1,17 +1,17 @@
-import { IAttr, tag } from "../../core/base/tag.js";
-import { bsConsNoElemArg } from "../../core/base/bootstrap.js";
-import { div } from "../../html/div.js";
-import { card } from "../card/_index.js";
-import { list } from "../list/_index.js";
-import { UUID } from "../../core/fn/uuid.js";
-import { replaceChild } from "../../core/fn/builder.js";
+import { IAttr, tag } from "../../src/core/base/tag.js";
+import { bsConsNoElemArg } from "../../src/core/base/bootstrap.js";
+import { div } from "../../src/html/div.js";
+import { card } from "../../src/bootstrap/card/_index.js";
+import { list } from "../../src/bootstrap/list/_index.js";
+import { UUID } from "../../src/core/fn/uuid.js";
+import { replaceChild } from "../../src/core/fn/builder.js";
 import { preview } from "./preview.js";
-import { item } from "../list/item.js";
-import { small } from "../../html/small.js";
-import { a } from "../../html/a.js";
-import { icon } from "../icon.js";
-import { tooltip } from "../tooltip.js";
-import { span } from "../../html/span.js";
+import { item } from "../../src/bootstrap/list/item.js";
+import { small } from "../../src/html/small.js";
+import { a } from "../../src/html/a.js";
+import { icon } from "../../src/bootstrap/icon.js";
+import { tooltip } from "../../src/bootstrap/tooltip.js";
+import { span } from "../../src/html/span.js";
 
 export interface IAttrBSExampleExt {
 	name?: string;
@@ -149,9 +149,9 @@ const itemCode = (
 
 const itemOutput = (manager: boolean, str: string) => {
 	if (manager) {
-		return new list.item({ class: `example-output`, padding: 0, overflow: "hidden" }, str);
+		return new list.item({ class: `example-output`, padding: 0, overflow: "scroll" }, str);
 	} else {
-		return new list.item({ class: `example-output`, padding: 4, overflow: "hidden", display: "flex", gap: 2 }, str);
+		return new list.item({ class: `example-output`, padding: 4, overflow: "scroll", display: "flex", gap: 2 }, str);
 	}
 };
 
