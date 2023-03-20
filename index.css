@@ -10,7 +10,7 @@
 .anchor-link {
     padding: 0 .175rem;
     font-weight: 400;
-    color: rgba(13, 110, 253, 0.5);
+    color: rgba(var(--bs-primary-rgb), 0.5);
     text-decoration: none;
     opacity: 0;
     transition: color 0.15s ease-in-out, opacity 0.15s ease-in-out;
@@ -81,7 +81,7 @@
 .bs-links-link:focus,
 .bs-links-link.active {
     color: var(--bs-emphasis-color);
-    background-color: var(--bs-sidebar-link-bg)
+    background-color: var(--bs-primary)
 }
 
 .bs-links-link.active {
@@ -212,14 +212,14 @@
     .bs-toc-toggle:focus,
     .bs-toc-toggle:active,
     .bs-toc-toggle[aria-expanded="true"] {
-        color: var(--bs-violet);
+        color: var(--bs-primary);
         background-color: var(--bs-body-bg);
-        border-color: var(--bs-violet)
+        border-color: var(--bs-primary)
     }
 
     .bs-toc-toggle:focus,
     .bs-toc-toggle[aria-expanded="true"] {
-        box-shadow: 0 0 0 3px rgba(var(--bs-violet-rgb), 0.25)
+        box-shadow: 0 0 0 3px rgba(var(--bs-primary-rgb), 0.25)
     }
 }
 

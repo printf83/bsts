@@ -5,7 +5,7 @@ import { b, core, h } from "../lib/index.js";
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 	core.replaceChild(body, [
-		new b.navbar.containerHeader({ expand: "lg", sticky: "top", textBgColor: "primary" }, [
+		new b.navbar.containerHeader({ expand: "lg", sticky: "top", bgColor: "primary" }, [
 			new b.navbar.innercontainerNav(
 				{
 					class: "bs-gutter",
@@ -111,7 +111,13 @@ core.documentReady(() => {
 												paddingY: 2,
 												paddingX: [0, "lg-2"],
 											},
-											"Bootstrap 5.3"
+											[
+												new h.span(
+													{ display: "lg-none", aria: { hidden: "true" } },
+													"Bootstrap"
+												),
+												new h.span("v5.3"),
+											]
 										),
 										new b.dropdown.menu({ positionView: "end" }, [
 											new b.dropdown.item("Latest (5.3.x)"),
@@ -143,7 +149,7 @@ core.documentReady(() => {
 												display: "flex",
 												alignItem: "center",
 											},
-											new b.label({ icon: "moon" }, "Toggle theme")
+											new b.label({ icon: "moon", labelDisplay: "lg-none" }, "Toggle theme")
 										),
 										new b.dropdown.menu({ positionView: "end" }, [
 											new b.dropdown.item(new b.label({ icon: "sun" }, "Light")),
@@ -183,41 +189,6 @@ core.documentReady(() => {
 										paddingBottom: [3, "md-2"],
 										paddingEnd: "lg-2",
 									},
-
-									// ...[
-									// 	new h.li({ class: "bs-links-group", paddingY: 2 }, [
-									// 		new h.strong(
-									// 			{
-									// 				class: "bs-links-heading",
-									// 				display: "flex",
-									// 				width: 100,
-									// 				alignItem: "center",
-									// 				fontWeight: "semibold",
-									// 			},
-									// 			new b.label({ icon: "home" }, "Getting started")
-									// 		),
-									// 		new h.ul(
-									// 			{
-									// 				unstyle: true,
-									// 				fontWeight: "normal",
-									// 				paddingBottom: 2,
-									// 			},
-									// 			[
-									// 				new h.li(
-									// 					new h.a(
-									// 						{
-									// 							class: "bs-links-link",
-									// 							display: "inline-block",
-									// 							rounded: true,
-									// 							href: "#",
-									// 						},
-									// 						"Introduction"
-									// 					)
-									// 				),
-									// 			]
-									// 		),
-									// 	]),
-									// ],
 
 									[
 										{
@@ -260,13 +231,14 @@ core.documentReady(() => {
 													alignItem: "center",
 													fontWeight: "semibold",
 												},
-												new b.label({ icon: i.icon }, i.label)
+												new b.label({ icon: i.icon as IAttrBSIcon }, i.label)
 											),
 											new h.ul(
 												{
 													unstyle: true,
 													fontWeight: "normal",
 													paddingBottom: 2,
+													class: "small",
 												},
 												i.item.map((j) => {
 													return new h.li(
@@ -310,7 +282,70 @@ core.documentReady(() => {
 						paddingStart: "xl-3",
 						textColor: "body-secondary",
 					},
-					"Toc"
+					[
+						new b.collapse.toggle(
+							{
+								color: "link",
+								padding: "md-0",
+								marginBottom: [2, "md-0"],
+								textDecoration: "none",
+								class: "bs-toc-toggle",
+								display: "md-none",
+								target: "#tocContents",
+								control: "tocContents",
+							},
+							[
+								"On this page",
+								new b.icon({
+									icon: "sort",
+									display: "md-none",
+									marginStart: 2,
+									aria: { hidden: "true" },
+								}),
+							]
+						),
+						new h.strong({ display: ["none", "md-block"], fontSize: 6, marginY: 2 }, "On this page"),
+						new h.hr({ display: ["none", "md-block"], marginY: 2 }),
+						new b.collapse.container(
+							{
+								id: "tocContents",
+								class: "bs-toc-collapse",
+							},
+							new h.nav(
+								{ id: "TableOfContents" },
+								new h.ul(
+									[
+										{ href: "#", label: "Quick start" },
+										{ href: "#", label: "CDN links" },
+										{ href: "#", label: "Next steps" },
+										{ href: "#", label: "JS components" },
+										{
+											href: "#",
+											label: "Important globals",
+											item: [
+												{ href: "#", label: "HTML5 doctype" },
+												{ href: "#", label: "Responsive meta tag" },
+												{ href: "#", label: "Box-sizing" },
+												{ href: "#", label: "Reboot" },
+											],
+										},
+										{ href: "#", label: "Community" },
+									].map((i) => {
+										return new h.li([
+											new h.a({ href: i.href }, i.label),
+											i.item
+												? new h.ul(
+														i.item.map((j) => {
+															return new h.li(new h.a({ href: j.href }, j.label));
+														})
+												  )
+												: "",
+										]);
+									})
+								)
+							)
+						),
+					]
 				),
 				new h.div({ class: "bs-content", paddingStart: "lg-2" }, [
 					new b.example.title("Quick start "),
@@ -336,4 +371,6 @@ core.documentReady(() => {
 			]),
 		]),
 	]);
+
+	core.init(body);
 });
