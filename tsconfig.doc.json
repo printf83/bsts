@@ -4,8 +4,8 @@
     "module": "ESNext",
     "moduleResolution": "nodenext",
     "outDir": "./client",
-    "sourceMap": true,
-    "declaration": true,
+    "sourceMap": false,
+    "declaration": false,
 
     "strict": true,
     "alwaysStrict": true,
