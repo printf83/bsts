@@ -29,7 +29,19 @@ const translate = (str: string) => {
 			if (i.startsWith("{{")) {
 				let c = i.indexOf("::");
 				if (c > 0) {
-					return new h.a({ href: i.slice(2, c) }, i.slice(c + 2, i.length - 2));
+					let d = i.slice(2, c);
+					let e = i.slice(c + 2, i.length - 2);
+
+					switch (d) {
+						case "b":
+							return new h.b(e);
+						case "i":
+							return new h.i(e);
+						case "u":
+							return new h.u(e);
+						default:
+							return new h.a({ href: d }, e);
+					}
 				} else {
 					return new h.code(i.slice(2, -2));
 				}

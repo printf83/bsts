@@ -1,3 +1,8 @@
+import { a } from "../../html/a.js";
+import { b } from "../../html/b.js";
+import { code } from "../../html/code.js";
+import { i } from "../../html/i.js";
+import { u } from "../../html/u.js";
 import { attachAttr } from "../attach/_index.js";
 import { IAttr, isTag, tag } from "../base/tag.js";
 import { removeChildElement } from "./removeChildElement.js";
@@ -12,6 +17,79 @@ export const init = (container: HTMLElement) => {
 
 	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 	[...tooltipTriggerList].map((tooltipTriggerEl) => new window.bootstrap.Tooltip(tooltipTriggerEl));
+};
+
+const markup = (str: string) => {
+	let reg = /\{\{(.*?)}\}/gm;
+
+	if (str.match(reg)) {
+		let matchResult: RegExpExecArray | null;
+		let result: string[] = [];
+		let lastIndex: number = 0;
+
+		while ((matchResult = reg.exec(str)) !== null) {
+			result.push(str.slice(lastIndex, matchResult.index));
+			result.push(str.slice(matchResult.index, reg.lastIndex));
+			lastIndex = reg.lastIndex;
+		}
+
+		result.push(str.slice(lastIndex));
+
+		return result.map((s) => {
+			if (s.startsWith("{{")) {
+				let c = s.indexOf("::");
+				if (c > 0) {
+					let d = s.slice(2, c);
+					let e = s.slice(c + 2, s.length - 2);
+
+					switch (d) {
+						case "b":
+							return new b(e);
+						case "i":
+							return new i(e);
+						case "u":
+							return new u(e);
+						default:
+							return new a({ href: d }, e);
+					}
+				} else {
+					return new code(s.slice(2, -2));
+				}
+			} else {
+				return s;
+			}
+		});
+	} else {
+		return str;
+	}
+};
+
+const processElem = (i: string | tag, e: tag, element: HTMLElement) => {
+	if (i !== null) {
+		if (isTag<IAttr>(i)) {
+			let t = build(element, i as tag);
+			element = t ? t : element;
+		} else {
+			//all text treat as html
+
+			//only pre is html
+			let g = i as string;
+			if (e.tag === "pre") {
+				element.insertAdjacentHTML("beforeend", g);
+			} else {
+				let m = markup(g);
+				if (typeof m === "string") {
+					element.appendChild(document.createTextNode(g));
+				} else {
+					m.forEach((j) => {
+						element = processElem(j, e, element);
+					});
+				}
+			}
+		}
+	}
+
+	return element;
 };
 
 export const build = (
@@ -35,25 +113,30 @@ export const build = (
 						if (e.elem) {
 							e.elem = Array.isArray(e.elem) ? e.elem : [e.elem];
 							e.elem.forEach((i) => {
-								if (i !== null) {
-									if (isTag<IAttr>(i)) {
-										let t = build(element, i as tag);
-										element = t ? t : element;
-									} else {
-										//all text treat as html
-										// element.insertAdjacentHTML("beforeend", i as string);
+								element = processElem(i, e, element);
+								// if (i !== null) {
+								// 	if (isTag<IAttr>(i)) {
+								// 		let t = build(element, i as tag);
+								// 		element = t ? t : element;
+								// 	} else {
+								// 		//all text treat as html
 
-										//only pre is html
-										let g = i as string;
-										if (e.tag === "pre") {
-											// element.insertAdjacentHTML("beforeend", "\n" + g + "\n");
-											element.insertAdjacentHTML("beforeend", g);
-										} else {
-											// element.appendChild(document.createTextNode("\n" + g + "\n"));
-											element.appendChild(document.createTextNode(g));
-										}
-									}
-								}
+								// 		//only pre is html
+								// 		let g = i as string;
+								// 		if (e.tag === "pre") {
+								// 			element.insertAdjacentHTML("beforeend", g);
+								// 		} else {
+								// 			let m = markup(g);
+								// 			if (typeof m === "string") {
+								// 				element.appendChild(document.createTextNode(g));
+								// 			} else {
+								// 				m.forEach((j) => {
+								// 					element.appendChild();
+								// 				});
+								// 			}
+								// 		}
+								// 	}
+								// }
 							});
 						}
 
