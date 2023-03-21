@@ -1,3 +1,4 @@
+/* example */
 @media (max-width: 768px) {
 .example.card {
         margin: 0 -1.5rem 1rem;
@@ -7,6 +8,7 @@
     }
 }
 
+/* anchor link */
 .anchor-link:focus,
 .anchor-link:hover,
 :hover>.anchor-link,
@@ -29,6 +31,7 @@
     content: "#";
 }
 
+/* sidebar */
 @media (min-width: 992px) {
     .bs-sidebar {
         position: -webkit-sticky;
@@ -89,7 +92,7 @@
 .bs-links-link:hover,
 .bs-links-link:focus,
 .bs-links-link.active {
-    color: var(--bs-emphasis-color);
+    color: var(--bs-light);
     background-color: var(--bs-primary)
 }
 
@@ -146,13 +149,15 @@
     grid-area: intro
 }
 
-.bs-toc {
-    grid-area: toc
-}
 
 .bs-content {
     grid-area: content;
     min-width: 1px
+}
+
+/* toc */
+.bs-toc {
+    grid-area: toc
 }
 
 @media (min-width: 992px) {
@@ -247,6 +252,7 @@
     }
 }
 
+/* footer */
 .bs-footer a {
     color: var(--bs-body-color);
     text-decoration: none
@@ -257,3 +263,4 @@
     color: var(--bs-link-hover-color);
     text-decoration: underline
 }
+

@@ -114,29 +114,6 @@ export const build = (
 							e.elem = Array.isArray(e.elem) ? e.elem : [e.elem];
 							e.elem.forEach((i) => {
 								element = processElem(i, e, element);
-								// if (i !== null) {
-								// 	if (isTag<IAttr>(i)) {
-								// 		let t = build(element, i as tag);
-								// 		element = t ? t : element;
-								// 	} else {
-								// 		//all text treat as html
-
-								// 		//only pre is html
-								// 		let g = i as string;
-								// 		if (e.tag === "pre") {
-								// 			element.insertAdjacentHTML("beforeend", g);
-								// 		} else {
-								// 			let m = markup(g);
-								// 			if (typeof m === "string") {
-								// 				element.appendChild(document.createTextNode(g));
-								// 			} else {
-								// 				m.forEach((j) => {
-								// 					element.appendChild();
-								// 				});
-								// 			}
-								// 		}
-								// 	}
-								// }
 							});
 						}
 
