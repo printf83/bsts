@@ -414,6 +414,9 @@ core.documentReady(() => {
 					),
 					new example.code({
 						output: () => {
+							//make first letter uppercase
+							let caps = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+
 							return [
 								"primary",
 								"secondary",
@@ -424,7 +427,7 @@ core.documentReady(() => {
 								"light",
 								"dark",
 								"link",
-							].map((i) => new b.button({ color: i as IAttrBSButton["color"] }, i));
+							].map((i) => new b.button({ color: i as IAttrBSButton["color"] }, caps(i)));
 						},
 					}),
 					new example.title("Quick start 2"),

@@ -1,8 +1,8 @@
 import { bootstrapType } from "../../core/base/bootstrap.js";
 import { IElem } from "../../core/base/tag.js";
 import { bsConstArg } from "../../core/base/bootstrap.js";
-import { mergeClass } from "../../core/fn/mergeClass.js";
 import { IAttrTagUl, ul } from "../../html/ul.js";
+import { mergeClass } from "../../core/fn/mergeClass.js";
 
 export interface IAttrBSListContainer extends IAttrTagUl {
 	flush?: boolean;

@@ -127,7 +127,7 @@ const itemCode = (
 				bgColor: "body-tertiary",
 				class: [collapseable ? "collapse" : undefined],
 				id: collapseable ? id : undefined,
-				data: { loaded: "false" },
+				data: { loaded: onshow ? "false" : undefined },
 				on: {
 					"show.bs.collapse": onshow
 						? (e) => {
@@ -224,7 +224,12 @@ const convert = (attr: IAttrBSExampleContainer) => {
 		);
 	}
 
-	attr.elem = [new card.container({ id: id, class: "example" }, [new list.container({ flush: true }, e)])];
+	attr.elem = [
+		new card.container(
+			{ id: id, class: "example", overflow: "hidden" },
+			new card.body({ padding: 0 }, [new list.container({ flush: true }, e)])
+		),
+	];
 
 	delete attr.lib;
 	delete attr.css;

@@ -13,7 +13,7 @@ code .kwd {
 
 pre .com,
 code .com {
-    color: var(--bs-danger-text);
+    color: var(--bs-secondary-color);
     font-style: italic;
 }
 
