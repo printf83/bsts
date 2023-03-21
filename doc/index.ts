@@ -1,7 +1,7 @@
 import { IAttrBSButton } from "../src/bootstrap/button.js";
 import { IAttrBSIcon } from "../src/bootstrap/icon.js";
 import { b, core, h } from "../src/index.js";
-import { example } from "./example/_index.js";
+import { example } from "./ctl/example/_index.js";
 
 const changeTheme = (value: string, icon: string) => {
 	let bsTheme = document.getElementById("bs-theme") as HTMLElement;
@@ -426,6 +426,52 @@ core.documentReady(() => {
 								"link",
 							].map((i) => new b.button({ color: i as IAttrBSButton["color"] }, i));
 						},
+					}),
+					new example.title("Quick start 2"),
+					new example.text(
+						"Get started by including Bootstrap’s production-ready CSS and JavaScript via CDN {{without}} the {{need for any}} build steps. See it in practice with this Bootstrap {{http://www.codepane.com::CodePen}} demo."
+					),
+					new example.codepreview({
+						type: "ts",
+						code: `
+						() => {
+							//sample
+							return [
+								"primary",
+								"secondary",
+								"success",
+								"danger",
+								"info",
+								"warning",
+								"light",
+								"dark",
+								"link",
+							].map((i) => new b.button({ color: i as IAttrBSButton["color"] }, i));
+						}`,
+					}),
+					new example.codepreview({
+						type: "js",
+						code: `
+						() => {
+							//sample
+							return 2+2;
+						}`,
+					}),
+
+					new example.codepreview({
+						type: "css",
+						code: `
+						.button {
+							color:#fefefe;
+						}
+						`,
+					}),
+
+					new example.codepreview({
+						type: "html",
+						code: `
+						<div>test</div>
+						`,
 					}),
 				]),
 			]),

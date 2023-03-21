@@ -1,8 +1,8 @@
-import { IAttr, IElem } from "../../src/core/base/tag.js";
-import { bsConstArg } from "../../src/core/base/bootstrap.js";
-import { code as TCode } from "../../src/html/code.js";
-import { pre } from "../../src/html/pre.js";
-import { mergeObject } from "../../src/core/fn/mergeObject.js";
+import { IAttr, IElem } from "../../../src/core/base/tag.js";
+import { bsConstArg } from "../../../src/core/base/bootstrap.js";
+import { code as TCode } from "../../../src/html/code.js";
+import { pre } from "../../../src/html/pre.js";
+import { mergeObject } from "../../../src/core/fn/mergeObject.js";
 
 type IAttrBSExampleCodeType = "js" | "ts" | "html" | "css";
 
@@ -53,14 +53,17 @@ const beautify = (type: IAttrBSExampleCodeType | undefined, source_text: string)
 				end_with_newline: true,
 				indent_size: 2,
 			}) as string;
-			break;
 	}
 };
 
 const convert = (attr: IAttrBSExampleCode) => {
 	attr = mergeObject(
 		{
-			style: { maxHeight: "300px", display: "block", overflow: "auto" },
+			style: { maxHeight: "300px" },
+			display: "block",
+			overflow: "auto",
+			marginX: 0,
+			marginY: 1,
 		},
 		attr
 	);

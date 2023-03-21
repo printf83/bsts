@@ -1,17 +1,17 @@
-import { IAttr, tag } from "../../src/core/base/tag.js";
-import { bsConsNoElemArg } from "../../src/core/base/bootstrap.js";
-import { div } from "../../src/html/div.js";
-import { card } from "../../src/bootstrap/card/_index.js";
-import { list } from "../../src/bootstrap/list/_index.js";
-import { UUID } from "../../src/core/fn/uuid.js";
-import { replaceChild } from "../../src/core/fn/builder.js";
+import { IAttr, tag } from "../../../src/core/base/tag.js";
+import { bsConsNoElemArg } from "../../../src/core/base/bootstrap.js";
+import { div } from "../../../src/html/div.js";
+import { card } from "../../../src/bootstrap/card/_index.js";
+import { list } from "../../../src/bootstrap/list/_index.js";
+import { UUID } from "../../../src/core/fn/uuid.js";
+import { replaceChild } from "../../../src/core/fn/builder.js";
 import { preview } from "./preview.js";
-import { item } from "../../src/bootstrap/list/item.js";
-import { small } from "../../src/html/small.js";
-import { a } from "../../src/html/a.js";
-import { icon } from "../../src/bootstrap/icon.js";
-import { tooltip } from "../../src/bootstrap/tooltip.js";
-import { span } from "../../src/html/span.js";
+import { item } from "../../../src/bootstrap/list/item.js";
+import { small } from "../../../src/html/small.js";
+import { a } from "../../../src/html/a.js";
+import { icon } from "../../../src/bootstrap/icon.js";
+import { tooltip } from "../../../src/bootstrap/tooltip.js";
+import { span } from "../../../src/html/span.js";
 
 export interface IAttrBSExampleExt {
 	name?: string;
@@ -111,7 +111,7 @@ const itemCode = (
 
 			elem.unshift(
 				new span(
-					{ position: "relative", float: "end" },
+					{ position: "absolute", end: 0, marginEnd: 3 },
 					new tooltip(
 						{ content: "Copy to clipboard" },
 						new a({ href: "#", color: "secondary", on: { click: itemCodeCopy } }, icon.reg("clipboard"))
