@@ -27,14 +27,11 @@
 		"clear": "tsc --build --clean tsconfig.src.json && tsc --build --clean tsconfig.doc.json && clear",
 		"build": "tsc --project tsconfig.src.json && tsc --project tsconfig.doc.json",
 		"src": "tsc --project tsconfig.src.json --watch",
-		"doc": "tsc --project tsconfig.doc.json --watch",
-		"predeploy": "npm run build",
-		"deploy": "gh-pages -d build"
+		"doc": "tsc --project tsconfig.doc.json --watch"
 	},
 	"devDependencies": {
 		"@types/bootstrap": "^5.2.6",
 		"@types/js-beautify": "^1.13.3",
-		"gh-pages": "^5.0.0",
 		"typescript": "^5.0.1-rc"
 	}
 }
