@@ -13,6 +13,7 @@ import { core } from "../../../src/core/_index.js";
 import { a } from "../../../src/html/a.js";
 import { aside } from "../../../src/html/aside.js";
 import { div } from "../../../src/html/div.js";
+import { h } from "../../../src/html/h.js";
 import { hr } from "../../../src/html/hr.js";
 import { li } from "../../../src/html/li.js";
 import { main } from "../../../src/html/main.js";
@@ -487,7 +488,7 @@ const genToc = (content?: IAttrContent) => {
 							}),
 						]
 					),
-					new strong({ display: ["none", "md-block"], fontSize: 6, marginY: 2 }, "On this page"),
+					new h(5, { display: ["none", "md-block"], fontSize: 6, marginY: 2 }, "On this page"),
 					new hr({ display: ["none", "md-block"], marginY: 2 }),
 					new collapse.container(
 						{
@@ -562,11 +563,6 @@ export interface IAttrBSMainContainer extends IAttr {
 	currentVersion?: string;
 
 	content?: IAttrContent;
-
-	// onMenuChange?: (value: string) => {};
-	// onInsideLinkChange?: (value: string) => {};
-	// onVersionChange?: (value: string) => {};
-	// onThemeChange?: (value: string) => {};
 }
 
 const convert = (attr: IAttrBSMainContainer) => {
@@ -578,6 +574,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 				sticky: "top",
 				bgColor: attr.bgColor || "primary",
 				shadow: "sm",
+				padding: 3,
 			},
 			[
 				new navbar.innercontainerNav(

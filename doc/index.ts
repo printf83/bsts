@@ -54,9 +54,9 @@ core.documentReady(() => {
 			},
 
 			itemMenu: m.doc,
-			currentMenu: "doc_gettingstarted_introduction",
+			currentMenu: "doc_component_accordion",
 
-			content: getData("doc_gettingstarted_introduction"),
+			content: getData("doc_component_accordion"),
 
 			itemInsideLink: [
 				{ value: "doc", label: "Docs" },

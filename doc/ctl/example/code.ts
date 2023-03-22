@@ -13,6 +13,8 @@ import { icon } from "../../../src/bootstrap/icon.js";
 import { tooltip } from "../../../src/bootstrap/tooltip.js";
 import { span } from "../../../src/html/span.js";
 
+export type IAttrPreviewTemplat = "row" | "col";
+
 export interface IAttrBSExampleExt {
 	name?: string;
 	output?: Function;
@@ -32,6 +34,8 @@ export interface IAttrBSExampleContainer extends IAttr {
 	showScript?: boolean;
 	showManager?: boolean;
 	showHTML?: boolean;
+
+	previewTemplate?: IAttrPreviewTemplat;
 }
 
 declare var PR: {
@@ -147,11 +151,19 @@ const itemCode = (
 	return res;
 };
 
-const itemOutput = (manager: boolean, str: string) => {
+const itemOutput = (manager: boolean, previewTemplate: IAttrPreviewTemplat | undefined, str: string) => {
 	if (manager) {
 		return new list.item({ class: `example-output`, padding: 0, overflow: "auto" }, str);
 	} else {
-		return new list.item({ class: `example-output`, padding: 4, overflow: "auto", display: "flex", gap: 2 }, str);
+		switch (previewTemplate) {
+			case "col":
+				return new list.item(
+					{ class: `example-output`, padding: 4, overflow: "auto", display: "flex", gap: 2 },
+					str
+				);
+			default:
+				return new list.item({ class: `example-output`, padding: 4, overflow: "auto", gap: 2 }, str);
+		}
 	}
 };
 
@@ -167,9 +179,9 @@ const convert = (attr: IAttrBSExampleContainer) => {
 
 	if (attr.output && attr.showOutput) {
 		if (attr.manager) {
-			e.push(itemOutput(true, attr.manager(attr.output())));
+			e.push(itemOutput(true, attr.previewTemplate, attr.manager(attr.output())));
 		} else {
-			e.push(itemOutput(false, attr.output()));
+			e.push(itemOutput(false, attr.previewTemplate, attr.output()));
 		}
 	}
 
@@ -226,7 +238,7 @@ const convert = (attr: IAttrBSExampleContainer) => {
 
 	attr.elem = [
 		new card.container(
-			{ id: id, class: "example", overflow: "hidden" },
+			{ id: id, class: "example", overflow: "hidden", marginY: 3 },
 			new card.body({ padding: 0 }, [new list.container({ flush: true }, e)])
 		),
 	];
@@ -242,6 +254,8 @@ const convert = (attr: IAttrBSExampleContainer) => {
 	delete attr.showHTML;
 	delete attr.showScript;
 	delete attr.showOutput;
+
+	delete attr.previewTemplate;
 
 	return attr;
 };

@@ -1,8 +1,6 @@
-import { IAttrBSButton } from "../../src/bootstrap/button.js";
 import { table } from "../../src/bootstrap/table/_index.js";
 import { li } from "../../src/html/li.js";
 import { ol } from "../../src/html/ol.js";
-import { b } from "../../src/index.js";
 import { example } from "../ctl/example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 
@@ -16,7 +14,7 @@ export const doc_gettingstarted_introduction: IAttrContent = {
 			"Get started by including Bootstrap’s production-ready CSS and JavaScript via CDN without the need for any build steps. See it in practice with this {{https://codepen.io/team/bootstrap/pen/qBamdLj::Bootstrap CodePen demo}}."
 		),
 		new example.item(
-			new ol([
+			new ol({ paddingStart: [0, "md-4"] }, [
 				new li([
 					'{{b::Create a new}} {{index.html}} file in your project root. Include the {{<meta name="viewport">}} tag as well for {{https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag::proper responsive behavior}} in mobile devices.',
 					new example.codepreview({

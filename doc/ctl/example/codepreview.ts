@@ -23,7 +23,7 @@ export interface IAttrBSExampleCodepreview extends IAttr {
 const convert = (attr: IAttrBSExampleCodepreview): IAttr => {
 	if (attr.code) {
 		attr.elem = [
-			new card.container({ class: "example", marginY: 3, bgColor: "body-tertiary" }, [
+			new card.container({ class: "example", marginY: 3, bgColor: "body-tertiary", border: false }, [
 				new card.body([
 					new span(
 						{ position: "absolute", end: 0, marginEnd: 3 },
