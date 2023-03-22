@@ -10,7 +10,7 @@ import { attachEvent } from "./attachEvent.js";
 import { attachStyle } from "./attachStyle.js";
 import { attachClass } from "./attachClass.js";
 import { attachAlias } from "./attachAlias.js";
-import { extend } from "../fn/extend.js";
+// import { extend } from "../fn/extend.js";
 import { IAttr } from "../base/tag.js";
 
 export type IAttachFn = (
@@ -49,31 +49,25 @@ const attrFn: IAttachFn[] = [
 
 export const attachAttr = (elem: HTMLElement, attr: IAttr): HTMLElement => {
 	if (attr) {
-		attr = extend({}, attr);
+		let d = Object.assign({}, attr);
 
-		let prop = Object.keys(attr);
+		let prop = Object.keys(d);
 		if (prop) {
 			let propLength = prop.length;
 			let attrFnLength = attrFn.length;
 
 			for (let x = 0; x < propLength; x++) {
 				for (let y = 0; y < attrFnLength; y++) {
-					let k = keyOfType(prop[x], attr);
+					let k = keyOfType(prop[x], d);
 
-					if (typeof attr[k] !== "undefined" && attr[k] !== null) {
+					if (typeof d[k] !== "undefined" && d[k] !== null) {
 						if (y === attrFnLength - 1 && setting.DEBUG) {
-							console.log(
-								`Treat ${prop[x]}:${attr[k]} as another attribute.`
-							);
+							console.log(`Treat ${prop[x]}:${d[k]} as another attribute.`);
 						}
 
-						let { elem: e, attr: a } = attrFn[y](
-							prop[x],
-							elem,
-							attr
-						);
+						let { elem: e, attr: a } = attrFn[y](prop[x], elem, d);
 						elem = e;
-						attr = a;
+						d = a;
 					}
 				}
 			}

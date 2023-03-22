@@ -36,6 +36,13 @@ const convert = (attr: IAttr) => {
 		);
 
 		attr.elem = tElem;
+
+		attr = mergeObject(
+			{
+				data: { text: strElem },
+			},
+			attr
+		);
 	}
 
 	return attr;

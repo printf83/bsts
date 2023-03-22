@@ -1,5 +1,34 @@
 import { core } from "../src/index.js";
+import { genMainContent, IAttrContent, IAttrItemMenu } from "./ctl/main/container.js";
 import { main } from "./ctl/main/_index.js";
+import { data } from "./data/_index.js";
+
+let d = data;
+let m = {
+	doc: [
+		{
+			label: "Getting started",
+			icon: { icon: "book-open", color: "primary" },
+			item: [{ label: "Introduction", value: "doc_gettingstarted_introduction" }],
+		},
+		{
+			label: "Component",
+			icon: { icon: "hard-drive", color: "info" },
+			item: [{ label: "Accordion", value: "doc_component_accordion" }],
+		},
+	] as IAttrItemMenu[],
+};
+
+const onmenuchange = (value: string) => {
+	let v = value.split("_");
+	let c = d[v[0]][v[1]][v[2]] as IAttrContent;
+
+	c.sourceUrl = `https://github.com/printf83/bsts/tree/master/doc/data/${v.join("/")}.ts`;
+	c.sourceWeb = "Github";
+
+	let contentbody = document.getElementById("bs-main") as HTMLElement;
+	core.replaceChild(contentbody, genMainContent(c));
+};
 
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
@@ -11,34 +40,14 @@ core.documentReady(() => {
 			textColor: "light",
 			icon: { weight: "xl", icon: "github", type: "fab" },
 
-			itemMenu: [
-				{
-					label: "Getting started",
-					icon: { icon: "book-open", color: "primary" },
-					item: [
-						{ label: "Introduction", value: "getting_started_introduction" },
-						{ label: "Download", value: "getting_started_download" },
-						{ label: "Contents", value: "getting_started_contents" },
-						{ label: "Browser & devices", value: "getting_started_browser_devices" },
-						{ label: "Javascript", value: "getting_started_javascript" },
-						{ label: "Webpack", value: "webpack" },
-						{ label: "Parcel", value: "getting_started_parcel" },
-					],
+			on: {
+				"bs-menu-change": (e) => {
+					onmenuchange((<CustomEvent>e).detail);
 				},
-				{
-					label: "Component",
-					icon: { icon: "hard-drive", color: "info" },
-					item: [
-						{ label: "Accordion", value: "component_accordion" },
-						{ label: "Alerts", value: "component_alerts" },
-						{ label: "Badge", value: "component_badge" },
-						{ label: "Breadcrumb", value: "component_breadcrumb" },
-						{ label: "Button", value: "component_button" },
-						{ label: "Button group", value: "component_button_group" },
-					],
-				},
-			],
-			currentMenu: "getting_started_browser_devices",
+			},
+
+			itemMenu: m.doc,
+			currentMenu: "doc_gettingstarted_introduction",
 
 			itemInsideLink: [
 				{ value: "doc", label: "Docs" },

@@ -117,7 +117,7 @@ export const build = (
 							});
 						}
 
-						e.dom = element;
+						// e.dom = element;
 
 						if (append) {
 							if (beforeElem) {

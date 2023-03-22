@@ -1,4 +1,3 @@
-import { button, IAttrBSButton } from "../../../src/bootstrap/button.js";
 import { collapse } from "../../../src/bootstrap/collapse/_index.js";
 import { dropdown } from "../../../src/bootstrap/dropdown/_index.js";
 import { IAttrBSIcon, icon } from "../../../src/bootstrap/icon.js";
@@ -7,7 +6,8 @@ import { navbar } from "../../../src/bootstrap/navbar/_index.js";
 import { offcanvas } from "../../../src/bootstrap/offcanvas/_index.js";
 import { verticalrule } from "../../../src/bootstrap/verticalrule.js";
 import { bootstrapType, bsConsNoElemArg } from "../../../src/core/base/bootstrap.js";
-import { IAttr, tag } from "../../../src/core/base/tag.js";
+import { IAttr, IElem, isTag, tag } from "../../../src/core/base/tag.js";
+import { mergeClass } from "../../../src/core/fn/mergeClass.js";
 import { core } from "../../../src/core/_index.js";
 import { a } from "../../../src/html/a.js";
 import { aside } from "../../../src/html/aside.js";
@@ -19,6 +19,8 @@ import { nav } from "../../../src/html/nav.js";
 import { span } from "../../../src/html/span.js";
 import { strong } from "../../../src/html/strong.js";
 import { ul } from "../../../src/html/ul.js";
+import { subtitle } from "../example/subtitle.js";
+import { title } from "../example/title.js";
 import { example } from "../example/_index.js";
 
 const changeTheme = (value: string, icon: IAttrBSIcon) => {
@@ -39,6 +41,9 @@ const changeTheme = (value: string, icon: IAttrBSIcon) => {
 
 	core.replaceChild(bsTheme, new label({ icon: icon, labelDisplay: "lg-none" }, "Toggle theme"));
 	document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", value);
+
+	let root = bsTheme.closest(".bs-main-root");
+	root?.dispatchEvent(new CustomEvent("bs-theme-change", { detail: value }));
 };
 
 const changeVersion = (value: string) => {
@@ -59,6 +64,9 @@ const changeVersion = (value: string) => {
 	}
 
 	core.replaceWith(bsVersionLabel, new span({ id: "bs-version-label" }, `v${value}`));
+
+	let root = bsVersion.closest(".bs-main-root");
+	root?.dispatchEvent(new CustomEvent("bs-version-change", { detail: value }));
 };
 
 const changeInsideLink = (value: string) => {
@@ -73,6 +81,9 @@ const changeInsideLink = (value: string) => {
 	if (newActive) {
 		newActive.classList.add("active");
 	}
+
+	let root = bsInsideLink.closest(".bs-main-root");
+	root?.dispatchEvent(new CustomEvent("bs-inside-link-change", { detail: value }));
 };
 
 const changeMenu = (value: string) => {
@@ -89,6 +100,9 @@ const changeMenu = (value: string) => {
 		newActive.classList.add("active");
 		newActive.setAttribute("aria-current", "page");
 	}
+
+	let root = bsMenu.closest(".bs-main-root");
+	root?.dispatchEvent(new CustomEvent("bs-menu-change", { detail: value }));
 };
 
 export type availabelTheme = "dark" | "light" | "auto";
@@ -124,6 +138,23 @@ export interface IAttrItemMenu {
 export interface IAttrItemSubMenu {
 	label: string;
 	value: string;
+}
+
+export interface IAttrTocItem {
+	href: string;
+	label: string;
+	item?: IAttrTocItem[];
+}
+
+export interface IAttrContent {
+	title?: string;
+	sourceUrl?: string;
+	sourceWeb?: string;
+	addedVersion?: string;
+
+	description?: string;
+
+	item?: IElem;
 }
 
 const genTheme = (
@@ -376,6 +407,132 @@ const genMenu = (itemMenu?: IAttrItemMenu[], currentMenu?: string) => {
 	}
 };
 
+const genIntro = (content?: IAttrContent) => {
+	if (content) {
+		return new div({ class: "bs-intro", paddingTop: 2, paddingStart: "lg-2" }, [
+			content.title
+				? new example.pagetitle(
+						{
+							sourceWeb: content.sourceWeb,
+							sourceUrl: content.sourceUrl,
+							addedVersion: content.addedVersion,
+						},
+						content.title ? content.title : ""
+				  )
+				: "",
+			content.description ? new example.description(content.description) : "",
+		]);
+	} else {
+		return "";
+	}
+};
+
+const genToc = (content?: IAttrContent) => {
+	if (content && content.item && Array.isArray(content.item)) {
+		let t: IAttrTocItem[] = [];
+
+		content.item.forEach((i) => {
+			if (isTag<title>(i)) {
+				if (i.attr?.id && i.attr?.data?.text) {
+					let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
+					t.push(item);
+				}
+			} else if (isTag<subtitle>(i)) {
+				if (i.attr?.id && i.attr?.data?.text) {
+					let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
+
+					if (t.length === 0) {
+						t.push(item);
+					} else {
+						if (!t[t.length - 1].item) {
+							t[t.length - 1].item = [];
+						}
+
+						t[t.length - 1].item?.push(item);
+					}
+				}
+			}
+		});
+
+		if (t.length > 0) {
+			return new div(
+				{
+					class: "bs-toc",
+					marginTop: 3,
+					marginBottom: [5, "lg-5"],
+					marginY: "lg-0",
+					paddingStart: "xl-3",
+					textColor: "body-secondary",
+				},
+				[
+					new collapse.toggle(
+						{
+							color: "link",
+							padding: "md-0",
+							marginBottom: [2, "md-0"],
+							textDecoration: "none",
+							class: "bs-toc-toggle",
+							display: "md-none",
+							target: "#tocContents",
+							control: "tocContents",
+						},
+						[
+							"On this page",
+							new icon({
+								icon: "sort",
+								display: "md-none",
+								marginStart: 2,
+								aria: { hidden: "true" },
+							}),
+						]
+					),
+					new strong({ display: ["none", "md-block"], fontSize: 6, marginY: 2 }, "On this page"),
+					new hr({ display: ["none", "md-block"], marginY: 2 }),
+					new collapse.container(
+						{
+							id: "tocContents",
+							class: "bs-toc-collapse",
+						},
+						new nav(
+							{ id: "TableOfContents" },
+							new ul(
+								t.map((i) => {
+									return new li([
+										new a({ href: i.href }, i.label),
+										i.item
+											? new ul(
+													i.item.map((j) => {
+														return new li(new a({ href: j.href }, j.label));
+													})
+											  )
+											: "",
+									]);
+								})
+							)
+						)
+					),
+				]
+			);
+		} else {
+			return "";
+		}
+	} else {
+		return "";
+	}
+};
+
+const genContent = (content?: IAttrContent) => {
+	if (content && content.item) {
+		return new div({ class: "bs-content", paddingStart: "lg-2" }, content.item);
+	} else {
+		return "";
+	}
+};
+
+export const genMainContent = (content?: IAttrContent) => {
+	return [genIntro(content), genToc(content), genContent(content)];
+};
+
 export interface IAttrBSMainContainer extends IAttr {
 	icon?: IAttrBSIcon;
 	name?: string;
@@ -394,9 +551,17 @@ export interface IAttrBSMainContainer extends IAttr {
 	currentInsideLink?: string;
 	currentTheme?: availabelTheme;
 	currentVersion?: string;
+
+	content?: IAttrContent;
+
+	// onMenuChange?: (value: string) => {};
+	// onInsideLinkChange?: (value: string) => {};
+	// onVersionChange?: (value: string) => {};
+	// onThemeChange?: (value: string) => {};
 }
 
 const convert = (attr: IAttrBSMainContainer) => {
+	attr.class = mergeClass(attr.class, "bs-main-root");
 	attr.elem = [
 		new navbar.containerHeader(
 			{
@@ -528,163 +693,80 @@ const convert = (attr: IAttrBSMainContainer) => {
 					]
 				),
 			]),
-			new main({ order: 1, class: "bs-main" }, [
-				new div({ class: "bs-intro", paddingTop: 2, paddingStart: "lg-2" }, [
-					new example.pagetitle(
-						{
-							sourceUrl: "#",
-							addedVersion: "5.3",
-						},
-						"Get {{started}}"
-					),
-					new example.description(
-						"{{https://www.google.com::Bootstrap}} is a {{b::powerful}}, feature-packed {{i::frontend}} toolkit. {{u::Build}} anything—from prototype to production—in {{minutes.}}"
-					),
-				]),
-				new div(
-					{
-						class: "bs-toc",
-						marginTop: 3,
-						marginBottom: [5, "lg-5"],
-						marginY: "lg-0",
-						paddingStart: "xl-3",
-						textColor: "body-secondary",
-					},
-					[
-						new collapse.toggle(
-							{
-								color: "link",
-								padding: "md-0",
-								marginBottom: [2, "md-0"],
-								textDecoration: "none",
-								class: "bs-toc-toggle",
-								display: "md-none",
-								target: "#tocContents",
-								control: "tocContents",
-							},
-							[
-								"On this page",
-								new icon({
-									icon: "sort",
-									display: "md-none",
-									marginStart: 2,
-									aria: { hidden: "true" },
-								}),
-							]
-						),
-						new strong({ display: ["none", "md-block"], fontSize: 6, marginY: 2 }, "On this page"),
-						new hr({ display: ["none", "md-block"], marginY: 2 }),
-						new collapse.container(
-							{
-								id: "tocContents",
-								class: "bs-toc-collapse",
-							},
-							new nav(
-								{ id: "TableOfContents" },
-								new ul(
-									[
-										{ href: "#", label: "Quick start" },
-										{ href: "#", label: "CDN links" },
-										{ href: "#", label: "Next steps" },
-										{ href: "#", label: "JS components" },
-										{
-											href: "#",
-											label: "Important globals",
-											item: [
-												{ href: "#", label: "HTML5 doctype" },
-												{ href: "#", label: "Responsive meta tag" },
-												{ href: "#", label: "Box-sizing" },
-												{ href: "#", label: "Reboot" },
-											],
-										},
-										{ href: "#", label: "Community" },
-									].map((i) => {
-										return new li([
-											new a({ href: i.href }, i.label),
-											i.item
-												? new ul(
-														i.item.map((j) => {
-															return new li(new a({ href: j.href }, j.label));
-														})
-												  )
-												: "",
-										]);
-									})
-								)
-							)
-						),
-					]
-				),
-				new div({ class: "bs-content", paddingStart: "lg-2" }, [
-					new example.title("Quick start "),
-					new example.text(
-						"Get started by including Bootstrap’s production-ready CSS and JavaScript via CDN {{without}} the {{need for any}} build steps. See it in practice with this Bootstrap {{http://www.codepane.com::CodePen}} demo."
-					),
-					new example.code({
-						output: () => {
-							//make first letter uppercase
-							let caps = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+			new main({ order: 1, class: "bs-main", id: "bs-main" }, [
+				genIntro(attr.content),
+				genToc(attr.content),
+				genContent(attr.content),
+				// new div({ class: "bs-content", paddingStart: "lg-2" }, [
+				// 	new example.title("Quick start "),
+				// 	new example.text(
+				// 		"Get started by including Bootstrap’s production-ready CSS and JavaScript via CDN {{without}} the {{need for any}} build steps. See it in practice with this Bootstrap {{http://www.codepane.com::CodePen}} demo."
+				// 	),
+				// 	new example.code({
+				// 		output: () => {
+				// 			//make first letter uppercase
+				// 			let caps = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
-							return [
-								"primary",
-								"secondary",
-								"success",
-								"danger",
-								"info",
-								"warning",
-								"light",
-								"dark",
-								"link",
-							].map((i) => new button({ color: i as IAttrBSButton["color"] }, caps(i)));
-						},
-					}),
-					new example.title("Quick start 2"),
-					new example.text(
-						"Get started by including Bootstrap’s production-ready CSS and JavaScript via CDN {{without}} the {{need for any}} build steps. See it in practice with this Bootstrap {{http://www.codepane.com::CodePen}} demo."
-					),
-					new example.codepreview({
-						type: "ts",
-						code: `
-						() => {
-							//sample
-							return [
-								"primary",
-								"secondary",
-								"success",
-								"danger",
-								"info",
-								"warning",
-								"light",
-								"dark",
-								"link",
-							].map((i) => new button({ color: i as IAttrBSButton["color"] }, i));
-						}`,
-					}),
-					new example.codepreview({
-						type: "js",
-						code: `
-						() => {
-							//sample
-							return 2+2;
-						}`,
-					}),
+				// 			return [
+				// 				"primary",
+				// 				"secondary",
+				// 				"success",
+				// 				"danger",
+				// 				"info",
+				// 				"warning",
+				// 				"light",
+				// 				"dark",
+				// 				"link",
+				// 			].map((i) => new button({ color: i as IAttrBSButton["color"] }, caps(i)));
+				// 		},
+				// 	}),
+				// 	new example.title("Quick start 2"),
+				// 	new example.text(
+				// 		"Get started by including Bootstrap’s production-ready CSS and JavaScript via CDN {{without}} the {{need for any}} build steps. See it in practice with this Bootstrap {{http://www.codepane.com::CodePen}} demo."
+				// 	),
+				// 	new example.codepreview({
+				// 		type: "ts",
+				// 		code: `
+				// 		() => {
+				// 			//sample
+				// 			return [
+				// 				"primary",
+				// 				"secondary",
+				// 				"success",
+				// 				"danger",
+				// 				"info",
+				// 				"warning",
+				// 				"light",
+				// 				"dark",
+				// 				"link",
+				// 			].map((i) => new button({ color: i as IAttrBSButton["color"] }, i));
+				// 		}`,
+				// 	}),
+				// 	new example.codepreview({
+				// 		type: "js",
+				// 		code: `
+				// 		() => {
+				// 			//sample
+				// 			return 2+2;
+				// 		}`,
+				// 	}),
 
-					new example.codepreview({
-						type: "css",
-						code: `
-						.button {
-							color:#fefefe;
-						}
-						`,
-					}),
+				// 	new example.codepreview({
+				// 		type: "css",
+				// 		code: `
+				// 		.button {
+				// 			color:#fefefe;
+				// 		}
+				// 		`,
+				// 	}),
 
-					new example.codepreview({
-						type: "html",
-						code: `
-						<div>test</div>
-						`,
-					}),
-				]),
+				// 	new example.codepreview({
+				// 		type: "html",
+				// 		code: `
+				// 		<div>test</div>
+				// 		`,
+				// 	}),
+				// ]),
 			]),
 		]),
 	];
@@ -706,6 +788,8 @@ const convert = (attr: IAttrBSMainContainer) => {
 	delete attr.currentInsideLink;
 	delete attr.currentTheme;
 	delete attr.currentVersion;
+
+	delete attr.content;
 
 	return attr;
 };
