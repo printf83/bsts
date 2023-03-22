@@ -149,9 +149,9 @@ const itemCode = (
 
 const itemOutput = (manager: boolean, str: string) => {
 	if (manager) {
-		return new list.item({ class: `example-output`, padding: 0, overflow: "scroll" }, str);
+		return new list.item({ class: `example-output`, padding: 0, overflow: "auto" }, str);
 	} else {
-		return new list.item({ class: `example-output`, padding: 4, overflow: "scroll", display: "flex", gap: 2 }, str);
+		return new list.item({ class: `example-output`, padding: 4, overflow: "auto", display: "flex", gap: 2 }, str);
 	}
 };
 
