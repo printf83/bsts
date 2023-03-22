@@ -61,10 +61,40 @@ const changeVersion = (value: string) => {
 	core.replaceWith(bsVersionLabel, new span({ id: "bs-version-label" }, `v${value}`));
 };
 
+const changeInsideLink = (value: string) => {
+	let bsInsideLink = document.getElementById("bs-inside-link") as HTMLElement;
+
+	let lastActive = bsInsideLink.querySelectorAll(".nav-link.active")[0];
+	if (lastActive) {
+		lastActive.classList.remove("active");
+	}
+
+	let newActive = bsInsideLink.querySelectorAll(`.nav-link[data-value='${value}']`)[0];
+	if (newActive) {
+		newActive.classList.add("active");
+	}
+};
+
+const changeMenu = (value: string) => {
+	let bsMenu = document.getElementById("bs-menu") as HTMLElement;
+
+	let lastActive = bsMenu.querySelectorAll(".bs-links-link.active")[0];
+	if (lastActive) {
+		lastActive.classList.remove("active");
+		lastActive.removeAttribute("aria-current");
+	}
+
+	let newActive = bsMenu.querySelectorAll(`.bs-links-link[data-value='${value}']`)[0];
+	if (newActive) {
+		newActive.classList.add("active");
+		newActive.setAttribute("aria-current", "page");
+	}
+};
+
 export type availabelTheme = "dark" | "light" | "auto";
 
 export interface IAttrItemInsideLink {
-	href: string;
+	value: string;
 	label: string;
 }
 
@@ -93,7 +123,7 @@ export interface IAttrItemMenu {
 
 export interface IAttrItemSubMenu {
 	label: string;
-	href: string;
+	value: string;
 }
 
 const genTheme = (
@@ -266,16 +296,22 @@ const genInsideLink = (
 		return [
 			new hr({ display: "lg-none", textColor: "light" }),
 			new navbar.itemcontainer(
-				{ flex: ["wrap", "row"], class: "bs-navbar-nav" },
+				{ flex: ["wrap", "row"], class: "bs-navbar-nav", id: "bs-inside-link" },
 				itemInsideLink.map((i) => {
 					return new navbar.item({ col: [6, "lg-auto"] }, [
 						new navbar.link(
 							{
 								paddingY: 2,
 								paddingX: [0, "lg-2"],
-								href: i.href,
-								active: i.href === currentInsideLink,
+								href: "#",
+								active: i.value === currentInsideLink,
 								textColor: textColor,
+								data: { value: i.value },
+								on: {
+									click: (_e) => {
+										changeInsideLink(i.value);
+									},
+								},
 							},
 							i.label
 						),
@@ -304,13 +340,14 @@ const genMenu = (itemMenu?: IAttrItemMenu[], currentMenu?: string) => {
 				),
 				new ul(
 					{
+						id: "bs-menu",
 						unstyle: true,
 						fontWeight: "normal",
 						paddingBottom: 2,
 						class: "small",
 					},
 					i.item.map((j) => {
-						let active = j.href === currentMenu ? true : false;
+						let active = j.value === currentMenu ? true : false;
 
 						return new li(
 							new a(
@@ -318,8 +355,14 @@ const genMenu = (itemMenu?: IAttrItemMenu[], currentMenu?: string) => {
 									class: ["bs-links-link", active ? "active" : undefined],
 									display: "inline-block",
 									rounded: true,
-									href: j.href,
+									href: "#",
 									aria: { current: active ? "page" : undefined },
+									data: { value: j.value },
+									on: {
+										click: (_e) => {
+											changeMenu(j.value);
+										},
+									},
 								},
 								j.label
 							)

@@ -1,12 +1,6 @@
 import { core } from "../src/index.js";
 import { main } from "./ctl/main/_index.js";
 
-// const changeTheme = (value: string, icon: string) => {
-// 	let bsTheme = document.getElementById("bs-theme") as HTMLElement;
-// 	core.replaceChild(bsTheme, new b.label({ icon: icon, labelDisplay: "lg-none" }, "Toggle theme"));
-// 	document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", value);
-// };
-
 core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 	core.replaceChild(
@@ -22,43 +16,35 @@ core.documentReady(() => {
 					label: "Getting started",
 					icon: { icon: "book-open", color: "primary" },
 					item: [
-						{ label: "Introduction", href: "#" },
-						{ label: "Download", href: "#download_menu" },
-						{ label: "Contents", href: "#" },
-						{ label: "Browser & devices", href: "#" },
-						{ label: "Javascript", href: "#" },
-						{ label: "Webpack", href: "#" },
-						{ label: "Parcel", href: "#" },
-						{ label: "Vite", href: "#" },
-						{ label: "Accessibility", href: "#" },
-						{ label: "RFS", href: "#" },
-						{ label: "RTL", href: "#" },
-						{ label: "Contribute", href: "#" },
+						{ label: "Introduction", value: "getting_started_introduction" },
+						{ label: "Download", value: "getting_started_download" },
+						{ label: "Contents", value: "getting_started_contents" },
+						{ label: "Browser & devices", value: "getting_started_browser_devices" },
+						{ label: "Javascript", value: "getting_started_javascript" },
+						{ label: "Webpack", value: "webpack" },
+						{ label: "Parcel", value: "getting_started_parcel" },
 					],
 				},
 				{
 					label: "Component",
 					icon: { icon: "hard-drive", color: "info" },
 					item: [
-						{ label: "Accordion", href: "#" },
-						{ label: "Alerts", href: "#" },
-						{ label: "Badge", href: "#" },
-						{ label: "Breadcrumb", href: "#" },
-						{ label: "Button", href: "#" },
-						{ label: "Button group", href: "#" },
+						{ label: "Accordion", value: "component_accordion" },
+						{ label: "Alerts", value: "component_alerts" },
+						{ label: "Badge", value: "component_badge" },
+						{ label: "Breadcrumb", value: "component_breadcrumb" },
+						{ label: "Button", value: "component_button" },
+						{ label: "Button group", value: "component_button_group" },
 					],
 				},
 			],
-			currentMenu: "#download_menu",
+			currentMenu: "getting_started_browser_devices",
 
 			itemInsideLink: [
-				{ href: "#doc", label: "Docs" },
-				{ href: "#example", label: "Examples" },
-				{ href: "#icon", label: "Icons" },
-				{ href: "#theme", label: "Themes" },
-				{ href: "#blog", label: "Blog" },
+				{ value: "doc", label: "Docs" },
+				{ value: "example", label: "Examples" },
 			],
-			currentInsideLink: "#doc",
+			currentInsideLink: "doc",
 
 			itemOutsideLink: [
 				{ href: "#", icon: { icon: "github", type: "fab" }, label: "Github" },

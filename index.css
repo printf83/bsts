@@ -1,3 +1,11 @@
+a:hover *{
+    cursor: pointer;
+}
+
+.bs-navbar-nav .nav-link.active{
+    font-weight: 600;
+}
+
 /* example */
 @media (max-width: 768px) {
 .example.card {
