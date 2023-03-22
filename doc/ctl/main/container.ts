@@ -515,17 +515,7 @@ const genToc = (content?: IAttrContent) => {
 				]
 			);
 		} else {
-			return new div(
-				{
-					class: "bs-toc",
-					marginTop: 3,
-					marginBottom: [5, "lg-5"],
-					marginY: "lg-0",
-					paddingStart: "xl-3",
-					textColor: "body-secondary",
-				},
-				""
-			);
+			return "";
 		}
 	} else {
 		return "";
