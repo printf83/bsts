@@ -208,6 +208,11 @@ a:hover *,
     text-decoration: none
 }
 
+.bs-toc nav a.active {
+    color:var(--bs-body-color);
+    font-weight: bold;
+}
+
 .bs-toc nav a code {
     font: inherit
 }

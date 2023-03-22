@@ -1,7 +1,11 @@
 import { core } from "../src/index.js";
-import { genMainContent, IAttrContent, IAttrItemMenu } from "./ctl/main/container.js";
+import { genMainContent, IAttrItemMenu } from "./ctl/main/container.js";
 import { main } from "./ctl/main/_index.js";
 import { data } from "./data/_index.js";
+
+declare var PR: {
+	prettyPrint: () => void;
+};
 
 let m = {
 	doc: [
@@ -18,15 +22,19 @@ let m = {
 	] as IAttrItemMenu[],
 };
 
-const onmenuchange = (value: string) => {
-	let v = value.split("_");
+const getData = (value: string) => {
 	let c = data(value);
 
-	c.sourceUrl = `https://github.com/printf83/bsts/tree/master/doc/data/${v.join("/")}.ts`;
+	c.sourceUrl = `https://github.com/printf83/bsts/tree/master/doc/data/${value}.ts`;
 	c.sourceWeb = "Github";
+	return c;
+};
 
+const onmenuchange = (value: string) => {
 	let contentbody = document.getElementById("bs-main") as HTMLElement;
-	core.replaceChild(contentbody, genMainContent(c));
+	core.replaceChild(contentbody, genMainContent(getData(value)));
+	core.init(contentbody);
+	PR.prettyPrint();
 };
 
 core.documentReady(() => {
@@ -47,6 +55,8 @@ core.documentReady(() => {
 
 			itemMenu: m.doc,
 			currentMenu: "doc_gettingstarted_introduction",
+
+			content: getData("doc_gettingstarted_introduction"),
 
 			itemInsideLink: [
 				{ value: "doc", label: "Docs" },

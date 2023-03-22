@@ -13,10 +13,15 @@ export type buildArg = tag | string | (tag | string)[];
 
 export const init = (container: HTMLElement) => {
 	const popoverTriggerList = container.querySelectorAll('[data-bs-toggle="popover"]');
-	[...popoverTriggerList].map((popoverTriggerEl) => new window.bootstrap.Popover(popoverTriggerEl));
+	[...popoverTriggerList].map((i) => new window.bootstrap.Popover(i));
 
 	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-	[...tooltipTriggerList].map((tooltipTriggerEl) => new window.bootstrap.Tooltip(tooltipTriggerEl));
+	[...tooltipTriggerList].map((i) => new window.bootstrap.Tooltip(i));
+
+	const scrollspyTriggerList = document.querySelectorAll('[data-bs-spy="scroll"]');
+	[...scrollspyTriggerList].map((i) => {
+		window.bootstrap.ScrollSpy.getOrCreateInstance(i).refresh();
+	});
 };
 
 const markup = (str: string) => {

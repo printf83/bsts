@@ -4,6 +4,7 @@ import { IAttrBSIcon, icon } from "../../../src/bootstrap/icon.js";
 import { label } from "../../../src/bootstrap/label.js";
 import { navbar } from "../../../src/bootstrap/navbar/_index.js";
 import { offcanvas } from "../../../src/bootstrap/offcanvas/_index.js";
+import { scrollspy } from "../../../src/bootstrap/scrollspy.js";
 import { verticalrule } from "../../../src/bootstrap/verticalrule.js";
 import { bootstrapType, bsConsNoElemArg } from "../../../src/core/base/bootstrap.js";
 import { IAttr, IElem, isTag, tag } from "../../../src/core/base/tag.js";
@@ -514,7 +515,17 @@ const genToc = (content?: IAttrContent) => {
 				]
 			);
 		} else {
-			return "";
+			return new div(
+				{
+					class: "bs-toc",
+					marginTop: 3,
+					marginBottom: [5, "lg-5"],
+					marginY: "lg-0",
+					paddingStart: "xl-3",
+					textColor: "body-secondary",
+				},
+				""
+			);
 		}
 	} else {
 		return "";
@@ -523,7 +534,15 @@ const genToc = (content?: IAttrContent) => {
 
 const genContent = (content?: IAttrContent) => {
 	if (content && content.item) {
-		return new div({ class: "bs-content", paddingStart: "lg-2" }, content.item);
+		return new scrollspy(
+			{
+				target: "#TableOfContents",
+				smooth: true,
+				class: "bs-content",
+				paddingStart: "lg-2",
+			},
+			content.item
+		);
 	} else {
 		return "";
 	}

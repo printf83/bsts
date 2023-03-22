@@ -6,6 +6,7 @@ import { div } from "../html/div.js";
 export interface IAttrBSScrollspy extends IAttr {
 	target?: string;
 	smooth?: boolean;
+	rootMargin?: string;
 }
 const convert = (attr: IAttrBSScrollspy) => {
 	attr = mergeObject(
@@ -14,6 +15,7 @@ const convert = (attr: IAttrBSScrollspy) => {
 				"bs-spy": "scroll",
 				"bs-target": attr.target,
 				"bs-smooth-scroll": attr.smooth ? "true" : undefined,
+				"bs-root-margin": attr.rootMargin,
 			},
 			tabindex: attr.tabindex || "0",
 		},
@@ -22,6 +24,7 @@ const convert = (attr: IAttrBSScrollspy) => {
 
 	delete attr.target;
 	delete attr.smooth;
+	delete attr.rootMargin;
 
 	return attr;
 };
