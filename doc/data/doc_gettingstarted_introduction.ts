@@ -1,9 +1,9 @@
-import { IAttrBSButton } from "../../../../src/bootstrap/button.js";
-import { b } from "../../../../src/index.js";
-import { example } from "../../../ctl/example/_index.js";
-import { IAttrContent } from "../../../ctl/main/container.js";
+import { IAttrBSButton } from "../../src/bootstrap/button.js";
+import { b } from "../../src/index.js";
+import { example } from "../ctl/example/_index.js";
+import { IAttrContent } from "../ctl/main/container.js";
 
-export const introduction: IAttrContent = {
+export const doc_gettingstarted_introduction: IAttrContent = {
 	title: "Introduction",
 	description: "Hello world",
 	item: [

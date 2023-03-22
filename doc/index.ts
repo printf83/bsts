@@ -3,7 +3,6 @@ import { genMainContent, IAttrContent, IAttrItemMenu } from "./ctl/main/containe
 import { main } from "./ctl/main/_index.js";
 import { data } from "./data/_index.js";
 
-let d = data;
 let m = {
 	doc: [
 		{
@@ -21,7 +20,7 @@ let m = {
 
 const onmenuchange = (value: string) => {
 	let v = value.split("_");
-	let c = d[v[0]][v[1]][v[2]] as IAttrContent;
+	let c = data(value);
 
 	c.sourceUrl = `https://github.com/printf83/bsts/tree/master/doc/data/${v.join("/")}.ts`;
 	c.sourceWeb = "Github";
