@@ -398,10 +398,10 @@ export const doc_component_alert: IAttrContent = {
 						color: "info",
 						dismissible: true,
 						on: {
-							"close.bs.alert": (e_) => {
+							"close.bs.alert": (_e) => {
 								console.log("close.bs.alert trigged");
 							},
-							"closed.bs.alert": (e_) => {
+							"closed.bs.alert": (_e) => {
 								console.log("closed.bs.alert trigged");
 							},
 						},
