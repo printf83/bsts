@@ -37,21 +37,21 @@ const beautify = (type: IAttrBSExampleCodeType | undefined, source_text: string)
 			return html_beautify(source_text, {
 				preserve_newlines: false,
 				end_with_newline: true,
-				indent_size: 2,
+				indent_size: 4,
 			}) as string;
 
 		case "css":
 			return css_beautify(source_text, {
 				preserve_newlines: false,
 				end_with_newline: true,
-				indent_size: 2,
+				indent_size: 4,
 			}) as string;
 
 		default:
 			return js_beautify(source_text, {
 				preserve_newlines: true,
 				end_with_newline: true,
-				indent_size: 2,
+				indent_size: 4,
 			}) as string;
 	}
 };

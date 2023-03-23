@@ -433,12 +433,12 @@ const genToc = (content?: IAttrContent) => {
 		let t: IAttrTocItem[] = [];
 
 		content.item.forEach((i) => {
-			if (isTag<title>(i)) {
+			if (isTag<title>(i) && i.tag === "h2") {
 				if (i.attr?.id && i.attr?.data?.text) {
 					let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
 					t.push(item);
 				}
-			} else if (isTag<subtitle>(i)) {
+			} else if (isTag<subtitle>(i) && i.tag === "h3") {
 				if (i.attr?.id && i.attr?.data?.text) {
 					let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
 
