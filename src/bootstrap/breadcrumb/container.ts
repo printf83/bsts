@@ -3,9 +3,11 @@ import { bsConstArg } from "../../core/base/bootstrap.js";
 import { mergeObject } from "../../core/fn/mergeObject.js";
 import { nav } from "../../html/nav.js";
 import { ol } from "../../html/ol.js";
+import { IAttrBSBreadcrumbItem, item } from "./item.js";
 
 export interface IAttrBSBreadcrumbContainer extends IAttr {
 	divider?: string;
+	item?: IAttrBSBreadcrumbItem | IAttrBSBreadcrumbItem[];
 }
 
 const convert = (attr: IAttrBSBreadcrumbContainer) => {
@@ -26,12 +28,29 @@ const convert = (attr: IAttrBSBreadcrumbContainer) => {
 			attr.elem
 		);
 	} else {
-		attr.elem = new ol({
-			class: "breadcrumb",
-		});
+		if (attr.item) {
+			let tItem: IAttrBSBreadcrumbItem[] = Array.isArray(attr.item) ? attr.item : [attr.item];
+
+			attr.elem = new ol(
+				{
+					class: "breadcrumb",
+				},
+				tItem.map((i, ix) => {
+					if (ix === tItem.length - 1) {
+						i.active = i.active || true;
+					}
+
+					return new item(i);
+				})
+			);
+		} else {
+			attr.elem = new ol({
+				class: "breadcrumb",
+			});
+		}
 	}
 
-	delete attr.label;
+	delete attr.item;
 
 	return attr;
 };
