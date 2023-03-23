@@ -6,7 +6,7 @@ import { h, HLevel } from "../../html/h.js";
 
 const convert = (attr: IAttr) => {
 	//add alert-header
-	attr.class = mergeClass(attr.class, "alert-header");
+	attr.class = mergeClass(attr.class, "alert-heading");
 	return attr;
 };
 

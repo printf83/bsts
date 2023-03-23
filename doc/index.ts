@@ -3,6 +3,8 @@ import { genMainContent, IAttrItemMenu } from "./ctl/main/container.js";
 import { main } from "./ctl/main/_index.js";
 import { data } from "./data/_index.js";
 
+let CURRENT_PAGE = "doc_component_alert";
+
 declare var PR: {
 	prettyPrint: () => void;
 };
@@ -17,7 +19,10 @@ let m = {
 		{
 			label: "Component",
 			icon: { icon: "hard-drive", color: "info" },
-			item: [{ label: "Accordion", value: "doc_component_accordion" }],
+			item: [
+				{ label: "Accordion", value: "doc_component_accordion" },
+				{ label: "Alert", value: "doc_component_alert" },
+			],
 		},
 	] as IAttrItemMenu[],
 };
@@ -54,9 +59,9 @@ core.documentReady(() => {
 			},
 
 			itemMenu: m.doc,
-			currentMenu: "doc_component_accordion",
+			currentMenu: CURRENT_PAGE,
 
-			content: getData("doc_component_accordion"),
+			content: getData(CURRENT_PAGE),
 
 			itemInsideLink: [
 				{ value: "doc", label: "Docs" },

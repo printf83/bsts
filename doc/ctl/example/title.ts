@@ -5,8 +5,20 @@ import { UUID } from "../../../src/core/fn/uuid.js";
 import { a } from "../../../src/html/a.js";
 import { h } from "../../../src/html/h.js";
 
+const genIDFromElem = (attr: IAttr) => {
+	if (!attr.id) {
+		if (typeof attr.elem === "string") {
+			attr.id = (attr.elem as string).toLowerCase().split(" ").join("_");
+		} else {
+			attr.id = UUID();
+		}
+	}
+
+	return attr.id;
+};
+
 const convert = (attr: IAttr) => {
-	attr.id = attr.id || UUID();
+	attr.id = genIDFromElem(attr);
 	attr = mergeObject({ class: "example-title", marginTop: 5 }, attr);
 
 	if (attr.elem) {

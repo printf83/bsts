@@ -7,7 +7,7 @@ export const doc_component_accordion: IAttrContent = {
 	title: "Accordion",
 	description: "Build vertically collapsing accordions in combination with our Collapse JavaScript plugin.",
 	item: [
-		new example.title({ id: "how_it_works" }, "How it works"),
+		new example.title("How it works"),
 		new example.text(
 			"The accordion uses {{?q=doc_component_collapse::collapse}} internally to make it collapsible. To render an accordion that’s expanded, add the {{.open}} class on the {{.accordion}}."
 		),
@@ -20,7 +20,7 @@ export const doc_component_accordion: IAttrContent = {
 
 		//-----------------------
 
-		new example.title({ id: "example" }, "Example"),
+		new example.title("Example"),
 		new example.text("Click the accordions below to expand/collapse the accordion content."),
 		new example.code({
 			previewTemplate: "row",
@@ -68,7 +68,7 @@ export const doc_component_accordion: IAttrContent = {
 
 		//-----------------------
 
-		new example.subtitle({ id: "using_item" }, "Using item"),
+		new example.subtitle("Using item"),
 		new example.text("Same as above but more easy."),
 		new example.code({
 			previewTemplate: "row",
@@ -95,7 +95,7 @@ export const doc_component_accordion: IAttrContent = {
 
 		//-----------------------
 
-		new example.subtitle({ id: "flush" }, "Flush"),
+		new example.subtitle("Flush"),
 		new example.text(
 			"Add {{.accordion-flush}} to remove the default {{background-color}}, some borders, and some rounded corners to render accordions edge-to-edge with their parent container."
 		),
@@ -125,7 +125,7 @@ export const doc_component_accordion: IAttrContent = {
 
 		//-----------------------
 
-		new example.subtitle({ id: "always_open" }, "Always open"),
+		new example.subtitle("Always open"),
 		new example.text(
 			"Omit the {{data-bs-parent}} attribute on each {{.accordion-collapse}} to make accordion items stay open when another item is opened."
 		),
@@ -155,15 +155,15 @@ export const doc_component_accordion: IAttrContent = {
 
 		//-----------------------
 
-		new example.title({ id: "accessibility" }, "Accessibility"),
+		new example.title("Accessibility"),
 		new example.text(
 			"Please read the {{?q=doc_components_collapse#accessibility::collapse accessibility section}} for more information."
 		),
 
 		//-----------------------
 
-		new example.title({ id: "css" }, "CSS"),
-		new example.subtitle({ id: "variables" }, "Variables"),
+		new example.title("CSS"),
+		new example.subtitle("Variables"),
 		new example.text(
 			"As part of Bootstrap’s evolving CSS variables approach, accordions now use local CSS variables on {{.accordion}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
 		),
@@ -196,7 +196,7 @@ export const doc_component_accordion: IAttrContent = {
 			`,
 		}),
 
-		new example.subtitle({ id: "sass_variables" }, "Sass variables"),
+		new example.subtitle("Sass variables"),
 
 		new example.codepreview({
 			type: "css",

@@ -9,7 +9,7 @@ export const doc_gettingstarted_introduction: IAttrContent = {
 	description:
 		"Bootstrap is a powerful, feature-packed frontend toolkit. Build anything—from prototype to production—in minutes.",
 	item: [
-		new example.title({ id: "quick_start" }, "Quick start"),
+		new example.title("Quick start"),
 		new example.text(
 			"Get started by including Bootstrap’s production-ready CSS and JavaScript via CDN without the need for any build steps. See it in practice with this {{https://codepen.io/team/bootstrap/pen/qBamdLj::Bootstrap CodePen demo}}."
 		),
@@ -69,7 +69,7 @@ export const doc_gettingstarted_introduction: IAttrContent = {
 				]),
 			])
 		),
-		new example.title({ id: "cdn_links" }, "CDN links"),
+		new example.title("CDN links"),
 		new example.text("As reference, here are our primary CDN links."),
 		new example.item([
 			new table.container({ small: true }, [
