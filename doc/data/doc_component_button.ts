@@ -429,5 +429,123 @@ export const doc_component_button: IAttrContent = {
 
 			`,
 		}),
+
+		new e.subtitle("Sass mixins"),
+		new e.text(
+			"There are three mixins for buttons: button and button outline variant mixins (both based on {{$theme-colors}}), plus a button size mixin."
+		),
+		new e.codepreview({
+			type: "css",
+			code: `
+				@mixin button-variant(
+				$background,
+				$border,
+				$color: color-contrast($background),
+				$hover-background: if($color == $color-contrast-light, shade-color($background, $btn-hover-bg-shade-amount), tint-color($background, $btn-hover-bg-tint-amount)),
+				$hover-border: if($color == $color-contrast-light, shade-color($border, $btn-hover-border-shade-amount), tint-color($border, $btn-hover-border-tint-amount)),
+				$hover-color: color-contrast($hover-background),
+				$active-background: if($color == $color-contrast-light, shade-color($background, $btn-active-bg-shade-amount), tint-color($background, $btn-active-bg-tint-amount)),
+				$active-border: if($color == $color-contrast-light, shade-color($border, $btn-active-border-shade-amount), tint-color($border, $btn-active-border-tint-amount)),
+				$active-color: color-contrast($active-background),
+				$disabled-background: $background,
+				$disabled-border: $border,
+				$disabled-color: color-contrast($disabled-background)
+				) {
+				--#{$prefix}btn-color: #{$color};
+				--#{$prefix}btn-bg: #{$background};
+				--#{$prefix}btn-border-color: #{$border};
+				--#{$prefix}btn-hover-color: #{$hover-color};
+				--#{$prefix}btn-hover-bg: #{$hover-background};
+				--#{$prefix}btn-hover-border-color: #{$hover-border};
+				--#{$prefix}btn-focus-shadow-rgb: #{to-rgb(mix($color, $border, 15%))};
+				--#{$prefix}btn-active-color: #{$active-color};
+				--#{$prefix}btn-active-bg: #{$active-background};
+				--#{$prefix}btn-active-border-color: #{$active-border};
+				--#{$prefix}btn-active-shadow: #{$btn-active-box-shadow};
+				--#{$prefix}btn-disabled-color: #{$disabled-color};
+				--#{$prefix}btn-disabled-bg: #{$disabled-background};
+				--#{$prefix}btn-disabled-border-color: #{$disabled-border};
+				}
+			`,
+		}),
+		new e.codepreview({
+			type: "css",
+			code: `
+				@mixin button-outline-variant(
+				$color,
+				$color-hover: color-contrast($color),
+				$active-background: $color,
+				$active-border: $color,
+				$active-color: color-contrast($active-background)
+				) {
+				--#{$prefix}btn-color: #{$color};
+				--#{$prefix}btn-border-color: #{$color};
+				--#{$prefix}btn-hover-color: #{$color-hover};
+				--#{$prefix}btn-hover-bg: #{$active-background};
+				--#{$prefix}btn-hover-border-color: #{$active-border};
+				--#{$prefix}btn-focus-shadow-rgb: #{to-rgb($color)};
+				--#{$prefix}btn-active-color: #{$active-color};
+				--#{$prefix}btn-active-bg: #{$active-background};
+				--#{$prefix}btn-active-border-color: #{$active-border};
+				--#{$prefix}btn-active-shadow: #{$btn-active-box-shadow};
+				--#{$prefix}btn-disabled-color: #{$color};
+				--#{$prefix}btn-disabled-bg: transparent;
+				--#{$prefix}btn-disabled-border-color: #{$color};
+				--#{$prefix}gradient: none;
+				}
+			`,
+		}),
+		new e.codepreview({
+			type: "css",
+			code: `
+				@mixin button-size($padding-y, $padding-x, $font-size, $border-radius) {
+				--#{$prefix}btn-padding-y: #{$padding-y};
+				--#{$prefix}btn-padding-x: #{$padding-x};
+				@include rfs($font-size, --#{$prefix}btn-font-size);
+				--#{$prefix}btn-border-radius: #{$border-radius};
+				}
+			`,
+		}),
+		new e.subtitle("Sass loops"),
+		new e.text(
+			"Button variants (for regular and outline buttons) use their respective mixins with our {{$theme-colors}} map to generate the modifier classes in {{scss/_buttons.scss}}."
+		),
+		new e.codepreview({
+			type: "css",
+			code: `
+				@each $color, $value in $theme-colors {
+					.btn-#{$color} {
+						@if $color == "light" {
+						@include button-variant(
+							$value,
+							$value,
+							$hover-background: shade-color($value, $btn-hover-bg-shade-amount),
+							$hover-border: shade-color($value, $btn-hover-border-shade-amount),
+							$active-background: shade-color($value, $btn-active-bg-shade-amount),
+							$active-border: shade-color($value, $btn-active-border-shade-amount)
+						);
+						} @else if $color == "dark" {
+						@include button-variant(
+							$value,
+							$value,
+							$hover-background: tint-color($value, $btn-hover-bg-tint-amount),
+							$hover-border: tint-color($value, $btn-hover-border-tint-amount),
+							$active-background: tint-color($value, $btn-active-bg-tint-amount),
+							$active-border: tint-color($value, $btn-active-border-tint-amount)
+						);
+						} @else {
+						@include button-variant($value, $value);
+						}
+					}
+					}
+
+					@each $color, $value in $theme-colors {
+					.btn-outline-#{$color} {
+						@include button-outline-variant($value);
+					}
+					}
+
+			`,
+		}),
 	],
 };
