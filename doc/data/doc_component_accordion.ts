@@ -13,7 +13,7 @@ export const doc_component_accordion: IAttrContent = {
 		),
 		new example.text(
 			new alert.container(
-				{ color: "primary", callout: true },
+				{ color: "info", callout: true },
 				"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{?q=doc_gettingstarted_accessibility#reduce_motion::reduced motion section of our accessibility documentation}}. "
 			)
 		),
@@ -68,7 +68,7 @@ export const doc_component_accordion: IAttrContent = {
 
 		//-----------------------
 
-		new example.title({ id: "flush" }, "Flush"),
+		new example.subtitle({ id: "flush" }, "Flush"),
 		new example.text(
 			"Add {{.accordion-flush}} to remove the default {{background-color}}, some borders, and some rounded corners to render accordions edge-to-edge with their parent container."
 		),
@@ -118,7 +118,7 @@ export const doc_component_accordion: IAttrContent = {
 
 		//-----------------------
 
-		new example.title({ id: "always_open" }, "Always open"),
+		new example.subtitle({ id: "always_open" }, "Always open"),
 		new example.text(
 			"Omit the {{data-bs-parent}} attribute on each {{.accordion-collapse}} to make accordion items stay open when another item is opened."
 		),
@@ -201,6 +201,8 @@ export const doc_component_accordion: IAttrContent = {
 			`,
 		}),
 
+		new example.subtitle({ id: "sass_variables" }, "Sass variables"),
+
 		new example.codepreview({
 			type: "css",
 			code: `
@@ -236,20 +238,6 @@ export const doc_component_accordion: IAttrContent = {
 				$accordion-button-icon:         url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-color}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
 				$accordion-button-active-icon:  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-active-color}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
 			`,
-		}),
-		new example.codepreview({
-			type: "css",
-			code: `
-							.button {
-								color:#fefefe;
-							}
-							`,
-		}),
-		new example.codepreview({
-			type: "html",
-			code: `
-							<div>test</div>
-							`,
 		}),
 	],
 };

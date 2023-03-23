@@ -72,9 +72,9 @@ export const doc_gettingstarted_introduction: IAttrContent = {
 		new example.title({ id: "cdn_links" }, "CDN links"),
 		new example.text("As reference, here are our primary CDN links."),
 		new example.item([
-			new table.container([
+			new table.container({ small: true }, [
 				new table.thead(new table.tr([new table.th("Description"), new table.th("URL")])),
-				new table.tbody([
+				new table.tbody({ divider: true }, [
 					new table.tr([
 						new table.td("CSS"),
 						new table.td(

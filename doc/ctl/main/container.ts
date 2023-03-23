@@ -373,7 +373,6 @@ const genMenu = (itemMenu?: IAttrItemMenu[], currentMenu?: string) => {
 				),
 				new ul(
 					{
-						id: "bs-menu",
 						unstyle: true,
 						fontWeight: "normal",
 						paddingBottom: 2,
@@ -619,7 +618,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 									label: "Toggle navigation",
 									textColor: attr.textColor || "light",
 								},
-								icon.solid("ellipsis-vertical")
+								icon.solid("ellipsis")
 							),
 						]),
 						new offcanvas.container(
@@ -682,7 +681,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 							new offcanvas.btnclose({ target: "#bsSidebar" }),
 						]),
 						new offcanvas.body([
-							new nav({ id: "bs_docs_nav", class: "bs-links", width: 100, label: "Docs navication" }, [
+							new nav({ id: "bs-menu", class: "bs-links", width: 100, label: "Docs navication" }, [
 								new ul(
 									{
 										class: "bs-links-nav",
