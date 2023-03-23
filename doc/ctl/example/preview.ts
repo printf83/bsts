@@ -59,7 +59,7 @@ const beautify = (type: IAttrBSExampleCodeType | undefined, source_text: string)
 const convert = (attr: IAttrBSExampleCode) => {
 	attr = mergeObject(
 		{
-			style: { maxHeight: "300px" },
+			// style: { maxHeight: "300px" },
 			display: "block",
 			overflow: "auto",
 			marginX: 0,
