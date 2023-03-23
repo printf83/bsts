@@ -573,7 +573,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 				sticky: "top",
 				bgColor: attr.bgColor || "primary",
 				shadow: "sm",
-				padding: 3,
+				padding: 2,
 			},
 			[
 				new navbar.innercontainerNav(
