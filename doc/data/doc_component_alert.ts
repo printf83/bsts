@@ -1,7 +1,6 @@
-import { example } from "../ctl/example/_index.js";
+import { example as e } from "../ctl/example/_index.js";
 import { b, core, h } from "../../src/index.js";
 import { IAttrContent } from "../ctl/main/container.js";
-import { alert } from "../../src/bootstrap/alert/_index.js";
 import { bootstrapType } from "../../src/core/base/bootstrap.js";
 
 export const doc_component_alert: IAttrContent = {
@@ -9,17 +8,17 @@ export const doc_component_alert: IAttrContent = {
 	description:
 		"Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.",
 	item: [
-		new example.title("Examples"),
-		new example.text(
+		new e.title("Examples"),
+		new e.text(
 			"Alerts are available for any length of text, as well as an optional close button. For proper styling, use one of the eight required contextual classes (e.g., {{.alert-success}}). For inline dismissal, use the {{?q=doc_component_alert#dismissing::alerts JavaScript plugin}}."
 		),
-		new example.item(
-			new alert.container(
+		new e.item(
+			new b.alert.container(
 				{ color: "info", callout: true },
 				"{{b::Heads up!}} As of v5.3.0, the {{alert-variant()}} Sass mixin is deprecated. Alert variants now have their CSS variables overridden in the {{?q=doc_component_alert_#sass-loop::Sass loop}}."
 			)
 		),
-		new example.code({
+		new e.code({
 			previewTemplate: "row",
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
@@ -31,8 +30,8 @@ export const doc_component_alert: IAttrContent = {
 			},
 		}),
 
-		new example.item(
-			new alert.container({ color: "info", callout: true }, [
+		new e.item(
+			new b.alert.container({ color: "info", callout: true }, [
 				new h.h(5, "Conveying meaning to assistive technologies"),
 				new h.p(
 					"Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the {{.visually-hidden}} class."
@@ -41,9 +40,10 @@ export const doc_component_alert: IAttrContent = {
 		),
 
 		//-----------------------
-		new example.subtitle("Callout"),
-		new example.text("Just set {{callout:true}} to change the {{alert}} to {{callout}}"),
-		new example.code({
+
+		new e.subtitle("Callout"),
+		new e.text("Just set {{callout:true}} to change the {{alert}} to {{callout}}"),
+		new e.code({
 			previewTemplate: "row",
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
@@ -57,11 +57,11 @@ export const doc_component_alert: IAttrContent = {
 
 		//-----------------------
 
-		new example.subtitle("Live example"),
-		new example.text(
+		new e.subtitle("Live example"),
+		new e.text(
 			"Click the button below to show an alert (hidden with inline styles to start), then dismiss (and destroy) it with the built-in close button."
 		),
-		new example.code({
+		new e.code({
 			previewTemplate: "row",
 			output: () => {
 				return [
@@ -90,11 +90,9 @@ export const doc_component_alert: IAttrContent = {
 
 		//-----------------------
 
-		new example.subtitle("Link color"),
-		new example.text(
-			"Use the {{.alert-link}} utility class to quickly provide matching colored links within any alert."
-		),
-		new example.code({
+		new e.subtitle("Link color"),
+		new e.text("Use the {{.alert-link}} utility class to quickly provide matching colored links within any alert."),
+		new e.code({
 			previewTemplate: "row",
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
@@ -109,9 +107,9 @@ export const doc_component_alert: IAttrContent = {
 
 		//-----------------------
 
-		new example.subtitle("Additional content"),
-		new example.text("Alerts can also contain additional HTML elements like headings, paragraphs and dividers."),
-		new example.code({
+		new e.subtitle("Additional content"),
+		new e.text("Alerts can also contain additional HTML elements like headings, paragraphs and dividers."),
+		new e.code({
 			previewTemplate: "row",
 			output: () => {
 				return new b.alert.container({ color: "success" }, [
@@ -130,11 +128,11 @@ export const doc_component_alert: IAttrContent = {
 
 		//-----------------------
 
-		new example.subtitle("Icons"),
-		new example.text(
+		new e.subtitle("Icons"),
+		new e.text(
 			"Similarly, you can use {{https://getbootstrap.com/docs/5.3/utilities/flex/::flexbox utilities}} and {{https://icons.getbootstrap.com/::Bootstrap Icons}} to create alerts with icons. Depending on your icons and content, you may want to add more utilities or custom styles."
 		),
-		new example.code({
+		new e.code({
 			previewTemplate: "row",
 			output: () => {
 				return new b.alert.container(
@@ -146,10 +144,10 @@ export const doc_component_alert: IAttrContent = {
 
 		//-----------------------
 
-		new example.text(
+		new e.text(
 			"Need more than one icon for your alerts? Consider using more Bootstrap Icons and making a local SVG sprite like so to easily reference the same icons repeatedly."
 		),
-		new example.code({
+		new e.code({
 			previewTemplate: "row",
 			output: () => {
 				return [
@@ -167,9 +165,9 @@ export const doc_component_alert: IAttrContent = {
 
 		//-----------------------
 
-		new example.subtitle("Dismissing"),
-		new example.text("Using the alert JavaScript plugin, it’s possible to dismiss any alert inline. Here’s how:"),
-		new example.item(
+		new e.subtitle("Dismissing"),
+		new e.text("Using the alert JavaScript plugin, it’s possible to dismiss any alert inline. Here’s how:"),
+		new e.item(
 			new h.ul([
 				new h.li("Be sure you’ve loaded the alert plugin, or the compiled Bootstrap JavaScript."),
 				new h.li(
@@ -181,9 +179,9 @@ export const doc_component_alert: IAttrContent = {
 				new h.li("To animate alerts when dismissing them, be sure to add the {{.fade}} and {{.show}} classes."),
 			])
 		),
-		new example.text("You can see this in action with a live demo:"),
+		new e.text("You can see this in action with a live demo:"),
 
-		new example.code({
+		new e.code({
 			previewTemplate: "row",
 			output: () => {
 				return new b.alert.container(
@@ -193,21 +191,21 @@ export const doc_component_alert: IAttrContent = {
 			},
 		}),
 
-		new example.item(
-			new alert.container(
+		new e.item(
+			new b.alert.container(
 				{ color: "warning", callout: true },
 				"When an alert is dismissed, the element is completely removed from the page structure. If a keyboard user dismisses the alert using the close button, their focus will suddenly be lost and, depending on the browser, reset to the start of the page/document. For this reason, we recommend including additional JavaScript that listens for the {{closed.bs.alert}} event and programmatically sets {{focus()}} to the most appropriate location in the page. If you’re planning to move focus to a non-interactive element that normally does not receive focus, make sure to add {{tabindex='-1'}} to the element."
 			)
 		),
 		//-----------------------
 
-		new example.title("CSS"),
-		new example.subtitle("Variables"),
-		new example.text(
+		new e.title("CSS"),
+		new e.subtitle("Variables"),
+		new e.text(
 			"As part of Bootstrap’s evolving CSS variables approach, alerts now use local CSS variables on {{.alert}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
 		),
 
-		new example.codepreview({
+		new e.codepreview({
 			type: "css",
 			code: `
 				--#{$prefix}alert-bg: transparent;
@@ -222,9 +220,9 @@ export const doc_component_alert: IAttrContent = {
 			`,
 		}),
 
-		new example.subtitle("Sass variables"),
+		new e.subtitle("Sass variables"),
 
-		new example.codepreview({
+		new e.codepreview({
 			type: "css",
 			code: `
 				$alert-padding-y:               $spacer;
@@ -240,9 +238,9 @@ export const doc_component_alert: IAttrContent = {
 			`,
 		}),
 
-		new example.subtitle("Sass loop"),
-		new example.text("Loop that generates the modifier classes with the {{alert-variant()}} mixin."),
-		new example.codepreview({
+		new e.subtitle("Sass loop"),
+		new e.text("Loop that generates the modifier classes with the {{alert-variant()}} mixin."),
+		new e.codepreview({
 			type: "css",
 			code: `
 				// Generate contextual modifier classes for colorizing the alert
@@ -260,11 +258,11 @@ export const doc_component_alert: IAttrContent = {
 
 		//-----------------------
 
-		new example.title("JavaScript behavior"),
-		new example.subtitle("Initialize"),
-		new example.text("Initialize elements as alerts"),
+		new e.title("JavaScript behavior"),
+		new e.subtitle("Initialize"),
+		new e.text("Initialize elements as alerts"),
 
-		new example.codepreview({
+		new e.codepreview({
 			type: "js",
 			code: `
 				const alertList = document.querySelectorAll('.alert')
@@ -272,8 +270,8 @@ export const doc_component_alert: IAttrContent = {
 			`,
 		}),
 
-		new example.item(
-			new alert.container({ color: "warning", callout: true }, [
+		new e.item(
+			new b.alert.container({ color: "warning", callout: true }, [
 				new h.p(
 					"For the sole purpose of dismissing an alert, it isn’t necessary to initialize the component manually via the JS API. By making use of {{data-bs-dismiss='alert'}}, the component will be initialized automatically and properly dismissed."
 				),
@@ -285,72 +283,64 @@ export const doc_component_alert: IAttrContent = {
 
 		//-----------------------
 
-		new example.subtitle("Triggers"),
+		new e.subtitle("Triggers"),
 
-		new example.text(
+		new e.text(
 			"Dismissal can be achieved with the {{data}} attribute on a button within the alert as demonstrated below:"
 		),
-		new example.codepreview({
+		new e.codepreview({
 			type: "html",
 			code: `
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			`,
 		}),
 
-		new example.text("or on a button outside the alert using the {{data-bs-target}} as demonstrated below:"),
-		new example.codepreview({
+		new e.text("or on a button outside the alert using the {{data-bs-target}} as demonstrated below:"),
+		new e.codepreview({
 			type: "html",
 			code: `
 				<button type="button" class="btn-close" data-bs-dismiss="alert" data-bs-target="#my-alert" aria-label="Close"></button>
 			`,
 		}),
 
-		new example.text("{{b::Note :}} that closing an alert will remove it from the DOM."),
+		new e.text("{{b::Note :}} that closing an alert will remove it from the DOM."),
 
 		//-----------------------
 
-		new example.subtitle("Methods"),
-		new example.text("You can create an alert instance with the alert constructor, for example:"),
-		new example.codepreview({
+		new e.subtitle("Methods"),
+		new e.text("You can create an alert instance with the alert constructor, for example:"),
+		new e.codepreview({
 			type: "js",
 			code: `
 				const bsAlert = new bootstrap.Alert('#myAlert')
 			`,
 		}),
-		new example.text(
+		new e.text(
 			"This makes an alert listen for click events on descendant elements which have the {{data-bs-dismiss='alert'}} attribute. (Not necessary when using the data-api’s auto-initialization.)"
 		),
-		new example.item(
-			new b.table.container({ small: true }, [
-				new b.table.thead(new b.table.tr([new b.table.th("Method"), new b.table.th("Description")])),
-				new b.table.tbody({ divider: true }, [
-					new b.table.tr([
-						new b.table.td("{{close}}"),
-						new b.table.td(
-							"Closes an alert by removing it from the DOM. If the {{.fade}} and {{.show}} classes are present on the element, the alert will fade out before it is removed."
-						),
-					]),
-					new b.table.tr([
-						new b.table.td("{{dispose}}"),
-						new b.table.td("Destroys an element’s alert. (Removes stored data on the DOM element)"),
-					]),
-					new b.table.tr([
-						new b.table.td("{{getInstance}}"),
-						new b.table.td(
-							"Static method which allows you to get the alert instance associated to a DOM element. For example: {{bootstrap.Alert.getInstance(alert)}}."
-						),
-					]),
-					new b.table.tr([
-						new b.table.td("{{getOrCreateInstance}}"),
-						new b.table.td(
-							"Static method which returns an alert instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Alert.getOrCreateInstance(element)}}."
-						),
-					]),
-				]),
-			])
+		new e.item(
+			new b.table.container({
+				small: true,
+				item: [
+					["Method", "Description"],
+					[
+						"{{close}}",
+						"Closes an alert by removing it from the DOM. If the {{.fade}} and {{.show}} classes are present on the element, the alert will fade out before it is removed.",
+					],
+					["{{dispose}}", "Destroys an element’s alert. (Removes stored data on the DOM element)"],
+					[
+						"{{getInstance}}",
+						"Static method which allows you to get the alert instance associated to a DOM element. For example: {{bootstrap.Alert.getInstance(alert)}}.",
+					],
+					[
+						"{{getOrCreateInstance}}",
+						"Static method which returns an alert instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Alert.getOrCreateInstance(element)}}.",
+					],
+				],
+			})
 		),
-		new example.text("Basic usage:"),
-		new example.codepreview({
+		new e.text("Basic usage:"),
+		new e.codepreview({
 			type: "js",
 			code: `
 				const alert = bootstrap.Alert.getOrCreateInstance('#myAlert')
@@ -360,24 +350,19 @@ export const doc_component_alert: IAttrContent = {
 
 		//-----------------------
 
-		new example.subtitle("Events"),
-		new example.text("Bootstrap’s alert plugin exposes a few events for hooking into alert functionality."),
-		new example.item(
-			new b.table.container({ small: true }, [
-				new b.table.thead(new b.table.tr([new b.table.th("Event"), new b.table.th("Description")])),
-				new b.table.tbody({ divider: true }, [
-					new b.table.tr([
-						new b.table.td("{{close.bs.alert}}"),
-						new b.table.td("Fires immediately when the {{close}} instance method is called."),
-					]),
-					new b.table.tr([
-						new b.table.td("{{closed.bs.alert}}"),
-						new b.table.td("Fired when the alert has been closed and CSS transitions have completed."),
-					]),
-				]),
-			])
+		new e.subtitle("Events"),
+		new e.text("Bootstrap’s alert plugin exposes a few events for hooking into alert functionality."),
+		new e.item(
+			new b.table.container({
+				small: true,
+				item: [
+					["Event", "Description"],
+					["{{close.bs.alert}}", "Fires immediately when the {{close}} instance method is called."],
+					["{{closed.bs.alert}}", "Fired when the alert has been closed and CSS transitions have completed."],
+				],
+			})
 		),
-		new example.codepreview({
+		new e.codepreview({
 			type: "js",
 			code: `
 				const myAlert = document.getElementById('myAlert')
@@ -390,7 +375,7 @@ export const doc_component_alert: IAttrContent = {
 			`,
 		}),
 
-		new example.code({
+		new e.code({
 			previewTemplate: "row",
 			output: () => {
 				return new b.alert.container(

@@ -2,6 +2,11 @@ import { IAttr, IElem } from "../../core/base/tag.js";
 import { bootstrapType, bsConstArg } from "../../core/base/bootstrap.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { table } from "../../html/table.js";
+import { tbody } from "./tbody.js";
+import { tr } from "./tr.js";
+import { td } from "./td.js";
+import { th } from "../../html/th.js";
+import { thead } from "./thead.js";
 
 export interface IAttrBSTableContainer extends IAttr {
 	color?: bootstrapType.color[number];
@@ -11,6 +16,8 @@ export interface IAttrBSTableContainer extends IAttr {
 	small?: boolean;
 	responsive?: true | bootstrapType.viewport[number];
 	captionLocation?: "top" | "bottom";
+
+	item?: string[][];
 }
 
 const convert = (attr: IAttrBSTableContainer) => {
@@ -29,6 +36,35 @@ const convert = (attr: IAttrBSTableContainer) => {
 		attr.captionLocation === "top" ? "caption-top" : undefined,
 	]);
 
+	if (attr.item && !attr.elem) {
+		attr.elem = [];
+
+		if (attr.item.length > 1) {
+			attr.elem.push(
+				new thead({
+					elem: new tr({
+						elem: attr.item[0].map((i) => {
+							return new th({ scope: "col" }, i);
+						}),
+					}),
+				})
+			);
+		}
+
+		attr.elem.push(
+			new tbody({
+				divider: attr.item.length > 1,
+				elem: attr.item.slice(attr.item.length > 1 ? 1 : 0).map((i) => {
+					return new tr({
+						elem: i.map((j) => {
+							return new td(j);
+						}),
+					});
+				}),
+			})
+		);
+	}
+
 	delete attr.color;
 	delete attr.striped;
 	delete attr.hoverable;
@@ -36,6 +72,8 @@ const convert = (attr: IAttrBSTableContainer) => {
 	delete attr.small;
 	delete attr.responsive;
 	delete attr.captionLocation;
+
+	delete attr.item;
 
 	return attr;
 };

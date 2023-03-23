@@ -1,7 +1,5 @@
-import { table } from "../../src/bootstrap/table/_index.js";
-import { li } from "../../src/html/li.js";
-import { ol } from "../../src/html/ol.js";
-import { example } from "../ctl/example/_index.js";
+import { b, h } from "../../src/index.js";
+import { example as e } from "../ctl/example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 
 export const doc_gettingstarted_introduction: IAttrContent = {
@@ -9,15 +7,15 @@ export const doc_gettingstarted_introduction: IAttrContent = {
 	description:
 		"Bootstrap is a powerful, feature-packed frontend toolkit. Build anything—from prototype to production—in minutes.",
 	item: [
-		new example.title("Quick start"),
-		new example.text(
+		new e.title("Quick start"),
+		new e.text(
 			"Get started by including Bootstrap’s production-ready CSS and JavaScript via CDN without the need for any build steps. See it in practice with this {{https://codepen.io/team/bootstrap/pen/qBamdLj::Bootstrap CodePen demo}}."
 		),
-		new example.item(
-			new ol({ paddingStart: [0, "md-4"] }, [
-				new li([
+		new e.item(
+			new h.ol({ paddingStart: [0, "md-4"] }, [
+				new h.li([
 					'{{b::Create a new}} {{index.html}} file in your project root. Include the {{<meta name="viewport">}} tag as well for {{https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag::proper responsive behavior}} in mobile devices.',
-					new example.codepreview({
+					new e.codepreview({
 						type: "html",
 						code: `
 							<!doctype html>
@@ -34,9 +32,9 @@ export const doc_gettingstarted_introduction: IAttrContent = {
 							`,
 					}),
 				]),
-				new li([
+				new h.li([
 					"{{b::Include Bootstrap’s CSS and JS}}. Place the {{<link>}} tag in the {{<head>}} for our CSS, and the {{<script>}} tag for our JavaScript bundle (including Popper for positioning dropdowns, poppers, and tooltips) before the closing {{</body>}}. Learn more about our {{https://getbootstrap.com/docs/5.3/getting-started/introduction/#cdn-links::CDN links}}.",
-					new example.codepreview({
+					new e.codepreview({
 						type: "html",
 						code: `
 							<!doctype html>
@@ -56,7 +54,7 @@ export const doc_gettingstarted_introduction: IAttrContent = {
 							`,
 					}),
 					"You can also include {{https://popper.js.org/::Popper}} and our JS separately. If you don’t plan to use dropdowns, popovers, or tooltips, save some kilobytes by not including Popper.",
-					new example.codepreview({
+					new e.codepreview({
 						type: "html",
 						code: `
 							<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
@@ -64,33 +62,24 @@ export const doc_gettingstarted_introduction: IAttrContent = {
 							`,
 					}),
 				]),
-				new li([
+				new h.li([
 					"{{b::Hello, world!}} Open the page in your browser of choice to see your Bootstrapped page. Now you can start building with Bootstrap by creating your own {{?q=doc_layout_grid::layout}}, adding dozens of {{?q=doc_component_button::components}}, and utilizing {{https://getbootstrap.com/docs/5.3/examples/::our official examples}}.",
 				]),
 			])
 		),
-		new example.title("CDN links"),
-		new example.text("As reference, here are our primary CDN links."),
-		new example.item([
-			new table.container({ small: true }, [
-				new table.thead(new table.tr([new table.th("Description"), new table.th("URL")])),
-				new table.tbody({ divider: true }, [
-					new table.tr([
-						new table.td("CSS"),
-						new table.td(
-							"{{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css}}"
-						),
-					]),
-					new table.tr([
-						new table.td("JS"),
-						new table.td(
-							"{{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js}}"
-						),
-					]),
-				]),
-			]),
+		new e.title("CDN links"),
+		new e.text("As reference, here are our primary CDN links."),
+		new e.item([
+			new b.table.container({
+				small: true,
+				item: [
+					["Description", "URLs"],
+					["CSS", "{{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css}}"],
+					["JS", "{{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js}}"],
+				],
+			}),
 		]),
-		new example.text(
+		new e.text(
 			"You can also use the CDN to fetch any of our {{?q=doc_gettingstarted_content::additional builds listed in the Contents page}}."
 		),
 	],

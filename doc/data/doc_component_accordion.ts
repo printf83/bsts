@@ -1,18 +1,17 @@
-import { example } from "../ctl/example/_index.js";
+import { example as e } from "../ctl/example/_index.js";
 import { b, core } from "../../src/index.js";
 import { IAttrContent } from "../ctl/main/container.js";
-import { alert } from "../../src/bootstrap/alert/_index.js";
 
 export const doc_component_accordion: IAttrContent = {
 	title: "Accordion",
 	description: "Build vertically collapsing accordions in combination with our Collapse JavaScript plugin.",
 	item: [
-		new example.title("How it works"),
-		new example.text(
+		new e.title("How it works"),
+		new e.text(
 			"The accordion uses {{?q=doc_component_collapse::collapse}} internally to make it collapsible. To render an accordion that’s expanded, add the {{.open}} class on the {{.accordion}}."
 		),
-		new example.text(
-			new alert.container(
+		new e.text(
+			new b.alert.container(
 				{ color: "info", callout: true },
 				"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{?q=doc_gettingstarted_accessibility#reduce_motion::reduced motion section of our accessibility documentation}}. "
 			)
@@ -20,9 +19,9 @@ export const doc_component_accordion: IAttrContent = {
 
 		//-----------------------
 
-		new example.title("Example"),
-		new example.text("Click the accordions below to expand/collapse the accordion content."),
-		new example.code({
+		new e.title("Example"),
+		new e.text("Click the accordions below to expand/collapse the accordion content."),
+		new e.code({
 			previewTemplate: "row",
 			output: () => {
 				let mainID = core.UUID();
@@ -68,9 +67,9 @@ export const doc_component_accordion: IAttrContent = {
 
 		//-----------------------
 
-		new example.subtitle("Using item"),
-		new example.text("Same as above but more easy."),
-		new example.code({
+		new e.subtitle("Using item"),
+		new e.text("Same as above but more easy."),
+		new e.code({
 			previewTemplate: "row",
 			output: () => {
 				return new b.accordion.container({
@@ -95,11 +94,11 @@ export const doc_component_accordion: IAttrContent = {
 
 		//-----------------------
 
-		new example.subtitle("Flush"),
-		new example.text(
+		new e.subtitle("Flush"),
+		new e.text(
 			"Add {{.accordion-flush}} to remove the default {{background-color}}, some borders, and some rounded corners to render accordions edge-to-edge with their parent container."
 		),
-		new example.code({
+		new e.code({
 			previewTemplate: "row",
 			output: () => {
 				return new b.accordion.container({
@@ -125,11 +124,11 @@ export const doc_component_accordion: IAttrContent = {
 
 		//-----------------------
 
-		new example.subtitle("Always open"),
-		new example.text(
+		new e.subtitle("Always open"),
+		new e.text(
 			"Omit the {{data-bs-parent}} attribute on each {{.accordion-collapse}} to make accordion items stay open when another item is opened."
 		),
-		new example.code({
+		new e.code({
 			previewTemplate: "row",
 			output: () => {
 				return new b.accordion.container({
@@ -155,20 +154,20 @@ export const doc_component_accordion: IAttrContent = {
 
 		//-----------------------
 
-		new example.title("Accessibility"),
-		new example.text(
+		new e.title("Accessibility"),
+		new e.text(
 			"Please read the {{?q=doc_components_collapse#accessibility::collapse accessibility section}} for more information."
 		),
 
 		//-----------------------
 
-		new example.title("CSS"),
-		new example.subtitle("Variables"),
-		new example.text(
+		new e.title("CSS"),
+		new e.subtitle("Variables"),
+		new e.text(
 			"As part of Bootstrap’s evolving CSS variables approach, accordions now use local CSS variables on {{.accordion}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
 		),
 
-		new example.codepreview({
+		new e.codepreview({
 			type: "css",
 			code: `
 				--#{$prefix}accordion-color: #{$accordion-color};
@@ -196,9 +195,9 @@ export const doc_component_accordion: IAttrContent = {
 			`,
 		}),
 
-		new example.subtitle("Sass variables"),
+		new e.subtitle("Sass variables"),
 
-		new example.codepreview({
+		new e.codepreview({
 			type: "css",
 			code: `
 				$accordion-padding-y:                     1rem;
