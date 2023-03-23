@@ -9,17 +9,19 @@ export interface IAttrBSBtngroup extends IAttr {
 	vertical?: boolean;
 }
 const convert = (attr: IAttrBSBtngroup) => {
+	attr.role ??= "group";
+
 	attr = mergeObject(
 		{
 			class: [
-				attr.vertical ? "btn-group-vertical" : "btn-group",
-				attr.weight ? `btn-group-${attr.weight}` : undefined,
+				attr.vertical ? `btn-${attr.role}-vertical` : `btn-${attr.role}`,
+				attr.weight ? `btn-${attr.role}-${attr.weight}` : undefined,
 			],
 			role: attr.role,
 		},
 		attr
 	);
-	delete attr.role;
+
 	delete attr.weight;
 	delete attr.vertical;
 

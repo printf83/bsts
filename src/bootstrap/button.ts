@@ -21,12 +21,14 @@ export interface IAttrBSButton extends IAttrTagButton {
 
 const convert = (attr: IAttrBSButton) => {
 	if (attr.defColor !== false) {
-		attr.color = attr.color || "primary";
+		attr.color ??= "primary";
 	}
 
 	if (attr.href) {
-		attr.role = attr.role || "button";
+		attr.role ??= "button";
 	}
+
+	attr.type ??= "button";
 
 	//add btn class
 	//weight,role,toggle

@@ -3,7 +3,7 @@ import { genMainContent, IAttrItemMenu } from "./ctl/main/container.js";
 import { main } from "./ctl/main/_index.js";
 import { data } from "./data/_index.js";
 
-let CURRENT_PAGE = "doc_component_button";
+let CURRENT_PAGE = "doc_component_btngroup";
 
 declare var PR: {
 	prettyPrint: () => void;
@@ -25,6 +25,7 @@ let m = {
 				{ label: "Badge", value: "doc_component_badge" },
 				{ label: "Breadcrumb", value: "doc_component_breadcrumb" },
 				{ label: "Button", value: "doc_component_button" },
+				{ label: "Button group", value: "doc_component_btngroup" },
 			],
 		},
 	] as IAttrItemMenu[],

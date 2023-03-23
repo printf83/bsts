@@ -5,6 +5,7 @@ import { doc_gettingstarted_introduction } from "./doc_gettingstarted_introducti
 import { doc_component_badge } from "./doc_component_badge.js";
 import { doc_component_breadcrumb } from "./doc_component_breadcrumb.js";
 import { doc_component_button } from "./doc_component_button.js";
+import { doc_component_btngroup } from "./doc_component_btngroup.js";
 
 export const data = (doc: string): IAttrContent => {
 	switch (doc) {
@@ -18,6 +19,8 @@ export const data = (doc: string): IAttrContent => {
 			return doc_component_breadcrumb;
 		case "doc_component_button":
 			return doc_component_button;
+		case "doc_component_btngroup":
+			return doc_component_btngroup;
 
 		case "doc_gettingstarted_introduction":
 			return doc_gettingstarted_introduction;
