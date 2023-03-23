@@ -1,5 +1,5 @@
 import { example as e } from "../ctl/example/_index.js";
-import { b, h, core } from "../../src/index.js";
+import { b, h } from "../../src/index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 import { HLevel } from "../../src/html/h.js";
 import { bootstrapType } from "../../src/core/base/bootstrap.js";
@@ -93,7 +93,7 @@ export const doc_component_badge: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Background colors"),
+		new e.title("Background colors"),
 		new e.text(
 			"Set a {{background-color}} with contrasting foreground {{color}} with {{https://getbootstrap.com/docs/5.3/helpers/color-background/::our .text-bg-{color} helpers}}. Previously it was required to manually pair your choice of {{https://getbootstrap.com/docs/5.3/utilities/colors/::.text-{color}}} and {{https://getbootstrap.com/docs/5.3/utilities/background/::.bg-{color}}} utilities for styling, which you still may use if you prefer."
 		),
@@ -119,7 +119,7 @@ export const doc_component_badge: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Pill badges"),
+		new e.title("Pill badges"),
 		new e.text(
 			"Use the {{.rounded-pill}} utility class to make badges more rounded with a larger {{border-radius}}."
 		),
