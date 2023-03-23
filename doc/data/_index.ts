@@ -2,6 +2,7 @@ import { IAttrContent } from "../ctl/main/container.js";
 import { doc_component_alert } from "./doc_component_alert.js";
 import { doc_component_accordion } from "./doc_component_accordion.js";
 import { doc_gettingstarted_introduction } from "./doc_gettingstarted_introduction.js";
+import { doc_component_badge } from "./doc_component_badge.js";
 
 export const data = (doc: string): IAttrContent => {
 	switch (doc) {
@@ -9,6 +10,8 @@ export const data = (doc: string): IAttrContent => {
 			return doc_component_accordion;
 		case "doc_component_alert":
 			return doc_component_alert;
+		case "doc_component_badge":
+			return doc_component_badge;
 
 		case "doc_gettingstarted_introduction":
 			return doc_gettingstarted_introduction;
