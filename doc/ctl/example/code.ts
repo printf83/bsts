@@ -13,7 +13,7 @@ import { icon } from "../../../src/bootstrap/icon.js";
 import { tooltip } from "../../../src/bootstrap/tooltip.js";
 import { span } from "../../../src/html/span.js";
 
-export type IAttrPreviewTemplat = "none" | "row" | "col";
+export type IAttrPreviewTemplat = "none" | "row" | "col" | "grid" | "test";
 
 export interface IAttrBSExampleExt {
 	name?: string;
@@ -163,6 +163,22 @@ const itemOutput = (manager: boolean, previewTemplate: IAttrPreviewTemplat | und
 					{ class: `example-output`, padding: 4, overflow: "auto", display: "flex", gap: 2 },
 					str
 				);
+			case "grid":
+				return new list.item(
+					{
+						class: `example-output`,
+						padding: 4,
+						overflow: "auto",
+						display: "grid",
+						gap: 2,
+					},
+					str
+				);
+			// case "test":
+			// 	return new list.item(
+			// 		{ class: `example-output`, padding: 4, overflow: "auto", col: 12, paddingY: 1 },
+			// 		str
+			// 	);
 			default:
 				return new list.item({ class: `example-output`, padding: 4, overflow: "auto", gap: 2 }, str);
 		}

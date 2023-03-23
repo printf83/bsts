@@ -1,7 +1,7 @@
 import { example as e } from "../ctl/example/_index.js";
 import { b, h } from "../../src/index.js";
 import { IAttrContent } from "../ctl/main/container.js";
-import { IElem } from "../../src/core/base/tag.js";
+// import { IElem } from "../../src/core/base/tag.js";
 
 export const doc_component_btngroup: IAttrContent = {
 	title: "Button group",
@@ -186,29 +186,47 @@ export const doc_component_btngroup: IAttrContent = {
 
 		new e.title("Sizing"),
 		new e.text(
+			"Place a {{.btn-group}} within another {{.btn-group}} when you want dropdown menus mixed with a series of buttons."
+		),
+		new e.code({
+			previewTemplate: "row",
+			output: () => {
+				return new b.btngroup({ label: "Button group with nested dropdown" }, [
+					new b.button("1"),
+					new b.button("2"),
+
+					new b.btngroup([
+						new b.dropdown.toggle({}, "Dropdown"),
+						new b.dropdown.menu([
+							new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
+							new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
+							new b.dropdown.item({ href: "#" }, "Dropdown link 3"),
+						]),
+					]),
+				]);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Nesting "),
+		new e.text(
 			"Instead of applying button sizing classes to every button in a group, just add {{.btn-group-*}} to each {{.btn-group}}, including each one when nesting multiple groups."
 		),
 		new e.code({
-			previewTemplate: "col",
-			manager: (elem: IElem) => {
-				let tElem = Array.isArray(elem) ? elem : [elem];
-				return new h.div(
-					{ row: true },
-					tElem.map((i) => new h.div({ col: true }, i))
-				);
-			},
+			previewTemplate: "grid",
 			output: () => {
 				return [
 					new b.btngroup(
-						{ label: "Large button group", weight: "lg" },
+						{ label: "Large button group", weight: "lg", display: "block" },
 						["Left", "Middle", "Right"].map((i) => new b.button({ color: "secondary", outline: true }, i))
 					),
 					new b.btngroup(
-						{ label: "Default button group" },
+						{ label: "Default button group", display: "block" },
 						["Left", "Middle", "Right"].map((i) => new b.button({ color: "secondary", outline: true }, i))
 					),
 					new b.btngroup(
-						{ label: "Small button group", weight: "sm" },
+						{ label: "Small button group", weight: "sm", display: "block" },
 						["Left", "Middle", "Right"].map((i) => new b.button({ color: "secondary", outline: true }, i))
 					),
 				];
