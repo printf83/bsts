@@ -8,7 +8,7 @@ import { h } from "../../../src/html/h.js";
 const genIDFromElem = (attr: IAttr) => {
 	if (!attr.id) {
 		if (typeof attr.elem === "string") {
-			attr.id = (attr.elem as string).toLowerCase().split(" ").join("_");
+			attr.id = (attr.elem as string).toLowerCase().replace(/[\W_]+/g, "_");
 		} else {
 			attr.id = UUID();
 		}
