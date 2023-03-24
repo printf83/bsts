@@ -99,7 +99,7 @@ export const doc_component_btngroup: IAttrContent = {
 			previewTemplate: "col",
 			output: () => {
 				return new b.btngroup({ label: "Basic checkbox toggle button group", role: "group" }, [
-					new b.input({ type: "radio", toggle: true, id: "btnradio1", name: "btnradio" }),
+					new b.input({ type: "radio", toggle: true, id: "btnradio1", name: "btnradio", checked: true }),
 					new b.label({ for: "btnradio1", color: "primary", outline: true }, "Radio 1"),
 
 					new b.input({ type: "radio", toggle: true, id: "btnradio2", name: "btnradio" }),
