@@ -84,7 +84,7 @@ core.documentReady(() => {
 				{ value: "dark", icon: { icon: "moon", type: "fas" }, label: "Dark" },
 				{ value: "auto", icon: { icon: "circle-half-stroke", type: "fas" }, label: "Auto" },
 			],
-			currentTheme: "dark",
+			currentTheme: "auto",
 
 			itemVersion: [{ value: "0.1.8", label: "Latest (0.1.8)" }],
 			currentVersion: "0.1.8",
