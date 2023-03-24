@@ -13,6 +13,7 @@ import { core } from "../../../src/core/_index.js";
 import { a } from "../../../src/html/a.js";
 import { aside } from "../../../src/html/aside.js";
 import { div } from "../../../src/html/div.js";
+import { footer } from "../../../src/html/footer.js";
 import { h } from "../../../src/html/h.js";
 import { hr } from "../../../src/html/hr.js";
 import { li } from "../../../src/html/li.js";
@@ -157,6 +158,16 @@ export interface IAttrContent {
 	description?: string;
 
 	item?: IElem;
+}
+
+export interface IAttrFooterItem {
+	href: string;
+	label: string;
+}
+
+export interface IAttrFooter {
+	title: string;
+	item: IAttrFooterItem[];
 }
 
 const genTheme = (
@@ -538,6 +549,24 @@ const genContent = (content?: IAttrContent) => {
 	}
 };
 
+const genFooter = (itemFooter?: IAttrFooter[]) => {
+	if (itemFooter) {
+		return itemFooter.map((i, ix) => {
+			return new div({ col: [6, "lg-2"], marginBottom: 3, offset: ix === 0 ? "lg-1" : undefined }, [
+				new h(5, i.title),
+				new ul(
+					{ unstyle: true },
+					i.item.map((j) => {
+						return new li({ marginBottom: 2 }, new a({ href: j.href }, j.label));
+					})
+				),
+			]);
+		});
+	} else {
+		return [];
+	}
+};
+
 export const genMainContent = (content?: IAttrContent) => {
 	return [genIntro(content), genToc(content), genContent(content)];
 };
@@ -555,6 +584,7 @@ export interface IAttrBSMainContainer extends IAttr {
 	itemInsideLink?: IAttrItemInsideLink[];
 	itemTheme?: IAttrItemTheme[];
 	itemVersion?: IAttrItemVersion[];
+	itemFooter?: IAttrFooter[];
 
 	currentMenu?: string;
 	currentInsideLink?: string;
@@ -775,6 +805,43 @@ const convert = (attr: IAttrBSMainContainer) => {
 				// ]),
 			]),
 		]),
+		new footer(
+			{ class: "bs-footer", paddingY: [4, "md-5"], marginTop: 5, bgColor: "body-tertiary" },
+			new div(
+				{ container: true, paddingY: 4, paddingX: [4, "md-3"], textColor: "body-secondary" },
+				new div({ row: true }, [
+					new div({ col: "lg-3", marginBottom: 3 }, [
+						new a(
+							{
+								display: "inline-flex",
+								alignItem: "center",
+								marginBottom: 2,
+								textColor: "body-secondary",
+								textDecoration: "none",
+								href: "#",
+								label: attr.name || "Bootstrap",
+							},
+							[
+								attr.icon ? new icon(attr.icon) : icon.brand("bootstrap", { weight: "xl" }),
+								new span({ fontSize: 5, marginStart: 2 }, attr.name || "Bootstrap"),
+							]
+						),
+						new ul({ unstyle: true, class: "small" }, [
+							new li(
+								{ marginBottom: 2 },
+								"Designed and built with all the love in the world by the {{https://getbootstrap.com/docs/5.3/about/team/::Bootstrap team}} with the help of our contributors."
+							),
+							new li(
+								{ marginBottom: 2 },
+								"Code licensed {{https://github.com/twbs/bootstrap/blob/main/LICENSE::MIT}}, docs {{https://creativecommons.org/licenses/by/3.0/::CC BY 3.0}}."
+							),
+							new li({ marginBottom: 2 }, "Currently v5.3.0-alpha1."),
+						]),
+					]),
+					...genFooter(attr.itemFooter),
+				])
+			)
+		),
 	];
 
 	delete attr.icon;
@@ -789,6 +856,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 	delete attr.itemInsideLink;
 	delete attr.itemTheme;
 	delete attr.itemVersion;
+	delete attr.itemFooter;
 
 	delete attr.currentMenu;
 	delete attr.currentInsideLink;

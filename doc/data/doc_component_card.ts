@@ -706,21 +706,180 @@ export const doc_component_card: IAttrContent = {
 
 		//-----------------------
 
+		new e.subtitle("Grid cards"),
+		new e.text(
+			"Use the Bootstrap grid system and its {{https://getbootstrap.com/docs/5.3/layout/grid/#row-columns::.row-cols classes}} to control how many grid columns (wrapped around your cards) you show per row. For example, here’s {{.row-cols-1}} laying out the cards on one column, and {{.row-cols-md-2}} splitting four cards to equal width across multiple rows, from the medium breakpoint up."
+		),
+
+		new e.code({
+			previewTemplate: "row",
+			output: () => {
+				return new h.div(
+					{
+						row: true,
+						rowCol: [1, "md-2"],
+						gutter: 4,
+					},
+					[
+						"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
+						"This card has supporting text below as a natural lead-in to additional content.",
+						"This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.",
+						"This is a longer card with supporting text below as a natural lead-in to additional content.",
+					].map((i) => {
+						return new h.div(
+							{ col: true },
+							new b.card.container([
+								new b.card.img({
+									src: "https://picsum.photos/seed/bsts/341/140",
+									alt: "Image cap",
+									location: "top",
+								}),
+								new b.card.body([new b.card.title("Card title"), new b.card.text(i)]),
+							])
+						);
+					})
+				);
+			},
+		}),
+
+		new e.text("Change it to {{.row-cols-3}} and you’ll see the fourth card wrap."),
+
+		new e.code({
+			previewTemplate: "row",
+			output: () => {
+				return new h.div(
+					{
+						row: true,
+						rowCol: [1, "md-3"],
+						gutter: 4,
+					},
+					[
+						"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
+						"This card has supporting text below as a natural lead-in to additional content.",
+						"This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.",
+						"This is a longer card with supporting text below as a natural lead-in to additional content.",
+					].map((i) => {
+						return new h.div(
+							{ col: true },
+							new b.card.container([
+								new b.card.img({
+									src: "https://picsum.photos/seed/bsts/218/140",
+									alt: "Image cap",
+									location: "top",
+								}),
+								new b.card.body([new b.card.title("Card title"), new b.card.text(i)]),
+							])
+						);
+					})
+				);
+			},
+		}),
+
+		new e.text(
+			"When you need equal height, add {{.h-100}} to the cards. If you want equal heights by default, you can set {{$card-height: 100%}} in Sass."
+		),
+
+		new e.code({
+			previewTemplate: "row",
+			output: () => {
+				return new h.div(
+					{
+						row: true,
+						rowCol: [1, "md-3"],
+						gutter: 4,
+					},
+					[
+						"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
+						"This is a short card.",
+						"This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.",
+						"This is a longer card with supporting text below as a natural lead-in to additional content.",
+					].map((i) => {
+						return new h.div(
+							{ col: true },
+							new b.card.container({ height: 100 }, [
+								new b.card.img({
+									src: "https://picsum.photos/seed/bsts/218/140",
+									alt: "Image cap",
+									location: "top",
+								}),
+								new b.card.body([new b.card.title("Card title"), new b.card.text(i)]),
+							])
+						);
+					})
+				);
+			},
+		}),
+
+		new e.text("Just like with card groups, card footers will automatically line up."),
+
+		new e.code({
+			previewTemplate: "row",
+			output: () => {
+				return new h.div(
+					{
+						row: true,
+						rowCol: [1, "md-3"],
+						gutter: 4,
+					},
+					[
+						"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
+						"This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.",
+						"This is a longer card with supporting text below as a natural lead-in to additional content.",
+					].map((i) => {
+						return new h.div(
+							{ col: true },
+							new b.card.container({ height: 100 }, [
+								new b.card.img({
+									src: "https://picsum.photos/seed/bsts/218/140",
+									alt: "Image cap",
+									location: "top",
+								}),
+								new b.card.body([new b.card.title("Card title"), new b.card.text(i)]),
+								new b.card.footer(new h.small({ textColor: "secondary" }, "Last updated 3 mins ago")),
+							])
+						);
+					})
+				);
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Masonry"),
+		new e.text(
+			"In v4 we used a CSS-only technique to mimic the behavior of {{https://masonry.desandro.com/::Masonry}}-like columns, but this technique came with lots of unpleasant {{https://github.com/twbs/bootstrap/pull/28922::side effects}}. If you want to have this type of layout in v5, you can just make use of Masonry plugin. {{b::Masonry is not included in Bootstrap}}, but we’ve made a {{https://getbootstrap.com/docs/5.3/examples/masonry/::demo example}} to help you get started."
+		),
+
+		//-----------------------
+
 		new e.title("CSS"),
 		new e.subtitle("Variables"),
 		new e.text(
-			"As part of Bootstrap’s evolving CSS variables approach, badges now use local CSS variables on {{.badge}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+			"As part of Bootstrap’s evolving CSS variables approach, badges now use local CSS variables on {{.card}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
 		),
 
 		new e.codepreview({
 			type: "css",
 			code: `
-			    --#{$prefix}badge-padding-x: #{$badge-padding-x};
-				--#{$prefix}badge-padding-y: #{$badge-padding-y};
-				@include rfs($badge-font-size, --#{$prefix}badge-font-size);
-				--#{$prefix}badge-font-weight: #{$badge-font-weight};
-				--#{$prefix}badge-color: #{$badge-color};
-				--#{$prefix}badge-border-radius: #{$badge-border-radius};
+			    --#{$prefix}card-spacer-y: #{$card-spacer-y};
+				--#{$prefix}card-spacer-x: #{$card-spacer-x};
+				--#{$prefix}card-title-spacer-y: #{$card-title-spacer-y};
+				--#{$prefix}card-title-color: #{$card-title-color};
+				--#{$prefix}card-subtitle-color: #{$card-subtitle-color};
+				--#{$prefix}card-border-width: #{$card-border-width};
+				--#{$prefix}card-border-color: #{$card-border-color};
+				--#{$prefix}card-border-radius: #{$card-border-radius};
+				--#{$prefix}card-box-shadow: #{$card-box-shadow};
+				--#{$prefix}card-inner-border-radius: #{$card-inner-border-radius};
+				--#{$prefix}card-cap-padding-y: #{$card-cap-padding-y};
+				--#{$prefix}card-cap-padding-x: #{$card-cap-padding-x};
+				--#{$prefix}card-cap-bg: #{$card-cap-bg};
+				--#{$prefix}card-cap-color: #{$card-cap-color};
+				--#{$prefix}card-height: #{$card-height};
+				--#{$prefix}card-color: #{$card-color};
+				--#{$prefix}card-bg: #{$card-bg};
+				--#{$prefix}card-img-overlay-padding: #{$card-img-overlay-padding};
+				--#{$prefix}card-group-margin: #{$card-group-margin};
 			`,
 		}),
 
@@ -729,12 +888,25 @@ export const doc_component_card: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			code: `
-				$badge-font-size:                   .75em;
-				$badge-font-weight:                 $font-weight-bold;
-				$badge-color:                       $white;
-				$badge-padding-y:                   .35em;
-				$badge-padding-x:                   .65em;
-				$badge-border-radius:               $border-radius;
+				$card-spacer-y:                     $spacer;
+				$card-spacer-x:                     $spacer;
+				$card-title-spacer-y:               $spacer * .5;
+				$card-title-color:                  null;
+				$card-subtitle-color:               null;
+				$card-border-width:                 var(--#{$prefix}border-width);
+				$card-border-color:                 var(--#{$prefix}border-color-translucent);
+				$card-border-radius:                var(--#{$prefix}border-radius);
+				$card-box-shadow:                   null;
+				$card-inner-border-radius:          subtract($card-border-radius, $card-border-width);
+				$card-cap-padding-y:                $card-spacer-y * .5;
+				$card-cap-padding-x:                $card-spacer-x;
+				$card-cap-bg:                       rgba(var(--#{$prefix}body-color-rgb), .03);
+				$card-cap-color:                    null;
+				$card-height:                       null;
+				$card-color:                        null;
+				$card-bg:                           var(--#{$prefix}body-bg);
+				$card-img-overlay-padding:          $spacer;
+				$card-group-margin:                 $grid-gutter-width * .5;
 			`,
 		}),
 	],

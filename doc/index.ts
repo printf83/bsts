@@ -55,7 +55,7 @@ core.documentReady(() => {
 			name: "BSTS",
 			bgColor: "primary",
 			textColor: "light",
-			icon: { weight: "xl", icon: "github", type: "fab" },
+			icon: { weight: "2xl", icon: "github", type: "fab" },
 
 			on: {
 				"bs-menu-change": (e) => {
@@ -89,6 +89,51 @@ core.documentReady(() => {
 
 			itemVersion: [{ value: "0.1.8", label: "Latest (0.1.8)" }],
 			currentVersion: "0.1.8",
+
+			itemFooter: [
+				{
+					title: "Links",
+					item: [
+						{ href: "#", label: "Home" },
+						{ href: "#", label: "Docs" },
+						{ href: "#", label: "Examples" },
+						{ href: "#", label: "Icons" },
+						{ href: "#", label: "Themes" },
+						{ href: "#", label: "Blog" },
+						{ href: "#", label: "Swag Store" },
+					],
+				},
+				{
+					title: "Guides",
+					item: [
+						{ href: "#", label: "Getting started" },
+						{ href: "#", label: "Starter template" },
+						{ href: "#", label: "Webpack" },
+						{ href: "#", label: "Parcel" },
+						{ href: "#", label: "Vite" },
+					],
+				},
+				{
+					title: "Projects",
+					item: [
+						{ href: "#", label: "Bootstrap 5" },
+						{ href: "#", label: "Bootstrap 4" },
+						{ href: "#", label: "Icons" },
+						{ href: "#", label: "RFS" },
+						{ href: "#", label: "npm starter" },
+					],
+				},
+				{
+					title: "Community",
+					item: [
+						{ href: "#", label: "Issues" },
+						{ href: "#", label: "Discussions" },
+						{ href: "#", label: "Corporate sponsors" },
+						{ href: "#", label: "Open Collective" },
+						{ href: "#", label: "Stack Overflow" },
+					],
+				},
+			],
 		})
 	);
 
