@@ -633,6 +633,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 								href: "#",
 								label: attr.name || "Bootstrap",
 								marginEnd: ["lg-2", 0],
+								fontSize: 6,
 								padding: 0,
 								textColor: attr.textColor || "light",
 							},
