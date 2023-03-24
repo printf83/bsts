@@ -99,7 +99,8 @@ export const doc_component_accordion: IAttrContent = {
 			"Add {{.accordion-flush}} to remove the default {{background-color}}, some borders, and some rounded corners to render accordions edge-to-edge with their parent container."
 		),
 		new e.code({
-			previewTemplate: "row",
+			previewTemplate: "none",
+			previewAttr: { padding: 4, bgColor: "body-tertiary" },
 			output: () => {
 				return new b.accordion.container({
 					flush: true,

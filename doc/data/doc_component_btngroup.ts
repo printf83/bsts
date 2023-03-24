@@ -100,7 +100,7 @@ export const doc_component_btngroup: IAttrContent = {
 			output: () => {
 				return new b.btngroup({ label: "Basic checkbox toggle button group", role: "group" }, [
 					new b.input({ type: "radio", toggle: true, id: "btnradio1", name: "btnradio" }),
-					new b.label({ for: "btncheck1", color: "primary", outline: true }, "Radio 1"),
+					new b.label({ for: "btnradio1", color: "primary", outline: true }, "Radio 1"),
 
 					new b.input({ type: "radio", toggle: true, id: "btnradio2", name: "btnradio" }),
 					new b.label({ for: "btnradio2", color: "primary", outline: true }, "Radio 2"),
@@ -186,10 +186,37 @@ export const doc_component_btngroup: IAttrContent = {
 
 		new e.title("Sizing"),
 		new e.text(
+			"Instead of applying button sizing classes to every button in a group, just add {{.btn-group-*}} to each {{.btn-group}}, including each one when nesting multiple groups."
+		),
+		new e.code({
+			previewTemplate: "grid",
+			output: () => {
+				return [
+					new b.btngroup(
+						{ label: "Large button group", weight: "lg", display: "block" },
+						["Left", "Middle", "Right"].map((i) => new b.button({ color: "dark", outline: true }, i))
+					),
+					new b.btngroup(
+						{ label: "Default button group", display: "block" },
+						["Left", "Middle", "Right"].map((i) => new b.button({ color: "dark", outline: true }, i))
+					),
+					new b.btngroup(
+						{ label: "Small button group", weight: "sm", display: "block" },
+						["Left", "Middle", "Right"].map((i) => new b.button({ color: "dark", outline: true }, i))
+					),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Nesting"),
+		new e.text(
 			"Place a {{.btn-group}} within another {{.btn-group}} when you want dropdown menus mixed with a series of buttons."
 		),
 		new e.code({
-			previewTemplate: "row",
+			previewTemplate: "none",
+			previewAttr: { padding: 4 },
 			output: () => {
 				return new b.btngroup({ label: "Button group with nested dropdown" }, [
 					new b.button("1"),
@@ -199,7 +226,6 @@ export const doc_component_btngroup: IAttrContent = {
 						new b.dropdown.toggle({}, "Dropdown"),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
-							new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
 							new b.dropdown.item({ href: "#" }, "Dropdown link 3"),
 						]),
 					]),
@@ -209,27 +235,72 @@ export const doc_component_btngroup: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Nesting "),
+		new e.title("Vertical variation"),
 		new e.text(
-			"Instead of applying button sizing classes to every button in a group, just add {{.btn-group-*}} to each {{.btn-group}}, including each one when nesting multiple groups."
+			"Make a set of buttons appear vertically stacked rather than horizontally. {{b::Split button dropdowns are not supported here.}}"
 		),
 		new e.code({
-			previewTemplate: "grid",
+			previewTemplate: "col",
 			output: () => {
-				return [
-					new b.btngroup(
-						{ label: "Large button group", weight: "lg", display: "block" },
-						["Left", "Middle", "Right"].map((i) => new b.button({ color: "secondary", outline: true }, i))
-					),
-					new b.btngroup(
-						{ label: "Default button group", display: "block" },
-						["Left", "Middle", "Right"].map((i) => new b.button({ color: "secondary", outline: true }, i))
-					),
-					new b.btngroup(
-						{ label: "Small button group", weight: "sm", display: "block" },
-						["Left", "Middle", "Right"].map((i) => new b.button({ color: "secondary", outline: true }, i))
-					),
-				];
+				return new b.btngroup(
+					{ label: "Vertical button group", vertical: true },
+					[1, 2, 3, 4, 5, 6].map((i) => new b.button({ color: "dark" }, "Button"))
+				);
+			},
+		}),
+		new e.code({
+			previewTemplate: "none",
+			previewAttr: { padding: 4 },
+			output: () => {
+				return new b.btngroup({ label: "Vertical button group", vertical: true }, [
+					new b.button("Button"),
+					new b.button("Button"),
+					new b.btngroup([
+						new b.dropdown.toggle({}, "Dropdown"),
+						new b.dropdown.menu([
+							new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
+							new b.dropdown.item({ href: "#" }, "Dropdown link 3"),
+						]),
+					]),
+					new b.button("Button"),
+					new b.button("Button"),
+					new b.btngroup([
+						new b.dropdown.toggle({}, "Dropdown"),
+						new b.dropdown.menu([
+							new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
+							new b.dropdown.item({ href: "#" }, "Dropdown link 3"),
+						]),
+					]),
+					new b.btngroup([
+						new b.dropdown.toggle({}, "Dropdown"),
+						new b.dropdown.menu([
+							new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
+							new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
+						]),
+					]),
+					new b.btngroup([
+						new b.dropdown.toggle({}, "Dropdown"),
+						new b.dropdown.menu([
+							new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
+							new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
+						]),
+					]),
+				]);
+			},
+		}),
+		new e.code({
+			previewTemplate: "col",
+			output: () => {
+				return new b.btngroup({ label: "Vertical radio toggle button group", vertical: true }, [
+					new b.input({ type: "radio", toggle: true, id: "vbtnradio1", name: "vbtnradio", checked: true }),
+					new b.label({ for: "vbtnradio1", color: "danger", outline: true }, "Radio 1"),
+
+					new b.input({ type: "radio", toggle: true, id: "vbtnradio2", name: "vbtnradio" }),
+					new b.label({ for: "vbtnradio2", color: "danger", outline: true }, "Radio 2"),
+
+					new b.input({ type: "radio", toggle: true, id: "vbtnradio3", name: "vbtnradio" }),
+					new b.label({ for: "vbtnradio3", color: "danger", outline: true }, "Radio 3"),
+				]);
 			},
 		}),
 	],

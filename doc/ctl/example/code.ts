@@ -12,8 +12,9 @@ import { a } from "../../../src/html/a.js";
 import { icon } from "../../../src/bootstrap/icon.js";
 import { tooltip } from "../../../src/bootstrap/tooltip.js";
 import { span } from "../../../src/html/span.js";
+import { mergeAttr } from "../../../src/core/fn/mergeAttr.js";
 
-export type IAttrPreviewTemplat = "none" | "row" | "col" | "grid" | "test";
+export type IAttrPreviewTemplate = "none" | "row" | "col" | "grid" | "test";
 
 export interface IAttrBSExampleExt {
 	name?: string;
@@ -35,7 +36,8 @@ export interface IAttrBSExampleContainer extends IAttr {
 	showManager?: boolean;
 	showHTML?: boolean;
 
-	previewTemplate?: IAttrPreviewTemplat;
+	previewTemplate?: IAttrPreviewTemplate;
+	previewAttr?: IAttr;
 }
 
 declare var PR: {
@@ -151,39 +153,76 @@ const itemCode = (
 	return res;
 };
 
-const itemOutput = (manager: boolean, previewTemplate: IAttrPreviewTemplat | undefined, str: string) => {
+const itemOutput = (
+	manager: boolean,
+	previewTemplate: IAttrPreviewTemplate | undefined,
+	previewAttr: IAttr | undefined,
+	str: string
+) => {
 	if (manager) {
-		return new list.item({ class: `example-output`, padding: 0, overflow: "auto" }, str);
+		return new list.item(mergeAttr({ class: `example-output`, padding: 4, overflow: "auto" }, previewAttr), str);
 	} else {
 		switch (previewTemplate) {
 			case "none":
-				return new list.item({ class: `example-output`, padding: 4, overflow: "auto" }, str);
+				return new list.item(mergeAttr({ class: `example-output` }, previewAttr), str);
 			case "col":
 				return new list.item(
-					{ class: `example-output`, padding: 4, overflow: "auto", display: "flex", gap: 2 },
+					mergeAttr(
+						{ class: `example-output`, padding: 4, overflow: "auto", display: "flex", gap: 2 },
+						previewAttr
+					),
 					str
 				);
+
 			case "grid":
 				return new list.item(
-					{
-						class: `example-output`,
-						padding: 4,
-						overflow: "auto",
-						display: "grid",
-						gap: 2,
-					},
+					mergeAttr(
+						{ class: `example-output`, padding: 4, overflow: "auto", display: "grid", gap: 2 },
+						previewAttr
+					),
 					str
 				);
-			// case "test":
-			// 	return new list.item(
-			// 		{ class: `example-output`, padding: 4, overflow: "auto", col: 12, paddingY: 1 },
-			// 		str
-			// 	);
 			default:
-				return new list.item({ class: `example-output`, padding: 4, overflow: "auto", gap: 2 }, str);
+				return new list.item(
+					mergeAttr({ class: `example-output`, padding: 4, overflow: "auto", gap: 2 }, previewAttr),
+					str
+				);
 		}
 	}
 };
+// const itemOutput = (manager: boolean, previewTemplate: IAttrPreviewTemplat | undefined, str: string) => {
+// 	if (manager) {
+// 		return new list.item({ class: `example-output`, padding: 0, overflow: "auto" }, str);
+// 	} else {
+// 		switch (previewTemplate) {
+// 			case "none":
+// 				return new list.item({ class: `example-output`, padding: 4, overflow: "auto" }, str);
+// 			case "col":
+// 				return new list.item(
+// 					{ class: `example-output`, padding: 4, overflow: "auto", display: "flex", gap: 2 },
+// 					str
+// 				);
+// 			case "grid":
+// 				return new list.item(
+// 					{
+// 						class: `example-output`,
+// 						padding: 4,
+// 						overflow: "auto",
+// 						display: "grid",
+// 						gap: 2,
+// 					},
+// 					str
+// 				);
+// 			// case "test":
+// 			// 	return new list.item(
+// 			// 		{ class: `example-output`, padding: 4, overflow: "auto", col: 12, paddingY: 1 },
+// 			// 		str
+// 			// 	);
+// 			default:
+// 				return new list.item({ class: `example-output`, padding: 4, overflow: "auto", gap: 2 }, str);
+// 		}
+// 	}
+// };
 
 const convert = (attr: IAttrBSExampleContainer) => {
 	let id = UUID();
@@ -197,9 +236,9 @@ const convert = (attr: IAttrBSExampleContainer) => {
 
 	if (attr.output && attr.showOutput) {
 		if (attr.manager) {
-			e.push(itemOutput(true, attr.previewTemplate, attr.manager(attr.output())));
+			e.push(itemOutput(true, attr.previewTemplate, attr.previewAttr, attr.manager(attr.output())));
 		} else {
-			e.push(itemOutput(false, attr.previewTemplate, attr.output()));
+			e.push(itemOutput(false, attr.previewTemplate, attr.previewAttr, attr.output()));
 		}
 	}
 
