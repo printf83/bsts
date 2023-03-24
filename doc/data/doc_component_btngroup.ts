@@ -226,7 +226,7 @@ export const doc_component_btngroup: IAttrContent = {
 						new b.dropdown.toggle({}, "Dropdown"),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
-							new b.dropdown.item({ href: "#" }, "Dropdown link 3"),
+							new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
 						]),
 					]),
 				]);
@@ -244,7 +244,7 @@ export const doc_component_btngroup: IAttrContent = {
 			output: () => {
 				return new b.btngroup(
 					{ label: "Vertical button group", vertical: true },
-					[1, 2, 3, 4, 5, 6].map((i) => new b.button({ color: "dark" }, "Button"))
+					[1, 2, 3, 4, 5, 6].map(() => new b.button({ color: "dark" }, "Button"))
 				);
 			},
 		}),
@@ -259,7 +259,7 @@ export const doc_component_btngroup: IAttrContent = {
 						new b.dropdown.toggle({}, "Dropdown"),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
-							new b.dropdown.item({ href: "#" }, "Dropdown link 3"),
+							new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
 						]),
 					]),
 					new b.button("Button"),
@@ -268,7 +268,7 @@ export const doc_component_btngroup: IAttrContent = {
 						new b.dropdown.toggle({}, "Dropdown"),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
-							new b.dropdown.item({ href: "#" }, "Dropdown link 3"),
+							new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
 						]),
 					]),
 					new b.btngroup([

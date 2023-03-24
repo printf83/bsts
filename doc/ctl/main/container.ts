@@ -580,6 +580,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 					{
 						class: "bs-gutter",
 						container: "xxl",
+						padding: 0,
 						flex: ["wrap", "lg-nowrap"],
 						label: "Main navigation",
 					},
