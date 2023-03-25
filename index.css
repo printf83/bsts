@@ -99,14 +99,14 @@ a:hover *,
 }
 
 .bs-links-link:hover,
-.bs-links-link:focus,
-.bs-links-link.active {
-    color: var(--bs-light);
-    background-color: var(--bs-primary)
+.bs-links-link:focus {
+    background-color: rgba(var(--bs-primary-rgb), 0.25)
 }
 
 .bs-links-link.active {
-    font-weight: 600
+    font-weight: 600;
+    color: var(--bs-light);
+    background-color: var(--bs-primary)
 }
 
 .bs-gutter {
@@ -208,9 +208,17 @@ a:hover *,
     text-decoration: none
 }
 
-.bs-toc nav a.active {
-    color:var(--bs-body-color);
+.bs-toc nav a.active,
+.bs-toc nav a:hover {
+    color: var(--bs-primary);
     font-weight: bold;
+    border-left-color: var(--bs-primary);
+    border-left-width: 0.15rem;
+    border-left-style: solid;
+    padding-left: 0.85rem;
+    margin-left: -1rem;
+    text-decoration: none;
+    display: block;
 }
 
 .bs-toc nav a code {

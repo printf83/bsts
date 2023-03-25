@@ -1,13 +1,13 @@
 
 pre .str,
 code .str {
-    color: var(--bs-success-text);
+    color: var(--bs-success);
 }
 
 
 pre .kwd,
 code .kwd {
-    color: var(--bs-danger-text);
+    color: var(--bs-danger);
 }
 
 
@@ -19,42 +19,42 @@ code .com {
 
 pre .typ,
 code .typ {
-    color: var(--bs-secondary-text);
+    color: var(--bs-secondary);
 }
 
 pre .lit,
 code .lit {
-    color: var(--bs-info-text);
+    color: var(--bs-info);
 }
 
 pre .pun,
 code .pun {
-    color: var(--bs-primary-text);
+    color: var(--bs-primary);
 }
 
 pre .pln,
 code .pln {
-    color: var(--bs-light-text);
+    color: var(--bs-body-color);
 }
 
 pre .tag,
 code .tag {
-    color: var(--bs-primary-text);
+    color: var(--bs-primary);
 }
 
 pre .atn,
 code .atn {
-    color: var(--bs-info-text);
+    color: var(--bs-info);
 }
 
 pre .atv,
 code .atv {
-    color: var(--bs-success-text);
+    color: var(--bs-success);
 }
 
 pre .dec,
 code .dec {
-    color: var(--bs-success-text);
+    color: var(--bs-success);
 }
 
 
@@ -68,7 +68,7 @@ pre.prettyprint {
 ol.linenums {
     margin-top: 0;
     margin-bottom: 0;
-    color: var(--bs-secondary-text)
+    color: var(--bs-secondary)
 }
 
 /* IE indents via margin-left */

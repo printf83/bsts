@@ -836,7 +836,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 								{ marginBottom: 2 },
 								"Code licensed {{https://github.com/twbs/bootstrap/blob/main/LICENSE::MIT}}, docs {{https://creativecommons.org/licenses/by/3.0/::CC BY 3.0}}."
 							),
-							new li({ marginBottom: 2 }, "Currently v5.3.0-alpha1."),
+							new li({ marginBottom: 2 }, "Currently v5.3.0-alpha2."),
 						]),
 					]),
 					...genFooter(attr.itemFooter),

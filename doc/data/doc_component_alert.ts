@@ -234,7 +234,29 @@ export const doc_component_alert: IAttrContent = {
 				$alert-bg-scale:                -80%;
 				$alert-border-scale:            -70%;
 				$alert-color-scale:             40%;
-				$alert-dismissible-padding-r:   $alert-padding-x * 3; // 3x covers width of x plus defau
+				$alert-dismissible-padding-r:   $alert-padding-x * 3; // 3x covers width of x plus defaut
+			`,
+		}),
+
+		new e.subtitle("Sass mixin"),
+		new e.text("Used in combination with {{$theme-colors}} to create contextual modifier classes for our alerts."),
+		new e.codepreview({
+			type: "css",
+			code: `
+				@mixin alert-variant($background, $border, $color) {
+				--#{$prefix}alert-color: #{$color};
+				--#{$prefix}alert-bg: #{$background};
+				--#{$prefix}alert-border-color: #{$border};
+				--#{$prefix}alert-link-color: #{shade-color($color, 20%)};
+
+				@if $enable-gradients {
+					background-image: var(--#{$prefix}gradient);
+				}
+
+				.alert-link {
+					color: var(--#{$prefix}alert-link-color);
+				}
+				}
 			`,
 		}),
 
