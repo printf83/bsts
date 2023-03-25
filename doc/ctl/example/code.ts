@@ -190,39 +190,6 @@ const itemOutput = (
 		}
 	}
 };
-// const itemOutput = (manager: boolean, previewTemplate: IAttrPreviewTemplat | undefined, str: string) => {
-// 	if (manager) {
-// 		return new list.item({ class: `example-output`, padding: 0, overflow: "auto" }, str);
-// 	} else {
-// 		switch (previewTemplate) {
-// 			case "none":
-// 				return new list.item({ class: `example-output`, padding: 4, overflow: "auto" }, str);
-// 			case "col":
-// 				return new list.item(
-// 					{ class: `example-output`, padding: 4, overflow: "auto", display: "flex", gap: 2 },
-// 					str
-// 				);
-// 			case "grid":
-// 				return new list.item(
-// 					{
-// 						class: `example-output`,
-// 						padding: 4,
-// 						overflow: "auto",
-// 						display: "grid",
-// 						gap: 2,
-// 					},
-// 					str
-// 				);
-// 			// case "test":
-// 			// 	return new list.item(
-// 			// 		{ class: `example-output`, padding: 4, overflow: "auto", col: 12, paddingY: 1 },
-// 			// 		str
-// 			// 	);
-// 			default:
-// 				return new list.item({ class: `example-output`, padding: 4, overflow: "auto", gap: 2 }, str);
-// 		}
-// 	}
-// };
 
 const convert = (attr: IAttrBSExampleContainer) => {
 	let id = UUID();
@@ -295,8 +262,8 @@ const convert = (attr: IAttrBSExampleContainer) => {
 
 	attr.elem = [
 		new card.container(
-			{ id: id, class: "example", overflow: "hidden", marginY: 3 },
-			new card.body({ padding: 0 }, [new list.container({ flush: true }, e)])
+			{ id: id, class: "example", marginY: 3 },
+			new card.body({ padding: 0 }, [new list.container({ flush: true, rounded: 2 }, e)])
 		),
 	];
 
@@ -311,8 +278,10 @@ const convert = (attr: IAttrBSExampleContainer) => {
 	delete attr.showHTML;
 	delete attr.showScript;
 	delete attr.showOutput;
+	delete attr.showManager;
 
 	delete attr.previewTemplate;
+	delete attr.previewAttr;
 
 	return attr;
 };

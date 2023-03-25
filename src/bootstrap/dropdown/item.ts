@@ -13,7 +13,6 @@ const convert = (attr: IAttrBSDropdownItem) => {
 		{
 			class: ["dropdown-item", attr.active ? "active" : undefined, attr.disabled ? "disabled" : undefined],
 			href: attr.href || "#",
-			// rounded: 1,
 			aria: { current: attr.active ? "true" : undefined },
 		},
 		attr

@@ -3,6 +3,7 @@ import { IAttr, IElem } from "../../../src/core/base/tag.js";
 import { div } from "../../../src/html/div.js";
 
 const convert = (attr: IAttr) => {
+	attr.marginBottom ??= 3;
 	return attr;
 };
 

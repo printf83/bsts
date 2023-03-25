@@ -3,19 +3,15 @@ import { bsConstArg } from "../../core/base/bootstrap.js";
 import { mergeClass } from "../../core/fn/mergeClass.js";
 import { btngroup } from "../btngroup.js";
 
+export type IAttrBSDropdownContainerDrop = "down" | "down-center" | "up" | "up-center" | "start" | "end";
 export interface IAttrBSDropdownContainer extends IAttr {
-	drop?: "down" | "up" | "start" | "end";
-	center?: true;
+	drop?: IAttrBSDropdownContainerDrop;
 }
 
 const convert = (attr: IAttrBSDropdownContainer) => {
-	attr.class = mergeClass(attr.class, [
-		attr.drop && attr.drop !== "down" ? `drop${attr.drop}` : undefined,
-		attr.center && attr.drop !== "start" && attr.drop !== "end" ? `drop${attr.drop}-center` : undefined,
-	]);
+	attr.class = mergeClass(attr.class, [attr.drop ? `drop${attr.drop}` : undefined]);
 
 	delete attr.drop;
-	delete attr.center;
 
 	return attr;
 };

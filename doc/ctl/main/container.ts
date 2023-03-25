@@ -836,6 +836,20 @@ const convert = (attr: IAttrBSMainContainer) => {
 								{ marginBottom: 2 },
 								"Code licensed {{https://github.com/twbs/bootstrap/blob/main/LICENSE::MIT}}, docs {{https://creativecommons.org/licenses/by/3.0/::CC BY 3.0}}."
 							),
+							new li({ marginBottom: 2 }, [
+								"Current view port is : ",
+								new span(
+									{
+										display: ["inline-block", "sm-none"],
+									},
+									"Extra small {{k::xs}}"
+								),
+								new span({ display: ["sm-inline-block", "md-none", "none"] }, "Small {{k::sm}}"),
+								new span({ display: ["md-inline-block", "lg-none", "none"] }, "Medium {{k::md}}"),
+								new span({ display: ["lg-inline-block", "xl-none", "none"] }, "Large {{k::lg}}"),
+								new span({ display: ["xl-inline-block", "xxl-none", "none"] }, "Extra large {{k::xl}}"),
+								new span({ display: ["xxl-inline-block", "none"] }, "Super large {{k::xxl}}"),
+							]),
 							new li({ marginBottom: 2 }, "Currently v5.3.0-alpha2."),
 						]),
 					]),

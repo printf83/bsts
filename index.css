@@ -29,12 +29,17 @@ a:hover *,
 
 /* example */
 @media (max-width: 768px) {
-.example.card {
+    .example.card {
         margin: 0 -1.5rem 1rem;
         border-radius: 0;
         border-left: 0;
         border-right: 0
     }
+
+    .example.card ul.list-group.list-group-flush.rounded-2{
+        border-radius: 0!important;
+    }
+
 }
 
 /* anchor link */

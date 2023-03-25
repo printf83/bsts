@@ -7,6 +7,7 @@ import { bsConstArg } from "../../core/base/bootstrap.js";
 
 export interface IAttrBSDropdownMenu extends IAttr {
 	positionView?: bootstrapType.positionView[number] | bootstrapType.positionView[number][];
+	debug?: boolean;
 }
 
 const rules: bootstrapRuleDB = {
@@ -26,7 +27,13 @@ const convert = (attr: IAttrBSDropdownMenu) => {
 		);
 	}
 
+	if (attr.debug) {
+		attr.position ??= "static";
+		attr.display ??= "block";
+	}
+
 	delete attr.positionView;
+	delete attr.debug;
 
 	return attr;
 };
