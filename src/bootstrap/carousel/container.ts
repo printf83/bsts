@@ -7,6 +7,7 @@ import { UUID } from "../../core/fn/uuid.js";
 import { inner } from "./inner/_index.js";
 
 export interface IAttrBSCarouselItem {
+	interval?: number;
 	src?: string;
 	caption?: IElem;
 }
@@ -25,7 +26,7 @@ const convert = (attr: IAttrBSCarousel) => {
 
 	attr = mergeObject(
 		{
-			class: ["carousel", "slide"],
+			class: ["carousel", "slide", attr.fade ? "carousel-fade" : undefined],
 			data: {
 				"bs-ride": attr.autoPlay === true ? "carousel" : "true",
 				"bs-touch": attr.disableTouch ? "false" : undefined,
@@ -59,6 +60,7 @@ const convert = (attr: IAttrBSCarousel) => {
 				attr.item.map((i, ix) => {
 					return new inner.item.container(
 						{
+							interval: i.interval,
 							active: ix === 0 ? true : undefined,
 						},
 						[
