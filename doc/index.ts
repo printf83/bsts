@@ -3,7 +3,7 @@ import { genMainContent, IAttrItemMenu } from "./ctl/main/container.js";
 import { main } from "./ctl/main/_index.js";
 import { data } from "./data/_index.js";
 
-let CURRENT_PAGE = "doc_component_btnclose";
+let CURRENT_PAGE = "doc_component_collapse";
 
 declare var PR: {
 	prettyPrint: () => void;
@@ -29,6 +29,7 @@ let m = {
 				{ label: "Card", value: "doc_component_card" },
 				{ label: "Carousel", value: "doc_component_carousel" },
 				{ label: "Close button", value: "doc_component_btnclose" },
+				{ label: "Collapse", value: "doc_component_collapse" },
 			],
 		},
 	] as IAttrItemMenu[],
@@ -57,7 +58,7 @@ core.documentReady(() => {
 			name: "BSTS",
 			bgColor: "primary",
 			textColor: "light",
-			icon: { weight: "2xl", icon: "github", type: "fab" },
+			icon: { class: "animate-icon", weight: "2xl", icon: "node-js", type: "fab" },
 
 			on: {
 				"bs-menu-change": (e) => {

@@ -7,6 +7,12 @@ a:hover *,
     font-weight: 600;
 }
 
+/* animate icon */
+.animate-icon:hover{
+    transition: transform 0.2s ease-in-out;
+    transform: rotate(-5deg) scale(1.1);
+}
+
 /* dropdown menu */
 .dropdown-menu{
     padding:calc(var(--bs-dropdown-spacer)*2);
