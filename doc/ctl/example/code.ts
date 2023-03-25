@@ -91,7 +91,7 @@ const itemCode = (
 							{
 								monospace: true,
 								textTransform: "uppercase",
-								textColor: "secondary",
+								textColor: "body-secondary",
 							},
 							title
 						)

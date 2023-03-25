@@ -27,6 +27,10 @@ a:hover *,
     margin-bottom: calc(var(--bs-dropdown-spacer)*2);
 }
 
+.dropdown-menu .dropdown-divider {
+    margin: calc(var(--bs-dropdown-spacer)*2) calc(var(--bs-dropdown-spacer)*-2);
+}
+
 /* example */
 @media (max-width: 768px) {
     .example.card {
@@ -47,7 +51,7 @@ a:hover *,
 .anchor-link:hover,
 :hover>.anchor-link,
 :target>.anchor-link {
-    color: var(--bs-primary-text);
+    color: var(--bs-primary);
     text-decoration: none;
     opacity: 1;
 }
@@ -236,11 +240,10 @@ a:hover *,
 .bs-toc nav a.active,
 .bs-toc nav a:hover {
     color: var(--bs-primary);
-    font-weight: bold;
     border-left-color: var(--bs-primary);
     border-left-width: 0.15rem;
     border-left-style: solid;
-    padding-left: 0.85rem;
+    padding-left: 0.875rem;
     margin-left: -1rem;
     text-decoration: none;
     display: block;

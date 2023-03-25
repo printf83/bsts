@@ -248,7 +248,7 @@ export const doc_component_card: IAttrContent = {
 						new b.card.text("With supporting text below as a natural lead-in to additional content."),
 						new b.button("Go somewhere"),
 					]),
-					new b.card.footer({ textColor: "secondary" }, "2 days ago"),
+					new b.card.footer({ textColor: "body-secondary" }, "2 days ago"),
 				]);
 			},
 		}),
@@ -444,7 +444,7 @@ export const doc_component_card: IAttrContent = {
 							new b.card.text(
 								"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
 							),
-							new b.card.text(new h.small({ textColor: "secondary" }, "Last updated 3 mins ago")),
+							new b.card.text(new h.small({ textColor: "body-secondary" }, "Last updated 3 mins ago")),
 						]),
 					]),
 					new b.card.container([
@@ -453,7 +453,7 @@ export const doc_component_card: IAttrContent = {
 							new b.card.text(
 								"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
 							),
-							new b.card.text(new h.small({ textColor: "secondary" }, "Last updated 3 mins ago")),
+							new b.card.text(new h.small({ textColor: "body-secondary" }, "Last updated 3 mins ago")),
 						]),
 						new b.card.img({
 							location: "bottom",
@@ -485,7 +485,7 @@ export const doc_component_card: IAttrContent = {
 						new b.card.text(
 							"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
 						),
-						new b.card.text(new h.small({ textColor: "secondary" }, "Last updated 3 mins ago")),
+						new b.card.text(new h.small({ textColor: "body-secondary" }, "Last updated 3 mins ago")),
 					]),
 				]);
 			},
@@ -526,7 +526,9 @@ export const doc_component_card: IAttrContent = {
 								new b.card.text(
 									"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
 								),
-								new b.card.text(new h.small({ textColor: "secondary" }, "Last updated 3 mins ago")),
+								new b.card.text(
+									new h.small({ textColor: "body-secondary" }, "Last updated 3 mins ago")
+								),
 							])
 						),
 					]),
@@ -671,7 +673,9 @@ export const doc_component_card: IAttrContent = {
 							new b.card.body([
 								new b.card.title("Card title"),
 								new b.card.text(i),
-								new b.card.text(new h.small({ textColor: "secondary" }, "Last updated 3 mins ago")),
+								new b.card.text(
+									new h.small({ textColor: "body-secondary" }, "Last updated 3 mins ago")
+								),
 							]),
 						]);
 					})
@@ -697,7 +701,7 @@ export const doc_component_card: IAttrContent = {
 								location: "top",
 							}),
 							new b.card.body([new b.card.title("Card title"), new b.card.text(i)]),
-							new b.card.footer(new h.small({ textColor: "secondary" }, "Last updated 3 mins ago")),
+							new b.card.footer(new h.small({ textColor: "body-secondary" }, "Last updated 3 mins ago")),
 						]);
 					})
 				);
@@ -835,7 +839,9 @@ export const doc_component_card: IAttrContent = {
 									location: "top",
 								}),
 								new b.card.body([new b.card.title("Card title"), new b.card.text(i)]),
-								new b.card.footer(new h.small({ textColor: "secondary" }, "Last updated 3 mins ago")),
+								new b.card.footer(
+									new h.small({ textColor: "body-secondary" }, "Last updated 3 mins ago")
+								),
 							])
 						);
 					})

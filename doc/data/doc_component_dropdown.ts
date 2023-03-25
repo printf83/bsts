@@ -174,11 +174,11 @@ export const doc_component_dropdown: IAttrContent = {
 
 				return [
 					new b.dropdown.container({ marginEnd: 2 }, [
-						new b.dropdown.toggle({ color: "secondary", weight: "sm" }, "Large button "),
+						new b.dropdown.toggle({ color: "secondary", weight: "sm" }, "Small button "),
 						menu,
 					]),
 					new b.dropdown.container([
-						new b.button({ color: "secondary", weight: "sm" }, "Large split button"),
+						new b.button({ color: "secondary", weight: "sm" }, "Small split button"),
 						new b.dropdown.toggle({ color: "secondary", weight: "sm", split: true }),
 						menu,
 					]),
@@ -219,7 +219,7 @@ export const doc_component_dropdown: IAttrContent = {
 
 		new e.code({
 			previewTemplate: "none",
-			previewAttr: { padding: 4 },
+			previewAttr: { padding: 4, bgColor: "dark" },
 			output: () => {
 				return new b.navbar.container(
 					{ expand: "lg", theme: "dark", bgColor: "dark" },
@@ -297,7 +297,7 @@ export const doc_component_dropdown: IAttrContent = {
 
 				return [
 					new b.dropdown.container({ drop: "up", marginEnd: 2 }, [
-						new b.dropdown.toggle({ color: "secondary" }, "Large button "),
+						new b.dropdown.toggle({ color: "secondary" }, "Dropup "),
 						menu,
 					]),
 					new b.dropdown.container({ drop: "up" }, [
@@ -581,36 +581,467 @@ export const doc_component_dropdown: IAttrContent = {
 
 		//-----------------------
 
+		new e.title("Menu content"),
+		new e.subtitle("Headers"),
+		new e.text("Add a header to label sections of actions in any dropdown menu."),
+		new e.code({
+			previewTemplate: "row",
+			output: () => {
+				return new b.dropdown.menu({ debug: true }, [
+					new b.dropdown.header("Dropdown header"),
+					new b.dropdown.item({ href: "#" }, "Action"),
+					new b.dropdown.item({ href: "#" }, "Another action"),
+				]);
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Dividers"),
+		new e.text("Separate groups of related menu items with a divider."),
+		new e.code({
+			previewTemplate: "row",
+			output: () => {
+				return new b.dropdown.menu({ debug: true }, [
+					new b.dropdown.item({ href: "#" }, "Action"),
+					new b.dropdown.item({ href: "#" }, "Another action"),
+					new b.dropdown.item({ href: "#" }, "Something else here"),
+					new b.dropdown.divider(),
+					new b.dropdown.item({ href: "#" }, "Separated link"),
+				]);
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Text"),
+		new e.text(
+			"Place any freeform text within a dropdown menu with text and use {{https://getbootstrap.com/docs/5.3/utilities/spacing/::spacing utilities}}. Note that you’ll likely need additional sizing styles to constrain the menu width."
+		),
+		new e.code({
+			previewTemplate: "row",
+			output: () => {
+				return new b.dropdown.menu(
+					{
+						debug: true,
+						padding: 4,
+						textColor: "body-secondary",
+						style: { maxWidth: "200px" },
+					},
+					[
+						new h.p("Some example text that's free-flowing within the dropdown menu."),
+						new h.p({ marginBottom: 0 }, "And this is more example text."),
+					]
+				);
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Forms"),
+		new e.text(
+			"Put a form within a dropdown menu, or make it into a dropdown menu, and use {{https://getbootstrap.com/docs/5.3/utilities/spacing/::margin or padding utilities}} to give it the negative space you require."
+		),
+		new e.code({
+			previewTemplate: "row",
+			output: () => {
+				return new b.dropdown.menu(
+					{
+						debug: true,
+					},
+					[
+						new h.form(
+							{
+								padding: 3,
+							},
+							[
+								new h.div({ marginBottom: 3 }, [
+									new b.label({ for: "exampleDropdownFormEmail1" }, "Email address"),
+									new b.input({
+										type: "email",
+										id: "exampleDropdownFormEmail1",
+										placeholderText: "email@example.com",
+									}),
+								]),
+								new h.div({ marginBottom: 3 }, [
+									new b.label({ for: "exampleDropdownFormPassword1" }, "Password"),
+									new b.input({
+										type: "email",
+										id: "exampleDropdownFormPassword1",
+										placeholderText: "email@example.com",
+									}),
+								]),
+								new h.div({ marginBottom: 3 }, [
+									new h.div({ class: "form-check" }, [
+										new b.input({
+											type: "checkbox",
+											id: "dropdownCheck",
+											placeholderText: "email@example.com",
+										}),
+										new b.label({ for: "dropdownCheck" }, "Remember me"),
+									]),
+								]),
+								new b.button({ type: "submit" }, "Sign in"),
+							]
+						),
+						new b.dropdown.divider(),
+						new b.dropdown.item({ href: "#" }, "New around here? Sign up"),
+						new b.dropdown.item({ href: "#" }, "Forgot password?"),
+					]
+				);
+			},
+		}),
+
+		new e.code({
+			previewTemplate: "none",
+			previewAttr: { padding: 4 },
+			output: () => {
+				return new h.div({ class: "dropdown" }, [
+					new b.dropdown.toggle({ menuAutoClose: "outside" }, "Dropdown form"),
+					new b.dropdown.menu(
+						new h.form(
+							{
+								padding: 3,
+							},
+							[
+								new h.div({ marginBottom: 3 }, [
+									new b.label({ for: "exampleDropdownFormEmail2" }, "Email address"),
+									new b.input({
+										type: "email",
+										id: "exampleDropdownFormEmail2",
+										placeholderText: "email@example.com",
+									}),
+								]),
+								new h.div({ marginBottom: 3 }, [
+									new b.label({ for: "exampleDropdownFormPassword2" }, "Password"),
+									new b.input({
+										type: "email",
+										id: "exampleDropdownFormPassword2",
+										placeholderText: "email@example.com",
+									}),
+								]),
+								new h.div({ marginBottom: 3 }, [
+									new h.div({ class: "form-check" }, [
+										new b.input({
+											type: "checkbox",
+											id: "dropdownCheck2",
+											placeholderText: "email@example.com",
+										}),
+										new b.label({ for: "dropdownCheck2" }, "Remember me"),
+									]),
+								]),
+								new b.button({ type: "submit" }, "Sign in"),
+							]
+						)
+					),
+				]);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Dropdown options"),
+		new e.text("Use {{data-bs-offset}} or {{data-bs-reference}} to change the location of the dropdown."),
+		new e.code({
+			previewTemplate: "none",
+			previewAttr: { padding: 4 },
+			output: () => {
+				let menu = new b.dropdown.menu([
+					new b.dropdown.item({ href: "#" }, "Action"),
+					new b.dropdown.item({ href: "#" }, "Another action"),
+					new b.dropdown.item({ href: "#" }, "Something else here"),
+					new b.dropdown.divider(),
+					new b.dropdown.item({ href: "#" }, "Separated link"),
+				]);
+
+				return [
+					new b.dropdown.container([
+						new b.dropdown.toggle({ color: "secondary", menuOffset: "10,20" }, "Offset "),
+						menu,
+					]),
+					new b.dropdown.container([
+						new b.button({ color: "secondary" }, "Reference"),
+						new b.dropdown.toggle({ color: "secondary", split: true, menuReference: "parent" }),
+						menu,
+					]),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Auto close behavior"),
+		new e.text(
+			"By default, the dropdown menu is closed when clicking inside or outside the dropdown menu. You can use the {{autoClose}} option to change this behavior of the dropdown."
+		),
+		new e.code({
+			previewTemplate: "none",
+			previewAttr: { padding: 4, display: "flex", gap: 2 },
+			output: () => {
+				let menu = new b.dropdown.menu([
+					new b.dropdown.item({ href: "#" }, "Action"),
+					new b.dropdown.item({ href: "#" }, "Another action"),
+					new b.dropdown.item({ href: "#" }, "Something else here"),
+					new b.dropdown.divider(),
+					new b.dropdown.item({ href: "#" }, "Separated link"),
+				]);
+
+				return [
+					new b.dropdown.container([
+						new b.dropdown.toggle({ color: "secondary" }, "Default dropdown "),
+						menu,
+					]),
+					new b.dropdown.container([
+						new b.dropdown.toggle({ color: "secondary", menuAutoClose: "inside" }, "Clickable inside "),
+						menu,
+					]),
+					new b.dropdown.container([
+						new b.dropdown.toggle({ color: "secondary", menuAutoClose: "outside" }, "Clickable outside "),
+						menu,
+					]),
+					new b.dropdown.container([
+						new b.dropdown.toggle({ color: "secondary", menuAutoClose: "manual" }, "Manual close "),
+						menu,
+					]),
+				];
+			},
+		}),
+
+		//-----------------------
+
 		new e.title("CSS"),
 		new e.subtitle("Variables"),
 		new e.text(
-			"As part of Bootstrap’s evolving CSS variables approach, badges now use local CSS variables on {{.badge}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+			"As part of Bootstrap’s evolving CSS variables approach, dropdowns now use local CSS variables on {{.dropdown-menu}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
 		),
 
 		new e.codepreview({
 			type: "css",
 			code: `
-			    --#{$prefix}badge-padding-x: #{$badge-padding-x};
-				--#{$prefix}badge-padding-y: #{$badge-padding-y};
-				@include rfs($badge-font-size, --#{$prefix}badge-font-size);
-				--#{$prefix}badge-font-weight: #{$badge-font-weight};
-				--#{$prefix}badge-color: #{$badge-color};
-				--#{$prefix}badge-border-radius: #{$badge-border-radius};
+				--#{$prefix}dropdown-zindex: #{$zindex-dropdown};
+				--#{$prefix}dropdown-min-width: #{$dropdown-min-width};
+				--#{$prefix}dropdown-padding-x: #{$dropdown-padding-x};
+				--#{$prefix}dropdown-padding-y: #{$dropdown-padding-y};
+				--#{$prefix}dropdown-spacer: #{$dropdown-spacer};
+				@include rfs($dropdown-font-size, --#{$prefix}dropdown-font-size);
+				--#{$prefix}dropdown-color: #{$dropdown-color};
+				--#{$prefix}dropdown-bg: #{$dropdown-bg};
+				--#{$prefix}dropdown-border-color: #{$dropdown-border-color};
+				--#{$prefix}dropdown-border-radius: #{$dropdown-border-radius};
+				--#{$prefix}dropdown-border-width: #{$dropdown-border-width};
+				--#{$prefix}dropdown-inner-border-radius: #{$dropdown-inner-border-radius};
+				--#{$prefix}dropdown-divider-bg: #{$dropdown-divider-bg};
+				--#{$prefix}dropdown-divider-margin-y: #{$dropdown-divider-margin-y};
+				--#{$prefix}dropdown-box-shadow: #{$dropdown-box-shadow};
+				--#{$prefix}dropdown-link-color: #{$dropdown-link-color};
+				--#{$prefix}dropdown-link-hover-color: #{$dropdown-link-hover-color};
+				--#{$prefix}dropdown-link-hover-bg: #{$dropdown-link-hover-bg};
+				--#{$prefix}dropdown-link-active-color: #{$dropdown-link-active-color};
+				--#{$prefix}dropdown-link-active-bg: #{$dropdown-link-active-bg};
+				--#{$prefix}dropdown-link-disabled-color: #{$dropdown-link-disabled-color};
+				--#{$prefix}dropdown-item-padding-x: #{$dropdown-item-padding-x};
+				--#{$prefix}dropdown-item-padding-y: #{$dropdown-item-padding-y};
+				--#{$prefix}dropdown-header-color: #{$dropdown-header-color};
+				--#{$prefix}dropdown-header-padding-x: #{$dropdown-header-padding-x};
+				--#{$prefix}dropdown-header-padding-y: #{$dropdown-header-padding-y};
 			`,
 		}),
 
-		new e.subtitle("Sass variables"),
+		new e.item(
+			new b.alert.container({ color: "info", callout: true }, [
+				"Dropdown items include at least one variable that is not set on {{.dropdown}}. This allows you to provide a new value while Bootstrap defaults to a fallback value.",
+				new h.ul([new h.li("{{--bs-dropdown-item-border-radius}}")]),
+			])
+		),
+
+		new e.text(
+			"Customization through CSS variables can be seen on the {{.dropdown-menu-dark}} class where we override specific values without adding duplicate CSS selectors."
+		),
 
 		new e.codepreview({
 			type: "css",
 			code: `
-				$badge-font-size:                   .75em;
-				$badge-font-weight:                 $font-weight-bold;
-				$badge-color:                       $white;
-				$badge-padding-y:                   .35em;
-				$badge-padding-x:                   .65em;
-				$badge-border-radius:               $border-radius;
+				--#{$prefix}dropdown-color: #{$dropdown-dark-color};
+				--#{$prefix}dropdown-bg: #{$dropdown-dark-bg};
+				--#{$prefix}dropdown-border-color: #{$dropdown-dark-border-color};
+				--#{$prefix}dropdown-box-shadow: #{$dropdown-dark-box-shadow};
+				--#{$prefix}dropdown-link-color: #{$dropdown-dark-link-color};
+				--#{$prefix}dropdown-link-hover-color: #{$dropdown-dark-link-hover-color};
+				--#{$prefix}dropdown-divider-bg: #{$dropdown-dark-divider-bg};
+				--#{$prefix}dropdown-link-hover-bg: #{$dropdown-dark-link-hover-bg};
+				--#{$prefix}dropdown-link-active-color: #{$dropdown-dark-link-active-color};
+				--#{$prefix}dropdown-link-active-bg: #{$dropdown-dark-link-active-bg};
+				--#{$prefix}dropdown-link-disabled-color: #{$dropdown-dark-link-disabled-color};
+				--#{$prefix}dropdown-header-color: #{$dropdown-dark-header-color};
 			`,
 		}),
+
+		new e.subtitle("Sass variables"),
+		new e.text("Variables for all dropdowns:"),
+
+		new e.codepreview({
+			type: "css",
+			code: `
+				$dropdown-min-width:                10rem;
+				$dropdown-padding-x:                0;
+				$dropdown-padding-y:                .5rem;
+				$dropdown-spacer:                   .125rem;
+				$dropdown-font-size:                $font-size-base;
+				$dropdown-color:                    var(--#{$prefix}body-color);
+				$dropdown-bg:                       var(--#{$prefix}body-bg);
+				$dropdown-border-color:             var(--#{$prefix}border-color-translucent);
+				$dropdown-border-radius:            $border-radius;
+				$dropdown-border-width:             var(--#{$prefix}border-width);
+				$dropdown-inner-border-radius:      calc($dropdown-border-radius - $dropdown-border-width); // stylelint-disable-line function-disallowed-list
+				$dropdown-divider-bg:               $dropdown-border-color;
+				$dropdown-divider-margin-y:         $spacer * .5;
+				$dropdown-box-shadow:               $box-shadow;
+
+				$dropdown-link-color:               var(--#{$prefix}body-color);
+				$dropdown-link-hover-color:         $dropdown-link-color;
+				$dropdown-link-hover-bg:            var(--#{$prefix}tertiary-bg);
+
+				$dropdown-link-active-color:        $component-active-color;
+				$dropdown-link-active-bg:           $component-active-bg;
+
+				$dropdown-link-disabled-color:      var(--#{$prefix}tertiary-color);
+
+				$dropdown-item-padding-y:           $spacer * .25;
+				$dropdown-item-padding-x:           $spacer;
+
+				$dropdown-header-color:             $gray-600;
+				$dropdown-header-padding-x:         $dropdown-item-padding-x;
+				$dropdown-header-padding-y:         $dropdown-padding-y;
+				// fusv-disable
+				$dropdown-header-padding:           $dropdown-header-padding-y $dropdown-header-padding-x; // Deprecated in v5.2.0
+				// fusv-enable
+			`,
+		}),
+
+		new e.text(
+			"Variables for the {{https://getbootstrap.com/docs/5.3/components/dropdowns/#dark-dropdowns::dark dropdown}}:"
+		),
+
+		new e.codepreview({
+			type: "css",
+			code: `
+				$dropdown-dark-color:               $gray-300;
+				$dropdown-dark-bg:                  $gray-800;
+				$dropdown-dark-border-color:        $dropdown-border-color;
+				$dropdown-dark-divider-bg:          $dropdown-divider-bg;
+				$dropdown-dark-box-shadow:          null;
+				$dropdown-dark-link-color:          $dropdown-dark-color;
+				$dropdown-dark-link-hover-color:    $white;
+				$dropdown-dark-link-hover-bg:       rgba($white, .15);
+				$dropdown-dark-link-active-color:   $dropdown-link-active-color;
+				$dropdown-dark-link-active-bg:      $dropdown-link-active-bg;
+				$dropdown-dark-link-disabled-color: $gray-500;
+				$dropdown-dark-header-color:        $gray-500;
+			`,
+		}),
+
+		new e.text("Variables for the CSS-based carets that indicate a dropdown’s interactivity:"),
+
+		new e.codepreview({
+			type: "css",
+			code: `
+				$caret-width:                 .3em;
+				$caret-vertical-align:        $caret-width * .85;
+				$caret-spacing:               $caret-width * .85;
+			`,
+		}),
+
+		new e.subtitle("Sass mixins"),
+		new e.text("Mixins are used to generate the CSS-based carets and can be found in {{scss/mixins/_caret.scss}}."),
+
+		new e.codepreview({
+			type: "css",
+			code: `
+				@mixin caret-down($width: $caret-width) {
+				border-top: $width solid;
+				border-right: $width solid transparent;
+				border-bottom: 0;
+				border-left: $width solid transparent;
+				}
+
+				@mixin caret-up($width: $caret-width) {
+				border-top: 0;
+				border-right: $width solid transparent;
+				border-bottom: $width solid;
+				border-left: $width solid transparent;
+				}
+
+				@mixin caret-end($width: $caret-width) {
+				border-top: $width solid transparent;
+				border-right: 0;
+				border-bottom: $width solid transparent;
+				border-left: $width solid;
+				}
+
+				@mixin caret-start($width: $caret-width) {
+				border-top: $width solid transparent;
+				border-right: $width solid;
+				border-bottom: $width solid transparent;
+				}
+
+				@mixin caret(
+				$direction: down,
+				$width: $caret-width,
+				$spacing: $caret-spacing,
+				$vertical-align: $caret-vertical-align
+				) {
+				@if $enable-caret {
+					&::after {
+					display: inline-block;
+					margin-left: $spacing;
+					vertical-align: $vertical-align;
+					content: "";
+					@if $direction == down {
+						@include caret-down($width);
+					} @else if $direction == up {
+						@include caret-up($width);
+					} @else if $direction == end {
+						@include caret-end($width);
+					}
+					}
+
+					@if $direction == start {
+					&::after {
+						display: none;
+					}
+
+					&::before {
+						display: inline-block;
+						margin-right: $spacing;
+						vertical-align: $vertical-align;
+						content: "";
+						@include caret-start($width);
+					}
+					}
+
+					&:empty::after {
+					margin-left: 0;
+					}
+				}
+				}
+			`,
+		}),
+
+		//-----------------------
+
+		new e.title("Usage"),
+
+		new e.text(
+			"Via data attributes or JavaScript, the dropdown plugin toggles hidden content (dropdown menus) by toggling the {{.show}} class on the parent {{.dropdown-menu}}. The {{data-bs-toggle='dropdown'}} attribute is relied on for closing dropdown menus at an application level, so it’s a good idea to always use it."
+		),
+
+		new e.item(
+			new b.alert.container(
+				{ color: "info", callout: true },
+				"On touch-enabled devices, opening a dropdown adds empty {{mouseover}} handlers to the immediate children of the {{<body>}} element. This admittedly ugly hack is necessary to work around a {{https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html::quirk in iOS’ event delegation}}, which would otherwise prevent a tap anywhere outside of the dropdown from triggering the code that closes the dropdown. Once the dropdown is closed, these additional empty {{mouseover}} handlers are removed."
+			)
+		),
+
+		new e.subtitle("Via data attributes"),
 	],
 };
