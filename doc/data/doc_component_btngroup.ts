@@ -194,15 +194,15 @@ export const doc_component_btngroup: IAttrContent = {
 				return [
 					new b.btngroup(
 						{ label: "Large button group", weight: "lg", display: "block" },
-						["Left", "Middle", "Right"].map((i) => new b.button({ color: "dark", outline: true }, i))
+						["Left", "Middle", "Right"].map((i) => new b.button({ color: "primary", outline: true }, i))
 					),
 					new b.btngroup(
 						{ label: "Default button group", display: "block" },
-						["Left", "Middle", "Right"].map((i) => new b.button({ color: "dark", outline: true }, i))
+						["Left", "Middle", "Right"].map((i) => new b.button({ color: "primary", outline: true }, i))
 					),
 					new b.btngroup(
 						{ label: "Small button group", weight: "sm", display: "block" },
-						["Left", "Middle", "Right"].map((i) => new b.button({ color: "dark", outline: true }, i))
+						["Left", "Middle", "Right"].map((i) => new b.button({ color: "primary", outline: true }, i))
 					),
 				];
 			},
@@ -244,7 +244,7 @@ export const doc_component_btngroup: IAttrContent = {
 			output: () => {
 				return new b.btngroup(
 					{ label: "Vertical button group", vertical: true },
-					[1, 2, 3, 4, 5, 6].map(() => new b.button({ color: "dark" }, "Button"))
+					[1, 2, 3, 4, 5, 6].map(() => new b.button({ color: "primary" }, "Button"))
 				);
 			},
 		}),
