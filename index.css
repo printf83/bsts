@@ -7,6 +7,20 @@ a:hover *,
     font-weight: 600;
 }
 
+/* dropdown menu */
+.dropdown-menu{
+    padding:calc(var(--bs-dropdown-spacer)*2);
+
+}
+
+.dropdown-menu .dropdown-item {
+    border-radius: var(--bs-dropdown-border-radius);
+}
+
+.dropdown-menu .dropdown-item:not(:last-child) {
+    margin-bottom: calc(var(--bs-dropdown-spacer)*2);
+}
+
 /* example */
 @media (max-width: 768px) {
 .example.card {

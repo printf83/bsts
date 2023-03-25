@@ -8,6 +8,7 @@ import { doc_component_button } from "./doc_component_button.js";
 import { doc_component_btngroup } from "./doc_component_btngroup.js";
 import { doc_component_card } from "./doc_component_card.js";
 import { doc_component_carousel } from "./doc_component_carousel.js";
+import { doc_component_btnclose } from "./doc_component_btnclose.js";
 
 export const data = (doc: string): IAttrContent => {
 	switch (doc) {
@@ -27,6 +28,8 @@ export const data = (doc: string): IAttrContent => {
 			return doc_component_card;
 		case "doc_component_carousel":
 			return doc_component_carousel;
+		case "doc_component_btnclose":
+			return doc_component_btnclose;
 
 		case "doc_gettingstarted_introduction":
 			return doc_gettingstarted_introduction;
