@@ -71,6 +71,7 @@ export const doc_gettingstarted_introduction: IAttrContent = {
 		new e.text("As reference, here are our primary CDN links."),
 		new e.item([
 			new b.table.container({
+				class: "small",
 				small: true,
 				item: [
 					["Description", "URLs"],

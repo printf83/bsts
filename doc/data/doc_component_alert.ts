@@ -342,6 +342,7 @@ export const doc_component_alert: IAttrContent = {
 		),
 		new e.item(
 			new b.table.container({
+				class: "small",
 				small: true,
 				item: [
 					["Method", "Description"],
@@ -376,6 +377,7 @@ export const doc_component_alert: IAttrContent = {
 		new e.text("Bootstrap’s alert plugin exposes a few events for hooking into alert functionality."),
 		new e.item(
 			new b.table.container({
+				class: "small",
 				small: true,
 				item: [
 					["Event", "Description"],

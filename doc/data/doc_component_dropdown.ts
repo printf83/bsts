@@ -1042,6 +1042,189 @@ export const doc_component_dropdown: IAttrContent = {
 			)
 		),
 
+		//-----------------------
+
 		new e.subtitle("Via data attributes"),
+		new e.text("Add {{data-bs-toggle='dropdown'}} to a link or button to toggle a dropdown."),
+		new e.codepreview({
+			type: "html",
+			code: `
+				<div class="dropdown">
+				<button type="button" data-bs-toggle="dropdown" aria-expanded="false">
+					Dropdown trigger
+				</button>
+				<ul class="dropdown-menu">
+					...
+				</ul>
+				</div>
+			`,
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Via JavaScript"),
+		new e.item(
+			new b.alert.container(
+				{ color: "warning", callout: true },
+				"Dropdowns must have {{data-bs-toggle='dropdown'}} on their trigger element, regardless of whether you call your dropdown via JavaScript or use the data-api."
+			)
+		),
+		new e.text("Call the dropdowns via JavaScript:"),
+		new e.codepreview({
+			type: "js",
+			code: `
+				const dropdownElementList = document.querySelectorAll('.dropdown-toggle')
+				const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl))
+			`,
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Options"),
+		new e.text(
+			"As options can be passed via data attributes or JavaScript, you can append an option name to {{data-bs-}}, as in {{data-bs-animation='{value}'}}. Make sure to change the case type of the option name from “camelCase” to “kebab-case” when passing the options via data attributes. For example, use {{data-bs-custom-class='beautifier'}} instead of {{data-bs-customClass='beautifier'}}."
+		),
+		new e.text(
+			"As of Bootstrap 5.2.0, all components support an experimental reserved data attribute {{data-bs-config}} that can house simple component configuration as a JSON string. When an element has {{data-bs-config='{'delay':0, 'title':123}'}} and {{data-bs-title='456'}} attributes, the final {{title}} value will be {{456}} and the separate data attributes will override values given on {{data-bs-config}}. In addition, existing data attributes are able to house JSON values like {{data-bs-delay='{'show':0,'hide':150}'}}."
+		),
+		new e.item(
+			new b.table.container({
+				class: "small",
+				small: true,
+				item: [
+					["Name", "Type", "Default", "Description"],
+					[
+						"{{autoClose}}",
+						"boolean, string",
+						"{{true}}",
+						[
+							"Configure the auto close behavior of the dropdown:",
+							new h.ul([
+								new h.li(
+									"{{true}} - the dropdown will be closed by clicking outside or inside the dropdown menu."
+								),
+								new h.li(
+									"{{false}} - the dropdown will be closed by clicking the toggle button and manually calling hide or toggle method. (Also will not be closed by pressing {{k::Esc}} key)"
+								),
+								new h.li(
+									"{{'inside'}} - the dropdown will be closed (only) by clicking inside the dropdown menu."
+								),
+								new h.li(
+									"{{'outside'}} - the dropdown will be closed (only) by clicking outside the dropdown menu."
+								),
+							]),
+							"Note: the dropdown can always be closed with the {{k::Esc}} key.",
+						],
+					],
+					[
+						"{{boundary}}",
+						"boolean, string",
+						"{{'clippingParents'}}",
+						"Overflow constraint boundary of the dropdown menu (applies only to Popper’s preventOverflow modifier). By default it’s {{clippingParents}} and can accept an HTMLElement reference (via JavaScript only). For more information refer to Popper’s {{https://popper.js.org/docs/v2/utils/detect-overflow/#boundary::detectOverflow docs}}.",
+					],
+					[
+						"{{display}}",
+						"string, element",
+						"{{'dynamic'}}",
+						"By default, we use Popper for dynamic positioning. Disable this with {{static}}.",
+					],
+					[
+						"{{offset}}",
+						"array, string, function",
+						"{{[0, 2]}}",
+						"Offset of the dropdown relative to its target. You can pass a string in data attributes with comma separated values like: {{data-bs-offset='10,20'}}. When a function is used to determine the offset, it is called with an object containing the popper placement, the reference, and popper rects as its first argument. The triggering element DOM node is passed as the second argument. The function must return an array with two numbers: {{https://popper.js.org/docs/v2/modifiers/offset/#skidding-1::skidding}}, {{https://popper.js.org/docs/v2/modifiers/offset/#distance-1::distance}}. For more information refer to Popper’s {{https://popper.js.org/docs/v2/modifiers/offset/#options::offset docs}}.",
+					],
+					[
+						"{{popperConfig}}",
+						"null, object, function",
+						"{{null}}",
+						"To change Bootstrap’s default Popper config, see {{https://popper.js.org/docs/v2/constructors/#options::Popper’s configuration}}. When a function is used to create the Popper configuration, it’s called with an object that contains the Bootstrap’s default Popper configuration. It helps you use and merge the default with your own configuration. The function must return a configuration object for Popper.",
+					],
+					[
+						"{{reference}}",
+						"string, element, object, string",
+						"{{'toggle'}}",
+						"Reference element of the dropdown menu. Accepts the values of {{'toggle'}}, {{'parent'}}, an HTMLElement reference or an object providing {{getBoundingClientRect}}. For more information refer to Popper’s {{https://popper.js.org/docs/v2/constructors/#createpopper::constructor docs}} and {{https://popper.js.org/docs/v2/virtual-elements/::virtual element docs}}.",
+					],
+				],
+			})
+		),
+
+		//-----------------------
+
+		new e.subtitle("Using function with {{popperConfig}} "),
+		new e.codepreview({
+			type: "js",
+			code: `
+			const dropdown = new bootstrap.Dropdown(element, {
+			popperConfig(defaultBsPopperConfig) {
+				// const newPopperConfig = {...}
+				// use defaultBsPopperConfig if needed...
+				// return newPopperConfig
+			}
+			})
+			`,
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Methods"),
+		new e.item(
+			new b.table.container({
+				class: "small",
+				small: true,
+				item: [
+					["Name", "Description"],
+					["{{dispose}}", "Destroys an element’s dropdown. (Removes stored data on the DOM element)"],
+					[
+						"{{getInstance}}",
+						"Static method which allows you to get the dropdown instance associated to a DOM element, you can use it like this: {{bootstrap.Dropdown.getInstance(element)}}.",
+					],
+					[
+						"{{getOrCreateInstance}}",
+						"Static method which returns a dropdown instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Dropdown.getOrCreateInstance(element)}}.",
+					],
+					["{{hide}}", "Hides the dropdown menu of a given navbar or tabbed navigation."],
+					["{{show}}", "Shows the dropdown menu of a given navbar or tabbed navigation."],
+					["{{toggle}}", "Toggles the dropdown menu of a given navbar or tabbed navigation."],
+					["{{update}}", "Updates the position of an element’s dropdown."],
+				],
+			})
+		),
+
+		//-----------------------
+
+		new e.subtitle("Events"),
+		new e.text(
+			"All dropdown events are fired at the toggling element and then bubbled up. So you can also add event listeners on the {{.dropdown-menu}}’s parent element. {{hide.bs.dropdown}} and {{hidden.bs.dropdown}} events have a {{clickEvent}} property (only when the original Event type is {{click}}) that contains an Event Object for the click event."
+		),
+		new e.item(
+			new b.table.container({
+				class: "small",
+				small: true,
+				item: [
+					["Event type", "Description"],
+					["{{hide.bs.dropdown}}", "Fires immediately when the {{hide}} instance method has been called."],
+					[
+						"{{hidden.bs.dropdown}}",
+						"Fired when the dropdown has finished being hidden from the user and CSS transitions have completed.",
+					],
+					["{{show.bs.dropdown}}", "Fires immediately when the {{show}} instance method is called."],
+					[
+						"{{shown.bs.dropdown}}",
+						"Fired when the dropdown has been made visible to the user and CSS transitions have completed.",
+					],
+				],
+			})
+		),
+		new e.codepreview({
+			type: "js",
+			code: `
+			const myDropdown = document.getElementById('myDropdown')
+			myDropdown.addEventListener('show.bs.dropdown', event => {
+			// do something...
+			})
+			`,
+		}),
 	],
 };

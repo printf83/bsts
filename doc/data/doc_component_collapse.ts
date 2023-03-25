@@ -245,6 +245,8 @@ export const doc_component_collapse: IAttrContent = {
 		),
 		new e.item(
 			new b.table.container({
+				class: "small",
+				small: true,
 				item: [
 					["Name", "Type", "Default", "Description"],
 					[
@@ -279,6 +281,7 @@ export const doc_component_collapse: IAttrContent = {
 		}),
 		new e.item(
 			new b.table.container({
+				class: "small",
 				small: true,
 				item: [
 					["Method", "Description"],
@@ -313,6 +316,7 @@ export const doc_component_collapse: IAttrContent = {
 		new e.text("Bootstrap’s collapse class exposes a few events for hooking into collapse functionality."),
 		new e.item(
 			new b.table.container({
+				class: "small",
 				small: true,
 				item: [
 					["Event type", "Description"],

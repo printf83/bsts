@@ -288,6 +288,7 @@ export const doc_component_button: IAttrContent = {
 		}),
 		new e.item(
 			new b.table.container({
+				class: "small",
 				small: true,
 				item: [
 					["Method", "Description"],

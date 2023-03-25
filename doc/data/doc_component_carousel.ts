@@ -388,6 +388,8 @@ export const doc_component_carousel: IAttrContent = {
 		),
 		new e.item(
 			new b.table.container({
+				class: "small",
+				small: true,
 				item: [
 					["Name", "Type", "Default", "Description"],
 					[
@@ -451,6 +453,8 @@ export const doc_component_carousel: IAttrContent = {
 
 		new e.item(
 			new b.table.container({
+				class: "small",
+				small: true,
 				item: [
 					["Method", "Description"],
 					["{{cycle}}", "Starts cycling through the carousel items from left to right."],
@@ -501,6 +505,8 @@ export const doc_component_carousel: IAttrContent = {
 		new e.text("All carousel events are fired at the carousel itself (i.e. at the {{<div class='carousel'>}})."),
 		new e.item(
 			new b.table.container({
+				class: "small",
+				small: true,
 				item: [
 					["Event type", "Description"],
 					["{{slid.bs.carousel}}", "Fired when the carousel has completed its slide transition."],
