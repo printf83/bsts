@@ -7,7 +7,6 @@ import { button as TButton, IAttrTagButton } from "../../../html/button.js";
 export interface IAttrBSNavButton extends IAttrTagButton {
 	active?: boolean;
 	target?: string;
-	control?: string;
 	role?: "tab";
 }
 
@@ -17,7 +16,6 @@ const convert = (attr: IAttrBSNavButton) => {
 			id: attr.id || UUID(),
 			class: ["nav-link", attr.active ? "active" : undefined],
 			aria: {
-				controls: attr.control,
 				selected: attr.active ? "true" : "false",
 			},
 			role: "tab",

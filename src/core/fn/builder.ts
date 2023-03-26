@@ -24,6 +24,11 @@ export const init = (container: HTMLElement) => {
 	[...scrollspyTriggerList].map((i) => {
 		window.bootstrap.ScrollSpy.getOrCreateInstance(i).refresh();
 	});
+
+	// const listTriggerList = document.querySelectorAll('[data-bs-toggle="list"]');
+	// [...listTriggerList].map((i) => {
+	// 	window.bootstrap.Tab.getOrCreateInstance(i);
+	// });
 };
 
 const markupCode = (k: string, str: string) => {

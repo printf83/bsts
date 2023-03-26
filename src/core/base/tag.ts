@@ -303,6 +303,10 @@ export interface IGlobal {
 	nomodule?: boolean;
 	playsinline?: boolean;
 	truespeed?: boolean;
+
+	//not in w3school
+	//but bootstrap keep using role everywhere
+	//role?: string;
 }
 
 export interface IGlobalAria {
@@ -310,7 +314,7 @@ export interface IGlobalAria {
 	labelledby?: string;
 	ownby?: string;
 	describedby?: string;
-	controlby?: string;
+	control?: string;
 }
 
 export interface IBootstrap {
@@ -447,7 +451,7 @@ export interface ITag {
 export type IElem = string | tag | (string | tag)[];
 
 const convert = (attr: IAttr) => {
-	if (attr.theme || attr.label || attr.labelledby || attr.ownby || attr.describedby || attr.controlby) {
+	if (attr.theme || attr.label || attr.labelledby || attr.ownby || attr.describedby || attr.control) {
 		attr = mergeObject(
 			{
 				data: { "bs-theme": attr.theme },
@@ -456,7 +460,7 @@ const convert = (attr: IAttr) => {
 					labelledby: attr.labelledby,
 					owns: attr.ownby,
 					describedby: attr.describedby,
-					controls: attr.controlby,
+					controls: attr.control,
 				},
 			},
 			attr
@@ -467,7 +471,7 @@ const convert = (attr: IAttr) => {
 		delete attr.labelledby;
 		delete attr.ownby;
 		delete attr.describedby;
-		delete attr.controlby;
+		delete attr.control;
 	}
 
 	return attr;

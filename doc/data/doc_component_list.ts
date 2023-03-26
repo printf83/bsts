@@ -564,5 +564,124 @@ export const doc_component_list: IAttrContent = {
 		new e.text(
 			"Use the tab JavaScript plugin—include it individually or through the compiled {{bootstrap.js}} file—to extend our list group to create tabbable panes of local content."
 		),
+
+		new e.code({
+			previewTemplate: "row",
+			output: () => {
+				let data = ["home", "profile", "Messages", "Settings"];
+
+				return new h.div({ row: true }, [
+					new h.div(
+						{ col: 4 }
+						// new h.div(
+						// 	{ class: "list-group", id: "list-tab", role: "tablist" },
+						// 	data.map((i, ix) => {
+						// 		return new h.a(
+						// 			{
+						// 				class: [
+						// 					"list-group-item",
+						// 					"list-group-action",
+						// 					ix === 0 ? "active" : undefined,
+						// 				],
+						// 				id: `list-${i}-list`,
+						// 				data: { "bs-toggle": "list" },
+						// 				control: `list-${i}`,
+						// 				href: `#list-${i}`,
+						// 				role: "tab",
+						// 			},
+						// 			i.charAt(0).toUpperCase() + i.slice(1)
+						// 		);
+						// 	})
+						// )
+					),
+					new h.div(
+						{ col: 8 }
+						// new h.div(
+						// 	{ class: "tab-content", id: "nav-tabContent" },
+						// 	data.map((i, ix) => {
+						// 		return new h.div(
+						// 			{
+						// 				class: [
+						// 					"tab-pane",
+						// 					"fade",
+						// 					ix === 0 ? "show" : undefined,
+						// 					ix === 0 ? "active" : undefined,
+						// 				],
+						// 				role: "tabpanel",
+						// 				labelledby: `list-${i}-list`,
+						// 			},
+						// 			`Some placeholder content in a paragraph relating to "${
+						// 				i.charAt(0).toUpperCase() + i.slice(1)
+						// 			}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
+						// 		);
+						// 	})
+						// )
+					),
+				]);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Using data attributes"),
+		new e.text(
+			"You can activate a list group navigation without writing any JavaScript by simply specifying {{data-bs-toggle='list'}} or on an element. Use these data attributes on {{.list-group-item}}."
+		),
+
+		new e.code({
+			previewTemplate: "row",
+			output: () => {
+				let data = ["home", "profile", "Messages", "Settings"];
+
+				return new h.div({ row: true }, [
+					new h.div(
+						{ col: 4 }
+						// new h.div(
+						// 	{ class: "list-group", id: "list-tab", role: "tablist" },
+						// 	data.map((i, ix) => {
+						// 		return new h.a(
+						// 			{
+						// 				class: [
+						// 					"list-group-item",
+						// 					"list-group-action",
+						// 					ix === 0 ? "active" : undefined,
+						// 				],
+						// 				id: `list-${i}-list`,
+						// 				data: { "bs-toggle": "list" },
+						// 				control: `list-${i}`,
+						// 				href: `#list-${i}`,
+						// 				role: "tab",
+						// 			},
+						// 			i.charAt(0).toUpperCase() + i.slice(1)
+						// 		);
+						// 	})
+						// )
+					),
+					new h.div(
+						{ col: 8 }
+						// new h.div(
+						// 	{ class: "tab-content", id: "nav-tabContent" },
+						// 	data.map((i, ix) => {
+						// 		return new h.div(
+						// 			{
+						// 				class: [
+						// 					"tab-pane",
+						// 					"fade",
+						// 					ix === 0 ? "show" : undefined,
+						// 					ix === 0 ? "active" : undefined,
+						// 				],
+						// 				role: "tabpanel",
+						// 				labelledby: `list-${i}-list`,
+						// 			},
+						// 			`Some placeholder content in a paragraph relating to "${
+						// 				i.charAt(0).toUpperCase() + i.slice(1)
+						// 			}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
+						// 		);
+						// 	})
+						// )
+					),
+				]);
+			},
+		}),
 	],
 };

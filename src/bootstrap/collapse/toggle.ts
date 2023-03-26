@@ -6,7 +6,6 @@ import { button, IAttrBSButton } from "../button.js";
 export interface IAttrBSCollapseToggle extends IAttrBSButton {
 	link?: true;
 	target?: string;
-	control?: string;
 	expanded?: boolean;
 }
 
@@ -18,7 +17,7 @@ const convert = (attr: IAttrBSCollapseToggle) => {
 				"bs-toggle": "collapse",
 				"bs-target": attr.link ? undefined : attr.target,
 			},
-			aria: { expanded: attr.expanded ? "true" : "false", control: attr.control },
+			aria: { expanded: attr.expanded ? "true" : "false" },
 			role: attr.link ? "button" : undefined,
 			href: attr.link ? attr.target : undefined,
 		},
@@ -27,7 +26,6 @@ const convert = (attr: IAttrBSCollapseToggle) => {
 
 	delete attr.link;
 	delete attr.target;
-	delete attr.control;
 	delete attr.expanded;
 
 	return attr;

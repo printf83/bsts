@@ -627,7 +627,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 									order: 3,
 									padding: 2,
 									target: "#bsNavbar",
-									controlby: "bsNavbar",
+									control: "bsNavbar",
 									label: "Toggle navigation",
 									textColor: attr.textColor || "light",
 								},

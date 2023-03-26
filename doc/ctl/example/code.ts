@@ -69,13 +69,13 @@ const itemCode = (
 					verticalAlign: "middle",
 					justifyContent: "between",
 					bgColor: "body-tertiary",
+					control: collapseable ? id : undefined,
 					data: {
 						"bs-toggle": collapseable ? "collapse" : undefined,
 						"bs-target": collapseable ? `#${id}` : undefined,
 					},
 					aria: {
 						expended: collapseable ? "false" : undefined,
-						controls: collapseable ? id : undefined,
 					},
 				},
 				[

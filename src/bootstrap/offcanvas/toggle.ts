@@ -6,7 +6,6 @@ import { button, IAttrBSButton } from "../button.js";
 export interface IAttrBSOffcanvasToggle extends IAttrBSButton {
 	link?: true;
 	target?: string;
-	control?: string;
 }
 
 const convert = (attr: IAttrBSOffcanvasToggle) => {
@@ -16,7 +15,7 @@ const convert = (attr: IAttrBSOffcanvasToggle) => {
 				"bs-toggle": "offcanvas",
 				"bs-target": attr.link ? undefined : attr.target,
 			},
-			aria: { expanded: "false", control: attr.control },
+			aria: { expanded: "false" },
 			role: attr.link ? "button" : undefined,
 			href: attr.link ? attr.target : undefined,
 		},
@@ -25,7 +24,6 @@ const convert = (attr: IAttrBSOffcanvasToggle) => {
 
 	delete attr.link;
 	delete attr.target;
-	delete attr.control;
 
 	return attr;
 };
