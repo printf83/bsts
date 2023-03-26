@@ -2,8 +2,7 @@ import { bsConstArg } from "../../../src/core/base/bootstrap.js";
 import { IAttr, IElem, tag } from "../../../src/core/base/tag.js";
 import { mergeObject } from "../../../src/core/fn/mergeObject.js";
 import { UUID } from "../../../src/core/fn/uuid.js";
-import { a } from "../../../src/html/a.js";
-import { h } from "../../../src/html/h.js";
+import { h } from "../../../src/index.js";
 
 const genIDFromElem = (attr: IAttr) => {
 	if (!attr.id) {
@@ -37,7 +36,7 @@ const convert = (attr: IAttr) => {
 		}
 
 		tElem.push(
-			new a(
+			new h.a(
 				{
 					class: "anchor-link",
 					href: `#${attr.id}`,
@@ -60,7 +59,7 @@ const convert = (attr: IAttr) => {
 	return attr;
 };
 
-export class title extends h {
+export class title extends h.h {
 	constructor(); //#1
 	constructor(attr: IAttr); //#2
 	constructor(elem: IElem); //#3

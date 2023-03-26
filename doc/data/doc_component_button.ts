@@ -1,8 +1,7 @@
 import { example as e } from "../ctl/example/_index.js";
-import { b, h } from "../../src/index.js";
+import { b, h, core } from "../../src/index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 import { bootstrapType } from "../../src/core/base/bootstrap.js";
-import { UUID } from "../../src/core/fn/uuid.js";
 
 export const doc_component_button: IAttrContent = {
 	title: "Buttons",
@@ -54,7 +53,7 @@ export const doc_component_button: IAttrContent = {
 		new e.code({
 			previewTemplate: "col",
 			output: () => {
-				let id = UUID();
+				let id = core.UUID();
 
 				return [
 					new b.button({ color: "primary", href: "#" }, "Link"),

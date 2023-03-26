@@ -376,65 +376,61 @@ export const doc_component_list: IAttrContent = {
 
 		//-----------------------
 
+		new e.subtitle("Checkboxes and radios"),
 		new e.text(
-			"You can also replace the {{.badge}} class with a few more utilities without a count for a more generic indicator."
+			"Place Bootstrap’s checkboxes and radios within list group items and customize as needed. You can use them without {{<label>}}s, but please remember to include an {{aria-label}} attribute and value for accessibility."
 		),
+
 		new e.code({
 			previewTemplate: "row",
 			output: () => {
-				return new b.button({ position: "relative" }, [
-					"Profile ",
-					new b.badge(
-						{
-							bgColor: "danger",
-							position: "absolute",
-							top: 0,
-							start: 100,
-							tMiddle: true,
-							rounded: "circle",
-							border: true,
-							borderColor: "light",
-							padding: 2,
-						},
-						new b.visuallyhidden("New alerts")
-					),
-				]);
+				return new b.list.container(
+					["first", "second", "third"].map((i) => {
+						return new b.list.item([
+							new b.input({ type: "checkbox", id: `${i}Checkbox`, marginEnd: 2 }),
+							new b.label(
+								{ for: `${i}Checkbox`, formCheck: true },
+								`${i.charAt(0).toUpperCase() + i.slice(1)} checkbox`
+							),
+						]);
+					})
+				);
 			},
 		}),
 
-		//-----------------------
-
-		new e.title("Background colors"),
-		new e.text(
-			"Set a {{background-color}} with contrasting foreground {{color}} with {{https://getbootstrap.com/docs/5.3/helpers/color-background/::our .text-bg-{color} helpers}}. Previously it was required to manually pair your choice of {{https://getbootstrap.com/docs/5.3/utilities/colors/::.text-{color}}} and {{https://getbootstrap.com/docs/5.3/utilities/background/::.bg-{color}}} utilities for styling, which you still may use if you prefer."
-		),
 		new e.code({
-			previewTemplate: "col",
+			previewTemplate: "row",
 			output: () => {
-				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-					return new b.badge(
-						{ textBgColor: i as bootstrapType.textBgColor[number] },
-						i.charAt(0).toUpperCase() + i.slice(1)
-					);
-				});
+				return new b.list.container(
+					["first", "second", "third"].map((i) => {
+						return new b.list.item([
+							new b.input({ type: "radio", id: `${i}Radio`, name: "listGroupRadio", marginEnd: 2 }),
+							new b.label(
+								{ for: `${i}Radio`, formCheck: true },
+								`${i.charAt(0).toUpperCase() + i.slice(1)} radio`
+							),
+						]);
+					})
+				);
 			},
 		}),
 
-		//-----------------------
+		new e.text("You can use {{.stretched-link}} on {{<label>}}s to make the whole list group item clickable."),
 
-		new e.title("Pill badges"),
-		new e.text(
-			"Use the {{.rounded-pill}} utility class to make badges more rounded with a larger {{border-radius}}."
-		),
 		new e.code({
-			previewTemplate: "col",
+			previewTemplate: "row",
 			output: () => {
-				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-					return new b.badge(
-						{ textBgColor: i as bootstrapType.textBgColor[number], rounded: "pill" },
-						i.charAt(0).toUpperCase() + i.slice(1)
-					);
-				});
+				return new b.list.container(
+					["first", "second", "third"].map((i) => {
+						return new b.list.item([
+							new b.input({ type: "checkbox", id: `${i}CheckboxStretched`, marginEnd: 2 }),
+							new b.label(
+								{ for: `${i}CheckboxStretched`, formCheck: true, stretched: true },
+								`${i.charAt(0).toUpperCase() + i.slice(1)} checkbox`
+							),
+						]);
+					})
+				);
 			},
 		}),
 
@@ -443,18 +439,29 @@ export const doc_component_list: IAttrContent = {
 		new e.title("CSS"),
 		new e.subtitle("Variables"),
 		new e.text(
-			"As part of Bootstrap’s evolving CSS variables approach, badges now use local CSS variables on {{.badge}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+			"As part of Bootstrap’s evolving CSS variables approach, list groups now use local CSS variables on {{.list-group}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
 		),
 
 		new e.codepreview({
 			type: "css",
 			code: `
-			    --#{$prefix}badge-padding-x: #{$badge-padding-x};
-				--#{$prefix}badge-padding-y: #{$badge-padding-y};
-				@include rfs($badge-font-size, --#{$prefix}badge-font-size);
-				--#{$prefix}badge-font-weight: #{$badge-font-weight};
-				--#{$prefix}badge-color: #{$badge-color};
-				--#{$prefix}badge-border-radius: #{$badge-border-radius};
+				--#{$prefix}list-group-color: #{$list-group-color};
+				--#{$prefix}list-group-bg: #{$list-group-bg};
+				--#{$prefix}list-group-border-color: #{$list-group-border-color};
+				--#{$prefix}list-group-border-width: #{$list-group-border-width};
+				--#{$prefix}list-group-border-radius: #{$list-group-border-radius};
+				--#{$prefix}list-group-item-padding-x: #{$list-group-item-padding-x};
+				--#{$prefix}list-group-item-padding-y: #{$list-group-item-padding-y};
+				--#{$prefix}list-group-action-color: #{$list-group-action-color};
+				--#{$prefix}list-group-action-hover-color: #{$list-group-action-hover-color};
+				--#{$prefix}list-group-action-hover-bg: #{$list-group-hover-bg};
+				--#{$prefix}list-group-action-active-color: #{$list-group-action-active-color};
+				--#{$prefix}list-group-action-active-bg: #{$list-group-action-active-bg};
+				--#{$prefix}list-group-disabled-color: #{$list-group-disabled-color};
+				--#{$prefix}list-group-disabled-bg: #{$list-group-disabled-bg};
+				--#{$prefix}list-group-active-color: #{$list-group-active-color};
+				--#{$prefix}list-group-active-bg: #{$list-group-active-bg};
+				--#{$prefix}list-group-active-border-color: #{$list-group-active-border-color};
 			`,
 		}),
 
@@ -463,13 +470,99 @@ export const doc_component_list: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			code: `
-				$badge-font-size:                   .75em;
-				$badge-font-weight:                 $font-weight-bold;
-				$badge-color:                       $white;
-				$badge-padding-y:                   .35em;
-				$badge-padding-x:                   .65em;
-				$badge-border-radius:               $border-radius;
+				$list-group-color:                  var(--#{$prefix}body-color);
+				$list-group-bg:                     var(--#{$prefix}body-bg);
+				$list-group-border-color:           var(--#{$prefix}border-color);
+				$list-group-border-width:           var(--#{$prefix}border-width);
+				$list-group-border-radius:          var(--#{$prefix}border-radius);
+
+				$list-group-item-padding-y:         $spacer * .5;
+				$list-group-item-padding-x:         $spacer;
+				// fusv-disable
+				$list-group-item-bg-scale:          -80%; // Deprecated in v5.3.0
+				$list-group-item-color-scale:       40%; // Deprecated in v5.3.0
+				// fusv-enable
+
+				$list-group-hover-bg:               var(--#{$prefix}tertiary-bg);
+				$list-group-active-color:           $component-active-color;
+				$list-group-active-bg:              $component-active-bg;
+				$list-group-active-border-color:    $list-group-active-bg;
+
+				$list-group-disabled-color:         var(--#{$prefix}secondary-color);
+				$list-group-disabled-bg:            $list-group-bg;
+
+				$list-group-action-color:           var(--#{$prefix}secondary-color);
+				$list-group-action-hover-color:     var(--#{$prefix}emphasis-color);
+
+				$list-group-action-active-color:    var(--#{$prefix}body-color);
+				$list-group-action-active-bg:       var(--#{$prefix}secondary-bg);
 			`,
 		}),
+
+		new e.subtitle("Sass mixins"),
+		new e.text(
+			"Used in combination with {{$theme-colors}} to generate the {{https://getbootstrap.com/docs/5.3/components/list-group/#variants::contextual variant classes}} for {{.list-group-items}}."
+		),
+
+		new e.codepreview({
+			type: "css",
+			code: `
+				@mixin list-group-item-variant($state, $background, $color) {
+				.list-group-item-#{$state} {
+					color: $color;
+					background-color: $background;
+
+					&.list-group-item-action {
+					&:hover,
+					&:focus {
+						color: $color;
+						background-color: shade-color($background, 10%);
+					}
+
+					&.active {
+						color: $white;
+						background-color: $color;
+						border-color: $color;
+					}
+					}
+				}
+				}
+			`,
+		}),
+
+		new e.subtitle("Sass loop"),
+		new e.text("Loop that generates the modifier classes with an overriding of CSS variables."),
+
+		new e.codepreview({
+			type: "css",
+			code: `
+				// List group contextual variants
+				//
+				// Add modifier classes to change text and background color on individual items.
+				// Organizationally, this must come after the ":hover" states.
+
+				@each $state in map-keys($theme-colors) {
+				.list-group-item-#{$state} {
+					--#{$prefix}list-group-color: var(--#{$prefix}#{$state}-text-emphasis);
+					--#{$prefix}list-group-bg: var(--#{$prefix}#{$state}-bg-subtle);
+					--#{$prefix}list-group-border-color: var(--#{$prefix}#{$state}-border-subtle);
+					--#{$prefix}list-group-action-hover-color: var(--#{$prefix}emphasis-color);
+					--#{$prefix}list-group-action-hover-bg: var(--#{$prefix}#{$state}-border-subtle);
+					--#{$prefix}list-group-action-active-color: var(--#{$prefix}emphasis-color);
+					--#{$prefix}list-group-action-active-bg: var(--#{$prefix}#{$state}-border-subtle);
+					--#{$prefix}list-group-active-color: var(--#{$prefix}#{$state}-bg-subtle);
+					--#{$prefix}list-group-active-bg: var(--#{$prefix}#{$state}-text-emphasis);
+					--#{$prefix}list-group-active-border-color: var(--#{$prefix}#{$state}-text-emphasis);
+				}
+				}
+			`,
+		}),
+
+		//-----------------------
+
+		new e.title("JavaScript behavior"),
+		new e.text(
+			"Use the tab JavaScript plugin—include it individually or through the compiled {{bootstrap.js}} file—to extend our list group to create tabbable panes of local content."
+		),
 	],
 };

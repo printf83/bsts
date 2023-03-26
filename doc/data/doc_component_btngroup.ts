@@ -1,7 +1,6 @@
 import { example as e } from "../ctl/example/_index.js";
 import { b, h } from "../../src/index.js";
 import { IAttrContent } from "../ctl/main/container.js";
-// import { IElem } from "../../src/core/base/tag.js";
 
 export const doc_component_btngroup: IAttrContent = {
 	title: "Button group",

@@ -1,18 +1,11 @@
 import { IAttr, tag } from "../../../src/core/base/tag.js";
 import { bsConsNoElemArg } from "../../../src/core/base/bootstrap.js";
-import { div } from "../../../src/html/div.js";
-import { card } from "../../../src/bootstrap/card/_index.js";
-import { list } from "../../../src/bootstrap/list/_index.js";
 import { UUID } from "../../../src/core/fn/uuid.js";
 import { replaceChild } from "../../../src/core/fn/builder.js";
 import { preview } from "./preview.js";
 import { item } from "../../../src/bootstrap/list/item.js";
-import { small } from "../../../src/html/small.js";
-import { a } from "../../../src/html/a.js";
-import { icon } from "../../../src/bootstrap/icon.js";
-import { tooltip } from "../../../src/bootstrap/tooltip.js";
-import { span } from "../../../src/html/span.js";
 import { mergeAttr } from "../../../src/core/fn/mergeAttr.js";
+import { b, h } from "../../../src/index.js";
 
 export type IAttrPreviewTemplate = "none" | "row" | "col" | "grid" | "test";
 
@@ -70,7 +63,7 @@ const itemCode = (
 
 	if (header) {
 		res.push(
-			new list.item(
+			new b.list.item(
 				{
 					display: "flex",
 					verticalAlign: "middle",
@@ -86,8 +79,8 @@ const itemCode = (
 					},
 				},
 				[
-					new span(
-						new small(
+					new h.span(
+						new h.small(
 							{
 								monospace: true,
 								textTransform: "uppercase",
@@ -98,11 +91,11 @@ const itemCode = (
 					),
 
 					!collapseable
-						? new tooltip(
+						? new b.tooltip(
 								{ content: "Copy to clipboard" },
-								new a(
+								new h.a(
 									{ href: "#", color: "secondary", on: { click: itemCodeCopy } },
-									icon.reg("clipboard")
+									b.icon.reg("clipboard")
 								)
 						  )
 						: "",
@@ -116,11 +109,11 @@ const itemCode = (
 			}
 
 			elem.unshift(
-				new span(
+				new h.span(
 					{ position: "absolute", end: 0, marginEnd: 3 },
-					new tooltip(
+					new b.tooltip(
 						{ content: "Copy to clipboard" },
-						new a({ href: "#", color: "secondary", on: { click: itemCodeCopy } }, icon.reg("clipboard"))
+						new h.a({ href: "#", color: "secondary", on: { click: itemCodeCopy } }, b.icon.reg("clipboard"))
 					)
 				)
 			);
@@ -128,7 +121,7 @@ const itemCode = (
 	}
 
 	res.push(
-		new list.item(
+		new b.list.item(
 			{
 				bgColor: "body-tertiary",
 				class: [collapseable ? "collapse" : undefined],
@@ -160,13 +153,13 @@ const itemOutput = (
 	str: string
 ) => {
 	if (manager) {
-		return new list.item(mergeAttr({ class: `example-output`, padding: 4, overflow: "auto" }, previewAttr), str);
+		return new b.list.item(mergeAttr({ class: `example-output`, padding: 4, overflow: "auto" }, previewAttr), str);
 	} else {
 		switch (previewTemplate) {
 			case "none":
-				return new list.item(mergeAttr({ class: `example-output` }, previewAttr), str);
+				return new b.list.item(mergeAttr({ class: `example-output` }, previewAttr), str);
 			case "col":
-				return new list.item(
+				return new b.list.item(
 					mergeAttr(
 						{ class: `example-output`, padding: 4, overflow: "auto", display: "flex", gap: 2 },
 						previewAttr
@@ -175,7 +168,7 @@ const itemOutput = (
 				);
 
 			case "grid":
-				return new list.item(
+				return new b.list.item(
 					mergeAttr(
 						{ class: `example-output`, padding: 4, overflow: "auto", display: "grid", gap: 2 },
 						previewAttr
@@ -183,7 +176,7 @@ const itemOutput = (
 					str
 				);
 			default:
-				return new list.item(
+				return new b.list.item(
 					mergeAttr({ class: `example-output`, padding: 4, overflow: "auto", gap: 2 }, previewAttr),
 					str
 				);
@@ -261,9 +254,9 @@ const convert = (attr: IAttrBSExampleContainer) => {
 	}
 
 	attr.elem = [
-		new card.container(
+		new b.card.container(
 			{ id: id, class: "example", marginY: 3 },
-			new card.body({ padding: 0 }, [new list.container({ flush: true, rounded: 2 }, e)])
+			new b.card.body({ padding: 0 }, [new b.list.container({ flush: true, rounded: 2 }, e)])
 		),
 	];
 
@@ -286,7 +279,7 @@ const convert = (attr: IAttrBSExampleContainer) => {
 	return attr;
 };
 
-export class code extends div {
+export class code extends h.div {
 	constructor();
 	constructor(attr: IAttrBSExampleContainer);
 	constructor(...arg: any[]) {

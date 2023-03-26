@@ -1,11 +1,7 @@
 import { IAttr, IElem, tag } from "../../../src/core/base/tag.js";
 import { mergeObject } from "../../../src/core/fn/mergeObject.js";
-import { button } from "../../../src/bootstrap/button.js";
-import { div } from "../../../src/html/div.js";
-import { small } from "../../../src/html/small.js";
-import { span } from "../../../src/html/span.js";
 import { bsConstArg } from "../../../src/core/base/bootstrap.js";
-import { h } from "../../../src/html/h.js";
+import { b, h } from "../../../src/index.js";
 
 export interface IAttrBSExamplePagetitle extends IAttr {
 	sourceUrl?: string;
@@ -29,9 +25,9 @@ const convert = (attr: IAttrBSExamplePagetitle) => {
 	let tElem: tag[] = [];
 	if (attr.sourceUrl || attr.addedVersion) {
 		tElem.push(
-			new div({ marginBottom: [3, "md-0"], display: "flex" }, [
+			new h.div({ marginBottom: [3, "md-0"], display: "flex" }, [
 				attr.addedVersion
-					? new small(
+					? new h.small(
 							{
 								display: "inline-flex",
 								paddingX: 2,
@@ -47,11 +43,11 @@ const convert = (attr: IAttrBSExamplePagetitle) => {
 								borderColor: "success",
 								borderOpacity: 10,
 							},
-							new span(`Added in v${attr.addedVersion}`)
+							new h.span(`Added in v${attr.addedVersion}`)
 					  )
 					: "",
 				attr.sourceUrl
-					? new button(
+					? new b.button(
 							{
 								href: attr.sourceUrl,
 								weight: "sm",
@@ -68,7 +64,7 @@ const convert = (attr: IAttrBSExamplePagetitle) => {
 	}
 
 	if (attr.elem) {
-		tElem.push(new h(1, { fontDisplay: 4, fontWeight: "normal", marginBottom: 0 }, attr.elem));
+		tElem.push(new h.h(1, { fontDisplay: 4, fontWeight: "normal", marginBottom: 0 }, attr.elem));
 	}
 
 	if (tElem) {
@@ -82,7 +78,7 @@ const convert = (attr: IAttrBSExamplePagetitle) => {
 	return attr;
 };
 
-export class pagetitle extends div {
+export class pagetitle extends h.div {
 	constructor(); //#1
 	constructor(attr: IAttrBSExamplePagetitle); //#2
 	constructor(elem: IElem); //#3

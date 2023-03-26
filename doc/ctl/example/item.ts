@@ -1,13 +1,13 @@
 import { bsConstArg } from "../../../src/core/base/bootstrap.js";
 import { IAttr, IElem } from "../../../src/core/base/tag.js";
-import { div } from "../../../src/html/div.js";
+import { h } from "../../../src/index.js";
 
 const convert = (attr: IAttr) => {
 	attr.marginBottom ??= 3;
 	return attr;
 };
 
-export class item extends div {
+export class item extends h.div {
 	constructor(); //#1
 	constructor(attr: IAttr); //#2
 	constructor(elem: IElem); //#3

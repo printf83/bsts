@@ -1,27 +1,8 @@
-import { collapse } from "../../../src/bootstrap/collapse/_index.js";
-import { dropdown } from "../../../src/bootstrap/dropdown/_index.js";
-import { IAttrBSIcon, icon } from "../../../src/bootstrap/icon.js";
-import { label } from "../../../src/bootstrap/label.js";
-import { navbar } from "../../../src/bootstrap/navbar/_index.js";
-import { offcanvas } from "../../../src/bootstrap/offcanvas/_index.js";
-import { scrollspy } from "../../../src/bootstrap/scrollspy.js";
-import { verticalrule } from "../../../src/bootstrap/verticalrule.js";
+import { IAttrBSIcon } from "../../../src/bootstrap/icon.js";
 import { bootstrapType, bsConsNoElemArg } from "../../../src/core/base/bootstrap.js";
 import { IAttr, IElem, isTag, tag } from "../../../src/core/base/tag.js";
 import { mergeClass } from "../../../src/core/fn/mergeClass.js";
-import { core } from "../../../src/core/_index.js";
-import { a } from "../../../src/html/a.js";
-import { aside } from "../../../src/html/aside.js";
-import { div } from "../../../src/html/div.js";
-import { footer } from "../../../src/html/footer.js";
-import { h } from "../../../src/html/h.js";
-import { hr } from "../../../src/html/hr.js";
-import { li } from "../../../src/html/li.js";
-import { main } from "../../../src/html/main.js";
-import { nav } from "../../../src/html/nav.js";
-import { span } from "../../../src/html/span.js";
-import { strong } from "../../../src/html/strong.js";
-import { ul } from "../../../src/html/ul.js";
+import { core, h, b } from "../../../src/index.js";
 import { subtitle } from "../example/subtitle.js";
 import { title } from "../example/title.js";
 import { example } from "../example/_index.js";
@@ -42,7 +23,7 @@ const changeTheme = (value: string, icon: IAttrBSIcon) => {
 		newActive.setAttribute("aria-current", "true");
 	}
 
-	core.replaceChild(bsTheme, new label({ icon: icon, labelDisplay: "lg-none" }, "Toggle theme"));
+	core.replaceChild(bsTheme, new b.label({ icon: icon, labelDisplay: "lg-none" }, "Toggle theme"));
 	document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", value);
 
 	let root = bsTheme.closest(".bs-main-root");
@@ -66,7 +47,7 @@ const changeVersion = (value: string) => {
 		newActive.setAttribute("aria-current", "true");
 	}
 
-	core.replaceWith(bsVersionLabel, new span({ id: "bs-version-label" }, `v${value}`));
+	core.replaceWith(bsVersionLabel, new h.span({ id: "bs-version-label" }, `v${value}`));
 
 	let root = bsVersion.closest(".bs-main-root");
 	root?.dispatchEvent(new CustomEvent("bs-version-change", { detail: value }));
@@ -180,23 +161,23 @@ const genTheme = (
 		let currentIcon = getCurrentIconIndex?.icon;
 
 		return [
-			new navbar.item(
+			new b.navbar.item(
 				{
 					paddingY: [2, "lg-1"],
 					col: [12, "lg-auto"],
 				},
 				[
-					new verticalrule({
+					new b.verticalrule({
 						display: ["none", "lg-flex"],
 						height: 100,
 						marginX: "lg-2",
 						textColor: textColor,
 					}),
-					new hr({ display: "lg-none", marginY: 2, textColor: "light" }),
+					new h.hr({ display: "lg-none", marginY: 2, textColor: "light" }),
 				]
 			),
-			new navbar.item({ dropdown: true }, [
-				new dropdown.toggle(
+			new b.navbar.item({ dropdown: true }, [
+				new b.dropdown.toggle(
 					{
 						id: "bs-theme",
 						color: "link",
@@ -207,7 +188,7 @@ const genTheme = (
 						alignItem: "center",
 						textColor: textColor,
 					},
-					new label(
+					new b.label(
 						{
 							icon: currentIcon,
 							labelDisplay: "lg-none",
@@ -215,10 +196,10 @@ const genTheme = (
 						"Toggle theme"
 					)
 				),
-				new dropdown.menu(
+				new b.dropdown.menu(
 					{ positionView: "end" },
 					navbarItemTheme.map((i) => {
-						return new dropdown.item(
+						return new b.dropdown.item(
 							{
 								on: {
 									click: (_e) => {
@@ -228,7 +209,7 @@ const genTheme = (
 								active: i.value === currentTheme,
 								data: { value: i.value },
 							},
-							new label({ icon: i.icon }, i.label)
+							new b.label({ icon: i.icon }, i.label)
 						);
 					})
 				),
@@ -247,23 +228,23 @@ const genVersion = (
 ) => {
 	if (navbarItemVersion) {
 		return [
-			new navbar.item(
+			new b.navbar.item(
 				{
 					paddingY: [2, "lg-1"],
 					col: [12, "lg-auto"],
 				},
 				[
-					new verticalrule({
+					new b.verticalrule({
 						display: ["none", "lg-flex"],
 						height: 100,
 						marginX: "lg-2",
 						textColor: textColor,
 					}),
-					new hr({ display: "lg-none", marginY: 2, textColor: "light" }),
+					new h.hr({ display: "lg-none", marginY: 2, textColor: "light" }),
 				]
 			),
-			new navbar.item({ dropdown: true }, [
-				new dropdown.toggle(
+			new b.navbar.item({ dropdown: true }, [
+				new b.dropdown.toggle(
 					{
 						id: "bs-version",
 						color: "link",
@@ -273,14 +254,14 @@ const genVersion = (
 						textColor: textColor,
 					},
 					[
-						new span({ display: "lg-none", marginEnd: 2, aria: { hidden: "true" } }, name),
-						new span({ id: "bs-version-label" }, `v${currentVersion}`),
+						new h.span({ display: "lg-none", marginEnd: 2, aria: { hidden: "true" } }, name),
+						new h.span({ id: "bs-version-label" }, `v${currentVersion}`),
 					]
 				),
-				new dropdown.menu(
+				new b.dropdown.menu(
 					{ positionView: "end" },
 					navbarItemVersion.map((i) => {
-						return new dropdown.item(
+						return new b.dropdown.item(
 							{
 								on: {
 									click: (_e) => {
@@ -308,19 +289,19 @@ const genOutsideLink = (
 	itemTheme?: tag[]
 ) => {
 	return [
-		new hr({ display: "lg-none", textColor: "light" }),
-		new navbar.itemcontainer({ flex: ["row", "wrap"], marginStart: "md-auto" }, [
+		new h.hr({ display: "lg-none", textColor: "light" }),
+		new b.navbar.itemcontainer({ flex: ["row", "wrap"], marginStart: "md-auto" }, [
 			...(itemOutsideLink
 				? itemOutsideLink.map((i) => {
-						return new navbar.item({ col: [6, "lg-auto"] }, [
-							new navbar.link(
+						return new b.navbar.item({ col: [6, "lg-auto"] }, [
+							new b.navbar.link(
 								{
 									paddingY: 2,
 									paddingX: [0, "lg-2"],
 									textColor: textColor,
 									href: i.href,
 								},
-								new label({ icon: i.icon, labelDisplay: "lg-none" }, i.label)
+								new b.label({ icon: i.icon, labelDisplay: "lg-none" }, i.label)
 							),
 						]);
 				  })
@@ -338,12 +319,12 @@ const genInsideLink = (
 ) => {
 	if (itemInsideLink) {
 		return [
-			new hr({ display: "lg-none", textColor: "light" }),
-			new navbar.itemcontainer(
+			new h.hr({ display: "lg-none", textColor: "light" }),
+			new b.navbar.itemcontainer(
 				{ flex: ["wrap", "row"], class: "bs-navbar-nav", id: "bs-inside-link" },
 				itemInsideLink.map((i) => {
-					return new navbar.item({ col: [6, "lg-auto"] }, [
-						new navbar.link(
+					return new b.navbar.item({ col: [6, "lg-auto"] }, [
+						new b.navbar.link(
 							{
 								paddingY: 2,
 								paddingX: [0, "lg-2"],
@@ -371,8 +352,8 @@ const genInsideLink = (
 const genMenu = (itemMenu?: IAttrItemMenu[], currentMenu?: string) => {
 	if (itemMenu) {
 		return itemMenu.map((i) => {
-			return new li({ class: "bs-links-group", paddingY: 2 }, [
-				new strong(
+			return new h.li({ class: "bs-links-group", paddingY: 2 }, [
+				new h.strong(
 					{
 						class: "bs-links-heading",
 						display: "flex",
@@ -380,9 +361,9 @@ const genMenu = (itemMenu?: IAttrItemMenu[], currentMenu?: string) => {
 						alignItem: "center",
 						fontWeight: "semibold",
 					},
-					new label({ icon: i.icon }, i.label)
+					new b.label({ icon: i.icon }, i.label)
 				),
-				new ul(
+				new h.ul(
 					{
 						unstyle: true,
 						fontWeight: "normal",
@@ -392,8 +373,8 @@ const genMenu = (itemMenu?: IAttrItemMenu[], currentMenu?: string) => {
 					i.item.map((j) => {
 						let active = j.value === currentMenu ? true : false;
 
-						return new li(
-							new a(
+						return new h.li(
+							new h.a(
 								{
 									class: ["bs-links-link", active ? "active" : undefined],
 									display: "inline-block",
@@ -421,7 +402,7 @@ const genMenu = (itemMenu?: IAttrItemMenu[], currentMenu?: string) => {
 
 const genIntro = (content?: IAttrContent) => {
 	if (content) {
-		return new div({ class: "bs-intro", paddingTop: 2, paddingStart: "lg-2" }, [
+		return new h.div({ class: "bs-intro", paddingTop: 2, paddingStart: "lg-2" }, [
 			content.title
 				? new example.pagetitle(
 						{
@@ -467,7 +448,7 @@ const genToc = (content?: IAttrContent) => {
 		});
 
 		if (t.length > 0) {
-			return new div(
+			return new h.div(
 				{
 					class: "bs-toc",
 					marginTop: 3,
@@ -477,7 +458,7 @@ const genToc = (content?: IAttrContent) => {
 					textColor: "body-secondary",
 				},
 				[
-					new collapse.toggle(
+					new b.collapse.toggle(
 						{
 							color: "link",
 							padding: "md-0",
@@ -490,7 +471,7 @@ const genToc = (content?: IAttrContent) => {
 						},
 						[
 							"On this page",
-							new icon({
+							new b.icon({
 								icon: "sort",
 								display: "md-none",
 								marginStart: 2,
@@ -498,23 +479,23 @@ const genToc = (content?: IAttrContent) => {
 							}),
 						]
 					),
-					new h(5, { display: ["none", "md-block"], fontSize: 6, marginY: 2 }, "On this page"),
-					new hr({ display: ["none", "md-block"], marginY: 2 }),
-					new collapse.container(
+					new h.h(5, { display: ["none", "md-block"], fontSize: 6, marginY: 2 }, "On this page"),
+					new h.hr({ display: ["none", "md-block"], marginY: 2 }),
+					new b.collapse.container(
 						{
 							id: "tocContents",
 							class: "bs-toc-collapse",
 						},
-						new nav(
+						new h.nav(
 							{ id: "TableOfContents" },
-							new ul(
+							new h.ul(
 								t.map((i) => {
-									return new li([
-										new a({ href: i.href }, i.label),
+									return new h.li([
+										new h.a({ href: i.href }, i.label),
 										i.item
-											? new ul(
+											? new h.ul(
 													i.item.map((j) => {
-														return new li(new a({ href: j.href }, j.label));
+														return new h.li(new h.a({ href: j.href }, j.label));
 													})
 											  )
 											: "",
@@ -535,7 +516,7 @@ const genToc = (content?: IAttrContent) => {
 
 const genContent = (content?: IAttrContent) => {
 	if (content && content.item) {
-		return new scrollspy(
+		return new b.scrollspy(
 			{
 				target: "#TableOfContents",
 				smooth: true,
@@ -552,12 +533,12 @@ const genContent = (content?: IAttrContent) => {
 const genFooter = (itemFooter?: IAttrFooter[]) => {
 	if (itemFooter) {
 		return itemFooter.map((i, ix) => {
-			return new div({ col: [6, "lg-2"], marginBottom: 3, offset: ix === 0 ? "lg-1" : undefined }, [
-				new h(5, i.title),
-				new ul(
+			return new h.div({ col: [6, "lg-2"], marginBottom: 3, offset: ix === 0 ? "lg-1" : undefined }, [
+				new h.h(5, i.title),
+				new h.ul(
 					{ unstyle: true },
 					i.item.map((j) => {
-						return new li({ marginBottom: 2 }, new a({ href: j.href }, j.label));
+						return new h.li({ marginBottom: 2 }, new h.a({ href: j.href }, j.label));
 					})
 				),
 			]);
@@ -597,7 +578,7 @@ export interface IAttrBSMainContainer extends IAttr {
 const convert = (attr: IAttrBSMainContainer) => {
 	attr.class = mergeClass(attr.class, "bs-main-root");
 	attr.elem = [
-		new navbar.containerHeader(
+		new b.navbar.containerHeader(
 			{
 				expand: "lg",
 				sticky: "top",
@@ -606,7 +587,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 				padding: 2,
 			},
 			[
-				new navbar.innercontainerNav(
+				new b.navbar.innercontainerNav(
 					{
 						class: "bs-gutter",
 						container: "xxl",
@@ -615,8 +596,8 @@ const convert = (attr: IAttrBSMainContainer) => {
 						label: "Main navigation",
 					},
 					[
-						new div({ class: "bs-navbar-toggle" }, [
-							new navbar.toggle.offcanvas(
+						new h.div({ class: "bs-navbar-toggle" }, [
+							new b.navbar.toggle.offcanvas(
 								{
 									padding: 2,
 									target: "#bsSidebar",
@@ -624,11 +605,11 @@ const convert = (attr: IAttrBSMainContainer) => {
 									label: "Toggle docs navigation",
 									textColor: attr.textColor || "light",
 								},
-								icon.solid("bars")
+								b.icon.solid("bars")
 							),
 						]),
 
-						new navbar.brand(
+						new b.navbar.brand(
 							{
 								href: "#",
 								label: attr.name || "Bootstrap",
@@ -637,10 +618,10 @@ const convert = (attr: IAttrBSMainContainer) => {
 								padding: 0,
 								textColor: attr.textColor || "light",
 							},
-							attr.icon ? new icon(attr.icon) : icon.brand("bootstrap", { weight: "xl" })
+							attr.icon ? new b.icon(attr.icon) : b.icon.brand("bootstrap", { weight: "xl" })
 						),
-						new div({ display: "flex" }, [
-							new navbar.toggle.offcanvas(
+						new h.div({ display: "flex" }, [
+							new b.navbar.toggle.offcanvas(
 								{
 									display: ["flex", "lg-none"],
 									order: 3,
@@ -650,10 +631,10 @@ const convert = (attr: IAttrBSMainContainer) => {
 									label: "Toggle navigation",
 									textColor: attr.textColor || "light",
 								},
-								icon.solid("ellipsis")
+								b.icon.solid("ellipsis")
 							),
 						]),
-						new offcanvas.container(
+						new b.offcanvas.container(
 							{
 								id: "bsNavbar",
 								bgColor: attr.bgColor || "primary",
@@ -664,14 +645,14 @@ const convert = (attr: IAttrBSMainContainer) => {
 								scroll: true,
 							},
 							[
-								new offcanvas.header({ paddingX: 4, paddingBottom: 0 }, [
-									new offcanvas.title(
+								new b.offcanvas.header({ paddingX: 4, paddingBottom: 0 }, [
+									new b.offcanvas.title(
 										{ id: "bsNavbarOffcanvasLabel", textColor: attr.textColor || "light" },
 										attr.name || "Bootstrap"
 									),
-									new offcanvas.btnclose({ target: "#bsNavbar", white: true }),
+									new b.offcanvas.btnclose({ target: "#bsNavbar", white: true }),
 								]),
-								new offcanvas.body({ padding: [4, "lg-0"], paddingTop: 0 }, [
+								new b.offcanvas.body({ padding: [4, "lg-0"], paddingTop: 0 }, [
 									...genInsideLink(
 										attr.textColor || "primary",
 										attr.itemInsideLink,
@@ -698,9 +679,9 @@ const convert = (attr: IAttrBSMainContainer) => {
 			]
 		),
 
-		new div({ class: ["bs-gutter", "bs-layout"], container: "xxl", marginTop: 3, marginY: "md-4" }, [
-			new aside({ class: "bs-sidebar" }, [
-				new offcanvas.container(
+		new h.div({ class: ["bs-gutter", "bs-layout"], container: "xxl", marginTop: 3, marginY: "md-4" }, [
+			new h.aside({ class: "bs-sidebar" }, [
+				new b.offcanvas.container(
 					{
 						id: "bsSidebar",
 						hide: "lg",
@@ -708,13 +689,13 @@ const convert = (attr: IAttrBSMainContainer) => {
 						labelledby: "bsSidebarOffcanvasLabel",
 					},
 					[
-						new offcanvas.header({ border: "bottom" }, [
-							new offcanvas.title({ id: "bsSidebarOffcanvasLabel" }, "Browse docs"),
-							new offcanvas.btnclose({ target: "#bsSidebar" }),
+						new b.offcanvas.header({ border: "bottom" }, [
+							new b.offcanvas.title({ id: "bsSidebarOffcanvasLabel" }, "Browse docs"),
+							new b.offcanvas.btnclose({ target: "#bsSidebar" }),
 						]),
-						new offcanvas.body([
-							new nav({ id: "bs-menu", class: "bs-links", width: 100, label: "Docs navication" }, [
-								new ul(
+						new b.offcanvas.body([
+							new h.nav({ id: "bs-menu", class: "bs-links", width: 100, label: "Docs navication" }, [
+								new h.ul(
 									{
 										class: "bs-links-nav",
 										unstyle: true,
@@ -730,89 +711,19 @@ const convert = (attr: IAttrBSMainContainer) => {
 					]
 				),
 			]),
-			new main({ order: 1, class: "bs-main", id: "bs-main" }, [
+			new h.main({ order: 1, class: "bs-main", id: "bs-main" }, [
 				genIntro(attr.content),
 				genToc(attr.content),
 				genContent(attr.content),
-				// new div({ class: "bs-content", paddingStart: "lg-2" }, [
-				// 	new example.title("Quick start "),
-				// 	new example.text(
-				// 		"Get started by including Bootstrap’s production-ready CSS and JavaScript via CDN {{without}} the {{need for any}} build steps. See it in practice with this Bootstrap {{http://www.codepane.com::CodePen}} demo."
-				// 	),
-				// 	new example.code({
-				// 		output: () => {
-				// 			//make first letter uppercase
-				// 			let caps = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
-
-				// 			return [
-				// 				"primary",
-				// 				"secondary",
-				// 				"success",
-				// 				"danger",
-				// 				"info",
-				// 				"warning",
-				// 				"light",
-				// 				"dark",
-				// 				"link",
-				// 			].map((i) => new button({ color: i as IAttrBSButton["color"] }, caps(i)));
-				// 		},
-				// 	}),
-				// 	new example.title("Quick start 2"),
-				// 	new example.text(
-				// 		"Get started by including Bootstrap’s production-ready CSS and JavaScript via CDN {{without}} the {{need for any}} build steps. See it in practice with this Bootstrap {{http://www.codepane.com::CodePen}} demo."
-				// 	),
-				// 	new example.codepreview({
-				// 		type: "ts",
-				// 		code: `
-				// 		() => {
-				// 			//sample
-				// 			return [
-				// 				"primary",
-				// 				"secondary",
-				// 				"success",
-				// 				"danger",
-				// 				"info",
-				// 				"warning",
-				// 				"light",
-				// 				"dark",
-				// 				"link",
-				// 			].map((i) => new button({ color: i as IAttrBSButton["color"] }, i));
-				// 		}`,
-				// 	}),
-				// 	new example.codepreview({
-				// 		type: "js",
-				// 		code: `
-				// 		() => {
-				// 			//sample
-				// 			return 2+2;
-				// 		}`,
-				// 	}),
-
-				// 	new example.codepreview({
-				// 		type: "css",
-				// 		code: `
-				// 		.button {
-				// 			color:#fefefe;
-				// 		}
-				// 		`,
-				// 	}),
-
-				// 	new example.codepreview({
-				// 		type: "html",
-				// 		code: `
-				// 		<div>test</div>
-				// 		`,
-				// 	}),
-				// ]),
 			]),
 		]),
-		new footer(
+		new h.footer(
 			{ class: "bs-footer", paddingY: [4, "md-5"], marginTop: 5, bgColor: "body-tertiary" },
-			new div(
+			new h.div(
 				{ container: true, paddingY: 4, paddingX: [4, "md-3"], textColor: "body-secondary" },
-				new div({ row: true }, [
-					new div({ col: "lg-3", marginBottom: 3 }, [
-						new a(
+				new h.div({ row: true }, [
+					new h.div({ col: "lg-3", marginBottom: 3 }, [
+						new h.a(
 							{
 								display: "inline-flex",
 								alignItem: "center",
@@ -823,34 +734,37 @@ const convert = (attr: IAttrBSMainContainer) => {
 								label: attr.name || "Bootstrap",
 							},
 							[
-								attr.icon ? new icon(attr.icon) : icon.brand("bootstrap", { weight: "xl" }),
-								new span({ fontSize: 5, marginStart: 2 }, attr.name || "Bootstrap"),
+								attr.icon ? new b.icon(attr.icon) : b.icon.brand("bootstrap", { weight: "xl" }),
+								new h.span({ fontSize: 5, marginStart: 2 }, attr.name || "Bootstrap"),
 							]
 						),
-						new ul({ unstyle: true, class: "small" }, [
-							new li(
+						new h.ul({ unstyle: true, class: "small" }, [
+							new h.li(
 								{ marginBottom: 2 },
 								"Designed and built with all the love in the world by the {{https://getbootstrap.com/docs/5.3/about/team/::Bootstrap team}} with the help of our contributors."
 							),
-							new li(
+							new h.li(
 								{ marginBottom: 2 },
 								"Code licensed {{https://github.com/twbs/bootstrap/blob/main/LICENSE::MIT}}, docs {{https://creativecommons.org/licenses/by/3.0/::CC BY 3.0}}."
 							),
-							new li({ marginBottom: 2 }, [
+							new h.li({ marginBottom: 2 }, [
 								"Current view port is : ",
-								new span(
+								new h.span(
 									{
 										display: ["inline-block", "sm-none"],
 									},
 									"Extra small {{k::xs}}"
 								),
-								new span({ display: ["sm-inline-block", "md-none", "none"] }, "Small {{k::sm}}"),
-								new span({ display: ["md-inline-block", "lg-none", "none"] }, "Medium {{k::md}}"),
-								new span({ display: ["lg-inline-block", "xl-none", "none"] }, "Large {{k::lg}}"),
-								new span({ display: ["xl-inline-block", "xxl-none", "none"] }, "Extra large {{k::xl}}"),
-								new span({ display: ["xxl-inline-block", "none"] }, "Super large {{k::xxl}}"),
+								new h.span({ display: ["sm-inline-block", "md-none", "none"] }, "Small {{k::sm}}"),
+								new h.span({ display: ["md-inline-block", "lg-none", "none"] }, "Medium {{k::md}}"),
+								new h.span({ display: ["lg-inline-block", "xl-none", "none"] }, "Large {{k::lg}}"),
+								new h.span(
+									{ display: ["xl-inline-block", "xxl-none", "none"] },
+									"Extra large {{k::xl}}"
+								),
+								new h.span({ display: ["xxl-inline-block", "none"] }, "Super large {{k::xxl}}"),
 							]),
-							new li({ marginBottom: 2 }, "Currently v5.3.0-alpha2."),
+							new h.li({ marginBottom: 2 }, "Currently v5.3.0-alpha2."),
 						]),
 					]),
 					...genFooter(attr.itemFooter),
@@ -883,7 +797,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 	return attr;
 };
 
-export class container extends div {
+export class container extends h.div {
 	constructor();
 	constructor(attr: IAttrBSMainContainer);
 	constructor(...arg: any[]) {

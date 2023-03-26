@@ -1,8 +1,7 @@
 import { IAttr, IElem } from "../../../src/core/base/tag.js";
 import { bsConstArg } from "../../../src/core/base/bootstrap.js";
-import { code as TCode } from "../../../src/html/code.js";
-import { pre } from "../../../src/html/pre.js";
 import { mergeObject } from "../../../src/core/fn/mergeObject.js";
+import { h } from "../../../src/index.js";
 
 type IAttrBSExampleCodeType = "js" | "ts" | "html" | "css";
 
@@ -68,7 +67,7 @@ const convert = (attr: IAttrBSExampleCode) => {
 		attr
 	);
 
-	attr.elem = new TCode(
+	attr.elem = new h.code(
 		{ class: ["prettyprint", `lang-${attr.type}`], margin: 0, lang: attr.type, border: false },
 		attr.elem ? (typeof attr.elem === "string" ? beautify(attr.type, attr.elem) : attr.elem) : ""
 	);
@@ -78,7 +77,7 @@ const convert = (attr: IAttrBSExampleCode) => {
 	return attr;
 };
 
-export class preview extends pre {
+export class preview extends h.pre {
 	constructor(); //#1
 	constructor(attr: IAttrBSExampleCode); //#2
 	constructor(elem: IElem); //#3
