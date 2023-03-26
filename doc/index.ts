@@ -3,7 +3,7 @@ import { genMainContent, IAttrItemMenu } from "./ctl/main/container.js";
 import { main } from "./ctl/main/_index.js";
 import { data } from "./data/_index.js";
 
-let CURRENT_PAGE = "doc_component_dropdown";
+let CURRENT_PAGE = "doc_component_list";
 
 declare var PR: {
 	prettyPrint: () => void;
@@ -31,6 +31,7 @@ let m = {
 				{ label: "Close button", value: "doc_component_btnclose" },
 				{ label: "Collapse", value: "doc_component_collapse" },
 				{ label: "Dropdowns", value: "doc_component_dropdown" },
+				{ label: "List group", value: "doc_component_list" },
 			],
 		},
 	] as IAttrItemMenu[],

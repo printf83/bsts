@@ -11,6 +11,7 @@ import { doc_component_carousel } from "./doc_component_carousel.js";
 import { doc_component_btnclose } from "./doc_component_btnclose.js";
 import { doc_component_collapse } from "./doc_component_collapse.js";
 import { doc_component_dropdown } from "./doc_component_dropdown.js";
+import { doc_component_list } from "./doc_component_list.js";
 
 export const data = (doc: string): IAttrContent => {
 	switch (doc) {
@@ -36,6 +37,8 @@ export const data = (doc: string): IAttrContent => {
 			return doc_component_collapse;
 		case "doc_component_dropdown":
 			return doc_component_dropdown;
+		case "doc_component_list":
+			return doc_component_list;
 
 		case "doc_gettingstarted_introduction":
 			return doc_gettingstarted_introduction;
