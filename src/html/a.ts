@@ -1,6 +1,7 @@
 import { bootstrapType } from "../core/base/bootstrap.js";
 import { IAttr, IElem, tag, tagConsArg } from "../core/base/tag.js";
 import { mergeClass } from "../core/fn/mergeClass.js";
+import { mergeObject } from "../core/fn/mergeObject.js";
 
 export interface IAttrTagA extends IAttr {
 	download?: string;
@@ -35,16 +36,31 @@ export interface IAttrTagA extends IAttr {
 	type?: string;
 	color?: bootstrapType.linkColor[number];
 	stretched?: true;
+
+	disabled?: boolean;
 }
 
 const convert = (attr: IAttrTagA) => {
 	attr.class = mergeClass(attr.class, [
 		attr.color ? `link-${attr.color}` : undefined,
 		attr.stretched ? "stretched-link" : undefined,
+		attr.disabled ? "disabled" : undefined,
 	]);
+
+	if (attr.disabled) {
+		delete attr.href;
+
+		attr = mergeObject(
+			{
+				aria: { disabled: "true" },
+			},
+			attr
+		);
+	}
 
 	delete attr.color;
 	delete attr.stretched;
+	delete attr.disabled;
 
 	return attr;
 };

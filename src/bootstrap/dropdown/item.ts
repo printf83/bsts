@@ -5,13 +5,12 @@ import { a, IAttrTagA } from "../../html/a.js";
 
 export interface IAttrBSDropdownItem extends IAttrTagA {
 	active?: boolean;
-	disabled?: boolean;
 }
 
 const convert = (attr: IAttrBSDropdownItem) => {
 	attr = mergeObject(
 		{
-			class: ["dropdown-item", attr.active ? "active" : undefined, attr.disabled ? "disabled" : undefined],
+			class: ["dropdown-item", attr.active ? "active" : undefined],
 			href: attr.href || "#",
 			aria: { current: attr.active ? "true" : undefined },
 		},
@@ -19,7 +18,6 @@ const convert = (attr: IAttrBSDropdownItem) => {
 	);
 
 	delete attr.active;
-	delete attr.disabled;
 
 	return attr;
 };

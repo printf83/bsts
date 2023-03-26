@@ -19,6 +19,7 @@ import { input } from "./input.js";
 import { inputgroup } from "./inputgroup/_index.js";
 import { label } from "./label.js";
 import { list } from "./list/_index.js";
+import { listDiv } from "./listDiv/_index.js";
 import { modal } from "./modal/_index.js";
 import { msg } from "./msg.js";
 import { nav } from "./nav/_index.js";
@@ -60,6 +61,7 @@ export const bootstrap = {
 	card,
 	collapse,
 	list,
+	listDiv,
 	badge,
 	visuallyhidden,
 	nav,

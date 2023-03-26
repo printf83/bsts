@@ -6,7 +6,6 @@ import { a, IAttrTagA } from "../../../html/a.js";
 export interface IAttrBSNavLink extends IAttrTagA {
 	role?: "tab" | "button";
 	active?: boolean;
-	disabled?: boolean;
 	dropdown?: boolean;
 }
 
@@ -17,12 +16,7 @@ const convert = (attr: IAttrBSNavLink) => {
 
 	attr = mergeObject(
 		{
-			class: [
-				"nav-link",
-				attr.active ? "active" : undefined,
-				attr.disabled ? "disabled" : undefined,
-				attr.dropdown ? "dropdown-toggle" : undefined,
-			],
+			class: ["nav-link", attr.active ? "active" : undefined, attr.dropdown ? "dropdown-toggle" : undefined],
 			href: attr.href || "#",
 			aria: {
 				current: attr.active ? "page" : undefined,
@@ -34,7 +28,6 @@ const convert = (attr: IAttrBSNavLink) => {
 	);
 
 	delete attr.active;
-	delete attr.disabled;
 	delete attr.dropdown;
 
 	return attr;

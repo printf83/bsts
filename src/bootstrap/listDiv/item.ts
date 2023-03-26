@@ -6,7 +6,6 @@ import { a, IAttrTagA } from "../../html/a.js";
 
 export interface IAttrBSListDivItem extends IAttrTagA {
 	active?: boolean;
-	disabled?: boolean;
 	action?: boolean;
 	color?: bootstrapType.color[number];
 	toggle?: boolean;
@@ -14,6 +13,10 @@ export interface IAttrBSListDivItem extends IAttrTagA {
 }
 
 const convert = (attr: IAttrBSListDivItem) => {
+	if (attr.disabled && attr.href) {
+		delete attr.href;
+	}
+
 	attr = mergeObject(
 		{
 			class: [
@@ -21,11 +24,7 @@ const convert = (attr: IAttrBSListDivItem) => {
 				attr.action ? "list-group-item-action" : undefined,
 				attr.color ? `list-group-item-${attr.color}` : undefined,
 				attr.active ? "active" : undefined,
-				attr.disabled ? "disabled" : undefined,
 			],
-			aria: {
-				disabled: attr.disabled ? "true" : undefined,
-			},
 			data: {
 				"bs-toggle": attr.toggle ? "list" : undefined,
 			},
@@ -38,7 +37,6 @@ const convert = (attr: IAttrBSListDivItem) => {
 	}
 
 	delete attr.active;
-	delete attr.disabled;
 	delete attr.action;
 	delete attr.color;
 	delete attr.toggle;
