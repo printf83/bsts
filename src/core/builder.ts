@@ -16,9 +16,9 @@ export const init = (container: HTMLElement) => {
 	const popoverTriggerList = container.querySelectorAll('[data-bs-toggle="popover"]');
 	popoverTriggerList.forEach((i) => new window.bootstrap.Popover(i));
 	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-	popoverTriggerList.forEach((i) => new window.bootstrap.Tooltip(i));
+	tooltipTriggerList.forEach((i) => new window.bootstrap.Tooltip(i));
 	const scrollspyTriggerList = document.querySelectorAll('[data-bs-spy="scroll"]');
-	popoverTriggerList.forEach((i) => window.bootstrap.ScrollSpy.getOrCreateInstance(i).refresh());
+	scrollspyTriggerList.forEach((i) => window.bootstrap.ScrollSpy.getOrCreateInstance(i).refresh());
 };
 
 const markupCode = (k: string, str: string) => {
