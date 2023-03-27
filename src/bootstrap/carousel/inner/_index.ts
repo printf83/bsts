@@ -1,5 +1,5 @@
 import { container } from "./container.js";
-import { control } from "./control/_index.js";
-import { item } from "./item/_index.js";
+import * as control from "./control/_index.js";
+import * as item from "./item/_index.js";
 
-export const inner = { control, container, item };
+export { control, container, item };

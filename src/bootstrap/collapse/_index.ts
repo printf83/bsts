@@ -1,7 +1,4 @@
-import { container } from "./container.js";
-import { toggle } from "./toggle.js";
+import { container, IAttrBSCollapseContainer } from "./container.js";
+import { toggle, IAttrBSCollapseToggle } from "./toggle.js";
 
-export const collapse = {
-	container,
-	toggle,
-};
+export { container, toggle, IAttrBSCollapseContainer, IAttrBSCollapseToggle };

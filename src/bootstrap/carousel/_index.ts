@@ -1,5 +1,5 @@
 import { container } from "./container.js";
-import { indicators } from "./indicators/_index.js";
-import { inner } from "./inner/_index.js";
+import * as indicators from "./indicators/_index.js";
+import * as inner from "./inner/_index.js";
 
-export const carousel = { container, indicators, inner };
+export { container, indicators, inner };

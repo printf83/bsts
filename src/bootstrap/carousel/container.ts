@@ -2,9 +2,9 @@ import { IAttr, IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { indicators } from "./indicators/_index.js";
+import * as indicators from "./indicators/_index.js";
 import { UUID } from "../../core/uuid.js";
-import { inner } from "./inner/_index.js";
+import * as inner from "./inner/_index.js";
 
 export interface IAttrBSCarouselItem {
 	interval?: number;

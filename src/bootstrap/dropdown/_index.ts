@@ -1,12 +1,12 @@
-import { container } from "./container.js";
+import { container, IAttrBSDropdownContainer, IAttrBSDropdownContainerDrop } from "./container.js";
 import { divider } from "./divider.js";
 import { header } from "./header.js";
-import { item } from "./item.js";
-import { menu } from "./menu.js";
+import { item, IAttrBSDropdownItem } from "./item.js";
+import { menu, IAttrBSDropdownMenu } from "./menu.js";
 import { text } from "./text.js";
-import { toggle } from "./toggle.js";
+import { toggle, IAttrBSDropdownToggle } from "./toggle.js";
 
-export const dropdown = {
+export {
 	item,
 	divider,
 	menu,
@@ -14,4 +14,9 @@ export const dropdown = {
 	header,
 	container,
 	text,
+	IAttrBSDropdownContainer,
+	IAttrBSDropdownContainerDrop,
+	IAttrBSDropdownItem,
+	IAttrBSDropdownMenu,
+	IAttrBSDropdownToggle,
 };

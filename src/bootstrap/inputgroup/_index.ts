@@ -1,7 +1,4 @@
-import { container } from "./container.js";
+import { container, IAttrBSInputGroupContainer } from "./container.js";
 import { text } from "./text.js";
 
-export const inputgroup = {
-	container,
-	text,
-};
+export { container, text };
