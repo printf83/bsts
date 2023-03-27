@@ -1,6 +1,6 @@
 {
 	"name": "@printf83/bsts",
-	"version": "0.1.8",
+	"version": "0.1.11",
 	"description": "Bootstrap TS builder",
 	"keywords": [
 		"bootstrap 5",
@@ -30,6 +30,7 @@
 		"doc": "tsc --project tsconfig.doc.json --watch"
 	},
 	"devDependencies": {
+		"@printf83/bsts": "^0.1.10",
 		"@types/bootstrap": "^5.2.6",
 		"@types/js-beautify": "^1.13.3",
 		"typescript": "^5.0.1-rc"

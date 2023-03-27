@@ -1,5 +1,5 @@
 import { example as e } from "../ctl/example/_index.js";
-import { b, h } from "../../src/index.js";
+import { b, h } from "@printf83/bsts/lib/index";
 import { IAttrContent } from "../ctl/main/container.js";
 
 export const doc_component_collapse: IAttrContent = {

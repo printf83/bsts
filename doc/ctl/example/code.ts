@@ -1,12 +1,12 @@
-import { IAttr, tag } from "../../../src/core/tag.js";
-import { bsConsNoElemArg } from "../../../src/core/bootstrap.js";
-import { UUID } from "../../../src/core/uuid.js";
-import { replaceChild } from "../../../src/core/builder.js";
+import { IAttr, tag } from "@printf83/bsts/lib/core/tag";
+import { bsConsNoElemArg } from "@printf83/bsts/lib/core/bootstrap";
+import { UUID } from "@printf83/bsts/lib/core/uuid";
+import { replaceChild } from "@printf83/bsts/lib/core/builder";
+import { item } from "@printf83/bsts/lib/bootstrap/list/item";
+import { mergeAttr } from "@printf83/bsts/lib/core/mergeAttr";
+import { b, h } from "@printf83/bsts/lib/index";
+import { div } from "@printf83/bsts/lib/html/div";
 import { preview } from "./preview.js";
-import { item } from "../../../src/bootstrap/list/item.js";
-import { mergeAttr } from "../../../src/core/mergeAttr.js";
-import { b, h } from "../../../src/index.js";
-import { div } from "../../../src/html/div.js";
 
 export type IAttrPreviewTemplate = "none" | "row" | "col" | "grid" | "test";
 

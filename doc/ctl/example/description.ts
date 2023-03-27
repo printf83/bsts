@@ -1,7 +1,7 @@
-import { bsConstArg } from "../../../src/core/bootstrap.js";
-import { IElem } from "../../../src/core/tag.js";
-import { mergeObject } from "../../../src/core/mergeObject.js";
-import { IAttrTagP, p } from "../../../src/html/p.js";
+import { bsConstArg } from "@printf83/bsts/lib/core/bootstrap";
+import { IElem } from "@printf83/bsts/lib/core/tag";
+import { mergeObject } from "@printf83/bsts/lib/core/mergeObject";
+import { IAttrTagP, p } from "@printf83/bsts/lib/html/p";
 
 const convert = (attr: IAttrTagP) => {
 	attr = mergeObject({ class: "example-description", lead: true }, attr);

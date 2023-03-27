@@ -1,8 +1,8 @@
-import { IAttr, IElem } from "../../../src/core/tag.js";
-import { bsConstArg } from "../../../src/core/bootstrap.js";
-import { mergeObject } from "../../../src/core/mergeObject.js";
-import { h } from "../../../src/index.js";
-import { pre } from "../../../src/html/pre.js";
+import { IAttr, IElem } from "@printf83/bsts/lib/core/tag";
+import { bsConstArg } from "@printf83/bsts/lib/core/bootstrap";
+import { mergeObject } from "@printf83/bsts/lib/core/mergeObject";
+import { h } from "@printf83/bsts/lib/index";
+import { pre } from "@printf83/bsts/lib/html/pre";
 
 type IAttrBSExampleCodeType = "js" | "ts" | "html" | "css";
 

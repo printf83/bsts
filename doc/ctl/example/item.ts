@@ -1,6 +1,6 @@
-import { bsConstArg } from "../../../src/core/bootstrap.js";
-import { IAttr, IElem } from "../../../src/core/tag.js";
-import { div } from "../../../src/html/div.js";
+import { bsConstArg } from "@printf83/bsts/lib/core/bootstrap";
+import { IAttr, IElem } from "@printf83/bsts/lib/core/tag";
+import { div } from "@printf83/bsts/lib/html/div";
 
 const convert = (attr: IAttr) => {
 	attr.marginBottom ??= 3;

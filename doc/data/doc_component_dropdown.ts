@@ -1,8 +1,8 @@
 import { example as e } from "../ctl/example/_index.js";
-import { b, h } from "../../src/index.js";
+import { b, h } from "@printf83/bsts/lib/index";
 import { IAttrContent } from "../ctl/main/container.js";
-import { bootstrapType } from "../../src/core/bootstrap.js";
-import { IAttrBSDropdownContainerDrop } from "../../src/bootstrap/dropdown/container.js";
+import { bootstrapType } from "@printf83/bsts/lib/core/bootstrap";
+import { IAttrBSDropdownContainerDrop } from "@printf83/bsts/lib/bootstrap/dropdown/container";
 
 export const doc_component_dropdown: IAttrContent = {
 	title: "Dropdowns",

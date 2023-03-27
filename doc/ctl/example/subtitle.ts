@@ -1,9 +1,9 @@
-import { bsConstArg } from "../../../src/core/bootstrap.js";
-import { IAttr, IElem, tag } from "../../../src/core/tag.js";
-import { mergeObject } from "../../../src/core/mergeObject.js";
-import { UUID } from "../../../src/core/uuid.js";
-import { h } from "../../../src/index.js";
-import { h as Th } from "../../../src/html/h.js";
+import { bsConstArg } from "@printf83/bsts/lib/core/bootstrap";
+import { IAttr, IElem, tag } from "@printf83/bsts/lib/core/tag";
+import { mergeObject } from "@printf83/bsts/lib/core/mergeObject";
+import { UUID } from "@printf83/bsts/lib/core/uuid";
+import { h } from "@printf83/bsts/lib/index";
+import { h as Th } from "@printf83/bsts/lib/html/h";
 
 const genIDFromElem = (attr: IAttr) => {
 	if (!attr.id) {

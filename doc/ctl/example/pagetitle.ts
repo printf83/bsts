@@ -1,8 +1,8 @@
-import { IAttr, IElem, tag } from "../../../src/core/tag.js";
-import { mergeObject } from "../../../src/core/mergeObject.js";
-import { bsConstArg } from "../../../src/core/bootstrap.js";
-import { b, h } from "../../../src/index.js";
-import { div } from "../../../src/html/div.js";
+import { IAttr, IElem, tag } from "@printf83/bsts/lib/core/tag";
+import { mergeObject } from "@printf83/bsts/lib/core/mergeObject";
+import { bsConstArg } from "@printf83/bsts/lib/core/bootstrap";
+import { b, h } from "@printf83/bsts/lib/index";
+import { div } from "@printf83/bsts/lib/html/div";
 
 export interface IAttrBSExamplePagetitle extends IAttr {
 	sourceUrl?: string;
