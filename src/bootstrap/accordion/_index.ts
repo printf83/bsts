@@ -1,6 +1,14 @@
-import { body } from "./body.js";
-import { container } from "./container.js";
+import { body, IAttrBSAccordionBody } from "./body.js";
+import { container, IAttrBSAccordionContainer, IAttrBSAccordionContainerItem } from "./container.js";
 import { header } from "./header.js";
 import { item } from "./item.js";
 
-export const accordion = { container, item, header, body };
+export {
+	container,
+	item,
+	header,
+	body,
+	IAttrBSAccordionBody,
+	IAttrBSAccordionContainer,
+	IAttrBSAccordionContainerItem,
+};

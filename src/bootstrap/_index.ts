@@ -1,9 +1,9 @@
-import { accordion } from "./accordion/_index.js";
-import { alert } from "./alert/_index.js";
+import * as accordion from "./accordion/_index.js";
+import * as alert from "./alert/_index.js";
 import { badge } from "./badge.js";
-import { breadcrumb } from "./breadcrumb/_index.js";
-import { btnclose } from "./btnclose.js";
-import { btngroup } from "./btngroup.js";
+import * as breadcrumb from "./breadcrumb/_index.js";
+import * as btnclose from "./btnclose.js";
+import * as btngroup from "./btngroup.js";
 import { button } from "./button.js";
 import { card } from "./card/_index.js";
 import { carousel } from "./carousel/_index.js";
@@ -39,7 +39,7 @@ import { tooltip } from "./tooltip.js";
 import { verticalrule } from "./verticalrule.js";
 import { visuallyhidden } from "./visuallyhidden.js";
 
-export const bootstrap = {
+export {
 	icon,
 	button,
 	label,

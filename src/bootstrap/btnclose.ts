@@ -2,7 +2,7 @@ import { bsConsNoElemArg } from "../core/bootstrap.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { button, IAttrTagButton } from "../html/button.js";
 
-export interface IAttrBSBtnclose extends IAttrTagButton {
+interface IAttrBSBtnclose extends IAttrTagButton {
 	white?: boolean;
 }
 
@@ -20,10 +20,12 @@ const convert = (attr: IAttrBSBtnclose) => {
 	return attr;
 };
 
-export class btnclose extends button {
+class btnclose extends button {
 	constructor(); //#1
 	constructor(attr: IAttrBSBtnclose); //#2
 	constructor(...arg: any[]) {
 		super(bsConsNoElemArg(convert, arg));
 	}
 }
+
+export { btnclose, IAttrBSBtnclose };

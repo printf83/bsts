@@ -1,4 +1,3 @@
-import { container } from "./container.js";
-import { item } from "./item.js";
-
-export const breadcrumb = { container, item };
+import { container, IAttrBSBreadcrumbContainer } from "./container.js";
+import { item, IAttrBSBreadcrumbItem } from "./item.js";
+export { container, item, IAttrBSBreadcrumbContainer, IAttrBSBreadcrumbItem };
