@@ -1,6 +1,6 @@
 {
 	"name": "@printf83/bsts",
-	"version": "0.1.15",
+	"version": "0.1.16",
 	"description": "Bootstrap TS builder",
 	"keywords": [
 		"bootstrap 5",
@@ -18,32 +18,26 @@
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts.git"
 	},
+	"type": "module",
 	"exports": {
-		".": {
-			"import": {
-				"types": "./lib/esm/types/index.d.ts",
-				"default": "./lib/esm/index.mjs"
-			},
-			"require": {
-				"types": "./lib/cjs/types/index.d.ts",
-				"default": "./lib/cjs/index.js"
-			}
-		}
+		"types": "./lib/types/index.d.ts",
+		"default": "./lib/index.js"
 	},
-	"main": "./lib/esm/index.js",
-	"types": "./lib/esm/types/index.d.ts",
 	"files": [
 			"lib/**/*"
 		],
 	"scripts": {
 		"clean": "rm -rf ./lib",
-		"build": "npm run clean && npm run build:esm && npm run build:cjs",
-    	"build:esm": "tsc -p ./configs/tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
-    	"build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
+		"build": "npm run clean && npm run build:esm",
+    	"build:esm": "tsc -p ./configs/tsconfig.esm.json",
     	"prepack": "npm run build"
 	},
 	"devDependencies": {
-		"@types/bootstrap": "^5.2.6",
+		
 		"typescript": "^5.0.1-rc"
-	}
+	},
+	"dependencies": {
+		"@types/bootstrap": "^5.2.6"
+	},
+	"types": "printf83-bsts"
 }
