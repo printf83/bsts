@@ -5,8 +5,6 @@ export interface IAttrTagMeta extends IAttr {
 	content?: string;
 	httpEquiv?: "content-security-policy" | "content-type" | "default-style" | "refresh";
 	name?: "application-name" | "author" | "description" | "generator" | "keywords" | "viewport";
-
-	elem?: undefined;
 }
 
 export class meta extends tag {
