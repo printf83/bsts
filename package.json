@@ -1,6 +1,6 @@
 {
 	"name": "@printf83/bsts",
-	"version": "0.1.14",
+	"version": "0.1.15",
 	"description": "Bootstrap TS builder",
 	"keywords": [
 		"bootstrap 5",
@@ -30,8 +30,8 @@
 			}
 		}
 	},
-	"main": "./lib/cjs/index.js",
-	"types": "./lib/cjs/types/index.d.ts",
+	"main": "./lib/esm/index.js",
+	"types": "./lib/esm/types/index.d.ts",
 	"files": [
 			"lib/**/*"
 		],
@@ -44,7 +44,6 @@
 	},
 	"devDependencies": {
 		"@types/bootstrap": "^5.2.6",
-		"@types/js-beautify": "^1.13.3",
 		"typescript": "^5.0.1-rc"
 	}
 }
