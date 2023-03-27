@@ -1,7 +1,7 @@
-import { bootstrapType } from "../core/base/bootstrap.js";
-import { IAttr, IElem, tag, tagConsArg } from "../core/base/tag.js";
-import { mergeClass } from "../core/fn/mergeClass.js";
-import { mergeObject } from "../core/fn/mergeObject.js";
+import { bootstrapType } from "../core/bootstrap.js";
+import { IAttr, IElem, tag, tagConsArg } from "../core/tag.js";
+import { mergeClass } from "../core/mergeClass.js";
+import { mergeObject } from "../core/mergeObject.js";
 
 export interface IAttrTagA extends IAttr {
 	download?: string;

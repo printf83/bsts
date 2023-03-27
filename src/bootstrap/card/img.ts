@@ -1,5 +1,5 @@
-import { isAttr } from "../../core/base/tag.js";
-import { mergeClass } from "../../core/fn/mergeClass.js";
+import { isAttr } from "../../core/tag.js";
+import { mergeClass } from "../../core/mergeClass.js";
 import { IAttrBSImg, img as TImg } from "../../bootstrap/img.js";
 
 export interface IAttrBSCardImg extends IAttrBSImg {

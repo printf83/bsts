@@ -1,6 +1,6 @@
-import { IAttr, IElem, tag } from "../../../src/core/base/tag.js";
-import { mergeObject } from "../../../src/core/fn/mergeObject.js";
-import { bsConstArg } from "../../../src/core/base/bootstrap.js";
+import { IAttr, IElem, tag } from "../../../src/core/tag.js";
+import { mergeObject } from "../../../src/core/mergeObject.js";
+import { bsConstArg } from "../../../src/core/bootstrap.js";
 import { b, h } from "../../../src/index.js";
 import { div } from "../../../src/html/div.js";
 

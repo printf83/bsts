@@ -1,6 +1,6 @@
-import { IAttr, IElem } from "../../core/base/tag.js";
-import { bsConstArg } from "../../core/base/bootstrap.js";
-import { mergeObject } from "../../core/fn/mergeObject.js";
+import { IAttr, IElem } from "../../core/tag.js";
+import { bsConstArg } from "../../core/bootstrap.js";
+import { mergeObject } from "../../core/mergeObject.js";
 import { strong } from "../../html/strong.js";
 
 const convert = (attr: IAttr) => {

@@ -1,9 +1,9 @@
-import { bootstrapType } from "../../core/base/bootstrap.js";
-import { IAttr, IElem } from "../../core/base/tag.js";
-import { bsConstArg } from "../../core/base/bootstrap.js";
+import { bootstrapType } from "../../core/bootstrap.js";
+import { IAttr, IElem } from "../../core/tag.js";
+import { bsConstArg } from "../../core/bootstrap.js";
 import { nav } from "../../html/nav.js";
 import { header } from "../../html/header.js";
-import { mergeClass } from "../../core/fn/mergeClass.js";
+import { mergeClass } from "../../core/mergeClass.js";
 
 export interface IAttrBSNavbarContainer extends IAttr {
 	expand?: bootstrapType.viewport[number];

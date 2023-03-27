@@ -1,6 +1,6 @@
-import { IAttr, IElem } from "../../core/base/tag.js";
-import { bsConstArg } from "../../core/base/bootstrap.js";
-import { mergeClass } from "../../core/fn/mergeClass.js";
+import { IAttr, IElem } from "../../core/tag.js";
+import { bsConstArg } from "../../core/bootstrap.js";
+import { mergeClass } from "../../core/mergeClass.js";
 import { IAttrTagUl, ul } from "../../html/ul.js";
 import { nav } from "../../html/nav.js";
 

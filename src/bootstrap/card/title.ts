@@ -1,6 +1,6 @@
-import { IAttr, IElem } from "../../core/base/tag.js";
-import { bsConstArg } from "../../core/base/bootstrap.js";
-import { mergeClass } from "../../core/fn/mergeClass.js";
+import { IAttr, IElem } from "../../core/tag.js";
+import { bsConstArg } from "../../core/bootstrap.js";
+import { mergeClass } from "../../core/mergeClass.js";
 import { h } from "../../html/h.js";
 
 const convert = (attr: IAttr) => {

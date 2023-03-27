@@ -1,5 +1,5 @@
-import { bsConstArg } from "../core/base/bootstrap.js";
-import { mergeObject } from "../core/fn/mergeObject.js";
+import { bsConstArg } from "../core/bootstrap.js";
+import { mergeObject } from "../core/mergeObject.js";
 import { IAttrTagImg, img as TImg } from "../html/img.js";
 
 export interface IAttrBSImg extends IAttrTagImg {

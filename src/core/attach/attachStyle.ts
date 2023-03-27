@@ -1,5 +1,5 @@
-import { camel2Dash } from "../fn/camel2Dash.js";
-import { keyOfType } from "./../fn/keyOfType.js";
+import { camel2Dash } from "../camel2Dash.js";
+import { keyOfType } from "./../keyOfType.js";
 import { IAttachFn } from "./_index.js";
 
 export const attachStyle: IAttachFn = (key, elem, attr) => {

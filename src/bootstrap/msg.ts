@@ -1,4 +1,4 @@
-import { IAttr, IElem, isAttr } from "../core/base/tag.js";
+import { IAttr, IElem, isAttr } from "../core/tag.js";
 import { div } from "../html/div.js";
 import { IAttrTagLabel, label as TLabel } from "../html/label.js";
 import { IAttrBSIcon, icon } from "./icon.js";

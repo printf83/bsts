@@ -1,9 +1,9 @@
-import { IAttr, IElem } from "../../core/base/tag.js";
-import { bsConstArg } from "../../core/base/bootstrap.js";
+import { IAttr, IElem } from "../../core/tag.js";
+import { bsConstArg } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
-import { mergeObject } from "../../core/fn/mergeObject.js";
+import { mergeObject } from "../../core/mergeObject.js";
 import { indicators } from "./indicators/_index.js";
-import { UUID } from "../../core/fn/uuid.js";
+import { UUID } from "../../core/uuid.js";
 import { inner } from "./inner/_index.js";
 
 export interface IAttrBSCarouselItem {

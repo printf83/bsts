@@ -1,4 +1,4 @@
-import { keyOfType } from "./../fn/keyOfType.js";
+import { keyOfType } from "./../keyOfType.js";
 import { IAttachFn } from "./_index.js";
 
 export const attachOther: IAttachFn = (key, elem, attr) => {

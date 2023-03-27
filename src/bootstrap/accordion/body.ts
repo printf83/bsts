@@ -1,9 +1,9 @@
-import { IElem } from "../../core/base/tag.js";
-import { bsConstArg } from "../../core/base/bootstrap.js";
-import { UUID } from "../../core/fn/uuid.js";
+import { IElem } from "../../core/tag.js";
+import { bsConstArg } from "../../core/bootstrap.js";
+import { UUID } from "../../core/uuid.js";
 import { IAttrBSCollapseContainer, container } from "../collapse/container.js";
 import { div } from "../../html/div.js";
-import { mergeObject } from "../../core/fn/mergeObject.js";
+import { mergeObject } from "../../core/mergeObject.js";
 
 export interface IAttrBSAccordionBody extends IAttrBSCollapseContainer {
 	labelledby?: string;

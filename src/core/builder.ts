@@ -1,12 +1,12 @@
-import { a } from "../../html/a.js";
-import { b } from "../../html/b.js";
-import { code } from "../../html/code.js";
-import { i } from "../../html/i.js";
-import { kbd } from "../../html/kbd.js";
-import { span } from "../../html/span.js";
-import { u } from "../../html/u.js";
-import { attachAttr } from "../attach/_index.js";
-import { IAttr, isTag, tag } from "../base/tag.js";
+import { a } from "../html/a.js";
+import { b } from "../html/b.js";
+import { code } from "../html/code.js";
+import { i } from "../html/i.js";
+import { kbd } from "../html/kbd.js";
+import { span } from "../html/span.js";
+import { u } from "../html/u.js";
+import { attachAttr } from "./attach/_index.js";
+import { IAttr, isTag, tag } from "./tag.js";
 import { removeChildElement } from "./removeChildElement.js";
 import { removeElement } from "./removeElement.js";
 
@@ -23,7 +23,6 @@ export const init = (container: HTMLElement) => {
 	[...scrollspyTriggerList].map((i) => {
 		window.bootstrap.ScrollSpy.getOrCreateInstance(i).refresh();
 	});
-
 };
 
 const markupCode = (k: string, str: string) => {

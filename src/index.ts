@@ -1,4 +1,4 @@
-import { tag } from "./core/base/tag.js";
+import { tag } from "./core/tag.js";
 import { core } from "./core/_index.js";
 import { bootstrap } from "./bootstrap/_index.js";
 import { html } from "./html/_index.js";

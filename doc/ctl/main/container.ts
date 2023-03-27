@@ -1,7 +1,7 @@
 import { IAttrBSIcon } from "../../../src/bootstrap/icon.js";
-import { bootstrapType, bsConsNoElemArg } from "../../../src/core/base/bootstrap.js";
-import { IAttr, IElem, isTag, tag } from "../../../src/core/base/tag.js";
-import { mergeClass } from "../../../src/core/fn/mergeClass.js";
+import { bootstrapType, bsConsNoElemArg } from "../../../src/core/bootstrap.js";
+import { IAttr, IElem, isTag, tag } from "../../../src/core/tag.js";
+import { mergeClass } from "../../../src/core/mergeClass.js";
 import { div } from "../../../src/html/div.js";
 import { core, h, b } from "../../../src/index.js";
 import { subtitle } from "../example/subtitle.js";

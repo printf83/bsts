@@ -2,7 +2,7 @@ import { example as e } from "../ctl/example/_index.js";
 import { b, h } from "../../src/index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 import { HLevel } from "../../src/html/h.js";
-import { bootstrapType } from "../../src/core/base/bootstrap.js";
+import { bootstrapType } from "../../src/core/bootstrap.js";
 
 export const doc_component_badge: IAttrContent = {
 	title: "Badges",

@@ -1,6 +1,6 @@
-import { bsConstArg } from "../core/base/bootstrap.js";
-import { mergeObject } from "../core/fn/mergeObject.js";
-import { UUID } from "../core/fn/uuid.js";
+import { bsConstArg } from "../core/bootstrap.js";
+import { mergeObject } from "../core/mergeObject.js";
+import { UUID } from "../core/uuid.js";
 import { IAttrTagInput, input as TInput } from "../html/input.js";
 
 export interface IAttrBSInput extends IAttrTagInput {

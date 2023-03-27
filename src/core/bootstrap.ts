@@ -1,4 +1,4 @@
-import { mergeObject } from "../fn/mergeObject.js";
+import { mergeObject } from "./mergeObject.js";
 import { IAttr, isAttr } from "./tag.js";
 
 export namespace bootstrapBase {

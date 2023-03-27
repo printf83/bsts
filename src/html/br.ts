@@ -1,4 +1,4 @@
-import { tagConsNoElemArg, IAttr, tag } from "../core/base/tag.js";
+import { tagConsNoElemArg, IAttr, tag } from "../core/tag.js";
 
 export class br extends tag {
 	constructor();

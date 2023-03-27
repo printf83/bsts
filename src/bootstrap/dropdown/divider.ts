@@ -1,5 +1,5 @@
-import { IAttr } from "../../core/base/tag.js";
-import { mergeClass } from "../../core/fn/mergeClass.js";
+import { IAttr } from "../../core/tag.js";
+import { mergeClass } from "../../core/mergeClass.js";
 import { hr } from "../../html/hr.js";
 
 const convert = (attr: IAttr) => {

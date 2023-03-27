@@ -1,4 +1,4 @@
-import { IAttr, tag } from "../core/base/tag.js";
+import { IAttr, tag } from "../core/tag.js";
 
 export interface IAttrTagEmbed extends IAttr {
 	src?: string;

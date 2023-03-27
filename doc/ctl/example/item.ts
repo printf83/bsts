@@ -1,5 +1,5 @@
-import { bsConstArg } from "../../../src/core/base/bootstrap.js";
-import { IAttr, IElem } from "../../../src/core/base/tag.js";
+import { bsConstArg } from "../../../src/core/bootstrap.js";
+import { IAttr, IElem } from "../../../src/core/tag.js";
 import { div } from "../../../src/html/div.js";
 
 const convert = (attr: IAttr) => {

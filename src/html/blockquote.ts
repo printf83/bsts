@@ -1,5 +1,5 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/base/tag.js";
-import { mergeClass } from "../core/fn/mergeClass.js";
+import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { mergeClass } from "../core/mergeClass.js";
 
 export interface IAttrTagBlockquote extends IAttr {
 	cite?: string;

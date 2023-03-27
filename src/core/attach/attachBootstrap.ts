@@ -1,7 +1,7 @@
-import { keyOfType } from "./../fn/keyOfType.js";
-import { addClassIntoElement } from "../fn/addClassIntoElement.js";
+import { keyOfType } from "./../keyOfType.js";
+import { addClassIntoElement } from "../addClassIntoElement.js";
 import { IAttachFn } from "./_index.js";
-import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB, isBootstrapType } from "../base/bootstrap.js";
+import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB, isBootstrapType } from "../bootstrap.js";
 
 const dbRule: bootstrapRuleDB = {
 	userSelect: new bootstrapAttachRule({

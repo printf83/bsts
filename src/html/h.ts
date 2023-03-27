@@ -1,4 +1,4 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/base/tag.js";
+import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
 
 export type HLevel = 1 | 2 | 3 | 4 | 5 | 6;
 

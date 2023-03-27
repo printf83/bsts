@@ -1,7 +1,7 @@
-import { bootstrapType } from "../../core/base/bootstrap.js";
-import { IElem } from "../../core/base/tag.js";
-import { bsConstArg } from "../../core/base/bootstrap.js";
-import { mergeObject } from "../../core/fn/mergeObject.js";
+import { bootstrapType } from "../../core/bootstrap.js";
+import { IElem } from "../../core/tag.js";
+import { bsConstArg } from "../../core/bootstrap.js";
+import { mergeObject } from "../../core/mergeObject.js";
 import { IAttrTagLi, li } from "../../html/li.js";
 
 export interface IAttrBSListItem extends IAttrTagLi {

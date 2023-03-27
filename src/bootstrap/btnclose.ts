@@ -1,5 +1,5 @@
-import { bsConsNoElemArg } from "../core/base/bootstrap.js";
-import { mergeClass } from "../core/fn/mergeClass.js";
+import { bsConsNoElemArg } from "../core/bootstrap.js";
+import { mergeClass } from "../core/mergeClass.js";
 import { button, IAttrTagButton } from "../html/button.js";
 
 export interface IAttrBSBtnclose extends IAttrTagButton {

@@ -1,6 +1,6 @@
-import { bsConstArg } from "../core/base/bootstrap.js";
-import { mergeObject } from "../core/fn/mergeObject.js";
-import { UUID } from "../core/fn/uuid.js";
+import { bsConstArg } from "../core/bootstrap.js";
+import { mergeObject } from "../core/mergeObject.js";
+import { UUID } from "../core/uuid.js";
 import { IAttrTagTextarea, textarea as TTextarea } from "../html/textarea.js";
 
 export interface IAttrBSTextarea extends IAttrTagTextarea {

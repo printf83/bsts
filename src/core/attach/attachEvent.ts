@@ -1,4 +1,4 @@
-import { addEvent, HTMLElementWithEventDB } from "../fn/eventManager.js";
+import { addEvent, HTMLElementWithEventDB } from "../eventManager.js";
 import { IAttachFn } from "./_index.js";
 
 export const attachEvent: IAttachFn = (key, elem, attr) => {

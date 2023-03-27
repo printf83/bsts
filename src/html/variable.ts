@@ -1,4 +1,4 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/base/tag.js";
+import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
 
 export class variable extends tag {
 	constructor();

@@ -1,10 +1,10 @@
-import { IAttr, tag } from "../../../src/core/base/tag.js";
-import { bsConsNoElemArg } from "../../../src/core/base/bootstrap.js";
-import { UUID } from "../../../src/core/fn/uuid.js";
-import { replaceChild } from "../../../src/core/fn/builder.js";
+import { IAttr, tag } from "../../../src/core/tag.js";
+import { bsConsNoElemArg } from "../../../src/core/bootstrap.js";
+import { UUID } from "../../../src/core/uuid.js";
+import { replaceChild } from "../../../src/core/builder.js";
 import { preview } from "./preview.js";
 import { item } from "../../../src/bootstrap/list/item.js";
-import { mergeAttr } from "../../../src/core/fn/mergeAttr.js";
+import { mergeAttr } from "../../../src/core/mergeAttr.js";
 import { b, h } from "../../../src/index.js";
 import { div } from "../../../src/html/div.js";
 

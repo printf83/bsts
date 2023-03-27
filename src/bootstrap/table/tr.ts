@@ -1,6 +1,6 @@
-import { IAttr, IElem } from "../../core/base/tag.js";
-import { bootstrapType, bsConstArg } from "../../core/base/bootstrap.js";
-import { mergeClass } from "../../core/fn/mergeClass.js";
+import { IAttr, IElem } from "../../core/tag.js";
+import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
+import { mergeClass } from "../../core/mergeClass.js";
 import { tr as TTr } from "../../html/tr.js";
 
 export interface IAttrBSTableTr extends IAttr {

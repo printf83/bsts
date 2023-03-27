@@ -1,5 +1,5 @@
-import { IAttr } from "../../../src/core/base/tag.js";
-import { bsConsNoElemArg } from "../../../src/core/base/bootstrap.js";
+import { IAttr } from "../../../src/core/tag.js";
+import { bsConsNoElemArg } from "../../../src/core/bootstrap.js";
 import { preview } from "./preview.js";
 import { b, h } from "../../../src/index.js";
 import { div } from "../../../src/html/div.js";

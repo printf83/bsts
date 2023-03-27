@@ -1,6 +1,6 @@
-import { bsConstArg, bsConstArgTag } from "../../core/base/bootstrap.js";
-import { IAttr, IElem, tag } from "../../core/base/tag.js";
-import { mergeClass } from "../../core/fn/mergeClass.js";
+import { bsConstArg, bsConstArgTag } from "../../core/bootstrap.js";
+import { IAttr, IElem, tag } from "../../core/tag.js";
+import { mergeClass } from "../../core/mergeClass.js";
 
 export interface IAttrBSNavbarBrand extends IAttr {
 	href?: string;

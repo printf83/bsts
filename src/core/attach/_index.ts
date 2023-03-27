@@ -1,4 +1,4 @@
-import { keyOfType } from "./../fn/keyOfType.js";
+import { keyOfType } from "./../keyOfType.js";
 import { attachOther } from "./attachOther.js";
 import { attachHref } from "./attachHref.js";
 import { attachAria } from "./attachAria.js";
@@ -9,7 +9,7 @@ import { attachEvent } from "./attachEvent.js";
 import { attachStyle } from "./attachStyle.js";
 import { attachClass } from "./attachClass.js";
 import { attachAlias } from "./attachAlias.js";
-import { IAttr } from "../base/tag.js";
+import { IAttr } from "../tag.js";
 
 export type IAttachFn = (
 	key: string,

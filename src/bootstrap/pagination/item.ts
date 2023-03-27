@@ -1,9 +1,9 @@
-import { IElem } from "../../core/base/tag.js";
-import { bsConstArg } from "../../core/base/bootstrap.js";
+import { IElem } from "../../core/tag.js";
+import { bsConstArg } from "../../core/bootstrap.js";
 import { IAttrTagLi, li } from "../../html/li.js";
 import { span } from "../../html/span.js";
 import { a } from "../../html/a.js";
-import { mergeClass } from "../../core/fn/mergeClass.js";
+import { mergeClass } from "../../core/mergeClass.js";
 
 export interface IAttrBSPaginationItem extends IAttrTagLi {
 	active?: boolean;

@@ -1,4 +1,4 @@
-import { tagConsArg, IAttr, tag } from "../core/base/tag.js";
+import { tagConsArg, IAttr, tag } from "../core/tag.js";
 
 export interface IAttrTagStyle extends IAttr {
 	media?: string;

@@ -1,4 +1,4 @@
-import { mergeObject } from "../fn/mergeObject.js";
+import { mergeObject } from "./mergeObject.js";
 import { bootstrapType } from "./bootstrap.js";
 
 export interface IStyle {

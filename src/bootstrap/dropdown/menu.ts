@@ -1,9 +1,9 @@
-import { IAttr, IElem } from "../../core/base/tag.js";
-import { mergeClass } from "../../core/fn/mergeClass.js";
-import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB, bootstrapType } from "../../core/base/bootstrap.js";
+import { IAttr, IElem } from "../../core/tag.js";
+import { mergeClass } from "../../core/mergeClass.js";
+import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB, bootstrapType } from "../../core/bootstrap.js";
 import { genBootstrapClass } from "../../core/attach/attachBootstrap.js";
 import { div } from "../../html/div.js";
-import { bsConstArg } from "../../core/base/bootstrap.js";
+import { bsConstArg } from "../../core/bootstrap.js";
 
 export interface IAttrBSDropdownMenu extends IAttr {
 	positionView?: bootstrapType.positionView[number] | bootstrapType.positionView[number][];

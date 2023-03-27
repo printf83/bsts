@@ -1,6 +1,6 @@
-import { bootstrapType, bsConstArg, bsConstArgTag } from "../core/base/bootstrap.js";
-import { IElem, tag } from "../core/base/tag.js";
-import { mergeObject } from "../core/fn/mergeObject.js";
+import { bootstrapType, bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
+import { IElem, tag } from "../core/tag.js";
+import { mergeObject } from "../core/mergeObject.js";
 import { IAttrTagButton } from "../html/button.js";
 // import { IAttrBSIcon, icon } from "./icon.js";
 // import { label as TLabel } from "./label.js";

@@ -1,7 +1,7 @@
-import { IElem } from "../../../../core/base/tag.js";
-import { bsConstArg } from "../../../../core/base/bootstrap.js";
+import { IElem } from "../../../../core/tag.js";
+import { bsConstArg } from "../../../../core/bootstrap.js";
 import { button as TButton, IAttrTagButton } from "../../../../html/button.js";
-import { mergeObject } from "../../../../core/fn/mergeObject.js";
+import { mergeObject } from "../../../../core/mergeObject.js";
 import { span } from "../../../../html/span.js";
 import { visuallyhidden } from "../../../visuallyhidden.js";
 

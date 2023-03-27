@@ -1,5 +1,5 @@
-import { IElem, isAttr } from "../../../core/base/tag.js";
-import { mergeObject } from "../../../core/fn/mergeObject.js";
+import { IElem, isAttr } from "../../../core/tag.js";
+import { mergeObject } from "../../../core/mergeObject.js";
 import { span } from "../../../html/span.js";
 import { IAttrBSCollapseToggle, toggle as TCollapseToggle } from "../../collapse/toggle.js";
 
