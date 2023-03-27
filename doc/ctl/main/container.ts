@@ -2,6 +2,7 @@ import { IAttrBSIcon } from "../../../src/bootstrap/icon.js";
 import { bootstrapType, bsConsNoElemArg } from "../../../src/core/base/bootstrap.js";
 import { IAttr, IElem, isTag, tag } from "../../../src/core/base/tag.js";
 import { mergeClass } from "../../../src/core/fn/mergeClass.js";
+import { div } from "../../../src/html/div.js";
 import { core, h, b } from "../../../src/index.js";
 import { subtitle } from "../example/subtitle.js";
 import { title } from "../example/title.js";
@@ -797,7 +798,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 	return attr;
 };
 
-export class container extends h.div {
+export class container extends div {
 	constructor();
 	constructor(attr: IAttrBSMainContainer);
 	constructor(...arg: any[]) {

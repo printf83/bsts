@@ -2,6 +2,7 @@ import { IAttr } from "../../../src/core/base/tag.js";
 import { bsConsNoElemArg } from "../../../src/core/base/bootstrap.js";
 import { preview } from "./preview.js";
 import { b, h } from "../../../src/index.js";
+import { div } from "../../../src/html/div.js";
 
 function itemCodeCopy(e: Event) {
 	e.stopPropagation();
@@ -42,7 +43,7 @@ const convert = (attr: IAttrBSExampleCodepreview): IAttr => {
 	return attr;
 };
 
-export class codepreview extends h.div {
+export class codepreview extends div {
 	constructor();
 	constructor(attr: IAttrBSExampleCodepreview);
 	constructor(...arg: any[]) {

@@ -2,6 +2,7 @@ import { IAttr, IElem } from "../../../src/core/base/tag.js";
 import { bsConstArg } from "../../../src/core/base/bootstrap.js";
 import { mergeObject } from "../../../src/core/fn/mergeObject.js";
 import { h } from "../../../src/index.js";
+import { pre } from "../../../src/html/pre.js";
 
 type IAttrBSExampleCodeType = "js" | "ts" | "html" | "css";
 
@@ -77,7 +78,7 @@ const convert = (attr: IAttrBSExampleCode) => {
 	return attr;
 };
 
-export class preview extends h.pre {
+export class preview extends pre {
 	constructor(); //#1
 	constructor(attr: IAttrBSExampleCode); //#2
 	constructor(elem: IElem); //#3

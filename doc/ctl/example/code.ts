@@ -6,6 +6,7 @@ import { preview } from "./preview.js";
 import { item } from "../../../src/bootstrap/list/item.js";
 import { mergeAttr } from "../../../src/core/fn/mergeAttr.js";
 import { b, h } from "../../../src/index.js";
+import { div } from "../../../src/html/div.js";
 
 export type IAttrPreviewTemplate = "none" | "row" | "col" | "grid" | "test";
 
@@ -279,7 +280,7 @@ const convert = (attr: IAttrBSExampleContainer) => {
 	return attr;
 };
 
-export class code extends h.div {
+export class code extends div {
 	constructor();
 	constructor(attr: IAttrBSExampleContainer);
 	constructor(...arg: any[]) {

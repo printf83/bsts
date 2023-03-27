@@ -2,6 +2,7 @@ import { IAttr, IElem, tag } from "../../../src/core/base/tag.js";
 import { mergeObject } from "../../../src/core/fn/mergeObject.js";
 import { bsConstArg } from "../../../src/core/base/bootstrap.js";
 import { b, h } from "../../../src/index.js";
+import { div } from "../../../src/html/div.js";
 
 export interface IAttrBSExamplePagetitle extends IAttr {
 	sourceUrl?: string;
@@ -78,7 +79,7 @@ const convert = (attr: IAttrBSExamplePagetitle) => {
 	return attr;
 };
 
-export class pagetitle extends h.div {
+export class pagetitle extends div {
 	constructor(); //#1
 	constructor(attr: IAttrBSExamplePagetitle); //#2
 	constructor(elem: IElem); //#3

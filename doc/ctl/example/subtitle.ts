@@ -3,6 +3,7 @@ import { IAttr, IElem, tag } from "../../../src/core/base/tag.js";
 import { mergeObject } from "../../../src/core/fn/mergeObject.js";
 import { UUID } from "../../../src/core/fn/uuid.js";
 import { h } from "../../../src/index.js";
+import { h as Th } from "../../../src/html/h.js";
 
 const genIDFromElem = (attr: IAttr) => {
 	if (!attr.id) {
@@ -59,7 +60,7 @@ const convert = (attr: IAttr) => {
 	return attr;
 };
 
-export class subtitle extends h.h {
+export class subtitle extends Th {
 	constructor(); //#1
 	constructor(attr: IAttr); //#2
 	constructor(elem: IElem); //#3
