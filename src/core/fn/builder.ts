@@ -9,7 +9,6 @@ import { attachAttr } from "../attach/_index.js";
 import { IAttr, isTag, tag } from "../base/tag.js";
 import { removeChildElement } from "./removeChildElement.js";
 import { removeElement } from "./removeElement.js";
-import { setting } from "./setting.js";
 
 export type buildArg = tag | string | (tag | string)[];
 
@@ -25,10 +24,6 @@ export const init = (container: HTMLElement) => {
 		window.bootstrap.ScrollSpy.getOrCreateInstance(i).refresh();
 	});
 
-	// const listTriggerList = document.querySelectorAll('[data-bs-toggle="list"]');
-	// [...listTriggerList].map((i) => {
-	// 	window.bootstrap.Tab.getOrCreateInstance(i);
-	// });
 };
 
 const markupCode = (k: string, str: string) => {
@@ -228,32 +223,24 @@ export const html = (arg: buildArg): string => {
 };
 
 export const appendChild = (container: HTMLElement, arg: buildArg): HTMLElement => {
-	if (setting.DEBUG) console.time("appendChild");
 	container = build(container, arg);
-	if (setting.DEBUG) console.timeEnd("appendChild");
 	return container;
 };
 
 export const prependChild = (container: HTMLElement, arg: buildArg): HTMLElement => {
-	if (setting.DEBUG) console.time("prependChild");
 	container = build(container, arg, false);
-	if (setting.DEBUG) console.timeEnd("prependChild");
 	return container;
 };
 
 export const replaceWith = (elem: HTMLElement, arg: buildArg): HTMLElement => {
-	if (setting.DEBUG) console.time("replaceWith");
 	let parent = elem.parentNode as HTMLElement;
 	parent = build(parent, arg, true, elem);
 	removeElement(elem);
-	if (setting.DEBUG) console.timeEnd("replaceWith");
 	return parent;
 };
 
 export const replaceChild = (container: HTMLElement, arg: buildArg): HTMLElement => {
-	if (setting.DEBUG) console.time("replaceChild");
 	removeChildElement(container);
 	container = build(container, arg);
-	if (setting.DEBUG) console.timeEnd("replaceChild");
 	return container;
 };

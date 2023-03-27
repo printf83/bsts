@@ -21,10 +21,7 @@ const convert = (attr: IAttrBSDropdownMenu) => {
 	attr.class = mergeClass(attr.class, "dropdown-menu");
 
 	if (attr.positionView) {
-		attr.class = mergeClass(
-			attr.class,
-			genBootstrapClass("dropdownMenuPositionView", rules.dropdownMenuPositionView, attr.positionView)
-		);
+		attr.class = mergeClass(attr.class, genBootstrapClass(rules.dropdownMenuPositionView, attr.positionView));
 	}
 
 	if (attr.debug) {

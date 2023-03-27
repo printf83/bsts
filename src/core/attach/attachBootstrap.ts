@@ -1,6 +1,5 @@
 import { keyOfType } from "./../fn/keyOfType.js";
 import { addClassIntoElement } from "../fn/addClassIntoElement.js";
-import { setting } from "../fn/setting.js";
 import { IAttachFn } from "./_index.js";
 import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB, isBootstrapType } from "../base/bootstrap.js";
 
@@ -468,12 +467,7 @@ const allow = (key: string) => {
 	return false;
 };
 
-const addBootstrapClass = (
-	key: string,
-	rule: bootstrapAttachRule,
-	data: string | number | boolean,
-	elem: HTMLElement
-) => {
+const addBootstrapClass = (rule: bootstrapAttachRule, data: string | number | boolean, elem: HTMLElement) => {
 	// if (rule.value!.findIndex((i) => data === i) > -1) {
 	if (rule.value && isBootstrapType(data, rule.value)) {
 		if (rule.formatValue) {
@@ -493,8 +487,6 @@ const addBootstrapClass = (
 				elem = addClassIntoElement(elem, rule.format!.replace(/\$1/g, data.toString()));
 			}
 		}
-	} else {
-		if (setting.DEBUG) console.warn(`${key}:"${data}" is not supported value for bootstrap property`);
 	}
 
 	return elem;
@@ -513,7 +505,7 @@ export const attachBootstrap: IAttachFn = (key, elem, attr) => {
 		}
 
 		data.forEach((i) => {
-			elem = addBootstrapClass(key, dbRule[b], i, elem);
+			elem = addBootstrapClass(dbRule[b], i, elem);
 		});
 
 		delete attr[a];
@@ -523,7 +515,6 @@ export const attachBootstrap: IAttachFn = (key, elem, attr) => {
 };
 
 export const genBootstrapClass = (
-	key: string,
 	rule: bootstrapAttachRule,
 	value: string | number | boolean | (string | number | boolean)[]
 ) => {
@@ -558,8 +549,6 @@ export const genBootstrapClass = (
 						result.push(rule.format!.replace(/\$1/g, d.toString()));
 					}
 				}
-			} else {
-				if (setting.DEBUG) console.warn(`${key}:"${d}" is not supported value for bootstrap property`);
 			}
 		});
 	}

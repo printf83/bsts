@@ -4,13 +4,11 @@ import { attachHref } from "./attachHref.js";
 import { attachAria } from "./attachAria.js";
 import { attachData } from "./attachData.js";
 import { attachBoolean } from "./attachBoolean.js";
-import { setting } from "../fn/setting.js";
 import { attachBootstrap } from "./attachBootstrap.js";
 import { attachEvent } from "./attachEvent.js";
 import { attachStyle } from "./attachStyle.js";
 import { attachClass } from "./attachClass.js";
 import { attachAlias } from "./attachAlias.js";
-// import { extend } from "../fn/extend.js";
 import { IAttr } from "../base/tag.js";
 
 export type IAttachFn = (
@@ -26,7 +24,6 @@ const cleanupAttr: IAttachFn = (key, elem, attr) => {
 	let k = keyOfType(key, attr);
 
 	if (attr && typeof attr[k] !== "undefined" && attr[k] === null) {
-		if (setting.DEBUG) console.log(`${key}:${attr[k]} is null. Delete it`);
 		delete attr[k];
 	}
 
@@ -61,10 +58,6 @@ export const attachAttr = (elem: HTMLElement, attr: IAttr): HTMLElement => {
 					let k = keyOfType(prop[x], d);
 
 					if (typeof d[k] !== "undefined" && d[k] !== null) {
-						if (y === attrFnLength - 1 && setting.DEBUG) {
-							console.log(`Treat ${prop[x]}:${d[k]} as another attribute.`);
-						}
-
 						let { elem: e, attr: a } = attrFn[y](prop[x], elem, d);
 						elem = e;
 						d = a;
