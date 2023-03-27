@@ -1,12 +1,5 @@
-index.html
-index.css
-prettify.css
-favicon.png
-favicon.svg
 src/*
-doc/*
 BACKUP/*
-client/*
 .prettierrc
 .vscode/*
-tsconfig.*.json
+configs/*
