@@ -1,6 +1,6 @@
 {
 	"name": "@printf83/bsts",
-	"version": "0.1.11",
+	"version": "0.1.12",
 	"description": "Bootstrap TS builder",
 	"keywords": [
 		"bootstrap 5",
@@ -18,16 +18,29 @@
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts.git"
 	},
-	"main": "lib/index.js",
 	"exports": {
-		"require": "./lib/index.js",
-		"default": "./lib/index.js"
+		".": {
+			"import": {
+				"types": "./lib/esm/types/index.d.ts",
+				"default": "./lib/esm/index.mjs"
+			},
+			"require": {
+				"types": "./lib/cjs/types/index.d.ts",
+				"default": "./lib/cjs/index.js"
+			}
+		}
 	},
+	"main": "./lib/cjs/index.js",
+	"types": "./lib/cjs/types/index.d.ts",
+	"files": [
+			"lib/**/*"
+		],
 	"scripts": {
-		"clear": "tsc --build --clean tsconfig.src.json && tsc --build --clean tsconfig.doc.json",
-		"build": "tsc --project tsconfig.src.json && tsc --project tsconfig.doc.json",
-		"src": "tsc --project tsconfig.src.json --watch",
-		"doc": "tsc --project tsconfig.doc.json --watch"
+		"clean": "rm -rf ./lib",
+		"build": "npm run clean && npm run build:esm && npm run build:cjs",
+    	"build:esm": "tsc -p ./configs/tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
+    	"build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
+    	"prepack": "npm run build"
 	},
 	"devDependencies": {
 		"@printf83/bsts": "^0.1.10",

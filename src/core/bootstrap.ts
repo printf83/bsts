@@ -1104,7 +1104,7 @@ export const isBootstrapType = <T extends string | number | boolean>(
 	listOfPossible: (string | number | boolean)[]
 ): valueToCheck is T => {
 	if (listOfPossible && listOfPossible.length > 0) {
-		return listOfPossible.includes(valueToCheck);
+		return listOfPossible.indexOf(valueToCheck) > -1;
 	}
 	return false;
 };
