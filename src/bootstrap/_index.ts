@@ -2,7 +2,7 @@ import * as accordion from "./accordion/_index.js";
 import * as alert from "./alert/_index.js";
 import { badge } from "./badge.js";
 import * as breadcrumb from "./breadcrumb/_index.js";
-import * as btnclose from "./btnclose.js";
+import { btnclose, IAttrBSBtnclose } from "./btnclose.js";
 import * as btngroup from "./btngroup.js";
 import { button, IAttrBSButton } from "./button.js";
 import * as card from "./card/_index.js";
@@ -94,4 +94,5 @@ export {
 	IAttrBSTooltip,
 	IAttrBSVisuallyhidden,
 	IBootstrapTypeDisplay,
+	IAttrBSBtnclose,
 };
