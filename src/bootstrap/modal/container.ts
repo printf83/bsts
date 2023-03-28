@@ -17,7 +17,7 @@ export interface IAttrBSModalContainer extends IAttr {
 }
 
 const convert = (attr: IAttrBSModalContainer) => {
-	attr.animation = attr.animation === undefined ? true : attr.animation;
+	// attr.animation = attr.animation === undefined ? true : attr.animation;
 
 	attr = mergeObject(
 		{
