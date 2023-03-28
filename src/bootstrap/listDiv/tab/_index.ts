@@ -1,7 +1,4 @@
 import { content } from "./content.js";
-import { pane } from "./pane.js";
+import { pane, IAttrBSListDivPane } from "./pane.js";
 
-export const tab = {
-	content,
-	pane,
-};
+export { content, pane, IAttrBSListDivPane };

@@ -1,7 +1,4 @@
-import { content } from "./content/_index.js";
-import { header } from "./header/_index.js";
+import * as content from "./content/_index.js";
+import * as header from "./header/_index.js";
 
-export const nav = {
-	header,
-	content,
-};
+export { header, content };

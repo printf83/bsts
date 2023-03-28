@@ -3,7 +3,7 @@ import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { span } from "../html/span.js";
 
-export interface IAttrBSPopover extends IAttr {
+export interface IAttrBSTooltip extends IAttr {
 	inline?: boolean;
 	trigger?: "hover" | "focus" | "click" | ("hover" | "focus" | "click")[];
 	content?: string;
@@ -12,7 +12,7 @@ export interface IAttrBSPopover extends IAttr {
 	parent?: string;
 }
 
-const convert = (attr: IAttrBSPopover) => {
+const convert = (attr: IAttrBSTooltip) => {
 	attr = mergeObject(
 		{
 			display: attr.inline ? "inline-block" : undefined,
@@ -45,10 +45,10 @@ const convert = (attr: IAttrBSPopover) => {
 
 export class tooltip extends span {
 	constructor(); //#1
-	constructor(attr: IAttrBSPopover); //#2
+	constructor(attr: IAttrBSTooltip); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSPopover, elem: IElem); //#4
+	constructor(attr: IAttrBSTooltip, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSPopover>("elem", convert, arg));
+		super(bsConstArg<IAttrBSTooltip>("elem", convert, arg));
 	}
 }

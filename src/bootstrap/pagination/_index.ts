@@ -1,4 +1,4 @@
-import { container } from "./container.js";
-import { item } from "./item.js";
+import { container, IAttrBSPaginationContainer } from "./container.js";
+import { item, IAttrBSPaginationItem } from "./item.js";
 
-export const pagination = { container, item };
+export { container, item, IAttrBSPaginationContainer, IAttrBSPaginationItem };

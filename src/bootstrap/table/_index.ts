@@ -1,13 +1,13 @@
 import { caption } from "../../html/caption.js";
-import { th } from "../../html/th.js";
-import { container } from "./container.js";
-import { tbody } from "./tbody.js";
-import { td } from "./td.js";
-import { tfoot } from "./tfoot.js";
-import { thead } from "./thead.js";
-import { tr } from "./tr.js";
+import { th, IAttrTagTh as IAttrBSTableTh } from "../../html/th.js";
+import { container, IAttrBSTableContainer } from "./container.js";
+import { tbody, IAttrBSTableTbody } from "./tbody.js";
+import { td, IAttrBSTableTd } from "./td.js";
+import { tfoot, IAttrBSTableTfoot } from "./tfoot.js";
+import { thead, IAttrBSTableThead } from "./thead.js";
+import { tr, IAttrBSTableTr } from "./tr.js";
 
-export const table = {
+export {
 	container,
 	tbody,
 	td,
@@ -16,4 +16,11 @@ export const table = {
 	tfoot,
 	th,
 	caption,
+	IAttrBSTableContainer,
+	IAttrBSTableTbody,
+	IAttrBSTableTd,
+	IAttrBSTableTfoot,
+	IAttrBSTableTh,
+	IAttrBSTableThead,
+	IAttrBSTableTr,
 };

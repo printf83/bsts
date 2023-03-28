@@ -1,7 +1,4 @@
 import { container } from "./container.js";
-import { item } from "./item.js";
+import { item, IAttrBSNavContentItem } from "./item.js";
 
-export const content = {
-	container,
-	item,
-};
+export { container, item, IAttrBSNavContentItem };

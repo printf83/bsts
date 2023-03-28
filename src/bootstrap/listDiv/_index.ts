@@ -1,9 +1,5 @@
-import { container } from "./container.js";
-import { item } from "./item.js";
-import { tab } from "./tab/_index.js";
+import { container, IAttrBSListDivContainer } from "./container.js";
+import { item, IAttrBSListDivItem } from "./item.js";
+import * as tab from "./tab/_index.js";
 
-export const listDiv = {
-	tab,
-	container,
-	item,
-};
+export { tab, container, item, IAttrBSListDivContainer, IAttrBSListDivItem };

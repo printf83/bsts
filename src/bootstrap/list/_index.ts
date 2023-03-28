@@ -1,7 +1,4 @@
-import { container } from "./container.js";
-import { item } from "./item.js";
+import { container, IAttrBSListContainer } from "./container.js";
+import { item, IAttrBSListItem } from "./item.js";
 
-export const list = {
-	container,
-	item,
-};
+export { container, item, IAttrBSListContainer, IAttrBSListItem };
