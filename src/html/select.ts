@@ -1,14 +1,14 @@
 import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-import { optgroup } from "./optgroup.js";
-import { option } from "./option.js";
+import { optgroup, IAttrTagOptgroup } from "./optgroup.js";
+import { option, IAttrTagOption } from "./option.js";
 
-export interface IAttrTagSelectItem {
+export interface IAttrTagSelectItem extends IAttrTagOption, IAttrTagOptgroup {
 	value?: string;
 	label?: string;
 	elem?: IElem;
 	selected?: boolean;
 
-	list?: IAttrTagSelectItem | IAttrTagSelectItem[];
+	item?: IAttrTagSelectItem | IAttrTagSelectItem[];
 }
 
 export interface IAttrTagSelect extends IAttr {
@@ -30,9 +30,9 @@ const convert = (attr: IAttrTagSelect) => {
 		}
 
 		attr.elem = attr.list.map((i) => {
-			if (i.label && i.list && !i.elem) {
-				if (!Array.isArray(i.list)) {
-					i.list = [i.list];
+			if (i.label && i.item && !i.elem) {
+				if (!Array.isArray(i.item)) {
+					i.item = [i.item];
 				}
 
 				delete i.value;
@@ -41,7 +41,7 @@ const convert = (attr: IAttrTagSelect) => {
 				return new optgroup(i);
 			} else {
 				delete i.label;
-				delete i.list;
+				delete i.item;
 
 				return new option(i);
 			}

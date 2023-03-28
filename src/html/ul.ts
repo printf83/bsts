@@ -5,7 +5,7 @@ import { li } from "./li.js";
 export interface IAttrTagUl extends IAttr {
 	unstyle?: boolean;
 	inline?: boolean;
-	list?: string | tag | (string | tag)[];
+	item?: string | tag | (string | tag)[];
 }
 
 const convert = (attr: IAttrTagUl) => {
@@ -14,19 +14,19 @@ const convert = (attr: IAttrTagUl) => {
 		attr.inline ? "list-inline" : undefined,
 	]);
 
-	if (attr.list && !attr.elem) {
-		if (!Array.isArray(attr.list)) {
-			attr.list = [attr.list];
+	if (attr.item && !attr.elem) {
+		if (!Array.isArray(attr.item)) {
+			attr.item = [attr.item];
 		}
 
-		attr.elem = attr.list.map((i) => {
+		attr.elem = attr.item.map((i) => {
 			return new li(i);
 		});
 	}
 
 	delete attr.unstyle;
 	delete attr.inline;
-	delete attr.list;
+	delete attr.item;
 
 	return attr;
 };

@@ -1,18 +1,12 @@
 import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-import { option } from "./option.js";
-
-export interface IAttrTagOptgroupItem {
-	value?: string;
-	elem?: IElem;
-	selected?: boolean;
-}
+import { option, IAttrTagOption } from "./option.js";
 
 export interface IAttrTagOptgroup extends IAttr {
 	disabled?: boolean;
 	label?: string;
 	attrLabel?: string;
 
-	list?: IAttrTagOptgroupItem | IAttrTagOptgroupItem[];
+	item?: IAttrTagOption | IAttrTagOption[];
 }
 
 const convert = (attr: IAttrTagOptgroup) => {
@@ -21,17 +15,17 @@ const convert = (attr: IAttrTagOptgroup) => {
 		delete attr.label;
 	}
 
-	if (attr.list && !attr.elem) {
-		if (!Array.isArray(attr.list)) {
-			attr.list = [attr.list];
+	if (attr.item && !attr.elem) {
+		if (!Array.isArray(attr.item)) {
+			attr.item = [attr.item];
 		}
 
-		attr.elem = attr.list.map((i) => {
+		attr.elem = attr.item.map((i) => {
 			return new option(i);
 		});
 	}
 
-	delete attr.list;
+	delete attr.item;
 
 	return attr;
 };
