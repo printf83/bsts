@@ -12,6 +12,7 @@ export interface IAttrBSModalContainer extends IAttr {
 	centered?: boolean;
 	scrollable?: boolean;
 	animation?: boolean;
+
 	debug?: true;
 }
 
