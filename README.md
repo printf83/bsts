@@ -18,4 +18,4 @@ core.documentReady(() => {
 });
 ```
 
-Check [test.ts](https://github.com/printf83/bsts/tree/master/src/test.ts) on my [github](https://github.com/printf83/bsts) for more example code
+Check [test.ts](https://github.com/printf83/bsts-test/tree/master/src/index.ts) on my [github](https://github.com/printf83/bsts-test) for more example code
