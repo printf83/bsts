@@ -22,7 +22,7 @@ const convert = (attr: IAttrBSModalContainer) => {
 	attr = mergeObject(
 		{
 			id: attr.id || UUID(),
-			class: ["modal", attr.animation ? "fade" : undefined, attr.debug ? "show" : undefined],
+			class: ["modal", attr.animation && !attr.debug ? "fade" : undefined],
 			tabindex: "-1",
 			data: {
 				"bs-backdrop": attr.static ? "static" : undefined,
