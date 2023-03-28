@@ -60,7 +60,7 @@ import { nav } from "./nav.js";
 import { noscript } from "./noscript.js";
 import { obj, IAttrTagObj } from "./obj.js";
 import { ol, IAttrTagOl } from "./ol.js";
-import { optgroup, IAttrTagOptgroup } from "./optgroup.js";
+import { optgroup, IAttrTagOptgroup, IAttrTagOptgroupItem } from "./optgroup.js";
 import { option, IAttrTagOption } from "./option.js";
 import { output, IAttrTagOutput } from "./output.js";
 import { p, IAttrTagP } from "./p.js";
@@ -76,7 +76,7 @@ import { s } from "./s.js";
 import { samp } from "./samp.js";
 import { script, IAttrTagScript } from "./script.js";
 import { section } from "./section.js";
-import { select, IAttrTagSelect } from "./select.js";
+import { select, IAttrTagSelect, IAttrTagSelectItem } from "./select.js";
 import { small } from "./small.js";
 import { source, IAttrTagSource } from "./source.js";
 import { span } from "./span.js";
@@ -239,6 +239,7 @@ export {
 	IAttrTagObj,
 	IAttrTagOl,
 	IAttrTagOptgroup,
+	IAttrTagOptgroupItem,
 	IAttrTagOption,
 	IAttrTagOutput,
 	IAttrTagP,
@@ -248,6 +249,7 @@ export {
 	IAttrTagQ,
 	IAttrTagScript,
 	IAttrTagSelect,
+	IAttrTagSelectItem,
 	IAttrTagSource,
 	IAttrTagStyle,
 	IAttrTagTd,

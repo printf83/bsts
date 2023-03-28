@@ -1,9 +1,11 @@
 import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
 import { mergeClass } from "../core/mergeClass.js";
+import { li } from "./li.js";
 
 export interface IAttrTagUl extends IAttr {
 	unstyle?: boolean;
 	inline?: boolean;
+	list?: string | tag | (string | tag)[];
 }
 
 const convert = (attr: IAttrTagUl) => {
@@ -12,8 +14,19 @@ const convert = (attr: IAttrTagUl) => {
 		attr.inline ? "list-inline" : undefined,
 	]);
 
+	if (attr.list && !attr.elem) {
+		if (!Array.isArray(attr.list)) {
+			attr.list = [attr.list];
+		}
+
+		attr.elem = attr.list.map((i) => {
+			return new li(i);
+		});
+	}
+
 	delete attr.unstyle;
 	delete attr.inline;
+	delete attr.list;
 
 	return attr;
 };
