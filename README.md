@@ -3,7 +3,7 @@
 Maybe this is the stupid way to generate HTML, but, this is the way I learn. 
 This library is just to create bootstrap 5.3 HTML but in TS way.
 
-example button :
+example :
 
 ```
 import {core, b, h} from "@printf83/bsts";
@@ -18,4 +18,4 @@ core.documentReady(() => {
 });
 ```
 
-Check [test.ts](https://github.com/printf83/bsts-test/tree/master/src/index.ts) on my [github](https://github.com/printf83/bsts-test) for more example code
+Check [bsts-test](printf83.github.io/bsts-test/) or [github](https://github.com/printf83/bsts-test) for more example code
