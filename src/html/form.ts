@@ -20,6 +20,7 @@ export interface IAttrTagForm extends IAttr {
 		| "prev"
 		| "search";
 	target?: "_blank" | "_self" | "_parent" | "_top";
+	role?: string;
 }
 
 export class form extends tag {

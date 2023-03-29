@@ -9,6 +9,7 @@ export interface IAttrBSDropdownToggle extends IAttrBSButton {
 	menuReference?: "toggle" | "parent";
 	menuAutoClose?: "true" | "false" | "auto" | "manual" | "inside" | "outside";
 	split?: boolean;
+	navItem?: boolean;
 }
 
 const convert = (attr: IAttrBSDropdownToggle) => {
@@ -19,7 +20,11 @@ const convert = (attr: IAttrBSDropdownToggle) => {
 
 	attr = mergeObject(
 		{
-			class: ["dropdown-toggle", attr.split ? "dropdown-toggle-split" : undefined],
+			class: [
+				"dropdown-toggle",
+				attr.split ? "dropdown-toggle-split" : undefined,
+				attr.navItem ? "nav-link" : undefined,
+			],
 			data: {
 				"bs-toggle": "dropdown",
 				"bs-offset": attr.menuOffset,
@@ -27,6 +32,7 @@ const convert = (attr: IAttrBSDropdownToggle) => {
 				"bs-auto-close": attr.menuAutoClose,
 			},
 			aria: { expanded: "false" },
+			defColor: !attr.navItem,
 		},
 		attr
 	);
@@ -41,6 +47,7 @@ const convert = (attr: IAttrBSDropdownToggle) => {
 	delete attr.menuReference;
 	delete attr.menuAutoClose;
 	delete attr.split;
+	delete attr.navItem;
 
 	return attr;
 };
