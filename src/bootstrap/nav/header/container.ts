@@ -4,7 +4,7 @@ import { mergeObject } from "../../../core/mergeObject.js";
 import { IAttrTagUl, ul } from "../../../html/ul.js";
 
 export interface IAttrBSNavContainer extends IAttrTagUl {
-	type?: "tab" | "pill";
+	type?: "tab" | "pill" | "underline";
 	itemWidth?: "fill" | "justified";
 	vertical?: true;
 	role?: "tablist";
@@ -15,7 +15,7 @@ const convert = (attr: IAttrBSNavContainer) => {
 		{
 			class: [
 				"nav",
-				attr.type ? `nav-${attr.type}s` : undefined,
+				attr.type ? `nav-${attr.type}${attr.type !== "underline" ? "s" : ""}` : undefined,
 				attr.itemWidth ? `nav-${attr.itemWidth}` : undefined,
 				attr.vertical ? "flex-column" : undefined,
 			],

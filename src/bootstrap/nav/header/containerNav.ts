@@ -4,7 +4,7 @@ import { mergeObject } from "../../../core/mergeObject.js";
 import { nav } from "../../../html/nav.js";
 
 export interface IAttrBSNavContainerNav extends IAttr {
-	type?: "tab" | "pill";
+	type?: "tab" | "pill" | "underline";
 	itemWidth?: "fill" | "justified";
 	vertical?: true;
 	role?: "tablist";
