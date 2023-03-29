@@ -5,26 +5,49 @@ import { UUID } from "../../../core/uuid.js";
 import { button as TButton, IAttrTagButton } from "../../../html/button.js";
 
 export interface IAttrBSNavButton extends IAttrTagButton {
-	active?: boolean;
+	role?: "tab" | "button";
+	toggle?: "dropdown" | "pill" | "tab";
 	target?: string;
-	role?: "tab";
+	active?: boolean;
 }
 
 const convert = (attr: IAttrBSNavButton) => {
+	switch (attr.toggle) {
+		case "dropdown":
+			attr.role ??= "button";
+			break;
+		case "pill":
+		case "tab":
+			attr.role ??= "tab";
+			break;
+		default:
+		// attr.role ??= "tab";
+		// attr.toggle ??= "tab";
+	}
+
 	attr = mergeObject(
 		{
 			id: attr.id || UUID(),
-			class: ["nav-link", attr.active ? "active" : undefined],
+			class: [
+				"nav-link",
+				attr.active ? "active" : undefined,
+				attr.toggle === "dropdown" ? "dropdown-toggle" : undefined,
+			],
 			aria: {
 				selected: attr.active ? "true" : "false",
 			},
-			role: "tab",
-			data: { "bs-target": attr.target, "bs-toggle": "tab" },
+			role: attr.role,
+			data: {
+				"bs-target": attr.target,
+				"bs-toggle": attr.toggle,
+			},
 		},
 		attr
 	);
 
 	delete attr.active;
+	delete attr.toggle;
+	delete attr.target;
 
 	return attr;
 };

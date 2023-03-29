@@ -37,7 +37,7 @@ const convert = (attr: IAttrBSBreadcrumbContainer) => {
 				},
 				tItem.map((i, ix) => {
 					if (ix === tItem.length - 1) {
-						i.active = i.active || true;
+						i.active ??= true;
 					}
 
 					return new item(i);

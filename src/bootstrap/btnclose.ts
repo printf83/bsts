@@ -8,8 +8,8 @@ export interface IAttrBSBtnclose extends IAttrTagButton {
 
 const convert = (attr: IAttrBSBtnclose) => {
 	//default value
-	attr.label = attr.label || "Close";
-	attr.type = attr.type || "button";
+	attr.label ??= "Close";
+	attr.type ??= "button";
 
 	//add btn-close class
 	//white

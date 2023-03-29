@@ -7,7 +7,7 @@ export interface IAttrBSAlertBtnclose extends IAttrBSBtnclose {
 }
 
 const convert = (attr: IAttrBSAlertBtnclose) => {
-	attr.dismiss = attr.dismiss || "alert";
+	attr.dismiss ??= "alert";
 
 	attr = mergeObject(
 		{

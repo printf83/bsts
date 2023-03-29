@@ -5,7 +5,7 @@ import { UUID } from "../../core/uuid.js";
 import { h } from "../../html/h.js";
 
 const convert = (attr: IAttr) => {
-	attr.id = attr.id || UUID();
+	attr.id ??= UUID();
 	attr.class = mergeClass(attr.class, "offcanvas-title");
 	return attr;
 };

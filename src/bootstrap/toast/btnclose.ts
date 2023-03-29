@@ -7,7 +7,7 @@ export interface IAttrBSToastBtnclose extends IAttrBSBtnclose {
 }
 
 const convert = (attr: IAttrBSToastBtnclose) => {
-	attr.dismiss = attr.dismiss || "toast";
+	attr.dismiss ??= "toast";
 
 	attr = mergeObject(
 		{

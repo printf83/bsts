@@ -40,7 +40,7 @@ const convert = (attr: IAttrBSDropdownToggle) => {
 	if (attr.split) {
 		attr.elem = new visuallyhidden(attr.elem || "Toggle dropdown");
 	} else {
-		attr.elem = attr.elem || "Dropdown";
+		attr.elem ??= "Dropdown";
 	}
 
 	delete attr.menuOffset;

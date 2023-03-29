@@ -9,7 +9,7 @@ export interface IAttrBSVisuallyhidden extends IAttr {
 
 const convert = (attr: IAttrBSVisuallyhidden) => {
 	if (attr.href) {
-		attr.focusable = attr.focusable || true;
+		attr.focusable ??= true;
 	}
 
 	attr.class = mergeClass(attr.class, [attr.focusable ? "visually-hidden-focusable" : "visually-hidden"]);

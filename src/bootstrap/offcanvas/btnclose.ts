@@ -8,7 +8,7 @@ export interface IAttrBSOffcanvasBtnclose extends IAttrBSBtnclose {
 }
 
 const convert = (attr: IAttrBSOffcanvasBtnclose) => {
-	attr.dismiss = attr.dismiss || "offcanvas";
+	attr.dismiss ??= "offcanvas";
 
 	attr = mergeObject(
 		{

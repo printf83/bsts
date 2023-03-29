@@ -5,30 +5,44 @@ import { a, IAttrTagA } from "../../../html/a.js";
 
 export interface IAttrBSNavLink extends IAttrTagA {
 	role?: "tab" | "button";
+	toggle?: "dropdown" | "pill" | "tab";
 	active?: boolean;
-	dropdown?: boolean;
 }
 
 const convert = (attr: IAttrBSNavLink) => {
-	if (attr.dropdown) {
-		attr.role = "button";
+	switch (attr.toggle) {
+		case "dropdown":
+			attr.role ??= "button";
+			break;
+		case "pill":
+		case "tab":
+			attr.role ??= "tab";
+			break;
+		default:
+		// attr.role ??= "tab";
+		// attr.toggle ??= "tab";
 	}
 
 	attr = mergeObject(
 		{
-			class: ["nav-link", attr.active ? "active" : undefined, attr.dropdown ? "dropdown-toggle" : undefined],
+			class: [
+				"nav-link",
+				attr.active ? "active" : undefined,
+				attr.toggle === "dropdown" ? "dropdown-toggle" : undefined,
+			],
 			href: attr.href || "#",
 			aria: {
 				current: attr.active ? "page" : undefined,
-				expanded: attr.dropdown ? "false" : undefined,
+				expanded: attr.toggle === "dropdown" ? "false" : undefined,
 			},
-			data: { "bs-toggle": attr.dropdown ? "dropdown" : undefined },
+			role: attr.role,
+			data: { "bs-toggle": attr.toggle },
 		},
 		attr
 	);
 
 	delete attr.active;
-	delete attr.dropdown;
+	delete attr.toggle;
 
 	return attr;
 };

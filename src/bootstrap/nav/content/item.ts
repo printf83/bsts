@@ -12,9 +12,9 @@ export interface IAttrBSNavContentItem extends IAttr {
 }
 
 const convert = (attr: IAttrBSNavContentItem) => {
-	attr.role = attr.role || "tabpanel";
-	attr.tabindex = attr.tabindex || "0";
-	attr.animation = attr.animation || true;
+	attr.role ??= "tabpanel";
+	attr.tabindex ??= "0";
+	attr.animation ??= true;
 
 	attr.class = mergeClass(attr.class, [
 		"tab-pane",

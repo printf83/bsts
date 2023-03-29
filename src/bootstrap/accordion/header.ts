@@ -6,7 +6,7 @@ import { UUID } from "../../core/uuid.js";
 import { IAttrBSCollapseToggle, toggle } from "../collapse/toggle.js";
 
 const convert = (attr: IAttrBSCollapseToggle) => {
-	attr.id = attr.id || UUID();
+	attr.id ??= UUID();
 	attr.class = mergeClass(attr.class, "accordion-header");
 	attr.elem = new toggle(
 		{

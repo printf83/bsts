@@ -4,7 +4,7 @@ import { mergeClass } from "../../core/mergeClass.js";
 import { container as BSNavHeaderContainer, IAttrBSNavContainer } from "../nav/header/container.js";
 
 const convert = (attr: IAttrBSNavContainer) => {
-	attr.type = attr.type || "tab";
+	attr.type ??= "tab";
 
 	attr.class = mergeClass(attr.class, `card-header-${attr.type}s`);
 

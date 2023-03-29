@@ -14,8 +14,8 @@ export interface IAttrBSAlertContainer extends IAttr {
 
 const convert = (attr: IAttrBSAlertContainer) => {
 	//add default value
-	attr.role = attr.role || "alert";
-	attr.color = attr.color || "primary";
+	attr.role ??= "alert";
+	attr.color ??= "primary";
 
 	//add alert class
 	attr = mergeObject(
@@ -37,7 +37,7 @@ const convert = (attr: IAttrBSAlertContainer) => {
 	);
 
 	if (attr.dismissible) {
-		attr.elem = attr.elem || [];
+		attr.elem ??= [];
 		if (!Array.isArray(attr.elem)) attr.elem = [attr.elem];
 
 		attr.elem.push(new btnclose({ data: { "bs-dismiss": "alert" } }));

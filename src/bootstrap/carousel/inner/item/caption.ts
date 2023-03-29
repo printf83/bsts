@@ -6,7 +6,7 @@ import { mergeClass } from "../../../../core/mergeClass.js";
 
 const convert = (attr: IAttr) => {
 	attr.class = mergeClass(attr.class, ["carousel-caption"]);
-	attr.display = attr.display || ["none", "md-block"];
+	attr.display ??= ["none", "md-block"];
 
 	return attr;
 };

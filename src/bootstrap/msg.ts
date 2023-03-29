@@ -28,7 +28,7 @@ const convert = (attr: IAttrBSMsg) => {
 	if (attr && typeof attr.icon !== "undefined") {
 		if (attr.elem) {
 			//default position
-			attr.iconPosition = attr.iconPosition || "start";
+			attr.iconPosition ??= "start";
 
 			//append icon base on position
 			switch (attr.iconPosition) {

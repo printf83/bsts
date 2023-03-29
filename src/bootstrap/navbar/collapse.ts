@@ -5,7 +5,7 @@ import { UUID } from "../../core/uuid.js";
 import { container as TCollapseContainer, IAttrBSCollapseContainer } from "../collapse/container.js";
 
 const convert = (attr: IAttrBSCollapseContainer) => {
-	attr.id = attr.id || UUID();
+	attr.id ??= UUID();
 	attr.class = mergeClass(attr.class, "navbar-collapse");
 
 	delete attr.horizontal;

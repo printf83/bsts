@@ -42,19 +42,19 @@ const fnIcon = (
 	switch (iconPosition) {
 		case "end":
 			r = `end-${n}` as bootstrapType.rounded[number];
-			a.weight = a.weight || "sm";
+			a.weight ??= "sm";
 			break;
 		case "start":
 			r = `start-${n}` as bootstrapType.rounded[number];
-			a.weight = a.weight || "sm";
+			a.weight ??= "sm";
 			break;
 		case "top":
 			r = `top-${n}` as bootstrapType.rounded[number];
-			a.weight = a.weight || "2xl";
+			a.weight ??= "2xl";
 			break;
 		case "bottom":
 			r = `bottom-${n}` as bootstrapType.rounded[number];
-			a.weight = a.weight || "2xl";
+			a.weight ??= "2xl";
 			break;
 		default:
 			r = `start-${n}` as bootstrapType.rounded[number];
@@ -65,7 +65,7 @@ const fnIcon = (
 	}
 
 	if (type === 2) {
-		a.textColor = a.textColor || color;
+		a.textColor ??= color;
 	}
 
 	return new span(
@@ -132,7 +132,7 @@ const convert = (attr: IAttrBSPill) => {
 	if (attr && typeof attr.icon !== "undefined") {
 		if (attr.elem) {
 			//default position
-			attr.iconPosition = attr.iconPosition || "start";
+			attr.iconPosition ??= "start";
 
 			//append icon base on position
 			switch (attr.iconPosition) {
