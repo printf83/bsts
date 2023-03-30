@@ -11,13 +11,13 @@ export interface IAttrBSToastItem extends IAttr {
 	autohide?: boolean;
 	delay?: number;
 	color?: bootstrapType.color[number];
-	debug?: true;
+	debug?: boolean;
 }
 
 const convert = (attr: IAttrBSToastItem) => {
 	attr = mergeObject(
 		{
-			class: ["toast", attr.debug ? "show" : undefined],
+			class: ["toast", attr.debug ? "show" : undefined, attr.debug ? "debug" : undefined],
 			role: attr.role,
 			textBgColor: attr.color,
 			border: attr.color ? false : undefined,

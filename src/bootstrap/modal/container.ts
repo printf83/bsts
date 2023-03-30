@@ -13,7 +13,7 @@ export interface IAttrBSModalContainer extends IAttr {
 	scrollable?: boolean;
 	animation?: boolean;
 
-	debug?: true;
+	debug?: boolean;
 }
 
 const convert = (attr: IAttrBSModalContainer) => {
@@ -22,7 +22,7 @@ const convert = (attr: IAttrBSModalContainer) => {
 	attr = mergeObject(
 		{
 			id: attr.id || UUID(),
-			class: ["modal", attr.animation && !attr.debug ? "fade" : undefined],
+			class: ["modal", attr.animation && !attr.debug ? "fade" : undefined, attr.debug ? "debug" : undefined],
 			tabindex: "-1",
 			data: {
 				"bs-backdrop": attr.static ? "static" : undefined,
@@ -31,8 +31,6 @@ const convert = (attr: IAttrBSModalContainer) => {
 			aria: {
 				hidden: attr.debug ? undefined : "true",
 			},
-			position: attr.debug ? "static" : undefined,
-			display: attr.debug ? "block" : undefined,
 		},
 		attr
 	);

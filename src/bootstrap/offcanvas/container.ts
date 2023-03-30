@@ -44,8 +44,6 @@ const convert = (attr: IAttrBSOffcanvasContainer) => {
 			aria: {
 				labelledby: attr.labelledby,
 			},
-			position: attr.debug ? "static" : undefined,
-			display: attr.debug ? "block" : undefined,
 		},
 		attr
 	);

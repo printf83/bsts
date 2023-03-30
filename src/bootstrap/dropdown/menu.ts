@@ -18,15 +18,10 @@ const rules: bootstrapRuleDB = {
 };
 
 const convert = (attr: IAttrBSDropdownMenu) => {
-	attr.class = mergeClass(attr.class, "dropdown-menu");
+	attr.class = mergeClass(attr.class, ["dropdown-menu", attr.debug ? "debug" : undefined]);
 
 	if (attr.positionView) {
 		attr.class = mergeClass(attr.class, genBootstrapClass(rules.dropdownMenuPositionView, attr.positionView));
-	}
-
-	if (attr.debug) {
-		attr.position ??= "static";
-		attr.display ??= "block";
 	}
 
 	delete attr.positionView;
