@@ -1,5 +1,5 @@
 src/*
-BACKUP/*
+BACKUP_WILL_BE_DELETED/*
 .prettierrc
 .vscode/*
 configs/*
