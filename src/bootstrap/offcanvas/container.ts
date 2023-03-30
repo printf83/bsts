@@ -19,10 +19,6 @@ export interface IAttrBSOffcanvasContainer extends IAttr {
 const convert = (attr: IAttrBSOffcanvasContainer) => {
 	attr.placement ??= "start";
 
-	if (attr.debug) {
-		attr.hide = false;
-	}
-
 	attr = mergeObject(
 		{
 			id: attr.id || UUID(),
@@ -31,6 +27,7 @@ const convert = (attr: IAttrBSOffcanvasContainer) => {
 				attr.hide === false ? "show" : undefined,
 				attr.hide ? (attr.hide === true ? "" : `offcanvas-${attr.hide}`) : undefined,
 				attr.placement ? `offcanvas-${attr.placement}` : undefined,
+				attr.debug ? "debug" : undefined,
 			],
 			tabindex: "-1",
 			textBgColor: attr.textBgColor || attr.dark ? "dark" : undefined,
