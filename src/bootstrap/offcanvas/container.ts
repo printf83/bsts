@@ -19,6 +19,10 @@ export interface IAttrBSOffcanvasContainer extends IAttr {
 const convert = (attr: IAttrBSOffcanvasContainer) => {
 	attr.placement ??= "start";
 
+	if (attr.debug) {
+		attr.hide = false;
+	}
+
 	attr = mergeObject(
 		{
 			id: attr.id || UUID(),
