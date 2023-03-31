@@ -4,7 +4,7 @@ import { mergeObject } from "../core/mergeObject.js";
 import { i } from "../html/i.js";
 import { span } from "../html/span.js";
 
-type IAttrIconType = "fab" | "fas" | "far" | "fad" | "fal";
+type IAttrIconType = "bi" | "fab" | "fas" | "far" | "fad" | "fal";
 
 export interface IAttrBSIcon extends IAttr {
 	icon?: string;
@@ -24,39 +24,51 @@ export interface IAttrBSIcon extends IAttr {
 }
 
 const convert = (attr: IAttrBSIcon) => {
-	attr = mergeObject(
-		{
-			class: [
-				attr.type ? attr.type : attr.icon ? "fas" : undefined,
-				attr.icon ? `fa-${attr.icon}` : undefined,
-				attr.weight ? `fa-${attr.weight}` : undefined,
-				attr.fixwidth !== false ? "fa-fw" : undefined,
-				attr.spin ? "fa-spin" : undefined,
-				attr.bounce ? "fa-bounce" : undefined,
-				attr.flip ? "fa-flip" : undefined,
-				attr.shake ? "fa-shake" : undefined,
-				attr.inverse ? "fa-inverse" : undefined,
-				!attr.beat && attr.fade ? "fa-fade" : undefined,
-				attr.beat && !attr.fade ? "fa-beat" : undefined,
-				attr.beat && attr.fade ? "fa-beat-fade" : undefined,
-				attr.rotate
-					? typeof attr.rotate === "number"
-						? `fa-rotate-${attr.rotate.toString()}`
-						: `fa-flip-${attr.rotate.toString()}`
-					: undefined,
-				attr.stack
-					? typeof attr.stack === "number"
-						? `fa-stack-${attr.stack.toString()}x`
-						: "fa-stack"
-					: undefined,
-			],
-			textColor: attr.color,
-		},
-		attr
-	);
+	attr.type ??= "bi";
+
+	if (attr.type === "bi") {
+		attr = mergeObject(
+			{
+				class: ["bi", attr.icon ? `bi-${attr.icon}` : undefined],
+				textColor: attr.color,
+			},
+			attr
+		);
+	} else {
+		attr = mergeObject(
+			{
+				class: [
+					attr.type && attr.icon ? attr.type : undefined,
+					attr.icon ? `fa-${attr.icon}` : undefined,
+					attr.weight ? `fa-${attr.weight}` : undefined,
+					attr.fixwidth !== false ? "fa-fw" : undefined,
+					attr.spin ? "fa-spin" : undefined,
+					attr.bounce ? "fa-bounce" : undefined,
+					attr.flip ? "fa-flip" : undefined,
+					attr.shake ? "fa-shake" : undefined,
+					attr.inverse ? "fa-inverse" : undefined,
+					!attr.beat && attr.fade ? "fa-fade" : undefined,
+					attr.beat && !attr.fade ? "fa-beat" : undefined,
+					attr.beat && attr.fade ? "fa-beat-fade" : undefined,
+					attr.rotate
+						? typeof attr.rotate === "number"
+							? `fa-rotate-${attr.rotate.toString()}`
+							: `fa-flip-${attr.rotate.toString()}`
+						: undefined,
+					attr.stack
+						? typeof attr.stack === "number"
+							? `fa-stack-${attr.stack.toString()}x`
+							: "fa-stack"
+						: undefined,
+				],
+				textColor: attr.color,
+			},
+			attr
+		);
+	}
 
 	delete attr.icon;
-	delete attr.type;
+
 	delete attr.color;
 	delete attr.weight;
 	delete attr.fixwidth;
@@ -69,11 +81,21 @@ const convert = (attr: IAttrBSIcon) => {
 	delete attr.inverse;
 	delete attr.stack;
 
-	return {
-		class: "fa-svg-container",
-		elem: new i(attr as IAttr),
-		data: { class: attr.class ? (Array.isArray(attr.class) ? attr.class.join(" ") : attr.class) : undefined },
-	};
+	if (attr.type === "bi") {
+		delete attr.type;
+		return {
+			class: "bi-svg-container",
+			elem: new i(attr as IAttr),
+			data: { class: attr.class ? (Array.isArray(attr.class) ? attr.class.join(" ") : attr.class) : undefined },
+		};
+	} else {
+		delete attr.type;
+		return {
+			class: "fa-svg-container",
+			elem: new i(attr as IAttr),
+			data: { class: attr.class ? (Array.isArray(attr.class) ? attr.class.join(" ") : attr.class) : undefined },
+		};
+	}
 };
 
 const genStaticIcon = (t: IAttrIconType, i: string, a?: IAttrBSIcon) => {
@@ -95,6 +117,7 @@ export class icon extends span {
 		super(bsConstArg("elem", convert, arg));
 	}
 
+	static bi = (i: string, attr?: IAttrBSIcon) => genStaticIcon("bi", i, attr);
 	static brand = (i: string, attr?: IAttrBSIcon) => genStaticIcon("fab", i, attr);
 	static solid = (i: string, attr?: IAttrBSIcon) => genStaticIcon("fas", i, attr);
 	static duo = (i: string, attr?: IAttrBSIcon) => genStaticIcon("fad", i, attr);
