@@ -25,17 +25,16 @@
 		"default": "./lib/index.js"
 	},
 	"files": [
-			"lib/**/*"
-		],
+		"lib/**/*"
+	],
 	"scripts": {
 		"clean": "rm -rf ./lib",
-		"clean:win":"rmdir /s lib",
+		"clean:win": "rmdir /s lib",
 		"build": "npm run clean && npm run build:esm",
 		"build:win": "npm run clean:win && npm run build:esm",
-    	"build:esm": "tsc -p ./configs/tsconfig.esm.json",
-		"debug":"tsc -p ./configs/tsconfig.esm.json --watch",
-    	"prepack": "npm run build"
-	
+		"build:esm": "tsc -p ./configs/tsconfig.esm.json",
+		"debug": "tsc -p ./configs/tsconfig.esm.json --watch",
+		"prepack": "npm run build"
 	},
 	"devDependencies": {
 		"@types/bootstrap": "^5.2.6",
