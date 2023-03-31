@@ -14,9 +14,11 @@ export interface IAttrBSPopover extends IAttr {
 }
 
 const convert = (attr: IAttrBSPopover) => {
+	attr.inline ??= true;
+
 	attr = mergeObject(
 		{
-			display: attr.inline ? "inline-block" : undefined,
+			display: attr.inline ? "inline-block" : attr.display,
 			tabindex: "0",
 			data: {
 				"bs-toggle": "popover",
