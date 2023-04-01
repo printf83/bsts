@@ -4,10 +4,10 @@ import { mergeObject } from "../core/mergeObject.js";
 import { i } from "../html/i.js";
 import { span } from "../html/span.js";
 
-type IAttrIconType = "bi" | "fab" | "fas" | "far" | "fad" | "fal";
+type IAttrIconType = "bi" | "brand" | "solid" | "regular" | "duotone" | "light" | "sharp";
 
 export interface IAttrBSIcon extends IAttr {
-	icon?: string;
+	id?: string;
 	type?: IAttrIconType;
 	color?: bootstrapType.color[number];
 	weight?: "2xs" | "xs" | "sm" | "lg" | "xl" | "2xl";
@@ -29,7 +29,7 @@ const convert = (attr: IAttrBSIcon) => {
 	if (attr.type === "bi") {
 		attr = mergeObject(
 			{
-				class: ["bi", attr.icon ? `bi-${attr.icon}` : undefined],
+				class: ["bi", attr.id ? `bi-${attr.id}` : undefined],
 				textColor: attr.color,
 			},
 			attr
@@ -38,8 +38,8 @@ const convert = (attr: IAttrBSIcon) => {
 		attr = mergeObject(
 			{
 				class: [
-					attr.type && attr.icon ? attr.type : undefined,
-					attr.icon ? `fa-${attr.icon}` : undefined,
+					attr.type && attr.id ? `fa-${attr.type}` : undefined,
+					attr.id ? `fa-${attr.id}` : undefined,
 					attr.weight ? `fa-${attr.weight}` : undefined,
 					attr.fixwidth !== false ? "fa-fw" : undefined,
 					attr.spin ? "fa-spin" : undefined,
@@ -67,8 +67,7 @@ const convert = (attr: IAttrBSIcon) => {
 		);
 	}
 
-	delete attr.icon;
-
+	delete attr.id;
 	delete attr.color;
 	delete attr.weight;
 	delete attr.fixwidth;
@@ -101,10 +100,10 @@ const convert = (attr: IAttrBSIcon) => {
 const genStaticIcon = (t: IAttrIconType, i: string, a?: IAttrBSIcon) => {
 	if (a) {
 		delete a.type;
-		delete a.icon;
-		return new icon(mergeObject({ type: t, icon: i }, a));
+		delete a.id;
+		return new icon(mergeObject({ type: t, id: i }, a));
 	} else {
-		return new icon({ type: t, icon: i });
+		return new icon({ type: t, id: i });
 	}
 };
 
@@ -118,9 +117,10 @@ export class icon extends span {
 	}
 
 	static bi = (i: string, attr?: IAttrBSIcon) => genStaticIcon("bi", i, attr);
-	static brand = (i: string, attr?: IAttrBSIcon) => genStaticIcon("fab", i, attr);
-	static solid = (i: string, attr?: IAttrBSIcon) => genStaticIcon("fas", i, attr);
-	static duo = (i: string, attr?: IAttrBSIcon) => genStaticIcon("fad", i, attr);
-	static light = (i: string, attr?: IAttrBSIcon) => genStaticIcon("fal", i, attr);
-	static reg = (i: string, attr?: IAttrBSIcon) => genStaticIcon("far", i, attr);
+	static brand = (i: string, attr?: IAttrBSIcon) => genStaticIcon("brand", i, attr);
+	static solid = (i: string, attr?: IAttrBSIcon) => genStaticIcon("solid", i, attr);
+	static duotone = (i: string, attr?: IAttrBSIcon) => genStaticIcon("duotone", i, attr);
+	static light = (i: string, attr?: IAttrBSIcon) => genStaticIcon("light", i, attr);
+	static regular = (i: string, attr?: IAttrBSIcon) => genStaticIcon("regular", i, attr);
+	static sharp = (i: string, attr?: IAttrBSIcon) => genStaticIcon("sharp", i, attr);
 }

@@ -100,7 +100,7 @@ export class msg extends TLabel {
 		} else if (arg.length === 2) {
 			if (typeof arg[0] === "string") {
 				//#4
-				super(convert({ icon: { icon: arg[0] }, elem: arg[1] }));
+				super(convert({ icon: { id: arg[0] }, elem: arg[1] }));
 			} else {
 				//#5
 				super(convert({ icon: arg[0], elem: arg[1] }));
