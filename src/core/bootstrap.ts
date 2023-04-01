@@ -741,7 +741,7 @@ export namespace bootstrapBase {
 	export const userSelect = ["all", "auto", "none"] as const;
 	export const pointerEvent = ["auto", "none"] as const;
 	export const position = ["static", "relative", "absolute"] as const;
-	export const overflow = ["auto", "hidden", "scroll"] as const;
+	export const overflow = ["auto", "hidden", "scroll", "visible"] as const;
 
 	export const textAlign = positionView;
 	export const verticalAlign = ["baseline", "top", "middle", "bottom", "text-top", "text-bottom"] as const;

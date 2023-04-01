@@ -23,6 +23,16 @@ const dbRule: bootstrapRuleDB = {
 		value: bootstrapBase.overflow.concat(),
 		shared: true,
 	}),
+	overflowX: new bootstrapAttachRule({
+		format: "overflow-x-$1",
+		value: bootstrapBase.overflow.concat(),
+		shared: true,
+	}),
+	overflowY: new bootstrapAttachRule({
+		format: "overflow-y-$1",
+		value: bootstrapBase.overflow.concat(),
+		shared: true,
+	}),
 
 	textAlign: new bootstrapAttachRule({
 		format: "text-$1",

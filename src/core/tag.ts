@@ -320,6 +320,8 @@ export interface IBootstrap {
 	pointerEvent?: bootstrapType.pointerEvent[number];
 	position?: bootstrapType.position[number];
 	overflow?: bootstrapType.overflow[number];
+	overflowX?: bootstrapType.overflow[number];
+	overflowY?: bootstrapType.overflow[number];
 
 	textAlign?: bootstrapType.textAlign[number];
 	verticalAlign?: bootstrapType.verticalAlign[number];
