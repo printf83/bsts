@@ -1,6 +1,6 @@
 {
 	"name": "@printf83/bsts",
-	"version": "0.1.47",
+	"version": "0.1.48",
 	"description": "Bootstrap TS builder",
 	"keywords": [
 		"bootstrap 5",
@@ -18,11 +18,11 @@
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts.git"
 	},
-	"main": "./lib/index.js",
+	"main": "./lib/index.mjs",
 	"types": "./lib/types/index.d.ts",
 	"exports": {
 		"types": "./lib/types/index.d.ts",
-		"default": "./lib/index.js"
+		"default": "./lib/index.mjs"
 	},
 	"files": [
 		"lib/**/*"
@@ -30,8 +30,8 @@
 	"scripts": {
 		"clean": "rm -rf ./lib",
 		"clean:win": "rmdir /s lib",
-		"build": "npm run clean && npm run build:esm",
-		"build:win": "npm run clean:win && npm run build:esm",
+		"build": "npm run clean && npm run build:esm && mv ./lib/index.js ./lib/index.mjs",
+		"build:win": "npm run clean:win && npm run build:esm && mv ./lib/index.js ./lib/index.mjs",
 		"build:esm": "tsc -p ./configs/tsconfig.esm.json",
 		"debug": "tsc -p ./configs/tsconfig.esm.json --watch",
 		"prepack": "npm run build"
