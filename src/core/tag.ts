@@ -303,10 +303,6 @@ export interface IGlobal {
 	nomodule?: boolean;
 	playsinline?: boolean;
 	truespeed?: boolean;
-
-	//not in w3school
-	//but bootstrap keep using role everywhere
-	//role?: string;
 }
 
 export interface IGlobalAria {
@@ -360,9 +356,9 @@ export interface IBootstrap {
 	viewHeight?: bootstrapType.viewHeight[number];
 	viewWidth?: bootstrapType.viewWidth[number];
 
-	placeholder?: bootstrapType.placeholder[number];
-	placeholderAnimation?: bootstrapType.placeholderAnimation[number];
-	placeholderWeight?: bootstrapType.placeholderWeight[number];
+	loading?: bootstrapType.loading[number];
+	loadingAnimation?: bootstrapType.loadingAnimation[number];
+	loadingWeight?: bootstrapType.loadingWeight[number];
 
 	shadow?: bootstrapType.shadow[number];
 

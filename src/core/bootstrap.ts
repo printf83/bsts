@@ -646,7 +646,7 @@ export namespace bootstrapBase {
 	export const bgGradient = trueonly;
 	export const wordBreak = trueonly;
 	export const monospace = trueonly;
-	export const placeholder = trueonly;
+	export const loading = trueonly;
 
 	export const row = truefalse;
 
@@ -802,8 +802,8 @@ export namespace bootstrapBase {
 	export const viewHeight = hundred;
 	export const viewWidth = hundred;
 
-	export const placeholderAnimation = ["glow", "wave"] as const;
-	export const placeholderWeight = ["lg", "sm", "xs"] as const;
+	export const loadingAnimation = ["glow", "wave"] as const;
+	export const loadingWeight = ["lg", "sm", "xs"] as const;
 
 	export const shadow = [true, false, "none", "sm", "lg", "inset"] as const;
 	export const borderNone = [true, "top", "end", "bottom", "start"] as const;
@@ -974,7 +974,7 @@ export namespace bootstrapType {
 	export type bgGradient = typeof bootstrapBase.bgGradient;
 	export type wordBreak = typeof bootstrapBase.wordBreak;
 	export type monospace = typeof bootstrapBase.monospace;
-	export type placeholder = typeof bootstrapBase.placeholder;
+	export type loading = typeof bootstrapBase.loading;
 	export type row = typeof bootstrapBase.row;
 	export type col = typeof bootstrapBase.col;
 
@@ -1018,8 +1018,8 @@ export namespace bootstrapType {
 	export type viewHeight = typeof bootstrapBase.viewHeight;
 	export type viewWidth = typeof bootstrapBase.viewWidth;
 
-	export type placeholderAnimation = typeof bootstrapBase.placeholderAnimation;
-	export type placeholderWeight = typeof bootstrapBase.placeholderWeight;
+	export type loadingAnimation = typeof bootstrapBase.loadingAnimation;
+	export type loadingWeight = typeof bootstrapBase.loadingWeight;
 
 	export type shadow = typeof bootstrapBase.shadow;
 	export type borderNone = typeof bootstrapBase.borderNone;

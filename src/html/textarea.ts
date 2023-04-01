@@ -8,7 +8,7 @@ export interface IAttrTagTextarea extends IAttr {
 	form?: string;
 	maxlength?: number;
 	name?: string;
-	placeholderText?: string;
+	placeholder?: string;
 	readonly?: boolean;
 	required?: boolean;
 	rows?: number;

@@ -3,7 +3,7 @@ import { tagConsNoElemArg, IAttr, tag } from "../core/tag.js";
 export interface IAttrTagIframe extends IAttr {
 	allowfullscreen?: boolean;
 	allowpaymentrequest?: boolean;
-	loading?: "eager" | "lazy";
+	loadingStyle?: "eager" | "lazy";
 	name?: string;
 	referrerpolicy?:
 		| "no-referrer"

@@ -22,7 +22,7 @@ export interface IAttrTagInput extends IAttr {
 	multiple?: boolean;
 	name?: string;
 	pattern?: string;
-	placeholderText?: string;
+	placeholder?: string;
 	readonly?: boolean;
 	required?: boolean;
 	size?: number;

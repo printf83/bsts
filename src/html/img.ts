@@ -4,7 +4,7 @@ export interface IAttrTagImg extends IAttr {
 	alt?: string;
 	crossorigin?: "anonymous" | "use-credentials";
 	ismap?: boolean;
-	loading?: "eager" | "lazy";
+	loadingStyle?: "eager" | "lazy";
 	longdesc?: string;
 	referrerpolicy?:
 		| "no-referrer"

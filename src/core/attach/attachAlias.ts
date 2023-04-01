@@ -2,7 +2,7 @@ import { keyOfType } from "../keyOfType.js";
 import { IAttachFn } from "./_index.js";
 
 const dbAlias: { [key: string]: string } = {
-	placeholderText: "placeholder",
+	loadingStyle: "loading",
 	attrLabel: "label",
 	dataText: "data",
 	startValue: "start",

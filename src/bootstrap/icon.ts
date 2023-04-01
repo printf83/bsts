@@ -35,10 +35,32 @@ const convert = (attr: IAttrBSIcon) => {
 			attr
 		);
 	} else {
+		let faType = "regular";
+		switch (attr.type) {
+			case "brand":
+				faType = "fab";
+				break;
+			case "solid":
+				faType = "fas";
+				break;
+			case "regular":
+				faType = "far";
+				break;
+			case "duotone":
+				faType = "fad";
+				break;
+			case "light":
+				faType = "fal";
+				break;
+			case "sharp":
+				faType = "fass";
+				break;
+		}
+
 		attr = mergeObject(
 			{
 				class: [
-					attr.type && attr.id ? `fa-${attr.type}` : undefined,
+					attr.type && attr.id ? faType : undefined,
 					attr.id ? `fa-${attr.id}` : undefined,
 					attr.weight ? `fa-${attr.weight}` : undefined,
 					attr.fixwidth !== false ? "fa-fw" : undefined,
