@@ -356,9 +356,9 @@ export interface IBootstrap {
 	viewHeight?: bootstrapType.viewHeight[number];
 	viewWidth?: bootstrapType.viewWidth[number];
 
-	loading?: bootstrapType.loading[number];
-	loadingAnimation?: bootstrapType.loadingAnimation[number];
-	loadingWeight?: bootstrapType.loadingWeight[number];
+	loadingPlaceholder?: bootstrapType.loadingPlaceholder[number];
+	loadingPlaceholderAnimation?: bootstrapType.loadingPlaceholderAnimation[number];
+	loadingPlaceholderWeight?: bootstrapType.loadingPlaceholderWeight[number];
 
 	shadow?: bootstrapType.shadow[number];
 

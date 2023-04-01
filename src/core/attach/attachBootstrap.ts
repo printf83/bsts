@@ -164,17 +164,17 @@ const dbRule: bootstrapRuleDB = {
 		value: bootstrapBase.viewWidth.concat(),
 	}),
 
-	loading: new bootstrapAttachRule({
-		value: bootstrapBase.loading.concat(),
+	loadingPlaceholder: new bootstrapAttachRule({
+		value: bootstrapBase.loadingPlaceholder.concat(),
 		formatTrue: "placeholder",
 	}),
-	loadingAnimation: new bootstrapAttachRule({
+	loadingPlaceholderAnimation: new bootstrapAttachRule({
 		format: "placeholder-$1",
-		value: bootstrapBase.loadingAnimation.concat(),
+		value: bootstrapBase.loadingPlaceholderAnimation.concat(),
 	}),
-	loadingWeight: new bootstrapAttachRule({
+	loadingPlaceholderWeight: new bootstrapAttachRule({
 		format: "placeholder-$1",
-		value: bootstrapBase.loadingWeight.concat(),
+		value: bootstrapBase.loadingPlaceholderWeight.concat(),
 		formatValue: "placeholder $1",
 	}),
 
