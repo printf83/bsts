@@ -1139,7 +1139,13 @@ export const bsConstArg = <T extends IAttr>(prop: string, fn: <T extends IAttr>(
 	}
 };
 
-export const bsConstArgTag = <T extends IAttr>(t1: string, t2: string, fn: (i: T) => boolean, arg?: any[]) => {
+export const bsConstArgTag = <T extends IAttr>(
+	prop: string,
+	t1: string,
+	t2: string,
+	fn: (i: T) => boolean,
+	arg?: any[]
+) => {
 	if (arg) {
 		if (arg.length === 1) {
 			if (isAttr<T>(arg[0])) {
@@ -1148,7 +1154,7 @@ export const bsConstArgTag = <T extends IAttr>(t1: string, t2: string, fn: (i: T
 				return t1;
 			}
 		} else if (arg.length === 2) {
-			return fn(arg[0]) ? t2 : t1;
+			return fn(mergeObject<T>({ [prop]: arg[1] } as T, arg[0] as T)) ? t2 : t1;
 		} else {
 			return t1;
 		}
@@ -1156,3 +1162,20 @@ export const bsConstArgTag = <T extends IAttr>(t1: string, t2: string, fn: (i: T
 		return t1;
 	}
 };
+
+// export const bsConstArgTag = <T extends IAttr>(t1: string, t2: string, fn: (i: T) => boolean, arg?: any[]) => {
+// 	if (arg) {
+// 		if (arg.length === 1) {
+// 			if (isAttr<T>(arg[0])) {
+// 				return fn(arg[0]) ? t2 : t1;
+// 			} else {
+// 				return t1;
+// 			}
+// 		} else if (arg.length === 2) {
+// 			return fn(arg[0]) ? t2 : t1;
+// 		} else {
+// 			return t1;
+// 		}
+// 	} else {
+// 		return t1;
+// 	}};

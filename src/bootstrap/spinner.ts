@@ -1,5 +1,5 @@
-import { IAttr, IElem } from "../core/tag.js";
-import { bootstrapType, bsConstArg } from "../core/bootstrap.js";
+import { IAttr, IElem, tag } from "../core/tag.js";
+import { bootstrapType, bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { span } from "../html/span.js";
 import { visuallyhidden } from "./visuallyhidden.js";
@@ -7,6 +7,7 @@ import { mergeObject } from "../core/mergeObject.js";
 
 export interface IAttrBSSpinner extends IAttr {
 	type?: "border" | "grow";
+	small?: boolean;
 	role?: "status";
 	color?: bootstrapType.textColor[number];
 }
@@ -17,7 +18,10 @@ const convert = (attr: IAttrBSSpinner) => {
 	attr.textColor ??= attr.color || attr.textColor;
 	attr.elem ??= "Loading...";
 
-	attr.class = mergeClass(attr.class, [`spinner-${attr.type}`]);
+	attr.class = mergeClass(attr.class, [
+		`spinner-${attr.type}`,
+		attr.small && attr.type ? `spinner-${attr.type}-sm` : undefined,
+	]);
 
 	if (attr.elem === "") {
 		attr = mergeObject({ aria: { hidden: "true" } }, attr);
@@ -27,18 +31,28 @@ const convert = (attr: IAttrBSSpinner) => {
 		}
 	}
 
+	delete attr.small;
 	delete attr.type;
 	delete attr.color;
 
 	return attr;
 };
 
-export class spinner extends span {
+export class spinner extends tag {
 	constructor(); //#1
 	constructor(attr: IAttrBSSpinner); //#2
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttrBSSpinner, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSSpinner>("elem", convert, arg));
+		super(
+			bsConstArgTag<IAttrBSSpinner>(
+				"elem",
+				"span",
+				"div",
+				(i) => (i.elem === "" ? false : i.elem ? false : true),
+				arg
+			),
+			bsConstArg<IAttrBSSpinner>("elem", convert, arg)
+		);
 	}
 }

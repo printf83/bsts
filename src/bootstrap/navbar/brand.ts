@@ -18,7 +18,7 @@ export class brand extends tag {
 	constructor(attr: IAttrBSNavbarBrand, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		super(
-			bsConstArgTag<IAttrBSNavbarBrand>("span", "a", (i) => (i.href ? true : false), arg),
+			bsConstArgTag<IAttrBSNavbarBrand>("elem", "span", "a", (i) => (i.href ? true : false), arg),
 			bsConstArg<IAttrBSNavbarBrand>("elem", convert, arg)
 		);
 	}

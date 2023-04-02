@@ -86,7 +86,7 @@ export class button extends tag {
 	constructor(attr: IAttrBSButton, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		super(
-			bsConstArgTag<IAttrBSButton>("button", "a", (i) => (i.href ? true : false), arg),
+			bsConstArgTag<IAttrBSButton>("elem", "button", "a", (i) => (i.href ? true : false), arg),
 			bsConstArg<IAttrBSButton>("elem", convert, arg)
 		);
 	}

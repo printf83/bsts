@@ -26,7 +26,7 @@ export class visuallyhidden extends tag {
 	constructor(attr: IAttrBSVisuallyhidden, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		super(
-			bsConstArgTag<IAttrBSVisuallyhidden>("span", "a", (i) => (i.href ? true : false), arg),
+			bsConstArgTag<IAttrBSVisuallyhidden>("elem", "span", "a", (i) => (i.href ? true : false), arg),
 			bsConstArg<IAttrBSVisuallyhidden>("elem", convert, arg)
 		);
 	}
