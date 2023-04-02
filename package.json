@@ -38,6 +38,6 @@
 	},
 	"devDependencies": {
 		"@types/bootstrap": "^5.2.6",
-		"typescript": "^5.0.1-rc"
+		"typescript": "^5.0.3"
 	}
 }
