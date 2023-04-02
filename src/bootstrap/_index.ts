@@ -32,6 +32,7 @@ import * as progress from "./progress/_index.js";
 import { row } from "./row.js";
 import { scrollspy, IAttrBSScrollspy } from "./scrollspy.js";
 import { select, IAttrBSSelect } from "./select.js";
+import { IAttrBSSpinner, spinner } from "./spinner.js";
 import * as table from "./table/_index.js";
 import { textarea, IAttrBSTextarea } from "./textarea.js";
 import * as toast from "./toast/_index.js";
@@ -80,6 +81,7 @@ export {
 	table,
 	scrollspy,
 	verticalrule,
+	spinner,
 	IAttrBSButton,
 	IAttrBSIcon,
 	IAttrBSImg,
@@ -96,4 +98,5 @@ export {
 	IBootstrapTypeDisplay,
 	IAttrBSBtnclose,
 	IAttrBSBtngroup,
+	IAttrBSSpinner,
 };

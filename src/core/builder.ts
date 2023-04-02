@@ -5,6 +5,8 @@ import { i } from "../html/i.js";
 import { kbd } from "../html/kbd.js";
 import { span } from "../html/span.js";
 import { u } from "../html/u.js";
+import { del } from "../html/del.js";
+import { mark } from "../html/mark.js";
 import { attachAttr } from "./attach/_index.js";
 import { IAttr, isTag, tag } from "./tag.js";
 import { removeChildElement } from "./removeChildElement.js";
@@ -22,13 +24,27 @@ export const init = (container: HTMLElement) => {
 };
 
 const markupCode = (k: string, str: string) => {
-	if (k.match(/^[buick]*$/gm)) {
+	if (k.match(/^[buickdm]*$/gm)) {
 		let res: tag | null = null;
 		let ks = k.split("");
 		let ksl = ks.length - 1;
 
 		ks.forEach((x, ix) => {
 			switch (x) {
+				case "d":
+					if (res === null) {
+						res = new del(ix === ksl ? str : "");
+					} else {
+						res.elem = new del(ix === ksl ? str : "");
+					}
+					break;
+				case "m":
+					if (res === null) {
+						res = new mark(ix === ksl ? str : "");
+					} else {
+						res.elem = new mark(ix === ksl ? str : "");
+					}
+					break;
 				case "b":
 					if (res === null) {
 						res = new b(ix === ksl ? str : "");
