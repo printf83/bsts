@@ -17,7 +17,7 @@ export interface IAttrBSToastItem extends IAttr {
 const convert = (attr: IAttrBSToastItem) => {
 	attr = mergeObject(
 		{
-			class: ["toast", attr.debug ? "show" : undefined, attr.debug ? "debug" : undefined],
+			class: ["toast", attr.debug ? "debug" : undefined],
 			role: attr.role,
 			textBgColor: attr.color,
 			border: attr.color ? false : undefined,

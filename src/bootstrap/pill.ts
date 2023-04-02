@@ -26,7 +26,7 @@ const fnIcon = (
 	attr: string | IAttrBSIcon | icon
 ) => {
 	if (typeof attr === "string") {
-		attr = { icon: attr } as IAttrBSIcon;
+		attr = { id: attr } as IAttrBSIcon;
 	}
 
 	let a: IAttrBSIcon = {};
@@ -166,7 +166,7 @@ const convert = (attr: IAttrBSPill) => {
 		} else {
 			if (attr.icon) {
 				if (typeof attr.icon === "string") {
-					attr.icon = { icon: attr.icon } as IAttrBSIcon;
+					attr.icon = { id: attr.icon } as IAttrBSIcon;
 				}
 
 				if (isAttr<IAttrBSIcon>(attr.icon)) {

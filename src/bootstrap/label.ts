@@ -27,7 +27,7 @@ const fnRow = (display: IBootstrapTypeDisplay | undefined, elem: IElem) => {
 
 const fnIcon = (display: IBootstrapTypeDisplay | undefined, attr: string | IAttrBSIcon | icon) => {
 	if (typeof attr === "string") {
-		attr = { icon: attr } as IAttrBSIcon;
+		attr = { id: attr } as IAttrBSIcon;
 	}
 
 	if (isAttr<IAttrBSIcon>(attr)) {
@@ -82,7 +82,7 @@ const convert = (attr: IAttrBSLabel) => {
 		} else {
 			if (attr.icon) {
 				if (typeof attr.icon === "string") {
-					attr.icon = { icon: attr.icon } as IAttrBSIcon;
+					attr.icon = { id: attr.icon } as IAttrBSIcon;
 				}
 
 				if (isAttr<IAttrBSIcon>(attr.icon)) {
