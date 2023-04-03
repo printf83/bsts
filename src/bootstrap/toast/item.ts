@@ -3,6 +3,7 @@ import { IAttr, IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
+import { html } from "../../core/builder.js";
 
 export interface IAttrBSToastItem extends IAttr {
 	role?: "alert" | "status";
