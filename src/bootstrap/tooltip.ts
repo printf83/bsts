@@ -13,6 +13,8 @@ export interface IAttrBSTooltip extends IAttr {
 }
 
 const convert = (attr: IAttrBSTooltip) => {
+	attr.inline ??= true;
+
 	attr = mergeObject(
 		{
 			display: attr.inline ? "inline-block" : undefined,
