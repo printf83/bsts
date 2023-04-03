@@ -4,6 +4,9 @@ import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
+import { removeElement } from "../../core/removeElement.js";
+import { appendChild } from "../../core/builder.js";
+import { addEvent, HTMLElementWithEventDB } from "../../core/eventManager.js";
 
 export interface IAttrBSModalContainer extends IAttr {
 	static?: boolean;
@@ -66,5 +69,27 @@ export class container extends div {
 	constructor(attr: IAttrBSModalContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		super(bsConstArg<IAttrBSModalContainer>("elem", convert, arg));
+	}
+
+	static show(i: container) {
+		if (!i.attr) {
+			i.attr = {};
+		}
+
+		i.attr.id ??= UUID();
+
+		let body = document.getElementById("main") as HTMLElement;
+		appendChild(body, i);
+
+		let mdl = document.getElementById(i.attr.id);
+		if (mdl) {
+			addEvent("hidden.bs.modal", mdl as HTMLElementWithEventDB, (e) => {
+				window.bootstrap.Modal.getOrCreateInstance(e.target as Element).dispose();
+				removeElement(e.target as HTMLElement);
+				console.log("Modal removed");
+			});
+
+			window.bootstrap.Modal.getOrCreateInstance(mdl as Element).show();
+		}
 	}
 }
