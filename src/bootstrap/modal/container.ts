@@ -84,7 +84,7 @@ export class container extends div {
 		let mdl = document.getElementById(i.attr.id);
 		if (mdl) {
 			addEvent("hidden.bs.modal", mdl as HTMLElementWithEventDB, (e) => {
-				window.bootstrap.Modal.getOrCreateInstance(e.target as Element).dispose();
+				window.bootstrap.Modal.getInstance(e.target as Element)?.dispose();
 				removeElement(e.target as HTMLElement);
 				console.log("Modal removed");
 			});
