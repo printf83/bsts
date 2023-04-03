@@ -65,9 +65,7 @@ const convert = (attr: IAttrBSToastContainer) => {
 		attr
 	);
 
-	if (!attr.debug) {
-		attr = mergeObject(placementAttr, attr);
-	}
+	attr = mergeObject(placementAttr, attr);
 
 	delete attr.debug;
 	delete attr.placement;
@@ -85,37 +83,37 @@ export class container extends div {
 
 	static show = (placement: IAttrBSToastContainerPlacement, i: item) => {
 		//make container
-		let containerClassName: string = ".toast-container.top-0.start-0";
+		let containerClassName: string = ".toast-container.top-0.start-0:not(.debug)";
 		switch (placement) {
 			case "top-start":
-				containerClassName = ".toast-container.top-0.start-0";
+				containerClassName = ".toast-container.top-0.start-0:not(.debug)";
 				break;
 			case "top-center":
-				containerClassName = ".toast-container.top-0.start-50.translate-middle-x";
+				containerClassName = ".toast-container.top-0.start-50.translate-middle-x:not(.debug)";
 				break;
 			case "top-end":
-				containerClassName = ".toast-container.top-0.end-0";
+				containerClassName = ".toast-container.top-0.end-0:not(.debug)";
 				break;
 			case "middle-start":
-				containerClassName = ".toast-container.top-50.start-0.translate-middle-y";
+				containerClassName = ".toast-container.top-50.start-0.translate-middle-y:not(.debug)";
 				break;
 			case "middle-center":
-				containerClassName = ".toast-container.top-50.start-50.translate-middle";
+				containerClassName = ".toast-container.top-50.start-50.translate-middle:not(.debug)";
 				break;
 			case "middle-end":
-				containerClassName = ".toast-container.top-50.end-0.translate-middle-y";
+				containerClassName = ".toast-container.top-50.end-0.translate-middle-y:not(.debug)";
 				break;
 			case "bottom-start":
-				containerClassName = ".toast-container.bottom-0.start-0";
+				containerClassName = ".toast-container.bottom-0.start-0:not(.debug)";
 				break;
 			case "bottom-center":
-				containerClassName = ".toast-container.bottom-0.start-50.translate-middle-x";
+				containerClassName = ".toast-container.bottom-0.start-50.translate-middle-x:not(.debug)";
 				break;
 			case "bottom-end":
-				containerClassName = ".toast-container.bottom-0.end-0";
+				containerClassName = ".toast-container.bottom-0.end-0:not(.debug)";
 				break;
 			default:
-				containerClassName = ".toast-container.top-0.start-0";
+				containerClassName = ".toast-container.top-0.start-0:not(.debug)";
 		}
 
 		let containerDOM: HTMLElement = document.querySelector(containerClassName) as HTMLElement;
