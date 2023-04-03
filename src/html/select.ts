@@ -20,16 +20,16 @@ export interface IAttrTagSelect extends IAttr {
 	required?: boolean;
 	size?: number;
 
-	list?: IAttrTagSelectItem | IAttrTagSelectItem[];
+	item?: IAttrTagSelectItem | IAttrTagSelectItem[];
 }
 
 const convert = (attr: IAttrTagSelect) => {
-	if (attr.list && !attr.elem) {
-		if (!Array.isArray(attr.list)) {
-			attr.list = [attr.list];
+	if (attr.item && !attr.elem) {
+		if (!Array.isArray(attr.item)) {
+			attr.item = [attr.item];
 		}
 
-		attr.elem = attr.list.map((i) => {
+		attr.elem = attr.item.map((i) => {
 			if (i.label && i.item && !i.elem) {
 				if (!Array.isArray(i.item)) {
 					i.item = [i.item];
@@ -48,7 +48,7 @@ const convert = (attr: IAttrTagSelect) => {
 		});
 	}
 
-	delete attr.list;
+	delete attr.item;
 
 	return attr;
 };
