@@ -141,7 +141,6 @@ export class container extends div {
 				addEvent("hidden.bs.toast", tst as HTMLElementWithEventDB, (e) => {
 					window.bootstrap.Modal.getInstance(e.target as Element)?.dispose();
 					removeElement(e.target as HTMLElement);
-					console.log("Toast removed");
 				});
 
 				window.bootstrap.Toast.getOrCreateInstance(tst as Element).show();
