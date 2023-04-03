@@ -20,59 +20,56 @@ export type IAttrBSToastContainerPlacement =
 	| "bottom-end";
 
 export interface IAttrBSToastContainer extends IAttr {
+	debug?: boolean;
 	placement?: IAttrBSToastContainerPlacement;
 }
 
 const convert = (attr: IAttrBSToastContainer) => {
+	let placementAttr: IAttr = {};
 	attr.placement ??= "top-end";
 
 	switch (attr.placement) {
 		case "top-start":
-			attr = mergeObject({ class: "toast-container", padding: 3, position: "fixed", top: 0, start: 0 }, attr);
+			placementAttr = { top: 0, start: 0 };
 			break;
 		case "top-center":
-			attr = mergeObject(
-				{ class: "toast-container", padding: 3, position: "fixed", top: 0, start: 50, tMiddle: "x" },
-				attr
-			);
+			placementAttr = { top: 0, start: 50, tMiddle: "x" };
 			break;
 		case "top-end":
-			attr = mergeObject({ class: "toast-container", padding: 3, position: "fixed", top: 0, end: 0 }, attr);
+			placementAttr = { top: 0, end: 0 };
 			break;
 
 		case "middle-start":
-			attr = mergeObject(
-				{ class: "toast-container", padding: 3, position: "fixed", top: 50, start: 0, tMiddle: "y" },
-				attr
-			);
+			placementAttr = { top: 50, start: 0, tMiddle: "y" };
 			break;
 		case "middle-center":
-			attr = mergeObject(
-				{ class: "toast-container", padding: 3, position: "fixed", top: 50, start: 50, tMiddle: true },
-				attr
-			);
+			placementAttr = { top: 50, start: 50, tMiddle: true };
 			break;
 		case "middle-end":
-			attr = mergeObject(
-				{ class: "toast-container", padding: 3, position: "fixed", top: 50, end: 0, tMiddle: "y" },
-				attr
-			);
+			placementAttr = { top: 50, end: 0, tMiddle: "y" };
 			break;
 
 		case "bottom-start":
-			attr = mergeObject({ class: "toast-container", padding: 3, position: "fixed", bottom: 0, start: 0 }, attr);
+			placementAttr = { bottom: 0, start: 0 };
 			break;
 		case "bottom-center":
-			attr = mergeObject(
-				{ class: "toast-container", padding: 3, position: "fixed", bottom: 0, start: 50, tMiddle: "x" },
-				attr
-			);
+			placementAttr = { bottom: 0, start: 50, tMiddle: "x" };
 			break;
 		case "bottom-end":
-			attr = mergeObject({ class: "toast-container", padding: 3, position: "fixed", bottom: 0, end: 0 }, attr);
+			placementAttr = { bottom: 0, end: 0 };
 			break;
 	}
 
+	attr = mergeObject(
+		{ class: ["toast-container", attr.debug ? "debug" : undefined], padding: 3, position: "fixed" },
+		attr
+	);
+
+	if (!attr.debug) {
+		attr = mergeObject(placementAttr, attr);
+	}
+
+	delete attr.debug;
 	delete attr.placement;
 	return attr;
 };
