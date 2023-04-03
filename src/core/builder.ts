@@ -11,8 +11,69 @@ import { attachAttr } from "./attach/_index.js";
 import { IAttr, isTag, tag } from "./tag.js";
 import { removeChildElement } from "./removeChildElement.js";
 import { removeElement } from "./removeElement.js";
+import { UUID } from "./uuid.js";
 
 export type buildArg = tag | string | (tag | string)[];
+
+const calcTimer = (datevalue: number) => {
+	var t1 = new Date().getTime();
+	var t2 = datevalue;
+	var next = -1;
+	var msg = `Just now`;
+
+	if (t1 > t2) {
+		var diff = t1 - t2;
+		var sec = parseInt((diff / 1000).toString(), 10);
+
+		if (sec < 1) {
+			next = 1000;
+			msg = `Just now`;
+		} else if (sec >= 1 && sec < 60) {
+			//second
+			next = 1000;
+			msg = `${sec} second${sec > 1 ? "s" : ""} ago`;
+		} else if (sec >= 60 && sec < 3600) {
+			//minute
+			next = 60000;
+			let t = parseInt((sec / 60).toString(), 10);
+			msg = `${t} minute${t > 1 ? "s" : ""} ago`;
+		} else if (sec >= 3600 && sec < 86400) {
+			//hour
+			next = 3600000;
+			let t = parseInt((sec / 3600).toString(), 10);
+			msg = `${t} hour${t > 1 ? "s" : ""} ago`;
+		} else {
+			//do not on timer
+			next = -1;
+			let t = parseInt((sec / 86400).toString(), 10);
+			msg = `${t} day${t > 1 ? "s" : ""} ago`;
+		}
+	}
+
+	return {
+		next: next,
+		msg: msg,
+	};
+};
+
+const runTimer = (elem: HTMLElement, delay: number) => {
+	const id = elem.getAttribute("id");
+	const tv = parseInt(elem.getAttribute("data-bs-timer-run")!);
+
+	setTimeout(
+		(id: string, tv: number) => {
+			let e = document.getElementById(id);
+			if (e) {
+				let res = calcTimer(tv);
+				e.innerText = res.msg;
+				runTimer(e, res.next);
+			}
+		},
+		delay,
+		id,
+		tv
+	);
+};
 
 export const init = (container: HTMLElement) => {
 	const popoverTriggerList = container.querySelectorAll('[data-bs-toggle="popover"]');
@@ -21,6 +82,13 @@ export const init = (container: HTMLElement) => {
 	tooltipTriggerList.forEach((i) => new window.bootstrap.Tooltip(i));
 	const scrollspyTriggerList = document.querySelectorAll('[data-bs-spy="scroll"]');
 	scrollspyTriggerList.forEach((i) => window.bootstrap.ScrollSpy.getOrCreateInstance(i).refresh());
+	const timerTriggerList = document.querySelectorAll("[data-bs-timer]");
+	timerTriggerList.forEach((i) => {
+		i.setAttribute("id", i.getAttribute("id") || UUID());
+		i.setAttribute("data-bs-timer-run", i.getAttribute("data-bs-timer")!);
+		i.removeAttribute("data-bs-timer");
+		runTimer(i as HTMLElement, 1000);
+	});
 };
 
 const markupCode = (k: string, str: string) => {

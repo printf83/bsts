@@ -3,7 +3,7 @@ import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
 import { item } from "./item.js";
-import { appendChild } from "../../core/builder.js";
+import { appendChild, init } from "../../core/builder.js";
 import { UUID } from "../../core/uuid.js";
 import { removeElement } from "../../core/removeElement.js";
 import { addEvent, HTMLElementWithEventDB } from "../../core/eventManager.js";
@@ -139,6 +139,7 @@ export class container extends div {
 				});
 
 				window.bootstrap.Toast.getOrCreateInstance(tst as Element).show();
+				init(tst);
 			}
 		}
 	};

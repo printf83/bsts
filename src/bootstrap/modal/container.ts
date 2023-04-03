@@ -5,7 +5,7 @@ import { mergeObject } from "../../core/mergeObject.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
 import { removeElement } from "../../core/removeElement.js";
-import { appendChild } from "../../core/builder.js";
+import { appendChild, init } from "../../core/builder.js";
 import { addEvent, HTMLElementWithEventDB } from "../../core/eventManager.js";
 
 export interface IAttrBSModalContainer extends IAttr {
@@ -89,6 +89,7 @@ export class container extends div {
 			});
 
 			window.bootstrap.Modal.getOrCreateInstance(mdl as Element).show();
+			init(mdl);
 		}
 	}
 }

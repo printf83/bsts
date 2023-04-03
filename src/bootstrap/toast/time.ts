@@ -1,10 +1,18 @@
 import { IAttr, IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { small } from "../../html/small.js";
+import { mergeObject } from "../../core/mergeObject.js";
 
 const convert = (attr: IAttr) => {
-	if (!attr.elem) {
-		//TODO: create timer and show
+	attr.elem ??= new Date().getTime().toString();
+
+	if (attr.elem) {
+		if (typeof attr.elem === "string") {
+			if (!isNaN(parseInt(attr.elem))) {
+				attr = mergeObject({ data: { "bs-timer": parseInt(attr.elem) } }, attr);
+				attr.elem = "Just now";
+			}
+		}
 	}
 
 	return attr;
