@@ -2,8 +2,16 @@ import { appendChild, init } from "../../core/builder.js";
 import { addEvent, HTMLElementWithEventDB } from "../../core/eventManager.js";
 import { removeElement } from "../../core/removeElement.js";
 import { UUID } from "../../core/uuid.js";
+import { span } from "../../html/span.js";
+import { strong } from "../../html/strong.js";
+import { btnclose } from "./btnclose.js";
+import { icon } from "../icon.js";
+import { body } from "./body.js";
 import { container, IAttrBSToastContainerPlacement } from "./container.js";
+import { header } from "./header.js";
 import { item } from "./item.js";
+import { time } from "./time.js";
+import { bootstrapType } from "../../core/bootstrap.js";
 
 export const show = (placement: IAttrBSToastContainerPlacement, i: item) => {
 	//make container
@@ -66,4 +74,103 @@ export const show = (placement: IAttrBSToastContainerPlacement, i: item) => {
 			init(tst);
 		}
 	}
+};
+
+interface IAttrBSToastTemplate {
+	color: bootstrapType.textBgColor[number];
+	icon: icon;
+	title: string;
+	msg: string;
+	delay: number;
+}
+
+const template = (attr: IAttrBSToastTemplate) => {
+	return new item(
+		{
+			live: "assertive",
+			atomic: true,
+			delay: attr.delay,
+			textBgColor: attr.color,
+		},
+		[
+			new header([
+				new span(
+					{
+						marginEnd: 2,
+						fontWeight: "bolder",
+					},
+					attr.icon
+				),
+				new strong(
+					{
+						marginEnd: "auto",
+					},
+					attr.title
+				),
+				new time(),
+				new btnclose(),
+			]),
+			new body(attr.msg),
+		]
+	);
+};
+
+export const primary = (msg: string) => {
+	return template({
+		color: "primary",
+		icon: icon.bi("info-circle"),
+		title: document.title,
+		msg: msg,
+		delay: 5000,
+	});
+};
+
+export const secondary = (msg: string) => {
+	return template({
+		color: "secondary",
+		icon: icon.bi("info-circle"),
+		title: document.title,
+		msg: msg,
+		delay: 5000,
+	});
+};
+
+export const info = (msg: string) => {
+	return template({
+		color: "info",
+		icon: icon.bi("info-circle"),
+		title: "Info",
+		msg: msg,
+		delay: 5000,
+	});
+};
+
+export const warning = (msg: string) => {
+	return template({
+		color: "warning",
+		icon: icon.bi("exclamation-triangle"),
+		title: "Warning",
+		msg: msg,
+		delay: 10000,
+	});
+};
+
+export const success = (msg: string) => {
+	return template({
+		color: "success",
+		icon: icon.bi("check-circle"),
+		title: "Success",
+		msg: msg,
+		delay: 5000,
+	});
+};
+
+export const danger = (msg: string) => {
+	return template({
+		color: "danger",
+		icon: icon.bi("x-circle"),
+		title: "Critical",
+		msg: msg,
+		delay: 15000,
+	});
 };
