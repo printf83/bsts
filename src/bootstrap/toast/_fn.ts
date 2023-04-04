@@ -4,6 +4,8 @@ import { removeElement } from "../../core/removeElement.js";
 import { UUID } from "../../core/uuid.js";
 import { btnclose } from "./btnclose.js";
 import { body } from "./body.js";
+import { header } from "./header.js";
+import { time } from "./time.js";
 import { container, IAttrBSToastContainerPlacement } from "./container.js";
 import { IAttrBSToastItem, item } from "./item.js";
 import { bootstrapType } from "../../core/bootstrap.js";
@@ -80,6 +82,7 @@ export interface IAttrBSToastSimple {
 	delay?: number;
 	atomic?: boolean;
 	live?: IAttrBSToastItem["live"];
+	title?: IElem;
 }
 
 export const simple = (attr: IAttrBSToastSimple) => {
@@ -99,65 +102,33 @@ export const simple = (attr: IAttrBSToastSimple) => {
 	attr.live ??= "assertive";
 	attr.btnclosewhite ??= defaultBtnCloseWhite;
 
-	return new item(
-		{
-			live: attr.live,
-			atomic: attr.atomic,
-			border: false,
-			delay: attr.delay,
-			textBgColor: attr.color,
-		},
-		new div({ display: "flex" }, [
-			new body(attr.elem),
-			new btnclose({
-				marginEnd: 2,
-				margin: "auto",
-				white: attr.btnclosewhite,
-			}),
-		])
-	);
+	if (attr.title) {
+		return new item(
+			{
+				live: attr.live,
+				atomic: attr.atomic,
+				delay: attr.delay,
+				textBgColor: attr.color,
+			},
+			[new header([new div({ marginEnd: "auto" }, attr.title), new time(), new btnclose()]), new body(attr.elem)]
+		);
+	} else {
+		return new item(
+			{
+				live: attr.live,
+				atomic: attr.atomic,
+				border: false,
+				delay: attr.delay,
+				textBgColor: attr.color,
+			},
+			new div({ display: "flex" }, [
+				new body(attr.elem),
+				new btnclose({
+					marginEnd: 2,
+					margin: "auto",
+					white: attr.btnclosewhite,
+				}),
+			])
+		);
+	}
 };
-
-// export const primary = (elem: IElem) => {
-// 	return simple({
-// 		color: "primary",
-// 		elem: elem,
-// 	});
-// };
-
-// export const secondary = (elem: IElem) => {
-// 	return simple({
-// 		color: "secondary",
-// 		elem: elem,
-// 	});
-// };
-
-// export const info = (elem: IElem) => {
-// 	return simple({
-// 		color: "info",
-// 		elem: elem,
-// 	});
-// };
-
-// export const warning = (elem: IElem) => {
-// 	return simple({
-// 		color: "warning",
-// 		elem: elem,
-// 		delay: 10000,
-// 	});
-// };
-
-// export const success = (elem: IElem) => {
-// 	return simple({
-// 		color: "success",
-// 		elem: elem,
-// 	});
-// };
-
-// export const danger = (elem: IElem) => {
-// 	return simple({
-// 		color: "danger",
-// 		elem: elem,
-// 		delay: 15000,
-// 	});
-// };
