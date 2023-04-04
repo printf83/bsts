@@ -5,7 +5,8 @@ import { header } from "./header.js";
 import { item, IAttrBSToastItem } from "./item.js";
 import { time } from "./time.js";
 import { title } from "./title.js";
-import { danger, IAttrBSToastTemplate, info, primary, secondary, show, simple, success, warning } from "./_fn.js";
+// import { danger, IAttrBSToastTemplate, info, primary, secondary, show, simple, success, warning } from "./_fn.js";
+import { IAttrBSToastSimple, show, simple } from "./_fn.js";
 
 export {
 	item,
@@ -18,13 +19,13 @@ export {
 	IAttrBSToastBtnclose,
 	IAttrBSToastContainer,
 	IAttrBSToastItem,
-	IAttrBSToastTemplate,
+	IAttrBSToastSimple as IAttrBSToastTemplate,
 	show,
 	simple,
-	primary,
-	secondary,
-	info,
-	warning,
-	success,
-	danger,
+	// primary,
+	// secondary,
+	// info,
+	// warning,
+	// success,
+	// danger,
 };

@@ -73,7 +73,7 @@ export const show = (placement: IAttrBSToastContainerPlacement, i: item) => {
 	}
 };
 
-export interface IAttrBSToastTemplate {
+export interface IAttrBSToastSimple {
 	elem: IElem;
 	color?: bootstrapType.textBgColor[number];
 	btnclosewhite?: boolean;
@@ -82,7 +82,7 @@ export interface IAttrBSToastTemplate {
 	live?: IAttrBSToastItem["live"];
 }
 
-export const simple = (attr: IAttrBSToastTemplate) => {
+export const simple = (attr: IAttrBSToastSimple) => {
 	let defaultBtnCloseWhite = false;
 	switch (attr.color) {
 		case "dark":
@@ -118,46 +118,46 @@ export const simple = (attr: IAttrBSToastTemplate) => {
 	);
 };
 
-export const primary = (elem: IElem) => {
-	return simple({
-		color: "primary",
-		elem: elem,
-	});
-};
+// export const primary = (elem: IElem) => {
+// 	return simple({
+// 		color: "primary",
+// 		elem: elem,
+// 	});
+// };
 
-export const secondary = (elem: IElem) => {
-	return simple({
-		color: "secondary",
-		elem: elem,
-	});
-};
+// export const secondary = (elem: IElem) => {
+// 	return simple({
+// 		color: "secondary",
+// 		elem: elem,
+// 	});
+// };
 
-export const info = (elem: IElem) => {
-	return simple({
-		color: "info",
-		elem: elem,
-	});
-};
+// export const info = (elem: IElem) => {
+// 	return simple({
+// 		color: "info",
+// 		elem: elem,
+// 	});
+// };
 
-export const warning = (elem: IElem) => {
-	return simple({
-		color: "warning",
-		elem: elem,
-		delay: 10000,
-	});
-};
+// export const warning = (elem: IElem) => {
+// 	return simple({
+// 		color: "warning",
+// 		elem: elem,
+// 		delay: 10000,
+// 	});
+// };
 
-export const success = (elem: IElem) => {
-	return simple({
-		color: "success",
-		elem: elem,
-	});
-};
+// export const success = (elem: IElem) => {
+// 	return simple({
+// 		color: "success",
+// 		elem: elem,
+// 	});
+// };
 
-export const danger = (elem: IElem) => {
-	return simple({
-		color: "danger",
-		elem: elem,
-		delay: 15000,
-	});
-};
+// export const danger = (elem: IElem) => {
+// 	return simple({
+// 		color: "danger",
+// 		elem: elem,
+// 		delay: 15000,
+// 	});
+// };

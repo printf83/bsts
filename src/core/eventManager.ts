@@ -25,7 +25,7 @@ export const addEvent = (name: string, elem: HTMLElementWithEventDB, fn: EventLi
 	elem.eventDB[name] = fn;
 
 	//add event to element
-	elem.addEventListener(name, fn, true);
+	elem.addEventListener(name, fn, false);
 };
 
 export const deleteEvent = (elem: HTMLElementWithEventDB) => {
