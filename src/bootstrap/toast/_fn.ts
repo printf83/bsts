@@ -12,6 +12,7 @@ import { header } from "./header.js";
 import { item } from "./item.js";
 import { time } from "./time.js";
 import { bootstrapType } from "../../core/bootstrap.js";
+import { label } from "../label.js";
 
 export const show = (placement: IAttrBSToastContainerPlacement, i: item) => {
 	//make container
@@ -81,10 +82,11 @@ interface IAttrBSToastTemplate {
 	icon: icon;
 	title: string;
 	msg: string;
-	delay: number;
+	delay?: number;
 }
 
 const template = (attr: IAttrBSToastTemplate) => {
+	attr.delay ??= 5000;
 	return new item(
 		{
 			live: "assertive",
@@ -115,61 +117,61 @@ const template = (attr: IAttrBSToastTemplate) => {
 	);
 };
 
-export const primary = (msg: string) => {
+export const primary = (msg: string, title?: string) => {
 	return template({
 		color: "primary",
-		icon: icon.bi("info-circle"),
-		title: document.title,
+		icon: icon.bi("info-circle-fill", { fontSize: 6, textColor: "primary" }),
+		title: title || document.title,
 		msg: msg,
 		delay: 5000,
 	});
 };
 
-export const secondary = (msg: string) => {
+export const secondary = (msg: string, title?: string) => {
 	return template({
 		color: "secondary",
-		icon: icon.bi("info-circle"),
-		title: document.title,
+		icon: icon.bi("info-circle-fill", { fontSize: 6, textColor: "secondary" }),
+		title: title || document.title,
 		msg: msg,
 		delay: 5000,
 	});
 };
 
-export const info = (msg: string) => {
+export const info = (msg: string, title?: string) => {
 	return template({
 		color: "info",
-		icon: icon.bi("info-circle"),
-		title: "Info",
+		icon: icon.bi("info-circle-fill", { fontSize: 6, textColor: "info" }),
+		title: title || document.title,
 		msg: msg,
 		delay: 5000,
 	});
 };
 
-export const warning = (msg: string) => {
+export const warning = (msg: string, title?: string) => {
 	return template({
 		color: "warning",
-		icon: icon.bi("exclamation-triangle"),
-		title: "Warning",
+		icon: icon.bi("exclamation-triangle-fill", { fontSize: 6, textColor: "warning" }),
+		title: title || document.title,
 		msg: msg,
 		delay: 10000,
 	});
 };
 
-export const success = (msg: string) => {
+export const success = (msg: string, title?: string) => {
 	return template({
 		color: "success",
-		icon: icon.bi("check-circle"),
-		title: "Success",
+		icon: icon.bi("check-circle-fill", { fontSize: 6, textColor: "success" }),
+		title: title || document.title,
 		msg: msg,
 		delay: 5000,
 	});
 };
 
-export const danger = (msg: string) => {
+export const danger = (msg: string, title?: string) => {
 	return template({
 		color: "danger",
-		icon: icon.bi("x-circle"),
-		title: "Critical",
+		icon: icon.bi("x-circle-fill", { fontSize: 6, textColor: "danger" }),
+		title: title || document.title,
 		msg: msg,
 		delay: 15000,
 	});
