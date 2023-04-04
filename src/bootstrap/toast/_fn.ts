@@ -10,6 +10,7 @@ import { container, IAttrBSToastContainerPlacement } from "./container.js";
 import { IAttrBSToastItem, item } from "./item.js";
 import { bootstrapType } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
+import { strong } from "../../html/strong.js";
 import { IElem } from "../../core/tag.js";
 
 export const show = (placement: IAttrBSToastContainerPlacement, i: item) => {
@@ -110,7 +111,10 @@ export const simple = (attr: IAttrBSToastSimple) => {
 				delay: attr.delay,
 				textBgColor: attr.color,
 			},
-			[new header([new div({ marginEnd: "auto" }, attr.title), new time(), new btnclose()]), new body(attr.elem)]
+			[
+				new header([new div({ marginEnd: "auto" }, new strong(attr.title)), new time(), new btnclose()]),
+				new body(attr.elem),
+			]
 		);
 	} else {
 		return new item(
