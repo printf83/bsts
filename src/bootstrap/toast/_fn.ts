@@ -2,17 +2,13 @@ import { appendChild, init } from "../../core/builder.js";
 import { addEvent, HTMLElementWithEventDB } from "../../core/eventManager.js";
 import { removeElement } from "../../core/removeElement.js";
 import { UUID } from "../../core/uuid.js";
-import { span } from "../../html/span.js";
-import { strong } from "../../html/strong.js";
 import { btnclose } from "./btnclose.js";
-import { icon } from "../icon.js";
 import { body } from "./body.js";
 import { container, IAttrBSToastContainerPlacement } from "./container.js";
-import { header } from "./header.js";
-import { item } from "./item.js";
-import { time } from "./time.js";
+import { IAttrBSToastItem, item } from "./item.js";
 import { bootstrapType } from "../../core/bootstrap.js";
-import { label } from "../label.js";
+import { div } from "../../html/div.js";
+import { IElem } from "../../core/tag.js";
 
 export const show = (placement: IAttrBSToastContainerPlacement, i: item) => {
 	//make container
@@ -77,102 +73,91 @@ export const show = (placement: IAttrBSToastContainerPlacement, i: item) => {
 	}
 };
 
-interface IAttrBSToastTemplate {
-	color: bootstrapType.textBgColor[number];
-	icon: icon;
-	title: string;
-	msg: string;
+export interface IAttrBSToastTemplate {
+	elem: IElem;
+	color?: bootstrapType.textBgColor[number];
+	btnclosewhite?: boolean;
 	delay?: number;
+	atomic?: boolean;
+	live?: IAttrBSToastItem["live"];
 }
 
-const template = (attr: IAttrBSToastTemplate) => {
+export const simple = (attr: IAttrBSToastTemplate) => {
+	let defaultBtnCloseWhite = false;
+	switch (attr.color) {
+		case "dark":
+		case "primary":
+		case "secondary":
+		case "success":
+		case "danger":
+			defaultBtnCloseWhite = true;
+			break;
+	}
+
 	attr.delay ??= 5000;
+	attr.atomic ??= true;
+	attr.live ??= "assertive";
+	attr.btnclosewhite ??= defaultBtnCloseWhite;
+
 	return new item(
 		{
-			live: "assertive",
-			atomic: true,
+			live: attr.live,
+			atomic: attr.atomic,
+			border: false,
 			delay: attr.delay,
 			textBgColor: attr.color,
 		},
-		[
-			new header([
-				new span(
-					{
-						marginEnd: 2,
-						fontWeight: "bolder",
-					},
-					attr.icon
-				),
-				new strong(
-					{
-						marginEnd: "auto",
-					},
-					attr.title
-				),
-				new time(),
-				new btnclose(),
-			]),
-			new body(attr.msg),
-		]
+		new div({ display: "flex" }, [
+			new body(attr.elem),
+			new btnclose({
+				marginEnd: 2,
+				margin: "auto",
+				white: attr.btnclosewhite,
+			}),
+		])
 	);
 };
 
-export const primary = (msg: string, title?: string) => {
-	return template({
+export const primary = (elem: IElem) => {
+	return simple({
 		color: "primary",
-		icon: icon.bi("info-circle-fill", { fontSize: 6, textColor: "primary" }),
-		title: title || document.title,
-		msg: msg,
-		delay: 5000,
+		elem: elem,
 	});
 };
 
-export const secondary = (msg: string, title?: string) => {
-	return template({
+export const secondary = (elem: IElem) => {
+	return simple({
 		color: "secondary",
-		icon: icon.bi("info-circle-fill", { fontSize: 6, textColor: "secondary" }),
-		title: title || document.title,
-		msg: msg,
-		delay: 5000,
+		elem: elem,
 	});
 };
 
-export const info = (msg: string, title?: string) => {
-	return template({
+export const info = (elem: IElem) => {
+	return simple({
 		color: "info",
-		icon: icon.bi("info-circle-fill", { fontSize: 6, textColor: "info" }),
-		title: title || document.title,
-		msg: msg,
-		delay: 5000,
+		elem: elem,
 	});
 };
 
-export const warning = (msg: string, title?: string) => {
-	return template({
+export const warning = (elem: IElem) => {
+	return simple({
 		color: "warning",
-		icon: icon.bi("exclamation-triangle-fill", { fontSize: 6, textColor: "warning" }),
-		title: title || document.title,
-		msg: msg,
+		elem: elem,
 		delay: 10000,
 	});
 };
 
-export const success = (msg: string, title?: string) => {
-	return template({
+export const success = (elem: IElem) => {
+	return simple({
 		color: "success",
-		icon: icon.bi("check-circle-fill", { fontSize: 6, textColor: "success" }),
-		title: title || document.title,
-		msg: msg,
-		delay: 5000,
+		elem: elem,
 	});
 };
 
-export const danger = (msg: string, title?: string) => {
-	return template({
+export const danger = (elem: IElem) => {
+	return simple({
 		color: "danger",
-		icon: icon.bi("x-circle-fill", { fontSize: 6, textColor: "danger" }),
-		title: title || document.title,
-		msg: msg,
+		elem: elem,
 		delay: 15000,
 	});
 };
