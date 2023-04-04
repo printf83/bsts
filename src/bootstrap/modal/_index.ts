@@ -4,6 +4,7 @@ import { container, IAttrBSModalContainer } from "./container.js";
 import { footer } from "./footer.js";
 import { header, IAttrBSModalHeader } from "./header.js";
 import { title } from "./title.js";
+import { show } from "./_fn.js";
 
 export {
 	body,
@@ -15,4 +16,5 @@ export {
 	IAttrBSModalBtnclose,
 	IAttrBSModalContainer,
 	IAttrBSModalHeader,
+	show,
 };

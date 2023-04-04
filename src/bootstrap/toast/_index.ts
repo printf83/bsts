@@ -5,6 +5,7 @@ import { header } from "./header.js";
 import { item, IAttrBSToastItem } from "./item.js";
 import { time } from "./time.js";
 import { title } from "./title.js";
+import { show } from "./_fn.js";
 
 export {
 	item,
@@ -17,4 +18,5 @@ export {
 	IAttrBSToastBtnclose,
 	IAttrBSToastContainer,
 	IAttrBSToastItem,
+	show,
 };

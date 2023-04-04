@@ -4,9 +4,9 @@ import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
-import { removeElement } from "../../core/removeElement.js";
-import { appendChild, init } from "../../core/builder.js";
-import { addEvent, HTMLElementWithEventDB } from "../../core/eventManager.js";
+// import { removeElement } from "../../core/removeElement.js";
+// import { appendChild, init } from "../../core/builder.js";
+// import { addEvent, HTMLElementWithEventDB } from "../../core/eventManager.js";
 
 export interface IAttrBSModalContainer extends IAttr {
 	static?: boolean;
@@ -71,25 +71,25 @@ export class container extends div {
 		super(bsConstArg<IAttrBSModalContainer>("elem", convert, arg));
 	}
 
-	static show(i: container) {
-		if (!i.attr) {
-			i.attr = {};
-		}
+	// static show(i: container) {
+	// 	if (!i.attr) {
+	// 		i.attr = {};
+	// 	}
 
-		i.attr.id ??= UUID();
+	// 	i.attr.id ??= UUID();
 
-		let body = document.getElementById("main") as HTMLElement;
-		appendChild(body, i);
+	// 	let body = document.getElementById("main") as HTMLElement;
+	// 	appendChild(body, i);
 
-		let mdl = document.getElementById(i.attr.id);
-		if (mdl) {
-			addEvent("hidden.bs.modal", mdl as HTMLElementWithEventDB, (e) => {
-				window.bootstrap.Modal.getInstance(e.target as Element)?.dispose();
-				removeElement(e.target as HTMLElement);
-			});
+	// 	let mdl = document.getElementById(i.attr.id);
+	// 	if (mdl) {
+	// 		addEvent("hidden.bs.modal", mdl as HTMLElementWithEventDB, (e) => {
+	// 			window.bootstrap.Modal.getInstance(e.target as Element)?.dispose();
+	// 			removeElement(e.target as HTMLElement);
+	// 		});
 
-			window.bootstrap.Modal.getOrCreateInstance(mdl as Element).show();
-			init(mdl);
-		}
-	}
+	// 		window.bootstrap.Modal.getOrCreateInstance(mdl as Element).show();
+	// 		init(mdl);
+	// 	}
+	// }
 }
