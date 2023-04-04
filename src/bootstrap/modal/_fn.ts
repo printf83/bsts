@@ -177,6 +177,8 @@ const btnTypeDB = (btnType: btnType): btnItemDB => {
 };
 
 const genBtn = (btn?: btnType | btnType[], fn?: EventListener | EventListener[]) => {
+	let hasDismissButton: boolean = false;
+
 	if (btn) {
 		if (!Array.isArray(btn)) {
 			btn = [btn];
@@ -193,6 +195,10 @@ const genBtn = (btn?: btnType | btnType[], fn?: EventListener | EventListener[])
 
 		let tBtnItem: btnItem[] = [];
 		for (let x = 0; x < btn.length; x++) {
+			if (aFn.length <= x) {
+				hasDismissButton = true;
+			}
+
 			let t = btnTypeDB(btn[x]);
 			tBtnItem.push({
 				color: t.color,
@@ -200,15 +206,16 @@ const genBtn = (btn?: btnType | btnType[], fn?: EventListener | EventListener[])
 				click: aFn.length > x ? aFn[x] : undefined,
 			});
 		}
-		return genBtnItem(tBtnItem);
+
+		return { hasDismissButton: hasDismissButton, btn: genBtnItem(tBtnItem) };
 	} else {
-		return [];
+		return { hasDismissButton: false, btn: [] };
 	}
 };
 
 export interface IAttrBSModalSimple extends Omit<IAttrBSModalContainer, "title"> {
 	btn?: btnType | btnType[];
-	cb?: EventListener | EventListener[];
+	btnFn?: EventListener | EventListener[];
 	title?: IElem;
 	elem?: IElem;
 
@@ -219,25 +226,43 @@ export interface IAttrBSModalSimple extends Omit<IAttrBSModalContainer, "title">
 
 export const simple = (attr: IAttrBSModalSimple) => {
 	let contAttr = Object.assign({}, attr);
+
 	delete contAttr.btn;
-	delete contAttr.cb;
+	delete contAttr.btnFn;
 	delete contAttr.title;
 	delete contAttr.elem;
 	delete contAttr.attrHeader;
 	delete contAttr.attrBody;
 	delete contAttr.attrFooter;
 
+	let btn = genBtn(attr.btn, attr.btnFn);
+	let showHeader: boolean = false;
+	let showFooter: boolean = btn.btn.length > 0;
+
+	if (!btn.hasDismissButton) {
+		contAttr.static ??= true;
+		attr.static ??= true;
+	}
+
+	if (attr.title) {
+		showHeader = true;
+	} else {
+		showHeader = !(attr.static ? false : btn.hasDismissButton);
+	}
+
 	return new container(contAttr as IAttrBSModalContainer, [
-		new header(
-			mergeAttr(
-				{
-					close: true,
-				},
-				attr.attrHeader
-			),
-			new title(attr.title || document.title)
-		),
+		showHeader
+			? new header(
+					mergeAttr(
+						{
+							close: attr.static ? false : btn.hasDismissButton,
+						},
+						attr.attrHeader
+					),
+					new title(attr.title || document.title)
+			  )
+			: "",
 		new body(attr.attrBody ? attr.attrBody : {}, attr.elem ? attr.elem : ""),
-		new footer(attr.attrFooter ? attr.attrFooter : {}, genBtn(attr.btn, attr.cb)),
+		showFooter ? new footer(attr.attrFooter ? attr.attrFooter : {}, btn.btn) : "",
 	]);
 };

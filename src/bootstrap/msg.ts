@@ -14,7 +14,7 @@ const fnRow = (elem: IElem) => {
 };
 
 const fnIcon = (containerAttr: IAttr | undefined, attr: IAttrBSIcon) => {
-	return new div(containerAttr || { fontSize: 6 }, new icon(attr!));
+	return new div(containerAttr || { fontSize: 1 }, new icon(attr!));
 };
 
 const fnElem = (elem: IElem) => {
