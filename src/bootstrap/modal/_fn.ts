@@ -1,8 +1,16 @@
 import { appendChild, init } from "../../core/builder.js";
 import { addEvent, HTMLElementWithEventDB } from "../../core/eventManager.js";
+import { mergeAttr } from "../../core/mergeAttr.js";
+import { mergeObject } from "../../core/mergeObject.js";
 import { removeElement } from "../../core/removeElement.js";
+import { IAttr, IElem } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
-import { container } from "./container.js";
+import { button, IAttrBSButton } from "../button.js";
+import { body } from "./body.js";
+import { container, IAttrBSModalContainer } from "./container.js";
+import { footer } from "./footer.js";
+import { header, IAttrBSModalHeader } from "./header.js";
+import { title } from "./title.js";
 
 export const show = (i: container) => {
 	if (!i.attr) {
@@ -24,4 +32,212 @@ export const show = (i: container) => {
 		window.bootstrap.Modal.getOrCreateInstance(mdl as Element).show();
 		init(mdl);
 	}
+};
+
+export const hide = (i: HTMLElement) => {
+	let container = i.classList.contains("modal") ? i : i.closest(".modal");
+	const mdl = window.bootstrap.Modal.getInstance(container as Element);
+	if (mdl) {
+		mdl.hide();
+	}
+};
+
+interface btnItem {
+	color?: IAttrBSButton["color"];
+	elem: IElem;
+	click?: EventListener;
+}
+
+const genBtnItem = (btn?: btnItem | btnItem[]) => {
+	if (btn) {
+		if (!Array.isArray(btn)) {
+			btn = [btn];
+		}
+
+		return btn
+			.map((i) => {
+				if (typeof i.click === "function") {
+					return new button(
+						{
+							color: i.color,
+							on: { click: i.click },
+						},
+						i.elem
+					);
+				} else {
+					return new button(
+						{
+							color: i.color,
+							dismiss: "modal",
+						},
+						i.elem
+					);
+				}
+			})
+			.reverse();
+	} else {
+		return [];
+	}
+};
+
+type btnType =
+	| "ok"
+	| "cancel"
+	| "yes"
+	| "no"
+	| "retry"
+	| "continue"
+	| "delete"
+	| "save"
+	| "agree"
+	| "disagree"
+	| "reject"
+	| "yesdelete"
+	| "yessave"
+	| "yescontinue";
+
+interface btnItemDB {
+	color?: IAttrBSButton["color"];
+	elem: IElem;
+}
+
+const btnTypeDB = (btnType: btnType): btnItemDB => {
+	switch (btnType) {
+		case "ok":
+			return {
+				color: "primary",
+				elem: "Okay",
+			};
+		case "cancel":
+			return {
+				color: "transparent",
+				elem: "Cancel",
+			};
+		case "yes":
+			return {
+				color: "primary",
+				elem: "Yes",
+			};
+		case "no":
+			return {
+				color: "transparent",
+				elem: "No",
+			};
+		case "retry":
+			return {
+				color: "primary",
+				elem: "Retry",
+			};
+		case "continue":
+			return {
+				color: "primary",
+				elem: "Continue",
+			};
+		case "delete":
+			return {
+				color: "danger",
+				elem: "Delete",
+			};
+		case "save":
+			return {
+				color: "primary",
+				elem: "Save",
+			};
+		case "agree":
+			return {
+				color: "primary",
+				elem: "Agree",
+			};
+		case "disagree":
+			return {
+				color: "transparent",
+				elem: "Disagree",
+			};
+		case "reject":
+			return {
+				color: "transparent",
+				elem: "Reject",
+			};
+		case "yesdelete":
+			return {
+				color: "danger",
+				elem: "Yes, delete",
+			};
+		case "yessave":
+			return {
+				color: "primary",
+				elem: "Yes, save",
+			};
+		case "yescontinue":
+			return {
+				color: "primary",
+				elem: "Yes, continue",
+			};
+	}
+};
+
+const genBtn = (btn?: btnType | btnType[], fn?: EventListener | EventListener[]) => {
+	if (btn) {
+		if (!Array.isArray(btn)) {
+			btn = [btn];
+		}
+
+		let aFn: EventListener[] = [];
+		if (fn) {
+			if (!Array.isArray(fn)) {
+				aFn = [fn];
+			} else {
+				aFn = fn;
+			}
+		}
+
+		let tBtnItem: btnItem[] = [];
+		for (let x = 0; x < btn.length; x++) {
+			let t = btnTypeDB(btn[x]);
+			tBtnItem.push({
+				color: t.color,
+				elem: t.elem,
+				click: aFn.length > x ? aFn[x] : undefined,
+			});
+		}
+		return genBtnItem(tBtnItem);
+	} else {
+		return [];
+	}
+};
+
+export interface IAttrBSModalSimple extends Omit<IAttrBSModalContainer, "title"> {
+	btn?: btnType | btnType[];
+	cb?: EventListener | EventListener[];
+	title?: IElem;
+	elem?: IElem;
+
+	attrHeader?: IAttrBSModalHeader;
+	attrBody?: IAttr;
+	attrFooter?: IAttr;
+}
+
+export const simple = (attr: IAttrBSModalSimple) => {
+	let contAttr = Object.assign({}, attr);
+	delete contAttr.btn;
+	delete contAttr.cb;
+	delete contAttr.title;
+	delete contAttr.elem;
+	delete contAttr.attrHeader;
+	delete contAttr.attrBody;
+	delete contAttr.attrFooter;
+
+	return new container(contAttr as IAttrBSModalContainer, [
+		new header(
+			mergeAttr(
+				{
+					close: true,
+				},
+				attr.attrHeader
+			),
+			new title(attr.title || document.title)
+		),
+		new body(attr.attrBody ? attr.attrBody : {}, attr.elem ? attr.elem : ""),
+		new footer(attr.attrFooter ? attr.attrFooter : {}, genBtn(attr.btn, attr.cb)),
+	]);
 };
