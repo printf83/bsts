@@ -4,9 +4,9 @@ import { IAttr } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
 import { label } from "../label.js";
-import { IAttrBSSelect, select as TSelect } from "../select.js";
+import { IAttrBSTextarea, textarea as TTextarea } from "../textarea.js";
 
-export interface IAttrBSFormSelect extends Omit<IAttrBSSelect, "container"> {
+export interface IAttrBSFormTextarea extends Omit<IAttrBSTextarea, "container"> {
 	description?: string;
 	container?: IAttr;
 
@@ -15,13 +15,12 @@ export interface IAttrBSFormSelect extends Omit<IAttrBSSelect, "container"> {
 	col3?: false | bootstrapType.col[number];
 }
 
-export const select = (attr: IAttrBSFormSelect) => {
+export const textarea = (attr: IAttrBSFormTextarea) => {
 	let container = attr.container;
 
 	attr.id ??= UUID();
 	attr.describedby = attr.description ? `${attr.id}-description` : undefined;
 
-	//setup element
 	let tLabel = attr.label
 		? new label(
 				{
@@ -36,7 +35,7 @@ export const select = (attr: IAttrBSFormSelect) => {
 		? new div({ id: `${attr.id}-description`, class: "form-text" }, attr.description)
 		: "";
 
-	let tElem = new TSelect(attr as IAttrBSSelect);
+	let tElem = new TTextarea(attr as IAttrBSTextarea);
 
 	//setup col if provided
 	if (attr.col1) {

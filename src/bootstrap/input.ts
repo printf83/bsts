@@ -7,6 +7,7 @@ export interface IAttrBSInput extends IAttrTagInput {
 	weight?: "sm" | "lg";
 	toggle?: true;
 	switch?: true;
+	plaintext?: true;
 	role?: string;
 }
 
@@ -20,6 +21,11 @@ const convert = (attr: IAttrBSInput) => {
 		attr.role = "switch";
 	}
 
+	//readonly if plaintext
+	if (attr.plaintext) {
+		attr.readonly = true;
+	}
+
 	//autocomplete off if toggle
 	if (attr.toggle) attr.autocomplete = "off";
 
@@ -28,7 +34,7 @@ const convert = (attr: IAttrBSInput) => {
 			id: attr.id || UUID(),
 			type: attr.type,
 			class: [
-				["range", "radio", "checkbox"].indexOf(attr.type) === -1 && attr.readonly !== true
+				["range", "radio", "checkbox"].indexOf(attr.type) === -1 && !attr.plaintext
 					? "form-control"
 					: undefined,
 				["radio", "checkbox"].indexOf(attr.type) > -1
@@ -38,7 +44,7 @@ const convert = (attr: IAttrBSInput) => {
 					: undefined,
 				attr.type === "color" ? "form-control-color" : undefined,
 				attr.type === "range" ? "form-range" : undefined,
-				attr.readonly ? "form-control-plaintext" : undefined,
+				attr.plaintext ? "form-control-plaintext" : undefined,
 				attr.weight ? `form-control-${attr.weight}` : undefined,
 			],
 		},
@@ -48,6 +54,7 @@ const convert = (attr: IAttrBSInput) => {
 	delete attr.weight;
 	delete attr.toggle;
 	delete attr.switch;
+	delete attr.plaintext;
 
 	return attr;
 };
