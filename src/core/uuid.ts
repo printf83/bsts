@@ -1,4 +1,4 @@
-export const UUID = (format: string = "el_xxxxxxxxxxxx"): string => {
+export const UUID = (format: string = "el-xxxxxxxxxxxx"): string => {
 	return format.replace(/[xy]/g, (c) => {
 		let r = (Math.random() * 16) | 0,
 			v = c === "x" ? r : (r & 0x3) | 0x8;

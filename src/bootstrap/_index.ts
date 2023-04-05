@@ -38,9 +38,11 @@ import { textarea, IAttrBSTextarea } from "./textarea.js";
 import * as toast from "./toast/_index.js";
 import { tooltip, IAttrBSTooltip } from "./tooltip.js";
 import { verticalrule } from "./verticalrule.js";
+import * as form from "./form/_index.js";
 import { visuallyhidden, IAttrBSVisuallyhidden } from "./visuallyhidden.js";
 
 export {
+	form,
 	icon,
 	button,
 	label,

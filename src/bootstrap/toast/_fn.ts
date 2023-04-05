@@ -50,8 +50,8 @@ export const show = (placement: IAttrBSToastContainerPlacement, i: item) => {
 
 	let containerDOM: HTMLElement = document.querySelector(containerClassName) as HTMLElement;
 	if (!containerDOM) {
-		let body = document.getElementById("main") as HTMLElement;
-		appendChild(body, new container({ placement: placement }));
+		// let body = document.getElementById("main") as HTMLElement;
+		appendChild(document.body, new container({ placement: placement }));
 		containerDOM = document.querySelector(containerClassName) as HTMLElement;
 	}
 

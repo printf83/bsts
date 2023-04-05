@@ -1,7 +1,6 @@
 import { appendChild, init } from "../../core/builder.js";
 import { addEvent, HTMLElementWithEventDB } from "../../core/eventManager.js";
 import { mergeAttr } from "../../core/mergeAttr.js";
-import { mergeObject } from "../../core/mergeObject.js";
 import { removeElement } from "../../core/removeElement.js";
 import { IAttr, IElem } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
@@ -19,8 +18,8 @@ export const show = (i: container) => {
 
 	i.attr.id ??= UUID();
 
-	let body = document.getElementById("main") as HTMLElement;
-	appendChild(body, i);
+	// let body = document.getElementById("main") as HTMLElement;
+	appendChild(document.body, i);
 
 	let mdl = document.getElementById(i.attr.id);
 	if (mdl) {

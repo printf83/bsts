@@ -47,6 +47,7 @@ const convert = (attr: IAttrBSInput) => {
 
 	delete attr.weight;
 	delete attr.toggle;
+	delete attr.switch;
 
 	return attr;
 };

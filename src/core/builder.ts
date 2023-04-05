@@ -233,11 +233,11 @@ const processElem = (i: string | tag, e: tag, element: HTMLElement) => {
 };
 
 export const build = (
-	container: HTMLElement,
+	container: HTMLElement | HTMLBodyElement,
 	arg: buildArg,
 	append: boolean = true,
 	beforeElem: HTMLElement | null = null
-): HTMLElement => {
+): HTMLElement | HTMLBodyElement => {
 	if (arg) {
 		arg = Array.isArray(arg) ? arg : [arg];
 
@@ -301,24 +301,30 @@ export const html = (arg: buildArg): string => {
 	return result;
 };
 
-export const appendChild = (container: HTMLElement, arg: buildArg): HTMLElement => {
+export const appendChild = (container: HTMLElement | HTMLBodyElement, arg: buildArg): HTMLElement | HTMLBodyElement => {
 	container = build(container, arg);
 	return container;
 };
 
-export const prependChild = (container: HTMLElement, arg: buildArg): HTMLElement => {
+export const prependChild = (
+	container: HTMLElement | HTMLBodyElement,
+	arg: buildArg
+): HTMLElement | HTMLBodyElement => {
 	container = build(container, arg, false);
 	return container;
 };
 
-export const replaceWith = (elem: HTMLElement, arg: buildArg): HTMLElement => {
+export const replaceWith = (elem: HTMLElement | HTMLBodyElement, arg: buildArg): HTMLElement | HTMLBodyElement => {
 	let parent = elem.parentNode as HTMLElement;
 	parent = build(parent, arg, true, elem);
 	removeElement(elem);
 	return parent;
 };
 
-export const replaceChild = (container: HTMLElement, arg: buildArg): HTMLElement => {
+export const replaceChild = (
+	container: HTMLElement | HTMLBodyElement,
+	arg: buildArg
+): HTMLElement | HTMLBodyElement => {
 	removeChildElement(container);
 	container = build(container, arg);
 	return container;
