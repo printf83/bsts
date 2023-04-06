@@ -20,7 +20,7 @@ import { code } from "./code.js";
 import { col, IAttrTagCol } from "./col.js";
 import { colgroup, IAttrTagColgroup } from "./colgroup.js";
 import { data, IAttrTagData } from "./data.js";
-import { datalist } from "./datalist.js";
+import { datalist, IAttrTagDatalist } from "./datalist.js";
 import { dd } from "./dd.js";
 import { del, IAttrTagDel } from "./del.js";
 import { details, IAttrTagDetails } from "./details.js";
@@ -219,6 +219,7 @@ export {
 	IAttrTagCol,
 	IAttrTagColgroup,
 	IAttrTagData,
+	IAttrTagDatalist,
 	IAttrTagDel,
 	IAttrTagDetails,
 	IAttrTagDialog,

@@ -1,6 +1,6 @@
 import { bootstrapType } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { IAttr } from "../../core/tag.js";
+import { IAttr, isTag } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
 import { label } from "../label.js";
@@ -9,6 +9,8 @@ import { IAttrBSTextarea, textarea as TTextarea } from "../textarea.js";
 export interface IAttrBSFormTextarea extends Omit<IAttrBSTextarea, "container"> {
 	description?: string;
 	container?: IAttr;
+
+	hideLabel?: true;
 
 	col1?: bootstrapType.col[number];
 	col2?: bootstrapType.col[number];
@@ -25,7 +27,7 @@ export const textarea = (attr: IAttrBSFormTextarea) => {
 		? new label(
 				{
 					for: attr.id,
-					class: ["form-label"],
+					visually: attr.hideLabel ? "hidden" : undefined,
 				},
 				attr.label
 		  )
@@ -41,16 +43,20 @@ export const textarea = (attr: IAttrBSFormTextarea) => {
 	if (attr.col1) {
 		attr.col2 ??= "auto";
 
-		if (attr.col3 !== false) {
+		if (attr.description && attr.col3 !== false) {
 			attr.col3 ??= "auto";
+		} else {
+			attr.col3 = false;
 		}
 	}
 
 	if (attr.col2) {
 		attr.col1 ??= "auto";
 
-		if (attr.col3 !== false) {
+		if (attr.description && attr.col3 !== false) {
 			attr.col3 ??= "auto";
+		} else {
+			attr.col3 = false;
 		}
 	}
 
@@ -72,7 +78,9 @@ export const textarea = (attr: IAttrBSFormTextarea) => {
 			container
 		);
 
-		tLabel = new div({ col: attr.col1 }, tLabel);
+		if (isTag<label>(tLabel)) {
+			tLabel.attr = mergeObject({ col: attr.col1, class: "col-form-label" }, tLabel.attr);
+		}
 
 		if (attr.col3 !== false) {
 			tElem = new div({ col: attr.col2 }, tElem);
@@ -81,9 +89,14 @@ export const textarea = (attr: IAttrBSFormTextarea) => {
 			tElem = new div({ col: attr.col2 }, [tElem, tDescription]);
 			tDescription = "";
 		}
+	} else {
+		if (isTag<label>(tLabel)) {
+			tLabel.attr = mergeObject({ class: "form-label" }, tLabel.attr);
+		}
 	}
 
 	delete attr.label;
+	delete attr.hideLabel;
 	delete attr.description;
 	delete attr.container;
 	delete attr.col1;

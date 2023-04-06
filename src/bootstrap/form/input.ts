@@ -1,14 +1,18 @@
 import { bootstrapType } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { IAttr } from "../../core/tag.js";
+import { IAttr, isTag } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
+import { IAttrTagDatalist, datalist } from "../../html/datalist.js";
 import { div } from "../../html/div.js";
 import { IAttrBSInput, input as TInput } from "../input.js";
 import { label } from "../label.js";
 
 export interface IAttrBSFormInput extends Omit<IAttrBSInput, "container"> {
 	description?: string;
+	datalist?: IAttrTagDatalist["item"];
 	container?: IAttr;
+
+	hideLabel?: true;
 
 	col1?: bootstrapType.col[number];
 	col2?: bootstrapType.col[number];
@@ -35,11 +39,18 @@ export const input = (attr: IAttrBSFormInput) => {
 	}
 
 	//setup element
+
+	let tDatalist = attr.datalist ? new datalist({ id: `${attr.id}-datalist`, item: attr.datalist }) : "";
+	if (attr.datalist) {
+		attr.list = `${attr.id}-datalist`;
+	}
+
 	let tLabel = attr.label
 		? new label(
 				{
 					for: attr.id,
-					class: [attr.type === "checkbox" || attr.type === "radio" ? "form-check-label" : "form-label"],
+					visually: attr.hideLabel ? "hidden" : undefined,
+					class: [attr.type === "checkbox" || attr.type === "radio" ? "form-check-label" : undefined],
 				},
 				attr.label
 		  )
@@ -54,16 +65,20 @@ export const input = (attr: IAttrBSFormInput) => {
 	if (attr.col1) {
 		attr.col2 ??= "auto";
 
-		if (attr.col3 !== false) {
+		if (attr.description && attr.col3 !== false) {
 			attr.col3 ??= "auto";
+		} else {
+			attr.col3 = false;
 		}
 	}
 
 	if (attr.col2) {
 		attr.col1 ??= "auto";
 
-		if (attr.col3 !== false) {
+		if (attr.description && attr.col3 !== false) {
 			attr.col3 ??= "auto";
+		} else {
+			attr.col3 = false;
 		}
 	}
 
@@ -85,18 +100,27 @@ export const input = (attr: IAttrBSFormInput) => {
 			container
 		);
 
-		tLabel = new div({ col: attr.col1 }, tLabel);
+		if (isTag<label>(tLabel)) {
+			tLabel.attr = mergeObject({ col: attr.col1, class: "col-form-label" }, tLabel.attr);
+		}
 
 		if (attr.col3 !== false) {
-			tElem = new div({ col: attr.col2 }, tElem);
+			tElem = new div({ col: attr.col2 }, [tElem, tDatalist]);
 			tDescription = new div({ col: attr.col3 }, tDescription);
 		} else {
-			tElem = new div({ col: attr.col2 }, [tElem, tDescription]);
+			tElem = new div({ col: attr.col2 }, [tElem, tDatalist, tDescription]);
 			tDescription = "";
+		}
+		tDatalist = "";
+	} else {
+		if (isTag<label>(tLabel)) {
+			tLabel.attr = mergeObject({ class: "form-label" }, tLabel.attr);
 		}
 	}
 
+	delete attr.datalist;
 	delete attr.label;
+	delete attr.hideLabel;
 	delete attr.description;
 	delete attr.container;
 	delete attr.col1;
@@ -104,8 +128,8 @@ export const input = (attr: IAttrBSFormInput) => {
 	delete attr.col3;
 
 	if (attr.type === "checkbox" || attr.type === "radio") {
-		return new div(container || {}, [tElem, tLabel, tDescription]);
+		return new div(container || {}, [tElem, tLabel, tDatalist, tDescription]);
 	} else {
-		return new div(container || {}, [tLabel, tElem, tDescription]);
+		return new div(container || {}, [tLabel, tElem, tDatalist, tDescription]);
 	}
 };
