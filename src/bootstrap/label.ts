@@ -5,10 +5,11 @@ import { div } from "../html/div.js";
 import { IAttrTagLabel, label as TLabel } from "../html/label.js";
 import { span } from "../html/span.js";
 import { IAttrBSIcon, icon } from "./icon.js";
+import { IAttrBSButton } from "./button.js";
 
 export type IBootstrapTypeDisplay = bootstrapType.display[number] | bootstrapType.display[number][];
 
-export interface IAttrBSLabel extends IAttrTagLabel {
+export interface IAttrBSLabel extends IAttrTagLabel, IAttrBSButton {
 	icon?: string | IAttrBSIcon | icon;
 	iconPosition?: "start" | "end" | "top" | "bottom";
 	iconDisplay?: IBootstrapTypeDisplay;
@@ -17,8 +18,8 @@ export interface IAttrBSLabel extends IAttrTagLabel {
 	stretched?: boolean;
 	formCheck?: boolean;
 
-	color?: bootstrapType.color[number];
-	outline?: boolean;
+	// color?: bootstrapType.color[number];
+	// outline?: boolean;
 }
 
 const fnRow = (display: IBootstrapTypeDisplay | undefined, elem: IElem) => {
@@ -127,8 +128,8 @@ const convert = (attr: IAttrBSLabel) => {
 	delete tAttr.stretched;
 	delete tAttr.formCheck;
 
-	delete tAttr.color;
-	delete tAttr.outline;
+	// delete tAttr.color;
+	// delete tAttr.outline;
 
 	delete attr.elem;
 	attr.elem = tElem;

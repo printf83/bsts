@@ -40,7 +40,11 @@ export const attachBoolean: IAttachFn = (key, elem, attr) => {
 
 		if (attr && typeof attr[k] !== "undefined") {
 			if (attr[k] === true) {
-				elem.setAttribute(key, key);
+				if (key === "indeterminate") {
+					(<HTMLInputElement>elem).indeterminate = true;
+				} else {
+					elem.setAttribute(key, key);
+				}
 			}
 
 			delete attr[k];

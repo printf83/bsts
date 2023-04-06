@@ -6,6 +6,7 @@ export interface IAttrTagInput extends IAttr {
 	autocomplete?: "on" | "off";
 	autofocus?: boolean;
 	checked?: boolean;
+	indeterminate?: boolean;
 	dirname?: string;
 	disabled?: boolean;
 	form?: string;
