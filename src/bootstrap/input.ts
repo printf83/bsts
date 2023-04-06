@@ -9,6 +9,7 @@ export interface IAttrBSInput extends IAttrTagInput {
 	switch?: true;
 	plaintext?: true;
 	role?: string;
+	isvalid?: boolean;
 }
 
 const convert = (attr: IAttrBSInput) => {
@@ -46,6 +47,7 @@ const convert = (attr: IAttrBSInput) => {
 				attr.type === "range" ? "form-range" : undefined,
 				attr.plaintext ? "form-control-plaintext" : undefined,
 				attr.weight ? `form-control-${attr.weight}` : undefined,
+				attr.isvalid !== undefined ? (attr.isvalid ? "is-valid" : "is-invalid") : undefined,
 			],
 		},
 		attr
@@ -55,6 +57,7 @@ const convert = (attr: IAttrBSInput) => {
 	delete attr.toggle;
 	delete attr.switch;
 	delete attr.plaintext;
+	delete attr.isvalid;
 
 	return attr;
 };

@@ -34,6 +34,7 @@ export interface IAttrBSFormInput extends Omit<IAttrBSInput, "container"> {
 	container?: IAttr;
 
 	hideLabel?: true;
+	floatingLabel?: true;
 
 	col1?: bootstrapType.col[number];
 	col2?: bootstrapType.col[number];
@@ -53,6 +54,10 @@ export const input = (attr: IAttrBSFormInput) => {
 		attr.list = `${attr.id}-datalist`;
 	}
 
+	if (attr.floatingLabel) {
+		attr.placeholder ??= attr.label;
+	}
+
 	let tLabel = attr.label
 		? new label(
 				{
@@ -66,7 +71,18 @@ export const input = (attr: IAttrBSFormInput) => {
 		? new div({ id: `${attr.id}-description`, class: "form-text" }, attr.description)
 		: "";
 
-	let tElem = new TInput(attr as IAttrBSInput);
+	let tAttr = Object.assign({}, attr);
+	delete tAttr.datalist;
+	delete tAttr.label;
+	delete tAttr.hideLabel;
+	delete tAttr.floatingLabel;
+	delete tAttr.description;
+	delete tAttr.container;
+	delete tAttr.col1;
+	delete tAttr.col2;
+	delete tAttr.col3;
+
+	let tElem = new TInput(tAttr as IAttrBSInput);
 
 	//setup col if provided
 	if (attr.col1) {
@@ -96,6 +112,8 @@ export const input = (attr: IAttrBSFormInput) => {
 
 	//setup container if col provided
 	if (attr.col1) {
+		attr.floatingLabel = undefined;
+
 		if (!container) {
 			container = {};
 		}
@@ -125,14 +143,18 @@ export const input = (attr: IAttrBSFormInput) => {
 		}
 	}
 
-	delete attr.datalist;
-	delete attr.label;
-	delete attr.hideLabel;
-	delete attr.description;
-	delete attr.container;
-	delete attr.col1;
-	delete attr.col2;
-	delete attr.col3;
+	if (attr.floatingLabel) {
+		container = mergeObject(
+			{
+				class: "form-floating",
+			},
+			container
+		);
+	}
 
-	return new div(container || {}, [tLabel, tElem, tDatalist, tDescription]);
+	if (attr.floatingLabel) {
+		return new div(container || {}, [tElem, tDatalist, tDescription, tLabel]);
+	} else {
+		return new div(container || {}, [tLabel, tElem, tDatalist, tDescription]);
+	}
 };

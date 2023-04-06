@@ -5,6 +5,7 @@ import { IAttrTagTextarea, textarea as TTextarea } from "../html/textarea.js";
 
 export interface IAttrBSTextarea extends IAttrTagTextarea {
 	weight?: "sm" | "lg";
+	isvalid?: boolean;
 }
 
 const convert = (attr: IAttrBSTextarea) => {
@@ -15,12 +16,14 @@ const convert = (attr: IAttrBSTextarea) => {
 				attr.readonly !== true ? "form-control" : undefined,
 				attr.readonly ? "form-control-plaintext" : undefined,
 				attr.weight ? `form-control-${attr.weight}` : undefined,
+				attr.isvalid !== undefined ? (attr.isvalid ? "is-valid" : "is-invalid") : undefined,
 			],
 		},
 		attr
 	);
 
 	delete attr.weight;
+	delete attr.isvalid;
 
 	return attr;
 };

@@ -11,6 +11,7 @@ export interface IAttrBSFormSelect extends Omit<IAttrBSSelect, "container"> {
 	container?: IAttr;
 
 	hideLabel?: true;
+	floatingLabel?: true;
 
 	col1?: bootstrapType.col[number];
 	col2?: bootstrapType.col[number];
@@ -38,7 +39,15 @@ export const select = (attr: IAttrBSFormSelect) => {
 		? new div({ id: `${attr.id}-description`, class: "form-text" }, attr.description)
 		: "";
 
-	let tElem = new TSelect(attr as IAttrBSSelect);
+	let tAttr = Object.assign({}, attr);
+	delete tAttr.label;
+	delete tAttr.hideLabel;
+	delete tAttr.description;
+	delete tAttr.container;
+	delete tAttr.col1;
+	delete tAttr.col2;
+	delete tAttr.col3;
+	let tElem = new TSelect(tAttr as IAttrBSSelect);
 
 	//setup col if provided
 	if (attr.col1) {
@@ -68,6 +77,8 @@ export const select = (attr: IAttrBSFormSelect) => {
 
 	//setup container if col provided
 	if (attr.col1) {
+		attr.floatingLabel = undefined;
+
 		if (!container) {
 			container = {};
 		}
@@ -96,13 +107,18 @@ export const select = (attr: IAttrBSFormSelect) => {
 		}
 	}
 
-	delete attr.label;
-	delete attr.hideLabel;
-	delete attr.description;
-	delete attr.container;
-	delete attr.col1;
-	delete attr.col2;
-	delete attr.col3;
+	if (attr.floatingLabel) {
+		container = mergeObject(
+			{
+				class: "form-floating",
+			},
+			container
+		);
+	}
 
-	return new div(container || {}, [tLabel, tElem, tDescription]);
+	if (attr.floatingLabel) {
+		return new div(container || {}, [tElem, tDescription, tLabel]);
+	} else {
+		return new div(container || {}, [tLabel, tElem, tDescription]);
+	}
 };
