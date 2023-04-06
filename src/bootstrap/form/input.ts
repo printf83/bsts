@@ -8,6 +8,27 @@ import { IAttrBSInput, input as TInput } from "../input.js";
 import { label } from "../label.js";
 
 export interface IAttrBSFormInput extends Omit<IAttrBSInput, "container"> {
+	type?:
+		| "button"
+		| "color"
+		| "date"
+		| "datetime-local"
+		| "email"
+		| "file"
+		| "hidden"
+		| "image"
+		| "month"
+		| "number"
+		| "password"
+		| "range"
+		| "reset"
+		| "search"
+		| "submit"
+		| "tel"
+		| "text"
+		| "time"
+		| "url"
+		| "week";
 	description?: string;
 	datalist?: IAttrTagDatalist["item"];
 	container?: IAttr;
@@ -25,19 +46,6 @@ export const input = (attr: IAttrBSFormInput) => {
 	attr.id ??= UUID();
 	attr.describedby = attr.description ? `${attr.id}-description` : undefined;
 
-	if (attr.type === "checkbox" || attr.type === "radio") {
-		if (!container) {
-			container = {};
-		}
-
-		container = mergeObject(
-			{
-				class: ["form-check", attr.switch ? "form-switch" : undefined],
-			},
-			container
-		);
-	}
-
 	//setup element
 
 	let tDatalist = attr.datalist ? new datalist({ id: `${attr.id}-datalist`, item: attr.datalist }) : "";
@@ -50,7 +58,6 @@ export const input = (attr: IAttrBSFormInput) => {
 				{
 					for: attr.id,
 					visually: attr.hideLabel ? "hidden" : undefined,
-					class: [attr.type === "checkbox" || attr.type === "radio" ? "form-check-label" : undefined],
 				},
 				attr.label
 		  )
@@ -127,9 +134,5 @@ export const input = (attr: IAttrBSFormInput) => {
 	delete attr.col2;
 	delete attr.col3;
 
-	if (attr.type === "checkbox" || attr.type === "radio") {
-		return new div(container || {}, [tElem, tLabel, tDatalist, tDescription]);
-	} else {
-		return new div(container || {}, [tLabel, tElem, tDatalist, tDescription]);
-	}
+	return new div(container || {}, [tLabel, tElem, tDatalist, tDescription]);
 };
