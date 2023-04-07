@@ -13,7 +13,6 @@ export interface IAttrBSFormSelect extends Omit<IAttrBSSelect, "container"> {
 	container?: IAttr;
 
 	hideLabel?: true;
-	floatingLabel?: true;
 
 	before?: IElem;
 	after?: IElem;
@@ -118,8 +117,6 @@ export const select = (attr: IAttrBSFormSelect) => {
 
 	//setup container if col provided
 	if (attr.col1) {
-		attr.floatingLabel = undefined;
-
 		if (!container) {
 			container = {};
 		}
@@ -148,35 +145,10 @@ export const select = (attr: IAttrBSFormSelect) => {
 		}
 	}
 
-	if (attr.floatingLabel) {
-		container = mergeObject(
-			{
-				class: "form-floating",
-			},
-			container
-		);
+	//put into tElem
+	if (tElemGroupBefore.length > 0 || tElemGroupAfter.length > 0) {
+		tElem = new TInputGroupContainer({ noWarp: true }, [...tElemGroupBefore, tElem, ...tElemGroupAfter]);
 	}
 
-	if (attr.floatingLabel) {
-		//put into tElem
-		if (tElemGroupBefore || tElemGroupAfter) {
-			return new div(container || {}, [
-				new TInputGroupContainer({ noWarp: true }, [
-					...tElemGroupBefore,
-					new div(container || {}, [tElem, tLabel]),
-					...tElemGroupAfter,
-				]),
-				tDescription,
-			]);
-		} else {
-			return new div(container || {}, [tElem, tDescription, tLabel]);
-		}
-	} else {
-		//put into tElem
-		if (tElemGroupBefore.length > 0 || tElemGroupAfter.length > 0) {
-			tElem = new TInputGroupContainer({ noWarp: true }, [...tElemGroupBefore, tElem, ...tElemGroupAfter]);
-		}
-
-		return new div(container || {}, [tLabel, tElem, tDescription]);
-	}
+	return new div(container || {}, [tLabel, tElem, tDescription]);
 };

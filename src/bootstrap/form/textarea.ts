@@ -13,7 +13,6 @@ export interface IAttrBSFormTextarea extends Omit<IAttrBSTextarea, "container"> 
 	container?: IAttr;
 
 	hideLabel?: true;
-	floatingLabel?: true;
 
 	before?: IElem;
 	after?: IElem;
@@ -28,10 +27,6 @@ export const textarea = (attr: IAttrBSFormTextarea) => {
 
 	attr.id ??= UUID();
 	attr.describedby = attr.description ? `${attr.id}-description` : undefined;
-
-	if (attr.floatingLabel) {
-		attr.placeholder ??= attr.label;
-	}
 
 	let tLabel = attr.label
 		? new label(
@@ -121,8 +116,6 @@ export const textarea = (attr: IAttrBSFormTextarea) => {
 
 	//setup container if col provided
 	if (attr.col1) {
-		attr.floatingLabel = undefined;
-
 		if (!container) {
 			container = {};
 		}
@@ -151,35 +144,10 @@ export const textarea = (attr: IAttrBSFormTextarea) => {
 		}
 	}
 
-	if (attr.floatingLabel) {
-		container = mergeObject(
-			{
-				class: "form-floating",
-			},
-			container
-		);
+	//put into tElem
+	if (tElemGroupBefore.length > 0 || tElemGroupAfter.length > 0) {
+		tElem = new TInputGroupContainer({ noWarp: true }, [...tElemGroupBefore, tElem, ...tElemGroupAfter]);
 	}
 
-	if (attr.floatingLabel) {
-		//put into tElem
-		if (tElemGroupBefore || tElemGroupAfter) {
-			return new div(container || {}, [
-				new TInputGroupContainer({ noWarp: true }, [
-					...tElemGroupBefore,
-					new div(container || {}, [tElem, tLabel]),
-					...tElemGroupAfter,
-				]),
-				tDescription,
-			]);
-		} else {
-			return new div(container || {}, [tElem, tDescription, tLabel]);
-		}
-	} else {
-		//put into tElem
-		if (tElemGroupBefore.length > 0 || tElemGroupAfter.length > 0) {
-			tElem = new TInputGroupContainer({ noWarp: true }, [...tElemGroupBefore, tElem, ...tElemGroupAfter]);
-		}
-
-		return new div(container || {}, [tLabel, tElem, tDescription]);
-	}
+	return new div(container || {}, [tLabel, tElem, tDescription]);
 };

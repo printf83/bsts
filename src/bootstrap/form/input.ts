@@ -36,7 +36,6 @@ export interface IAttrBSFormInput extends Omit<IAttrBSInput, "container"> {
 	container?: IAttr;
 
 	hideLabel?: true;
-	floatingLabel?: true;
 
 	before?: IElem;
 	after?: IElem;
@@ -59,10 +58,6 @@ export const input = (attr: IAttrBSFormInput) => {
 		attr.list = `${attr.id}-datalist`;
 	}
 
-	if (attr.floatingLabel) {
-		attr.placeholder ??= attr.label;
-	}
-
 	let tLabel = attr.label
 		? new label(
 				{
@@ -80,7 +75,6 @@ export const input = (attr: IAttrBSFormInput) => {
 	delete tAttr.datalist;
 	delete tAttr.label;
 	delete tAttr.hideLabel;
-	delete tAttr.floatingLabel;
 	delete tAttr.description;
 	delete tAttr.container;
 	delete tAttr.before;
@@ -152,8 +146,6 @@ export const input = (attr: IAttrBSFormInput) => {
 
 	//setup container if col provided
 	if (attr.col1) {
-		attr.floatingLabel = undefined;
-
 		if (!container) {
 			container = {};
 		}
@@ -183,35 +175,10 @@ export const input = (attr: IAttrBSFormInput) => {
 		}
 	}
 
-	if (attr.floatingLabel) {
-		container = mergeObject(
-			{
-				class: "form-floating",
-			},
-			container
-		);
+	//put into tElem
+	if (tElemGroupBefore.length > 0 || tElemGroupAfter.length > 0) {
+		tElem = new TInputGroupContainer({ noWarp: true }, [...tElemGroupBefore, tElem, ...tElemGroupAfter]);
 	}
 
-	if (attr.floatingLabel) {
-		//put into tElem
-		if (tElemGroupBefore || tElemGroupAfter) {
-			return new div(container || {}, [
-				new TInputGroupContainer({ noWarp: true }, [
-					...tElemGroupBefore,
-					new div(container || {}, [tElem, tDatalist, tLabel]),
-					...tElemGroupAfter,
-				]),
-				tDescription,
-			]);
-		} else {
-			return new div(container || {}, [tElem, tDatalist, tDescription, tLabel]);
-		}
-	} else {
-		//put into tElem
-		if (tElemGroupBefore.length > 0 || tElemGroupAfter.length > 0) {
-			tElem = new TInputGroupContainer({ noWarp: true }, [...tElemGroupBefore, tElem, ...tElemGroupAfter]);
-		}
-
-		return new div(container || {}, [tLabel, tElem, tDatalist, tDescription]);
-	}
+	return new div(container || {}, [tLabel, tElem, tDatalist, tDescription]);
 };
