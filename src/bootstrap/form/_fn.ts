@@ -33,7 +33,7 @@ export const genGroupItem = (id: string, item?: IElem) => {
 		item.forEach((i, ix) => {
 			if (typeof i === "string") {
 				switch (i) {
-					case "{{checkbox}}":
+					case "[checkbox]":
 						result.push(
 							new text(
 								new input({
@@ -44,7 +44,7 @@ export const genGroupItem = (id: string, item?: IElem) => {
 							)
 						);
 						break;
-					case "{{radio}}":
+					case "[radio]":
 						result.push(
 							new text(
 								new input({
@@ -55,18 +55,7 @@ export const genGroupItem = (id: string, item?: IElem) => {
 							)
 						);
 						break;
-					case "{{switch}}":
-						result.push(
-							new text(
-								new input({
-									marginTop: 0,
-									type: "checkbox",
-									switch: true,
-									id: `${id}-switch-${ix}`,
-								})
-							)
-						);
-						break;
+
 					default:
 						result.push(new text(i));
 				}
