@@ -1,10 +1,12 @@
 import { bootstrapType } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { IAttr, isTag } from "../../core/tag.js";
+import { IAttr, IElem, isTag, tag } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
 import { label } from "../label.js";
 import { IAttrBSTextarea, textarea as TTextarea } from "../textarea.js";
+import { text as TInputGroupText } from "../inputgroup/text.js";
+import { container as TInputGroupContainer } from "../inputgroup/container.js";
 
 export interface IAttrBSFormTextarea extends Omit<IAttrBSTextarea, "container"> {
 	description?: string;
@@ -12,6 +14,9 @@ export interface IAttrBSFormTextarea extends Omit<IAttrBSTextarea, "container"> 
 
 	hideLabel?: true;
 	floatingLabel?: true;
+
+	before?: IElem;
+	after?: IElem;
 
 	col1?: bootstrapType.col[number];
 	col2?: bootstrapType.col[number];
@@ -47,10 +52,46 @@ export const textarea = (attr: IAttrBSFormTextarea) => {
 	delete tAttr.hideLabel;
 	delete tAttr.description;
 	delete tAttr.container;
+	delete tAttr.before;
+	delete tAttr.after;
 	delete tAttr.col1;
 	delete tAttr.col2;
 	delete tAttr.col3;
+
 	let tElem = new TTextarea(tAttr as IAttrBSTextarea);
+
+	//manage input group
+	let tElemGroupBefore: (string | tag)[] = [];
+
+	if (attr.before) {
+		if (!Array.isArray(attr.before)) {
+			attr.before = [attr.before];
+		}
+
+		attr.before.forEach((i) => {
+			if (typeof i === "string") {
+				tElemGroupBefore.push(new TInputGroupText(i));
+			} else {
+				tElemGroupBefore.push(i);
+			}
+		});
+	}
+
+	let tElemGroupAfter: (string | tag)[] = [];
+
+	if (attr.after) {
+		if (!Array.isArray(attr.after)) {
+			attr.after = [attr.after];
+		}
+
+		attr.after.forEach((i) => {
+			if (typeof i === "string") {
+				tElemGroupAfter.push(new TInputGroupText(i));
+			} else {
+				tElemGroupAfter.push(i);
+			}
+		});
+	}
 
 	//setup col if provided
 	if (attr.col1) {
@@ -120,8 +161,25 @@ export const textarea = (attr: IAttrBSFormTextarea) => {
 	}
 
 	if (attr.floatingLabel) {
-		return new div(container || {}, [tElem, tDescription, tLabel]);
+		//put into tElem
+		if (tElemGroupBefore || tElemGroupAfter) {
+			return new div(container || {}, [
+				new TInputGroupContainer({ noWarp: true }, [
+					...tElemGroupBefore,
+					new div(container || {}, [tElem, tLabel]),
+					...tElemGroupAfter,
+				]),
+				tDescription,
+			]);
+		} else {
+			return new div(container || {}, [tElem, tDescription, tLabel]);
+		}
 	} else {
+		//put into tElem
+		if (tElemGroupBefore.length > 0 || tElemGroupAfter.length > 0) {
+			tElem = new TInputGroupContainer({ noWarp: true }, [...tElemGroupBefore, tElem, ...tElemGroupAfter]);
+		}
+
 		return new div(container || {}, [tLabel, tElem, tDescription]);
 	}
 };

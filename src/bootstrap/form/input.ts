@@ -1,10 +1,12 @@
 import { bootstrapType } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { IAttr, isTag } from "../../core/tag.js";
+import { IAttr, IElem, isTag, tag } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
 import { IAttrTagDatalist, datalist } from "../../html/datalist.js";
 import { div } from "../../html/div.js";
 import { IAttrBSInput, input as TInput } from "../input.js";
+import { text as TInputGroupText } from "../inputgroup/text.js";
+import { container as TInputGroupContainer } from "../inputgroup/container.js";
 import { label } from "../label.js";
 
 export interface IAttrBSFormInput extends Omit<IAttrBSInput, "container"> {
@@ -35,6 +37,9 @@ export interface IAttrBSFormInput extends Omit<IAttrBSInput, "container"> {
 
 	hideLabel?: true;
 	floatingLabel?: true;
+
+	before?: IElem;
+	after?: IElem;
 
 	col1?: bootstrapType.col[number];
 	col2?: bootstrapType.col[number];
@@ -78,11 +83,46 @@ export const input = (attr: IAttrBSFormInput) => {
 	delete tAttr.floatingLabel;
 	delete tAttr.description;
 	delete tAttr.container;
+	delete tAttr.before;
+	delete tAttr.after;
 	delete tAttr.col1;
 	delete tAttr.col2;
 	delete tAttr.col3;
 
 	let tElem = new TInput(tAttr as IAttrBSInput);
+
+	//manage input group
+	let tElemGroupBefore: (string | tag)[] = [];
+
+	if (attr.before) {
+		if (!Array.isArray(attr.before)) {
+			attr.before = [attr.before];
+		}
+
+		attr.before.forEach((i) => {
+			if (typeof i === "string") {
+				tElemGroupBefore.push(new TInputGroupText(i));
+			} else {
+				tElemGroupBefore.push(i);
+			}
+		});
+	}
+
+	let tElemGroupAfter: (string | tag)[] = [];
+
+	if (attr.after) {
+		if (!Array.isArray(attr.after)) {
+			attr.after = [attr.after];
+		}
+
+		attr.after.forEach((i) => {
+			if (typeof i === "string") {
+				tElemGroupAfter.push(new TInputGroupText(i));
+			} else {
+				tElemGroupAfter.push(i);
+			}
+		});
+	}
 
 	//setup col if provided
 	if (attr.col1) {
@@ -153,8 +193,25 @@ export const input = (attr: IAttrBSFormInput) => {
 	}
 
 	if (attr.floatingLabel) {
-		return new div(container || {}, [tElem, tDatalist, tDescription, tLabel]);
+		//put into tElem
+		if (tElemGroupBefore || tElemGroupAfter) {
+			return new div(container || {}, [
+				new TInputGroupContainer({ noWarp: true }, [
+					...tElemGroupBefore,
+					new div(container || {}, [tElem, tDatalist, tLabel]),
+					...tElemGroupAfter,
+				]),
+				tDescription,
+			]);
+		} else {
+			return new div(container || {}, [tElem, tDatalist, tDescription, tLabel]);
+		}
 	} else {
+		//put into tElem
+		if (tElemGroupBefore.length > 0 || tElemGroupAfter.length > 0) {
+			tElem = new TInputGroupContainer({ noWarp: true }, [...tElemGroupBefore, tElem, ...tElemGroupAfter]);
+		}
+
 		return new div(container || {}, [tLabel, tElem, tDatalist, tDescription]);
 	}
 };
