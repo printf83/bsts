@@ -30,6 +30,7 @@ const convert = (attr: IAttrTagSelect) => {
 		}
 
 		attr.elem = attr.item.map((i) => {
+			i = Object.assign({}, i);
 			if (i.label && i.item && !i.elem) {
 				if (!Array.isArray(i.item)) {
 					i.item = [i.item];
