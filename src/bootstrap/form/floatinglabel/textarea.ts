@@ -3,6 +3,7 @@ import { IAttr, IElem, isTag, tag } from "../../../core/tag.js";
 import { UUID } from "../../../core/uuid.js";
 import { div } from "../../../html/div.js";
 import { label } from "../../label.js";
+import { input } from "../../input.js";
 import { IAttrBSTextarea, textarea as TTextarea } from "../../textarea.js";
 import { text as TInputGroupText } from "../../inputgroup/text.js";
 import { container as TInputGroupContainer } from "../../inputgroup/container.js";
@@ -65,9 +66,49 @@ export const textarea = (attr: IAttrBSFormFloatingLabelTextarea) => {
 			attr.before = [attr.before];
 		}
 
-		attr.before.forEach((i) => {
+		attr.before.forEach((i, ix) => {
 			if (typeof i === "string") {
-				tElemGroupBefore.push(new TInputGroupText(i));
+				switch (i) {
+					case "checkbox":
+						tElemGroupBefore.push(
+							new TInputGroupText(
+								new input({
+									marginTop: 0,
+									type: "checkbox",
+									id: `${attr.id}-checkbox-${ix}`,
+									aria: { label: "Checkbox for following textarea" },
+								})
+							)
+						);
+						break;
+					case "radio":
+						tElemGroupBefore.push(
+							new TInputGroupText(
+								new input({
+									marginTop: 0,
+									type: "radio",
+									id: `${attr.id}-radio-${ix}`,
+									aria: { label: "Radio for following textarea" },
+								})
+							)
+						);
+						break;
+					case "switch":
+						tElemGroupBefore.push(
+							new TInputGroupText(
+								new input({
+									marginTop: 0,
+									type: "checkbox",
+									switch: true,
+									id: `${attr.id}-switch-${ix}`,
+									aria: { label: "Switch for following textarea" },
+								})
+							)
+						);
+						break;
+					default:
+						tElemGroupBefore.push(new TInputGroupText(i));
+				}
 			} else {
 				tElemGroupBefore.push(i);
 			}
@@ -81,9 +122,49 @@ export const textarea = (attr: IAttrBSFormFloatingLabelTextarea) => {
 			attr.after = [attr.after];
 		}
 
-		attr.after.forEach((i) => {
+		attr.after.forEach((i, ix) => {
 			if (typeof i === "string") {
-				tElemGroupAfter.push(new TInputGroupText(i));
+				switch (i) {
+					case "checkbox":
+						tElemGroupAfter.push(
+							new TInputGroupText(
+								new input({
+									marginTop: 0,
+									type: "checkbox",
+									id: `${attr.id}-checkbox-${ix}`,
+									aria: { label: "Checkbox for last textarea" },
+								})
+							)
+						);
+						break;
+					case "radio":
+						tElemGroupAfter.push(
+							new TInputGroupText(
+								new input({
+									marginTop: 0,
+									type: "radio",
+									id: `${attr.id}-radio-${ix}`,
+									aria: { label: "Radio for last textarea" },
+								})
+							)
+						);
+						break;
+					case "switch":
+						tElemGroupAfter.push(
+							new TInputGroupText(
+								new input({
+									marginTop: 0,
+									type: "checkbox",
+									switch: true,
+									id: `${attr.id}-switch-${ix}`,
+									aria: { label: "Switch for last textarea" },
+								})
+							)
+						);
+						break;
+					default:
+						tElemGroupAfter.push(new TInputGroupText(i));
+				}
 			} else {
 				tElemGroupAfter.push(i);
 			}
@@ -99,6 +180,7 @@ export const textarea = (attr: IAttrBSFormFloatingLabelTextarea) => {
 		return new div(container || {}, [
 			new TInputGroupContainer(
 				{
+					weight: attr.weight,
 					class: attr.invalidFeedback || attr.validFeedback ? "has-validation" : undefined,
 					noWarp: !attr.invalidFeedback && !attr.validFeedback ? true : undefined,
 				},

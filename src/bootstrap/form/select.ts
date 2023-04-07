@@ -5,6 +5,7 @@ import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
 import { label } from "../label.js";
 import { IAttrBSSelect, select as TSelect } from "../select.js";
+import { input } from "../input.js";
 import { text as TInputGroupText } from "../inputgroup/text.js";
 import { container as TInputGroupContainer } from "../inputgroup/container.js";
 
@@ -75,9 +76,49 @@ export const select = (attr: IAttrBSFormSelect) => {
 			attr.before = [attr.before];
 		}
 
-		attr.before.forEach((i) => {
+		attr.before.forEach((i, ix) => {
 			if (typeof i === "string") {
-				tElemGroupBefore.push(new TInputGroupText(i));
+				switch (i) {
+					case "checkbox":
+						tElemGroupBefore.push(
+							new TInputGroupText(
+								new input({
+									marginTop: 0,
+									type: "checkbox",
+									id: `${attr.id}-checkbox-${ix}`,
+									aria: { label: "Checkbox for following select" },
+								})
+							)
+						);
+						break;
+					case "radio":
+						tElemGroupBefore.push(
+							new TInputGroupText(
+								new input({
+									marginTop: 0,
+									type: "radio",
+									id: `${attr.id}-radio-${ix}`,
+									aria: { label: "Radio for following select" },
+								})
+							)
+						);
+						break;
+					case "switch":
+						tElemGroupBefore.push(
+							new TInputGroupText(
+								new input({
+									marginTop: 0,
+									type: "checkbox",
+									switch: true,
+									id: `${attr.id}-switch-${ix}`,
+									aria: { label: "Switch for following select" },
+								})
+							)
+						);
+						break;
+					default:
+						tElemGroupBefore.push(new TInputGroupText(i));
+				}
 			} else {
 				tElemGroupBefore.push(i);
 			}
@@ -91,9 +132,49 @@ export const select = (attr: IAttrBSFormSelect) => {
 			attr.after = [attr.after];
 		}
 
-		attr.after.forEach((i) => {
+		attr.after.forEach((i, ix) => {
 			if (typeof i === "string") {
-				tElemGroupAfter.push(new TInputGroupText(i));
+				switch (i) {
+					case "checkbox":
+						tElemGroupAfter.push(
+							new TInputGroupText(
+								new input({
+									marginTop: 0,
+									type: "checkbox",
+									id: `${attr.id}-checkbox-${ix}`,
+									aria: { label: "Checkbox for last select" },
+								})
+							)
+						);
+						break;
+					case "radio":
+						tElemGroupAfter.push(
+							new TInputGroupText(
+								new input({
+									marginTop: 0,
+									type: "radio",
+									id: `${attr.id}-radio-${ix}`,
+									aria: { label: "Radio for last select" },
+								})
+							)
+						);
+						break;
+					case "switch":
+						tElemGroupAfter.push(
+							new TInputGroupText(
+								new input({
+									marginTop: 0,
+									type: "checkbox",
+									switch: true,
+									id: `${attr.id}-switch-${ix}`,
+									aria: { label: "Switch for last select" },
+								})
+							)
+						);
+						break;
+					default:
+						tElemGroupAfter.push(new TInputGroupText(i));
+				}
 			} else {
 				tElemGroupAfter.push(i);
 			}
@@ -160,6 +241,7 @@ export const select = (attr: IAttrBSFormSelect) => {
 	if (tElemGroupBefore.length > 0 || tElemGroupAfter.length > 0) {
 		tElem = new TInputGroupContainer(
 			{
+				weight: attr.weight,
 				class: attr.invalidFeedback || attr.validFeedback ? "has-validation" : undefined,
 				noWarp: !attr.invalidFeedback && !attr.validFeedback ? true : undefined,
 			},
