@@ -1,4 +1,3 @@
-import { bootstrapType } from "../../../core/bootstrap.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { IAttr, IElem, isTag, tag } from "../../../core/tag.js";
 import { UUID } from "../../../core/uuid.js";
@@ -7,6 +6,7 @@ import { label } from "../../label.js";
 import { IAttrBSTextarea, textarea as TTextarea } from "../../textarea.js";
 import { text as TInputGroupText } from "../../inputgroup/text.js";
 import { container as TInputGroupContainer } from "../../inputgroup/container.js";
+import { formfloating } from "../../formfloating.js";
 
 export interface IAttrBSFormFloatingLabelTextarea extends Omit<IAttrBSTextarea, "container"> {
 	description?: string;
@@ -14,6 +14,9 @@ export interface IAttrBSFormFloatingLabelTextarea extends Omit<IAttrBSTextarea, 
 
 	before?: IElem;
 	after?: IElem;
+
+	invalidFeedback?: string;
+	validFeedback?: string;
 }
 
 export const textarea = (attr: IAttrBSFormFloatingLabelTextarea) => {
@@ -36,6 +39,12 @@ export const textarea = (attr: IAttrBSFormFloatingLabelTextarea) => {
 	let tDescription = attr.description
 		? new div({ id: `${attr.id}-description`, class: "form-text" }, attr.description)
 		: "";
+	let tValidFeedback = attr.validFeedback
+		? new div({ id: `${attr.id}-valid-feedback`, class: "valid-feedback" }, attr.validFeedback)
+		: "";
+	let tInvalidFeedback = attr.invalidFeedback
+		? new div({ id: `${attr.id}-invalid-feedback`, class: "invalid-feedback" }, attr.invalidFeedback)
+		: "";
 
 	let tAttr = Object.assign({}, attr);
 	delete tAttr.label;
@@ -43,6 +52,8 @@ export const textarea = (attr: IAttrBSFormFloatingLabelTextarea) => {
 	delete tAttr.container;
 	delete tAttr.before;
 	delete tAttr.after;
+	delete tAttr.validFeedback;
+	delete tAttr.invalidFeedback;
 
 	let tElem = new TTextarea(tAttr as IAttrBSTextarea);
 
@@ -83,21 +94,30 @@ export const textarea = (attr: IAttrBSFormFloatingLabelTextarea) => {
 		tLabel.attr = mergeObject({ class: "form-label" }, tLabel.attr);
 	}
 
-	container = mergeObject(
-		{
-			class: "form-floating",
-		},
-		container
-	);
-
 	//put into tElem
 	if (tElemGroupBefore || tElemGroupAfter) {
 		return new div(container || {}, [
-			new TInputGroupContainer({ noWarp: true }, [
-				...tElemGroupBefore,
-				new div(container || {}, [tElem, tLabel]),
-				...tElemGroupAfter,
-			]),
+			new TInputGroupContainer(
+				{
+					class: attr.invalidFeedback || attr.validFeedback ? "has-validation" : undefined,
+					noWarp: !attr.invalidFeedback && !attr.validFeedback ? true : undefined,
+				},
+				[
+					...tElemGroupBefore,
+					new formfloating(
+						{
+							class: [
+								attr.isvalid === true ? "is-valid" : undefined,
+								attr.isvalid === false ? "is-invalid" : undefined,
+							],
+						},
+						[tElem, tLabel]
+					),
+					...tElemGroupAfter,
+					tValidFeedback,
+					tInvalidFeedback,
+				]
+			),
 			tDescription,
 		]);
 	} else {

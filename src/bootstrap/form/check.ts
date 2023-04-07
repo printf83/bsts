@@ -11,6 +11,10 @@ export interface IAttrBSFormCheck extends Omit<IAttrBSInput, "container"> {
 	hideLabel?: true;
 	inline?: true;
 	reverse?: true;
+	description?: string;
+
+	invalidFeedback?: string;
+	validFeedback?: string;
 }
 
 export const check = (attr: IAttrBSFormCheck) => {
@@ -34,6 +38,15 @@ export const check = (attr: IAttrBSFormCheck) => {
 		},
 		container
 	);
+	let tDescription = attr.description
+		? new div({ id: `${attr.id}-description`, class: "form-text" }, attr.description)
+		: "";
+	let tValidFeedback = attr.validFeedback
+		? new div({ id: `${attr.id}-valid-feedback`, class: "valid-feedback" }, attr.validFeedback)
+		: "";
+	let tInvalidFeedback = attr.invalidFeedback
+		? new div({ id: `${attr.id}-invalid-feedback`, class: "invalid-feedback" }, attr.invalidFeedback)
+		: "";
 
 	let tLabel: label | null = null;
 
@@ -56,8 +69,11 @@ export const check = (attr: IAttrBSFormCheck) => {
 	delete attr.container;
 	delete attr.inline;
 	delete attr.reverse;
+	delete attr.description;
+	delete attr.invalidFeedback;
+	delete attr.validFeedback;
 
 	let tElem = new TInput(attr as IAttrBSInput);
 
-	return new div(container || {}, [tElem, tLabel ? tLabel : ""]);
+	return new div(container || {}, [tElem, tLabel ? tLabel : "", tValidFeedback, tInvalidFeedback]);
 };

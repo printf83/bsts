@@ -7,6 +7,7 @@ import { label } from "../../label.js";
 import { IAttrBSSelect, select as TSelect } from "../../select.js";
 import { text as TInputGroupText } from "../../inputgroup/text.js";
 import { container as TInputGroupContainer } from "../../inputgroup/container.js";
+import { formfloating } from "../../formfloating.js";
 
 export interface IAttrBSFormFloatingLabelSelect extends Omit<IAttrBSSelect, "container"> {
 	description?: string;
@@ -14,6 +15,9 @@ export interface IAttrBSFormFloatingLabelSelect extends Omit<IAttrBSSelect, "con
 
 	before?: IElem;
 	after?: IElem;
+
+	invalidFeedback?: string;
+	validFeedback?: string;
 }
 
 export const select = (attr: IAttrBSFormFloatingLabelSelect) => {
@@ -35,6 +39,12 @@ export const select = (attr: IAttrBSFormFloatingLabelSelect) => {
 	let tDescription = attr.description
 		? new div({ id: `${attr.id}-description`, class: "form-text" }, attr.description)
 		: "";
+	let tValidFeedback = attr.validFeedback
+		? new div({ id: `${attr.id}-valid-feedback`, class: "valid-feedback" }, attr.validFeedback)
+		: "";
+	let tInvalidFeedback = attr.invalidFeedback
+		? new div({ id: `${attr.id}-invalid-feedback`, class: "invalid-feedback" }, attr.invalidFeedback)
+		: "";
 
 	let tAttr = Object.assign({}, attr);
 	delete tAttr.label;
@@ -42,6 +52,8 @@ export const select = (attr: IAttrBSFormFloatingLabelSelect) => {
 	delete tAttr.container;
 	delete tAttr.before;
 	delete tAttr.after;
+	delete tAttr.validFeedback;
+	delete tAttr.invalidFeedback;
 
 	let tElem = new TSelect(tAttr as IAttrBSSelect);
 
@@ -82,21 +94,30 @@ export const select = (attr: IAttrBSFormFloatingLabelSelect) => {
 		tLabel.attr = mergeObject({ class: "form-label" }, tLabel.attr);
 	}
 
-	container = mergeObject(
-		{
-			class: "form-floating",
-		},
-		container
-	);
-
 	//put into tElem
 	if (tElemGroupBefore || tElemGroupAfter) {
 		return new div(container || {}, [
-			new TInputGroupContainer({ noWarp: true }, [
-				...tElemGroupBefore,
-				new div(container || {}, [tElem, tLabel]),
-				...tElemGroupAfter,
-			]),
+			new TInputGroupContainer(
+				{
+					class: attr.invalidFeedback || attr.validFeedback ? "has-validation" : undefined,
+					noWarp: !attr.invalidFeedback && !attr.validFeedback ? true : undefined,
+				},
+				[
+					...tElemGroupBefore,
+					new formfloating(
+						{
+							class: [
+								attr.isvalid === true ? "is-valid" : undefined,
+								attr.isvalid === false ? "is-invalid" : undefined,
+							],
+						},
+						[tElem, tLabel]
+					),
+					...tElemGroupAfter,
+					tValidFeedback,
+					tInvalidFeedback,
+				]
+			),
 			tDescription,
 		]);
 	} else {

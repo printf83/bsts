@@ -20,6 +20,9 @@ export interface IAttrBSFormSelect extends Omit<IAttrBSSelect, "container"> {
 	col1?: bootstrapType.col[number];
 	col2?: bootstrapType.col[number];
 	col3?: false | bootstrapType.col[number];
+
+	invalidFeedback?: string;
+	validFeedback?: string;
 }
 
 export const select = (attr: IAttrBSFormSelect) => {
@@ -42,6 +45,12 @@ export const select = (attr: IAttrBSFormSelect) => {
 	let tDescription = attr.description
 		? new div({ id: `${attr.id}-description`, class: "form-text" }, attr.description)
 		: "";
+	let tValidFeedback = attr.validFeedback
+		? new div({ id: `${attr.id}-valid-feedback`, class: "valid-feedback" }, attr.validFeedback)
+		: "";
+	let tInvalidFeedback = attr.invalidFeedback
+		? new div({ id: `${attr.id}-invalid-feedback`, class: "invalid-feedback" }, attr.invalidFeedback)
+		: "";
 
 	let tAttr = Object.assign({}, attr);
 	delete tAttr.label;
@@ -53,6 +62,8 @@ export const select = (attr: IAttrBSFormSelect) => {
 	delete tAttr.col1;
 	delete tAttr.col2;
 	delete tAttr.col3;
+	delete tAttr.validFeedback;
+	delete tAttr.invalidFeedback;
 
 	let tElem = new TSelect(tAttr as IAttrBSSelect);
 
@@ -147,7 +158,13 @@ export const select = (attr: IAttrBSFormSelect) => {
 
 	//put into tElem
 	if (tElemGroupBefore.length > 0 || tElemGroupAfter.length > 0) {
-		tElem = new TInputGroupContainer({ noWarp: true }, [...tElemGroupBefore, tElem, ...tElemGroupAfter]);
+		tElem = new TInputGroupContainer(
+			{
+				class: attr.invalidFeedback || attr.validFeedback ? "has-validation" : undefined,
+				noWarp: !attr.invalidFeedback && !attr.validFeedback ? true : undefined,
+			},
+			[...tElemGroupBefore, tElem, ...tElemGroupAfter, tValidFeedback, tInvalidFeedback]
+		);
 	}
 
 	return new div(container || {}, [tLabel, tElem, tDescription]);

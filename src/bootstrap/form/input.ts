@@ -43,6 +43,9 @@ export interface IAttrBSFormInput extends Omit<IAttrBSInput, "container"> {
 	col1?: bootstrapType.col[number];
 	col2?: bootstrapType.col[number];
 	col3?: false | bootstrapType.col[number];
+
+	invalidFeedback?: string;
+	validFeedback?: string;
 }
 
 export const input = (attr: IAttrBSFormInput) => {
@@ -70,6 +73,12 @@ export const input = (attr: IAttrBSFormInput) => {
 	let tDescription = attr.description
 		? new div({ id: `${attr.id}-description`, class: "form-text" }, attr.description)
 		: "";
+	let tValidFeedback = attr.validFeedback
+		? new div({ id: `${attr.id}-valid-feedback`, class: "valid-feedback" }, attr.validFeedback)
+		: "";
+	let tInvalidFeedback = attr.invalidFeedback
+		? new div({ id: `${attr.id}-invalid-feedback`, class: "invalid-feedback" }, attr.invalidFeedback)
+		: "";
 
 	let tAttr = Object.assign({}, attr);
 	delete tAttr.datalist;
@@ -82,6 +91,8 @@ export const input = (attr: IAttrBSFormInput) => {
 	delete tAttr.col1;
 	delete tAttr.col2;
 	delete tAttr.col3;
+	delete tAttr.validFeedback;
+	delete tAttr.invalidFeedback;
 
 	let tElem = new TInput(tAttr as IAttrBSInput);
 
@@ -177,7 +188,13 @@ export const input = (attr: IAttrBSFormInput) => {
 
 	//put into tElem
 	if (tElemGroupBefore.length > 0 || tElemGroupAfter.length > 0) {
-		tElem = new TInputGroupContainer({ noWarp: true }, [...tElemGroupBefore, tElem, ...tElemGroupAfter]);
+		tElem = new TInputGroupContainer(
+			{
+				class: attr.invalidFeedback || attr.validFeedback ? "has-validation" : undefined,
+				noWarp: !attr.invalidFeedback && !attr.validFeedback ? true : undefined,
+			},
+			[...tElemGroupBefore, tElem, ...tElemGroupAfter, tValidFeedback, tInvalidFeedback]
+		);
 	}
 
 	return new div(container || {}, [tLabel, tElem, tDatalist, tDescription]);
