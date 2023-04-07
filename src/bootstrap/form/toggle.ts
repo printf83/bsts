@@ -9,25 +9,6 @@ export interface IAttrBSFormToggle extends Omit<IAttrBSInput, "container"> {
 }
 
 export const toggle = (attr: IAttrBSFormToggle) => {
-	// attr.id ??= UUID();
-	// attr.label ??= attr.id;
-
-	// let tAttr = Object.assign({}, attr);
-	// tAttr.toggle = true;
-	// delete tAttr.container;
-	// let tElem = new TInput(tAttr as IAttrBSInput);
-
-	// let tLabel = new label(
-	// 	mergeObject(
-	// 		{
-	// 			for: attr.id,
-	// 			elem: [tElem, attr.label],
-	// 		},
-	// 		attr.container
-	// 	)
-	// );
-
-	// return tLabel;
 	attr.id ??= UUID();
 	attr.label ??= attr.id;
 

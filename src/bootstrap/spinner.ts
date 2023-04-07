@@ -1,7 +1,6 @@
 import { IAttr, IElem, tag } from "../core/tag.js";
 import { bootstrapType, bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
 import { mergeClass } from "../core/mergeClass.js";
-import { span } from "../html/span.js";
 import { visuallyhidden } from "./visuallyhidden.js";
 import { mergeObject } from "../core/mergeObject.js";
 

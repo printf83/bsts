@@ -4,6 +4,7 @@ import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
 import { IAttrBSInput, input as TInput } from "../input.js";
 import { label } from "../label.js";
+import { genDescription, genValidFeedback, genInvalidFeedback } from "./_fn.js";
 
 export interface IAttrBSFormCheck extends Omit<IAttrBSInput, "container"> {
 	type?: "checkbox" | "radio";
@@ -38,18 +39,12 @@ export const check = (attr: IAttrBSFormCheck) => {
 		},
 		container
 	);
-	let tDescription = attr.description
-		? new div({ id: `${attr.id}-description`, class: "form-text" }, attr.description)
-		: "";
-	let tValidFeedback = attr.validFeedback
-		? new div({ id: `${attr.id}-valid-feedback`, class: "valid-feedback" }, attr.validFeedback)
-		: "";
-	let tInvalidFeedback = attr.invalidFeedback
-		? new div({ id: `${attr.id}-invalid-feedback`, class: "invalid-feedback" }, attr.invalidFeedback)
-		: "";
+	let tDescription = genDescription(attr.id, attr.description);
+	let tValidFeedback = genValidFeedback(attr.id, attr.validFeedback);
+	let tInvalidFeedback = genInvalidFeedback(attr.id, attr.invalidFeedback);
 
+	//setup label
 	let tLabel: label | null = null;
-
 	if (!attr.hideLabel) {
 		tLabel = new label(
 			{
@@ -59,21 +54,20 @@ export const check = (attr: IAttrBSFormCheck) => {
 			},
 			attr.label
 		);
-	}
-
-	if (!attr.hideLabel) {
 		delete attr.label;
 	}
 
-	delete attr.hideLabel;
-	delete attr.container;
-	delete attr.inline;
-	delete attr.reverse;
-	delete attr.description;
-	delete attr.invalidFeedback;
-	delete attr.validFeedback;
+	//setup main control
+	let tAttr = Object.assign({}, attr);
+	delete tAttr.hideLabel;
+	delete tAttr.container;
+	delete tAttr.inline;
+	delete tAttr.reverse;
+	delete tAttr.description;
+	delete tAttr.invalidFeedback;
+	delete tAttr.validFeedback;
+	let tElem = new TInput(tAttr as IAttrBSInput);
 
-	let tElem = new TInput(attr as IAttrBSInput);
-
-	return new div(container || {}, [tElem, tLabel ? tLabel : "", tValidFeedback, tInvalidFeedback]);
+	//put in container
+	return new div(container || {}, [tElem, tLabel ? tLabel : "", tDescription, tValidFeedback, tInvalidFeedback]);
 };

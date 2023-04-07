@@ -1,4 +1,4 @@
-import { tagConsArg, IAttr, IElem, tag, isAttr } from "../core/tag.js";
+import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { li } from "./li.js";
 
