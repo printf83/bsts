@@ -52,7 +52,10 @@ export const select = (attr: IAttrBSFormSelect) => {
 
 	//setup main control
 	let tAttr = Object.assign({}, attr);
-	delete tAttr.label;
+	if (!tAttr.hideLabel) {
+		delete tAttr.label;
+	}
+
 	delete tAttr.hideLabel;
 	delete tAttr.description;
 	delete tAttr.container;
@@ -80,7 +83,13 @@ export const select = (attr: IAttrBSFormSelect) => {
 		);
 
 		if (isTag<label>(tLabel)) {
-			tLabel.attr = mergeObject({ col: attr.col1, class: "col-form-label" }, tLabel.attr);
+			tLabel.attr = mergeObject(
+				{
+					col: attr.col1,
+					class: ["col-form-label", attr.weight ? `col-form-label-${attr.weight}` : undefined],
+				},
+				tLabel.attr
+			);
 		}
 
 		if (attr.col3 !== false) {

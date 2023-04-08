@@ -21,6 +21,7 @@ export interface IAttrBSFormCheck extends Omit<IAttrBSInput, "container"> {
 export const check = (attr: IAttrBSFormCheck) => {
 	let container = attr.container;
 
+	attr.type ??= "checkbox";
 	attr.id ??= UUID();
 	attr.label ??= attr.id;
 
@@ -59,6 +60,9 @@ export const check = (attr: IAttrBSFormCheck) => {
 
 	//setup main control
 	let tAttr = Object.assign({}, attr);
+	if (!tAttr.hideLabel) {
+		delete tAttr.label;
+	}
 	delete tAttr.hideLabel;
 	delete tAttr.container;
 	delete tAttr.inline;

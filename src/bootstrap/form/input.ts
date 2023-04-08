@@ -59,6 +59,7 @@ export interface IAttrBSFormInput extends Omit<IAttrBSInput, "container"> {
 export const input = (attr: IAttrBSFormInput) => {
 	let container = attr.container;
 
+	attr.type ??= "text";
 	attr.id ??= UUID();
 	attr.describedby = attr.description ? `${attr.id}-description` : undefined;
 	if (attr.datalist) {
@@ -86,8 +87,11 @@ export const input = (attr: IAttrBSFormInput) => {
 	attr.col3 = colSetting.col3;
 
 	let tAttr = Object.assign({}, attr);
+	if (!tAttr.hideLabel) {
+		delete tAttr.label;
+	}
+
 	delete tAttr.datalist;
-	delete tAttr.label;
 	delete tAttr.hideLabel;
 	delete tAttr.description;
 	delete tAttr.container;
@@ -115,7 +119,13 @@ export const input = (attr: IAttrBSFormInput) => {
 		);
 
 		if (isTag<label>(tLabel)) {
-			tLabel.attr = mergeObject({ col: attr.col1, class: "col-form-label" }, tLabel.attr);
+			tLabel.attr = mergeObject(
+				{
+					col: attr.col1,
+					class: ["col-form-label", attr.weight ? `col-form-label-${attr.weight}` : undefined],
+				},
+				tLabel.attr
+			);
 		}
 
 		if (attr.col3 !== false) {

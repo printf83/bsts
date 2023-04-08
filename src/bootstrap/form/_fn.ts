@@ -69,15 +69,26 @@ export const genGroupItem = (id: string, item?: IElem) => {
 };
 
 export const genLabel = (id: string, label?: string, hideLabel?: boolean) => {
-	return label
-		? new TLabel(
-				{
-					for: id,
-					visually: hideLabel ? "hidden" : undefined,
-				},
-				label
-		  )
-		: "";
+	if (label && !hideLabel) {
+		return new TLabel(
+			{
+				for: id,
+			},
+			label
+		);
+	} else {
+		return "";
+	}
+
+	// return label
+	// 	? new TLabel(
+	// 			{
+	// 				for: id,
+	// 				visually: hideLabel ? "hidden" : undefined,
+	// 			},
+	// 			label
+	// 	  )
+	// 	: "";
 };
 export const colSetup = (
 	validfeedback?: string,

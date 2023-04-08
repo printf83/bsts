@@ -44,6 +44,7 @@ export interface IAttrBSFormFloatingLabelInput extends Omit<IAttrBSInput, "conta
 export const input = (attr: IAttrBSFormFloatingLabelInput) => {
 	let container = attr.container;
 
+	attr.type ??= "text";
 	attr.id ??= UUID();
 	attr.describedby = attr.description ? `${attr.id}-description` : undefined;
 	attr.placeholder ??= attr.label;
