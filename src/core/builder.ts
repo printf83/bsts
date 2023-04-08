@@ -190,7 +190,23 @@ const markup = (str: string) => {
 					if (m) {
 						return m;
 					} else {
-						return new a({ href: d }, e);
+						if (d.startsWith("nav:")) {
+							return new a(
+								{
+									href: "#",
+									on: {
+										click: () => {
+											document.dispatchEvent(
+												new CustomEvent("bs-navigate", { detail: d.slice(4) })
+											);
+										},
+									},
+								},
+								e
+							);
+						} else {
+							return new a({ href: d, target: "_blank" }, e);
+						}
 					}
 				} else {
 					return new code(s.slice(2, -2));

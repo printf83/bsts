@@ -1,4 +1,3 @@
-import { mergeObject } from "../../core/mergeObject.js";
 import { IAttr } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
