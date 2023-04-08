@@ -19,27 +19,19 @@ export interface IAttrBSFormCheck extends Omit<IAttrBSInput, "container"> {
 }
 
 export const check = (attr: IAttrBSFormCheck) => {
-	let container = attr.container;
-
 	attr.type ??= "checkbox";
 	attr.id ??= UUID();
 	attr.label ??= attr.id;
 
-	if (!container) {
-		container = {};
-	}
+	let tContainer = {
+		class: [
+			attr.hideLabel ? undefined : "form-check",
+			attr.switch ? "form-switch" : undefined,
+			attr.inline ? "form-check-inline" : undefined,
+			attr.reverse ? "form-check-reverse" : undefined,
+		],
+	};
 
-	container = mergeObject(
-		{
-			class: [
-				attr.hideLabel ? undefined : "form-check",
-				attr.switch ? "form-switch" : undefined,
-				attr.inline ? "form-check-inline" : undefined,
-				attr.reverse ? "form-check-reverse" : undefined,
-			],
-		},
-		container
-	);
 	let tDescription = genDescription(attr.id, attr.description);
 	let tValidFeedback = genValidFeedback(attr.id, attr.validFeedback);
 	let tInvalidFeedback = genInvalidFeedback(attr.id, attr.invalidFeedback);
@@ -73,5 +65,12 @@ export const check = (attr: IAttrBSFormCheck) => {
 	let tElem = new TInput(tAttr as IAttrBSInput);
 
 	//put in container
-	return new div(container || {}, [tElem, tLabel ? tLabel : "", tDescription, tValidFeedback, tInvalidFeedback]);
+	if (attr.container) {
+		return new div(
+			attr.container,
+			new div(tContainer, [tElem, tLabel ? tLabel : "", tDescription, tValidFeedback, tInvalidFeedback])
+		);
+	} else {
+		return new div(tContainer, [tElem, tLabel ? tLabel : "", tDescription, tValidFeedback, tInvalidFeedback]);
+	}
 };
