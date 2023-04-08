@@ -16,10 +16,7 @@ export interface IAttrBSLabel extends IAttrTagLabel, IAttrBSButton {
 	labelDisplay?: IBootstrapTypeDisplay;
 
 	stretched?: boolean;
-	formCheck?: boolean;
-
-	// color?: bootstrapType.color[number];
-	// outline?: boolean;
+	// formCheck?: boolean;
 }
 
 const fnRow = (display: IBootstrapTypeDisplay | undefined, elem: IElem) => {
@@ -105,9 +102,9 @@ const convert = (attr: IAttrBSLabel) => {
 
 	//check label toggle
 	//color & outline
-	if (attr.formCheck) {
-		attr.class = mergeClass(attr.class, "form-check-label");
-	}
+	// if (attr.formCheck) {
+	// 	attr.class = mergeClass(attr.class, "form-check-label");
+	// }
 
 	if (attr.stretched) {
 		attr.class = mergeClass(attr.class, "stretched-link");
@@ -126,10 +123,7 @@ const convert = (attr: IAttrBSLabel) => {
 	delete tAttr.iconDisplay;
 	delete tAttr.labelDisplay;
 	delete tAttr.stretched;
-	delete tAttr.formCheck;
-
-	// delete tAttr.color;
-	// delete tAttr.outline;
+	// delete tAttr.formCheck;
 
 	delete attr.elem;
 	attr.elem = tElem;

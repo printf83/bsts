@@ -18,7 +18,6 @@ export const show = (i: container) => {
 
 	i.attr.id ??= UUID();
 
-	// let body = document.getElementById("main") as HTMLElement;
 	appendChild(document.body, i);
 
 	let mdl = document.getElementById(i.attr.id);

@@ -19,8 +19,6 @@ const convert = (attr: IAttrBSNavLink) => {
 			attr.role ??= "tab";
 			break;
 		default:
-		// attr.role ??= "tab";
-		// attr.toggle ??= "tab";
 	}
 
 	attr = mergeObject(

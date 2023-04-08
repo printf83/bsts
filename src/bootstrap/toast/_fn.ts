@@ -112,7 +112,11 @@ export const simple = (attr: IAttrBSToastSimple) => {
 				textBgColor: attr.color,
 			},
 			[
-				new header([new div({ marginEnd: "auto" }, new strong(attr.title)), new time(), new btnclose()]),
+				new header([
+					new div({ marginEnd: "auto" }, new strong(attr.title)),
+					attr.delay > 5000 ? new time() : "",
+					new btnclose(),
+				]),
 				new body(attr.elem),
 			]
 		);

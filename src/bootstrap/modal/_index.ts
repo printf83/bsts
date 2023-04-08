@@ -16,8 +16,8 @@ export {
 	IAttrBSModalBtnclose,
 	IAttrBSModalContainer,
 	IAttrBSModalHeader,
-	IAttrBSModalSimple,
 	show,
 	hide,
 	simple,
+	IAttrBSModalSimple,
 };
