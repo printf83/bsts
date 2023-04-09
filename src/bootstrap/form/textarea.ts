@@ -6,7 +6,17 @@ import { div } from "../../html/div.js";
 import { label } from "../label.js";
 import { IAttrBSTextarea, textarea as TTextarea } from "../textarea.js";
 import { container as TInputGroupContainer } from "../inputgroup/container.js";
-import { genLabel, genDescription, genValidFeedback, genInvalidFeedback, genGroupItem, colSetup } from "./_fn.js";
+import {
+	genLabel,
+	genDescription,
+	genValidFeedback,
+	genInvalidFeedback,
+	genGroupItem,
+	colSetup,
+	descriptionSetup,
+	genInvalidTooltip,
+	genValidTooltip,
+} from "./_fn.js";
 
 export interface IAttrBSFormTextarea extends Omit<IAttrBSTextarea, "container"> {
 	description?: string;
@@ -23,19 +33,30 @@ export interface IAttrBSFormTextarea extends Omit<IAttrBSTextarea, "container"> 
 
 	invalidFeedback?: string;
 	validFeedback?: string;
+	invalidTooltip?: string;
+	validTooltip?: string;
 }
 
 export const textarea = (attr: IAttrBSFormTextarea) => {
 	let container = attr.container;
 
 	attr.id ??= UUID();
-	attr.describedby = attr.description ? `${attr.id}-description` : undefined;
-
+	attr.describedby = descriptionSetup(
+		attr.id,
+		attr.describedby,
+		attr.description,
+		attr.validFeedback,
+		attr.invalidFeedback,
+		attr.validTooltip,
+		attr.invalidTooltip
+	);
 	//setup element
 	let tLabel = genLabel(attr.id, attr.label, attr.hideLabel);
 	let tDescription = genDescription(attr.id, attr.description);
 	let tValidFeedback = genValidFeedback(attr.id, attr.validFeedback);
 	let tInvalidFeedback = genInvalidFeedback(attr.id, attr.invalidFeedback);
+	let tValidTooltip = genValidTooltip(attr.id, attr.validTooltip);
+	let tInvalidTooltip = genInvalidTooltip(attr.id, attr.invalidTooltip);
 	let tElemGroupBefore = genGroupItem(attr.id, attr.before);
 	let tElemGroupAfter = genGroupItem(attr.id, attr.after);
 	let colSetting = colSetup(
@@ -66,6 +87,8 @@ export const textarea = (attr: IAttrBSFormTextarea) => {
 	delete tAttr.col3;
 	delete tAttr.validFeedback;
 	delete tAttr.invalidFeedback;
+	delete tAttr.validTooltip;
+	delete tAttr.invalidTooltip;
 
 	let tElem = new TTextarea(tAttr as IAttrBSTextarea);
 
@@ -110,12 +133,48 @@ export const textarea = (attr: IAttrBSFormTextarea) => {
 		tElem = new TInputGroupContainer(
 			{
 				weight: attr.weight,
-				class: attr.invalidFeedback || attr.validFeedback ? "has-validation" : undefined,
-				noWarp: !attr.invalidFeedback && !attr.validFeedback ? true : undefined,
+				class:
+					attr.invalidFeedback || attr.validFeedback || attr.invalidTooltip || attr.validTooltip
+						? "has-validation"
+						: undefined,
+				noWarp:
+					!attr.invalidFeedback && !attr.validFeedback && !attr.invalidTooltip && !attr.validTooltip
+						? true
+						: undefined,
+				position: tInvalidTooltip || tValidTooltip ? "relative" : undefined,
 			},
-			[...tElemGroupBefore, tElem, ...tElemGroupAfter, tValidFeedback, tInvalidFeedback]
+			[
+				...tElemGroupBefore,
+				tElem,
+				...tElemGroupAfter,
+				tValidFeedback,
+				tInvalidFeedback,
+				tValidTooltip,
+				tInvalidTooltip,
+			]
 		);
+
+		tValidFeedback = "";
+		tInvalidFeedback = "";
+		tValidTooltip = "";
+		tInvalidTooltip = "";
 	}
 
-	return new div(container || {}, [tLabel, tElem, tDescription]);
+	if (tValidTooltip || tInvalidTooltip) {
+		if (!container) {
+			container = {};
+		}
+
+		container = mergeObject({ position: "relative" }, container);
+	}
+
+	return new div(container || {}, [
+		tLabel,
+		tElem,
+		tDescription,
+		tValidFeedback,
+		tInvalidFeedback,
+		tValidTooltip,
+		tInvalidTooltip,
+	]);
 };

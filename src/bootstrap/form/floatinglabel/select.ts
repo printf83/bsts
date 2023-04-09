@@ -5,7 +5,17 @@ import { label } from "../../label.js";
 import { IAttrBSSelect, select as TSelect } from "../../select.js";
 import { container as TInputGroupContainer } from "../../inputgroup/container.js";
 import { formfloating } from "../../formfloating.js";
-import { genDescription, genValidFeedback, genInvalidFeedback, genGroupItem } from "../_fn.js";
+import {
+	genDescription,
+	genValidFeedback,
+	genInvalidFeedback,
+	genGroupItem,
+	descriptionSetup,
+	genValidTooltip,
+	genInvalidTooltip,
+	labelFloatingFeedbackManager,
+} from "../_fn.js";
+import { mergeObject } from "../../../core/mergeObject.js";
 
 export interface IAttrBSFormFloatingLabelSelect extends Omit<IAttrBSSelect, "container"> {
 	description?: string;
@@ -16,13 +26,23 @@ export interface IAttrBSFormFloatingLabelSelect extends Omit<IAttrBSSelect, "con
 
 	invalidFeedback?: string;
 	validFeedback?: string;
+	invalidTooltip?: string;
+	validTooltip?: string;
 }
 
 export const select = (attr: IAttrBSFormFloatingLabelSelect) => {
 	let container = attr.container;
 
 	attr.id ??= UUID();
-	attr.describedby = attr.description ? `${attr.id}-description` : undefined;
+	attr.describedby = descriptionSetup(
+		attr.id,
+		attr.describedby,
+		attr.description,
+		attr.validFeedback,
+		attr.invalidFeedback,
+		attr.validTooltip,
+		attr.invalidTooltip
+	);
 
 	//setup label
 	let tLabel = attr.label
@@ -39,11 +59,13 @@ export const select = (attr: IAttrBSFormFloatingLabelSelect) => {
 	let tDescription = genDescription(attr.id, attr.description);
 	let tValidFeedback = genValidFeedback(attr.id, attr.validFeedback);
 	let tInvalidFeedback = genInvalidFeedback(attr.id, attr.invalidFeedback);
+	let tValidTooltip = genValidTooltip(attr.id, attr.validTooltip);
+	let tInvalidTooltip = genInvalidTooltip(attr.id, attr.invalidTooltip);
 	let tElemGroupBefore = genGroupItem(attr.id, attr.before);
 	let tElemGroupAfter = genGroupItem(attr.id, attr.after);
 
 	//setup main control
-	let tAttr = Object.assign({}, attr);
+	let tAttr: IAttrBSSelect | IAttrBSFormFloatingLabelSelect = Object.assign({}, attr);
 	delete tAttr.label;
 	delete tAttr.description;
 	delete tAttr.container;
@@ -51,6 +73,17 @@ export const select = (attr: IAttrBSFormFloatingLabelSelect) => {
 	delete tAttr.after;
 	delete tAttr.validFeedback;
 	delete tAttr.invalidFeedback;
+	delete tAttr.validTooltip;
+	delete tAttr.invalidTooltip;
+
+	tAttr = tAttr as IAttrBSSelect;
+	if (attr.validFeedback || attr.invalidFeedback || attr.validTooltip || attr.invalidTooltip) {
+		tAttr = mergeObject(
+			{ on: { input: labelFloatingFeedbackManager, invalid: labelFloatingFeedbackManager } },
+			tAttr
+		);
+	}
+
 	let tElem = new TSelect(tAttr as IAttrBSSelect);
 
 	//put into tElem
@@ -59,8 +92,14 @@ export const select = (attr: IAttrBSFormFloatingLabelSelect) => {
 			new TInputGroupContainer(
 				{
 					weight: attr.weight,
-					class: attr.invalidFeedback || attr.validFeedback ? "has-validation" : undefined,
-					noWarp: !attr.invalidFeedback && !attr.validFeedback ? true : undefined,
+					class:
+						attr.invalidFeedback || attr.validFeedback || attr.invalidTooltip || attr.validTooltip
+							? "has-validation"
+							: undefined,
+					noWarp:
+						!attr.invalidFeedback && !attr.validFeedback && !attr.invalidTooltip && !attr.validTooltip
+							? true
+							: undefined,
 				},
 				[
 					...tElemGroupBefore,
@@ -76,6 +115,8 @@ export const select = (attr: IAttrBSFormFloatingLabelSelect) => {
 					...tElemGroupAfter,
 					tValidFeedback,
 					tInvalidFeedback,
+					tValidTooltip,
+					tInvalidTooltip,
 				]
 			),
 			tDescription,

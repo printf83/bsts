@@ -5,7 +5,17 @@ import { label } from "../../label.js";
 import { IAttrBSTextarea, textarea as TTextarea } from "../../textarea.js";
 import { container as TInputGroupContainer } from "../../inputgroup/container.js";
 import { formfloating } from "../../formfloating.js";
-import { genDescription, genValidFeedback, genInvalidFeedback, genGroupItem } from "../_fn.js";
+import {
+	genDescription,
+	genValidFeedback,
+	genInvalidFeedback,
+	genGroupItem,
+	descriptionSetup,
+	genValidTooltip,
+	genInvalidTooltip,
+	labelFloatingFeedbackManager,
+} from "../_fn.js";
+import { mergeObject } from "../../../core/mergeObject.js";
 
 export interface IAttrBSFormFloatingLabelTextarea extends Omit<IAttrBSTextarea, "container"> {
 	description?: string;
@@ -16,13 +26,23 @@ export interface IAttrBSFormFloatingLabelTextarea extends Omit<IAttrBSTextarea, 
 
 	invalidFeedback?: string;
 	validFeedback?: string;
+	invalidTooltip?: string;
+	validTooltip?: string;
 }
 
 export const textarea = (attr: IAttrBSFormFloatingLabelTextarea) => {
 	let container = attr.container;
 
 	attr.id ??= UUID();
-	attr.describedby = attr.description ? `${attr.id}-description` : undefined;
+	attr.describedby = descriptionSetup(
+		attr.id,
+		attr.describedby,
+		attr.description,
+		attr.validFeedback,
+		attr.invalidFeedback,
+		attr.validTooltip,
+		attr.invalidTooltip
+	);
 	attr.placeholder ??= attr.label;
 
 	//setup label
@@ -40,11 +60,13 @@ export const textarea = (attr: IAttrBSFormFloatingLabelTextarea) => {
 	let tDescription = genDescription(attr.id, attr.description);
 	let tValidFeedback = genValidFeedback(attr.id, attr.validFeedback);
 	let tInvalidFeedback = genInvalidFeedback(attr.id, attr.invalidFeedback);
+	let tValidTooltip = genValidTooltip(attr.id, attr.validTooltip);
+	let tInvalidTooltip = genInvalidTooltip(attr.id, attr.invalidTooltip);
 	let tElemGroupBefore = genGroupItem(attr.id, attr.before);
 	let tElemGroupAfter = genGroupItem(attr.id, attr.after);
 
 	//setup main control
-	let tAttr = Object.assign({}, attr);
+	let tAttr: IAttrBSTextarea | IAttrBSFormFloatingLabelTextarea = Object.assign({}, attr);
 	delete tAttr.label;
 	delete tAttr.description;
 	delete tAttr.container;
@@ -52,6 +74,17 @@ export const textarea = (attr: IAttrBSFormFloatingLabelTextarea) => {
 	delete tAttr.after;
 	delete tAttr.validFeedback;
 	delete tAttr.invalidFeedback;
+	delete tAttr.validTooltip;
+	delete tAttr.invalidTooltip;
+
+	tAttr = tAttr as IAttrBSTextarea;
+	if (attr.validFeedback || attr.invalidFeedback || attr.validTooltip || attr.invalidTooltip) {
+		tAttr = mergeObject(
+			{ on: { input: labelFloatingFeedbackManager, invalid: labelFloatingFeedbackManager } },
+			tAttr
+		);
+	}
+
 	let tElem = new TTextarea(tAttr as IAttrBSTextarea);
 
 	//put into tElem
@@ -60,8 +93,14 @@ export const textarea = (attr: IAttrBSFormFloatingLabelTextarea) => {
 			new TInputGroupContainer(
 				{
 					weight: attr.weight,
-					class: attr.invalidFeedback || attr.validFeedback ? "has-validation" : undefined,
-					noWarp: !attr.invalidFeedback && !attr.validFeedback ? true : undefined,
+					class:
+						attr.invalidFeedback || attr.validFeedback || attr.invalidTooltip || attr.validTooltip
+							? "has-validation"
+							: undefined,
+					noWarp:
+						!attr.invalidFeedback && !attr.validFeedback && !attr.invalidTooltip && !attr.validTooltip
+							? true
+							: undefined,
 				},
 				[
 					...tElemGroupBefore,
@@ -77,6 +116,8 @@ export const textarea = (attr: IAttrBSFormFloatingLabelTextarea) => {
 					...tElemGroupAfter,
 					tValidFeedback,
 					tInvalidFeedback,
+					tValidTooltip,
+					tInvalidTooltip,
 				]
 			),
 			tDescription,

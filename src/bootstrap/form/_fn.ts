@@ -22,6 +22,14 @@ export const genInvalidFeedback = (id: string, feedback?: string) => {
 	return feedback ? new div({ id: `${id}-invalid-feedback`, class: "invalid-feedback" }, feedback) : "";
 };
 
+export const genValidTooltip = (id: string, feedback?: string) => {
+	return feedback ? new div({ id: `${id}-valid-tooltip`, class: "valid-tooltip" }, feedback) : "";
+};
+
+export const genInvalidTooltip = (id: string, feedback?: string) => {
+	return feedback ? new div({ id: `${id}-invalid-tooltip`, class: "invalid-tooltip" }, feedback) : "";
+};
+
 export const genGroupItem = (id: string, item?: IElem) => {
 	let result: (string | tag)[] = [];
 
@@ -125,4 +133,68 @@ export const colSetup = (
 	}
 
 	return { col1, col2, col3 };
+};
+export const descriptionSetup = (
+	id: string,
+	describedby?: string,
+	description?: string,
+	validFeedback?: string,
+	invalidFeedback?: string,
+	validTooltip?: string,
+	invalidTooltip?: string
+) => {
+	if (describedby) {
+		switch (describedby) {
+			case "[description]":
+				if (description) {
+					return `${id}-description`;
+				}
+				break;
+			case "[valid]":
+				if (validFeedback) {
+					return `${id}-valid-feedback`;
+				} else if (validTooltip) {
+					return `${id}-valid-tooltip`;
+				} else if (description) {
+					return `${id}-description`;
+				}
+				break;
+			case "[invalid]":
+				if (invalidFeedback) {
+					return `${id}-invalid-feedback`;
+				} else if (invalidTooltip) {
+					return `${id}-invalid-tooltip`;
+				} else if (description) {
+					return `${id}-description`;
+				}
+				break;
+			default:
+				return describedby;
+		}
+	} else {
+		if (description) {
+			return `${id}-description`;
+		}
+	}
+
+	return undefined;
+};
+
+export const labelFloatingFeedbackManager = (e: Event) => {
+	const target = e.target as HTMLInputElement;
+	const validity = target.validity;
+	const container = target.closest(".form-floating");
+	if (container) {
+		if (validity.valid) {
+			target.classList.remove("is-invalid");
+			target.classList.add("is-valid");
+			container.classList.remove("is-invalid");
+			container.classList.add("is-valid");
+		} else {
+			target.classList.remove("is-valid");
+			target.classList.add("is-invalid");
+			container.classList.remove("is-valid");
+			container.classList.add("is-invalid");
+		}
+	}
 };

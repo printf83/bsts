@@ -9,12 +9,15 @@ import { container as TInputGroupContainer } from "../inputgroup/container.js";
 import { label } from "../label.js";
 import {
 	colSetup,
+	descriptionSetup,
 	genDatalist,
 	genDescription,
 	genGroupItem,
 	genInvalidFeedback,
+	genInvalidTooltip,
 	genLabel,
 	genValidFeedback,
+	genValidTooltip,
 } from "./_fn.js";
 
 export interface IAttrBSFormInput extends Omit<IAttrBSInput, "container"> {
@@ -54,6 +57,8 @@ export interface IAttrBSFormInput extends Omit<IAttrBSInput, "container"> {
 
 	invalidFeedback?: string;
 	validFeedback?: string;
+	invalidTooltip?: string;
+	validTooltip?: string;
 }
 
 export const input = (attr: IAttrBSFormInput) => {
@@ -61,7 +66,15 @@ export const input = (attr: IAttrBSFormInput) => {
 
 	attr.type ??= "text";
 	attr.id ??= UUID();
-	attr.describedby = attr.description ? `${attr.id}-description` : undefined;
+	attr.describedby = descriptionSetup(
+		attr.id,
+		attr.describedby,
+		attr.description,
+		attr.validFeedback,
+		attr.invalidFeedback,
+		attr.validTooltip,
+		attr.invalidTooltip
+	);
 	if (attr.datalist) {
 		attr.list = `${attr.id}-datalist`;
 	}
@@ -72,6 +85,8 @@ export const input = (attr: IAttrBSFormInput) => {
 	let tDescription = genDescription(attr.id, attr.description);
 	let tValidFeedback = genValidFeedback(attr.id, attr.validFeedback);
 	let tInvalidFeedback = genInvalidFeedback(attr.id, attr.invalidFeedback);
+	let tValidTooltip = genValidTooltip(attr.id, attr.validTooltip);
+	let tInvalidTooltip = genInvalidTooltip(attr.id, attr.invalidTooltip);
 	let tElemGroupBefore = genGroupItem(attr.id, attr.before);
 	let tElemGroupAfter = genGroupItem(attr.id, attr.after);
 	let colSetting = colSetup(
@@ -102,6 +117,8 @@ export const input = (attr: IAttrBSFormInput) => {
 	delete tAttr.col3;
 	delete tAttr.validFeedback;
 	delete tAttr.invalidFeedback;
+	delete tAttr.validTooltip;
+	delete tAttr.invalidTooltip;
 
 	let tElem = new TInput(tAttr as IAttrBSInput);
 
@@ -147,12 +164,49 @@ export const input = (attr: IAttrBSFormInput) => {
 		tElem = new TInputGroupContainer(
 			{
 				weight: attr.weight,
-				class: attr.invalidFeedback || attr.validFeedback ? "has-validation" : undefined,
-				noWarp: !attr.invalidFeedback && !attr.validFeedback ? true : undefined,
+				class:
+					attr.invalidFeedback || attr.validFeedback || attr.invalidTooltip || attr.validTooltip
+						? "has-validation"
+						: undefined,
+				noWarp:
+					!attr.invalidFeedback && !attr.validFeedback && !attr.invalidTooltip && !attr.validTooltip
+						? true
+						: undefined,
+				position: tInvalidTooltip || tValidTooltip ? "relative" : undefined,
 			},
-			[...tElemGroupBefore, tElem, ...tElemGroupAfter, tValidFeedback, tInvalidFeedback]
+			[
+				...tElemGroupBefore,
+				tElem,
+				...tElemGroupAfter,
+				tValidFeedback,
+				tInvalidFeedback,
+				tValidTooltip,
+				tInvalidTooltip,
+			]
 		);
+
+		tValidFeedback = "";
+		tInvalidFeedback = "";
+		tValidTooltip = "";
+		tInvalidTooltip = "";
 	}
 
-	return new div(container || {}, [tLabel, tElem, tDatalist, tDescription]);
+	if (tValidTooltip || tInvalidTooltip) {
+		if (!container) {
+			container = {};
+		}
+
+		container = mergeObject({ position: "relative" }, container);
+	}
+
+	return new div(container || {}, [
+		tLabel,
+		tElem,
+		tDatalist,
+		tDescription,
+		tValidFeedback,
+		tInvalidFeedback,
+		tValidTooltip,
+		tInvalidTooltip,
+	]);
 };

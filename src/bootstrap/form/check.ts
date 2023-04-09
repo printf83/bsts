@@ -3,7 +3,14 @@ import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
 import { IAttrBSInput, input as TInput } from "../input.js";
 import { label } from "../label.js";
-import { genDescription, genValidFeedback, genInvalidFeedback } from "./_fn.js";
+import {
+	genDescription,
+	genValidFeedback,
+	genInvalidFeedback,
+	descriptionSetup,
+	genInvalidTooltip,
+	genValidTooltip,
+} from "./_fn.js";
 
 export interface IAttrBSFormCheck extends Omit<IAttrBSInput, "container"> {
 	type?: "checkbox" | "radio";
@@ -15,25 +22,39 @@ export interface IAttrBSFormCheck extends Omit<IAttrBSInput, "container"> {
 
 	invalidFeedback?: string;
 	validFeedback?: string;
+	invalidTooltip?: string;
+	validTooltip?: string;
 }
 
 export const check = (attr: IAttrBSFormCheck) => {
 	attr.type ??= "checkbox";
 	attr.id ??= UUID();
 	attr.label ??= attr.id;
+	attr.describedby = descriptionSetup(
+		attr.id,
+		attr.describedby,
+		attr.description,
+		attr.validFeedback,
+		attr.invalidFeedback,
+		attr.validTooltip,
+		attr.invalidTooltip
+	);
 
-	let tContainer = {
+	let tContainer: IAttr = {
 		class: [
 			attr.hideLabel ? undefined : "form-check",
 			attr.switch ? "form-switch" : undefined,
 			attr.inline ? "form-check-inline" : undefined,
 			attr.reverse ? "form-check-reverse" : undefined,
 		],
+		position: attr.validTooltip || attr.invalidTooltip ? "relative" : undefined,
 	};
 
 	let tDescription = genDescription(attr.id, attr.description);
 	let tValidFeedback = genValidFeedback(attr.id, attr.validFeedback);
 	let tInvalidFeedback = genInvalidFeedback(attr.id, attr.invalidFeedback);
+	let tValidTooltip = genValidTooltip(attr.id, attr.validTooltip);
+	let tInvalidTooltip = genInvalidTooltip(attr.id, attr.invalidTooltip);
 
 	//setup label
 	let tLabel: label | null = null;
@@ -61,15 +82,33 @@ export const check = (attr: IAttrBSFormCheck) => {
 	delete tAttr.description;
 	delete tAttr.invalidFeedback;
 	delete tAttr.validFeedback;
+	delete tAttr.validTooltip;
+	delete tAttr.invalidTooltip;
 	let tElem = new TInput(tAttr as IAttrBSInput);
 
 	//put in container
 	if (attr.container) {
 		return new div(
 			attr.container,
-			new div(tContainer, [tElem, tLabel ? tLabel : "", tDescription, tValidFeedback, tInvalidFeedback])
+			new div(tContainer, [
+				tElem,
+				tLabel ? tLabel : "",
+				tDescription,
+				tValidFeedback,
+				tInvalidFeedback,
+				tValidTooltip,
+				tInvalidTooltip,
+			])
 		);
 	} else {
-		return new div(tContainer, [tElem, tLabel ? tLabel : "", tDescription, tValidFeedback, tInvalidFeedback]);
+		return new div(tContainer, [
+			tElem,
+			tLabel ? tLabel : "",
+			tDescription,
+			tValidFeedback,
+			tInvalidFeedback,
+			tValidTooltip,
+			tInvalidTooltip,
+		]);
 	}
 };
