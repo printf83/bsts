@@ -53,4 +53,11 @@ export class tooltip extends span {
 	constructor(...arg: any[]) {
 		super(bsConstArg<IAttrBSTooltip>("elem", convert, arg));
 	}
+
+	static getInstance = (elem: HTMLElement) => {
+		return window.bootstrap.Tooltip.getInstance(elem);
+	};
+	static getOrCreateInstance = (elem: HTMLElement) => {
+		return window.bootstrap.Tooltip.getOrCreateInstance(elem);
+	};
 }

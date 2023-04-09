@@ -10,7 +10,20 @@ import {
 	bsConstArg,
 	bsConstArgTag,
 } from "./bootstrap.js";
-import { init, build, node, html, appendChild, prependChild, replaceChild, replaceWith } from "./builder.js";
+import {
+	init,
+	build,
+	node,
+	html,
+	appendChild,
+	prependChild,
+	replaceChild,
+	replaceWith,
+	removeActiveModal,
+	removeActivePopover,
+	removeActiveToast,
+	removeActiveTooltip,
+} from "./builder.js";
 import { camel2Dash } from "./camel2Dash.js";
 import { elemReady, documentReady } from "./documentReady.js";
 import { IDEventDB, HTMLElementWithEventDB, addEvent, deleteEvent } from "./eventManager.js";
@@ -61,6 +74,10 @@ export {
 	prependChild,
 	replaceChild,
 	replaceWith,
+	removeActiveModal,
+	removeActivePopover,
+	removeActiveToast,
+	removeActiveTooltip,
 	camel2Dash,
 	elemReady,
 	documentReady,

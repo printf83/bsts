@@ -95,6 +95,7 @@ const convert = (attr: IAttrBSCarousel) => {
 	delete attr.fade;
 	delete attr.autoPlay;
 	delete attr.disableTouch;
+	delete attr.innerRounded;
 
 	delete attr.item;
 	delete attr.itemControl;

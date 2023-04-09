@@ -56,4 +56,11 @@ export class popover extends span {
 	constructor(...arg: any[]) {
 		super(bsConstArg<IAttrBSPopover>("elem", convert, arg));
 	}
+
+	static getInstance = (elem: HTMLElement) => {
+		return window.bootstrap.Popover.getInstance(elem);
+	};
+	static getOrCreateInstance = (elem: HTMLElement) => {
+		return window.bootstrap.Popover.getOrCreateInstance(elem);
+	};
 }

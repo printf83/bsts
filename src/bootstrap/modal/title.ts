@@ -6,7 +6,7 @@ import { h } from "../../html/h.js";
 
 const convert = (attr: IAttr) => {
 	attr.id ??= UUID();
-	attr.class = mergeClass(attr.class, "modal-title");
+	attr.class = mergeClass(attr.class, ["h5", "modal-title"]);
 	return attr;
 };
 
@@ -16,6 +16,6 @@ export class title extends h {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttr, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(5, bsConstArg("elem", convert, arg));
+		super(1, bsConstArg("elem", convert, arg));
 	}
 }

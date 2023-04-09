@@ -76,6 +76,14 @@ export const show = (placement: IAttrBSToastContainerPlacement, i: item) => {
 	}
 };
 
+export const hide = (i: HTMLElement) => {
+	let container = i.classList.contains("toast") ? i : i.closest(".toast");
+	const tst = window.bootstrap.Toast.getInstance(container as Element);
+	if (tst) {
+		tst.hide();
+	}
+};
+
 export interface IAttrBSToastSimple {
 	elem: IElem;
 	color?: bootstrapType.textBgColor[number];

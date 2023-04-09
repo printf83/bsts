@@ -18,7 +18,7 @@ const fnIcon = (containerAttr: IAttr | undefined, attr: IAttrBSIcon) => {
 };
 
 const fnElem = (elem: IElem) => {
-	return new div({ display: "flex", alignItem: "center" }, elem);
+	return new div({ display: "flex", alignItem: "center" }, new div(elem));
 };
 
 const convert = (attr: IAttrBSMsg) => {

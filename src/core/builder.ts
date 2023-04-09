@@ -1,4 +1,5 @@
 import { a } from "../html/a.js";
+import { strong } from "../html/strong.js";
 import { b } from "../html/b.js";
 import { code } from "../html/code.js";
 import { i } from "../html/i.js";
@@ -12,6 +13,8 @@ import { IAttr, isTag, tag } from "./tag.js";
 import { removeChildElement } from "./removeChildElement.js";
 import { removeElement } from "./removeElement.js";
 import { UUID } from "./uuid.js";
+import * as modalFn from "../bootstrap/modal/_fn.js";
+import * as toastFn from "../bootstrap/toast/_fn.js";
 
 export type buildArg = tag | string | (tag | string)[];
 
@@ -75,6 +78,27 @@ const runTimer = (elem: HTMLElement, delay: number) => {
 	);
 };
 
+export const removeActiveTooltip = () => {
+	const elem = document.querySelectorAll("div.tooltip.show");
+	elem.forEach((i) => i.remove());
+};
+export const removeActivePopover = () => {
+	const elem = document.querySelectorAll("div.popover.show");
+	elem.forEach((i) => i.remove());
+};
+export const removeActiveModal = () => {
+	const elem = document.querySelectorAll("div.modal.show");
+	elem.forEach((i) => {
+		modalFn.hide(i as HTMLElement);
+	});
+};
+export const removeActiveToast = () => {
+	const elem = document.querySelectorAll("div.toast.show");
+	elem.forEach((i) => {
+		toastFn.hide(i as HTMLElement);
+	});
+};
+
 export const init = (container: HTMLElement) => {
 	const popoverTriggerList = container.querySelectorAll('[data-bs-toggle="popover"]');
 	popoverTriggerList.forEach((i) => new window.bootstrap.Popover(i));
@@ -92,7 +116,7 @@ export const init = (container: HTMLElement) => {
 };
 
 const markupCode = (k: string, str: string) => {
-	if (k.match(/^[buickdm]*$/gm)) {
+	if (k.match(/^[buickdms]*$/gm)) {
 		let res: tag | null = null;
 		let ks = k.split("");
 		let ksl = ks.length - 1;
@@ -111,6 +135,13 @@ const markupCode = (k: string, str: string) => {
 						res = new mark(ix === ksl ? str : "");
 					} else {
 						res.elem = new mark(ix === ksl ? str : "");
+					}
+					break;
+				case "s":
+					if (res === null) {
+						res = new strong(ix === ksl ? str : "");
+					} else {
+						res.elem = new strong(ix === ksl ? str : "");
 					}
 					break;
 				case "b":
