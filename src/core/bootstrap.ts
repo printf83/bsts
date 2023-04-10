@@ -773,6 +773,7 @@ export namespace bootstrapBase {
 		"body-secondary",
 		"body-tertiary",
 		"white",
+		"black",
 		"dark",
 		"muted" /** @deprecated text-muted utility has been deprecated as of v5.3.0 */,
 	] as const;
