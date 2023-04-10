@@ -822,7 +822,7 @@ export namespace bootstrapBase {
 	export const borderNone = [true, "top", "end", "bottom", "start"] as const;
 	export const border = [true, false, "top", "end", "bottom", "start"] as const;
 
-	export const borderColor = color;
+	export const borderColor = [...color, ...colorSubtle, "black", "white"] as const;
 	export const borderOpacity = [10, 25, 50, 75] as const;
 	export const borderWidth = base5;
 	export const roundedNone = [true, false, "top", "end", "bottom", "start"] as const;
@@ -835,42 +835,59 @@ export namespace bootstrapBase {
 		3,
 		4,
 		5,
+
 		"top",
 		"end",
 		"bottom",
 		"start",
 		"circle",
 		"pill",
+
+		"top-circle",
+		"end-circle",
+		"bottom-circle",
+		"start-circle",
+
+		"top-pill",
+		"end-pill",
+		"bottom-pill",
+		"start-pill",
+
 		"top-0",
 		"end-0",
 		"bottom-0",
 		"start-0",
 		"circle-0",
 		"pill-0",
+
 		"top-1",
 		"end-1",
 		"bottom-1",
 		"start-1",
 		"circle-1",
 		"pill-1",
+
 		"top-2",
 		"end-2",
 		"bottom-2",
 		"start-2",
 		"circle-2",
 		"pill-2",
+
 		"top-3",
 		"end-3",
 		"bottom-3",
 		"start-3",
 		"circle-3",
 		"pill-3",
+
 		"top-4",
 		"end-4",
 		"bottom-4",
 		"start-4",
 		"circle-4",
 		"pill-4",
+
 		"top-5",
 		"end-5",
 		"bottom-5",
