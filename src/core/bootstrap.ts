@@ -772,6 +772,8 @@ export namespace bootstrapBase {
 		"body-emphasis",
 		"body-secondary",
 		"body-tertiary",
+		"white",
+		"dark",
 		"muted" /** @deprecated text-muted utility has been deprecated as of v5.3.0 */,
 	] as const;
 	export const linkColor = color;
