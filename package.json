@@ -1,6 +1,6 @@
 {
 	"name": "@printf83/bsts",
-	"version": "0.1.80",
+	"version": "0.1.81",
 	"description": "Bootstrap TS builder",
 	"keywords": [
 		"bootstrap 5",
@@ -31,6 +31,8 @@
 		"clean": "rm -rf ./lib",
 		"clean:win": "rmdir /s lib",
 		"build": "tsc -p ./configs/tsconfig.esm.json && mv ./lib/index.js ./lib/index.mjs",	
+		"rebuild":"npm run clean && npm run build",
+		"rebuild:win":"npm run clean:win && npm run build",
 		"debug": "tsc -p ./configs/tsconfig.esm.json --watch",
 		"prepack": "npm run clean && npm run build"
 	},
