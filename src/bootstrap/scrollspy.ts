@@ -37,4 +37,12 @@ export class scrollspy extends div {
 	constructor(...arg: any[]) {
 		super(bsConstArg<IAttrBSScrollspy>("elem", convert, arg));
 	}
+
+	static init = (elem?: HTMLElement, option?: Partial<bootstrap.ScrollSpy.Options>) => {
+		if (elem) {
+			return new window.bootstrap.ScrollSpy(elem, option);
+		}
+
+		return null;
+	};
 }

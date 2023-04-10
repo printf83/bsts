@@ -30,11 +30,9 @@
 	"scripts": {
 		"clean": "rm -rf ./lib",
 		"clean:win": "rmdir /s lib",
-		"build": "npm run clean && npm run build:esm && mv ./lib/index.js ./lib/index.mjs",
-		"build:win": "npm run clean:win && npm run build:esm && mv ./lib/index.js ./lib/index.mjs",
-		"build:esm": "tsc -p ./configs/tsconfig.esm.json",
+		"build": "tsc -p ./configs/tsconfig.esm.json && mv ./lib/index.js ./lib/index.mjs",	
 		"debug": "tsc -p ./configs/tsconfig.esm.json --watch",
-		"prepack": "npm run build"
+		"prepack": "npm run clean && npm run build"
 	},
 	"devDependencies": {
 		"@types/bootstrap": "^5.2.6",
