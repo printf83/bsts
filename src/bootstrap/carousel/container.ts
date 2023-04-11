@@ -1,5 +1,5 @@
 import { IAttr, IElem } from "../../core/tag.js";
-import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
+import { bsConstArg } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import * as indicators from "./indicators/_index.js";
@@ -15,7 +15,7 @@ export interface IAttrBSCarousel extends IAttr {
 	fade?: boolean;
 	autoPlay?: boolean;
 	disableTouch?: boolean;
-	innerRounded?: bootstrapType.rounded[number];
+	innerAttr?: IAttr;
 	item?: IAttrBSCarouselItem[];
 	itemControl?: boolean;
 	itemIndicator?: boolean;
@@ -23,7 +23,6 @@ export interface IAttrBSCarousel extends IAttr {
 
 const convert = (attr: IAttrBSCarousel) => {
 	attr.autoPlay = attr.autoPlay !== false ? true : false;
-	attr.innerRounded ??= true;
 
 	attr = mergeObject(
 		{
@@ -58,7 +57,7 @@ const convert = (attr: IAttrBSCarousel) => {
 		//item
 		attr.elem.push(
 			new inner.container(
-				{ rounded: attr.innerRounded },
+				attr.innerAttr ? attr.innerAttr : {},
 				attr.item.map((i, ix) => {
 					return new inner.item.container(
 						{
@@ -95,7 +94,7 @@ const convert = (attr: IAttrBSCarousel) => {
 	delete attr.fade;
 	delete attr.autoPlay;
 	delete attr.disableTouch;
-	delete attr.innerRounded;
+	delete attr.innerAttr;
 
 	delete attr.item;
 	delete attr.itemControl;
