@@ -15,7 +15,6 @@ import { br } from "./br.js";
 import { button, IAttrTagButton } from "./button.js";
 import { canvas } from "./canvas.js";
 import { caption } from "./caption.js";
-import { circle, IAttrTagCircle } from "./circle.js";
 import { cite } from "./cite.js";
 import { code } from "./code.js";
 import { col, IAttrTagCol } from "./col.js";
@@ -66,12 +65,10 @@ import { option, IAttrTagOption } from "./option.js";
 import { output, IAttrTagOutput } from "./output.js";
 import { p, IAttrTagP } from "./p.js";
 import { param, IAttrTagParam } from "./param.js";
-import { IAttrTagPath, path } from "./path.js";
 import { picture, IAttrTagPicture } from "./picture.js";
 import { pre } from "./pre.js";
 import { progress, IAttrTagProgress } from "./progress.js";
 import { q, IAttrTagQ } from "./q.js";
-import { IAttrTagRect, rect } from "./rect.js";
 import { rp } from "./rp.js";
 import { rt } from "./rt.js";
 import { ruby } from "./ruby.js";
@@ -88,7 +85,6 @@ import { style, IAttrTagStyle } from "./style.js";
 import { sub } from "./sub.js";
 import { summary } from "./summary.js";
 import { sup } from "./sup.js";
-import { IAttrTagSvg, svg } from "./svg.js";
 import { table } from "./table.js";
 import { tbody } from "./tbody.js";
 import { td, IAttrTagTd } from "./td.js";
@@ -125,7 +121,6 @@ export {
 	button,
 	canvas,
 	caption,
-	circle,
 	cite,
 	code,
 	col,
@@ -176,12 +171,10 @@ export {
 	output,
 	p,
 	param,
-	path,
 	picture,
 	pre,
 	progress,
 	q,
-	rect,
 	rp,
 	rt,
 	ruby,
@@ -198,7 +191,6 @@ export {
 	sub,
 	summary,
 	sup,
-	svg,
 	table,
 	tbody,
 	td,
@@ -224,7 +216,6 @@ export {
 	IAttrTagBdo,
 	IAttrTagBlockquote,
 	IAttrTagButton,
-	IAttrTagCircle,
 	IAttrTagCol,
 	IAttrTagColgroup,
 	IAttrTagData,
@@ -253,17 +244,14 @@ export {
 	IAttrTagOutput,
 	IAttrTagP,
 	IAttrTagParam,
-	IAttrTagPath,
 	IAttrTagPicture,
 	IAttrTagProgress,
 	IAttrTagQ,
-	IAttrTagRect,
 	IAttrTagScript,
 	IAttrTagSelect,
 	IAttrTagSelectItem,
 	IAttrTagSource,
 	IAttrTagStyle,
-	IAttrTagSvg,
 	IAttrTagTd,
 	IAttrTagTextarea,
 	IAttrTagTh,
