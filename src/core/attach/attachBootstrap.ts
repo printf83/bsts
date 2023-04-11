@@ -72,13 +72,46 @@ const dbRule: bootstrapRuleDB = {
 		format: "text-$1",
 		value: bootstrapBase.textColor.concat(),
 	}),
+	bgColor: new bootstrapAttachRule({
+		format: "bg-$1",
+		value: bootstrapBase.bgColor.concat(),
+	}),
+
 	linkColor: new bootstrapAttachRule({
 		format: "link-$1",
 		value: bootstrapBase.linkColor.concat(),
 	}),
-	bgColor: new bootstrapAttachRule({
-		format: "bg-$1",
-		value: bootstrapBase.bgColor.concat(),
+	linkUnderlineColor: new bootstrapAttachRule({
+		format: "link-underline-$1",
+		value: bootstrapBase.linkUnderlineColor.concat(),
+	}),
+	linkOffset: new bootstrapAttachRule({
+		format: "link-offset-$1",
+		value: bootstrapBase.linkOffset.concat(),
+	}),
+	linkOffsetHover: new bootstrapAttachRule({
+		format: "link-offset-$1-hover",
+		value: bootstrapBase.linkOffsetHover.concat(),
+	}),
+	linkOpacity: new bootstrapAttachRule({
+		format: "link-opacity-$1",
+		value: bootstrapBase.linkOpacity.concat(),
+	}),
+	linkUnderline: new bootstrapAttachRule({
+		value: bootstrapBase.linkUnderline.concat(),
+		formatTrue: "link-underline",
+	}),
+	linkUnderlineOpacity: new bootstrapAttachRule({
+		format: "link-underline-opacity-$1",
+		value: bootstrapBase.linkUnderlineOpacity.concat(),
+	}),
+	linkUnderlineOpacityHover: new bootstrapAttachRule({
+		format: "link-underline-opacity-$1-hover",
+		value: bootstrapBase.linkUnderlineOpacityHover.concat(),
+	}),
+	linkOpacityHover: new bootstrapAttachRule({
+		format: "link-opacity-$1-hover",
+		value: bootstrapBase.linkOpacityHover.concat(),
 	}),
 
 	textTransform: new bootstrapAttachRule({

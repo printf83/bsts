@@ -777,7 +777,7 @@ export namespace bootstrapBase {
 		"dark",
 		"muted" /** @deprecated text-muted utility has been deprecated as of v5.3.0 */,
 	] as const;
-	export const linkColor = color;
+
 	export const bgColor = [
 		...color,
 		...colorSubtle,
@@ -788,6 +788,15 @@ export namespace bootstrapBase {
 		"white",
 		"transparent",
 	] as const;
+	export const linkColor = [...color, "body-emphasis"] as const;
+	export const linkUnderlineColor = linkColor;
+	export const linkOffset = [1, 2, 3] as const;
+	export const linkOffsetHover = linkOffset;
+	export const linkOpacity = [10, 25, 50, 75, 100] as const;
+	export const linkUnderline = trueonly;
+	export const linkUnderlineOpacity = [0, 10, 25, 50, 75, 100] as const;
+	export const linkUnderlineOpacityHover = linkUnderlineOpacity;
+	export const linkOpacityHover = linkOpacity;
 
 	export const dropdownDirection = ["up", "start", "end"] as const;
 
@@ -1022,8 +1031,17 @@ export namespace bootstrapType {
 
 	export type textBgColor = typeof bootstrapBase.textBgColor;
 	export type textColor = typeof bootstrapBase.textColor;
-	export type linkColor = typeof bootstrapBase.linkColor;
 	export type bgColor = typeof bootstrapBase.bgColor;
+
+	export type linkColor = typeof bootstrapBase.linkColor;
+	export type linkUnderlineColor = typeof bootstrapBase.linkUnderlineColor;
+	export type linkOffset = typeof bootstrapBase.linkOffset;
+	export type linkOffsetHover = typeof bootstrapBase.linkOffsetHover;
+	export type linkOpacity = typeof bootstrapBase.linkOpacity;
+	export type linkUnderline = typeof bootstrapBase.linkUnderline;
+	export type linkUnderlineOpacity = typeof bootstrapBase.linkUnderlineOpacity;
+	export type linkUnderlineOpacityHover = typeof bootstrapBase.linkUnderlineOpacityHover;
+	export type linkOpacityHover = typeof bootstrapBase.linkOpacityHover;
 
 	export type textTransform = typeof bootstrapBase.textTransform;
 	export type textDecoration = typeof bootstrapBase.textDecoration;

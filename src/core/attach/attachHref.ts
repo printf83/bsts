@@ -10,11 +10,11 @@ export const attachHref: IAttachFn = (key, elem, attr: IAttrHref) => {
 		if (attr && typeof attr.href !== "undefined") {
 			let i = Array.isArray(attr.href) ? attr.href.join(" ") : attr.href;
 
-			if (i === "#") {
-				elem.setAttribute("href", "javascript:void(0);");
-			} else {
-				elem.setAttribute("href", i);
-			}
+			// if (i === "#") {
+			// 	elem.setAttribute("href", "javascript:void(0);");
+			// } else {
+			elem.setAttribute("href", i);
+			// }
 
 			delete attr.href;
 		}
