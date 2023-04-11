@@ -251,6 +251,13 @@ const markup = (str: string) => {
 	}
 };
 
+const htmlToElement = (html: string) => {
+	var template = document.createElement("template");
+	html = html.trim(); // Never return a text node of whitespace as the result
+	template.innerHTML = html;
+	return template.content.firstChild;
+};
+
 const processElem = (i: string | tag, e: tag, element: HTMLElement) => {
 	if (i !== null) {
 		if (isTag<IAttr>(i)) {
@@ -266,7 +273,18 @@ const processElem = (i: string | tag, e: tag, element: HTMLElement) => {
 			} else {
 				let m = markup(g);
 				if (typeof m === "string") {
-					element.appendChild(document.createTextNode(g));
+					if (m.startsWith("<svg")) {
+						if (m.endsWith("</svg>")) {
+							let c = htmlToElement(g);
+							if (c) {
+								element.appendChild(c);
+							}
+						} else {
+							element.appendChild(document.createTextNode(g));
+						}
+					} else {
+						element.appendChild(document.createTextNode(g));
+					}
 				} else {
 					m.forEach((j) => {
 						element = processElem(j, e, element);
@@ -334,7 +352,7 @@ export const build = (
 };
 
 export const node = (arg: buildArg): HTMLElement | HTMLElement[] | null => {
-	let container = build(document.createElement("div"), arg);
+	let container = build(document.createElement("template"), arg);
 	let childCount = container.childElementCount;
 	if (childCount === 0) return null;
 	if (childCount === 1) return container.firstChild as HTMLElement;
@@ -342,7 +360,7 @@ export const node = (arg: buildArg): HTMLElement | HTMLElement[] | null => {
 };
 
 export const html = (arg: buildArg): string => {
-	let container = build(document.createElement("div"), arg);
+	let container = build(document.createElement("template"), arg);
 	let result = container.innerHTML;
 	removeElement(container);
 	return result;
