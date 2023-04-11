@@ -28,7 +28,6 @@ const convert = (attr: IAttrBSNavLink) => {
 				attr.active ? "active" : undefined,
 				attr.toggle === "dropdown" ? "dropdown-toggle" : undefined,
 			],
-			href: attr.href || "#",
 			aria: {
 				current: attr.active ? "page" : undefined,
 				expanded: attr.toggle === "dropdown" ? "false" : undefined,

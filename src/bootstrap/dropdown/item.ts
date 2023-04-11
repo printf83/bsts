@@ -11,7 +11,6 @@ const convert = (attr: IAttrBSDropdownItem) => {
 	attr = mergeObject(
 		{
 			class: ["dropdown-item", attr.active ? "active" : undefined],
-			href: attr.href || "#",
 			aria: { current: attr.active ? "true" : undefined },
 		},
 		attr
