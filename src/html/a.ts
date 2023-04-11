@@ -38,6 +38,16 @@ export interface IAttrTagA extends IAttr {
 	stretched?: true;
 
 	disabled?: boolean;
+
+	linkColor?: bootstrapType.linkColor[number];
+	linkUnderlineColor?: bootstrapType.linkUnderlineColor[number];
+	linkOffset?: bootstrapType.linkOffset[number];
+	linkOffsetHover?: bootstrapType.linkOffsetHover[number];
+	linkOpacity?: bootstrapType.linkOpacity[number];
+	linkUnderline?: bootstrapType.linkUnderline[number];
+	linkUnderlineOpacity?: bootstrapType.linkUnderlineOpacity[number];
+	linkUnderlineOpacityHover?: bootstrapType.linkUnderlineOpacityHover[number];
+	linkOpacityHover?: bootstrapType.linkOpacityHover[number];
 }
 
 const convert = (attr: IAttrTagA) => {
