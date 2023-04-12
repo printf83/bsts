@@ -454,7 +454,7 @@ const dbRule: bootstrapRuleDB = {
 	}),
 	zIndex: new bootstrapAttachRule({
 		format: "z-$1",
-		value: bootstrapBase.alignSelf.concat(),
+		value: bootstrapBase.zindex.concat(),
 		shared: true,
 	}),
 	objectFit: new bootstrapAttachRule({
