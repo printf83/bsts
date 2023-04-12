@@ -764,6 +764,8 @@ export namespace bootstrapBase {
 	export const btnOutlineColor = color;
 	export const alertColor = color;
 
+	export const focusRing = [...color, true] as const;
+
 	export const textBgColor = color;
 	export const textColor = [
 		...color,
@@ -1119,6 +1121,7 @@ export namespace bootstrapType {
 	export type hstack = typeof bootstrapBase.hstack;
 	export type h = typeof bootstrapBase.h;
 	export type small = typeof bootstrapBase.small;
+	export type focusRing = typeof bootstrapBase.focusRing;
 }
 
 export interface IBootstrapAttachRule {

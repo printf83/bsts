@@ -430,6 +430,7 @@ export interface IBootstrap {
 	hstack?: bootstrapType.hstack[number];
 	h?: bootstrapType.h[number];
 	small?: bootstrapType.small[number];
+	focusRing?: bootstrapType.focusRing[number];
 }
 
 export interface IAttr extends IGlobal, IGlobalAria, IBootstrap {
