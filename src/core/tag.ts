@@ -334,16 +334,6 @@ export interface IBootstrap {
 	textColor?: bootstrapType.textColor[number];
 	bgColor?: bootstrapType.bgColor[number];
 
-	// linkColor?: bootstrapType.linkColor[number];
-	// linkUnderlineColor?: bootstrapType.linkUnderlineColor[number];
-	// linkOffset?: bootstrapType.linkOffset[number];
-	// linkOffsetHover?: bootstrapType.linkOffsetHover[number];
-	// linkOpacity?: bootstrapType.linkOpacity[number];
-	// linkUnderline?: bootstrapType.linkUnderline[number];
-	// linkUnderlineOpacity?: bootstrapType.linkUnderlineOpacity[number];
-	// linkUnderlineOpacityHover?: bootstrapType.linkUnderlineOpacityHover[number];
-	// linkOpacityHover?: bootstrapType.linkOpacityHover[number];
-
 	textTransform?: bootstrapType.textTransform[number];
 	textDecoration?: bootstrapType.textDecoration[number];
 	lineHeight?: bootstrapType.lineHeight[number];

@@ -11,7 +11,7 @@ export namespace bootstrapBase {
 
 	export const viewport = ["sm", "md", "lg", "xl", "xxl"] as const;
 
-	export const grid = [
+	export const baseGrid = [
 		0,
 		1,
 		2,
@@ -286,7 +286,7 @@ export namespace bootstrapBase {
 		"xxl-last",
 	] as const;
 
-	export const offset = grid;
+	export const offset = baseGrid;
 
 	export const align = [
 		"start",
@@ -1000,8 +1000,8 @@ export namespace bootstrapType {
 	export type alignItem = typeof bootstrapBase.align;
 	export type alignSelf = typeof bootstrapBase.align;
 	export type order = typeof bootstrapBase.order;
-	export type grid = typeof bootstrapBase.grid;
-	export type offset = typeof bootstrapBase.grid;
+	export type baseGrid = typeof bootstrapBase.baseGrid;
+	export type offset = typeof bootstrapBase.baseGrid;
 	export type rowCol = typeof bootstrapBase.rowCol;
 	export type float = typeof bootstrapBase.float;
 	export type color = typeof bootstrapBase.color;
