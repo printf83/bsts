@@ -507,6 +507,12 @@ const dbRule: bootstrapRuleDB = {
 		value: bootstrapBase.focusRing.concat(),
 		formatValue: "focus-ring",
 	}),
+	linkIcon: new bootstrapAttachRule({
+		format: "icon-link-$1",
+		value: bootstrapBase.linkIcon.concat(),
+		formatValue: "icon-link",
+		formatTrue: "icon-link",
+	}),
 };
 
 let allowProp: (string | undefined)[] = [];

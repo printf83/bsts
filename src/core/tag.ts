@@ -430,6 +430,10 @@ export interface IBootstrap {
 	hstack?: bootstrapType.hstack[number];
 	h?: bootstrapType.h[number];
 	small?: bootstrapType.small[number];
+
+	
+	linkIcon?: bootstrapType.linkIcon[number];
+
 	focusRing?: bootstrapType.focusRing[number];
 }
 
