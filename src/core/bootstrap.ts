@@ -649,7 +649,7 @@ export namespace bootstrapBase {
 	export const fontItalic = truefalse;
 
 	export const bgGradient = trueonly;
-	export const wordBreak = trueonly;
+	export const textBreak = trueonly;
 	export const monospace = trueonly;
 	export const loadingPlaceholder = trueonly;
 
@@ -775,6 +775,7 @@ export namespace bootstrapBase {
 		"white",
 		"black",
 		"dark",
+		"reset",
 		"muted" /** @deprecated text-muted utility has been deprecated as of v5.3.0 */,
 	] as const;
 
@@ -806,7 +807,7 @@ export namespace bootstrapBase {
 
 	export const fontSize = [1, 2, 3, 4, 5, 6] as const;
 	export const fontDisplay = fontSize;
-	export const fontWeight = ["bold", "bolder", "semibold", "normal", "light", "lighter"] as const;
+	export const fontWeight = ["bold", "bolder", "semibold", "medium", "normal", "light", "lighter"] as const;
 
 	export const top = [0, 50, 100] as const;
 	export const bottom = top;
@@ -985,6 +986,8 @@ export namespace bootstrapBase {
 	export const vstack = trueonly;
 	export const hstack = trueonly;
 	export const visually = ["hidden", "hidden-focusable"] as const;
+	export const h = [1, 2, 3, 4, 5, 6];
+	export const small = truefalse;
 }
 
 export namespace bootstrapType {
@@ -1011,7 +1014,7 @@ export namespace bootstrapType {
 	export type textWrap = typeof bootstrapBase.textWrap;
 	export type fontItalic = typeof bootstrapBase.fontItalic;
 	export type bgGradient = typeof bootstrapBase.bgGradient;
-	export type wordBreak = typeof bootstrapBase.wordBreak;
+	export type textBreak = typeof bootstrapBase.textBreak;
 	export type monospace = typeof bootstrapBase.monospace;
 	export type loadingPlaceholder = typeof bootstrapBase.loadingPlaceholder;
 	export type row = typeof bootstrapBase.row;
@@ -1114,6 +1117,8 @@ export namespace bootstrapType {
 	export type visually = typeof bootstrapBase.visually;
 	export type vstack = typeof bootstrapBase.vstack;
 	export type hstack = typeof bootstrapBase.hstack;
+	export type h = typeof bootstrapBase.h;
+	export type small = typeof bootstrapBase.small;
 }
 
 export interface IBootstrapAttachRule {

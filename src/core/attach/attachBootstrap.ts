@@ -429,8 +429,8 @@ const dbRule: bootstrapRuleDB = {
 		value: bootstrapBase.bgGradient.concat(),
 		formatTrue: "bg-gradient",
 	}),
-	wordBreak: new bootstrapAttachRule({
-		value: bootstrapBase.wordBreak.concat(),
+	textBreak: new bootstrapAttachRule({
+		value: bootstrapBase.textBreak.concat(),
 		formatTrue: "text-break",
 		shared: true,
 	}),
@@ -493,6 +493,14 @@ const dbRule: bootstrapRuleDB = {
 	hstack: new bootstrapAttachRule({
 		value: bootstrapBase.hstack.concat(),
 		formatTrue: "hstack",
+	}),
+	small: new bootstrapAttachRule({
+		value: bootstrapBase.small.concat(),
+		formatTrue: "small",
+	}),
+	h: new bootstrapAttachRule({
+		format: "h$1",
+		value: bootstrapBase.h.concat(),
 	}),
 };
 

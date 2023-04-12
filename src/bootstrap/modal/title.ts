@@ -1,12 +1,16 @@
 import { IAttr, IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
-import { mergeClass } from "../../core/mergeClass.js";
 import { UUID } from "../../core/uuid.js";
 import { h } from "../../html/h.js";
+import { mergeObject } from "../../core/mergeObject.js";
 
 const convert = (attr: IAttr) => {
-	attr.id ??= UUID();
-	attr.class = mergeClass(attr.class, ["h5", "modal-title"]);
+	attr = mergeObject({
+		id: attr.id || UUID(),
+		h: 5,
+		class: "modal-title",
+	});
+
 	return attr;
 };
 

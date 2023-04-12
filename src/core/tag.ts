@@ -412,7 +412,7 @@ export interface IBootstrap {
 	textWrap?: bootstrapType.textWrap[number];
 	fontItalic?: bootstrapType.fontItalic[number];
 	bgGradient?: bootstrapType.bgGradient[number];
-	wordBreak?: bootstrapType.wordBreak[number];
+	textBreak?: bootstrapType.textBreak[number];
 	monospace?: bootstrapType.monospace[number];
 	row?: bootstrapType.row[number];
 	col?: bootstrapType.col[number] | bootstrapType.col[number][];
@@ -428,6 +428,8 @@ export interface IBootstrap {
 	visually?: bootstrapType.visually[number];
 	vstack?: bootstrapType.vstack[number];
 	hstack?: bootstrapType.hstack[number];
+	h?: bootstrapType.h[number];
+	small?: bootstrapType.small[number];
 }
 
 export interface IAttr extends IGlobal, IGlobalAria, IBootstrap {
