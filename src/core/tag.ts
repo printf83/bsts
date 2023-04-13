@@ -431,8 +431,7 @@ export interface IBootstrap {
 	h?: bootstrapType.h[number];
 	small?: bootstrapType.small[number];
 
-	
-	linkIcon?: bootstrapType.linkIcon[number];
+	linkIcon?: bootstrapType.iconLink[number];
 
 	focusRing?: bootstrapType.focusRing[number];
 }

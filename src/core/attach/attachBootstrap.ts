@@ -507,9 +507,9 @@ const dbRule: bootstrapRuleDB = {
 		value: bootstrapBase.focusRing.concat(),
 		formatValue: "focus-ring",
 	}),
-	linkIcon: new bootstrapAttachRule({
+	iconLink: new bootstrapAttachRule({
 		format: "icon-link-$1",
-		value: bootstrapBase.linkIcon.concat(),
+		value: bootstrapBase.iconLink.concat(),
 		formatValue: "icon-link",
 		formatTrue: "icon-link",
 	}),

@@ -800,7 +800,7 @@ export namespace bootstrapBase {
 	export const linkUnderlineOpacity = [0, 10, 25, 50, 75, 100] as const;
 	export const linkUnderlineOpacityHover = linkUnderlineOpacity;
 	export const linkOpacityHover = linkOpacity;
-	export const linkIcon = [true, "hover"] as const;
+	export const iconLink = [true, "hover"] as const;
 
 	export const dropdownDirection = ["up", "start", "end"] as const;
 
@@ -1048,7 +1048,7 @@ export namespace bootstrapType {
 	export type linkUnderlineOpacity = typeof bootstrapBase.linkUnderlineOpacity;
 	export type linkUnderlineOpacityHover = typeof bootstrapBase.linkUnderlineOpacityHover;
 	export type linkOpacityHover = typeof bootstrapBase.linkOpacityHover;
-	export type linkIcon = typeof bootstrapBase.linkIcon;
+	export type iconLink = typeof bootstrapBase.iconLink;
 
 	export type textTransform = typeof bootstrapBase.textTransform;
 	export type textDecoration = typeof bootstrapBase.textDecoration;
