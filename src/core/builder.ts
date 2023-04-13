@@ -120,6 +120,7 @@ const markupCode = (k: string, str: string) => {
 		let res: tag | null = null;
 		let ks = k.split("");
 		let ksl = ks.length - 1;
+		str = escapeMarkup(str);
 
 		ks.forEach((x, ix) => {
 			switch (x) {
@@ -194,6 +195,10 @@ const markupCode = (k: string, str: string) => {
 	return null;
 };
 
+const escapeMarkup = (str: string) => {
+	return str.replace(/\/{/g, "{").replace(/\/}/g, "}").replace(/\/:/g, ":");
+};
+
 const markup = (str: string) => {
 	let reg = /\{\{(.*?)}\}/gm;
 
@@ -233,14 +238,14 @@ const markup = (str: string) => {
 										},
 									},
 								},
-								e
+								escapeMarkup(e)
 							);
 						} else {
-							return new a({ href: d, target: "_blank" }, e);
+							return new a({ href: d, target: "_blank" }, escapeMarkup(e));
 						}
 					}
 				} else {
-					return new code(s.slice(2, -2));
+					return new code(escapeMarkup(s.slice(2, -2)));
 				}
 			} else {
 				return s;

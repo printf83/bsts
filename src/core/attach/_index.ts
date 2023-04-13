@@ -10,6 +10,7 @@ import { attachStyle } from "./attachStyle.js";
 import { attachClass } from "./attachClass.js";
 import { attachAlias } from "./attachAlias.js";
 import { IAttr } from "../tag.js";
+import { attachPointer } from "./attachPointer.js";
 
 export type IAttachFn = (
 	key: string,
@@ -41,6 +42,7 @@ const attrFn: IAttachFn[] = [
 	attachStyle,
 	attachClass,
 	attachHref,
+	attachPointer,
 	attachOther,
 ];
 

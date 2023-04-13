@@ -434,6 +434,8 @@ export interface IBootstrap {
 	iconLink?: bootstrapType.iconLink[number];
 
 	focusRing?: bootstrapType.focusRing[number];
+
+	pointer?: boolean;
 }
 
 export interface IAttr extends IGlobal, IGlobalAria, IBootstrap {
@@ -475,6 +477,7 @@ const convert = (attr: IAttr) => {
 		delete attr.ownby;
 		delete attr.describedby;
 		delete attr.control;
+		delete attr.pointer;
 	}
 
 	return attr;

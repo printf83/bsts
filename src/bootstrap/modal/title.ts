@@ -5,11 +5,14 @@ import { h } from "../../html/h.js";
 import { mergeObject } from "../../core/mergeObject.js";
 
 const convert = (attr: IAttr) => {
-	attr = mergeObject({
-		id: attr.id || UUID(),
-		h: 5,
-		class: "modal-title",
-	});
+	attr = mergeObject(
+		{
+			id: attr.id || UUID(),
+			h: 5,
+			class: "modal-title",
+		},
+		attr
+	);
 
 	return attr;
 };
