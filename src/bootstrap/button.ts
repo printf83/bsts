@@ -12,6 +12,7 @@ export interface IAttrBSButton extends IAttrTagButton {
 	href?: string;
 	role?: "button" | "tab";
 	target?: string;
+	stretched?: boolean;
 
 	active?: boolean;
 	defColor?: boolean;
@@ -39,6 +40,7 @@ const convert = (attr: IAttrBSButton) => {
 				attr.color && attr.outline === true ? `btn-outline-${attr.color}` : undefined,
 				attr.disabled && attr.href ? "disabled" : undefined,
 				attr.active ? "active" : undefined,
+				attr.stretched && attr.href ? "stretched-link" : undefined,
 			],
 			role: attr.href && attr.role ? attr.role : undefined,
 			data: {
