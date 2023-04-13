@@ -479,8 +479,8 @@ const dbRule: bootstrapRuleDB = {
 		value: bootstrapBase.clearfix.concat(),
 		formatTrue: "clearfix",
 	}),
-	truncate: new bootstrapAttachRule({
-		value: bootstrapBase.truncate.concat(),
+	textTruncate: new bootstrapAttachRule({
+		value: bootstrapBase.textTruncate.concat(),
 		formatTrue: "text-truncate",
 	}),
 	visually: new bootstrapAttachRule({

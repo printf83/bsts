@@ -985,7 +985,7 @@ export namespace bootstrapBase {
 		"xxl-bottom",
 	];
 	export const clearfix = trueonly;
-	export const truncate = trueonly;
+	export const textTruncate = trueonly;
 	export const vstack = trueonly;
 	export const hstack = trueonly;
 	export const visually = ["hidden", "hidden-focusable"] as const;
@@ -1117,7 +1117,7 @@ export namespace bootstrapType {
 	export type fixed = typeof bootstrapBase.fixed;
 	export type sticky = typeof bootstrapBase.sticky;
 	export type clearfix = typeof bootstrapBase.clearfix;
-	export type truncate = typeof bootstrapBase.truncate;
+	export type textTruncate = typeof bootstrapBase.textTruncate;
 	export type visually = typeof bootstrapBase.visually;
 	export type vstack = typeof bootstrapBase.vstack;
 	export type hstack = typeof bootstrapBase.hstack;

@@ -424,7 +424,7 @@ export interface IBootstrap {
 	fixed?: bootstrapType.fixed[number];
 	sticky?: bootstrapType.sticky[number] | bootstrapType.sticky[number][];
 	clearfix?: bootstrapType.clearfix[number];
-	truncate?: bootstrapType.truncate[number];
+	textTruncate?: bootstrapType.textTruncate[number];
 	visually?: bootstrapType.visually[number];
 	vstack?: bootstrapType.vstack[number];
 	hstack?: bootstrapType.hstack[number];
