@@ -12,7 +12,7 @@ const convert = (attr: IAttrBSVisuallyhidden) => {
 		attr.focusable ??= true;
 	}
 
-	attr.class = mergeClass(attr.class, [attr.focusable ? "visually-hidden-focusable" : "visually-hidden"]);
+	attr.visually = attr.focusable ? "hidden-focusable" : "hidden";
 
 	delete attr.focusable;
 
