@@ -989,7 +989,7 @@ export namespace bootstrapBase {
 	export const vstack = trueonly;
 	export const hstack = trueonly;
 	export const visually = ["hidden", "hidden-focusable"] as const;
-	export const h = [1, 2, 3, 4, 5, 6];
+	export const h = [1, 2, 3, 4, 5, 6] as const;
 	export const small = truefalse;
 }
 
