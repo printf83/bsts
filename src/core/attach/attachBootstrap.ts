@@ -465,6 +465,7 @@ const dbRule: bootstrapRuleDB = {
 		format: "ratio-$1",
 		value: bootstrapBase.ratio.concat(),
 		formatValue: "ratio",
+		formatTrue: "ratio",
 	}),
 	fixed: new bootstrapAttachRule({
 		format: "fixed-$1",

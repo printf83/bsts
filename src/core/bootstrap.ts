@@ -968,7 +968,7 @@ export namespace bootstrapBase {
 		"xxl-none",
 	] as const;
 
-	export const ratio = ["1x1", "4x3", "16x9", "21x9"] as const;
+	export const ratio = [true, "1x1", "4x3", "16x9", "21x9"] as const;
 	export const fixed = ["top", "bottom"] as const;
 	export const sticky = [
 		"top",
