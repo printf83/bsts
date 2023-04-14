@@ -1,8 +1,8 @@
 import { caption } from "../../html/caption.js";
-import { th, IAttrTagTh as IAttrBSTableTh } from "../../html/th.js";
 import { container, IAttrBSTableContainer } from "./container.js";
 import { tbody, IAttrBSTableTbody } from "./tbody.js";
 import { td, IAttrBSTableTd } from "./td.js";
+import { th, IAttrBSTableTh } from "./th.js";
 import { tfoot, IAttrBSTableTfoot } from "./tfoot.js";
 import { thead, IAttrBSTableThead } from "./thead.js";
 import { tr, IAttrBSTableTr } from "./tr.js";
