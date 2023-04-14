@@ -39,9 +39,13 @@ import * as toast from "./toast/_index.js";
 import { tooltip, IAttrBSTooltip } from "./tooltip.js";
 import { verticalrule } from "./verticalrule.js";
 import * as form from "./form/_index.js";
+import * as figure from "./figure/_index.js";
+import * as blockquote from "./blockquote/_index.js";
 import { visuallyhidden, IAttrBSVisuallyhidden } from "./visuallyhidden.js";
 
 export {
+	blockquote,
+	figure,
 	form,
 	icon,
 	button,

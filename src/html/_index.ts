@@ -32,7 +32,7 @@ import { dt } from "./dt.js";
 import { em } from "./em.js";
 import { embed, IAttrTagEmbed } from "./embed.js";
 import { fieldset, IAttrTagFieldset } from "./fieldset.js";
-import { figcaption, IAttrTagFigcaption } from "./figcaption.js";
+import { figcaption } from "./figcaption.js";
 import { figure } from "./figure.js";
 import { footer } from "./footer.js";
 import { form, IAttrTagForm } from "./form.js";
@@ -225,7 +225,6 @@ export {
 	IAttrTagDialog,
 	IAttrTagEmbed,
 	IAttrTagFieldset,
-	IAttrTagFigcaption,
 	IAttrTagForm,
 	HLevel,
 	IAttrTagIframe,
