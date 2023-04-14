@@ -14,7 +14,6 @@ export interface IAttrBSTableContainer extends IAttr {
 	hoverable?: boolean;
 	bordered?: boolean;
 	small?: boolean;
-	responsive?: true | bootstrapType.viewport[number];
 	captionLocation?: "top" | "bottom";
 
 	item?: (string | tag | (string | tag)[])[][];
@@ -28,11 +27,6 @@ const convert = (attr: IAttrBSTableContainer) => {
 		attr.hoverable ? "table-hover" : undefined,
 		attr.bordered !== undefined ? (attr.bordered === true ? "table-bordered" : "table-borderless") : undefined,
 		attr.small ? "table-sm" : undefined,
-		attr.responsive
-			? attr.responsive === true
-				? "table-responsive"
-				: `table-responsive-${attr.responsive}`
-			: undefined,
 		attr.captionLocation === "top" ? "caption-top" : undefined,
 	]);
 
@@ -70,7 +64,6 @@ const convert = (attr: IAttrBSTableContainer) => {
 	delete attr.hoverable;
 	delete attr.bordered;
 	delete attr.small;
-	delete attr.responsive;
 	delete attr.captionLocation;
 
 	delete attr.item;
