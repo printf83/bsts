@@ -390,7 +390,7 @@ export interface IBootstrap {
 	marginEnd?: bootstrapType.marginEnd[number] | bootstrapType.marginEnd[number][];
 
 	gap?: bootstrapType.gap[number] | bootstrapType.gap[number][];
-	gutter?: bootstrapType.gutter[number] | bootstrapType.gutter[number];
+	gutter?: bootstrapType.gutter[number] | bootstrapType.gutter[number][];
 	gutterX?: bootstrapType.gutterX[number] | bootstrapType.gutterX[number][];
 	gutterY?: bootstrapType.gutterY[number] | bootstrapType.gutterY[number][];
 
