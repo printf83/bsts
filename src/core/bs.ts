@@ -220,6 +220,230 @@ export namespace bs {
 	export type dropdownDirection = "up" | "start" | "end";
 }
 
+export namespace bsArr {
+	const VIEWPORT = ["sm", "md", "lg", "xl", "xxl"];
+	const SPACER = ["auto", 0, 1, 2, 3, 4, 5];
+	const GRID = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+	const ROWCOL = ["auto", ...GRID];
+	const FLEX = [
+		"row",
+		"row-reverse",
+		"column",
+		"column-reverse",
+		"wrap",
+		"wrap-reverse",
+		"nowrap",
+		"fill",
+		"shrink-0",
+		"shrink-1",
+		"grow-0",
+		"grow-1",
+	];
+	const FLOAT = ["start", "end", "none"];
+	const ORDER = ["first", "last", ...GRID];
+	const ALIGN = ["start", "end", "center", "baseline", "stretch"];
+	const ALIGNCONTENT = ["start", "end", "center", "between", "around", "stretch"];
+	const JUSTIFYCONTENT = ["start", "end", "center", "between", "around", "evenly"];
+	const DISPLAY = [
+		"none",
+		"inline",
+		"inline-block",
+		"block",
+		"grid",
+		"table",
+		"table-cell",
+		"table-row",
+		"flex",
+		"inline-flex",
+	];
+	const POSITIONVIEW = ["start", "center", "end"];
+
+	const COLOR = ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"];
+	const COLOREMPHASIS = COLOR.map((i) => `${i}-emphasis`);
+	const COLORSUBTLE = COLOR.map((i) => `${i}-subtle`);
+	const BODYCOLOR = ["body", "body-secondary", "body-tertiary"];
+	const OTHERCOLOR = ["white", "black"];
+	const BODYTEXTCOLOR = [...BODYCOLOR, ...OTHERCOLOR, "body-emphasis"];
+	const OPACITY = [0, 25, 50, 75, 100];
+	const BGOPACITY = [10, 25, 50, 75, 100];
+	const TEXTOPACITY = [25, 50, 75, 100];
+	const BORDEROPACITY = [10, 25, 50, 75];
+	const LINKOFFSET = [1, 2, 3];
+	const LINKOPACITY = BGOPACITY;
+	const LINKUNDERLINEOPACITY = [0, ...LINKOPACITY];
+	const FONTSIZE = [1, 2, 3, 4, 5, 6];
+	const TOP = [0, 50, 100];
+	const HEIGHT = ["auto", 25, 50, 75, 100];
+	const BORDERWIDTH = [0, 1, 2, 3, 4, 5];
+	const ZINDEX = [0, 1, 2, 3, "n1"];
+	const OBJECTFIT = ["contain", "cover", "fill", "scale", "none"];
+	const STICKY = ["top", "bottom"];
+
+	const ROUNDED = ["top", "end", "bottom", "start"];
+	const ROUNDEDSIZE = BORDERWIDTH;
+	const ROUNDEDSTYLE = ["pill", "circle"];
+
+	const _grid = [...GRID, ...GRID.map((i) => `${i}`), ...VIEWPORT.map((i) => GRID.map((j) => `${i}-${j}`).flat())];
+	const _spacer = [
+		...SPACER,
+		...SPACER.map((i) => `${i}`),
+		...VIEWPORT.map((i) => SPACER.map((j) => `${i}-${j}`).flat()),
+	];
+	const _align = [...ALIGN, ...VIEWPORT.map((i) => ALIGN.map((j) => `${i}-${j}`).flat())];
+	const _positionView = [...POSITIONVIEW, ...VIEWPORT.map((i) => POSITIONVIEW.map((j) => `${i}-${j}`).flat())];
+
+	//attribute
+	export const theme = ["light", "dark", "auto"];
+	export const pointer = [true];
+
+	//class
+	export const flex = [...FLEX, ...VIEWPORT.map((i) => FLEX.map((j) => `${i}-${j}`).flat())];
+	export type float = FLOAT | `${VIEWPORT}-${FLOAT}`;
+	export type order = ORDER | `${ORDER}` | `${VIEWPORT}-${ORDER}`;
+	export type offset = _grid;
+
+	export type alignContent = ALIGNCONTENT | `${VIEWPORT}-${ALIGNCONTENT}`;
+	export type justifyContent = JUSTIFYCONTENT | `${VIEWPORT}-${JUSTIFYCONTENT}`;
+	export type alignItem = _align;
+	export type alignSelf = _align;
+	export type display = DISPLAY | `${VIEWPORT}-${DISPLAY}`;
+	export type rowCol = ROWCOL | `${ROWCOL}` | `${VIEWPORT}-${ROWCOL}`;
+
+	export type visible = boolean;
+	export type textWrap = boolean;
+	export type fontItalic = boolean;
+	export type bgGradient = true;
+	export type textBreak = true;
+	export type monospace = true;
+
+	export type placeholder = true;
+	export type placeholderAnimation = "glow" | "wave";
+	export type placeholderWeight = "lg" | "sm" | "xs";
+
+	export type row = true;
+	export type col = true | ROWCOL | `${ROWCOL}` | VIEWPORT | `${VIEWPORT}-${ROWCOL}`;
+
+	export type userSelect = "all" | "auto" | "none";
+	export type pointerEvent = "auto" | "none";
+	export type position = "static" | "relative" | "absolute" | "fixed" | "sticky";
+	export type overflow = "auto" | "hidden" | "scroll" | "visible";
+	export type overflowX = overflow;
+	export type overflowY = overflow;
+
+	export type textAlign = _positionView;
+	export type verticalAlign = "baseline" | "top" | "middle" | "bottom" | "text-top" | "text-bottom";
+
+	export type opacity = OPACITY | `${OPACITY}`;
+	export type bgOpacity = BGOPACITY | `${BGOPACITY}`;
+	export type textOpacity = TEXTOPACITY | `${TEXTOPACITY}`;
+
+	export type focusRing = true | COLOR;
+	export type textBgColor = COLOR;
+	export type textColor = COLOR | COLOREMPHASIS | BODYCOLOR | BODYTEXTCOLOR | OTHERCOLOR | "reset";
+	export type bgColor = COLOR | COLORSUBTLE | BODYCOLOR | OTHERCOLOR | "transparent";
+
+	export type iconLink = true | "hover";
+
+	export type textTransform = "lowercase" | "uppercase" | "capitalize";
+	export type textDecoration = "underline" | "line-through" | "none";
+	export type lineHeight = 1 | "1" | "sm" | "base" | "lg";
+
+	export type fontSize = FONTSIZE | `${FONTSIZE}`;
+	export type fontDisplay = fontSize;
+	export type fontWeight = "bold" | "bolder" | "semibold" | "medium" | "normal" | "light" | "lighter";
+
+	export type top = TOP | `${TOP}`;
+	export type bottom = top;
+	export type start = top;
+	export type end = top;
+	export type translateMiddle = true | "x" | "y";
+
+	export type height = HEIGHT | `${HEIGHT}`;
+	export type width = height;
+
+	export type maxHeight = 100 | "100";
+	export type maxWidth = 100 | "100";
+	export type minViewHeight = 100 | "100";
+	export type minViewWidth = 100 | "100";
+	export type viewHeight = 100 | "100";
+	export type viewWidth = 100 | "100";
+
+	export type shadow = boolean | "none" | "sm" | "lg" | "inset";
+
+	export type borderNone = true | "top" | "end" | "bottom" | "start";
+	export type border = false | borderNone;
+	export type borderColor = COLOR | COLORSUBTLE | OTHERCOLOR;
+	export type borderOpacity = BORDEROPACITY | `${BORDEROPACITY}`;
+	export type borderWidth = BORDERWIDTH | `${BORDERWIDTH}`;
+
+	export type roundedNone = border;
+	export type rounded =
+		| boolean
+		| ROUNDEDSIZE
+		| `${ROUNDEDSIZE}`
+		| ROUNDED
+		| ROUNDEDSTYLE
+		| `${ROUNDED}-${ROUNDEDSTYLE}`
+		| `${ROUNDED}-${ROUNDEDSIZE}`
+		| `${ROUNDEDSTYLE}-${ROUNDEDSIZE}`;
+	export type roundedSize = ROUNDEDSIZE | `${ROUNDEDSIZE}`;
+
+	export type padding = _spacer;
+	export type paddingX = _spacer;
+	export type paddingY = _spacer;
+	export type paddingTop = _spacer;
+	export type paddingBottom = _spacer;
+	export type paddingStart = _spacer;
+	export type paddingEnd = _spacer;
+
+	export type margin = _spacer;
+	export type marginX = _spacer;
+	export type marginY = _spacer;
+	export type marginTop = _spacer;
+	export type marginBottom = _spacer;
+	export type marginStart = _spacer;
+	export type marginEnd = _spacer;
+
+	export type gap = _spacer;
+	export type gutter = _spacer;
+	export type gutterX = _spacer;
+	export type gutterY = _spacer;
+
+	export type print = display;
+	export type container = true | VIEWPORT | "fluid" | "xs";
+
+	export type zIndex = ZINDEX | `${ZINDEX}`;
+	export type objectFit = OBJECTFIT | `${VIEWPORT}-${OBJECTFIT}`;
+
+	export type ratio = true | "1x1" | "4x3" | "16x9" | "21x9";
+	export type fixed = STICKY;
+	export type sticky = STICKY | `${VIEWPORT}-${STICKY}`;
+
+	export type clearfix = true;
+	export type textTruncate = true;
+	export type vstack = true;
+	export type hstack = true;
+	export type visually = "hidden" | "hidden-focusable";
+	export type h = fontDisplay;
+	export type small = true;
+
+	//specific component only
+	export type linkColor = COLOR | BODYTEXTCOLOR;
+	export type linkUnderlineColor = linkColor;
+	export type linkOffset = LINKOFFSET | `${LINKOFFSET}`;
+	export type linkOffsetHover = linkOffset;
+	export type linkOpacity = LINKOPACITY | `${LINKOPACITY}`;
+	export type linkOpacityHover = linkOpacity;
+	export type linkUnderline = true;
+	export type linkUnderlineOpacity = LINKUNDERLINEOPACITY | `${LINKUNDERLINEOPACITY}`;
+	export type linkUnderlineOpacityHover = linkUnderlineOpacity;
+
+	export type btnColor = COLOR;
+	export type btnOutlineColor = COLOR;
+	export type alertColor = COLOR;
+	export type dropdownDirection = "up" | "start" | "end";
+}
+
 interface IBsClassFormatter {
 	format?: string;
 	formatValue?: string;
@@ -681,7 +905,7 @@ const bsClassFormatterDB: {
 
 type IBsAttrFormatter = (elem: HTMLElement, data: string | number | boolean) => HTMLElement;
 
-const bsAttrFormatterDB: {
+const attrFormatterDB: {
 	[key: string]: IBsAttrFormatter;
 } = {
 	theme: (elem, data) => {
@@ -698,170 +922,170 @@ const bsAttrFormatterDB: {
 };
 
 export interface IBsAttr {
-	bsTheme?: bs.theme; //[bs-theme="<theme>"]
-	bsPointer?: bs.pointer; //[role="button"]
+	theme?: bs.theme; //[bs-theme="<theme>"]
+	pointer?: bs.pointer; //[role="button"]
 }
 
 export interface IBsClass {
-	bsFlex?: bs.flex | bs.flex[];
-	bsFloat?: bs.float | bs.float[];
-	bsOrder?: bs.order | bs.order[];
-	bsOffset?: bs.offset | bs.offset[];
+	flex?: bs.flex | bs.flex[];
+	float?: bs.float | bs.float[];
+	order?: bs.order | bs.order[];
+	offset?: bs.offset | bs.offset[];
 
 	//---------------------
 
-	bsAlignContent?: bs.alignContent | bs.alignContent[];
-	bsJustifyContent?: bs.justifyContent | bs.justifyContent[];
-	bsAlignItem?: bs.alignItem | bs.alignItem[];
-	bsAlignSelf?: bs.alignSelf | bs.alignSelf[];
-	bsDisplay?: bs.display | bs.display[];
-	bsRowCol?: bs.rowCol | bs.rowCol[];
+	alignContent?: bs.alignContent | bs.alignContent[];
+	justifyContent?: bs.justifyContent | bs.justifyContent[];
+	alignItem?: bs.alignItem | bs.alignItem[];
+	alignSelf?: bs.alignSelf | bs.alignSelf[];
+	display?: bs.display | bs.display[];
+	rowCol?: bs.rowCol | bs.rowCol[];
 
 	//---------------------
 
-	bsVisible?: bs.visible;
-	bsTextWrap?: bs.textWrap;
-	bsFontItalic?: bs.fontItalic;
-	bsBgGradient?: bs.bgGradient;
-	bsTextBreak?: bs.textBreak;
-	bsMonospace?: bs.monospace;
+	visible?: bs.visible;
+	textWrap?: bs.textWrap;
+	fontItalic?: bs.fontItalic;
+	bgGradient?: bs.bgGradient;
+	textBreak?: bs.textBreak;
+	monospace?: bs.monospace;
 
 	//---------------------
 
-	bsPlaceholder?: bs.placeholder;
-	bsPlaceholderAnimation?: bs.placeholderAnimation;
-	bsPlaceholderWeight?: bs.placeholderWeight;
+	placeholder?: bs.placeholder;
+	placeholderAnimation?: bs.placeholderAnimation;
+	placeholderWeight?: bs.placeholderWeight;
 
 	//---------------------
 
-	bsRow?: bs.row;
-	bsCol?: bs.col | bs.col[];
+	row?: bs.row;
+	col?: bs.col | bs.col[];
 
 	//---------------------
 
 	bsUserSelect?: bs.userSelect;
-	bsPointerEvent?: bs.pointerEvent;
-	bsPosition?: bs.position;
-	bsOverflow?: bs.overflow;
-	bsOverflowX?: bs.overflow;
-	bsOverflowY?: bs.overflow;
+	pointerEvent?: bs.pointerEvent;
+	position?: bs.position;
+	overflow?: bs.overflow;
+	overflowX?: bs.overflow;
+	overflowY?: bs.overflow;
 
 	//---------------------
 
-	bsTextAlign?: bs.textAlign;
-	bsVerticalAlign?: bs.verticalAlign;
+	textAlign?: bs.textAlign;
+	verticalAlign?: bs.verticalAlign;
 
 	//---------------------
-	bsOpacity?: bs.opacity;
-	bsBgOpacity?: bs.bgOpacity;
-	bsTextOpacity?: bs.textOpacity;
-
-	//---------------------
-
-	bsFocusRing?: bs.focusRing;
-	bsTextBgColor?: bs.textBgColor;
-	bsTextColor?: bs.textColor;
-	bsBgColor?: bs.bgColor;
+	opacity?: bs.opacity;
+	bgOpacity?: bs.bgOpacity;
+	textOpacity?: bs.textOpacity;
 
 	//---------------------
 
-	bsTextTransform?: bs.textTransform;
-	bsTextDecoration?: bs.textDecoration;
-	bsLineHeight?: bs.lineHeight;
+	focusRing?: bs.focusRing;
+	textBgColor?: bs.textBgColor;
+	textColor?: bs.textColor;
+	bgColor?: bs.bgColor;
 
 	//---------------------
 
-	bsFontSize?: bs.fontSize;
-	bsFontDisplay?: bs.fontDisplay;
-	bsFontWeight?: bs.fontWeight;
+	textTransform?: bs.textTransform;
+	textDecoration?: bs.textDecoration;
+	lineHeight?: bs.lineHeight;
 
 	//---------------------
 
-	bsTop?: bs.top;
-	bsBottom?: bs.bottom;
-	bsStart?: bs.start;
-	bsEnd?: bs.end;
-	bsTranslateMiddle?: bs.translateMiddle;
+	fontSize?: bs.fontSize;
+	fontDisplay?: bs.fontDisplay;
+	fontWeight?: bs.fontWeight;
 
 	//---------------------
 
-	bsHeight?: bs.height;
-	bsWidth?: bs.width;
-	bsMaxHeight?: bs.maxHeight;
-	bsMaxWidth?: bs.maxWidth;
-	bsMinViewHeight?: bs.minViewHeight;
-	bsMinViewWidth?: bs.minViewWidth;
-	bsViewHeight?: bs.viewHeight;
-	bsViewWidth?: bs.viewWidth;
+	top?: bs.top;
+	bottom?: bs.bottom;
+	start?: bs.start;
+	end?: bs.end;
+	translateMiddle?: bs.translateMiddle;
 
 	//---------------------
 
-	bsShadow?: bs.shadow;
+	height?: bs.height;
+	width?: bs.width;
+	maxHeight?: bs.maxHeight;
+	maxWidth?: bs.maxWidth;
+	minViewHeight?: bs.minViewHeight;
+	minViewWidth?: bs.minViewWidth;
+	viewHeight?: bs.viewHeight;
+	viewWidth?: bs.viewWidth;
 
 	//---------------------
 
-	bsBorder?: bs.border | bs.border[];
-	bsBorderNone?: bs.borderNone | bs.borderNone[];
-	bsBorderColor?: bs.borderColor;
-	bsBorderOpacity?: bs.borderOpacity;
-	bsBorderWidth?: bs.borderWidth;
+	shadow?: bs.shadow;
 
 	//---------------------
 
-	bsRounded?: bs.rounded;
-	bsRoundedNone?: bs.roundedNone;
-	bsRoundedSize?: bs.roundedSize;
+	border?: bs.border | bs.border[];
+	borderNone?: bs.borderNone | bs.borderNone[];
+	borderColor?: bs.borderColor;
+	borderOpacity?: bs.borderOpacity;
+	borderWidth?: bs.borderWidth;
 
 	//---------------------
 
-	bsPadding?: bs.padding | bs.padding[];
-	bsPaddingX?: bs.paddingX | bs.paddingX[];
-	bsPaddingY?: bs.paddingY | bs.paddingY[];
-	bsPaddingTop?: bs.paddingTop | bs.paddingTop[];
-	bsPaddingBottom?: bs.paddingBottom | bs.paddingBottom[];
-	bsPaddingStart?: bs.paddingStart | bs.paddingStart[];
-	bsPaddingEnd?: bs.paddingEnd | bs.paddingEnd[];
+	rounded?: bs.rounded;
+	roundedNone?: bs.roundedNone;
+	roundedSize?: bs.roundedSize;
 
 	//---------------------
 
-	bsMargin?: bs.margin | bs.margin[];
-	bsMarginX?: bs.marginX | bs.marginX[];
-	bsMarginY?: bs.marginY | bs.marginY[];
-	bsMarginTop?: bs.marginTop | bs.marginTop[];
-	bsMarginBottom?: bs.marginBottom | bs.marginBottom[];
-	bsMarginStart?: bs.marginStart | bs.marginStart[];
-	bsMarginEnd?: bs.marginEnd | bs.marginEnd[];
+	padding?: bs.padding | bs.padding[];
+	paddingX?: bs.paddingX | bs.paddingX[];
+	paddingY?: bs.paddingY | bs.paddingY[];
+	paddingTop?: bs.paddingTop | bs.paddingTop[];
+	paddingBottom?: bs.paddingBottom | bs.paddingBottom[];
+	paddingStart?: bs.paddingStart | bs.paddingStart[];
+	paddingEnd?: bs.paddingEnd | bs.paddingEnd[];
 
 	//---------------------
 
-	bsGap?: bs.gap | bs.gap[];
-	bsGutter?: bs.gutter | bs.gutter[];
-	bsGutterX?: bs.gutterX | bs.gutterX[];
-	bsGutterY?: bs.gutterY | bs.gutterY[];
+	margin?: bs.margin | bs.margin[];
+	marginX?: bs.marginX | bs.marginX[];
+	marginY?: bs.marginY | bs.marginY[];
+	marginTop?: bs.marginTop | bs.marginTop[];
+	marginBottom?: bs.marginBottom | bs.marginBottom[];
+	marginStart?: bs.marginStart | bs.marginStart[];
+	marginEnd?: bs.marginEnd | bs.marginEnd[];
 
 	//---------------------
 
-	bsPrint?: bs.print | bs.print;
-	bsContainer?: bs.container;
+	gap?: bs.gap | bs.gap[];
+	gutter?: bs.gutter | bs.gutter[];
+	gutterX?: bs.gutterX | bs.gutterX[];
+	gutterY?: bs.gutterY | bs.gutterY[];
 
 	//---------------------
 
-	bsZIndex?: bs.zIndex;
-	bsObjectFit?: bs.objectFit | bs.objectFit[];
-	bsRatio?: bs.ratio;
-	bsFixed?: bs.fixed;
-	bsSticky?: bs.sticky | bs.sticky[];
-	bsClearfix?: bs.clearfix;
-	bsTextTruncate?: bs.textTruncate;
-	bsVisually?: bs.visually;
-	bsVstack?: bs.vstack;
-	bsHstack?: bs.hstack;
-	bsH?: bs.h;
-	bsSmall?: bs.small;
+	print?: bs.print | bs.print;
+	container?: bs.container;
 
 	//---------------------
 
-	bsIconLink?: bs.iconLink;
+	zIndex?: bs.zIndex;
+	objectFit?: bs.objectFit | bs.objectFit[];
+	ratio?: bs.ratio;
+	fixed?: bs.fixed;
+	sticky?: bs.sticky | bs.sticky[];
+	clearfix?: bs.clearfix;
+	textTruncate?: bs.textTruncate;
+	visually?: bs.visually;
+	vstack?: bs.vstack;
+	hstack?: bs.hstack;
+	h?: bs.h;
+	small?: bs.small;
+
+	//---------------------
+
+	iconLink?: bs.iconLink;
 }
 
 let allowClassProp: (string | undefined)[] = [];
@@ -924,7 +1148,7 @@ let allowAttrProp: (string | undefined)[] = [];
 export namespace attachBSAttr {
 	const allow = (key: string) => {
 		if (allowAttrProp.length === 0) {
-			allowAttrProp = Object.keys(bsAttrFormatterDB);
+			allowAttrProp = Object.keys(attrFormatterDB);
 		}
 
 		if (allowAttrProp.indexOf(key) > -1) {
@@ -944,7 +1168,7 @@ export namespace attachBSAttr {
 		let allowKey = allow(key);
 		if (allowKey) {
 			let a = keyOfType(key, attr);
-			let b = keyOfType(allowKey, bsAttrFormatterDB);
+			let b = keyOfType(allowKey, attrFormatterDB);
 			let data: (string | number | boolean)[] = [];
 
 			if (!Array.isArray(attr[a])) {
@@ -954,7 +1178,7 @@ export namespace attachBSAttr {
 			}
 
 			data.forEach((i) => {
-				elem = addAttr(bsAttrFormatterDB[b], i, elem);
+				elem = addAttr(attrFormatterDB[b], i, elem);
 			});
 
 			delete attr[a];
