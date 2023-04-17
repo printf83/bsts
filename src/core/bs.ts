@@ -1,3 +1,7 @@
+import { addClassIntoElement } from "./addClassIntoElement.js";
+import { IAttachFn } from "./attach/_index.js";
+import { keyOfType } from "./keyOfType.js";
+
 export namespace bs {
 	type VIEWPORT = "sm" | "md" | "lg" | "xl" | "xxl";
 	type SPACER = "auto" | 0 | 1 | 2 | 3 | 4 | 5;
@@ -216,14 +220,14 @@ export namespace bs {
 	export type dropdownDirection = "up" | "start" | "end";
 }
 
-export interface IBsClassFormatter {
+interface IBsClassFormatter {
 	format?: string;
 	formatValue?: string;
 	formatTrue?: string;
 	formatFalse?: string;
 }
 
-export class bsClassFormatterRule implements IBsClassFormatter {
+class bsClassFormatterRule implements IBsClassFormatter {
 	format?: string;
 	formatValue?: string;
 	formatTrue?: string;
@@ -237,7 +241,7 @@ export class bsClassFormatterRule implements IBsClassFormatter {
 	}
 }
 
-export const bsFormatterDB: {
+const bsClassFormatterDB: {
 	[key: string]: bsClassFormatterRule;
 } = {
 	flex: new bsClassFormatterRule({
@@ -675,9 +679,27 @@ export const bsFormatterDB: {
 	}),
 };
 
+type IBsAttrFormatter = (elem: HTMLElement, data: string | number | boolean) => HTMLElement;
+
+const bsAttrFormatterDB: {
+	[key: string]: IBsAttrFormatter;
+} = {
+	theme: (elem, data) => {
+		elem.setAttribute(`data-bs-theme`, data.toString());
+		return elem;
+	},
+	pointer: (elem, data) => {
+		if (data) {
+			elem.setAttribute("role", "button");
+		}
+
+		return elem;
+	},
+};
+
 export interface IBsAttr {
-	theme?: bs.theme; //[bs-theme="<thene>"]
-	pointer?: bs.pointer; //[role="button"]
+	bsTheme?: bs.theme; //[bs-theme="<theme>"]
+	bsPointer?: bs.pointer; //[role="button"]
 }
 
 export interface IBsClass {
@@ -840,4 +862,104 @@ export interface IBsClass {
 	//---------------------
 
 	bsIconLink?: bs.iconLink;
+}
+
+let allowClassProp: (string | undefined)[] = [];
+
+export namespace attachBSClass {
+	const allow = (key: string) => {
+		if (allowClassProp.length === 0) {
+			allowClassProp = Object.keys(bsClassFormatterDB);
+		}
+
+		if (allowClassProp.indexOf(key) > -1) {
+			return key;
+		}
+
+		return null;
+	};
+
+	const addClass = (rule: IBsClassFormatter, data: string | number | boolean, elem: HTMLElement) => {
+		if (rule.formatValue) {
+			elem = addClassIntoElement(elem, rule.formatValue!);
+		}
+
+		if (data === true && rule.formatTrue) {
+			elem = addClassIntoElement(elem, rule.formatTrue!);
+		} else if (data === false && rule.formatFalse) {
+			elem = addClassIntoElement(elem, rule.formatFalse!);
+		} else if (rule.format) {
+			elem = addClassIntoElement(elem, rule.format!.replace(/\$1/g, data.toString()));
+		}
+
+		return elem;
+	};
+
+	export const attach: IAttachFn = (key, elem, attr) => {
+		let allowKey = allow(key);
+		if (allowKey) {
+			let a = keyOfType(key, attr);
+			let b = keyOfType(allowKey, bsClassFormatterDB);
+			let data: (string | number | boolean)[] = [];
+
+			if (!Array.isArray(attr[a])) {
+				data = [attr[a] as string | number | boolean];
+			} else {
+				data = attr[a] as (string | number | boolean)[];
+			}
+
+			data.forEach((i) => {
+				elem = addClass(bsClassFormatterDB[b], i, elem);
+			});
+
+			delete attr[a];
+		}
+
+		return { attr, elem };
+	};
+}
+
+let allowAttrProp: (string | undefined)[] = [];
+
+export namespace attachBSAttr {
+	const allow = (key: string) => {
+		if (allowAttrProp.length === 0) {
+			allowAttrProp = Object.keys(bsAttrFormatterDB);
+		}
+
+		if (allowAttrProp.indexOf(key) > -1) {
+			return key;
+		}
+
+		return null;
+	};
+
+	const addAttr = (rule: IBsAttrFormatter, data: string | number | boolean, elem: HTMLElement) => {
+		elem = rule(elem, data);
+
+		return elem;
+	};
+
+	export const attach: IAttachFn = (key, elem, attr) => {
+		let allowKey = allow(key);
+		if (allowKey) {
+			let a = keyOfType(key, attr);
+			let b = keyOfType(allowKey, bsAttrFormatterDB);
+			let data: (string | number | boolean)[] = [];
+
+			if (!Array.isArray(attr[a])) {
+				data = [attr[a] as string | number | boolean];
+			} else {
+				data = attr[a] as (string | number | boolean)[];
+			}
+
+			data.forEach((i) => {
+				elem = addAttr(bsAttrFormatterDB[b], i, elem);
+			});
+
+			delete attr[a];
+		}
+
+		return { attr, elem };
+	};
 }
