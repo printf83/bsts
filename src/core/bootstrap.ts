@@ -1,6 +1,8 @@
 import { mergeObject } from "./mergeObject.js";
 import { IAttr, isAttr } from "./tag.js";
 
+// let testType: bsBase.col = true;
+
 export namespace bootstrapBase {
 	const base5 = [0, 1, 2, 3, 4, 5] as const;
 	const truefalse = [true, false] as const;
@@ -776,9 +778,7 @@ export namespace bootstrapBase {
 		"body-tertiary",
 		"white",
 		"black",
-		"dark",
 		"reset",
-		"muted" /** @deprecated text-muted utility has been deprecated as of v5.3.0 */,
 	] as const;
 
 	export const bgColor = [

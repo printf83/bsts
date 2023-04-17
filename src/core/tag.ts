@@ -294,7 +294,7 @@ export interface IGlobal {
 	draggable?: string;
 	lang?: string;
 	spellcheck?: string;
-	tabindex?: string;
+	tabindex?: string | number;
 	title?: string;
 	translate?: string;
 

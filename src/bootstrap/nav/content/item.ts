@@ -7,7 +7,7 @@ export interface IAttrBSNavContentItem extends IAttr {
 	active?: boolean;
 	role?: "tabpanel";
 	labelledby?: string;
-	tabindex?: string;
+	tabindex?: string | number;
 	animation?: boolean;
 }
 
