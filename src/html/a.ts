@@ -34,20 +34,20 @@ export interface IAttrTagA extends IAttr {
 		| "tag";
 	target?: "_blank" | "_parent" | "_self" | "_top";
 	type?: string;
-	color?: bootstrapType.linkColor[number];
+	color?: bootstrapType.linkColor;
 	stretched?: true;
 
 	disabled?: boolean;
 
-	linkColor?: bootstrapType.linkColor[number];
-	linkUnderlineColor?: bootstrapType.linkUnderlineColor[number];
-	linkOffset?: bootstrapType.linkOffset[number];
-	linkOffsetHover?: bootstrapType.linkOffsetHover[number];
-	linkOpacity?: bootstrapType.linkOpacity[number];
-	linkUnderline?: bootstrapType.linkUnderline[number];
-	linkUnderlineOpacity?: bootstrapType.linkUnderlineOpacity[number];
-	linkUnderlineOpacityHover?: bootstrapType.linkUnderlineOpacityHover[number];
-	linkOpacityHover?: bootstrapType.linkOpacityHover[number];
+	linkColor?: bootstrapType.linkColor;
+	linkUnderlineColor?: bootstrapType.linkUnderlineColor;
+	linkOffset?: bootstrapType.linkOffset;
+	linkOffsetHover?: bootstrapType.linkOffsetHover;
+	linkOpacity?: bootstrapType.linkOpacity;
+	linkUnderline?: bootstrapType.linkUnderline;
+	linkUnderlineOpacity?: bootstrapType.linkUnderlineOpacity;
+	linkUnderlineOpacityHover?: bootstrapType.linkUnderlineOpacityHover;
+	linkOpacityHover?: bootstrapType.linkOpacityHover;
 }
 
 const convert = (attr: IAttrTagA) => {

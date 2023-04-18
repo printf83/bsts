@@ -5,7 +5,7 @@ import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
 
 export interface IAttrBSProgressBar extends IAttr {
-	color?: bootstrapType.color[number];
+	color?: bootstrapType.color;
 	striped?: boolean;
 	animated?: boolean;
 }

@@ -1,100 +1,244 @@
 import { mergeObject } from "./mergeObject.js";
 import { IAttr, isAttr } from "./tag.js";
+import { addClassIntoElement } from "./addClassIntoElement.js";
+import { IAttachFn } from "./attach/_index.js";
+import { keyOfType } from "./keyOfType.js";
 
-// let testType: bsBase.col = true;
+export namespace bootstrapType {
+	type VIEWPORT = "sm" | "md" | "lg" | "xl" | "xxl";
+	type SPACER = "auto" | 0 | 1 | 2 | 3 | 4 | 5;
+	type GRID = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+	type ROWCOL = "auto" | GRID;
+	type FLEX =
+		| "row"
+		| "row-reverse"
+		| "column"
+		| "column-reverse"
+		| "wrap"
+		| "wrap-reverse"
+		| "nowrap"
+		| "fill"
+		| "shrink-0"
+		| "shrink-1"
+		| "grow-0"
+		| "grow-1";
+	type FLOAT = "start" | "end" | "none";
+	type ORDER = "first" | "last" | GRID;
+	type ALIGN = "start" | "end" | "center" | "baseline" | "stretch";
+	type ALIGNCONTENT = "start" | "end" | "center" | "between" | "around" | "stretch";
+	type JUSTIFYCONTENT = "start" | "end" | "center" | "between" | "around" | "evenly";
+	type DISPLAY =
+		| "none"
+		| "inline"
+		| "inline-block"
+		| "block"
+		| "grid"
+		| "table"
+		| "table-cell"
+		| "table-row"
+		| "flex"
+		| "inline-flex";
+	type POSITIONVIEW = "start" | "center" | "end";
 
-export namespace bootstrapBase {
-	const base5 = [0, 1, 2, 3, 4, 5] as const;
-	const truefalse = [true, false] as const;
-	const trueonly = [true] as const;
-	const hundred = [100] as const;
+	type COLOR = "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "light" | "dark";
+	type COLOREMPHASIS = `${COLOR}-emphasis`;
+	type COLORSUBTLE = `${COLOR}-subtle`;
+	type BODYCOLOR = "body" | "body-secondary" | "body-tertiary";
+	type OTHERCOLOR = "white" | "black";
+	type BODYTEXTCOLOR = BODYCOLOR | OTHERCOLOR | "body-emphasis";
+	type OPACITY = 0 | 25 | 50 | 75 | 100;
+	type BGOPACITY = 10 | 25 | 50 | 75 | 100;
+	type TEXTOPACITY = 25 | 50 | 75 | 100;
+	type BORDEROPACITY = 10 | 25 | 50 | 75;
+	type LINKOFFSET = 1 | 2 | 3;
+	type LINKOPACITY = BGOPACITY;
+	type LINKUNDERLINEOPACITY = 0 | LINKOPACITY;
+	type FONTSIZE = 1 | 2 | 3 | 4 | 5 | 6;
+	type TOP = 0 | 50 | 100;
+	type HEIGHT = "auto" | 25 | 50 | 75 | 100;
+	type BORDERWIDTH = 0 | 1 | 2 | 3 | 4 | 5;
+	type ZINDEX = 0 | 1 | 2 | 3 | "n1";
+	type OBJECTFIT = "contain" | "cover" | "fill" | "scale" | "none";
+	type STICKY = "top" | "bottom";
 
-	export const theme = ["dark", "light", "auto"] as const;
+	type ROUNDED = "top" | "end" | "bottom" | "start";
+	type ROUNDEDSIZE = BORDERWIDTH;
+	type ROUNDEDSTYLE = "pill" | "circle";
 
-	export const viewport = ["sm", "md", "lg", "xl", "xxl"] as const;
+	type _grid = GRID | `${GRID}` | `${VIEWPORT}-${GRID}`;
+	type _spacer = SPACER | `${SPACER}` | `${VIEWPORT}-${SPACER}`;
+	type _align = ALIGN | `${VIEWPORT}-${ALIGN}`;
+	type _positionView = POSITIONVIEW | `${VIEWPORT}-${POSITIONVIEW}`;
 
-	export const baseGrid = [
-		0,
-		1,
-		2,
-		3,
-		4,
-		5,
-		6,
-		7,
-		8,
-		9,
-		10,
-		11,
-		12,
-		"sm-0",
-		"sm-1",
-		"sm-2",
-		"sm-3",
-		"sm-4",
-		"sm-5",
-		"sm-6",
-		"sm-7",
-		"sm-8",
-		"sm-9",
-		"sm-10",
-		"sm-11",
-		"sm-12",
-		"md-0",
-		"md-1",
-		"md-2",
-		"md-3",
-		"md-4",
-		"md-5",
-		"md-6",
-		"md-7",
-		"md-8",
-		"md-9",
-		"md-10",
-		"md-11",
-		"md-12",
-		"lg-0",
-		"lg-1",
-		"lg-2",
-		"lg-3",
-		"lg-4",
-		"lg-5",
-		"lg-6",
-		"lg-7",
-		"lg-8",
-		"lg-9",
-		"lg-10",
-		"lg-11",
-		"lg-12",
-		"xl-0",
-		"xl-1",
-		"xl-2",
-		"xl-3",
-		"xl-4",
-		"xl-5",
-		"xl-6",
-		"xl-7",
-		"xl-8",
-		"xl-9",
-		"xl-10",
-		"xl-11",
-		"xl-12",
-		"xxl-0",
-		"xxl-1",
-		"xxl-2",
-		"xxl-3",
-		"xxl-4",
-		"xxl-5",
-		"xxl-6",
-		"xxl-7",
-		"xxl-8",
-		"xxl-9",
-		"xxl-10",
-		"xxl-11",
-		"xxl-12",
-	] as const;
+	//use by component and handle by component rule
+	export type color = COLOR;
+	export type viewport = VIEWPORT;
 
-	export const flex = [
+	//attribute
+	export type theme = "light" | "dark" | "auto";
+	export type pointer = true;
+	export type label = string;
+	export type labelledby = string;
+	export type ownby = string;
+	export type describedby = string;
+	export type controlfor = string;
+
+	//class
+	export type flex = FLEX | `${VIEWPORT}-${FLEX}`;
+	export type float = FLOAT | `${VIEWPORT}-${FLOAT}`;
+	export type order = ORDER | `${ORDER}` | `${VIEWPORT}-${ORDER}`;
+	export type offset = _grid;
+
+	export type alignContent = ALIGNCONTENT | `${VIEWPORT}-${ALIGNCONTENT}`;
+	export type justifyContent = JUSTIFYCONTENT | `${VIEWPORT}-${JUSTIFYCONTENT}`;
+	export type alignItem = _align;
+	export type alignSelf = _align;
+	export type display = DISPLAY | `${VIEWPORT}-${DISPLAY}`;
+	export type rowCol = ROWCOL | `${ROWCOL}` | `${VIEWPORT}-${ROWCOL}`;
+
+	export type visible = boolean;
+	export type textWrap = boolean;
+	export type fontItalic = boolean;
+	export type bgGradient = true;
+	export type textBreak = true;
+	export type monospace = true;
+
+	export type loadingPlaceholder = true;
+	export type loadingPlaceholderAnimation = "glow" | "wave";
+	export type loadingPlaceholderWeight = "lg" | "sm" | "xs";
+
+	export type row = true;
+	export type col = true | ROWCOL | `${ROWCOL}` | VIEWPORT | `${VIEWPORT}-${ROWCOL}`;
+
+	export type userSelect = "all" | "auto" | "none";
+	export type pointerEvent = "auto" | "none";
+	export type position = "static" | "relative" | "absolute" | "fixed" | "sticky";
+	export type overflow = "auto" | "hidden" | "scroll" | "visible";
+	export type overflowX = overflow;
+	export type overflowY = overflow;
+
+	export type textAlign = _positionView;
+	export type verticalAlign = "baseline" | "top" | "middle" | "bottom" | "text-top" | "text-bottom";
+
+	export type opacity = OPACITY | `${OPACITY}`;
+	export type bgOpacity = BGOPACITY | `${BGOPACITY}`;
+	export type textOpacity = TEXTOPACITY | `${TEXTOPACITY}`;
+
+	export type focusRing = true | COLOR;
+	export type textBgColor = COLOR;
+	export type textColor = COLOR | COLOREMPHASIS | BODYCOLOR | BODYTEXTCOLOR | OTHERCOLOR | "reset";
+	export type bgColor = COLOR | COLORSUBTLE | BODYCOLOR | OTHERCOLOR | "transparent";
+
+	export type iconLink = true | "hover";
+
+	export type textTransform = "lowercase" | "uppercase" | "capitalize";
+	export type textDecoration = "underline" | "line-through" | "none";
+	export type lineHeight = 1 | "1" | "sm" | "base" | "lg";
+
+	export type fontSize = FONTSIZE | `${FONTSIZE}`;
+	export type fontDisplay = fontSize;
+	export type fontWeight = "bold" | "bolder" | "semibold" | "medium" | "normal" | "light" | "lighter";
+
+	export type top = TOP | `${TOP}`;
+	export type bottom = top;
+	export type start = top;
+	export type end = top;
+	export type tMiddle = true | "x" | "y";
+
+	export type height = HEIGHT | `${HEIGHT}`;
+	export type width = height;
+
+	export type maxHeight = 100 | "100";
+	export type maxWidth = 100 | "100";
+	export type minViewHeight = 100 | "100";
+	export type minViewWidth = 100 | "100";
+	export type viewHeight = 100 | "100";
+	export type viewWidth = 100 | "100";
+
+	export type shadow = boolean | "none" | "sm" | "lg" | "inset";
+
+	export type borderNone = true | "top" | "end" | "bottom" | "start";
+	export type border = false | borderNone;
+	export type borderColor = COLOR | COLORSUBTLE | OTHERCOLOR;
+	export type borderOpacity = BORDEROPACITY | `${BORDEROPACITY}`;
+	export type borderWidth = BORDERWIDTH | `${BORDERWIDTH}`;
+
+	export type roundedNone = border;
+	export type rounded =
+		| boolean
+		| ROUNDEDSIZE
+		| `${ROUNDEDSIZE}`
+		| ROUNDED
+		| ROUNDEDSTYLE
+		| `${ROUNDED}-${ROUNDEDSTYLE}`
+		| `${ROUNDED}-${ROUNDEDSIZE}`
+		| `${ROUNDEDSTYLE}-${ROUNDEDSIZE}`;
+	export type roundedSize = ROUNDEDSIZE | `${ROUNDEDSIZE}`;
+
+	export type padding = _spacer;
+	export type paddingX = _spacer;
+	export type paddingY = _spacer;
+	export type paddingTop = _spacer;
+	export type paddingBottom = _spacer;
+	export type paddingStart = _spacer;
+	export type paddingEnd = _spacer;
+
+	export type margin = _spacer;
+	export type marginX = _spacer;
+	export type marginY = _spacer;
+	export type marginTop = _spacer;
+	export type marginBottom = _spacer;
+	export type marginStart = _spacer;
+	export type marginEnd = _spacer;
+
+	export type gap = _spacer;
+	export type gutter = _spacer;
+	export type gutterX = _spacer;
+	export type gutterY = _spacer;
+
+	export type print = display;
+	export type container = true | VIEWPORT | "fluid" | "xs";
+
+	export type zIndex = ZINDEX | `${ZINDEX}`;
+	export type objectFit = OBJECTFIT | `${VIEWPORT}-${OBJECTFIT}`;
+
+	export type ratio = true | "1x1" | "4x3" | "16x9" | "21x9";
+	export type fixed = STICKY;
+	export type sticky = STICKY | `${VIEWPORT}-${STICKY}`;
+
+	export type clearfix = true;
+	export type textTruncate = true;
+	export type vstack = true;
+	export type hstack = true;
+	export type visually = "hidden" | "hidden-focusable";
+	export type h = fontDisplay;
+	export type small = true;
+
+	//specific component only
+	export type linkColor = COLOR | BODYTEXTCOLOR;
+	export type linkUnderlineColor = linkColor;
+	export type linkOffset = LINKOFFSET | `${LINKOFFSET}`;
+	export type linkOffsetHover = linkOffset;
+	export type linkOpacity = LINKOPACITY | `${LINKOPACITY}`;
+	export type linkOpacityHover = linkOpacity;
+	export type linkUnderline = true;
+	export type linkUnderlineOpacity = LINKUNDERLINEOPACITY | `${LINKUNDERLINEOPACITY}`;
+	export type linkUnderlineOpacityHover = linkUnderlineOpacity;
+
+	export type btnColor = COLOR | "link" | "transparent";
+	export type btnOutlineColor = COLOR;
+	export type alertColor = COLOR;
+	export type alertDismissible = true;
+	export type dropdownDirection = "up" | "start" | "end";
+	export type dropdownMenuPositionView = _positionView;
+}
+
+namespace bootstrapTypeA {
+	const VIEWPORT = ["sm", "md", "lg", "xl", "xxl"];
+	const SPACER = ["auto", 0, 1, 2, 3, 4, 5];
+	const GRID = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+	const ROWCOL = ["auto", ...GRID];
+	const FLEX = [
 		"row",
 		"row-reverse",
 		"column",
@@ -107,349 +251,13 @@ export namespace bootstrapBase {
 		"shrink-1",
 		"grow-0",
 		"grow-1",
-
-		"sm-row",
-		"sm-row-reverse",
-		"sm-column",
-		"sm-column-reverse",
-		"sm-wrap",
-		"sm-wrap-reverse",
-		"sm-nowrap",
-		"sm-fill",
-		"sm-shrink-0",
-		"sm-shrink-1",
-		"sm-grow-0",
-		"sm-grow-1",
-
-		"md-row",
-		"md-row-reverse",
-		"md-column",
-		"md-column-reverse",
-		"md-wrap",
-		"md-wrap-reverse",
-		"md-nowrap",
-		"md-fill",
-		"md-shrink-0",
-		"md-shrink-1",
-		"md-grow-0",
-		"md-grow-1",
-
-		"lg-row",
-		"lg-row-reverse",
-		"lg-column",
-		"lg-column-reverse",
-		"lg-wrap",
-		"lg-wrap-reverse",
-		"lg-nowrap",
-		"lg-fill",
-		"lg-shrink-0",
-		"lg-shrink-1",
-		"lg-grow-0",
-		"lg-grow-1",
-
-		"xl-row",
-		"xl-row-reverse",
-		"xl-column",
-		"xl-column-reverse",
-		"xl-wrap",
-		"xl-wrap-reverse",
-		"xl-nowrap",
-		"xl-fill",
-		"xl-shrink-0",
-		"xl-shrink-1",
-		"xl-grow-0",
-		"xl-grow-1",
-
-		"xxl-row",
-		"xxl-row-reverse",
-		"xxl-column",
-		"xxl-column-reverse",
-		"xxl-wrap",
-		"xxl-wrap-reverse",
-		"xxl-nowrap",
-		"xxl-fill",
-		"xxl-shrink-0",
-		"xxl-shrink-1",
-		"xxl-grow-0",
-		"xxl-grow-1",
-	] as const;
-
-	export const float = [
-		"start",
-		"end",
-		"none",
-		"sm-start",
-		"sm-end",
-		"sm-none",
-		"md-start",
-		"md-end",
-		"md-none",
-		"lg-start",
-		"lg-end",
-		"lg-none",
-		"xl-start",
-		"xl-end",
-		"xl-none",
-		"xxl-start",
-		"xxl-end",
-		"xxl-none",
-	] as const;
-
-	export const order = [
-		"first",
-		0,
-		1,
-		2,
-		3,
-		4,
-		5,
-		6,
-		7,
-		8,
-		9,
-		10,
-		11,
-		12,
-		"last",
-		"sm-first",
-		"sm-0",
-		"sm-1",
-		"sm-2",
-		"sm-3",
-		"sm-4",
-		"sm-5",
-		"sm-6",
-		"sm-7",
-		"sm-8",
-		"sm-9",
-		"sm-10",
-		"sm-11",
-		"sm-12",
-		"sm-last",
-		"md-first",
-		"md-0",
-		"md-1",
-		"md-2",
-		"md-3",
-		"md-4",
-		"md-5",
-		"md-6",
-		"md-7",
-		"md-8",
-		"md-9",
-		"md-10",
-		"md-11",
-		"md-12",
-		"md-last",
-		"lg-first",
-		"lg-0",
-		"lg-1",
-		"lg-2",
-		"lg-3",
-		"lg-4",
-		"lg-5",
-		"lg-6",
-		"lg-7",
-		"lg-8",
-		"lg-9",
-		"lg-10",
-		"lg-11",
-		"lg-12",
-		"lg-last",
-		"xl-first",
-		"xl-0",
-		"xl-1",
-		"xl-2",
-		"xl-3",
-		"xl-4",
-		"xl-5",
-		"xl-6",
-		"xl-7",
-		"xl-8",
-		"xl-9",
-		"xl-10",
-		"xl-11",
-		"xl-12",
-		"xl-last",
-		"xxl-first",
-		"xxl-0",
-		"xxl-1",
-		"xxl-2",
-		"xxl-3",
-		"xxl-4",
-		"xxl-5",
-		"xxl-6",
-		"xxl-7",
-		"xxl-8",
-		"xxl-9",
-		"xxl-10",
-		"xxl-11",
-		"xxl-12",
-		"xxl-last",
-	] as const;
-
-	export const offset = baseGrid;
-
-	export const align = [
-		"start",
-		"end",
-		"center",
-		"baseline",
-		"stretch",
-		"sm-start",
-		"sm-end",
-		"sm-center",
-		"sm-baseline",
-		"sm-stretch",
-		"md-start",
-		"md-end",
-		"md-center",
-		"md-baseline",
-		"md-stretch",
-		"lg-start",
-		"lg-end",
-		"lg-center",
-		"lg-baseline",
-		"lg-stretch",
-		"xl-start",
-		"xl-end",
-		"xl-center",
-		"xl-baseline",
-		"xl-stretch",
-		"xxl-start",
-		"xxl-end",
-		"xxl-center",
-		"xxl-baseline",
-		"xxl-stretch",
-	] as const;
-
-	export const alignContent = [
-		"start",
-		"end",
-		"center",
-		"between",
-		"around",
-		"stretch",
-		"sm-start",
-		"sm-end",
-		"sm-center",
-		"sm-between",
-		"sm-around",
-		"sm-stretch",
-		"md-start",
-		"md-end",
-		"md-center",
-		"md-between",
-		"md-around",
-		"md-stretch",
-		"lg-start",
-		"lg-end",
-		"lg-center",
-		"lg-between",
-		"lg-around",
-		"lg-stretch",
-		"xl-start",
-		"xl-end",
-		"xl-center",
-		"xl-between",
-		"xl-around",
-		"xl-stretch",
-		"xxl-start",
-		"xxl-end",
-		"xxl-center",
-		"xxl-between",
-		"xxl-around",
-		"xxl-stretch",
-	] as const;
-
-	export const justifyContent = [
-		"start",
-		"end",
-		"center",
-		"between",
-		"around",
-		"evenly",
-		"sm-start",
-		"sm-end",
-		"sm-center",
-		"sm-between",
-		"sm-around",
-		"sm-evenly",
-		"md-start",
-		"md-end",
-		"md-center",
-		"md-between",
-		"md-around",
-		"md-evenly",
-		"lg-start",
-		"lg-end",
-		"lg-center",
-		"lg-between",
-		"lg-around",
-		"lg-evenly",
-		"xl-start",
-		"xl-end",
-		"xl-center",
-		"xl-between",
-		"xl-around",
-		"xl-evenly",
-		"xxl-start",
-		"xxl-end",
-		"xxl-center",
-		"xxl-between",
-		"xxl-around",
-		"xxl-evenly",
-	] as const;
-
-	export const alignItem = align;
-	export const alignSelf = align;
-
-	export const spacer = [
-		0,
-		1,
-		2,
-		3,
-		4,
-		5,
-		"auto",
-		"sm-0",
-		"md-0",
-		"lg-0",
-		"xl-0",
-		"xxl-0",
-		"sm-1",
-		"md-1",
-		"lg-1",
-		"xl-1",
-		"xxl-1",
-		"sm-2",
-		"md-2",
-		"lg-2",
-		"xl-2",
-		"xxl-2",
-		"sm-3",
-		"md-3",
-		"lg-3",
-		"xl-3",
-		"xxl-3",
-		"sm-4",
-		"md-4",
-		"lg-4",
-		"xl-4",
-		"xxl-4",
-		"sm-5",
-		"md-5",
-		"lg-5",
-		"xl-5",
-		"xxl-5",
-		"sm-auto",
-		"md-auto",
-		"lg-auto",
-		"xl-auto",
-		"xxl-auto",
-	] as const;
-
-	export const display = [
+	];
+	const FLOAT = ["start", "end", "none"];
+	const ORDER = ["first", "last", ...GRID];
+	const ALIGN = ["start", "end", "center", "baseline", "stretch"];
+	const ALIGNCONTENT = ["start", "end", "center", "between", "around", "stretch"];
+	const JUSTIFYCONTENT = ["start", "end", "center", "between", "around", "evenly"];
+	const DISPLAY = [
 		"none",
 		"inline",
 		"inline-block",
@@ -460,712 +268,1157 @@ export namespace bootstrapBase {
 		"table-row",
 		"flex",
 		"inline-flex",
-		"sm-none",
-		"sm-inline",
-		"sm-inline-block",
-		"sm-block",
-		"sm-grid",
-		"sm-table",
-		"sm-table-cell",
-		"sm-table-row",
-		"sm-flex",
-		"sm-inline-flex",
-		"md-none",
-		"md-inline",
-		"md-inline-block",
-		"md-block",
-		"md-grid",
-		"md-table",
-		"md-table-cell",
-		"md-table-row",
-		"md-flex",
-		"md-inline-flex",
-		"lg-none",
-		"lg-inline",
-		"lg-inline-block",
-		"lg-block",
-		"lg-grid",
-		"lg-table",
-		"lg-table-cell",
-		"lg-table-row",
-		"lg-flex",
-		"lg-inline-flex",
-		"xl-none",
-		"xl-inline",
-		"xl-inline-block",
-		"xl-block",
-		"xl-grid",
-		"xl-table",
-		"xl-table-cell",
-		"xl-table-row",
-		"xl-flex",
-		"xl-inline-flex",
-		"xxl-none",
-		"xxl-inline",
-		"xxl-inline-block",
-		"xxl-block",
-		"xxl-grid",
-		"xxl-table",
-		"xxl-table-cell",
-		"xxl-table-row",
-		"xxl-flex",
-		"xxl-inline-flex",
-	] as const;
+	];
+	const POSITIONVIEW = ["start", "center", "end"];
 
+	const COLOR = ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"];
+	const COLOREMPHASIS = COLOR.map((i) => `${i}-emphasis`);
+	const COLORSUBTLE = COLOR.map((i) => `${i}-subtle`);
+	const BODYCOLOR = ["body", "body-secondary", "body-tertiary"];
+	const OTHERCOLOR = ["white", "black"];
+	const BODYTEXTCOLOR = [...BODYCOLOR, ...OTHERCOLOR, "body-emphasis"];
+	const OPACITY = [0, 25, 50, 75, 100];
+	const BGOPACITY = [10, 25, 50, 75, 100];
+	const TEXTOPACITY = [25, 50, 75, 100];
+	const BORDEROPACITY = [10, 25, 50, 75];
+	const LINKOFFSET = [1, 2, 3];
+	const LINKOPACITY = BGOPACITY;
+	const LINKUNDERLINEOPACITY = [0, ...LINKOPACITY];
+	const FONTSIZE = [1, 2, 3, 4, 5, 6];
+	const TOP = [0, 50, 100];
+	const HEIGHT = ["auto", 25, 50, 75, 100];
+	const BORDERWIDTH = [0, 1, 2, 3, 4, 5];
+	const ZINDEX = [0, 1, 2, 3, "n1"];
+	const OBJECTFIT = ["contain", "cover", "fill", "scale", "none"];
+	const STICKY = ["top", "bottom"];
+
+	const ROUNDED = ["top", "end", "bottom", "start"];
+	const ROUNDEDSIZE = BORDERWIDTH;
+	const ROUNDEDSTYLE = ["pill", "circle"];
+
+	const _grid = [...GRID, ...GRID.map((i) => `${i}`), ...VIEWPORT.map((i) => GRID.map((j) => `${i}-${j}`)).flat()];
+	const _spacer = [
+		...SPACER,
+		...SPACER.map((i) => `${i}`),
+		...VIEWPORT.map((i) => SPACER.map((j) => `${i}-${j}`)).flat(),
+	];
+	const _align = [...ALIGN, ...VIEWPORT.map((i) => ALIGN.map((j) => `${i}-${j}`)).flat()];
+	const _positionView = [...POSITIONVIEW, ...VIEWPORT.map((i) => POSITIONVIEW.map((j) => `${i}-${j}`)).flat()];
+
+	//use by component and handle by component rule
+	// NO NEED TO DO THIS BCOZ HANDLE BY COMPONENT
+	// export const color = [...COLOR, ...OTHERCOLOR];
+	// export const viewport = VIEWPORT;
+
+	//attribute
+	// NO NEED TO DO THIS BCOZ ATTR VALUE NOT VALIDATE
+	// export const theme = ["light", "dark", "auto"];
+	// export const pointer = [true];
+	// export const label = "string";
+	// export const labelledby = "string";
+	// export const ownby = "string";
+	// export const describedby = "string";
+	// export const controlfor = "string";
+
+	//class
+	export const flex = [...FLEX, ...VIEWPORT.map((i) => FLEX.map((j) => `${i}-${j}`)).flat()];
+	export const float = [...FLOAT, ...VIEWPORT.map((i) => FLOAT.map((j) => `${i}-${j}`)).flat()];
+	export const order = [
+		...ORDER,
+		...ORDER.map((i) => `${i}`),
+		...VIEWPORT.map((i) => ORDER.map((j) => `${i}-${j}`)).flat(),
+	];
+	export const offset = _grid;
+
+	export const alignContent = [...ALIGNCONTENT, ...VIEWPORT.map((i) => ALIGNCONTENT.map((j) => `${i}-${j}`)).flat()];
+	export const justifyContent = [
+		...JUSTIFYCONTENT,
+		...VIEWPORT.map((i) => JUSTIFYCONTENT.map((j) => `${i}-${j}`)).flat(),
+	];
+	export const alignItem = _align;
+	export const alignSelf = _align;
+	export const display = [...DISPLAY, ...VIEWPORT.map((i) => DISPLAY.map((j) => `${i}-${j}`)).flat()];
 	export const rowCol = [
-		"auto",
-		0,
-		1,
-		2,
-		3,
-		4,
-		5,
-		6,
-		7,
-		8,
-		9,
-		10,
-		11,
-		12,
-		// "sm",
-		"sm-auto",
-		"sm-0",
-		"sm-1",
-		"sm-2",
-		"sm-3",
-		"sm-4",
-		"sm-5",
-		"sm-6",
-		"sm-7",
-		"sm-8",
-		"sm-9",
-		"sm-10",
-		"sm-11",
-		"sm-12",
-		// "md",
-		"md-auto",
-		"md-0",
-		"md-1",
-		"md-2",
-		"md-3",
-		"md-4",
-		"md-5",
-		"md-6",
-		"md-7",
-		"md-8",
-		"md-9",
-		"md-10",
-		"md-11",
-		"md-12",
-		// "lg",
-		"lg-auto",
-		"lg-0",
-		"lg-1",
-		"lg-2",
-		"lg-3",
-		"lg-4",
-		"lg-5",
-		"lg-6",
-		"lg-7",
-		"lg-8",
-		"lg-9",
-		"lg-10",
-		"lg-11",
-		"lg-12",
-		// "xl",
-		"xl-auto",
-		"xl-0",
-		"xl-1",
-		"xl-2",
-		"xl-3",
-		"xl-4",
-		"xl-5",
-		"xl-6",
-		"xl-7",
-		"xl-8",
-		"xl-9",
-		"xl-10",
-		"xl-11",
-		"xl-12",
-		// "xxl",
-		"xxl-auto",
-		"xxl-0",
-		"xxl-1",
-		"xxl-2",
-		"xxl-3",
-		"xxl-4",
-		"xxl-5",
-		"xxl-6",
-		"xxl-7",
-		"xxl-8",
-		"xxl-9",
-		"xxl-10",
-		"xxl-11",
-		"xxl-12",
-	] as const;
+		...ROWCOL,
+		...ROWCOL.map((i) => `${i}`),
+		...VIEWPORT.map((i) => ROWCOL.map((j) => `${i}-${j}`)).flat(),
+	];
 
-	export const color = ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"] as const;
+	export const visible = [true, false];
+	export const textWrap = [true, false];
+	export const fontItalic = [true, false];
+	export const bgGradient = [true];
+	export const textBreak = [true];
+	export const monospace = [true];
 
-	export const colorEmphasis = [
-		"primary-emphasis",
-		"secondary-emphasis",
-		"success-emphasis",
-		"danger-emphasis",
-		"warning-emphasis",
-		"info-emphasis",
-		"light-emphasis",
-		"dark-emphasis",
-	] as const;
+	export const loadingPlaceholder = [true];
+	export const loadingPlaceholderAnimation = ["glow", "wave"];
+	export const loadingPlaceholderWeight = ["lg", "sm", "xs"];
 
-	export const colorSubtle = [
-		"primary-subtle",
-		"secondary-subtle",
-		"success-subtle",
-		"danger-subtle",
-		"warning-subtle",
-		"info-subtle",
-		"light-subtle",
-		"dark-subtle",
-	] as const;
-
-	export const positionView = [
-		"start",
-		"sm-start",
-		"md-start",
-		"lg-start",
-		"xl-start",
-		"center",
-		"sm-center",
-		"md-center",
-		"lg-center",
-		"xl-center",
-		"end",
-		"sm-end",
-		"md-end",
-		"lg-end",
-		"xl-end",
-	] as const;
-
-	export const visible = truefalse;
-	export const textWrap = truefalse;
-	export const fontItalic = truefalse;
-
-	export const bgGradient = trueonly;
-	export const textBreak = trueonly;
-	export const monospace = trueonly;
-	export const loadingPlaceholder = trueonly;
-
-	export const row = truefalse;
-
+	export const row = [true];
 	export const col = [
 		true,
-		"auto",
-		0,
-		1,
-		2,
-		3,
-		4,
-		5,
-		6,
-		7,
-		8,
-		9,
-		10,
-		11,
-		12,
-		"sm",
-		"sm-auto",
-		"sm-0",
-		"sm-1",
-		"sm-2",
-		"sm-3",
-		"sm-4",
-		"sm-5",
-		"sm-6",
-		"sm-7",
-		"sm-8",
-		"sm-9",
-		"sm-10",
-		"sm-11",
-		"sm-12",
-		"md",
-		"md-auto",
-		"md-0",
-		"md-1",
-		"md-2",
-		"md-3",
-		"md-4",
-		"md-5",
-		"md-6",
-		"md-7",
-		"md-8",
-		"md-9",
-		"md-10",
-		"md-11",
-		"md-12",
-		"lg",
-		"lg-auto",
-		"lg-0",
-		"lg-1",
-		"lg-2",
-		"lg-3",
-		"lg-4",
-		"lg-5",
-		"lg-6",
-		"lg-7",
-		"lg-8",
-		"lg-9",
-		"lg-10",
-		"lg-11",
-		"lg-12",
-		"xl",
-		"xl-auto",
-		"xl-0",
-		"xl-1",
-		"xl-2",
-		"xl-3",
-		"xl-4",
-		"xl-5",
-		"xl-6",
-		"xl-7",
-		"xl-8",
-		"xl-9",
-		"xl-10",
-		"xl-11",
-		"xl-12",
-		"xxl",
-		"xxl-auto",
-		"xxl-0",
-		"xxl-1",
-		"xxl-2",
-		"xxl-3",
-		"xxl-4",
-		"xxl-5",
-		"xxl-6",
-		"xxl-7",
-		"xxl-8",
-		"xxl-9",
-		"xxl-10",
-		"xxl-11",
-		"xxl-12",
-	] as const;
+		...ROWCOL,
+		...ROWCOL.map((i) => `${i}`),
+		...VIEWPORT,
+		...VIEWPORT.map((i) => ROWCOL.map((j) => `${i}-${j}`)).flat(),
+	];
 
-	export const userSelect = ["all", "auto", "none"] as const;
-	export const pointerEvent = ["auto", "none"] as const;
-	export const position = ["static", "relative", "absolute", "fixed", "sticky"] as const;
-	export const overflow = ["auto", "hidden", "scroll", "visible"] as const;
+	export const userSelect = ["all", "auto", "none"];
+	export const pointerEvent = ["auto", "none"];
+	export const position = ["static", "relative", "absolute", "fixed", "sticky"];
+	export const overflow = ["auto", "hidden", "scroll", "visible"];
+	export const overflowX = overflow;
+	export const overflowY = overflow;
 
-	export const textAlign = positionView;
-	export const verticalAlign = ["baseline", "top", "middle", "bottom", "text-top", "text-bottom"] as const;
+	export const textAlign = _positionView;
+	export const verticalAlign = ["baseline", "top", "middle", "bottom", "text-top", "text-bottom"];
 
-	export const opacity = [0, 25, 50, 75, 100] as const;
-	export const bgOpacity = [10, 25, 50, 75, 100] as const;
-	export const textOpacity = [25, 50, 75, 100] as const;
+	export const opacity = [...OPACITY, ...OPACITY.map((i) => `${i}`)];
+	export const bgOpacity = [...BGOPACITY, ...BGOPACITY.map((i) => `${i}`)];
+	export const textOpacity = [...TEXTOPACITY, ...TEXTOPACITY.map((i) => `${i}`)];
 
-	export const btnColor = color;
-	export const btnOutlineColor = color;
-	export const alertColor = color;
+	export const focusRing = [true, ...COLOR];
+	export const textBgColor = COLOR;
+	export const textColor = [...COLOR, ...COLOREMPHASIS, ...BODYCOLOR, ...BODYTEXTCOLOR, ...OTHERCOLOR, "reset"];
+	export const bgColor = [...COLOR, ...COLORSUBTLE, ...BODYCOLOR, ...OTHERCOLOR, "transparent"];
 
-	export const focusRing = [...color, true] as const;
+	export const iconLink = [true, "hover"];
 
-	export const textBgColor = color;
-	export const textColor = [
-		...color,
-		...colorEmphasis,
-		"body",
-		"body-emphasis",
-		"body-secondary",
-		"body-tertiary",
-		"white",
-		"black",
-		"reset",
-	] as const;
+	export const textTransform = ["lowercase", "uppercase", "capitalize"];
+	export const textDecoration = ["underline", "line-through", "none"];
+	export const lineHeight = [1, "1", "sm", "base", "lg"];
 
-	export const bgColor = [
-		...color,
-		...colorSubtle,
-		"body",
-		"body-secondary",
-		"body-tertiary",
-		"black",
-		"white",
-		"transparent",
-	] as const;
-	export const linkColor = [...color, "body-emphasis"] as const;
-	export const linkUnderlineColor = linkColor;
-	export const linkOffset = [1, 2, 3] as const;
-	export const linkOffsetHover = linkOffset;
-	export const linkOpacity = [10, 25, 50, 75, 100] as const;
-	export const linkUnderline = trueonly;
-	export const linkUnderlineOpacity = [0, 10, 25, 50, 75, 100] as const;
-	export const linkUnderlineOpacityHover = linkUnderlineOpacity;
-	export const linkOpacityHover = linkOpacity;
-	export const iconLink = [true, "hover"] as const;
-
-	export const dropdownDirection = ["up", "start", "end"] as const;
-
-	export const textTransform = ["lowercase", "uppercase", "capitalize"] as const;
-	export const textDecoration = ["underline", "line-through", "none"] as const;
-	export const lineHeight = [1, "sm", "base", "lg"] as const;
-
-	export const fontSize = [1, 2, 3, 4, 5, 6] as const;
+	export const fontSize = [...FONTSIZE, ...FONTSIZE.map((i) => `${i}`)];
 	export const fontDisplay = fontSize;
-	export const fontWeight = ["bold", "bolder", "semibold", "medium", "normal", "light", "lighter"] as const;
+	export const fontWeight = ["bold", "bolder", "semibold", "medium", "normal", "light", "lighter"];
 
-	export const top = [0, 50, 100] as const;
+	export const top = [...TOP, ...TOP.map((i) => `${i}`)];
 	export const bottom = top;
 	export const start = top;
 	export const end = top;
-	export const tMiddle = [true, "x", "y"] as const;
+	export const tMiddle = [true, "x", "y"];
 
-	export const height = ["auto", 25, 50, 75, 100] as const;
+	export const height = [...HEIGHT, ...HEIGHT.map((i) => `${i}`)];
 	export const width = height;
 
-	export const maxHeight = hundred;
-	export const maxWidth = hundred;
-	export const minViewHeight = hundred;
-	export const minViewWidth = hundred;
-	export const viewHeight = hundred;
-	export const viewWidth = hundred;
+	export const maxHeight = [100, "100"];
+	export const maxWidth = [100, "100"];
+	export const minViewHeight = [100, "100"];
+	export const minViewWidth = [100, "100"];
+	export const viewHeight = [100, "100"];
+	export const viewWidth = [100, "100"];
 
-	export const loadingPlaceholderAnimation = ["glow", "wave"] as const;
-	export const loadingPlaceholderWeight = ["lg", "sm", "xs"] as const;
+	export const shadow = [true, false, "none", "sm", "lg", "inset"];
 
-	export const shadow = [true, false, "none", "sm", "lg", "inset"] as const;
-	export const borderNone = [true, "top", "end", "bottom", "start"] as const;
-	export const border = [true, false, "top", "end", "bottom", "start"] as const;
+	export const borderNone = [true, "top", "end", "bottom", "start"];
+	export const border = [false, ...borderNone];
+	export const borderColor = [...COLOR, ...COLORSUBTLE, ...OTHERCOLOR];
+	export const borderOpacity = [...BORDEROPACITY, ...BORDEROPACITY.map((i) => `${i}`)];
+	export const borderWidth = [...BORDERWIDTH, ...BORDERWIDTH.map((i) => `${i}`)];
 
-	export const borderColor = [...color, ...colorSubtle, "black", "white"] as const;
-	export const borderOpacity = [10, 25, 50, 75] as const;
-	export const borderWidth = base5;
-	export const roundedNone = [true, false, "top", "end", "bottom", "start"] as const;
+	export const roundedNone = border;
 	export const rounded = [
 		true,
 		false,
-		0,
-		1,
-		2,
-		3,
-		4,
-		5,
+		...ROUNDEDSIZE,
+		...ROUNDEDSIZE.map((i) => `${i}`),
+		...ROUNDED,
+		...ROUNDEDSTYLE,
+		...ROUNDED.map((i) => ROUNDEDSTYLE.map((j) => `${i}-${j}`)).flat(),
+		...ROUNDED.map((i) => ROUNDEDSIZE.map((j) => `${i}-${j}`)).flat(),
+		...ROUNDEDSTYLE.map((i) => ROUNDEDSIZE.map((j) => `${i}-${j}`)).flat(),
+	];
+	export const roundedSize = [...ROUNDEDSIZE, ...ROUNDEDSIZE.map((i) => `${i}`)];
 
-		"top",
-		"end",
-		"bottom",
-		"start",
-		"circle",
-		"pill",
+	export const padding = _spacer;
+	export const paddingX = _spacer;
+	export const paddingY = _spacer;
+	export const paddingTop = _spacer;
+	export const paddingBottom = _spacer;
+	export const paddingStart = _spacer;
+	export const paddingEnd = _spacer;
 
-		"top-circle",
-		"end-circle",
-		"bottom-circle",
-		"start-circle",
+	export const margin = _spacer;
+	export const marginX = _spacer;
+	export const marginY = _spacer;
+	export const marginTop = _spacer;
+	export const marginBottom = _spacer;
+	export const marginStart = _spacer;
+	export const marginEnd = _spacer;
 
-		"top-pill",
-		"end-pill",
-		"bottom-pill",
-		"start-pill",
-
-		"top-0",
-		"end-0",
-		"bottom-0",
-		"start-0",
-		"circle-0",
-		"pill-0",
-
-		"top-1",
-		"end-1",
-		"bottom-1",
-		"start-1",
-		"circle-1",
-		"pill-1",
-
-		"top-2",
-		"end-2",
-		"bottom-2",
-		"start-2",
-		"circle-2",
-		"pill-2",
-
-		"top-3",
-		"end-3",
-		"bottom-3",
-		"start-3",
-		"circle-3",
-		"pill-3",
-
-		"top-4",
-		"end-4",
-		"bottom-4",
-		"start-4",
-		"circle-4",
-		"pill-4",
-
-		"top-5",
-		"end-5",
-		"bottom-5",
-		"start-5",
-		"circle-5",
-		"pill-5",
-	] as const;
-	export const roundedSize = base5;
-
-	export const padding = spacer;
-	export const paddingX = spacer;
-	export const paddingY = spacer;
-	export const paddingTop = spacer;
-	export const paddingBottom = spacer;
-	export const paddingStart = spacer;
-	export const paddingEnd = spacer;
-
-	export const margin = spacer;
-	export const marginX = spacer;
-	export const marginY = spacer;
-	export const marginTop = spacer;
-	export const marginBottom = spacer;
-	export const marginStart = spacer;
-	export const marginEnd = spacer;
-
-	export const gap = spacer;
-	export const gutter = spacer;
-	export const gutterX = spacer;
-	export const gutterY = spacer;
+	export const gap = _spacer;
+	export const gutter = _spacer;
+	export const gutterX = _spacer;
+	export const gutterY = _spacer;
 
 	export const print = display;
-	export const container = [true, "xs", ...viewport, "fluid"] as const;
+	export const container = [true, ...VIEWPORT, "fluid", "xs"];
 
-	export const zindex = [0, 1, 2, 3, "n1"] as const;
-	export const objectFit = [
-		"contain",
-		"cover",
-		"fill",
-		"scale",
-		"none",
-		"sm-contain",
-		"sm-cover",
-		"sm-fill",
-		"sm-scale",
-		"sm-none",
-		"md-contain",
-		"md-cover",
-		"md-fill",
-		"md-scale",
-		"md-none",
-		"lg-contain",
-		"lg-cover",
-		"lg-fill",
-		"lg-scale",
-		"lg-none",
-		"xl-contain",
-		"xl-cover",
-		"xl-fill",
-		"xl-scale",
-		"xl-none",
-		"xxl-contain",
-		"xxl-cover",
-		"xxl-fill",
-		"xxl-scale",
-		"xxl-none",
-	] as const;
+	export const zIndex = [...ZINDEX, ...ZINDEX.map((i) => `${i}`)];
+	export const objectFit = [...OBJECTFIT, ...VIEWPORT.map((i) => OBJECTFIT.map((j) => `${i}-${j}`)).flat()];
 
-	export const ratio = [true, "1x1", "4x3", "16x9", "21x9"] as const;
-	export const fixed = ["top", "bottom"] as const;
-	export const sticky = [
-		"top",
-		"bottom",
-		"sm-top",
-		"md-top",
-		"lg-top",
-		"xl-top",
-		"xxl-top",
-		"sm-bottom",
-		"md-bottom",
-		"lg-bottom",
-		"xl-bottom",
-		"xxl-bottom",
-	];
-	export const clearfix = trueonly;
-	export const textTruncate = trueonly;
-	export const vstack = trueonly;
-	export const hstack = trueonly;
-	export const visually = ["hidden", "hidden-focusable"] as const;
-	export const h = [1, 2, 3, 4, 5, 6] as const;
-	export const small = truefalse;
+	export const ratio = [true, "1x1", "4x3", "16x9", "21x9"];
+	export const fixed = STICKY;
+	export const sticky = [...STICKY, ...VIEWPORT.map((i) => STICKY.map((j) => `${i}-${j}`)).flat()];
+
+	export const clearfix = [true];
+	export const textTruncate = [true];
+	export const vstack = [true];
+	export const hstack = [true];
+	export const visually = ["hidden", "hidden-focusable"];
+	export const h = fontDisplay;
+	export const small = [true];
+
+	//specific component only
+	export const linkColor = [...COLOR, ...BODYTEXTCOLOR];
+	export const linkUnderlineColor = linkColor;
+	export const linkOffset = [...LINKOFFSET, ...LINKOFFSET.map((i) => `${i}`)];
+	export const linkOffsetHover = linkOffset;
+	export const linkOpacity = [...LINKOPACITY, ...LINKOPACITY.map((i) => `${i}`)];
+	export const linkOpacityHover = linkOpacity;
+	export const linkUnderline = [true];
+	export const linkUnderlineOpacity = [...LINKUNDERLINEOPACITY, ...LINKUNDERLINEOPACITY.map((i) => `${i}`)];
+	export const linkUnderlineOpacityHover = linkUnderlineOpacity;
+
+	export const btnColor = COLOR;
+	export const btnOutlineColor = COLOR;
+	export const alertColor = COLOR;
+	export const alertDismissible = [true];
+	export const dropdownDirection = ["up", "start", "end"];
+	export const dropdownMenuPositionView = _positionView;
 }
 
-export namespace bootstrapType {
-	export type theme = typeof bootstrapBase.theme;
-
-	export type viewport = typeof bootstrapBase.viewport;
-	export type spacer = typeof bootstrapBase.spacer;
-	export type display = typeof bootstrapBase.display;
-	export type flex = typeof bootstrapBase.flex;
-	export type justifyContent = typeof bootstrapBase.justifyContent;
-	export type align = typeof bootstrapBase.align;
-	export type alignContent = typeof bootstrapBase.alignContent;
-	export type alignItem = typeof bootstrapBase.align;
-	export type alignSelf = typeof bootstrapBase.align;
-	export type order = typeof bootstrapBase.order;
-	export type baseGrid = typeof bootstrapBase.baseGrid;
-	export type offset = typeof bootstrapBase.baseGrid;
-	export type rowCol = typeof bootstrapBase.rowCol;
-	export type float = typeof bootstrapBase.float;
-	export type color = typeof bootstrapBase.color;
-	export type positionView = typeof bootstrapBase.positionView;
-
-	export type visible = typeof bootstrapBase.visible;
-	export type textWrap = typeof bootstrapBase.textWrap;
-	export type fontItalic = typeof bootstrapBase.fontItalic;
-	export type bgGradient = typeof bootstrapBase.bgGradient;
-	export type textBreak = typeof bootstrapBase.textBreak;
-	export type monospace = typeof bootstrapBase.monospace;
-	export type loadingPlaceholder = typeof bootstrapBase.loadingPlaceholder;
-	export type row = typeof bootstrapBase.row;
-	export type col = typeof bootstrapBase.col;
-
-	export type userSelect = typeof bootstrapBase.userSelect;
-	export type pointerEvent = typeof bootstrapBase.pointerEvent;
-	export type position = typeof bootstrapBase.position;
-	export type overflow = typeof bootstrapBase.overflow;
-
-	export type textAlign = typeof bootstrapBase.textAlign;
-	export type verticalAlign = typeof bootstrapBase.verticalAlign;
-
-	export type opacity = typeof bootstrapBase.opacity;
-	export type bgOpacity = typeof bootstrapBase.bgOpacity;
-	export type textOpacity = typeof bootstrapBase.textOpacity;
-
-	export type textBgColor = typeof bootstrapBase.textBgColor;
-	export type textColor = typeof bootstrapBase.textColor;
-	export type bgColor = typeof bootstrapBase.bgColor;
-
-	export type linkColor = typeof bootstrapBase.linkColor;
-	export type linkUnderlineColor = typeof bootstrapBase.linkUnderlineColor;
-	export type linkOffset = typeof bootstrapBase.linkOffset;
-	export type linkOffsetHover = typeof bootstrapBase.linkOffsetHover;
-	export type linkOpacity = typeof bootstrapBase.linkOpacity;
-	export type linkUnderline = typeof bootstrapBase.linkUnderline;
-	export type linkUnderlineOpacity = typeof bootstrapBase.linkUnderlineOpacity;
-	export type linkUnderlineOpacityHover = typeof bootstrapBase.linkUnderlineOpacityHover;
-	export type linkOpacityHover = typeof bootstrapBase.linkOpacityHover;
-	export type iconLink = typeof bootstrapBase.iconLink;
-
-	export type textTransform = typeof bootstrapBase.textTransform;
-	export type textDecoration = typeof bootstrapBase.textDecoration;
-	export type lineHeight = typeof bootstrapBase.lineHeight;
-
-	export type fontSize = typeof bootstrapBase.fontSize;
-	export type fontDisplay = typeof bootstrapBase.fontDisplay;
-	export type fontWeight = typeof bootstrapBase.fontWeight;
-
-	export type top = typeof bootstrapBase.top;
-	export type bottom = typeof bootstrapBase.bottom;
-	export type start = typeof bootstrapBase.start;
-	export type end = typeof bootstrapBase.end;
-	export type tMiddle = typeof bootstrapBase.tMiddle;
-
-	export type height = typeof bootstrapBase.height;
-	export type width = typeof bootstrapBase.width;
-	export type maxHeight = typeof bootstrapBase.maxHeight;
-	export type maxWidth = typeof bootstrapBase.maxWidth;
-	export type minViewHeight = typeof bootstrapBase.minViewHeight;
-	export type minViewWidth = typeof bootstrapBase.minViewWidth;
-	export type viewHeight = typeof bootstrapBase.viewHeight;
-	export type viewWidth = typeof bootstrapBase.viewWidth;
-
-	export type loadingPlaceholderAnimation = typeof bootstrapBase.loadingPlaceholderAnimation;
-	export type loadingPlaceholderWeight = typeof bootstrapBase.loadingPlaceholderWeight;
-
-	export type shadow = typeof bootstrapBase.shadow;
-	export type borderNone = typeof bootstrapBase.borderNone;
-	export type border = typeof bootstrapBase.border;
-
-	export type borderColor = typeof bootstrapBase.borderColor;
-	export type borderOpacity = typeof bootstrapBase.borderOpacity;
-	export type borderWidth = typeof bootstrapBase.borderWidth;
-	export type roundedNone = typeof bootstrapBase.roundedNone;
-	export type rounded = typeof bootstrapBase.rounded;
-	export type roundedSize = typeof bootstrapBase.roundedSize;
-
-	export type padding = typeof bootstrapBase.padding;
-	export type paddingX = typeof bootstrapBase.paddingX;
-	export type paddingY = typeof bootstrapBase.paddingY;
-	export type paddingTop = typeof bootstrapBase.paddingTop;
-	export type paddingBottom = typeof bootstrapBase.paddingBottom;
-	export type paddingStart = typeof bootstrapBase.paddingStart;
-	export type paddingEnd = typeof bootstrapBase.paddingEnd;
-
-	export type margin = typeof bootstrapBase.margin;
-	export type marginX = typeof bootstrapBase.marginX;
-	export type marginY = typeof bootstrapBase.marginY;
-	export type marginTop = typeof bootstrapBase.marginTop;
-	export type marginBottom = typeof bootstrapBase.marginBottom;
-	export type marginStart = typeof bootstrapBase.marginStart;
-	export type marginEnd = typeof bootstrapBase.marginEnd;
-
-	export type gap = typeof bootstrapBase.gap;
-	export type gutter = typeof bootstrapBase.gutter;
-	export type gutterX = typeof bootstrapBase.gutterX;
-	export type gutterY = typeof bootstrapBase.gutterY;
-
-	export type print = typeof bootstrapBase.print;
-	export type container = typeof bootstrapBase.container;
-
-	export type zindex = typeof bootstrapBase.zindex;
-	export type objectFit = typeof bootstrapBase.objectFit;
-	export type ratio = typeof bootstrapBase.ratio;
-	export type fixed = typeof bootstrapBase.fixed;
-	export type sticky = typeof bootstrapBase.sticky;
-	export type clearfix = typeof bootstrapBase.clearfix;
-	export type textTruncate = typeof bootstrapBase.textTruncate;
-	export type visually = typeof bootstrapBase.visually;
-	export type vstack = typeof bootstrapBase.vstack;
-	export type hstack = typeof bootstrapBase.hstack;
-	export type h = typeof bootstrapBase.h;
-	export type small = typeof bootstrapBase.small;
-	export type focusRing = typeof bootstrapBase.focusRing;
-}
-
-export interface IBootstrapAttachRule {
-	format?: string;
+interface IBsClassFormatter {
+	shared?: boolean;
 	value?: (string | number | boolean)[];
+
+	format?: string;
 	formatValue?: string;
 	formatTrue?: string;
 	formatFalse?: string;
-	shared?: boolean;
 }
 
-export class bootstrapAttachRule implements IBootstrapAttachRule {
-	format?: string;
+class bsClassFormatterRule implements IBsClassFormatter {
+	shared?: boolean;
 	value?: (string | number | boolean)[];
+	format?: string;
 	formatValue?: string;
 	formatTrue?: string;
 	formatFalse?: string;
-	shared?: boolean;
 
-	constructor(d: IBootstrapAttachRule) {
-		this.format = d.format;
+	constructor(d: IBsClassFormatter) {
+		this.shared = d.shared;
 		this.value = d.value;
+		this.format = d.format;
 		this.formatValue = d.formatValue;
 		this.formatTrue = d.formatTrue;
 		this.formatFalse = d.formatFalse;
-		this.shared = d.shared;
 	}
 }
 
-export interface bootstrapRuleDB {
-	[key: string]: bootstrapAttachRule;
-}
+const bsClassFormatterDB: {
+	[key: string]: bsClassFormatterRule;
+} = {
+	//---------------------
+	// viewport & color handle by component
+	//---------------------
 
-export const isBootstrapType = <T extends string | number | boolean>(
-	valueToCheck: string | number | boolean,
-	listOfPossible: (string | number | boolean)[]
-): valueToCheck is T => {
-	if (listOfPossible && listOfPossible.length > 0) {
-		return listOfPossible.indexOf(valueToCheck) > -1;
-	}
-	return false;
+	flex: new bsClassFormatterRule({
+		format: "flex-$1",
+		value: bootstrapTypeA.flex,
+	}),
+	float: new bsClassFormatterRule({
+		format: "float-$1",
+		value: bootstrapTypeA.float,
+	}),
+	order: new bsClassFormatterRule({
+		format: "order-$1",
+		value: bootstrapTypeA.order,
+	}),
+	offset: new bsClassFormatterRule({
+		format: "offset-$1",
+		value: bootstrapTypeA.offset,
+	}),
+
+	//---------------------
+
+	alignContent: new bsClassFormatterRule({
+		format: "align-content-$1",
+		value: bootstrapTypeA.alignContent,
+	}),
+	justifyContent: new bsClassFormatterRule({
+		format: "justify-content-$1",
+		value: bootstrapTypeA.justifyContent,
+	}),
+	alignItem: new bsClassFormatterRule({
+		format: "align-items-$1",
+		value: bootstrapTypeA.alignItem,
+	}),
+	alignSelf: new bsClassFormatterRule({
+		format: "align-self-$1",
+		value: bootstrapTypeA.alignSelf,
+	}),
+	display: new bsClassFormatterRule({
+		format: "d-$1",
+		value: bootstrapTypeA.display,
+	}),
+	rowCol: new bsClassFormatterRule({
+		format: "row-cols-$1",
+		value: bootstrapTypeA.rowCol,
+	}),
+
+	//---------------------
+
+	visible: new bsClassFormatterRule({
+		formatTrue: "visible",
+		formatFalse: "invisible",
+		value: bootstrapTypeA.visible,
+	}),
+	textWrap: new bsClassFormatterRule({
+		formatTrue: "text-wrap",
+		formatFalse: "text-nowrap",
+		value: bootstrapTypeA.textWrap,
+	}),
+	fontItalic: new bsClassFormatterRule({
+		formatTrue: "fst-italic",
+		formatFalse: "fst-normal",
+		value: bootstrapTypeA.fontItalic,
+	}),
+	bgGradient: new bsClassFormatterRule({
+		formatTrue: "bg-gradient",
+		value: bootstrapTypeA.bgGradient,
+	}),
+	textBreak: new bsClassFormatterRule({
+		formatTrue: "text-break",
+		value: bootstrapTypeA.textBreak,
+	}),
+	monospace: new bsClassFormatterRule({
+		formatTrue: "font-monospace",
+		value: bootstrapTypeA.monospace,
+	}),
+
+	//---------------------
+
+	loadingPlaceholder: new bsClassFormatterRule({
+		formatTrue: "placeholder",
+		value: bootstrapTypeA.loadingPlaceholder,
+	}),
+	loadingPlaceholderAnimation: new bsClassFormatterRule({
+		format: "placeholder-$1",
+		value: bootstrapTypeA.loadingPlaceholderAnimation,
+	}),
+	loadingPlaceholderWeight: new bsClassFormatterRule({
+		format: "placeholder-$1",
+		formatValue: "placeholder $1",
+		value: bootstrapTypeA.loadingPlaceholderWeight,
+	}),
+
+	//---------------------
+
+	row: new bsClassFormatterRule({
+		formatTrue: "row",
+		value: bootstrapTypeA.row,
+	}),
+	col: new bsClassFormatterRule({
+		format: "col-$1",
+		formatTrue: "col",
+		value: bootstrapTypeA.col,
+	}),
+
+	//---------------------
+
+	userSelect: new bsClassFormatterRule({
+		format: "user-select-$1",
+		value: bootstrapTypeA.userSelect,
+	}),
+	pointerEvent: new bsClassFormatterRule({
+		format: "pe-$1",
+		value: bootstrapTypeA.pointerEvent,
+	}),
+	position: new bsClassFormatterRule({
+		format: "position-$1",
+		value: bootstrapTypeA.position,
+	}),
+	overflow: new bsClassFormatterRule({
+		format: "overflow-$1",
+		value: bootstrapTypeA.overflow,
+	}),
+	overflowX: new bsClassFormatterRule({
+		format: "overflow-x-$1",
+		value: bootstrapTypeA.overflowX,
+	}),
+	overflowY: new bsClassFormatterRule({
+		format: "overflow-y-$1",
+		value: bootstrapTypeA.overflowY,
+	}),
+
+	//---------------------
+
+	textAlign: new bsClassFormatterRule({
+		format: "text-$1",
+		value: bootstrapTypeA.textAlign,
+	}),
+	verticalAlign: new bsClassFormatterRule({
+		format: "align-$1",
+		value: bootstrapTypeA.verticalAlign,
+	}),
+
+	//---------------------
+
+	opacity: new bsClassFormatterRule({
+		format: "opacity-$1",
+		value: bootstrapTypeA.opacity,
+	}),
+	bgOpacity: new bsClassFormatterRule({
+		format: "bg-opacity-$1",
+		value: bootstrapTypeA.bgOpacity,
+	}),
+	textOpacity: new bsClassFormatterRule({
+		format: "text-opacity-$1",
+		value: bootstrapTypeA.textOpacity,
+	}),
+
+	//---------------------
+
+	focusRing: new bsClassFormatterRule({
+		format: "focus-ring-$1",
+		formatValue: "focus-ring",
+		value: bootstrapTypeA.focusRing,
+	}),
+	textBgColor: new bsClassFormatterRule({
+		format: "text-bg-$1",
+		value: bootstrapTypeA.textBgColor,
+	}),
+	textColor: new bsClassFormatterRule({
+		format: "text-$1",
+		value: bootstrapTypeA.textColor,
+	}),
+	bgColor: new bsClassFormatterRule({
+		format: "bg-$1",
+		value: bootstrapTypeA.bgColor,
+	}),
+
+	//---------------------
+
+	iconLink: new bsClassFormatterRule({
+		format: "icon-link-$1",
+		formatValue: "icon-link",
+		formatTrue: "icon-link",
+		value: bootstrapTypeA.iconLink,
+	}),
+
+	//---------------------
+
+	textTransform: new bsClassFormatterRule({
+		format: "text-$1",
+		value: bootstrapTypeA.textTransform,
+	}),
+	textDecoration: new bsClassFormatterRule({
+		format: "text-decoration-$1",
+		value: bootstrapTypeA.textDecoration,
+	}),
+	lineHeight: new bsClassFormatterRule({
+		format: "lh-$1",
+		value: bootstrapTypeA.lineHeight,
+	}),
+
+	//---------------------
+
+	fontSize: new bsClassFormatterRule({
+		format: "fs-$1",
+		value: bootstrapTypeA.fontSize,
+	}),
+	fontDisplay: new bsClassFormatterRule({
+		format: "display-$1",
+		value: bootstrapTypeA.fontDisplay,
+	}),
+	fontWeight: new bsClassFormatterRule({
+		format: "fw-$1",
+		value: bootstrapTypeA.fontWeight,
+	}),
+
+	//---------------------
+
+	top: new bsClassFormatterRule({
+		format: "top-$1",
+		value: bootstrapTypeA.top,
+	}),
+	bottom: new bsClassFormatterRule({
+		format: "bottom-$1",
+		value: bootstrapTypeA.bottom,
+	}),
+	start: new bsClassFormatterRule({
+		format: "start-$1",
+		value: bootstrapTypeA.start,
+	}),
+	end: new bsClassFormatterRule({
+		format: "end-$1",
+		value: bootstrapTypeA.end,
+	}),
+	tMiddle: new bsClassFormatterRule({
+		format: "translate-middle-$1",
+		formatTrue: "translate-middle",
+		value: bootstrapTypeA.tMiddle,
+	}),
+
+	//---------------------
+
+	height: new bsClassFormatterRule({
+		format: "h-$1",
+		value: bootstrapTypeA.height,
+		shared: true,
+	}),
+	width: new bsClassFormatterRule({
+		format: "w-$1",
+		value: bootstrapTypeA.width,
+		shared: true,
+	}),
+
+	//---------------------
+
+	maxHeight: new bsClassFormatterRule({
+		format: "mh-$1",
+		value: bootstrapTypeA.maxHeight,
+	}),
+	maxWidth: new bsClassFormatterRule({
+		format: "mw-$1",
+		value: bootstrapTypeA.maxWidth,
+	}),
+	minViewHeight: new bsClassFormatterRule({
+		format: "min-vh-$1",
+		value: bootstrapTypeA.minViewHeight,
+	}),
+	minViewWidth: new bsClassFormatterRule({
+		format: "min-vw-$1",
+		value: bootstrapTypeA.minViewWidth,
+	}),
+	viewHeight: new bsClassFormatterRule({
+		format: "vh-$1",
+		value: bootstrapTypeA.viewHeight,
+	}),
+	viewWidth: new bsClassFormatterRule({
+		format: "vw-$1",
+		value: bootstrapTypeA.viewWidth,
+	}),
+
+	//---------------------
+
+	shadow: new bsClassFormatterRule({
+		format: "shadow-$1",
+		formatValue: "shadow",
+		formatFalse: "shadow-none",
+		value: bootstrapTypeA.shadow,
+	}),
+
+	//---------------------
+
+	borderNone: new bsClassFormatterRule({
+		format: "border-$1-0",
+		formatTrue: "border-0",
+		formatFalse: "border",
+		value: bootstrapTypeA.borderNone,
+	}),
+	border: new bsClassFormatterRule({
+		format: "border-$1",
+		formatTrue: "border",
+		formatFalse: "border-0",
+		value: bootstrapTypeA.border,
+	}),
+	borderColor: new bsClassFormatterRule({
+		format: "border-$1",
+		value: bootstrapTypeA.borderColor,
+	}),
+	borderOpacity: new bsClassFormatterRule({
+		format: "border-opacity-$1",
+		value: bootstrapTypeA.borderOpacity,
+	}),
+	borderWidth: new bsClassFormatterRule({
+		format: "border-$1",
+		value: bootstrapTypeA.borderWidth,
+	}),
+
+	//---------------------
+
+	roundedNone: new bsClassFormatterRule({
+		format: "rounded-$1-0",
+		formatTrue: "rounded",
+		formatFalse: "rounded-0",
+		value: bootstrapTypeA.roundedNone,
+	}),
+	rounded: new bsClassFormatterRule({
+		format: "rounded-$1",
+		formatTrue: "rounded",
+		formatFalse: "rounded-0",
+		value: bootstrapTypeA.rounded,
+	}),
+	roundedSize: new bsClassFormatterRule({
+		format: "rounded-$1",
+		value: bootstrapTypeA.roundedSize,
+	}),
+
+	//---------------------
+
+	padding: new bsClassFormatterRule({
+		format: "p-$1",
+		value: bootstrapTypeA.padding,
+	}),
+	paddingX: new bsClassFormatterRule({
+		format: "px-$1",
+		value: bootstrapTypeA.paddingX,
+	}),
+	paddingY: new bsClassFormatterRule({
+		format: "py-$1",
+		value: bootstrapTypeA.paddingY,
+	}),
+	paddingTop: new bsClassFormatterRule({
+		format: "pt-$1",
+		value: bootstrapTypeA.paddingTop,
+	}),
+	paddingBottom: new bsClassFormatterRule({
+		format: "pb-$1",
+		value: bootstrapTypeA.paddingBottom,
+	}),
+	paddingStart: new bsClassFormatterRule({
+		format: "ps-$1",
+		value: bootstrapTypeA.paddingStart,
+	}),
+	paddingEnd: new bsClassFormatterRule({
+		format: "pe-$1",
+		value: bootstrapTypeA.paddingEnd,
+	}),
+
+	//---------------------
+
+	margin: new bsClassFormatterRule({
+		format: "m-$1",
+		value: bootstrapTypeA.margin,
+	}),
+	marginX: new bsClassFormatterRule({
+		format: "mx-$1",
+		value: bootstrapTypeA.marginX,
+	}),
+	marginY: new bsClassFormatterRule({
+		format: "my-$1",
+		value: bootstrapTypeA.marginY,
+	}),
+	marginTop: new bsClassFormatterRule({
+		format: "mt-$1",
+		value: bootstrapTypeA.marginTop,
+	}),
+	marginBottom: new bsClassFormatterRule({
+		format: "mb-$1",
+		value: bootstrapTypeA.marginBottom,
+	}),
+	marginStart: new bsClassFormatterRule({
+		format: "ms-$1",
+		value: bootstrapTypeA.marginStart,
+	}),
+	marginEnd: new bsClassFormatterRule({
+		format: "me-$1",
+		value: bootstrapTypeA.marginEnd,
+	}),
+
+	//---------------------
+
+	gap: new bsClassFormatterRule({
+		format: "gap-$1",
+		value: bootstrapTypeA.gap,
+	}),
+	gutter: new bsClassFormatterRule({
+		format: "g-$1",
+		value: bootstrapTypeA.gutter,
+	}),
+	gutterX: new bsClassFormatterRule({
+		format: "gx-$1",
+		value: bootstrapTypeA.gutterX,
+	}),
+	gutterY: new bsClassFormatterRule({
+		format: "gy-$1",
+		value: bootstrapTypeA.gutterY,
+	}),
+
+	//---------------------
+
+	print: new bsClassFormatterRule({
+		format: "d-print-$1",
+		value: bootstrapTypeA.print,
+	}),
+	container: new bsClassFormatterRule({
+		format: "container-$1",
+		formatTrue: "container",
+		value: bootstrapTypeA.container,
+	}),
+
+	//---------------------
+
+	zIndex: new bsClassFormatterRule({
+		format: "z-$1",
+		value: bootstrapTypeA.zIndex,
+	}),
+	objectFit: new bsClassFormatterRule({
+		format: "object-fit-$1",
+		value: bootstrapTypeA.objectFit,
+	}),
+
+	//---------------------
+
+	ratio: new bsClassFormatterRule({
+		format: "ratio-$1",
+		formatValue: "ratio",
+		formatTrue: "ratio",
+		value: bootstrapTypeA.ratio,
+	}),
+	fixed: new bsClassFormatterRule({
+		format: "fixed-$1",
+		value: bootstrapTypeA.fixed,
+	}),
+	sticky: new bsClassFormatterRule({
+		format: "sticky-$1",
+		value: bootstrapTypeA.sticky,
+	}),
+
+	//---------------------
+
+	clearfix: new bsClassFormatterRule({
+		formatTrue: "clearfix",
+		value: bootstrapTypeA.clearfix,
+	}),
+	textTruncate: new bsClassFormatterRule({
+		formatTrue: "text-truncate",
+		value: bootstrapTypeA.textTruncate,
+	}),
+
+	vstack: new bsClassFormatterRule({
+		formatTrue: "vstack",
+		value: bootstrapTypeA.vstack,
+	}),
+	hstack: new bsClassFormatterRule({
+		formatTrue: "hstack",
+		value: bootstrapTypeA.hstack,
+	}),
+	visually: new bsClassFormatterRule({
+		format: "visually-$1",
+		value: bootstrapTypeA.visually,
+	}),
+	h: new bsClassFormatterRule({
+		format: "h$1",
+		value: bootstrapTypeA.h,
+	}),
+	small: new bsClassFormatterRule({
+		formatTrue: "small",
+		value: bootstrapTypeA.small,
+	}),
+
+	//---------------------
+
+	linkColor: new bsClassFormatterRule({
+		format: "link-$1",
+		value: bootstrapTypeA.linkColor,
+	}),
+	linkUnderlineColor: new bsClassFormatterRule({
+		format: "link-underline-$1",
+		value: bootstrapTypeA.linkUnderlineColor,
+	}),
+	linkOffset: new bsClassFormatterRule({
+		format: "link-offset-$1",
+		value: bootstrapTypeA.linkOffset,
+	}),
+	linkOffsetHover: new bsClassFormatterRule({
+		format: "link-offset-$1-hover",
+		value: bootstrapTypeA.linkOffsetHover,
+	}),
+	linkOpacity: new bsClassFormatterRule({
+		format: "link-opacity-$1",
+		value: bootstrapTypeA.linkOpacity,
+	}),
+	linkOpacityHover: new bsClassFormatterRule({
+		format: "link-opacity-$1-hover",
+		value: bootstrapTypeA.linkOpacityHover,
+	}),
+	linkUnderline: new bsClassFormatterRule({
+		formatTrue: "link-underline",
+		value: bootstrapTypeA.linkUnderline,
+	}),
+	linkUnderlineOpacity: new bsClassFormatterRule({
+		format: "link-underline-opacity-$1",
+		value: bootstrapTypeA.linkUnderlineOpacity,
+	}),
+	linkUnderlineOpacityHover: new bsClassFormatterRule({
+		format: "link-underline-opacity-$1-hover",
+		value: bootstrapTypeA.linkUnderlineOpacityHover,
+	}),
+
+	//---------------------
+
+	btnColor: new bsClassFormatterRule({
+		format: "btn-$1",
+		formatValue: "btn",
+		value: bootstrapTypeA.btnColor,
+	}),
+	btnOutlineColor: new bsClassFormatterRule({
+		format: "btn-outline-$1",
+		formatValue: "btn",
+		value: bootstrapTypeA.btnOutlineColor,
+	}),
+	alertColor: new bsClassFormatterRule({
+		format: "alert-$1",
+		value: bootstrapTypeA.alertColor,
+	}),
+	alertDismissible: new bsClassFormatterRule({
+		formatTrue: "alert-dismissible",
+		value: bootstrapTypeA.alertDismissible,
+	}),
+	dropdownDirection: new bsClassFormatterRule({
+		format: "drop$1",
+		value: bootstrapTypeA.dropdownDirection,
+	}),
+	dropdownMenuPositionView: new bsClassFormatterRule({
+		format: "dropdown-menu-$1",
+		value: bootstrapTypeA.dropdownMenuPositionView,
+	}),
 };
+
+type IBsAttrFormatter = (elem: HTMLElement, data: string | number | boolean) => HTMLElement;
+
+const attrFormatterDB: {
+	[key: string]: IBsAttrFormatter;
+} = {
+	theme: (elem, data) => {
+		elem.setAttribute(`data-bs-theme`, data.toString());
+		return elem;
+	},
+	pointer: (elem, data) => {
+		if (data) {
+			elem.setAttribute("role", "button");
+		}
+
+		return elem;
+	},
+	label: (elem, data) => {
+		if (data) {
+			elem.setAttribute("aria-label", data.toString());
+		}
+
+		return elem;
+	},
+	labelledby: (elem, data) => {
+		if (data) {
+			elem.setAttribute("aria-labelledby", data.toString());
+		}
+
+		return elem;
+	},
+	ownby: (elem, data) => {
+		if (data) {
+			elem.setAttribute("aria-owns", data.toString());
+		}
+
+		return elem;
+	},
+	describedby: (elem, data) => {
+		if (data) {
+			elem.setAttribute("aria-describedby", data.toString());
+		}
+
+		return elem;
+	},
+	controlfor: (elem, data) => {
+		if (data) {
+			elem.setAttribute("aria-controls", data.toString());
+		}
+
+		return elem;
+	},
+};
+
+export interface IBsAttr {
+	theme?: bootstrapType.theme; //[bs-theme="<theme>"]
+	pointer?: bootstrapType.pointer; //[role="button"]
+	label?: string;
+	labelledby?: string;
+	ownby?: string;
+	describedby?: string;
+	controlfor?: string;
+}
+
+export interface IBsClass {
+	//---------------------
+	// viewport and color handle by component
+	//---------------------
+
+	flex?: bootstrapType.flex | bootstrapType.flex[];
+	float?: bootstrapType.float | bootstrapType.float[];
+	order?: bootstrapType.order | bootstrapType.order[];
+	offset?: bootstrapType.offset | bootstrapType.offset[];
+
+	//---------------------
+
+	alignContent?: bootstrapType.alignContent | bootstrapType.alignContent[];
+	justifyContent?: bootstrapType.justifyContent | bootstrapType.justifyContent[];
+	alignItem?: bootstrapType.alignItem | bootstrapType.alignItem[];
+	alignSelf?: bootstrapType.alignSelf | bootstrapType.alignSelf[];
+	display?: bootstrapType.display | bootstrapType.display[];
+	rowCol?: bootstrapType.rowCol | bootstrapType.rowCol[];
+
+	//---------------------
+
+	visible?: bootstrapType.visible;
+	textWrap?: bootstrapType.textWrap;
+	fontItalic?: bootstrapType.fontItalic;
+	bgGradient?: bootstrapType.bgGradient;
+	textBreak?: bootstrapType.textBreak;
+	monospace?: bootstrapType.monospace;
+
+	//---------------------
+
+	loadingPlaceholder?: bootstrapType.loadingPlaceholder;
+	loadingPlaceholderAnimation?: bootstrapType.loadingPlaceholderAnimation;
+	loadingPlaceholderWeight?: bootstrapType.loadingPlaceholderWeight;
+
+	//---------------------
+
+	row?: bootstrapType.row;
+	col?: bootstrapType.col | bootstrapType.col[];
+
+	//---------------------
+
+	bsUserSelect?: bootstrapType.userSelect;
+	pointerEvent?: bootstrapType.pointerEvent;
+	position?: bootstrapType.position;
+	overflow?: bootstrapType.overflow;
+	overflowX?: bootstrapType.overflow;
+	overflowY?: bootstrapType.overflow;
+
+	//---------------------
+
+	textAlign?: bootstrapType.textAlign;
+	verticalAlign?: bootstrapType.verticalAlign;
+
+	//---------------------
+	opacity?: bootstrapType.opacity;
+	bgOpacity?: bootstrapType.bgOpacity;
+	textOpacity?: bootstrapType.textOpacity;
+
+	//---------------------
+
+	focusRing?: bootstrapType.focusRing;
+	textBgColor?: bootstrapType.textBgColor;
+	textColor?: bootstrapType.textColor;
+	bgColor?: bootstrapType.bgColor;
+
+	//---------------------
+
+	textTransform?: bootstrapType.textTransform;
+	textDecoration?: bootstrapType.textDecoration;
+	lineHeight?: bootstrapType.lineHeight;
+
+	//---------------------
+
+	fontSize?: bootstrapType.fontSize;
+	fontDisplay?: bootstrapType.fontDisplay;
+	fontWeight?: bootstrapType.fontWeight;
+
+	//---------------------
+
+	top?: bootstrapType.top;
+	bottom?: bootstrapType.bottom;
+	start?: bootstrapType.start;
+	end?: bootstrapType.end;
+	tMiddle?: bootstrapType.tMiddle;
+
+	//---------------------
+
+	height?: bootstrapType.height;
+	width?: bootstrapType.width;
+	maxHeight?: bootstrapType.maxHeight;
+	maxWidth?: bootstrapType.maxWidth;
+	minViewHeight?: bootstrapType.minViewHeight;
+	minViewWidth?: bootstrapType.minViewWidth;
+	viewHeight?: bootstrapType.viewHeight;
+	viewWidth?: bootstrapType.viewWidth;
+
+	//---------------------
+
+	shadow?: bootstrapType.shadow;
+
+	//---------------------
+
+	border?: bootstrapType.border | bootstrapType.border[];
+	borderNone?: bootstrapType.borderNone | bootstrapType.borderNone[];
+	borderColor?: bootstrapType.borderColor;
+	borderOpacity?: bootstrapType.borderOpacity;
+	borderWidth?: bootstrapType.borderWidth;
+
+	//---------------------
+
+	rounded?: bootstrapType.rounded;
+	roundedNone?: bootstrapType.roundedNone;
+	roundedSize?: bootstrapType.roundedSize;
+
+	//---------------------
+
+	padding?: bootstrapType.padding | bootstrapType.padding[];
+	paddingX?: bootstrapType.paddingX | bootstrapType.paddingX[];
+	paddingY?: bootstrapType.paddingY | bootstrapType.paddingY[];
+	paddingTop?: bootstrapType.paddingTop | bootstrapType.paddingTop[];
+	paddingBottom?: bootstrapType.paddingBottom | bootstrapType.paddingBottom[];
+	paddingStart?: bootstrapType.paddingStart | bootstrapType.paddingStart[];
+	paddingEnd?: bootstrapType.paddingEnd | bootstrapType.paddingEnd[];
+
+	//---------------------
+
+	margin?: bootstrapType.margin | bootstrapType.margin[];
+	marginX?: bootstrapType.marginX | bootstrapType.marginX[];
+	marginY?: bootstrapType.marginY | bootstrapType.marginY[];
+	marginTop?: bootstrapType.marginTop | bootstrapType.marginTop[];
+	marginBottom?: bootstrapType.marginBottom | bootstrapType.marginBottom[];
+	marginStart?: bootstrapType.marginStart | bootstrapType.marginStart[];
+	marginEnd?: bootstrapType.marginEnd | bootstrapType.marginEnd[];
+
+	//---------------------
+
+	gap?: bootstrapType.gap | bootstrapType.gap[];
+	gutter?: bootstrapType.gutter | bootstrapType.gutter[];
+	gutterX?: bootstrapType.gutterX | bootstrapType.gutterX[];
+	gutterY?: bootstrapType.gutterY | bootstrapType.gutterY[];
+
+	//---------------------
+
+	print?: bootstrapType.print | bootstrapType.print;
+	container?: bootstrapType.container;
+
+	//---------------------
+
+	zIndex?: bootstrapType.zIndex;
+	objectFit?: bootstrapType.objectFit | bootstrapType.objectFit[];
+	ratio?: bootstrapType.ratio;
+	fixed?: bootstrapType.fixed;
+	sticky?: bootstrapType.sticky | bootstrapType.sticky[];
+	clearfix?: bootstrapType.clearfix;
+	textTruncate?: bootstrapType.textTruncate;
+	visually?: bootstrapType.visually;
+	vstack?: bootstrapType.vstack;
+	hstack?: bootstrapType.hstack;
+	h?: bootstrapType.h;
+	small?: bootstrapType.small;
+
+	//---------------------
+
+	iconLink?: bootstrapType.iconLink;
+}
+
+let allowClassProp: (string | undefined)[] = [];
+
+export namespace attachBSClass {
+	const allowValue = <T extends string | number | boolean>(
+		valueToCheck: string | number | boolean,
+		listOfPossible: (string | number | boolean)[]
+	): valueToCheck is T => {
+		if (listOfPossible && listOfPossible.length > 0) {
+			return listOfPossible.indexOf(valueToCheck) > -1;
+		}
+		return false;
+	};
+
+	const allowProp = (key: string) => {
+		if (allowClassProp.length === 0) {
+			allowClassProp = Object.keys(bsClassFormatterDB);
+		}
+
+		if (allowClassProp.indexOf(key) > -1) {
+			return key;
+		}
+
+		return null;
+	};
+
+	const addClass = (rule: IBsClassFormatter, data: string | number | boolean, elem: HTMLElement) => {
+		if (rule.value && allowValue(data, rule.value)) {
+			if (rule.formatValue) {
+				elem = addClassIntoElement(elem, rule.formatValue!);
+			}
+
+			if (data === true && rule.formatTrue) {
+				elem = addClassIntoElement(elem, rule.formatTrue!);
+			} else if (data === false && rule.formatFalse) {
+				elem = addClassIntoElement(elem, rule.formatFalse!);
+			} else if (rule.format) {
+				elem = addClassIntoElement(elem, rule.format!.replace(/\$1/g, data.toString()));
+			}
+		}
+
+		return elem;
+	};
+
+	export const attach: IAttachFn = (key, elem, attr) => {
+		let allowKey = allowProp(key);
+		if (allowKey) {
+			let a = keyOfType(key, attr);
+			let b = keyOfType(allowKey, bsClassFormatterDB);
+			let data: (string | number | boolean)[] = [];
+
+			if (!Array.isArray(attr[a])) {
+				data = [attr[a] as string | number | boolean];
+			} else {
+				data = attr[a] as (string | number | boolean)[];
+			}
+
+			data.forEach((i) => {
+				elem = addClass(bsClassFormatterDB[b], i, elem);
+			});
+
+			delete attr[a];
+		}
+
+		return { attr, elem };
+	};
+}
+
+let allowAttrProp: (string | undefined)[] = [];
+
+export namespace attachBSAttr {
+	const allow = (key: string) => {
+		if (allowAttrProp.length === 0) {
+			allowAttrProp = Object.keys(attrFormatterDB);
+		}
+
+		if (allowAttrProp.indexOf(key) > -1) {
+			return key;
+		}
+
+		return null;
+	};
+
+	const addAttr = (rule: IBsAttrFormatter, data: string | number | boolean, elem: HTMLElement) => {
+		elem = rule(elem, data);
+
+		return elem;
+	};
+
+	export const attach: IAttachFn = (key, elem, attr) => {
+		let allowKey = allow(key);
+		if (allowKey) {
+			let a = keyOfType(key, attr);
+			let b = keyOfType(allowKey, attrFormatterDB);
+			let data: (string | number | boolean)[] = [];
+
+			if (!Array.isArray(attr[a])) {
+				data = [attr[a] as string | number | boolean];
+			} else {
+				data = attr[a] as (string | number | boolean)[];
+			}
+
+			data.forEach((i) => {
+				elem = addAttr(attrFormatterDB[b], i, elem);
+			});
+
+			delete attr[a];
+		}
+
+		return { attr, elem };
+	};
+}
 
 export const bsConsNoElemArg = <T extends IAttr>(fn: <T extends IAttr>(attr: T) => IAttr, arg?: any[]) => {
 	if (arg) {
@@ -1220,20 +1473,3 @@ export const bsConstArgTag = <T extends IAttr>(
 		return t1;
 	}
 };
-
-// export const bsConstArgTag = <T extends IAttr>(t1: string, t2: string, fn: (i: T) => boolean, arg?: any[]) => {
-// 	if (arg) {
-// 		if (arg.length === 1) {
-// 			if (isAttr<T>(arg[0])) {
-// 				return fn(arg[0]) ? t2 : t1;
-// 			} else {
-// 				return t1;
-// 			}
-// 		} else if (arg.length === 2) {
-// 			return fn(arg[0]) ? t2 : t1;
-// 		} else {
-// 			return t1;
-// 		}
-// 	} else {
-// 		return t1;
-// 	}};

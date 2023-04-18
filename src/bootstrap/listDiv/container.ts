@@ -7,7 +7,7 @@ import { div } from "../../html/div.js";
 export interface IAttrBSListDivContainer extends IAttr {
 	flush?: boolean;
 	numbered?: boolean;
-	horizontal?: boolean | bootstrapType.viewport[number];
+	horizontal?: boolean | bootstrapType.viewport;
 }
 
 const convert = (attr: IAttrBSListDivContainer) => {

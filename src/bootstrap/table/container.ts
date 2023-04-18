@@ -9,11 +9,11 @@ import { th } from "../../html/th.js";
 import { thead } from "./thead.js";
 
 export interface IAttrBSTableContainer extends IAttr {
-	color?: bootstrapType.color[number];
+	color?: bootstrapType.color;
 	striped?: "row" | "col";
 	hoverable?: boolean;
 	bordered?: boolean;
-	small?: boolean;
+	small?: true;
 	captionLocation?: "top" | "bottom";
 
 	item?: (string | tag | (string | tag)[])[][];

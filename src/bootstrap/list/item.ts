@@ -8,7 +8,7 @@ export interface IAttrBSListItem extends IAttrTagLi {
 	active?: boolean;
 	disabled?: boolean;
 	action?: boolean;
-	color?: bootstrapType.color[number];
+	color?: bootstrapType.color;
 }
 
 const convert = (attr: IAttrBSListItem) => {

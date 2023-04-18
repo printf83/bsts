@@ -4,7 +4,7 @@ import { mergeClass } from "../../core/mergeClass.js";
 import { tfoot as TTfoot } from "../../html/tfoot.js";
 
 export interface IAttrBSTableTfoot extends IAttr {
-	color?: bootstrapType.color[number];
+	color?: bootstrapType.color;
 }
 
 const convert = (attr: IAttrBSTableTfoot) => {

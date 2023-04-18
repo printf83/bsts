@@ -7,7 +7,7 @@ import { a, IAttrTagA } from "../../html/a.js";
 export interface IAttrBSListDivItem extends IAttrTagA {
 	active?: boolean;
 	action?: boolean;
-	color?: bootstrapType.color[number];
+	color?: bootstrapType.color;
 	toggle?: boolean;
 	role?: "tab";
 }

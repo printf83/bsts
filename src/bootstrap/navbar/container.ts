@@ -6,7 +6,7 @@ import { header } from "../../html/header.js";
 import { mergeClass } from "../../core/mergeClass.js";
 
 export interface IAttrBSNavbarContainer extends IAttr {
-	expand?: bootstrapType.viewport[number];
+	expand?: bootstrapType.viewport;
 }
 
 const convert = (attr: IAttrBSNavbarContainer) => {

@@ -3,9 +3,11 @@ import { IAttachFn } from "./_index.js";
 
 const dbAlias: { [key: string]: string } = {
 	loadingStyle: "loading",
-	attrLabel: "label",
 	dataText: "data",
 	startValue: "start",
+	attrLabel: "label",
+	attrWidth: "width",
+	attwHeight: "height",
 };
 
 export const attachAlias: IAttachFn = (key, elem, attr) => {

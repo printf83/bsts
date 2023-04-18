@@ -4,7 +4,7 @@ import { mergeObject } from "../core/mergeObject.js";
 import { IAttrTagButton } from "../html/button.js";
 
 export interface IAttrBSButton extends IAttrTagButton {
-	color?: bootstrapType.color[number] | "link" | "transparent";
+	color?: bootstrapType.btnColor;
 	outline?: boolean;
 	dismiss?: "modal" | "alert" | "offcanvas" | "toast";
 	weight?: "lg" | "sm";

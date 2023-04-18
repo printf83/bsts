@@ -4,7 +4,7 @@ import { mergeClass } from "../../core/mergeClass.js";
 import { thead as TThead } from "../../html/thead.js";
 
 export interface IAttrBSTableThead extends IAttr {
-	color?: bootstrapType.color[number];
+	color?: bootstrapType.color;
 }
 
 const convert = (attr: IAttrBSTableThead) => {

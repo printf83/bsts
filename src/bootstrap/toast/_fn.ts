@@ -86,7 +86,7 @@ export const hide = (i: HTMLElement) => {
 
 export interface IAttrBSToastSimple {
 	elem: IElem;
-	color?: bootstrapType.textBgColor[number];
+	color?: bootstrapType.textBgColor;
 	btnclosewhite?: boolean;
 	delay?: number;
 	atomic?: boolean;

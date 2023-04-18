@@ -7,7 +7,7 @@ import { mergeClass } from "../../core/mergeClass.js";
 export interface IAttrBSListContainer extends IAttrTagUl {
 	flush?: boolean;
 	numbered?: boolean;
-	horizontal?: boolean | bootstrapType.viewport[number];
+	horizontal?: boolean | bootstrapType.viewport;
 }
 
 const convert = (attr: IAttrBSListContainer) => {

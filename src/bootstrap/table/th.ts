@@ -4,7 +4,7 @@ import { mergeClass } from "../../core/mergeClass.js";
 import { IAttrTagTh, th as TTh } from "../../html/th.js";
 
 export interface IAttrBSTableTh extends IAttrTagTh {
-	color?: bootstrapType.color[number];
+	color?: bootstrapType.color;
 	active?: boolean;
 }
 

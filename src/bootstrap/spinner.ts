@@ -6,9 +6,9 @@ import { mergeObject } from "../core/mergeObject.js";
 
 export interface IAttrBSSpinner extends IAttr {
 	type?: "border" | "grow";
-	small?: boolean;
+	small?: true;
 	role?: "status";
-	color?: bootstrapType.textColor[number];
+	color?: bootstrapType.textColor;
 }
 
 const convert = (attr: IAttrBSSpinner) => {

@@ -7,7 +7,7 @@ import { span } from "../html/span.js";
 import { IAttrBSIcon, icon } from "./icon.js";
 import { IAttrBSButton } from "./button.js";
 
-export type IBootstrapTypeDisplay = bootstrapType.display[number] | bootstrapType.display[number][];
+export type IBootstrapTypeDisplay = bootstrapType.display | bootstrapType.display[];
 
 export interface IAttrBSLabel extends IAttrTagLabel, IAttrBSButton {
 	icon?: string | IAttrBSIcon | icon;

@@ -1,15 +1,15 @@
-import { bootstrapType } from "../../core/bootstrap.js";
 import { IAttr, IElem } from "../../core/tag.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
 import { btnclose } from "../btnclose.js";
 
 export interface IAttrBSAlertContainer extends IAttr {
 	callout?: boolean;
-	color?: bootstrapType.color[number];
 	role?: string;
-	dismissible?: true;
+
+	color?: bootstrapType.alertColor;
+	dismissible?: bootstrapType.alertDismissible;
 }
 
 const convert = (attr: IAttrBSAlertContainer) => {

@@ -9,7 +9,7 @@ import { IAttrBSIcon, icon } from "./icon.js";
 export interface IAttrBSPill extends IAttr {
 	icon?: string | IAttrBSIcon | icon;
 	iconPosition?: "start" | "end" | "top" | "bottom";
-	color?: bootstrapType.color[number];
+	color?: bootstrapType.color;
 	weight?: "md" | "lg";
 	type?: 1 | 2;
 }
@@ -19,9 +19,9 @@ const fnRow = (elem: IElem) => {
 };
 
 const fnIcon = (
-	color: bootstrapType.color[number] | undefined,
+	color: bootstrapType.color | undefined,
 	iconPosition: "start" | "end" | "top" | "bottom" | undefined,
-	rounded: bootstrapType.rounded[number] | undefined,
+	rounded: bootstrapType.rounded | undefined,
 	type: 1 | 2 | undefined,
 	attr: string | IAttrBSIcon | icon
 ) => {
@@ -36,28 +36,28 @@ const fnIcon = (
 		a = attr.attr as IAttrBSIcon;
 	}
 
-	let r: bootstrapType.rounded[number];
+	let r: bootstrapType.rounded;
 	let n: number = typeof rounded === "number" ? rounded : 1;
 
 	switch (iconPosition) {
 		case "end":
-			r = `end-${n}` as bootstrapType.rounded[number];
+			r = `end-${n}` as bootstrapType.rounded;
 			a.weight ??= "sm";
 			break;
 		case "start":
-			r = `start-${n}` as bootstrapType.rounded[number];
+			r = `start-${n}` as bootstrapType.rounded;
 			a.weight ??= "sm";
 			break;
 		case "top":
-			r = `top-${n}` as bootstrapType.rounded[number];
+			r = `top-${n}` as bootstrapType.rounded;
 			a.weight ??= "2xl";
 			break;
 		case "bottom":
-			r = `bottom-${n}` as bootstrapType.rounded[number];
+			r = `bottom-${n}` as bootstrapType.rounded;
 			a.weight ??= "2xl";
 			break;
 		default:
-			r = `start-${n}` as bootstrapType.rounded[number];
+			r = `start-${n}` as bootstrapType.rounded;
 	}
 
 	if (rounded === false) {
@@ -72,7 +72,7 @@ const fnIcon = (
 		{
 			bgOpacity: type === 2 ? 25 : 75,
 			bgColor: color,
-			textBgColor: type === 2 ? undefined : (color as bootstrapType.textBgColor[number]),
+			textBgColor: type === 2 ? undefined : (color as bootstrapType.textBgColor),
 			rounded: r,
 			paddingX: 2,
 			paddingY: iconPosition === "top" || iconPosition === "bottom" ? 3 : 1,
@@ -83,29 +83,29 @@ const fnIcon = (
 };
 
 const fnElem = (
-	color: bootstrapType.color[number] | undefined,
+	color: bootstrapType.color | undefined,
 	iconPosition: "start" | "end" | "top" | "bottom" | undefined,
-	rounded: bootstrapType.rounded[number] | undefined,
+	rounded: bootstrapType.rounded | undefined,
 	elem: IElem
 ) => {
-	let r: bootstrapType.rounded[number];
+	let r: bootstrapType.rounded;
 	let n: number = typeof rounded === "number" ? rounded : 1;
 
 	switch (iconPosition) {
 		case "end":
-			r = `start-${n}` as bootstrapType.rounded[number];
+			r = `start-${n}` as bootstrapType.rounded;
 			break;
 		case "start":
-			r = `end-${n}` as bootstrapType.rounded[number];
+			r = `end-${n}` as bootstrapType.rounded;
 			break;
 		case "top":
-			r = `bottom-${n}` as bootstrapType.rounded[number];
+			r = `bottom-${n}` as bootstrapType.rounded;
 			break;
 		case "bottom":
-			r = `top-${n}` as bootstrapType.rounded[number];
+			r = `top-${n}` as bootstrapType.rounded;
 			break;
 		default:
-			r = `end-${n}` as bootstrapType.rounded[number];
+			r = `end-${n}` as bootstrapType.rounded;
 	}
 
 	if (rounded === false) {
@@ -115,7 +115,7 @@ const fnElem = (
 	return new span(
 		{
 			bgColor: color,
-			textBgColor: color as bootstrapType.textBgColor[number],
+			textBgColor: color as bootstrapType.textBgColor,
 			rounded: r,
 			paddingX: 2,
 			paddingY: 1,

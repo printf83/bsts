@@ -9,7 +9,7 @@ type IAttrIconType = "bi" | "brand" | "solid" | "regular" | "duotone" | "light" 
 export interface IAttrBSIcon extends IAttr {
 	id?: string;
 	type?: IAttrIconType;
-	color?: bootstrapType.color[number];
+	color?: bootstrapType.textColor;
 	weight?: "2xs" | "xs" | "sm" | "lg" | "xl" | "2xl";
 	fixwidth?: boolean;
 	spin?: boolean;

@@ -10,7 +10,7 @@ export interface IAttrBSToastItem extends IAttr {
 	atomic?: boolean;
 	autohide?: boolean;
 	delay?: number;
-	color?: bootstrapType.color[number];
+	color?: bootstrapType.color;
 	debug?: boolean;
 }
 

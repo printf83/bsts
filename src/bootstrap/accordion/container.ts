@@ -34,7 +34,7 @@ const convert = (attr: IAttrBSAccordionContainer) => {
 					{
 						id: `heading-${itemID}`,
 						target: `#collapse-${itemID}`,
-						control: `collapse-${itemID}`,
+						controlfor: `collapse-${itemID}`,
 						expanded: i.show,
 					},
 					i.title

@@ -14,7 +14,7 @@ const convert = (attr: IAttrBSCollapseToggle) => {
 			defColor: false,
 			link: attr.link,
 			target: attr.target,
-			control: attr.control,
+			controlfor: attr.controlfor,
 			expanded: attr.expanded,
 		},
 		attr.elem ? attr.elem : ""
@@ -22,7 +22,7 @@ const convert = (attr: IAttrBSCollapseToggle) => {
 
 	delete attr.link;
 	delete attr.target;
-	delete attr.control;
+	delete attr.controlfor;
 	delete attr.expanded;
 
 	return attr;

@@ -4,7 +4,7 @@ import { mergeClass } from "../../core/mergeClass.js";
 import { tr as TTr } from "../../html/tr.js";
 
 export interface IAttrBSTableTr extends IAttr {
-	color?: bootstrapType.color[number];
+	color?: bootstrapType.color;
 	active?: boolean;
 }
 

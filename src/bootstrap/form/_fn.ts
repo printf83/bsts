@@ -102,9 +102,9 @@ export const colSetup = (
 	validfeedback?: string,
 	invalidfeedback?: string,
 	description?: string,
-	col1?: bootstrapType.col[number],
-	col2?: bootstrapType.col[number],
-	col3?: false | bootstrapType.col[number]
+	col1?: bootstrapType.col,
+	col2?: bootstrapType.col,
+	col3?: false | bootstrapType.col
 ) => {
 	//setup col if provided
 	if (col1) {

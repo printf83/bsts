@@ -2,7 +2,7 @@ import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
 import { mergeClass } from "../core/mergeClass.js";
 
 export interface IAttrTagAbbr extends IAttr {
-	small?: boolean;
+	small?: true;
 }
 
 const convert = (attr: IAttrTagAbbr) => {

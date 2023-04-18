@@ -4,7 +4,7 @@ import { mergeClass } from "../../core/mergeClass.js";
 import { div } from "../../html/div.js";
 
 export interface IAttrBSTableResponsive extends IAttr {
-	responsive?: bootstrapType.viewport[number];
+	responsive?: bootstrapType.viewport;
 }
 
 const convert = (attr: IAttrBSTableResponsive) => {

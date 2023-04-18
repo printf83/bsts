@@ -11,7 +11,7 @@ import { div } from "../../html/div.js";
 export interface IAttrBSModalContainer extends IAttr {
 	static?: boolean;
 	weight?: "sm" | "lg" | "xl";
-	fullscreen?: true | bootstrapType.viewport[number];
+	fullscreen?: true | bootstrapType.viewport;
 	centered?: boolean;
 	scrollable?: boolean;
 	animation?: boolean;

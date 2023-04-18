@@ -4,13 +4,12 @@ import { attachHref } from "./attachHref.js";
 import { attachAria } from "./attachAria.js";
 import { attachData } from "./attachData.js";
 import { attachBoolean } from "./attachBoolean.js";
-import { attachBootstrap } from "./attachBootstrap.js";
+import { attachBSAttr, attachBSClass } from "../bootstrap.js";
 import { attachEvent } from "./attachEvent.js";
 import { attachStyle } from "./attachStyle.js";
 import { attachClass } from "./attachClass.js";
 import { attachAlias } from "./attachAlias.js";
 import { IAttr } from "../tag.js";
-import { attachPointer } from "./attachPointer.js";
 
 export type IAttachFn = (
 	key: string,
@@ -37,12 +36,12 @@ const attrFn: IAttachFn[] = [
 	attachBoolean,
 	attachData,
 	attachAria,
-	attachBootstrap,
+	attachBSClass.attach,
+	attachBSAttr.attach,
 	attachEvent,
 	attachStyle,
 	attachClass,
 	attachHref,
-	attachPointer,
 	attachOther,
 ];
 

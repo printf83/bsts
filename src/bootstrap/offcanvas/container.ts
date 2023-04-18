@@ -7,7 +7,7 @@ import { div } from "../../html/div.js";
 
 export interface IAttrBSOffcanvasContainer extends IAttr {
 	placement?: "start" | "end" | "top" | "bottom";
-	hide?: boolean | bootstrapType.viewport[number];
+	hide?: boolean | bootstrapType.viewport;
 	dark?: boolean;
 	backdrop?: boolean | "static";
 	scroll?: boolean;
