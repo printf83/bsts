@@ -283,165 +283,184 @@ export namespace bsArr {
 	const ROUNDEDSIZE = BORDERWIDTH;
 	const ROUNDEDSTYLE = ["pill", "circle"];
 
-	const _grid = [...GRID, ...GRID.map((i) => `${i}`), ...VIEWPORT.map((i) => GRID.map((j) => `${i}-${j}`).flat())];
+	const _grid = [...GRID, ...GRID.map((i) => `${i}`), ...VIEWPORT.map((i) => GRID.map((j) => `${i}-${j}`)).flat()];
 	const _spacer = [
 		...SPACER,
 		...SPACER.map((i) => `${i}`),
-		...VIEWPORT.map((i) => SPACER.map((j) => `${i}-${j}`).flat()),
+		...VIEWPORT.map((i) => SPACER.map((j) => `${i}-${j}`)).flat(),
 	];
-	const _align = [...ALIGN, ...VIEWPORT.map((i) => ALIGN.map((j) => `${i}-${j}`).flat())];
-	const _positionView = [...POSITIONVIEW, ...VIEWPORT.map((i) => POSITIONVIEW.map((j) => `${i}-${j}`).flat())];
+	const _align = [...ALIGN, ...VIEWPORT.map((i) => ALIGN.map((j) => `${i}-${j}`)).flat()];
+	const _positionView = [...POSITIONVIEW, ...VIEWPORT.map((i) => POSITIONVIEW.map((j) => `${i}-${j}`)).flat()];
 
 	//attribute
 	export const theme = ["light", "dark", "auto"];
 	export const pointer = [true];
 
 	//class
-	export const flex = [...FLEX, ...VIEWPORT.map((i) => FLEX.map((j) => `${i}-${j}`).flat())];
-	export type float = FLOAT | `${VIEWPORT}-${FLOAT}`;
-	export type order = ORDER | `${ORDER}` | `${VIEWPORT}-${ORDER}`;
-	export type offset = _grid;
+	export const flex = [...FLEX, ...VIEWPORT.map((i) => FLEX.map((j) => `${i}-${j}`)).flat()];
+	export const float = [...FLOAT, ...VIEWPORT.map((i) => FLOAT.map((j) => `${i}-${j}`)).flat()];
+	export const order = [
+		...ORDER,
+		...ORDER.map((i) => `${i}`),
+		...VIEWPORT.map((i) => ORDER.map((j) => `${i}-${j}`)).flat(),
+	];
+	export const offset = _grid;
 
-	export type alignContent = ALIGNCONTENT | `${VIEWPORT}-${ALIGNCONTENT}`;
-	export type justifyContent = JUSTIFYCONTENT | `${VIEWPORT}-${JUSTIFYCONTENT}`;
-	export type alignItem = _align;
-	export type alignSelf = _align;
-	export type display = DISPLAY | `${VIEWPORT}-${DISPLAY}`;
-	export type rowCol = ROWCOL | `${ROWCOL}` | `${VIEWPORT}-${ROWCOL}`;
+	export const alignContent = [...ALIGNCONTENT, ...VIEWPORT.map((i) => ALIGNCONTENT.map((j) => `${i}-${j}`)).flat()];
+	export const justifyContent = [
+		...JUSTIFYCONTENT,
+		...VIEWPORT.map((i) => JUSTIFYCONTENT.map((j) => `${i}-${j}`)).flat(),
+	];
+	export const alignItem = _align;
+	export const alignSelf = _align;
+	export const display = [...DISPLAY, ...VIEWPORT.map((i) => DISPLAY.map((j) => `${i}-${j}`)).flat()];
+	export const rowCol = [
+		...ROWCOL,
+		...ROWCOL.map((i) => `${i}`),
+		...VIEWPORT.map((i) => ROWCOL.map((j) => `${i}-${j}`)).flat(),
+	];
 
-	export type visible = boolean;
-	export type textWrap = boolean;
-	export type fontItalic = boolean;
-	export type bgGradient = true;
-	export type textBreak = true;
-	export type monospace = true;
+	export const visible = [true, false];
+	export const textWrap = [true, false];
+	export const fontItalic = [true, false];
+	export const bgGradient = [true];
+	export const textBreak = [true];
+	export const monospace = [true];
 
-	export type placeholder = true;
-	export type placeholderAnimation = "glow" | "wave";
-	export type placeholderWeight = "lg" | "sm" | "xs";
+	export const placeholder = [true];
+	export const placeholderAnimation = ["glow", "wave"];
+	export const placeholderWeight = ["lg", "sm", "xs"];
 
-	export type row = true;
-	export type col = true | ROWCOL | `${ROWCOL}` | VIEWPORT | `${VIEWPORT}-${ROWCOL}`;
+	export const row = [true];
+	export const col = [
+		true,
+		...ROWCOL,
+		...ROWCOL.map((i) => `${i}`),
+		...VIEWPORT,
+		...VIEWPORT.map((i) => ROWCOL.map((j) => `${i}-${j}`)).flat(),
+	];
 
-	export type userSelect = "all" | "auto" | "none";
-	export type pointerEvent = "auto" | "none";
-	export type position = "static" | "relative" | "absolute" | "fixed" | "sticky";
-	export type overflow = "auto" | "hidden" | "scroll" | "visible";
-	export type overflowX = overflow;
-	export type overflowY = overflow;
+	export const userSelect = ["all", "auto", "none"];
+	export const pointerEvent = ["auto", "none"];
+	export const position = ["static", "relative", "absolute", "fixed", "sticky"];
+	export const overflow = ["auto", "hidden", "scroll", "visible"];
+	export const overflowX = overflow;
+	export const overflowY = overflow;
 
-	export type textAlign = _positionView;
-	export type verticalAlign = "baseline" | "top" | "middle" | "bottom" | "text-top" | "text-bottom";
+	export const textAlign = _positionView;
+	export const verticalAlign = ["baseline", "top", "middle", "bottom", "text-top", "text-bottom"];
 
-	export type opacity = OPACITY | `${OPACITY}`;
-	export type bgOpacity = BGOPACITY | `${BGOPACITY}`;
-	export type textOpacity = TEXTOPACITY | `${TEXTOPACITY}`;
+	export const opacity = [...OPACITY, ...OPACITY.map((i) => `${i}`)];
+	export const bgOpacity = [...BGOPACITY, ...BGOPACITY.map((i) => `${i}`)];
+	export const textOpacity = [...TEXTOPACITY, ...TEXTOPACITY.map((i) => `${i}`)];
 
-	export type focusRing = true | COLOR;
-	export type textBgColor = COLOR;
-	export type textColor = COLOR | COLOREMPHASIS | BODYCOLOR | BODYTEXTCOLOR | OTHERCOLOR | "reset";
-	export type bgColor = COLOR | COLORSUBTLE | BODYCOLOR | OTHERCOLOR | "transparent";
+	export const focusRing = [true, ...COLOR];
+	export const textBgColor = COLOR;
+	export const textColor = [...COLOR, ...COLOREMPHASIS, ...BODYCOLOR, ...BODYTEXTCOLOR, ...OTHERCOLOR, "reset"];
+	export const bgColor = [...COLOR, ...COLORSUBTLE, ...BODYCOLOR, ...OTHERCOLOR, "transparent"];
 
-	export type iconLink = true | "hover";
+	export const iconLink = [true, "hover"];
 
-	export type textTransform = "lowercase" | "uppercase" | "capitalize";
-	export type textDecoration = "underline" | "line-through" | "none";
-	export type lineHeight = 1 | "1" | "sm" | "base" | "lg";
+	export const textTransform = ["lowercase", "uppercase", "capitalize"];
+	export const textDecoration = ["underline", "line-through", "none"];
+	export const lineHeight = [1, "1", "sm", "base", "lg"];
 
-	export type fontSize = FONTSIZE | `${FONTSIZE}`;
-	export type fontDisplay = fontSize;
-	export type fontWeight = "bold" | "bolder" | "semibold" | "medium" | "normal" | "light" | "lighter";
+	export const fontSize = [...FONTSIZE, ...FONTSIZE.map((i) => `${i}`)];
+	export const fontDisplay = fontSize;
+	export const fontWeight = ["bold", "bolder", "semibold", "medium", "normal", "light", "lighter"];
 
-	export type top = TOP | `${TOP}`;
-	export type bottom = top;
-	export type start = top;
-	export type end = top;
-	export type translateMiddle = true | "x" | "y";
+	export const top = [...TOP, ...TOP.map((i) => `${i}`)];
+	export const bottom = top;
+	export const start = top;
+	export const end = top;
+	export const translateMiddle = [true, "x", "y"];
 
-	export type height = HEIGHT | `${HEIGHT}`;
-	export type width = height;
+	export const height = [...HEIGHT, ...HEIGHT.map((i) => `${i}`)];
+	export const width = height;
 
-	export type maxHeight = 100 | "100";
-	export type maxWidth = 100 | "100";
-	export type minViewHeight = 100 | "100";
-	export type minViewWidth = 100 | "100";
-	export type viewHeight = 100 | "100";
-	export type viewWidth = 100 | "100";
+	export const maxHeight = [100, "100"];
+	export const maxWidth = [100, "100"];
+	export const minViewHeight = [100, "100"];
+	export const minViewWidth = [100, "100"];
+	export const viewHeight = [100, "100"];
+	export const viewWidth = [100, "100"];
 
-	export type shadow = boolean | "none" | "sm" | "lg" | "inset";
+	export const shadow = [true, false, "none", "sm", "lg", "inset"];
 
-	export type borderNone = true | "top" | "end" | "bottom" | "start";
-	export type border = false | borderNone;
-	export type borderColor = COLOR | COLORSUBTLE | OTHERCOLOR;
-	export type borderOpacity = BORDEROPACITY | `${BORDEROPACITY}`;
-	export type borderWidth = BORDERWIDTH | `${BORDERWIDTH}`;
+	export const borderNone = [true, "top", "end", "bottom", "start"];
+	export const border = [false, ...borderNone];
+	export const borderColor = [...COLOR, ...COLORSUBTLE, ...OTHERCOLOR];
+	export const borderOpacity = [...BORDEROPACITY, ...BORDEROPACITY.map((i) => `${i}`)];
+	export const borderWidth = [...BORDERWIDTH, ...BORDERWIDTH.map((i) => `${i}`)];
 
-	export type roundedNone = border;
-	export type rounded =
-		| boolean
-		| ROUNDEDSIZE
-		| `${ROUNDEDSIZE}`
-		| ROUNDED
-		| ROUNDEDSTYLE
-		| `${ROUNDED}-${ROUNDEDSTYLE}`
-		| `${ROUNDED}-${ROUNDEDSIZE}`
-		| `${ROUNDEDSTYLE}-${ROUNDEDSIZE}`;
-	export type roundedSize = ROUNDEDSIZE | `${ROUNDEDSIZE}`;
+	export const roundedNone = border;
+	export const rounded = [
+		true,
+		false,
+		...ROUNDEDSIZE,
+		...ROUNDEDSIZE.map((i) => `${i}`),
+		...ROUNDED,
+		...ROUNDEDSTYLE,
+		...ROUNDED.map((i) => ROUNDEDSTYLE.map((j) => `${i}-${j}`)).flat(),
+		...ROUNDED.map((i) => ROUNDEDSIZE.map((j) => `${i}-${j}`)).flat(),
+		...ROUNDEDSTYLE.map((i) => ROUNDEDSIZE.map((j) => `${i}-${j}`)).flat(),
+	];
+	export const roundedSize = [...ROUNDEDSIZE, ...ROUNDEDSIZE.map((i) => `${i}`)];
 
-	export type padding = _spacer;
-	export type paddingX = _spacer;
-	export type paddingY = _spacer;
-	export type paddingTop = _spacer;
-	export type paddingBottom = _spacer;
-	export type paddingStart = _spacer;
-	export type paddingEnd = _spacer;
+	export const padding = _spacer;
+	export const paddingX = _spacer;
+	export const paddingY = _spacer;
+	export const paddingTop = _spacer;
+	export const paddingBottom = _spacer;
+	export const paddingStart = _spacer;
+	export const paddingEnd = _spacer;
 
-	export type margin = _spacer;
-	export type marginX = _spacer;
-	export type marginY = _spacer;
-	export type marginTop = _spacer;
-	export type marginBottom = _spacer;
-	export type marginStart = _spacer;
-	export type marginEnd = _spacer;
+	export const margin = _spacer;
+	export const marginX = _spacer;
+	export const marginY = _spacer;
+	export const marginTop = _spacer;
+	export const marginBottom = _spacer;
+	export const marginStart = _spacer;
+	export const marginEnd = _spacer;
 
-	export type gap = _spacer;
-	export type gutter = _spacer;
-	export type gutterX = _spacer;
-	export type gutterY = _spacer;
+	export const gap = _spacer;
+	export const gutter = _spacer;
+	export const gutterX = _spacer;
+	export const gutterY = _spacer;
 
-	export type print = display;
-	export type container = true | VIEWPORT | "fluid" | "xs";
+	export const print = display;
+	export const container = [true, ...VIEWPORT, "fluid", "xs"];
 
-	export type zIndex = ZINDEX | `${ZINDEX}`;
-	export type objectFit = OBJECTFIT | `${VIEWPORT}-${OBJECTFIT}`;
+	export const zIndex = [...ZINDEX, ...ZINDEX.map((i) => `${i}`)];
+	export const objectFit = [...OBJECTFIT, ...VIEWPORT.map((i) => OBJECTFIT.map((j) => `${i}-${j}`)).flat()];
 
-	export type ratio = true | "1x1" | "4x3" | "16x9" | "21x9";
-	export type fixed = STICKY;
-	export type sticky = STICKY | `${VIEWPORT}-${STICKY}`;
+	export const ratio = [true, "1x1", "4x3", "16x9", "21x9"];
+	export const fixed = STICKY;
+	export const sticky = [...STICKY, ...VIEWPORT.map((i) => STICKY.map((j) => `${i}-${j}`)).flat()];
 
-	export type clearfix = true;
-	export type textTruncate = true;
-	export type vstack = true;
-	export type hstack = true;
-	export type visually = "hidden" | "hidden-focusable";
-	export type h = fontDisplay;
-	export type small = true;
+	export const clearfix = [true];
+	export const textTruncate = [true];
+	export const vstack = [true];
+	export const hstack = [true];
+	export const visually = ["hidden", "hidden-focusable"];
+	export const h = fontDisplay;
+	export const small = [true];
 
 	//specific component only
-	export type linkColor = COLOR | BODYTEXTCOLOR;
-	export type linkUnderlineColor = linkColor;
-	export type linkOffset = LINKOFFSET | `${LINKOFFSET}`;
-	export type linkOffsetHover = linkOffset;
-	export type linkOpacity = LINKOPACITY | `${LINKOPACITY}`;
-	export type linkOpacityHover = linkOpacity;
-	export type linkUnderline = true;
-	export type linkUnderlineOpacity = LINKUNDERLINEOPACITY | `${LINKUNDERLINEOPACITY}`;
-	export type linkUnderlineOpacityHover = linkUnderlineOpacity;
+	export const linkColor = [...COLOR, ...BODYTEXTCOLOR];
+	export const linkUnderlineColor = linkColor;
+	export const linkOffset = [...LINKOFFSET, ...LINKOFFSET.map((i) => `${i}`)];
+	export const linkOffsetHover = linkOffset;
+	export const linkOpacity = [...LINKOPACITY, ...LINKOPACITY.map((i) => `${i}`)];
+	export const linkOpacityHover = linkOpacity;
+	export const linkUnderline = [true];
+	export const linkUnderlineOpacity = [...LINKUNDERLINEOPACITY, ...LINKUNDERLINEOPACITY.map((i) => `${i}`)];
+	export const linkUnderlineOpacityHover = linkUnderlineOpacity;
 
-	export type btnColor = COLOR;
-	export type btnOutlineColor = COLOR;
-	export type alertColor = COLOR;
-	export type dropdownDirection = "up" | "start" | "end";
+	export const btnColor = COLOR;
+	export const btnOutlineColor = COLOR;
+	export const alertColor = COLOR;
+	export const dropdownDirection = ["up", "start", "end"];
 }
 
 interface IBsClassFormatter {
