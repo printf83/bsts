@@ -71,6 +71,11 @@ export namespace bs {
 	//attribute
 	export type theme = "light" | "dark" | "auto";
 	export type pointer = true;
+	export type label = string;
+	export type labelledby = string;
+	export type ownby = string;
+	export type describedby = string;
+	export type controlfor = string;
 
 	//class
 	export type flex = FLEX | `${VIEWPORT}-${FLEX}`;
@@ -218,6 +223,7 @@ export namespace bs {
 	export type btnOutlineColor = COLOR;
 	export type alertColor = COLOR;
 	export type dropdownDirection = "up" | "start" | "end";
+	export type dropdownMenuPositionView = _positionView;
 }
 
 namespace bsArr {
@@ -293,8 +299,14 @@ namespace bsArr {
 	const _positionView = [...POSITIONVIEW, ...VIEWPORT.map((i) => POSITIONVIEW.map((j) => `${i}-${j}`)).flat()];
 
 	//attribute
-	export const theme = ["light", "dark", "auto"];
-	export const pointer = [true];
+	// NO NEED TO DO THIS BCOZ ATTR VALUE NOT VALIDATE
+	// export const theme = ["light", "dark", "auto"];
+	// export const pointer = [true];
+	// export const label = "string";
+	// export const labelledby = "string";
+	// export const ownby = "string";
+	// export const describedby = "string";
+	// export const controlfor = "string";
 
 	//class
 	export const flex = [...FLEX, ...VIEWPORT.map((i) => FLEX.map((j) => `${i}-${j}`)).flat()];
@@ -461,6 +473,7 @@ namespace bsArr {
 	export const btnOutlineColor = COLOR;
 	export const alertColor = COLOR;
 	export const dropdownDirection = ["up", "start", "end"];
+	export const dropdownMenuPositionView = _positionView;
 }
 
 interface IBsClassFormatter {
@@ -1039,6 +1052,10 @@ const bsClassFormatterDB: {
 		format: "drop$1",
 		value: bsArr.dropdownDirection,
 	}),
+	dropdownMenuPositionView: new bsClassFormatterRule({
+		format: "dropdown-menu-$1",
+		value: bsArr.dropdownMenuPositionView,
+	}),
 };
 
 type IBsAttrFormatter = (elem: HTMLElement, data: string | number | boolean) => HTMLElement;
@@ -1053,6 +1070,41 @@ const attrFormatterDB: {
 	pointer: (elem, data) => {
 		if (data) {
 			elem.setAttribute("role", "button");
+		}
+
+		return elem;
+	},
+	label: (elem, data) => {
+		if (data) {
+			elem.setAttribute("aria-label", data.toString());
+		}
+
+		return elem;
+	},
+	labelledby: (elem, data) => {
+		if (data) {
+			elem.setAttribute("aria-labelledby", data.toString());
+		}
+
+		return elem;
+	},
+	ownby: (elem, data) => {
+		if (data) {
+			elem.setAttribute("aria-owns", data.toString());
+		}
+
+		return elem;
+	},
+	describedby: (elem, data) => {
+		if (data) {
+			elem.setAttribute("aria-describedby", data.toString());
+		}
+
+		return elem;
+	},
+	controlfor: (elem, data) => {
+		if (data) {
+			elem.setAttribute("aria-controls", data.toString());
 		}
 
 		return elem;
@@ -1229,7 +1281,17 @@ export interface IBsClass {
 let allowClassProp: (string | undefined)[] = [];
 
 export namespace attachBSClass {
-	const allow = (key: string) => {
+	const allowValue = <T extends string | number | boolean>(
+		valueToCheck: string | number | boolean,
+		listOfPossible: (string | number | boolean)[]
+	): valueToCheck is T => {
+		if (listOfPossible && listOfPossible.length > 0) {
+			return listOfPossible.indexOf(valueToCheck) > -1;
+		}
+		return false;
+	};
+
+	const allowProp = (key: string) => {
 		if (allowClassProp.length === 0) {
 			allowClassProp = Object.keys(bsClassFormatterDB);
 		}
@@ -1242,23 +1304,25 @@ export namespace attachBSClass {
 	};
 
 	const addClass = (rule: IBsClassFormatter, data: string | number | boolean, elem: HTMLElement) => {
-		if (rule.formatValue) {
-			elem = addClassIntoElement(elem, rule.formatValue!);
-		}
+		if (rule.value && allowValue(data, rule.value)) {
+			if (rule.formatValue) {
+				elem = addClassIntoElement(elem, rule.formatValue!);
+			}
 
-		if (data === true && rule.formatTrue) {
-			elem = addClassIntoElement(elem, rule.formatTrue!);
-		} else if (data === false && rule.formatFalse) {
-			elem = addClassIntoElement(elem, rule.formatFalse!);
-		} else if (rule.format) {
-			elem = addClassIntoElement(elem, rule.format!.replace(/\$1/g, data.toString()));
+			if (data === true && rule.formatTrue) {
+				elem = addClassIntoElement(elem, rule.formatTrue!);
+			} else if (data === false && rule.formatFalse) {
+				elem = addClassIntoElement(elem, rule.formatFalse!);
+			} else if (rule.format) {
+				elem = addClassIntoElement(elem, rule.format!.replace(/\$1/g, data.toString()));
+			}
 		}
 
 		return elem;
 	};
 
 	export const attach: IAttachFn = (key, elem, attr) => {
-		let allowKey = allow(key);
+		let allowKey = allowProp(key);
 		if (allowKey) {
 			let a = keyOfType(key, attr);
 			let b = keyOfType(allowKey, bsClassFormatterDB);
