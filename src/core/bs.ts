@@ -92,9 +92,9 @@ export namespace bs {
 	export type textBreak = true;
 	export type monospace = true;
 
-	export type placeholder = true;
-	export type placeholderAnimation = "glow" | "wave";
-	export type placeholderWeight = "lg" | "sm" | "xs";
+	export type loadingPlaceholder = true;
+	export type loadingPlaceholderAnimation = "glow" | "wave";
+	export type loadingPlaceholderWeight = "lg" | "sm" | "xs";
 
 	export type row = true;
 	export type col = true | ROWCOL | `${ROWCOL}` | VIEWPORT | `${VIEWPORT}-${ROWCOL}`;
@@ -132,7 +132,7 @@ export namespace bs {
 	export type bottom = top;
 	export type start = top;
 	export type end = top;
-	export type translateMiddle = true | "x" | "y";
+	export type tMiddle = true | "x" | "y";
 
 	export type height = HEIGHT | `${HEIGHT}`;
 	export type width = height;
@@ -220,7 +220,7 @@ export namespace bs {
 	export type dropdownDirection = "up" | "start" | "end";
 }
 
-export namespace bsArr {
+namespace bsArr {
 	const VIEWPORT = ["sm", "md", "lg", "xl", "xxl"];
 	const SPACER = ["auto", 0, 1, 2, 3, 4, 5];
 	const GRID = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -327,9 +327,9 @@ export namespace bsArr {
 	export const textBreak = [true];
 	export const monospace = [true];
 
-	export const placeholder = [true];
-	export const placeholderAnimation = ["glow", "wave"];
-	export const placeholderWeight = ["lg", "sm", "xs"];
+	export const loadingPlaceholder = [true];
+	export const loadingPlaceholderAnimation = ["glow", "wave"];
+	export const loadingPlaceholderWeight = ["lg", "sm", "xs"];
 
 	export const row = [true];
 	export const col = [
@@ -373,7 +373,7 @@ export namespace bsArr {
 	export const bottom = top;
 	export const start = top;
 	export const end = top;
-	export const translateMiddle = [true, "x", "y"];
+	export const tMiddle = [true, "x", "y"];
 
 	export const height = [...HEIGHT, ...HEIGHT.map((i) => `${i}`)];
 	export const width = height;
@@ -464,6 +464,9 @@ export namespace bsArr {
 }
 
 interface IBsClassFormatter {
+	shared?: boolean;
+	value?: (string | number | boolean)[];
+
 	format?: string;
 	formatValue?: string;
 	formatTrue?: string;
@@ -471,12 +474,16 @@ interface IBsClassFormatter {
 }
 
 class bsClassFormatterRule implements IBsClassFormatter {
+	shared?: boolean;
+	value?: (string | number | boolean)[];
 	format?: string;
 	formatValue?: string;
 	formatTrue?: string;
 	formatFalse?: string;
 
 	constructor(d: IBsClassFormatter) {
+		this.shared = d.shared;
+		this.value = d.value;
 		this.format = d.format;
 		this.formatValue = d.formatValue;
 		this.formatTrue = d.formatTrue;
@@ -489,36 +496,46 @@ const bsClassFormatterDB: {
 } = {
 	flex: new bsClassFormatterRule({
 		format: "flex-$1",
+		value: bsArr.flex,
 	}),
 	float: new bsClassFormatterRule({
 		format: "float-$1",
+		value: bsArr.float,
 	}),
 	order: new bsClassFormatterRule({
 		format: "order-$1",
+		value: bsArr.order,
 	}),
 	offset: new bsClassFormatterRule({
 		format: "offset-$1",
+		value: bsArr.offset,
 	}),
 
 	//---------------------
 
 	alignContent: new bsClassFormatterRule({
 		format: "align-content-$1",
+		value: bsArr.alignContent,
 	}),
 	justifyContent: new bsClassFormatterRule({
 		format: "justify-content-$1",
+		value: bsArr.justifyContent,
 	}),
 	alignItem: new bsClassFormatterRule({
 		format: "align-items-$1",
+		value: bsArr.alignItem,
 	}),
 	alignSelf: new bsClassFormatterRule({
 		format: "align-self-$1",
+		value: bsArr.alignSelf,
 	}),
 	display: new bsClassFormatterRule({
 		format: "d-$1",
+		value: bsArr.display,
 	}),
 	rowCol: new bsClassFormatterRule({
 		format: "row-cols-$1",
+		value: bsArr.rowCol,
 	}),
 
 	//---------------------
@@ -526,88 +543,110 @@ const bsClassFormatterDB: {
 	visible: new bsClassFormatterRule({
 		formatTrue: "visible",
 		formatFalse: "invisible",
+		value: bsArr.visible,
 	}),
 	textWrap: new bsClassFormatterRule({
 		formatTrue: "text-wrap",
 		formatFalse: "text-nowrap",
+		value: bsArr.textWrap,
 	}),
 	fontItalic: new bsClassFormatterRule({
 		formatTrue: "fst-italic",
 		formatFalse: "fst-normal",
+		value: bsArr.fontItalic,
 	}),
 	bgGradient: new bsClassFormatterRule({
 		formatTrue: "bg-gradient",
+		value: bsArr.bgGradient,
 	}),
 	textBreak: new bsClassFormatterRule({
 		formatTrue: "text-break",
+		value: bsArr.textBreak,
 	}),
 	monospace: new bsClassFormatterRule({
 		formatTrue: "font-monospace",
+		value: bsArr.monospace,
 	}),
 
 	//---------------------
 
-	placeholder: new bsClassFormatterRule({
+	loadingPlaceholder: new bsClassFormatterRule({
 		formatTrue: "placeholder",
+		value: bsArr.loadingPlaceholder,
 	}),
-	placeholderAnimation: new bsClassFormatterRule({
+	loadingPlaceholderAnimation: new bsClassFormatterRule({
 		format: "placeholder-$1",
+		value: bsArr.loadingPlaceholderAnimation,
 	}),
-	placeholderWeight: new bsClassFormatterRule({
+	loadingPlaceholderWeight: new bsClassFormatterRule({
 		format: "placeholder-$1",
 		formatValue: "placeholder $1",
+		value: bsArr.loadingPlaceholderWeight,
 	}),
 
 	//---------------------
 
 	row: new bsClassFormatterRule({
 		formatTrue: "row",
+		value: bsArr.row,
 	}),
 	col: new bsClassFormatterRule({
 		format: "col-$1",
 		formatTrue: "col",
+		value: bsArr.col,
 	}),
 
 	//---------------------
 
 	userSelect: new bsClassFormatterRule({
 		format: "user-select-$1",
+		value: bsArr.userSelect,
 	}),
 	pointerEvent: new bsClassFormatterRule({
 		format: "pe-$1",
+		value: bsArr.pointerEvent,
 	}),
 	position: new bsClassFormatterRule({
 		format: "position-$1",
+		value: bsArr.position,
 	}),
 	overflow: new bsClassFormatterRule({
 		format: "overflow-$1",
+		value: bsArr.overflow,
 	}),
 	overflowX: new bsClassFormatterRule({
 		format: "overflow-x-$1",
+		value: bsArr.overflowX,
 	}),
 	overflowY: new bsClassFormatterRule({
 		format: "overflow-y-$1",
+		value: bsArr.overflowY,
 	}),
 
 	//---------------------
 
 	textAlign: new bsClassFormatterRule({
 		format: "text-$1",
+		value: bsArr.textAlign,
 	}),
 	verticalAlign: new bsClassFormatterRule({
 		format: "align-$1",
+		value: bsArr.verticalAlign,
 	}),
 
 	//---------------------
 
 	opacity: new bsClassFormatterRule({
 		format: "opacity-$1",
+		value: bsArr.opacity,
 	}),
 	bgOpacity: new bsClassFormatterRule({
 		format: "bg-opacity-$1",
+		value: bsArr.bgOpacity,
 	}),
 	textOpacity: new bsClassFormatterRule({
 		format: "text-opacity-$1",
+		value: bsArr.textOpacity,
 	}),
 
 	//---------------------
@@ -615,15 +654,19 @@ const bsClassFormatterDB: {
 	focusRing: new bsClassFormatterRule({
 		format: "focus-ring-$1",
 		formatValue: "focus-ring",
+		value: bsArr.focusRing,
 	}),
 	textBgColor: new bsClassFormatterRule({
 		format: "text-bg-$1",
+		value: bsArr.textBgColor,
 	}),
 	textColor: new bsClassFormatterRule({
 		format: "text-$1",
+		value: bsArr.textColor,
 	}),
 	bgColor: new bsClassFormatterRule({
 		format: "bg-$1",
+		value: bsArr.bgColor,
 	}),
 
 	//---------------------
@@ -632,79 +675,101 @@ const bsClassFormatterDB: {
 		format: "icon-link-$1",
 		formatValue: "icon-link",
 		formatTrue: "icon-link",
+		value: bsArr.iconLink,
 	}),
 
 	//---------------------
 
 	textTransform: new bsClassFormatterRule({
 		format: "text-$1",
+		value: bsArr.textTransform,
 	}),
 	textDecoration: new bsClassFormatterRule({
 		format: "text-decoration-$1",
+		value: bsArr.textDecoration,
 	}),
 	lineHeight: new bsClassFormatterRule({
 		format: "lh-$1",
+		value: bsArr.lineHeight,
 	}),
 
 	//---------------------
 
 	fontSize: new bsClassFormatterRule({
 		format: "fs-$1",
+		value: bsArr.fontSize,
 	}),
 	fontDisplay: new bsClassFormatterRule({
 		format: "display-$1",
+		value: bsArr.fontDisplay,
 	}),
 	fontWeight: new bsClassFormatterRule({
 		format: "fw-$1",
+		value: bsArr.fontWeight,
 	}),
 
 	//---------------------
 
 	top: new bsClassFormatterRule({
 		format: "top-$1",
+		value: bsArr.top,
 	}),
 	bottom: new bsClassFormatterRule({
 		format: "bottom-$1",
+		value: bsArr.bottom,
 	}),
 	start: new bsClassFormatterRule({
 		format: "start-$1",
+		value: bsArr.start,
 	}),
 	end: new bsClassFormatterRule({
 		format: "end-$1",
+		value: bsArr.end,
 	}),
-	translateMiddle: new bsClassFormatterRule({
+	tMiddle: new bsClassFormatterRule({
 		format: "translate-middle-$1",
 		formatTrue: "translate-middle",
+		value: bsArr.tMiddle,
 	}),
 
 	//---------------------
 
 	height: new bsClassFormatterRule({
 		format: "h-$1",
+		value: bsArr.height,
+		shared: true,
 	}),
 	width: new bsClassFormatterRule({
 		format: "w-$1",
+		value: bsArr.width,
+		shared: true,
 	}),
 
 	//---------------------
 
 	maxHeight: new bsClassFormatterRule({
 		format: "mh-$1",
+		value: bsArr.maxHeight,
 	}),
 	maxWidth: new bsClassFormatterRule({
 		format: "mw-$1",
+		value: bsArr.maxWidth,
 	}),
 	minViewHeight: new bsClassFormatterRule({
 		format: "min-vh-$1",
+		value: bsArr.minViewHeight,
 	}),
 	minViewWidth: new bsClassFormatterRule({
 		format: "min-vw-$1",
+		value: bsArr.minViewWidth,
 	}),
 	viewHeight: new bsClassFormatterRule({
 		format: "vh-$1",
+		value: bsArr.viewHeight,
 	}),
 	viewWidth: new bsClassFormatterRule({
 		format: "vw-$1",
+		value: bsArr.viewWidth,
 	}),
 
 	//---------------------
@@ -713,6 +778,7 @@ const bsClassFormatterDB: {
 		format: "shadow-$1",
 		formatValue: "shadow",
 		formatFalse: "shadow-none",
+		value: bsArr.shadow,
 	}),
 
 	//---------------------
@@ -721,20 +787,25 @@ const bsClassFormatterDB: {
 		format: "border-$1-0",
 		formatTrue: "border-0",
 		formatFalse: "border",
+		value: bsArr.borderNone,
 	}),
 	border: new bsClassFormatterRule({
 		format: "border-$1",
 		formatTrue: "border",
 		formatFalse: "border-0",
+		value: bsArr.border,
 	}),
 	borderColor: new bsClassFormatterRule({
 		format: "border-$1",
+		value: bsArr.borderColor,
 	}),
 	borderOpacity: new bsClassFormatterRule({
 		format: "border-opacity-$1",
+		value: bsArr.borderOpacity,
 	}),
 	borderWidth: new bsClassFormatterRule({
 		format: "border-$1",
+		value: bsArr.borderWidth,
 	}),
 
 	//---------------------
@@ -743,96 +814,121 @@ const bsClassFormatterDB: {
 		format: "rounded-$1-0",
 		formatTrue: "rounded",
 		formatFalse: "rounded-0",
+		value: bsArr.roundedNone,
 	}),
 	rounded: new bsClassFormatterRule({
 		format: "rounded-$1",
 		formatTrue: "rounded",
 		formatFalse: "rounded-0",
+		value: bsArr.rounded,
 	}),
 	roundedSize: new bsClassFormatterRule({
 		format: "rounded-$1",
+		value: bsArr.roundedSize,
 	}),
 
 	//---------------------
 
 	padding: new bsClassFormatterRule({
 		format: "p-$1",
+		value: bsArr.padding,
 	}),
 	paddingX: new bsClassFormatterRule({
 		format: "px-$1",
+		value: bsArr.paddingX,
 	}),
 	paddingY: new bsClassFormatterRule({
 		format: "py-$1",
+		value: bsArr.paddingY,
 	}),
 	paddingTop: new bsClassFormatterRule({
 		format: "pt-$1",
+		value: bsArr.paddingTop,
 	}),
 	paddingBottom: new bsClassFormatterRule({
 		format: "pb-$1",
+		value: bsArr.paddingBottom,
 	}),
 	paddingStart: new bsClassFormatterRule({
 		format: "ps-$1",
+		value: bsArr.paddingStart,
 	}),
 	paddingEnd: new bsClassFormatterRule({
 		format: "pe-$1",
+		value: bsArr.paddingEnd,
 	}),
 
 	//---------------------
 
 	margin: new bsClassFormatterRule({
 		format: "m-$1",
+		value: bsArr.margin,
 	}),
 	marginX: new bsClassFormatterRule({
 		format: "mx-$1",
+		value: bsArr.marginX,
 	}),
 	marginY: new bsClassFormatterRule({
 		format: "my-$1",
+		value: bsArr.marginY,
 	}),
 	marginTop: new bsClassFormatterRule({
 		format: "mt-$1",
+		value: bsArr.marginTop,
 	}),
 	marginBottom: new bsClassFormatterRule({
 		format: "mb-$1",
+		value: bsArr.marginBottom,
 	}),
 	marginStart: new bsClassFormatterRule({
 		format: "ms-$1",
+		value: bsArr.marginStart,
 	}),
 	marginEnd: new bsClassFormatterRule({
 		format: "me-$1",
+		value: bsArr.marginEnd,
 	}),
 
 	//---------------------
 
 	gap: new bsClassFormatterRule({
 		format: "gap-$1",
+		value: bsArr.gap,
 	}),
 	gutter: new bsClassFormatterRule({
 		format: "g-$1",
+		value: bsArr.gutter,
 	}),
 	gutterX: new bsClassFormatterRule({
 		format: "gx-$1",
+		value: bsArr.gutterX,
 	}),
 	gutterY: new bsClassFormatterRule({
 		format: "gy-$1",
+		value: bsArr.gutterY,
 	}),
 
 	//---------------------
 
 	print: new bsClassFormatterRule({
 		format: "d-print-$1",
+		value: bsArr.print,
 	}),
 	container: new bsClassFormatterRule({
 		format: "container-$1",
 		formatTrue: "container",
+		value: bsArr.container,
 	}),
 
 	//---------------------
 
 	zIndex: new bsClassFormatterRule({
 		format: "z-$1",
+		value: bsArr.zIndex,
 	}),
 	objectFit: new bsClassFormatterRule({
 		format: "object-fit-$1",
+		value: bsArr.objectFit,
 	}),
 
 	//---------------------
@@ -841,67 +937,86 @@ const bsClassFormatterDB: {
 		format: "ratio-$1",
 		formatValue: "ratio",
 		formatTrue: "ratio",
+		value: bsArr.ratio,
 	}),
 	fixed: new bsClassFormatterRule({
 		format: "fixed-$1",
+		value: bsArr.fixed,
 	}),
 	sticky: new bsClassFormatterRule({
 		format: "sticky-$1",
+		value: bsArr.sticky,
 	}),
 
 	//---------------------
 
 	clearfix: new bsClassFormatterRule({
 		formatTrue: "clearfix",
+		value: bsArr.clearfix,
 	}),
 	textTruncate: new bsClassFormatterRule({
 		formatTrue: "text-truncate",
+		value: bsArr.textTruncate,
 	}),
 
 	vstack: new bsClassFormatterRule({
 		formatTrue: "vstack",
+		value: bsArr.vstack,
 	}),
 	hstack: new bsClassFormatterRule({
 		formatTrue: "hstack",
+		value: bsArr.hstack,
 	}),
 	visually: new bsClassFormatterRule({
 		format: "visually-$1",
+		value: bsArr.visually,
 	}),
 	h: new bsClassFormatterRule({
 		format: "h$1",
+		value: bsArr.h,
 	}),
 	small: new bsClassFormatterRule({
 		formatTrue: "small",
+		value: bsArr.small,
 	}),
 
 	//---------------------
 
 	linkColor: new bsClassFormatterRule({
 		format: "link-$1",
+		value: bsArr.linkColor,
 	}),
 	linkUnderlineColor: new bsClassFormatterRule({
 		format: "link-underline-$1",
+		value: bsArr.linkUnderlineColor,
 	}),
 	linkOffset: new bsClassFormatterRule({
 		format: "link-offset-$1",
+		value: bsArr.linkOffset,
 	}),
 	linkOffsetHover: new bsClassFormatterRule({
 		format: "link-offset-$1-hover",
+		value: bsArr.linkOffsetHover,
 	}),
 	linkOpacity: new bsClassFormatterRule({
 		format: "link-opacity-$1",
+		value: bsArr.linkOpacity,
 	}),
 	linkOpacityHover: new bsClassFormatterRule({
 		format: "link-opacity-$1-hover",
+		value: bsArr.linkOpacityHover,
 	}),
 	linkUnderline: new bsClassFormatterRule({
 		formatTrue: "link-underline",
+		value: bsArr.linkUnderline,
 	}),
 	linkUnderlineOpacity: new bsClassFormatterRule({
 		format: "link-underline-opacity-$1",
+		value: bsArr.linkUnderlineOpacity,
 	}),
 	linkUnderlineOpacityHover: new bsClassFormatterRule({
 		format: "link-underline-opacity-$1-hover",
+		value: bsArr.linkUnderlineOpacityHover,
 	}),
 
 	//---------------------
@@ -909,16 +1024,20 @@ const bsClassFormatterDB: {
 	btnColor: new bsClassFormatterRule({
 		format: "btn-$1",
 		formatValue: "btn",
+		value: bsArr.btnColor,
 	}),
 	btnOutlineColor: new bsClassFormatterRule({
 		format: "btn-outline-$1",
 		formatValue: "btn",
+		value: bsArr.btnOutlineColor,
 	}),
 	alertColor: new bsClassFormatterRule({
 		format: "alert-$1",
+		value: bsArr.alertColor,
 	}),
 	dropdownDirection: new bsClassFormatterRule({
 		format: "drop$1",
+		value: bsArr.dropdownDirection,
 	}),
 };
 
@@ -971,9 +1090,9 @@ export interface IBsClass {
 
 	//---------------------
 
-	placeholder?: bs.placeholder;
-	placeholderAnimation?: bs.placeholderAnimation;
-	placeholderWeight?: bs.placeholderWeight;
+	loadingPlaceholder?: bs.loadingPlaceholder;
+	loadingPlaceholderAnimation?: bs.loadingPlaceholderAnimation;
+	loadingPlaceholderWeight?: bs.loadingPlaceholderWeight;
 
 	//---------------------
 
@@ -1024,7 +1143,7 @@ export interface IBsClass {
 	bottom?: bs.bottom;
 	start?: bs.start;
 	end?: bs.end;
-	translateMiddle?: bs.translateMiddle;
+	tMiddle?: bs.tMiddle;
 
 	//---------------------
 
