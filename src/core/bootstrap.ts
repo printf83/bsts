@@ -1183,7 +1183,7 @@ export interface IBsClass {
 
 	//---------------------
 
-	bsUserSelect?: bootstrapType.userSelect;
+	userSelect?: bootstrapType.userSelect;
 	pointerEvent?: bootstrapType.pointerEvent;
 	position?: bootstrapType.position;
 	overflow?: bootstrapType.overflow;
