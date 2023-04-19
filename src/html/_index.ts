@@ -5,7 +5,7 @@ import { area, ITagArea } from "./area.js";
 import { article } from "./article.js";
 import { aside } from "./aside.js";
 import { audio, ITagAudio } from "./audio.js";
-import { b } from "./b.js";
+import { b, B } from "./b.js";
 import { base, ITagBase } from "./base.js";
 import { bdi } from "./bdi.js";
 import { bdo, ITagBdo } from "./bdo.js";
@@ -112,6 +112,7 @@ export {
 	aside,
 	audio,
 	b,
+	B,
 	base,
 	bdi,
 	bdo,

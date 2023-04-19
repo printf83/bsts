@@ -1,5 +1,5 @@
 import { bootstrapType, bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
-import { IElem, isAttr, tag } from "../core/tag.js";
+import { IElem, genTagClass, tag } from "../core/tag.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { ITagButton } from "../html/button.js";
 
@@ -94,14 +94,4 @@ export class button extends tag {
 	}
 }
 
-export const Button = (a: IBsButton | IElem, b?: IElem) => {
-	if (isAttr<IBsButton>(a)) {
-		if (b) {
-			return new button(a, b);
-		} else {
-			return new button(a);
-		}
-	} else {
-		return new button(a as IElem);
-	}
-};
+export const Button = (AttrOrElem: IBsButton | IElem, Elem?: IElem) => genTagClass(button, AttrOrElem, Elem);
