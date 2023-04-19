@@ -1,15 +1,15 @@
 import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
 
-export interface IAttrTagMap extends IAttr {
+export interface ITagMap extends IAttr {
 	name?: string;
 }
 
 export class map extends tag {
 	constructor();
 	constructor(elem: IElem);
-	constructor(attr: IAttrTagMap);
-	constructor(attr: IAttrTagMap, elem: IElem);
+	constructor(attr: ITagMap);
+	constructor(attr: ITagMap, elem: IElem);
 	constructor(...arg: any[]) {
-		super("map", tagConsArg<IAttrTagMap>("elem", arg));
+		super("map", tagConsArg<ITagMap>("elem", arg));
 	}
 }

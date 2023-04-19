@@ -1,4 +1,4 @@
-import { button, IAttrBSCarouselIndicatorsButton } from "./button.js";
+import { button, IBsCarouselIndicatorsButton } from "./button.js";
 import { container } from "./container.js";
 
-export { container, button, IAttrBSCarouselIndicatorsButton };
+export { container, button, IBsCarouselIndicatorsButton };

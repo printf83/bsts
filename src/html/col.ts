@@ -1,12 +1,12 @@
 import { tagConsNoElemArg, IAttr, tag } from "../core/tag.js";
 
-export interface IAttrTagCol extends IAttr {
+export interface ITagCol extends IAttr {
 	span?: number;
 }
 
 export class col extends tag {
 	constructor();
-	constructor(attr: IAttrTagCol);
+	constructor(attr: ITagCol);
 	constructor(...arg: any[]) {
 		super("col", tagConsNoElemArg(arg));
 	}

@@ -1,12 +1,12 @@
-import { brand, IAttrBSNavbarBrand } from "./brand.js";
+import { brand, IBsNavbarBrand } from "./brand.js";
 import { collapse } from "./collapse.js";
-import { container, containerHeader, IAttrBSNavbarContainer } from "./container.js";
+import { container, containerHeader, IBsNavbarContainer } from "./container.js";
 import { innercontainer, innercontainerNav } from "./innercontainer.js";
-import { itemcontainer, IAttrBSNavbarItemcontainer } from "./itemcontainer.js";
+import { itemcontainer, IBsNavbarItemcontainer } from "./itemcontainer.js";
 import { text } from "./text.js";
 import * as toggle from "./toggle/_index.js";
-import { item, IAttrBSNavItem } from "../nav/header/item.js";
-import { link, IAttrBSNavLink } from "../nav/header/link.js";
+import { item, IBsNavItem } from "../nav/header/item.js";
+import { link, IBsNavLink } from "../nav/header/link.js";
 
 export {
 	container,
@@ -20,9 +20,9 @@ export {
 	text,
 	item,
 	link,
-	IAttrBSNavbarBrand,
-	IAttrBSNavbarContainer,
-	IAttrBSNavItem,
-	IAttrBSNavbarItemcontainer,
-	IAttrBSNavLink,
+	IBsNavbarBrand,
+	IBsNavbarContainer,
+	IBsNavItem,
+	IBsNavbarItemcontainer,
+	IBsNavLink,
 };

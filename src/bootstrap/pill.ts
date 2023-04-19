@@ -4,10 +4,10 @@ import { mergeObject } from "../core/mergeObject.js";
 import { div } from "../html/div.js";
 import { small } from "../html/small.js";
 import { span } from "../html/span.js";
-import { IAttrBSIcon, icon } from "./icon.js";
+import { IBsIcon, icon } from "./icon.js";
 
-export interface IAttrBSPill extends IAttr {
-	icon?: string | IAttrBSIcon | icon;
+export interface IBsPill extends IAttr {
+	icon?: string | IBsIcon | icon;
 	iconPosition?: "start" | "end" | "top" | "bottom";
 	color?: bootstrapType.color;
 	weight?: "md" | "lg";
@@ -23,17 +23,17 @@ const fnIcon = (
 	iconPosition: "start" | "end" | "top" | "bottom" | undefined,
 	rounded: bootstrapType.rounded | undefined,
 	type: 1 | 2 | undefined,
-	attr: string | IAttrBSIcon | icon
+	attr: string | IBsIcon | icon
 ) => {
 	if (typeof attr === "string") {
-		attr = { id: attr } as IAttrBSIcon;
+		attr = { id: attr } as IBsIcon;
 	}
 
-	let a: IAttrBSIcon = {};
-	if (isAttr<IAttrBSIcon>(attr)) {
+	let a: IBsIcon = {};
+	if (isAttr<IBsIcon>(attr)) {
 		a = attr;
 	} else {
-		a = attr.attr as IAttrBSIcon;
+		a = attr.attr as IBsIcon;
 	}
 
 	let r: bootstrapType.rounded;
@@ -125,9 +125,9 @@ const fnElem = (
 	);
 };
 
-const convert = (attr: IAttrBSPill) => {
+const convert = (attr: IBsPill) => {
 	let tElem: IElem;
-	let tAttr: IAttrBSPill = attr;
+	let tAttr: IBsPill = attr;
 
 	if (attr && typeof attr.icon !== "undefined") {
 		if (attr.elem) {
@@ -166,10 +166,10 @@ const convert = (attr: IAttrBSPill) => {
 		} else {
 			if (attr.icon) {
 				if (typeof attr.icon === "string") {
-					attr.icon = { id: attr.icon } as IAttrBSIcon;
+					attr.icon = { id: attr.icon } as IBsIcon;
 				}
 
-				if (isAttr<IAttrBSIcon>(attr.icon)) {
+				if (isAttr<IBsIcon>(attr.icon)) {
 					tElem = new icon(attr.icon);
 				} else {
 					tElem = attr.icon;
@@ -213,8 +213,8 @@ const convert = (attr: IAttrBSPill) => {
 export class pill extends small {
 	constructor();
 	constructor(text: string);
-	constructor(attr: IAttrBSPill);
-	constructor(attr: IAttrBSPill, text: string);
+	constructor(attr: IBsPill);
+	constructor(attr: IBsPill, text: string);
 	constructor(...arg: any[]) {
 		super(bsConstArg("elem", convert, arg));
 	}

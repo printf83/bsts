@@ -1,16 +1,16 @@
 import { IElem } from "../../../core/tag.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeObject } from "../../../core/mergeObject.js";
-import { IAttrTagUl, ul } from "../../../html/ul.js";
+import { ITagUl, ul } from "../../../html/ul.js";
 
-export interface IAttrBSNavContainer extends IAttrTagUl {
+export interface IBsNavContainer extends ITagUl {
 	type?: "tab" | "pill" | "underline";
 	itemWidth?: "fill" | "justified";
 	vertical?: true;
 	role?: "tablist";
 }
 
-const convert = (attr: IAttrBSNavContainer) => {
+const convert = (attr: IBsNavContainer) => {
 	attr = mergeObject(
 		{
 			class: [
@@ -35,10 +35,10 @@ const convert = (attr: IAttrBSNavContainer) => {
 
 export class container extends ul {
 	constructor(); //#1
-	constructor(attr: IAttrBSNavContainer); //#2
+	constructor(attr: IBsNavContainer); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSNavContainer, elem: IElem); //#4
+	constructor(attr: IBsNavContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSNavContainer>("elem", convert, arg));
+		super(bsConstArg<IBsNavContainer>("elem", convert, arg));
 	}
 }

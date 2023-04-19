@@ -2,9 +2,9 @@ import { bootstrapType } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { IAttr, IElem, isTag } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
-import { IAttrTagDatalist } from "../../html/datalist.js";
+import { ITagDatalist } from "../../html/datalist.js";
 import { div } from "../../html/div.js";
-import { IAttrBSInput, input as TInput } from "../input.js";
+import { IBsInput, input as TInput } from "../input.js";
 import { container as TInputGroupContainer } from "../inputgroup/container.js";
 import { label } from "../label.js";
 import {
@@ -20,7 +20,7 @@ import {
 	genValidTooltip,
 } from "./_fn.js";
 
-export interface IAttrBSFormInput extends Omit<IAttrBSInput, "container"> {
+export interface IBsFormInput extends Omit<IBsInput, "container"> {
 	type?:
 		| "button"
 		| "color"
@@ -43,7 +43,7 @@ export interface IAttrBSFormInput extends Omit<IAttrBSInput, "container"> {
 		| "url"
 		| "week";
 	description?: string;
-	datalist?: IAttrTagDatalist["item"];
+	datalist?: ITagDatalist["item"];
 	container?: IAttr;
 
 	hideLabel?: true;
@@ -61,7 +61,7 @@ export interface IAttrBSFormInput extends Omit<IAttrBSInput, "container"> {
 	validTooltip?: string;
 }
 
-export const input = (attr: IAttrBSFormInput) => {
+export const input = (attr: IBsFormInput) => {
 	let container = attr.container;
 
 	attr.type ??= "text";
@@ -120,7 +120,7 @@ export const input = (attr: IAttrBSFormInput) => {
 	delete tAttr.validTooltip;
 	delete tAttr.invalidTooltip;
 
-	let tElem = new TInput(tAttr as IAttrBSInput);
+	let tElem = new TInput(tAttr as IBsInput);
 
 	//setup container if col provided
 	if (attr.col1) {

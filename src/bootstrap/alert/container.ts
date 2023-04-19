@@ -4,7 +4,7 @@ import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
 import { btnclose } from "../btnclose.js";
 
-export interface IAttrBSAlertContainer extends IAttr {
+export interface IBsAlertContainer extends IAttr {
 	callout?: boolean;
 	role?: string;
 
@@ -12,7 +12,7 @@ export interface IAttrBSAlertContainer extends IAttr {
 	dismissible?: bootstrapType.alertDismissible;
 }
 
-const convert = (attr: IAttrBSAlertContainer) => {
+const convert = (attr: IBsAlertContainer) => {
 	//add default value
 	attr.role ??= "alert";
 	attr.color ??= "primary";
@@ -52,10 +52,10 @@ const convert = (attr: IAttrBSAlertContainer) => {
 
 export class container extends div {
 	constructor(); //#1
-	constructor(attr: IAttrBSAlertContainer); //#2
+	constructor(attr: IBsAlertContainer); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSAlertContainer, elem: IElem); //#4
+	constructor(attr: IBsAlertContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSAlertContainer>("elem", convert, arg));
+		super(bsConstArg<IBsAlertContainer>("elem", convert, arg));
 	}
 }

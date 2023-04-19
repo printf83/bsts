@@ -1,13 +1,13 @@
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
-import { IAttrTagImg, img as TImg } from "../html/img.js";
+import { ITagImg, img as TImg } from "../html/img.js";
 
-export interface IAttrBSImg extends IAttrTagImg {
+export interface IBsImg extends ITagImg {
 	fluid?: true;
 	thumbnail?: true;
 }
 
-const convert = (attr: IAttrBSImg) => {
+const convert = (attr: IBsImg) => {
 	attr = mergeObject(
 		{
 			class: [attr.fluid ? "img-fluid" : undefined, attr.thumbnail ? "img-thumbnail" : undefined],
@@ -24,9 +24,9 @@ const convert = (attr: IAttrBSImg) => {
 export class img extends TImg {
 	constructor(); //#1
 	constructor(src: string); //#2
-	constructor(attr: IAttrBSImg); //#3
-	constructor(attr: IAttrBSImg, src: string); //#3
+	constructor(attr: IBsImg); //#3
+	constructor(attr: IBsImg, src: string); //#3
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSImg>("src", convert, arg));
+		super(bsConstArg<IBsImg>("src", convert, arg));
 	}
 }

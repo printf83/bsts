@@ -1,4 +1,4 @@
-import { container, IAttrBSCollapseContainer } from "./container.js";
-import { toggle, IAttrBSCollapseToggle } from "./toggle.js";
+import { container, IBsCollapseContainer } from "./container.js";
+import { toggle, IBsCollapseToggle } from "./toggle.js";
 
-export { container, toggle, IAttrBSCollapseContainer, IAttrBSCollapseToggle };
+export { container, toggle, IBsCollapseContainer, IBsCollapseToggle };

@@ -6,22 +6,22 @@ import * as indicators from "./indicators/_index.js";
 import { UUID } from "../../core/uuid.js";
 import * as inner from "./inner/_index.js";
 
-export interface IAttrBSCarouselItem {
+export interface IBsCarouselItem {
 	interval?: number;
 	src?: string;
 	caption?: IElem;
 }
-export interface IAttrBSCarousel extends IAttr {
+export interface IBsCarousel extends IAttr {
 	fade?: boolean;
 	autoPlay?: boolean;
 	disableTouch?: boolean;
 	innerAttr?: IAttr;
-	item?: IAttrBSCarouselItem[];
+	item?: IBsCarouselItem[];
 	itemControl?: boolean;
 	itemIndicator?: boolean;
 }
 
-const convert = (attr: IAttrBSCarousel) => {
+const convert = (attr: IBsCarousel) => {
 	attr.autoPlay = attr.autoPlay !== false ? true : false;
 
 	attr = mergeObject(
@@ -105,10 +105,10 @@ const convert = (attr: IAttrBSCarousel) => {
 
 export class container extends div {
 	constructor(); //#1
-	constructor(attr: IAttrBSCarousel); //#2
+	constructor(attr: IBsCarousel); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSCarousel, elem: IElem); //#4
+	constructor(attr: IBsCarousel, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSCarousel>("elem", convert, arg));
+		super(bsConstArg<IBsCarousel>("elem", convert, arg));
 	}
 }

@@ -1,6 +1,6 @@
 import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
 
-export interface IAttrTagForm extends IAttr {
+export interface ITagForm extends IAttr {
 	acceptCharset?: string;
 	action?: string;
 	autocomplete?: "on" | "off";
@@ -26,9 +26,9 @@ export interface IAttrTagForm extends IAttr {
 export class form extends tag {
 	constructor();
 	constructor(elem: IElem);
-	constructor(attr: IAttrTagForm);
-	constructor(attr: IAttrTagForm, elem: IElem);
+	constructor(attr: ITagForm);
+	constructor(attr: ITagForm, elem: IElem);
 	constructor(...arg: any[]) {
-		super("form", tagConsArg<IAttrTagForm>("elem", arg));
+		super("form", tagConsArg<ITagForm>("elem", arg));
 	}
 }

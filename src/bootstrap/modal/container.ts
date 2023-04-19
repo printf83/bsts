@@ -8,7 +8,7 @@ import { div } from "../../html/div.js";
 // import { appendChild, init } from "../../core/builder.js";
 // import { addEvent, HTMLElementWithEventDB } from "../../core/eventManager.js";
 
-export interface IAttrBSModalContainer extends IAttr {
+export interface IBsModalContainer extends IAttr {
 	static?: boolean;
 	weight?: "sm" | "lg" | "xl";
 	fullscreen?: true | bootstrapType.viewport;
@@ -19,7 +19,7 @@ export interface IAttrBSModalContainer extends IAttr {
 	debug?: boolean;
 }
 
-const convert = (attr: IAttrBSModalContainer) => {
+const convert = (attr: IBsModalContainer) => {
 	attr.animation = attr.animation === undefined ? true : attr.animation;
 
 	attr = mergeObject(
@@ -64,10 +64,10 @@ const convert = (attr: IAttrBSModalContainer) => {
 
 export class container extends div {
 	constructor(); //#1
-	constructor(attr: IAttrBSModalContainer); //#2
+	constructor(attr: IBsModalContainer); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSModalContainer, elem: IElem); //#4
+	constructor(attr: IBsModalContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSModalContainer>("elem", convert, arg));
+		super(bsConstArg<IBsModalContainer>("elem", convert, arg));
 	}
 }

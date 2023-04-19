@@ -3,14 +3,14 @@ import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
 
-export interface IAttrBSProgressContainer extends IAttr {
+export interface IBsProgressContainer extends IAttr {
 	role?: "progressbar";
 	value?: number;
 	min?: number;
 	max?: number;
 }
 
-const convert = (attr: IAttrBSProgressContainer) => {
+const convert = (attr: IBsProgressContainer) => {
 	attr = mergeObject(
 		{
 			class: "progress",
@@ -33,10 +33,10 @@ const convert = (attr: IAttrBSProgressContainer) => {
 
 export class container extends div {
 	constructor(); //#1
-	constructor(attr: IAttrBSProgressContainer); //#2
+	constructor(attr: IBsProgressContainer); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSProgressContainer, elem: IElem); //#4
+	constructor(attr: IBsProgressContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSProgressContainer>("elem", convert, arg));
+		super(bsConstArg<IBsProgressContainer>("elem", convert, arg));
 	}
 }

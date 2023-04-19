@@ -1,14 +1,14 @@
 import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { button, IAttrBSButton } from "../button.js";
+import { button, IBsButton } from "../button.js";
 
-export interface IAttrBSOffcanvasToggle extends IAttrBSButton {
+export interface IBsOffcanvasToggle extends IBsButton {
 	link?: true;
 	target?: string;
 }
 
-const convert = (attr: IAttrBSOffcanvasToggle) => {
+const convert = (attr: IBsOffcanvasToggle) => {
 	attr = mergeObject(
 		{
 			data: {
@@ -30,10 +30,10 @@ const convert = (attr: IAttrBSOffcanvasToggle) => {
 
 export class toggle extends button {
 	constructor(); //#1
-	constructor(attr: IAttrBSOffcanvasToggle); //#2
+	constructor(attr: IBsOffcanvasToggle); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSOffcanvasToggle, elem: IElem); //#4
+	constructor(attr: IBsOffcanvasToggle, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSOffcanvasToggle>("elem", convert, arg));
+		super(bsConstArg<IBsOffcanvasToggle>("elem", convert, arg));
 	}
 }

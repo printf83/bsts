@@ -1,4 +1,4 @@
-import { container, IAttrBSListContainer } from "./container.js";
-import { item, IAttrBSListItem } from "./item.js";
+import { container, IBsListContainer } from "./container.js";
+import { item, IBsListItem } from "./item.js";
 
-export { container, item, IAttrBSListContainer, IAttrBSListItem };
+export { container, item, IBsListContainer, IBsListItem };

@@ -5,11 +5,11 @@ import { nav } from "../../html/nav.js";
 import { header } from "../../html/header.js";
 import { mergeClass } from "../../core/mergeClass.js";
 
-export interface IAttrBSNavbarContainer extends IAttr {
+export interface IBsNavbarContainer extends IAttr {
 	expand?: bootstrapType.viewport;
 }
 
-const convert = (attr: IAttrBSNavbarContainer) => {
+const convert = (attr: IBsNavbarContainer) => {
 	attr.class = mergeClass(attr.class, ["navbar", attr.expand ? `navbar-expand-${attr.expand}` : undefined]);
 	delete attr.expand;
 	return attr;
@@ -17,20 +17,20 @@ const convert = (attr: IAttrBSNavbarContainer) => {
 
 export class container extends nav {
 	constructor(); //#1
-	constructor(attr: IAttrBSNavbarContainer); //#2
+	constructor(attr: IBsNavbarContainer); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSNavbarContainer, elem: IElem); //#4
+	constructor(attr: IBsNavbarContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSNavbarContainer>("elem", convert, arg));
+		super(bsConstArg<IBsNavbarContainer>("elem", convert, arg));
 	}
 }
 
 export class containerHeader extends header {
 	constructor(); //#1
-	constructor(attr: IAttrBSNavbarContainer); //#2
+	constructor(attr: IBsNavbarContainer); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSNavbarContainer, elem: IElem); //#4
+	constructor(attr: IBsNavbarContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSNavbarContainer>("elem", convert, arg));
+		super(bsConstArg<IBsNavbarContainer>("elem", convert, arg));
 	}
 }

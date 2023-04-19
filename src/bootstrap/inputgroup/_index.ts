@@ -1,4 +1,4 @@
-import { container, IAttrBSInputGroupContainer } from "./container.js";
+import { container, IBsInputGroupContainer } from "./container.js";
 import { text } from "./text.js";
 
-export { container, text, IAttrBSInputGroupContainer };
+export { container, text, IBsInputGroupContainer };

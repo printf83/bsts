@@ -3,12 +3,12 @@ import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { tr as TTr } from "../../html/tr.js";
 
-export interface IAttrBSTableTr extends IAttr {
+export interface IBsTableTr extends IAttr {
 	color?: bootstrapType.color;
 	active?: boolean;
 }
 
-const convert = (attr: IAttrBSTableTr) => {
+const convert = (attr: IBsTableTr) => {
 	attr.class = mergeClass(attr.class, [
 		attr.color ? `table-${attr.color}` : undefined,
 		attr.active ? "table-active" : undefined,
@@ -22,10 +22,10 @@ const convert = (attr: IAttrBSTableTr) => {
 
 export class tr extends TTr {
 	constructor(); //#1
-	constructor(attr: IAttrBSTableTr); //#2
+	constructor(attr: IBsTableTr); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSTableTr, elem: IElem); //#4
+	constructor(attr: IBsTableTr, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSTableTr>("elem", convert, arg));
+		super(bsConstArg<IBsTableTr>("elem", convert, arg));
 	}
 }

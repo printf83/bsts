@@ -7,19 +7,19 @@ import { item } from "./item.js";
 import { header } from "./header.js";
 import { body } from "./body.js";
 
-export interface IAttrBSAccordionContainerItem {
+export interface IBsAccordionContainerItem {
 	title: IElem;
 	elem: IElem;
 	show?: boolean;
 }
 
-export interface IAttrBSAccordionContainer extends IAttr {
+export interface IBsAccordionContainer extends IAttr {
 	flush?: boolean;
 	alwaysOpen?: boolean;
-	item?: IAttrBSAccordionContainerItem | IAttrBSAccordionContainerItem[];
+	item?: IBsAccordionContainerItem | IBsAccordionContainerItem[];
 }
 
-const convert = (attr: IAttrBSAccordionContainer) => {
+const convert = (attr: IBsAccordionContainer) => {
 	attr.id ??= UUID();
 
 	attr.class = mergeClass(attr.class, ["accordion", attr.flush ? "accordion-flush" : undefined]);
@@ -60,10 +60,10 @@ const convert = (attr: IAttrBSAccordionContainer) => {
 
 export class container extends div {
 	constructor(); //#1
-	constructor(attr: IAttrBSAccordionContainer); //#2
+	constructor(attr: IBsAccordionContainer); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSAccordionContainer, elem: IElem); //#4
+	constructor(attr: IBsAccordionContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSAccordionContainer>("elem", convert, arg));
+		super(bsConstArg<IBsAccordionContainer>("elem", convert, arg));
 	}
 }

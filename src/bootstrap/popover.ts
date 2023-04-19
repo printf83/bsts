@@ -3,7 +3,7 @@ import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { span } from "../html/span.js";
 
-export interface IAttrBSPopover extends IAttr {
+export interface IBsPopover extends IAttr {
 	inline?: boolean;
 	trigger?: "hover" | "focus" | "click" | ("hover" | "focus" | "click")[];
 	title?: string;
@@ -13,7 +13,7 @@ export interface IAttrBSPopover extends IAttr {
 	parent?: string;
 }
 
-const convert = (attr: IAttrBSPopover) => {
+const convert = (attr: IBsPopover) => {
 	attr.inline ??= true;
 
 	attr = mergeObject(
@@ -50,11 +50,11 @@ const convert = (attr: IAttrBSPopover) => {
 
 export class popover extends span {
 	constructor(); //#1
-	constructor(attr: IAttrBSPopover); //#2
+	constructor(attr: IBsPopover); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSPopover, elem: IElem); //#4
+	constructor(attr: IBsPopover, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSPopover>("elem", convert, arg));
+		super(bsConstArg<IBsPopover>("elem", convert, arg));
 	}
 
 	static getInstance = (elem: HTMLElement) => {

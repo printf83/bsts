@@ -1,6 +1,6 @@
 import { tagConsNoElemArg, IAttr, tag } from "../core/tag.js";
 
-export interface IAttrTagSource extends IAttr {
+export interface ITagSource extends IAttr {
 	media?: string;
 	sizes?: string;
 	src?: string;
@@ -12,8 +12,8 @@ export interface IAttrTagSource extends IAttr {
 
 export class source extends tag {
 	constructor();
-	constructor(attr: IAttrTagSource);
+	constructor(attr: ITagSource);
 	constructor(...arg: any[]) {
-		super("source", tagConsNoElemArg<IAttrTagSource>(arg));
+		super("source", tagConsNoElemArg<ITagSource>(arg));
 	}
 }

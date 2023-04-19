@@ -2,7 +2,7 @@ import { IAttr, IElem } from "../../../core/tag.js";
 import { UUID } from "../../../core/uuid.js";
 import { div } from "../../../html/div.js";
 import { label } from "../../label.js";
-import { IAttrBSTextarea, textarea as TTextarea } from "../../textarea.js";
+import { IBsTextarea, textarea as TTextarea } from "../../textarea.js";
 import { container as TInputGroupContainer } from "../../inputgroup/container.js";
 import { formfloating } from "../../formfloating.js";
 import {
@@ -17,7 +17,7 @@ import {
 } from "../_fn.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 
-export interface IAttrBSFormFloatingLabelTextarea extends Omit<IAttrBSTextarea, "container"> {
+export interface IBsFormFloatingLabelTextarea extends Omit<IBsTextarea, "container"> {
 	description?: string;
 	container?: IAttr;
 
@@ -30,7 +30,7 @@ export interface IAttrBSFormFloatingLabelTextarea extends Omit<IAttrBSTextarea, 
 	validTooltip?: string;
 }
 
-export const textarea = (attr: IAttrBSFormFloatingLabelTextarea) => {
+export const textarea = (attr: IBsFormFloatingLabelTextarea) => {
 	let container = attr.container;
 
 	attr.id ??= UUID();
@@ -66,7 +66,7 @@ export const textarea = (attr: IAttrBSFormFloatingLabelTextarea) => {
 	let tElemGroupAfter = genGroupItem(attr.id, attr.after);
 
 	//setup main control
-	let tAttr: IAttrBSTextarea | IAttrBSFormFloatingLabelTextarea = Object.assign({}, attr);
+	let tAttr: IBsTextarea | IBsFormFloatingLabelTextarea = Object.assign({}, attr);
 	delete tAttr.label;
 	delete tAttr.description;
 	delete tAttr.container;
@@ -77,7 +77,7 @@ export const textarea = (attr: IAttrBSFormFloatingLabelTextarea) => {
 	delete tAttr.validTooltip;
 	delete tAttr.invalidTooltip;
 
-	tAttr = tAttr as IAttrBSTextarea;
+	tAttr = tAttr as IBsTextarea;
 	if (attr.validFeedback || attr.invalidFeedback || attr.validTooltip || attr.invalidTooltip) {
 		tAttr = mergeObject(
 			{ on: { input: labelFloatingFeedbackManager, invalid: labelFloatingFeedbackManager } },
@@ -85,7 +85,7 @@ export const textarea = (attr: IAttrBSFormFloatingLabelTextarea) => {
 		);
 	}
 
-	let tElem = new TTextarea(tAttr as IAttrBSTextarea);
+	let tElem = new TTextarea(tAttr as IBsTextarea);
 
 	//put into tElem
 	if (tElemGroupBefore || tElemGroupAfter) {

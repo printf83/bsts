@@ -3,7 +3,7 @@ import { IAttr, IElem, tag, tagConsArg } from "../core/tag.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { mergeObject } from "../core/mergeObject.js";
 
-export interface IAttrTagA extends IAttr {
+export interface ITagA extends IAttr {
 	download?: string;
 	href?: string;
 	hreflang?: string;
@@ -50,7 +50,7 @@ export interface IAttrTagA extends IAttr {
 	linkOpacityHover?: bootstrapType.linkOpacityHover;
 }
 
-const convert = (attr: IAttrTagA) => {
+const convert = (attr: ITagA) => {
 	attr.class = mergeClass(attr.class, [
 		attr.color ? `link-${attr.color}` : undefined,
 		attr.stretched ? "stretched-link" : undefined,
@@ -78,9 +78,9 @@ const convert = (attr: IAttrTagA) => {
 export class a extends tag {
 	constructor();
 	constructor(elem: IElem);
-	constructor(attr: IAttrTagA);
-	constructor(attr: IAttrTagA, elem: IElem);
+	constructor(attr: ITagA);
+	constructor(attr: ITagA, elem: IElem);
 	constructor(...arg: any[]) {
-		super("a", convert(tagConsArg<IAttrTagA>("elem", arg)));
+		super("a", convert(tagConsArg<ITagA>("elem", arg)));
 	}
 }

@@ -1,6 +1,6 @@
 import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
 
-export interface IAttrTagLabel extends IAttr {
+export interface ITagLabel extends IAttr {
 	for?: string;
 	form?: string;
 }
@@ -8,9 +8,9 @@ export interface IAttrTagLabel extends IAttr {
 export class label extends tag {
 	constructor();
 	constructor(elem: IElem);
-	constructor(attr: IAttrTagLabel);
-	constructor(attr: IAttrTagLabel, elem: IElem);
+	constructor(attr: ITagLabel);
+	constructor(attr: ITagLabel, elem: IElem);
 	constructor(...arg: any[]) {
-		super("label", tagConsArg<IAttrTagLabel>("elem", arg));
+		super("label", tagConsArg<ITagLabel>("elem", arg));
 	}
 }

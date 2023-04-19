@@ -1,4 +1,4 @@
-import { next, IAttrBSCarouselInnerControlNext } from "./next.js";
-import { prev, IAttrBSCarouselInnerControlPrev } from "./prev.js";
+import { next, IBsCarouselInnerControlNext } from "./next.js";
+import { prev, IBsCarouselInnerControlPrev } from "./prev.js";
 
-export { prev, next, IAttrBSCarouselInnerControlNext, IAttrBSCarouselInnerControlPrev };
+export { prev, next, IBsCarouselInnerControlNext, IBsCarouselInnerControlPrev };

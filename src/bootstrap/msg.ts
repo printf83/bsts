@@ -1,10 +1,10 @@
 import { IAttr, IElem, isAttr } from "../core/tag.js";
 import { div } from "../html/div.js";
-import { IAttrTagLabel, label as TLabel } from "../html/label.js";
-import { IAttrBSIcon, icon } from "./icon.js";
+import { ITagLabel, label as TLabel } from "../html/label.js";
+import { IBsIcon, icon } from "./icon.js";
 
-export interface IAttrBSMsg extends IAttrTagLabel {
-	icon?: IAttrBSIcon;
+export interface IBsMsg extends ITagLabel {
+	icon?: IBsIcon;
 	iconPosition?: "start" | "end" | "top" | "bottom";
 	iconContainer?: IAttr;
 }
@@ -13,7 +13,7 @@ const fnRow = (elem: IElem) => {
 	return new div({ row: true }, new div({ col: true, textAlign: "center" }, elem));
 };
 
-const fnIcon = (containerAttr: IAttr | undefined, attr: IAttrBSIcon) => {
+const fnIcon = (containerAttr: IAttr | undefined, attr: IBsIcon) => {
 	return new div(containerAttr || { fontSize: 1 }, new icon(attr!));
 };
 
@@ -21,9 +21,9 @@ const fnElem = (elem: IElem) => {
 	return new div({ display: "flex", alignItem: "center" }, new div(elem));
 };
 
-const convert = (attr: IAttrBSMsg) => {
+const convert = (attr: IBsMsg) => {
 	let tElem: IElem;
-	let tAttr: IAttrBSMsg = attr;
+	let tAttr: IBsMsg = attr;
 
 	if (attr && typeof attr.icon !== "undefined") {
 		if (attr.elem) {
@@ -81,16 +81,16 @@ const convert = (attr: IAttrBSMsg) => {
 
 export class msg extends TLabel {
 	constructor(); //#1
-	constructor(attr: IAttrBSMsg); //#2
+	constructor(attr: IBsMsg); //#2
 	constructor(elem: IElem); //#3
 	constructor(icon: string, elem: IElem); //#4
-	constructor(icon: IAttrBSIcon, elem: IElem); //#5
+	constructor(icon: IBsIcon, elem: IElem); //#5
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
 			super(convert({}));
 		} else if (arg.length === 1) {
-			if (isAttr<IAttrBSMsg>(arg[0])) {
+			if (isAttr<IBsMsg>(arg[0])) {
 				//#2
 				super(convert(arg[0]));
 			} else {

@@ -1,12 +1,12 @@
-import { input, IAttrBSFormFloatingLabelInput } from "./input.js";
-import { select, IAttrBSFormFloatingLabelSelect } from "./select.js";
-import { textarea, IAttrBSFormFloatingLabelTextarea } from "./textarea.js";
+import { input, IBsFormFloatingLabelInput } from "./input.js";
+import { select, IBsFormFloatingLabelSelect } from "./select.js";
+import { textarea, IBsFormFloatingLabelTextarea } from "./textarea.js";
 
 export {
 	input,
-	IAttrBSFormFloatingLabelInput as IAttrBSFormInput,
+	IBsFormFloatingLabelInput as IBsFormInput,
 	select,
-	IAttrBSFormFloatingLabelSelect as IAttrBSFormSelect,
+	IBsFormFloatingLabelSelect as IBsFormSelect,
 	textarea,
-	IAttrBSFormFloatingLabelTextarea as IAttrBSFormTextarea,
+	IBsFormFloatingLabelTextarea as IBsFormTextarea,
 };

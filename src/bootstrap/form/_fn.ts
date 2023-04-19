@@ -1,12 +1,12 @@
 import { IElem, tag } from "../../core/tag.js";
-import { IAttrTagDatalist, datalist as TDatalist } from "../../html/datalist.js";
+import { ITagDatalist, datalist as TDatalist } from "../../html/datalist.js";
 import { div } from "../../html/div.js";
 import { input } from "../input.js";
 import { label as TLabel } from "../label.js";
 import { text } from "../inputgroup/text.js";
 import { bootstrapType } from "../../core/bootstrap.js";
 
-export const genDatalist = (id: string, datalist?: IAttrTagDatalist["item"]) => {
+export const genDatalist = (id: string, datalist?: ITagDatalist["item"]) => {
 	return datalist ? new TDatalist({ id: `${id}-datalist`, item: datalist }) : "";
 };
 

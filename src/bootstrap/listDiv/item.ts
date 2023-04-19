@@ -2,9 +2,9 @@ import { bootstrapType } from "../../core/bootstrap.js";
 import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { a, IAttrTagA } from "../../html/a.js";
+import { a, ITagA } from "../../html/a.js";
 
-export interface IAttrBSListDivItem extends IAttrTagA {
+export interface IBsListDivItem extends ITagA {
 	active?: boolean;
 	action?: boolean;
 	color?: bootstrapType.color;
@@ -12,7 +12,7 @@ export interface IAttrBSListDivItem extends IAttrTagA {
 	role?: "tab";
 }
 
-const convert = (attr: IAttrBSListDivItem) => {
+const convert = (attr: IBsListDivItem) => {
 	if (attr.disabled && attr.href) {
 		delete attr.href;
 	}
@@ -46,10 +46,10 @@ const convert = (attr: IAttrBSListDivItem) => {
 
 export class item extends a {
 	constructor(); //#1
-	constructor(attr: IAttrBSListDivItem); //#2
+	constructor(attr: IBsListDivItem); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSListDivItem, elem: IElem); //#4
+	constructor(attr: IBsListDivItem, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSListDivItem>("elem", convert, arg));
+		super(bsConstArg<IBsListDivItem>("elem", convert, arg));
 	}
 }

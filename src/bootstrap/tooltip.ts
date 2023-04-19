@@ -3,7 +3,7 @@ import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { span } from "../html/span.js";
 
-export interface IAttrBSTooltip extends IAttr {
+export interface IBsTooltip extends IAttr {
 	inline?: boolean;
 	trigger?: "hover" | "focus" | "click" | ("hover" | "focus" | "click")[];
 	content?: string;
@@ -12,7 +12,7 @@ export interface IAttrBSTooltip extends IAttr {
 	parent?: string;
 }
 
-const convert = (attr: IAttrBSTooltip) => {
+const convert = (attr: IBsTooltip) => {
 	attr.inline ??= true;
 
 	attr = mergeObject(
@@ -47,11 +47,11 @@ const convert = (attr: IAttrBSTooltip) => {
 
 export class tooltip extends span {
 	constructor(); //#1
-	constructor(attr: IAttrBSTooltip); //#2
+	constructor(attr: IBsTooltip); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSTooltip, elem: IElem); //#4
+	constructor(attr: IBsTooltip, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSTooltip>("elem", convert, arg));
+		super(bsConstArg<IBsTooltip>("elem", convert, arg));
 	}
 
 	static getInstance = (elem: HTMLElement) => {

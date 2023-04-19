@@ -1,18 +1,18 @@
 import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
-import { IAttrTagLi, li } from "../../html/li.js";
+import { ITagLi, li } from "../../html/li.js";
 import { span } from "../../html/span.js";
 import { a } from "../../html/a.js";
 import { mergeClass } from "../../core/mergeClass.js";
 
-export interface IAttrBSPaginationItem extends IAttrTagLi {
+export interface IBsPaginationItem extends ITagLi {
 	active?: boolean;
 	disabled?: boolean;
 	href?: string;
 }
 
-const convert = (attr: IAttrBSPaginationItem) => {
-	let liAttr: IAttrTagLi = {
+const convert = (attr: IBsPaginationItem) => {
+	let liAttr: ITagLi = {
 		class: ["page-item", attr.active ? "active" : undefined, attr.disabled ? "disabled" : undefined],
 		aria: { current: attr.active ? "page" : undefined },
 	};
@@ -33,10 +33,10 @@ const convert = (attr: IAttrBSPaginationItem) => {
 
 export class item extends li {
 	constructor(); //#1
-	constructor(attr: IAttrBSPaginationItem); //#2
+	constructor(attr: IBsPaginationItem); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSPaginationItem, elem: IElem); //#4
+	constructor(attr: IBsPaginationItem, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSPaginationItem>("elem", convert, arg));
+		super(bsConstArg<IBsPaginationItem>("elem", convert, arg));
 	}
 }

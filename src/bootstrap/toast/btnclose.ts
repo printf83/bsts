@@ -1,12 +1,12 @@
 import { bsConsNoElemArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { btnclose as TBtnclose, IAttrBSBtnclose } from "../btnclose.js";
+import { btnclose as TBtnclose, IBsBtnclose } from "../btnclose.js";
 
-export interface IAttrBSToastBtnclose extends IAttrBSBtnclose {
+export interface IBsToastBtnclose extends IBsBtnclose {
 	dismiss?: "toast";
 }
 
-const convert = (attr: IAttrBSToastBtnclose) => {
+const convert = (attr: IBsToastBtnclose) => {
 	attr.dismiss ??= "toast";
 
 	attr = mergeObject(
@@ -23,7 +23,7 @@ const convert = (attr: IAttrBSToastBtnclose) => {
 
 export class btnclose extends TBtnclose {
 	constructor(); //#1
-	constructor(attr: IAttrBSToastBtnclose); //#2
+	constructor(attr: IBsToastBtnclose); //#2
 	constructor(...arg: any[]) {
 		super(bsConsNoElemArg(convert, arg));
 	}

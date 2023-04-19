@@ -1,6 +1,6 @@
 import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
 
-export interface IAttrTagMeter extends IAttr {
+export interface ITagMeter extends IAttr {
 	form?: string;
 	high?: number;
 	low?: number;
@@ -13,9 +13,9 @@ export interface IAttrTagMeter extends IAttr {
 export class meter extends tag {
 	constructor();
 	constructor(elem: IElem);
-	constructor(attr: IAttrTagMeter);
-	constructor(attr: IAttrTagMeter, elem: IElem);
+	constructor(attr: ITagMeter);
+	constructor(attr: ITagMeter, elem: IElem);
 	constructor(...arg: any[]) {
-		super("meter", tagConsArg<IAttrTagMeter>("elem", arg));
+		super("meter", tagConsArg<ITagMeter>("elem", arg));
 	}
 }

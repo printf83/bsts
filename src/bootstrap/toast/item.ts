@@ -4,7 +4,7 @@ import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
 
-export interface IAttrBSToastItem extends IAttr {
+export interface IBsToastItem extends IAttr {
 	role?: "alert" | "status";
 	live?: "assertive" | "polite";
 	atomic?: boolean;
@@ -14,7 +14,7 @@ export interface IAttrBSToastItem extends IAttr {
 	debug?: boolean;
 }
 
-const convert = (attr: IAttrBSToastItem) => {
+const convert = (attr: IBsToastItem) => {
 	attr = mergeObject(
 		{
 			class: ["toast", attr.debug ? "debug" : undefined],
@@ -45,10 +45,10 @@ const convert = (attr: IAttrBSToastItem) => {
 
 export class item extends div {
 	constructor(); //#1
-	constructor(attr: IAttrBSToastItem); //#2
+	constructor(attr: IBsToastItem); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSToastItem, elem: IElem); //#4
+	constructor(attr: IBsToastItem, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSToastItem>("elem", convert, arg));
+		super(bsConstArg<IBsToastItem>("elem", convert, arg));
 	}
 }

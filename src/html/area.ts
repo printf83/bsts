@@ -1,6 +1,6 @@
 import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
 
-export interface IAttrTagArea extends IAttr {
+export interface ITagArea extends IAttr {
 	alt?: string;
 	coords?: string;
 	download?: string;
@@ -36,9 +36,9 @@ export interface IAttrTagArea extends IAttr {
 export class area extends tag {
 	constructor();
 	constructor(elem: IElem);
-	constructor(attr: IAttrTagArea);
-	constructor(attr: IAttrTagArea, elem: IElem);
+	constructor(attr: ITagArea);
+	constructor(attr: ITagArea, elem: IElem);
 	constructor(...arg: any[]) {
-		super("area", tagConsArg<IAttrTagArea>("elem", arg));
+		super("area", tagConsArg<ITagArea>("elem", arg));
 	}
 }

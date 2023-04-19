@@ -3,12 +3,12 @@ import { bsConstArg } from "../core/bootstrap.js";
 import { div } from "../html/div.js";
 import { mergeObject } from "../core/mergeObject.js";
 
-export interface IAttrBSBtngroup extends IAttr {
+export interface IBsBtngroup extends IAttr {
 	role?: "group" | "toolbar";
 	weight?: "sm" | "lg";
 	vertical?: boolean;
 }
-const convert = (attr: IAttrBSBtngroup) => {
+const convert = (attr: IBsBtngroup) => {
 	attr.role ??= "group";
 
 	attr = mergeObject(
@@ -30,10 +30,10 @@ const convert = (attr: IAttrBSBtngroup) => {
 
 export class btngroup extends div {
 	constructor(); //#1
-	constructor(attr: IAttrBSBtngroup); //#2
+	constructor(attr: IBsBtngroup); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSBtngroup, elem: IElem); //#4
+	constructor(attr: IBsBtngroup, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSBtngroup>("elem", convert, arg));
+		super(bsConstArg<IBsBtngroup>("elem", convert, arg));
 	}
 }

@@ -1,9 +1,9 @@
 import { IElem, isAttr } from "../../../core/tag.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { span } from "../../../html/span.js";
-import { IAttrBSCollapseToggle, toggle as TCollapseToggle } from "../../collapse/toggle.js";
+import { IBsCollapseToggle, toggle as TCollapseToggle } from "../../collapse/toggle.js";
 
-const convert = (attr: IAttrBSCollapseToggle) => {
+const convert = (attr: IBsCollapseToggle) => {
 	attr = mergeObject(
 		{
 			defColor: false,
@@ -21,15 +21,15 @@ const convert = (attr: IAttrBSCollapseToggle) => {
 
 export class collapse extends TCollapseToggle {
 	constructor(); //#1
-	constructor(attr: IAttrBSCollapseToggle); //#2
+	constructor(attr: IBsCollapseToggle); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSCollapseToggle, elem: IElem); //#4
+	constructor(attr: IBsCollapseToggle, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
 			super(convert({}));
 		} else if (arg.length === 1) {
-			if (isAttr<IAttrBSCollapseToggle>(arg[0])) {
+			if (isAttr<IBsCollapseToggle>(arg[0])) {
 				//#2
 				super(convert(arg[0]));
 			} else {

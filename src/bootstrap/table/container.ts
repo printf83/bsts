@@ -8,7 +8,7 @@ import { td } from "./td.js";
 import { th } from "../../html/th.js";
 import { thead } from "./thead.js";
 
-export interface IAttrBSTableContainer extends IAttr {
+export interface IBsTableContainer extends IAttr {
 	color?: bootstrapType.color;
 	striped?: "row" | "col";
 	hoverable?: boolean;
@@ -19,7 +19,7 @@ export interface IAttrBSTableContainer extends IAttr {
 	item?: (string | tag | (string | tag)[])[][];
 }
 
-const convert = (attr: IAttrBSTableContainer) => {
+const convert = (attr: IBsTableContainer) => {
 	attr.class = mergeClass(attr.class, [
 		"table",
 		attr.color ? `table-${attr.color}` : undefined,
@@ -73,10 +73,10 @@ const convert = (attr: IAttrBSTableContainer) => {
 
 export class container extends table {
 	constructor(); //#1
-	constructor(attr: IAttrBSTableContainer); //#2
+	constructor(attr: IBsTableContainer); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSTableContainer, elem: IElem); //#4
+	constructor(attr: IBsTableContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSTableContainer>("elem", convert, arg));
+		super(bsConstArg<IBsTableContainer>("elem", convert, arg));
 	}
 }
