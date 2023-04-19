@@ -1,5 +1,5 @@
 import { bootstrapType } from "../../core/bootstrap.js";
-import { IAttr, IElem } from "../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { UUID } from "../../core/uuid.js";
@@ -71,3 +71,6 @@ export class container extends div {
 		super(convert(bsConstArg<IBsModalContainer>("elem", arg)));
 	}
 }
+
+export const Container = (AttrOrElem?: IBsModalContainer | IElem, Elem?: IElem) =>
+	genTagClass<container, IBsModalContainer>(container, AttrOrElem, Elem);

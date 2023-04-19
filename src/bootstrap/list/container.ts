@@ -1,5 +1,5 @@
 import { bootstrapType } from "../../core/bootstrap.js";
-import { IElem } from "../../core/tag.js";
+import { IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { ITagUl, ul } from "../../html/ul.js";
 import { mergeClass } from "../../core/mergeClass.js";
@@ -38,3 +38,6 @@ export class container extends ul {
 		super(convert(bsConstArg<IBsListContainer>("elem", arg)));
 	}
 }
+
+export const Container = (AttrOrElem?: IBsListContainer | IElem, Elem?: IElem) =>
+	genTagClass<container, IBsListContainer>(container, AttrOrElem, Elem);

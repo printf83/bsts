@@ -1,4 +1,4 @@
-import { IElem, isAttr } from "../../../core/tag.js";
+import { IElem, genTagClass, isAttr } from "../../../core/tag.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { span } from "../../../html/span.js";
 import { IBsCollapseToggle, toggle as TCollapseToggle } from "../../collapse/toggle.js";
@@ -42,3 +42,6 @@ export class collapse extends TCollapseToggle {
 		}
 	}
 }
+
+export const Collapse = (AttrOrElem?: IBsCollapseToggle | IElem, Elem?: IElem) =>
+	genTagClass<collapse, IBsCollapseToggle>(collapse, AttrOrElem, Elem);

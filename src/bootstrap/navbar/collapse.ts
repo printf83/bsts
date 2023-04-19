@@ -1,4 +1,4 @@
-import { IElem } from "../../core/tag.js";
+import { IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { UUID } from "../../core/uuid.js";
@@ -22,3 +22,6 @@ export class collapse extends TCollapseContainer {
 		super(convert(bsConstArg<IBsCollapseContainer>("elem", arg)));
 	}
 }
+
+export const Collapse = (AttrOrElem?: IBsCollapseContainer | IElem, Elem?: IElem) =>
+	genTagClass<collapse, IBsCollapseContainer>(collapse, AttrOrElem, Elem);

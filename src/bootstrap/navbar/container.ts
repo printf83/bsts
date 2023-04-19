@@ -1,5 +1,5 @@
 import { bootstrapType } from "../../core/bootstrap.js";
-import { IAttr, IElem } from "../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { nav } from "../../html/nav.js";
 import { header } from "../../html/header.js";
@@ -25,6 +25,9 @@ export class container extends nav {
 	}
 }
 
+export const Container = (AttrOrElem?: IBsNavbarContainer | IElem, Elem?: IElem) =>
+	genTagClass<container, IBsNavbarContainer>(container, AttrOrElem, Elem);
+
 export class containerHeader extends header {
 	constructor(); //#1
 	constructor(attr: IBsNavbarContainer); //#2
@@ -34,3 +37,6 @@ export class containerHeader extends header {
 		super(convert(bsConstArg<IBsNavbarContainer>("elem", arg)));
 	}
 }
+
+export const ContainerHeader = (AttrOrElem?: IBsNavbarContainer | IElem, Elem?: IElem) =>
+	genTagClass<containerHeader, IBsNavbarContainer>(containerHeader, AttrOrElem, Elem);

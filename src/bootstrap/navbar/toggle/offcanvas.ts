@@ -1,4 +1,4 @@
-import { IElem, isAttr } from "../../../core/tag.js";
+import { IElem, genTagClass, isAttr } from "../../../core/tag.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { span } from "../../../html/span.js";
 import { IBsOffcanvasToggle, toggle as TOffcanvasToggle } from "../../offcanvas/toggle.js";
@@ -42,3 +42,6 @@ export class offcanvas extends TOffcanvasToggle {
 		}
 	}
 }
+
+export const Offcanvas = (AttrOrElem?: IBsOffcanvasToggle | IElem, Elem?: IElem) =>
+	genTagClass<offcanvas, IBsOffcanvasToggle>(offcanvas, AttrOrElem, Elem);

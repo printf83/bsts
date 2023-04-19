@@ -1,4 +1,4 @@
-import { IAttr, IElem } from "../../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../../core/tag.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeClass } from "../../../core/mergeClass.js";
 import { div } from "../../../html/div.js";
@@ -37,3 +37,6 @@ export class item extends div {
 		super(convert(bsConstArg<IBsNavContentItem>("elem", arg)));
 	}
 }
+
+export const Item = (AttrOrElem?: IBsNavContentItem | IElem, Elem?: IElem) =>
+	genTagClass<item, IBsNavContentItem>(item, AttrOrElem, Elem);
