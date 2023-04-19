@@ -1,4 +1,4 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { h } from "../../html/h.js";
@@ -17,3 +17,6 @@ export class subtitle extends h {
 		super(6, convert(bsConstArg("elem", arg)));
 	}
 }
+
+export const Subtitle = (AttrOrElem?: IAttr | IElem, Elem?: IElem) =>
+	genTagClass<subtitle, IAttr>(subtitle, AttrOrElem, Elem);

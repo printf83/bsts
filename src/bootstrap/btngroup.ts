@@ -42,3 +42,5 @@ export const Btngroup = (AttrOrElem?: IBsBtngroup | IElem, Elem?: IElem) =>
 	genTagClass<btngroup, IBsBtngroup>(btngroup, AttrOrElem, Elem);
 
 // export const a = (AttrOrElem?: IBs | IElem, Elem?: IElem) => genTagClass<a, IBs>(a, AttrOrElem, Elem);
+
+// export const a = (AttrOrElem?: IAttr | IElem, Elem?: IElem) => genTagClass<a, IAttr>(a, AttrOrElem, Elem);

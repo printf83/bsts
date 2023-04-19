@@ -1,4 +1,4 @@
-import { IElem } from "../../core/tag.js";
+import { IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { h } from "../../html/h.js";
@@ -37,3 +37,6 @@ export class header extends h {
 		super(2, convert(bsConstArg<IBsCollapseToggle>("elem", arg)));
 	}
 }
+
+export const Header = (AttrOrElem?: IBsCollapseToggle | IElem, Elem?: IElem) =>
+	genTagClass<header, IBsCollapseToggle>(header, AttrOrElem, Elem);
