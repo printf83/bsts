@@ -2,7 +2,6 @@ import { bootstrapType, bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
 import { IElem, isAttr, tag } from "../core/tag.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { ITagButton } from "../html/button.js";
-import { ConstructorDeclaration } from "typescript";
 
 export interface IBsButton extends ITagButton {
 	color?: bootstrapType.btnColor;
