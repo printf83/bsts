@@ -1,5 +1,5 @@
 import { bootstrapType, bsConstArg } from "../core/bootstrap.js";
-import { IElem, isAttr } from "../core/tag.js";
+import { IElem, genTagClass, isAttr } from "../core/tag.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { div } from "../html/div.js";
 import { ITagLabel, label as TLabel } from "../html/label.js";
@@ -16,7 +16,6 @@ export interface IBsLabel extends ITagLabel, IBsButton {
 	labelDisplay?: IBootstrapTypeDisplay;
 
 	stretched?: boolean;
-	// formCheck?: boolean;
 }
 
 const fnRow = (display: IBootstrapTypeDisplay | undefined, elem: IElem) => {
@@ -100,12 +99,6 @@ const convert = (attr: IBsLabel) => {
 		}
 	}
 
-	//check label toggle
-	//color & outline
-	// if (attr.formCheck) {
-	// 	attr.class = mergeClass(attr.class, "form-check-label");
-	// }
-
 	if (attr.stretched) {
 		attr.class = mergeClass(attr.class, "stretched-link");
 	}
@@ -123,7 +116,6 @@ const convert = (attr: IBsLabel) => {
 	delete tAttr.iconDisplay;
 	delete tAttr.labelDisplay;
 	delete tAttr.stretched;
-	// delete tAttr.formCheck;
 
 	delete attr.elem;
 	attr.elem = tElem;
@@ -140,3 +132,6 @@ export class label extends TLabel {
 		super(convert(bsConstArg("elem", arg)));
 	}
 }
+
+export const Label = (AttrOrText?: IBsLabel | string, Text?: string) =>
+	genTagClass<label, IBsLabel>(label, AttrOrText, Text);

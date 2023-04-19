@@ -1,4 +1,4 @@
-import { IAttr, IElem } from "../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../core/tag.js";
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { div } from "../html/div.js";
@@ -46,3 +46,6 @@ export class scrollspy extends div {
 		return null;
 	};
 }
+
+export const Scrollspy = (AttrOrElem?: IBsScrollspy | IElem, Elem?: IElem) =>
+	genTagClass<scrollspy, IBsScrollspy>(scrollspy, AttrOrElem, Elem);

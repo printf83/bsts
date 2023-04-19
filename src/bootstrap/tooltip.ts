@@ -1,4 +1,4 @@
-import { IAttr, IElem } from "../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../core/tag.js";
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { span } from "../html/span.js";
@@ -61,3 +61,6 @@ export class tooltip extends span {
 		return window.bootstrap.Tooltip.getOrCreateInstance(elem);
 	};
 }
+
+export const Tooltip = (AttrOrElem?: IBsTooltip | IElem, Elem?: IElem) =>
+	genTagClass<tooltip, IBsTooltip>(tooltip, AttrOrElem, Elem);

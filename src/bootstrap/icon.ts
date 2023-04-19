@@ -1,5 +1,5 @@
 import { bootstrapType, bsConstArg } from "../core/bootstrap.js";
-import { IAttr, IElem } from "../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../core/tag.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { i } from "../html/i.js";
 import { span } from "../html/span.js";
@@ -146,3 +146,5 @@ export class icon extends span {
 	static regular = (i: string, attr?: IBsIcon) => genStaticIcon("regular", i, attr);
 	static sharp = (i: string, attr?: IBsIcon) => genStaticIcon("sharp", i, attr);
 }
+
+export const Icon = (AttrOrElem?: IBsIcon | IElem, Elem?: IElem) => genTagClass<icon, IBsIcon>(icon, AttrOrElem, Elem);

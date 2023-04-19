@@ -108,3 +108,7 @@ export class msg extends TLabel {
 		}
 	}
 }
+
+export const a = (AttrOrElemOrIcon?: IBsMsg | IBsIcon | IElem, Elem?: IElem) => {
+	console.log("TODO: MSG WITHOUT NEW KEYWORD");
+};

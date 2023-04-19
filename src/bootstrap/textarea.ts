@@ -1,5 +1,6 @@
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
+import { genTagClass } from "../core/tag.js";
 import { UUID } from "../core/uuid.js";
 import { ITagTextarea, textarea as TTextarea } from "../html/textarea.js";
 
@@ -37,3 +38,6 @@ export class textarea extends TTextarea {
 		super(convert(bsConstArg<IBsTextarea>("value", arg)));
 	}
 }
+
+export const Textarea = (AttrOrValue?: IBsTextarea | string, Value?: string) =>
+	genTagClass<textarea, IBsTextarea>(textarea, AttrOrValue, Value);

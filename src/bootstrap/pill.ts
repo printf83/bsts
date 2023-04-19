@@ -1,5 +1,5 @@
 import { bootstrapType, bsConstArg } from "../core/bootstrap.js";
-import { IAttr, IElem, isAttr } from "../core/tag.js";
+import { IAttr, IElem, genTagClass, isAttr } from "../core/tag.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { div } from "../html/div.js";
 import { small } from "../html/small.js";
@@ -219,3 +219,6 @@ export class pill extends small {
 		super(convert(bsConstArg("elem", arg)));
 	}
 }
+
+export const Pill = (AttrOrText?: IBsPill | string, Text?: string) =>
+	genTagClass<pill, IBsPill>(pill, AttrOrText, Text);

@@ -1,5 +1,6 @@
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
+import { genTagClass } from "../core/tag.js";
 import { ITagImg, img as TImg } from "../html/img.js";
 
 export interface IBsImg extends ITagImg {
@@ -30,3 +31,5 @@ export class img extends TImg {
 		super(convert(bsConstArg<IBsImg>("src", arg)));
 	}
 }
+
+export const Img = (AttrOrSrc?: IBsImg | string, Src?: string) => genTagClass<img, IBsImg>(img, AttrOrSrc, Src);

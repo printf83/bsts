@@ -1,4 +1,4 @@
-import { IElem } from "../core/tag.js";
+import { IElem, genTagClass } from "../core/tag.js";
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { UUID } from "../core/uuid.js";
@@ -37,3 +37,6 @@ export class select extends TSelect {
 		super(convert(bsConstArg<IBsSelect>("elem", arg)));
 	}
 }
+
+export const Select = (AttrOrElem?: IBsSelect | IElem, Elem?: IElem) =>
+	genTagClass<select, IBsSelect>(select, AttrOrElem, Elem);

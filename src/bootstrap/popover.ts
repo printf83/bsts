@@ -1,4 +1,4 @@
-import { IAttr, IElem } from "../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../core/tag.js";
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { span } from "../html/span.js";
@@ -64,3 +64,6 @@ export class popover extends span {
 		return window.bootstrap.Popover.getOrCreateInstance(elem);
 	};
 }
+
+export const Popover = (AttrOrElem?: IBsPopover | IElem, Elem?: IElem) =>
+	genTagClass<popover, IBsPopover>(popover, AttrOrElem, Elem);
