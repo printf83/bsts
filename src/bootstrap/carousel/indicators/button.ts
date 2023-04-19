@@ -1,4 +1,4 @@
-import { IElem } from "../../../core/tag.js";
+import { IElem, genTagClass } from "../../../core/tag.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { button as TButton, ITagButton } from "../../../html/button.js";
 import { mergeObject } from "../../../core/mergeObject.js";
@@ -40,3 +40,6 @@ export class button extends TButton {
 		super(convert(bsConstArg<IBsCarouselIndicatorsButton>("elem", arg)));
 	}
 }
+
+export const Button = (AttrOrElem?: IBsCarouselIndicatorsButton | IElem, Elem?: IElem) =>
+	genTagClass<button, IBsCarouselIndicatorsButton>(button, AttrOrElem, Elem);

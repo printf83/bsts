@@ -1,4 +1,4 @@
-import { IElem } from "../../core/tag.js";
+import { genTagClass, IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { a, ITagA } from "../../html/a.js";
@@ -30,3 +30,6 @@ export class item extends a {
 		super(convert(bsConstArg<IBsDropdownItem>("elem", arg)));
 	}
 }
+
+export const Item = (AttrOrElem?: IBsDropdownItem | IElem, Elem?: IElem) =>
+	genTagClass<item, IBsDropdownItem>(item, AttrOrElem, Elem);

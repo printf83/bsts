@@ -1,4 +1,4 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../core/tag.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { bootstrapType } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
@@ -29,3 +29,6 @@ export class menu extends div {
 		super(convert(bsConstArg<IBsDropdownMenu>("elem", arg)));
 	}
 }
+
+export const Menu = (AttrOrElem?: IBsDropdownMenu | IElem, Elem?: IElem) =>
+	genTagClass<menu, IBsDropdownMenu>(menu, AttrOrElem, Elem);

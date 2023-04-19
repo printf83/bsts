@@ -1,4 +1,4 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { btngroup } from "../btngroup.js";
@@ -25,3 +25,6 @@ export class container extends btngroup {
 		super(convert(bsConstArg<IBsDropdownContainer>("elem", arg)));
 	}
 }
+
+export const Container = (AttrOrElem?: IBsDropdownContainer | IElem, Elem?: IElem) =>
+	genTagClass<container, IBsDropdownContainer>(container, AttrOrElem, Elem);

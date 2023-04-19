@@ -1,4 +1,4 @@
-import { IAttr, IElem } from "../../../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../../../core/tag.js";
 import { bsConstArg } from "../../../../core/bootstrap.js";
 import { div } from "../../../../html/div.js";
 import { mergeObject } from "../../../../core/mergeObject.js";
@@ -32,3 +32,6 @@ export class container extends div {
 		super(convert(bsConstArg<IBsCarouselInnerItemContainer>("elem", arg)));
 	}
 }
+
+export const Container = (AttrOrElem?: IBsCarouselInnerItemContainer | IElem, Elem?: IElem) =>
+	genTagClass<container, IBsCarouselInnerItemContainer>(container, AttrOrElem, Elem);
