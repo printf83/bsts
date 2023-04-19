@@ -22,6 +22,6 @@ export class item extends li {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsNavItem, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsNavItem>("elem", convert, arg));
+		super(convert(bsConstArg<IBsNavItem>("elem", arg)));
 	}
 }

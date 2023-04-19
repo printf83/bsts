@@ -36,6 +36,6 @@ export class bar extends div {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsProgressBar, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsProgressBar>("elem", convert, arg));
+		super(convert(bsConstArg<IBsProgressBar>("elem", arg)));
 	}
 }

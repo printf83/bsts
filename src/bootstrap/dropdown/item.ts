@@ -27,6 +27,6 @@ export class item extends a {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsDropdownItem, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsDropdownItem>("elem", convert, arg));
+		super(convert(bsConstArg<IBsDropdownItem>("elem", arg)));
 	}
 }

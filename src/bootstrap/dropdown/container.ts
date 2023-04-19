@@ -22,6 +22,6 @@ export class container extends btngroup {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsDropdownContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsDropdownContainer>("elem", convert, arg));
+		super(convert(bsConstArg<IBsDropdownContainer>("elem", arg)));
 	}
 }

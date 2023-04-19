@@ -28,6 +28,6 @@ export class container extends div {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsInputGroupContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsInputGroupContainer>("elem", convert, arg));
+		super(convert(bsConstArg<IBsInputGroupContainer>("elem", arg)));
 	}
 }

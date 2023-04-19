@@ -14,6 +14,6 @@ export class subtitle extends h {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttr, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(6, bsConstArg("elem", convert, arg));
+		super(6, convert(bsConstArg("elem", arg)));
 	}
 }

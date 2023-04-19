@@ -50,6 +50,6 @@ export class link extends a {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsNavLink, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsNavLink>("elem", convert, arg));
+		super(convert(bsConstArg<IBsNavLink>("elem", arg)));
 	}
 }

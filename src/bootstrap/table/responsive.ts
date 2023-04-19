@@ -21,6 +21,6 @@ export class responsive extends div {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsTableResponsive, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsTableResponsive>("elem", convert, arg));
+		super(convert(bsConstArg<IBsTableResponsive>("elem", arg)));
 	}
 }

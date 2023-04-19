@@ -68,6 +68,6 @@ export class container extends div {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsModalContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsModalContainer>("elem", convert, arg));
+		super(convert(bsConstArg<IBsModalContainer>("elem", arg)));
 	}
 }

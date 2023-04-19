@@ -61,6 +61,6 @@ export class container extends nav {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsBreadcrumbContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsBreadcrumbContainer>("elem", convert, arg));
+		super(convert(bsConstArg<IBsBreadcrumbContainer>("elem", arg)));
 	}
 }

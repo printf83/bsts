@@ -19,6 +19,6 @@ export class collapse extends TCollapseContainer {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsCollapseContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsCollapseContainer>("elem", convert, arg));
+		super(convert(bsConstArg<IBsCollapseContainer>("elem", arg)));
 	}
 }

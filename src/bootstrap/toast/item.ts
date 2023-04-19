@@ -49,6 +49,6 @@ export class item extends div {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsToastItem, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsToastItem>("elem", convert, arg));
+		super(convert(bsConstArg<IBsToastItem>("elem", arg)));
 	}
 }

@@ -54,7 +54,7 @@ export class popover extends span {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsPopover, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsPopover>("elem", convert, arg));
+		super(convert(bsConstArg<IBsPopover>("elem", arg)));
 	}
 
 	static getInstance = (elem: HTMLElement) => {

@@ -26,7 +26,7 @@ export class visuallyhidden extends tag {
 	constructor(...arg: any[]) {
 		super(
 			bsConstArgTag<IBsVisuallyhidden>("elem", "span", "a", (i) => (i.href ? true : false), arg),
-			bsConstArg<IBsVisuallyhidden>("elem", convert, arg)
+			convert(bsConstArg<IBsVisuallyhidden>("elem", arg))
 		);
 	}
 }

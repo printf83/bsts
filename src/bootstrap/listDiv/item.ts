@@ -50,6 +50,6 @@ export class item extends a {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsListDivItem, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsListDivItem>("elem", convert, arg));
+		super(convert(bsConstArg<IBsListDivItem>("elem", arg)));
 	}
 }

@@ -21,6 +21,6 @@ export class tfoot extends TTfoot {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsTableTfoot, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsTableTfoot>("elem", convert, arg));
+		super(convert(bsConstArg<IBsTableTfoot>("elem", arg)));
 	}
 }

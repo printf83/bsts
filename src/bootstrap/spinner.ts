@@ -51,7 +51,7 @@ export class spinner extends tag {
 				(i) => (i.elem === "" ? false : i.elem ? false : true),
 				arg
 			),
-			bsConstArg<IBsSpinner>("elem", convert, arg)
+			convert(bsConstArg<IBsSpinner>("elem", arg))
 		);
 	}
 }

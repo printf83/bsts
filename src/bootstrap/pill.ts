@@ -216,6 +216,6 @@ export class pill extends small {
 	constructor(attr: IBsPill);
 	constructor(attr: IBsPill, text: string);
 	constructor(...arg: any[]) {
-		super(bsConstArg("elem", convert, arg));
+		super(convert(bsConstArg("elem", arg)));
 	}
 }

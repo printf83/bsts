@@ -34,6 +34,6 @@ export class header extends h {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsCollapseToggle, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(2, bsConstArg<IBsCollapseToggle>("elem", convert, arg));
+		super(2, convert(bsConstArg<IBsCollapseToggle>("elem", arg)));
 	}
 }

@@ -21,6 +21,6 @@ export class thead extends TThead {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsTableThead, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsTableThead>("elem", convert, arg));
+		super(convert(bsConstArg<IBsTableThead>("elem", arg)));
 	}
 }

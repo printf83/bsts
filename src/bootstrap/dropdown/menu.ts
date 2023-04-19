@@ -26,6 +26,6 @@ export class menu extends div {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsDropdownMenu, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsDropdownMenu>("elem", convert, arg));
+		super(convert(bsConstArg<IBsDropdownMenu>("elem", arg)));
 	}
 }

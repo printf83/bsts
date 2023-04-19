@@ -37,6 +37,6 @@ export class body extends container {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsAccordionBody, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsAccordionBody>("elem", convert, arg));
+		super(convert(bsConstArg<IBsAccordionBody>("elem", arg)));
 	}
 }

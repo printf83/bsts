@@ -37,6 +37,6 @@ export class container extends div {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsProgressContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsProgressContainer>("elem", convert, arg));
+		super(convert(bsConstArg<IBsProgressContainer>("elem", arg)));
 	}
 }

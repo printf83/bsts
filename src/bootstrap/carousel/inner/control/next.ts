@@ -39,6 +39,6 @@ export class next extends TButton {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsCarouselInnerControlNext, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsCarouselInnerControlNext>("elem", convert, arg));
+		super(convert(bsConstArg<IBsCarouselInnerControlNext>("elem", arg)));
 	}
 }

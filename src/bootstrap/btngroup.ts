@@ -34,6 +34,6 @@ export class btngroup extends div {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsBtngroup, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsBtngroup>("elem", convert, arg));
+		super(convert(bsConstArg<IBsBtngroup>("elem", arg)));
 	}
 }

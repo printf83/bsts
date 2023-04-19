@@ -14,6 +14,6 @@ export class link extends a {
 	constructor(elem: IElem); //#3
 	constructor(attr: ITagA, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<ITagA>("elem", convert, arg));
+		super(convert(bsConstArg<ITagA>("elem", arg)));
 	}
 }

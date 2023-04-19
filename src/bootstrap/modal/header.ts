@@ -34,6 +34,6 @@ export class header extends div {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsModalHeader, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsModalHeader>("elem", convert, arg));
+		super(convert(bsConstArg<IBsModalHeader>("elem", arg)));
 	}
 }

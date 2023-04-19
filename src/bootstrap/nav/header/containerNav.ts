@@ -39,6 +39,6 @@ export class containerNav extends nav {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsNavContainerNav, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsNavContainerNav>("elem", convert, arg));
+		super(convert(bsConstArg<IBsNavContainerNav>("elem", arg)));
 	}
 }

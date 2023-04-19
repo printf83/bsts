@@ -4,7 +4,7 @@ import { badge } from "./badge.js";
 import * as breadcrumb from "./breadcrumb/_index.js";
 import { btnclose, IBsBtnclose } from "./btnclose.js";
 import { btngroup, IBsBtngroup } from "./btngroup.js";
-import { button, IBsButton } from "./button.js";
+import { Button, button, IBsButton } from "./button.js";
 import * as card from "./card/_index.js";
 import * as carousel from "./carousel/_index.js";
 import { col } from "./col.js";
@@ -42,6 +42,8 @@ import * as form from "./form/_index.js";
 import * as figure from "./figure/_index.js";
 import * as blockquote from "./blockquote/_index.js";
 import { visuallyhidden, IBsVisuallyhidden } from "./visuallyhidden.js";
+
+export { Button };
 
 export {
 	blockquote,

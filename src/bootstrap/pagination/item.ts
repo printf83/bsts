@@ -37,6 +37,6 @@ export class item extends li {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsPaginationItem, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsPaginationItem>("elem", convert, arg));
+		super(convert(bsConstArg<IBsPaginationItem>("elem", arg)));
 	}
 }

@@ -26,6 +26,6 @@ export class td extends TTd {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsTableTd, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsTableTd>("elem", convert, arg));
+		super(convert(bsConstArg<IBsTableTd>("elem", arg)));
 	}
 }

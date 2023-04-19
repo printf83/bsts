@@ -1,7 +1,8 @@
 import { bootstrapType, bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
-import { IElem, tag } from "../core/tag.js";
+import { IElem, isAttr, tag } from "../core/tag.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { ITagButton } from "../html/button.js";
+import { ConstructorDeclaration } from "typescript";
 
 export interface IBsButton extends ITagButton {
 	color?: bootstrapType.btnColor;
@@ -89,7 +90,19 @@ export class button extends tag {
 	constructor(...arg: any[]) {
 		super(
 			bsConstArgTag<IBsButton>("elem", "button", "a", (i) => (i.href ? true : false), arg),
-			bsConstArg<IBsButton>("elem", convert, arg)
+			convert(bsConstArg<IBsButton>("elem", arg))
 		);
 	}
 }
+
+export const Button = (a: IBsButton | IElem, b?: IElem) => {
+	if (isAttr<IBsButton>(a)) {
+		if (b) {
+			return new button(a, b);
+		} else {
+			return new button(a);
+		}
+	} else {
+		return new button(a as IElem);
+	}
+};

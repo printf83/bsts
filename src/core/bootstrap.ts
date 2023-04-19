@@ -1432,23 +1432,41 @@ export const bsConsNoElemArg = <T extends IAttr>(fn: <T extends IAttr>(attr: T) 
 	}
 };
 
-export const bsConstArg = <T extends IAttr>(prop: string, fn: <T extends IAttr>(attr: T) => IAttr, arg?: any[]) => {
+export const bsConstArg = <T extends IAttr>(prop: string, arg?: any[]) => {
 	if (arg) {
 		if (arg.length === 1) {
 			if (isAttr<T>(arg[0])) {
-				return fn(arg[0] as T);
+				return arg[0] as T;
 			} else {
-				return fn({ [prop]: arg[0] } as T);
+				return { [prop]: arg[0] } as T;
 			}
 		} else if (arg.length === 2) {
-			return fn(mergeObject<T>({ [prop]: arg[1] } as T, arg[0] as T));
+			return mergeObject<T>({ [prop]: arg[1] } as T, arg[0] as T);
 		} else {
-			return fn({} as T);
+			return {} as T;
 		}
 	} else {
-		return fn({} as T);
+		return {} as T;
 	}
 };
+
+// export const bsConstArg = <T extends IAttr>(prop: string, fn: <T extends IAttr>(attr: T) => IAttr, arg?: any[]) => {
+// 	if (arg) {
+// 		if (arg.length === 1) {
+// 			if (isAttr<T>(arg[0])) {
+// 				return fn(arg[0] as T);
+// 			} else {
+// 				return fn({ [prop]: arg[0] } as T);
+// 			}
+// 		} else if (arg.length === 2) {
+// 			return fn(mergeObject<T>({ [prop]: arg[1] } as T, arg[0] as T));
+// 		} else {
+// 			return fn({} as T);
+// 		}
+// 	} else {
+// 		return fn({} as T);
+// 	}
+// };
 
 export const bsConstArgTag = <T extends IAttr>(
 	prop: string,

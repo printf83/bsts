@@ -21,7 +21,7 @@ export class container extends nav {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsNavbarContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsNavbarContainer>("elem", convert, arg));
+		super(convert(bsConstArg<IBsNavbarContainer>("elem", arg)));
 	}
 }
 
@@ -31,6 +31,6 @@ export class containerHeader extends header {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsNavbarContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsNavbarContainer>("elem", convert, arg));
+		super(convert(bsConstArg<IBsNavbarContainer>("elem", arg)));
 	}
 }

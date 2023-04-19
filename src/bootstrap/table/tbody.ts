@@ -21,6 +21,6 @@ export class tbody extends TTbody {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsTableTbody, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsTableTbody>("elem", convert, arg));
+		super(convert(bsConstArg<IBsTableTbody>("elem", arg)));
 	}
 }

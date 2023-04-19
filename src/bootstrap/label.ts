@@ -137,6 +137,6 @@ export class label extends TLabel {
 	constructor(attr: IBsLabel);
 	constructor(attr: IBsLabel, text: string);
 	constructor(...arg: any[]) {
-		super(bsConstArg("elem", convert, arg));
+		super(convert(bsConstArg("elem", arg)));
 	}
 }

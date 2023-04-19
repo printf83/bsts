@@ -37,6 +37,6 @@ export class button extends TButton {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsCarouselIndicatorsButton, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsCarouselIndicatorsButton>("elem", convert, arg));
+		super(convert(bsConstArg<IBsCarouselIndicatorsButton>("elem", arg)));
 	}
 }

@@ -51,7 +51,7 @@ export class tooltip extends span {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsTooltip, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsTooltip>("elem", convert, arg));
+		super(convert(bsConstArg<IBsTooltip>("elem", arg)));
 	}
 
 	static getInstance = (elem: HTMLElement) => {

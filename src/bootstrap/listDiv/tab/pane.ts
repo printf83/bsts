@@ -32,6 +32,6 @@ export class pane extends div {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsListDivPane, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsListDivPane>("elem", convert, arg));
+		super(convert(bsConstArg<IBsListDivPane>("elem", arg)));
 	}
 }

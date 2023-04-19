@@ -37,6 +37,6 @@ export class item extends li {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsBreadcrumbItem, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsBreadcrumbItem>("elem", convert, arg));
+		super(convert(bsConstArg<IBsBreadcrumbItem>("elem", arg)));
 	}
 }

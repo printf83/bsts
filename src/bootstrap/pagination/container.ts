@@ -34,6 +34,6 @@ export class container extends nav {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsPaginationContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsPaginationContainer>("elem", convert, arg));
+		super(convert(bsConstArg<IBsPaginationContainer>("elem", arg)));
 	}
 }

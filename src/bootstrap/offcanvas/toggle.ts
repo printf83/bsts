@@ -34,6 +34,6 @@ export class toggle extends button {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsOffcanvasToggle, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsOffcanvasToggle>("elem", convert, arg));
+		super(convert(bsConstArg<IBsOffcanvasToggle>("elem", arg)));
 	}
 }

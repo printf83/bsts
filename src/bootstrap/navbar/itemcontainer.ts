@@ -26,6 +26,6 @@ export class itemcontainer extends ul {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsNavbarItemcontainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsNavbarItemcontainer>("elem", convert, arg));
+		super(convert(bsConstArg<IBsNavbarItemcontainer>("elem", arg)));
 	}
 }

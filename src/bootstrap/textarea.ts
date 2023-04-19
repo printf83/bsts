@@ -34,6 +34,6 @@ export class textarea extends TTextarea {
 	constructor(attr: IBsTextarea); //#3
 	constructor(attr: IBsTextarea, value: string); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsTextarea>("value", convert, arg));
+		super(convert(bsConstArg<IBsTextarea>("value", arg)));
 	}
 }

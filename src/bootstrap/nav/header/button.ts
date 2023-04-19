@@ -58,6 +58,6 @@ export class button extends TButton {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsNavButton, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsNavButton>("elem", convert, arg));
+		super(convert(bsConstArg<IBsNavButton>("elem", arg)));
 	}
 }

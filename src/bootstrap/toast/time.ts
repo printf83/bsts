@@ -24,6 +24,6 @@ export class time extends small {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttr, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg("elem", convert, arg));
+		super(convert(bsConstArg("elem", arg)));
 	}
 }

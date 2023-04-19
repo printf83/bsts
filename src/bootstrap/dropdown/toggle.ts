@@ -58,6 +58,6 @@ export class toggle extends button {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsDropdownToggle, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsDropdownToggle>("elem", convert, arg));
+		super(convert(bsConstArg<IBsDropdownToggle>("elem", arg)));
 	}
 }

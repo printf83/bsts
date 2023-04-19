@@ -19,7 +19,7 @@ export class brand extends tag {
 	constructor(...arg: any[]) {
 		super(
 			bsConstArgTag<IBsNavbarBrand>("elem", "span", "a", (i) => (i.href ? true : false), arg),
-			bsConstArg<IBsNavbarBrand>("elem", convert, arg)
+			convert(bsConstArg<IBsNavbarBrand>("elem", arg))
 		);
 	}
 }

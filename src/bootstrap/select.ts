@@ -34,6 +34,6 @@ export class select extends TSelect {
 	constructor(attr: IBsSelect);
 	constructor(attr: IBsSelect, elem: IElem);
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsSelect>("elem", convert, arg));
+		super(convert(bsConstArg<IBsSelect>("elem", arg)));
 	}
 }

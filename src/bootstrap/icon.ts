@@ -135,7 +135,7 @@ export class icon extends span {
 	constructor(elem: IElem);
 	constructor(attr: IBsIcon, elem: IElem);
 	constructor(...arg: any[]) {
-		super(bsConstArg("elem", convert, arg));
+		super(convert(bsConstArg("elem", arg)));
 	}
 
 	static bi = (i: string, attr?: IBsIcon) => genStaticIcon("bi", i, attr);

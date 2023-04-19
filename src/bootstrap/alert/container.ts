@@ -56,6 +56,6 @@ export class container extends div {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsAlertContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsAlertContainer>("elem", convert, arg));
+		super(convert(bsConstArg<IBsAlertContainer>("elem", arg)));
 	}
 }

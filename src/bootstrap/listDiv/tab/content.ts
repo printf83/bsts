@@ -14,6 +14,6 @@ export class content extends div {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttr, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttr>("elem", convert, arg));
+		super(convert(bsConstArg<IAttr>("elem", arg)));
 	}
 }

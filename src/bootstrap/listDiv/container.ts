@@ -35,6 +35,6 @@ export class container extends div {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsListDivContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsListDivContainer>("elem", convert, arg));
+		super(convert(bsConstArg<IBsListDivContainer>("elem", arg)));
 	}
 }

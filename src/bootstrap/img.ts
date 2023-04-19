@@ -27,6 +27,6 @@ export class img extends TImg {
 	constructor(attr: IBsImg); //#3
 	constructor(attr: IBsImg, src: string); //#3
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsImg>("src", convert, arg));
+		super(convert(bsConstArg<IBsImg>("src", arg)));
 	}
 }

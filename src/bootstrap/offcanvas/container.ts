@@ -65,6 +65,6 @@ export class container extends div {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsOffcanvasContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsOffcanvasContainer>("elem", convert, arg));
+		super(convert(bsConstArg<IBsOffcanvasContainer>("elem", arg)));
 	}
 }

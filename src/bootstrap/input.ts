@@ -68,6 +68,6 @@ export class input extends TInput {
 	constructor(attr: IBsInput); //#3
 	constructor(attr: IBsInput, value: string); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsInput>("value", convert, arg));
+		super(convert(bsConstArg<IBsInput>("value", arg)));
 	}
 }

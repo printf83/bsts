@@ -77,6 +77,6 @@ export class container extends table {
 	constructor(elem: IElem); //#3
 	constructor(attr: IBsTableContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IBsTableContainer>("elem", convert, arg));
+		super(convert(bsConstArg<IBsTableContainer>("elem", arg)));
 	}
 }
