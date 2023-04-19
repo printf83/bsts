@@ -21,4 +21,5 @@ export class abbr extends tag {
 	}
 }
 
-export const Abbr = (AttrOrElem: ITagAbbr | IElem, Elem?: IElem) => genTagClass<abbr, ITagAbbr>(abbr, AttrOrElem, Elem);
+export const Abbr = (AttrOrElem?: ITagAbbr | IElem, Elem?: IElem) =>
+	genTagClass<abbr, ITagAbbr>(abbr, AttrOrElem, Elem);

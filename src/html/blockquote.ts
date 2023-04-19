@@ -1,4 +1,4 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
 
 export interface ITagBlockquote extends IAttr {
 	cite?: string;
@@ -13,3 +13,6 @@ export class blockquote extends tag {
 		super("blockquote", tagConsArg<ITagBlockquote>("elem", arg));
 	}
 }
+
+export const Blockquote = (AttrOrElem?: ITagBlockquote | IElem, Elem?: IElem) =>
+	genTagClass<blockquote, ITagBlockquote>(blockquote, AttrOrElem, Elem);

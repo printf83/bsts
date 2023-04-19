@@ -10,5 +10,5 @@ export class address extends tag {
 	}
 }
 
-export const Address = (AttrOrElem: IAttr | IElem, Elem?: IElem) =>
+export const Address = (AttrOrElem?: IAttr | IElem, Elem?: IElem) =>
 	genTagClass<address, IAttr>(address, AttrOrElem, Elem);

@@ -10,4 +10,5 @@ export class footer extends tag {
 	}
 }
 
-export const Footer = (AttrOrElem: IAttr | IElem, Elem?: IElem) => genTagClass<footer, IAttr>(footer, AttrOrElem, Elem);
+export const Footer = (AttrOrElem?: IAttr | IElem, Elem?: IElem) =>
+	genTagClass<footer, IAttr>(footer, AttrOrElem, Elem);

@@ -10,4 +10,4 @@ export class menu extends tag {
 	}
 }
 
-export const Menu = (AttrOrElem: IAttr | IElem, Elem?: IElem) => genTagClass<menu, IAttr>(menu, AttrOrElem, Elem);
+export const Menu = (AttrOrElem?: IAttr | IElem, Elem?: IElem) => genTagClass<menu, IAttr>(menu, AttrOrElem, Elem);

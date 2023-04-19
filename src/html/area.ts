@@ -43,4 +43,5 @@ export class area extends tag {
 	}
 }
 
-export const Area = (AttrOrElem: ITagArea | IElem, Elem?: IElem) => genTagClass<area, ITagArea>(area, AttrOrElem, Elem);
+export const Area = (AttrOrElem?: ITagArea | IElem, Elem?: IElem) =>
+	genTagClass<area, ITagArea>(area, AttrOrElem, Elem);

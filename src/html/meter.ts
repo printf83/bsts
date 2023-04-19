@@ -1,4 +1,4 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
 
 export interface ITagMeter extends IAttr {
 	form?: string;
@@ -19,3 +19,6 @@ export class meter extends tag {
 		super("meter", tagConsArg<ITagMeter>("elem", arg));
 	}
 }
+
+export const Meter = (AttrOrElem?: ITagMeter | IElem, Elem?: IElem) =>
+	genTagClass<meter, ITagMeter>(meter, AttrOrElem, Elem);

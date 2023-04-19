@@ -22,3 +22,15 @@ export class embed extends tag {
 		}
 	}
 }
+
+export const Embed = (AttrOrType?: ITagEmbed | string, Src?: string) => {
+	if (AttrOrType) {
+		if (Src) {
+			return new embed(AttrOrType as string, Src);
+		} else {
+			return new embed(AttrOrType as ITagEmbed);
+		}
+	} else {
+		return new embed();
+	}
+};

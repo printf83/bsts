@@ -1,4 +1,4 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
 import { option } from "./option.js";
 
 export interface ITagDatalist extends IAttr {
@@ -30,3 +30,6 @@ export class datalist extends tag {
 		super("datalist", convert(tagConsArg<ITagDatalist>("elem", arg)));
 	}
 }
+
+export const Datalist = (AttrOrElem?: ITagDatalist | IElem, Elem?: IElem) =>
+	genTagClass<datalist, ITagDatalist>(datalist, AttrOrElem, Elem);

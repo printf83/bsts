@@ -1,4 +1,4 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
 import { mergeClass } from "../core/mergeClass.js";
 
 export interface ITagLi extends IAttr {
@@ -8,9 +8,7 @@ export interface ITagLi extends IAttr {
 
 const convert = (attr: ITagLi) => {
 	attr.class = mergeClass(attr.class, [attr.inline ? "list-inline-item" : undefined]);
-
 	delete attr.inline;
-
 	return attr;
 };
 
@@ -23,3 +21,5 @@ export class li extends tag {
 		super("li", convert(tagConsArg<ITagLi>("elem", arg)));
 	}
 }
+
+export const Li = (AttrOrElem?: ITagLi | IElem, Elem?: IElem) => genTagClass<li, ITagLi>(li, AttrOrElem, Elem);

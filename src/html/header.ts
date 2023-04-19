@@ -10,4 +10,5 @@ export class header extends tag {
 	}
 }
 
-export const Header = (AttrOrElem: IAttr | IElem, Elem?: IElem) => genTagClass<header, IAttr>(header, AttrOrElem, Elem);
+export const Header = (AttrOrElem?: IAttr | IElem, Elem?: IElem) =>
+	genTagClass<header, IAttr>(header, AttrOrElem, Elem);

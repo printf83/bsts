@@ -1,4 +1,4 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
 
 export interface ITagProgress extends IAttr {
 	max?: number;
@@ -14,3 +14,6 @@ export class progress extends tag {
 		super("progress", tagConsArg<ITagProgress>("elem", arg));
 	}
 }
+
+export const Progress = (AttrOrElem?: ITagProgress | IElem, Elem?: IElem) =>
+	genTagClass<progress, ITagProgress>(progress, AttrOrElem, Elem);

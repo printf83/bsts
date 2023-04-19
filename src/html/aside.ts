@@ -9,4 +9,4 @@ export class aside extends tag {
 		super("aside", tagConsArg("elem", arg));
 	}
 }
-export const Aside = (AttrOrElem: IAttr | IElem, Elem?: IElem) => genTagClass<aside, IAttr>(aside, AttrOrElem, Elem);
+export const Aside = (AttrOrElem?: IAttr | IElem, Elem?: IElem) => genTagClass<aside, IAttr>(aside, AttrOrElem, Elem);

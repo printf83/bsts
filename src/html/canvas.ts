@@ -10,4 +10,5 @@ export class canvas extends tag {
 	}
 }
 
-export const Canvas = (AttrOrElem: IAttr | IElem, Elem?: IElem) => genTagClass<canvas, IAttr>(canvas, AttrOrElem, Elem);
+export const Canvas = (AttrOrElem?: IAttr | IElem, Elem?: IElem) =>
+	genTagClass<canvas, IAttr>(canvas, AttrOrElem, Elem);

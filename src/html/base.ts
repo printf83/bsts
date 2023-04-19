@@ -1,4 +1,4 @@
-import { tagConsNoElemArg, IAttr, tag } from "../core/tag.js";
+import { tagConsNoElemArg, IAttr, tag, genTagClass } from "../core/tag.js";
 
 export interface ITagBase extends IAttr {
 	href?: string;
@@ -12,3 +12,5 @@ export class base extends tag {
 		super("base", tagConsNoElemArg<ITagBase>(arg));
 	}
 }
+
+export const Base = (Attr?: ITagBase) => genTagClass<base, ITagBase>(base, Attr);

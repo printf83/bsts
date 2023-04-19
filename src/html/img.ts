@@ -1,4 +1,4 @@
-import { tagConsNoElemArg, IAttr, tag } from "../core/tag.js";
+import { tagConsNoElemArg, IAttr, tag, genTagClass } from "../core/tag.js";
 
 export interface ITagImg extends IAttr {
 	alt?: string;
@@ -26,3 +26,5 @@ export class img extends tag {
 		super("img", tagConsNoElemArg<ITagImg>(arg));
 	}
 }
+
+export const Img = (Attr?: ITagImg) => genTagClass<img, ITagImg>(img, Attr);

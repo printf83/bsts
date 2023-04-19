@@ -10,4 +10,4 @@ export class cite extends tag {
 	}
 }
 
-export const Cite = (AttrOrElem: IAttr | IElem, Elem?: IElem) => genTagClass<cite, IAttr>(cite, AttrOrElem, Elem);
+export const Cite = (AttrOrElem?: IAttr | IElem, Elem?: IElem) => genTagClass<cite, IAttr>(cite, AttrOrElem, Elem);

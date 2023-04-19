@@ -10,4 +10,4 @@ export class b extends tag {
 	}
 }
 
-export const B = (AttrOrElem: IAttr | IElem, Elem?: IElem) => genTagClass<b, IAttr>(b, AttrOrElem, Elem);
+export const B = (AttrOrElem?: IAttr | IElem, Elem?: IElem) => genTagClass<b, IAttr>(b, AttrOrElem, Elem);

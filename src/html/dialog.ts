@@ -1,4 +1,4 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
 
 export interface ITagDialog extends IAttr {
 	open?: boolean;
@@ -13,3 +13,6 @@ export class dialog extends tag {
 		super("dialog", tagConsArg<ITagDialog>("elem", arg));
 	}
 }
+
+export const Dialog = (AttrOrElem?: ITagDialog | IElem, Elem?: IElem) =>
+	genTagClass<dialog, ITagDialog>(dialog, AttrOrElem, Elem);

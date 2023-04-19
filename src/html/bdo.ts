@@ -14,4 +14,4 @@ export class bdo extends tag {
 	}
 }
 
-export const Bdo = (AttrOrElem: IAttr | IElem, Elem?: IElem) => genTagClass<bdo, IAttr>(bdo, AttrOrElem, Elem);
+export const Bdo = (AttrOrElem?: IAttr | IElem, Elem?: IElem) => genTagClass<bdo, IAttr>(bdo, AttrOrElem, Elem);

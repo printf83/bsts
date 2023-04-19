@@ -8,4 +8,4 @@ export class hr extends tag {
 	}
 }
 
-export const Hr = (Attr: IAttr) => genTagClass<hr, IAttr>(hr, Attr);
+export const Hr = (Attr?: IAttr) => genTagClass<hr, IAttr>(hr, Attr);

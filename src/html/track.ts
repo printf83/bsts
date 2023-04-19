@@ -1,4 +1,4 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
 
 export interface ITagTrack extends IAttr {
 	default?: boolean;
@@ -27,3 +27,6 @@ export class track extends tag {
 		super("track", convert(tagConsArg<ITagTrack>("elem", arg)));
 	}
 }
+
+export const Track = (AttrOrElem?: ITagTrack | IElem, Elem?: IElem) =>
+	genTagClass<track, ITagTrack>(track, AttrOrElem, Elem);

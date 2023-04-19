@@ -10,4 +10,5 @@ export class legend extends tag {
 	}
 }
 
-export const Legend = (AttrOrElem: IAttr | IElem, Elem?: IElem) => genTagClass<legend, IAttr>(legend, AttrOrElem, Elem);
+export const Legend = (AttrOrElem?: IAttr | IElem, Elem?: IElem) =>
+	genTagClass<legend, IAttr>(legend, AttrOrElem, Elem);

@@ -1,4 +1,4 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
 
 export interface ITagForm extends IAttr {
 	acceptCharset?: string;
@@ -32,3 +32,6 @@ export class form extends tag {
 		super("form", tagConsArg<ITagForm>("elem", arg));
 	}
 }
+
+export const Form = (AttrOrElem?: ITagForm | IElem, Elem?: IElem) =>
+	genTagClass<form, ITagForm>(form, AttrOrElem, Elem);

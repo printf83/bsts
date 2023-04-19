@@ -9,5 +9,5 @@ export class article extends tag {
 		super("article", tagConsArg("elem", arg));
 	}
 }
-export const Article = (AttrOrElem: IAttr | IElem, Elem?: IElem) =>
+export const Article = (AttrOrElem?: IAttr | IElem, Elem?: IElem) =>
 	genTagClass<article, IAttr>(article, AttrOrElem, Elem);

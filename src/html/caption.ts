@@ -10,5 +10,5 @@ export class caption extends tag {
 	}
 }
 
-export const Caption = (AttrOrElem: IAttr | IElem, Elem?: IElem) =>
+export const Caption = (AttrOrElem?: IAttr | IElem, Elem?: IElem) =>
 	genTagClass<caption, IAttr>(caption, AttrOrElem, Elem);

@@ -1,4 +1,4 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
 
 export interface ITagButton extends IAttr {
 	autofocus?: boolean;
@@ -23,3 +23,6 @@ export class button extends tag {
 		super("button", tagConsArg<ITagButton>("elem", arg));
 	}
 }
+
+export const Button = (AttrOrElem?: ITagButton | IElem, Elem?: IElem) =>
+	genTagClass<button, ITagButton>(button, AttrOrElem, Elem);

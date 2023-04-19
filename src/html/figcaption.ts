@@ -10,5 +10,5 @@ export class figcaption extends tag {
 	}
 }
 
-export const Figcaption = (AttrOrElem: IAttr | IElem, Elem?: IElem) =>
+export const Figcaption = (AttrOrElem?: IAttr | IElem, Elem?: IElem) =>
 	genTagClass<figcaption, IAttr>(figcaption, AttrOrElem, Elem);

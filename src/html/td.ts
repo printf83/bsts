@@ -1,4 +1,4 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
 
 export interface ITagTd extends IAttr {
 	colspan?: number;
@@ -15,3 +15,5 @@ export class td extends tag {
 		super("td", tagConsArg<ITagTd>("elem", arg));
 	}
 }
+
+export const Td = (AttrOrElem?: ITagTd | IElem, Elem?: IElem) => genTagClass<td, ITagTd>(td, AttrOrElem, Elem);

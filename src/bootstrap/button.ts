@@ -94,4 +94,4 @@ export class button extends tag {
 	}
 }
 
-export const Button = (AttrOrElem: IBsButton | IElem, Elem?: IElem) => genTagClass(button, AttrOrElem, Elem);
+export const Button = (AttrOrElem?: IBsButton | IElem, Elem?: IElem) => genTagClass(button, AttrOrElem, Elem);
