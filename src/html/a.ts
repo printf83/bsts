@@ -1,5 +1,5 @@
 import { bootstrapType } from "../core/bootstrap.js";
-import { IAttr, IElem, genTagClass, isAttr, tag, tagConsArg } from "../core/tag.js";
+import { IAttr, IElem, genTagClass, tag, tagConsArg } from "../core/tag.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { mergeObject } from "../core/mergeObject.js";
 
@@ -85,4 +85,4 @@ export class a extends tag {
 	}
 }
 
-export const A = (AttrOrElem: ITagA | IElem, Elem?: IElem) => genTagClass(a, AttrOrElem, Elem);
+export const A = (AttrOrElem: ITagA | IElem, Elem?: IElem) => genTagClass<a, ITagA>(a, AttrOrElem, Elem);

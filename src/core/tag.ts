@@ -391,12 +391,12 @@ const createTag = <T extends tag>(TagClass: new (...args: any[]) => T, ...ctorAr
 	return new TagClass(...ctorArgs);
 };
 
-export const genTagClass = <T extends tag>(
+export const genTagClass = <T extends tag, U>(
 	TagClass: new (...args: any[]) => T,
-	AttrOrElem: IAttr | IElem,
+	AttrOrElem: U | IElem,
 	Elem?: IElem
 ) => {
-	if (isAttr<IAttr>(AttrOrElem)) {
+	if (isAttr<U>(AttrOrElem)) {
 		if (Elem) {
 			return createTag(TagClass, AttrOrElem, Elem) as T;
 		} else {

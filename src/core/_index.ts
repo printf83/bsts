@@ -91,5 +91,6 @@ export {
 	isTag,
 	tagConsArg,
 	tagConsNoElemArg,
+	genTagClass,
 	UUID,
 };

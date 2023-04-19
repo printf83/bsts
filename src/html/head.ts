@@ -1,4 +1,4 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
 
 export class head extends tag {
 	constructor();
@@ -9,3 +9,5 @@ export class head extends tag {
 		super("head", tagConsArg("elem", arg));
 	}
 }
+
+export const Head = (AttrOrElem: IAttr | IElem, Elem?: IElem) => genTagClass<head, IAttr>(head, AttrOrElem, Elem);
