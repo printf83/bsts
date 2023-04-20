@@ -18,4 +18,21 @@ core.documentReady(() => {
 });
 ```
 
+
+or without new keyword:
+
+
+```
+import {core, b, h} from "@printf83/bsts";
+
+core.documentReady(() => {
+	let body = document.getElementById("main") as HTMLElement;
+	core.replaceChild(body, h.Div([
+        h.P("This is example p tag"),
+        h.P({lead:true,data:{test:"test-data"}},"This is example p tag with attribute"),
+        b.Button({id:"btn1",color:"primary"},"Button");
+    ]));
+});
+```
+
 Check [bsts testing website](https://printf83.github.io/bsts-test/) or [github](https://github.com/printf83/bsts-test) for more example code
