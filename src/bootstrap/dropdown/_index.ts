@@ -1,10 +1,10 @@
-import { container, IBsDropdownContainer, IBsDropdownContainerDrop } from "./container.js";
-import { divider } from "./divider.js";
-import { header } from "./header.js";
-import { item, IBsDropdownItem } from "./item.js";
-import { menu, IBsDropdownMenu } from "./menu.js";
-import { text } from "./text.js";
-import { toggle, IBsDropdownToggle } from "./toggle.js";
+import { Container, container, IBsDropdownContainer, IBsDropdownContainerDrop } from "./container.js";
+import { Divider, divider } from "./divider.js";
+import { Header, header } from "./header.js";
+import { item, IBsDropdownItem, Item } from "./item.js";
+import { menu, IBsDropdownMenu, Menu } from "./menu.js";
+import { Text, text } from "./text.js";
+import { toggle, IBsDropdownToggle, Toggle } from "./toggle.js";
 
 export {
 	item,
@@ -20,3 +20,5 @@ export {
 	IBsDropdownMenu,
 	IBsDropdownToggle,
 };
+
+export { Item, Divider, Menu, Toggle, Header, Container, Text };

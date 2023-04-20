@@ -1,12 +1,12 @@
-import { caption } from "../../html/caption.js";
-import { container, IBsTableContainer } from "./container.js";
-import { responsive, IBsTableResponsive } from "./responsive.js";
-import { tbody, IBsTableTbody } from "./tbody.js";
-import { td, IBsTableTd } from "./td.js";
-import { th, IBsTableTh } from "./th.js";
-import { tfoot, IBsTableTfoot } from "./tfoot.js";
-import { thead, IBsTableThead } from "./thead.js";
-import { tr, IBsTableTr } from "./tr.js";
+import { Caption, caption } from "../../html/caption.js";
+import { Container, container, IBsTableContainer } from "./container.js";
+import { responsive, IBsTableResponsive, Responsive } from "./responsive.js";
+import { tbody, IBsTableTbody, Tbody } from "./tbody.js";
+import { td, IBsTableTd, Td } from "./td.js";
+import { th, IBsTableTh, Th } from "./th.js";
+import { tfoot, IBsTableTfoot, Tfoot } from "./tfoot.js";
+import { thead, IBsTableThead, Thead } from "./thead.js";
+import { tr, IBsTableTr, Tr } from "./tr.js";
 
 export {
 	responsive,
@@ -27,3 +27,5 @@ export {
 	IBsTableThead,
 	IBsTableTr,
 };
+
+export { Responsive, Container, Tbody, Td, Tr, Thead, Tfoot, Th, Caption };

@@ -1,9 +1,9 @@
-import { body } from "./body.js";
-import { btnclose, IBsModalBtnclose } from "./btnclose.js";
-import { container, IBsModalContainer } from "./container.js";
-import { footer } from "./footer.js";
-import { header, IBsModalHeader } from "./header.js";
-import { title } from "./title.js";
+import { Body, body } from "./body.js";
+import { Btnclose, btnclose, IBsModalBtnclose } from "./btnclose.js";
+import { Container, container, IBsModalContainer } from "./container.js";
+import { Footer, footer } from "./footer.js";
+import { Header, header, IBsModalHeader } from "./header.js";
+import { Title, title } from "./title.js";
 import { hide, IBsModalSimple, show, simple } from "./_fn.js";
 
 export {
@@ -21,3 +21,4 @@ export {
 	simple,
 	IBsModalSimple,
 };
+export { Body, Btnclose, Container, Footer, Header, Title };

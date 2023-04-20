@@ -109,6 +109,22 @@ export class msg extends TLabel {
 	}
 }
 
-export const a = (AttrOrElemOrIcon?: IBsMsg | IBsIcon | IElem, Elem?: IElem) => {
-	console.log("TODO: MSG WITHOUT NEW KEYWORD");
+export const Msg = (AttrOrElemOrIcon?: IBsMsg | IBsIcon | IElem, Elem?: IElem) => {
+	if (AttrOrElemOrIcon) {
+		if (Elem) {
+			if (typeof AttrOrElemOrIcon === "string") {
+				return new msg(AttrOrElemOrIcon as string, Elem);
+			} else {
+				return new msg(AttrOrElemOrIcon as IBsIcon, Elem);
+			}
+		} else {
+			if (isAttr<IBsMsg>(AttrOrElemOrIcon)) {
+				return new msg(AttrOrElemOrIcon as IBsMsg);
+			} else {
+				return new msg(AttrOrElemOrIcon as IElem);
+			}
+		}
+	} else {
+		return new msg();
+	}
 };
