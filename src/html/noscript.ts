@@ -1,4 +1,4 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
 
 export class noscript extends tag {
 	constructor();
@@ -9,3 +9,6 @@ export class noscript extends tag {
 		super("noscript", tagConsArg("elem", arg));
 	}
 }
+
+export const Noscript = (AttrOrElem?: IAttr | IElem, Elem?: IElem) =>
+	genTagClass<noscript, IAttr>(noscript, AttrOrElem, Elem);

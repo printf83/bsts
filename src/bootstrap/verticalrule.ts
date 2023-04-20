@@ -1,4 +1,4 @@
-import { IAttr } from "../core/tag.js";
+import { IAttr, genTagClass } from "../core/tag.js";
 import { bsConsNoElemArg } from "../core/bootstrap.js";
 import { div } from "../html/div.js";
 import { mergeClass } from "../core/mergeClass.js";
@@ -15,3 +15,5 @@ export class verticalrule extends div {
 		super(bsConsNoElemArg(convert, arg));
 	}
 }
+
+export const Verticalrule = (Attr?: IAttr) => genTagClass<verticalrule, IAttr>(verticalrule, Attr);

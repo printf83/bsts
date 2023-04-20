@@ -1,11 +1,11 @@
-import { body } from "./body.js";
-import { btnclose, IAttrBSToastBtnclose } from "./btnclose.js";
-import { container, IAttrBSToastContainer } from "./container.js";
-import { header } from "./header.js";
-import { item, IAttrBSToastItem } from "./item.js";
-import { time } from "./time.js";
-import { title } from "./title.js";
-import { IAttrBSToastSimple, show, simple } from "./_fn.js";
+import { Body, body } from "./body.js";
+import { Btnclose, btnclose, IBsToastBtnclose } from "./btnclose.js";
+import { Container, container, IBsToastContainer } from "./container.js";
+import { Header, header } from "./header.js";
+import { item, IBsToastItem, Item } from "./item.js";
+import { Time, time } from "./time.js";
+import { Title, title } from "./title.js";
+import { IBsToastSimple, show, simple } from "./_fn.js";
 
 export {
 	item,
@@ -15,10 +15,12 @@ export {
 	header,
 	time,
 	title,
-	IAttrBSToastBtnclose,
-	IAttrBSToastContainer,
-	IAttrBSToastItem,
-	IAttrBSToastSimple as IAttrBSToastTemplate,
+	IBsToastBtnclose,
+	IBsToastContainer,
+	IBsToastItem,
+	IBsToastSimple as IBsToastTemplate,
 	show,
 	simple,
 };
+
+export { Item, Body, Btnclose, Container, Header, Time, Title };

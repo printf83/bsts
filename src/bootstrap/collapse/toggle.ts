@@ -1,15 +1,15 @@
-import { IElem } from "../../core/tag.js";
+import { genTagClass, IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { button, IAttrBSButton } from "../button.js";
+import { button, IBsButton } from "../button.js";
 
-export interface IAttrBSCollapseToggle extends IAttrBSButton {
+export interface IBsCollapseToggle extends IBsButton {
 	link?: true;
 	target?: string;
 	expanded?: boolean;
 }
 
-const convert = (attr: IAttrBSCollapseToggle) => {
+const convert = (attr: IBsCollapseToggle) => {
 	attr = mergeObject(
 		{
 			class: [attr.expanded ? "" : "collapsed"],
@@ -33,10 +33,13 @@ const convert = (attr: IAttrBSCollapseToggle) => {
 
 export class toggle extends button {
 	constructor(); //#1
-	constructor(attr: IAttrBSCollapseToggle); //#2
+	constructor(attr: IBsCollapseToggle); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSCollapseToggle, elem: IElem); //#4
+	constructor(attr: IBsCollapseToggle, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSCollapseToggle>("elem", convert, arg));
+		super(convert(bsConstArg<IBsCollapseToggle>("elem", arg)));
 	}
 }
+
+export const Toggle = (AttrOrElem?: IBsCollapseToggle | IElem, Elem?: IElem) =>
+	genTagClass<toggle, IBsCollapseToggle>(toggle, AttrOrElem, Elem);

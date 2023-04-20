@@ -1,9 +1,9 @@
-import { body } from "./body.js";
-import { btnclose, IAttrBSOffcanvasBtnclose } from "./btnclose.js";
-import { container, IAttrBSOffcanvasContainer } from "./container.js";
-import { header } from "./header.js";
-import { title } from "./title.js";
-import { toggle, IAttrBSOffcanvasToggle } from "./toggle.js";
+import { Body, body } from "./body.js";
+import { Btnclose, btnclose, IBsOffcanvasBtnclose } from "./btnclose.js";
+import { Container, container, IBsOffcanvasContainer } from "./container.js";
+import { Header, header } from "./header.js";
+import { Title, title } from "./title.js";
+import { toggle, IBsOffcanvasToggle, Toggle } from "./toggle.js";
 
 export {
 	body,
@@ -12,7 +12,9 @@ export {
 	header,
 	title,
 	toggle,
-	IAttrBSOffcanvasBtnclose,
-	IAttrBSOffcanvasContainer,
-	IAttrBSOffcanvasToggle,
+	IBsOffcanvasBtnclose,
+	IBsOffcanvasContainer,
+	IBsOffcanvasToggle,
 };
+
+export { Body, Btnclose, Container, Header, Title, Toggle };

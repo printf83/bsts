@@ -6,14 +6,14 @@ import { btnclose } from "./btnclose.js";
 import { body } from "./body.js";
 import { header } from "./header.js";
 import { time } from "./time.js";
-import { container, IAttrBSToastContainerPlacement } from "./container.js";
-import { IAttrBSToastItem, item } from "./item.js";
+import { container, IBsToastContainerPlacement } from "./container.js";
+import { IBsToastItem, item } from "./item.js";
 import { bootstrapType } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
 import { strong } from "../../html/strong.js";
 import { IElem } from "../../core/tag.js";
 
-export const show = (placement: IAttrBSToastContainerPlacement, i: item) => {
+export const show = (placement: IBsToastContainerPlacement, i: item) => {
 	//make container
 	let containerClassName: string = ".toast-container.top-0.start-0:not(.debug)";
 	switch (placement) {
@@ -84,17 +84,17 @@ export const hide = (i: HTMLElement) => {
 	}
 };
 
-export interface IAttrBSToastSimple {
+export interface IBsToastSimple {
 	elem: IElem;
-	color?: bootstrapType.textBgColor[number];
+	color?: bootstrapType.textBgColor;
 	btnclosewhite?: boolean;
 	delay?: number;
 	atomic?: boolean;
-	live?: IAttrBSToastItem["live"];
+	live?: IBsToastItem["live"];
 	title?: IElem;
 }
 
-export const simple = (attr: IAttrBSToastSimple) => {
+export const simple = (attr: IBsToastSimple) => {
 	let defaultBtnCloseWhite = false;
 	switch (attr.color) {
 		case "dark":

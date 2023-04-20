@@ -1,15 +1,17 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
 
-export interface IAttrTagBdo extends IAttr {
+export interface ITagBdo extends IAttr {
 	dir?: "ltr" | "rtl";
 }
 
 export class bdo extends tag {
 	constructor();
 	constructor(elem: IElem);
-	constructor(attr: IAttrTagBdo);
-	constructor(attr: IAttrTagBdo, elem: IElem);
+	constructor(attr: ITagBdo);
+	constructor(attr: ITagBdo, elem: IElem);
 	constructor(...arg: any[]) {
-		super("bdo", tagConsArg<IAttrTagBdo>("elem", arg));
+		super("bdo", tagConsArg<ITagBdo>("elem", arg));
 	}
 }
+
+export const Bdo = (AttrOrElem?: IAttr | IElem, Elem?: IElem) => genTagClass<bdo, IAttr>(bdo, AttrOrElem, Elem);

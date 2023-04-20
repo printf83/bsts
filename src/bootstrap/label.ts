@@ -1,34 +1,33 @@
 import { bootstrapType, bsConstArg } from "../core/bootstrap.js";
-import { IElem, isAttr } from "../core/tag.js";
+import { IElem, genTagClass, isAttr } from "../core/tag.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { div } from "../html/div.js";
-import { IAttrTagLabel, label as TLabel } from "../html/label.js";
+import { ITagLabel, label as TLabel } from "../html/label.js";
 import { span } from "../html/span.js";
-import { IAttrBSIcon, icon } from "./icon.js";
-import { IAttrBSButton } from "./button.js";
+import { IBsIcon, icon } from "./icon.js";
+import { IBsButton } from "./button.js";
 
-export type IBootstrapTypeDisplay = bootstrapType.display[number] | bootstrapType.display[number][];
+export type IBootstrapTypeDisplay = bootstrapType.display | bootstrapType.display[];
 
-export interface IAttrBSLabel extends IAttrTagLabel, IAttrBSButton {
-	icon?: string | IAttrBSIcon | icon;
+export interface IBsLabel extends ITagLabel, IBsButton {
+	icon?: string | IBsIcon | icon;
 	iconPosition?: "start" | "end" | "top" | "bottom";
 	iconDisplay?: IBootstrapTypeDisplay;
 	labelDisplay?: IBootstrapTypeDisplay;
 
 	stretched?: boolean;
-	// formCheck?: boolean;
 }
 
 const fnRow = (display: IBootstrapTypeDisplay | undefined, elem: IElem) => {
 	return new div({ row: true, display: display }, new div({ col: true, textAlign: "center" }, elem));
 };
 
-const fnIcon = (display: IBootstrapTypeDisplay | undefined, attr: string | IAttrBSIcon | icon) => {
+const fnIcon = (display: IBootstrapTypeDisplay | undefined, attr: string | IBsIcon | icon) => {
 	if (typeof attr === "string") {
-		attr = { id: attr } as IAttrBSIcon;
+		attr = { id: attr } as IBsIcon;
 	}
 
-	if (isAttr<IAttrBSIcon>(attr)) {
+	if (isAttr<IBsIcon>(attr)) {
 		return new span({ display: display }, new icon(attr!));
 	} else {
 		return new span({ display: display }, attr!);
@@ -39,9 +38,9 @@ const fnElem = (display: IBootstrapTypeDisplay | undefined, elem: IElem) => {
 	return new span({ display: display }, elem);
 };
 
-const convert = (attr: IAttrBSLabel) => {
+const convert = (attr: IBsLabel) => {
 	let tElem: IElem;
-	let tAttr: IAttrBSLabel = attr;
+	let tAttr: IBsLabel = attr;
 
 	if (attr && typeof attr.icon !== "undefined") {
 		if (attr.elem) {
@@ -80,10 +79,10 @@ const convert = (attr: IAttrBSLabel) => {
 		} else {
 			if (attr.icon) {
 				if (typeof attr.icon === "string") {
-					attr.icon = { id: attr.icon } as IAttrBSIcon;
+					attr.icon = { id: attr.icon } as IBsIcon;
 				}
 
-				if (isAttr<IAttrBSIcon>(attr.icon)) {
+				if (isAttr<IBsIcon>(attr.icon)) {
 					tElem = new icon(attr.icon);
 				} else {
 					tElem = attr.icon;
@@ -99,12 +98,6 @@ const convert = (attr: IAttrBSLabel) => {
 			tElem = "Label";
 		}
 	}
-
-	//check label toggle
-	//color & outline
-	// if (attr.formCheck) {
-	// 	attr.class = mergeClass(attr.class, "form-check-label");
-	// }
 
 	if (attr.stretched) {
 		attr.class = mergeClass(attr.class, "stretched-link");
@@ -123,7 +116,6 @@ const convert = (attr: IAttrBSLabel) => {
 	delete tAttr.iconDisplay;
 	delete tAttr.labelDisplay;
 	delete tAttr.stretched;
-	// delete tAttr.formCheck;
 
 	delete attr.elem;
 	attr.elem = tElem;
@@ -134,9 +126,12 @@ const convert = (attr: IAttrBSLabel) => {
 export class label extends TLabel {
 	constructor();
 	constructor(text: string);
-	constructor(attr: IAttrBSLabel);
-	constructor(attr: IAttrBSLabel, text: string);
+	constructor(attr: IBsLabel);
+	constructor(attr: IBsLabel, text: string);
 	constructor(...arg: any[]) {
-		super(bsConstArg("elem", convert, arg));
+		super(convert(bsConstArg("elem", arg)));
 	}
 }
+
+export const Label = (AttrOrText?: IBsLabel | string, Text?: string) =>
+	genTagClass<label, IBsLabel>(label, AttrOrText, Text);

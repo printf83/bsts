@@ -2,7 +2,7 @@ import { IAttr, IElem } from "../../../core/tag.js";
 import { UUID } from "../../../core/uuid.js";
 import { div } from "../../../html/div.js";
 import { label } from "../../label.js";
-import { IAttrBSSelect, select as TSelect } from "../../select.js";
+import { IBsSelect, select as TSelect } from "../../select.js";
 import { container as TInputGroupContainer } from "../../inputgroup/container.js";
 import { formfloating } from "../../formfloating.js";
 import {
@@ -17,7 +17,7 @@ import {
 } from "../_fn.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 
-export interface IAttrBSFormFloatingLabelSelect extends Omit<IAttrBSSelect, "container"> {
+export interface IBsFormFloatingLabelSelect extends Omit<IBsSelect, "container"> {
 	description?: string;
 	container?: IAttr;
 
@@ -30,7 +30,7 @@ export interface IAttrBSFormFloatingLabelSelect extends Omit<IAttrBSSelect, "con
 	validTooltip?: string;
 }
 
-export const select = (attr: IAttrBSFormFloatingLabelSelect) => {
+export const Select = (attr: IBsFormFloatingLabelSelect) => {
 	let container = attr.container;
 
 	attr.id ??= UUID();
@@ -65,7 +65,7 @@ export const select = (attr: IAttrBSFormFloatingLabelSelect) => {
 	let tElemGroupAfter = genGroupItem(attr.id, attr.after);
 
 	//setup main control
-	let tAttr: IAttrBSSelect | IAttrBSFormFloatingLabelSelect = Object.assign({}, attr);
+	let tAttr: IBsSelect | IBsFormFloatingLabelSelect = Object.assign({}, attr);
 	delete tAttr.label;
 	delete tAttr.description;
 	delete tAttr.container;
@@ -76,7 +76,7 @@ export const select = (attr: IAttrBSFormFloatingLabelSelect) => {
 	delete tAttr.validTooltip;
 	delete tAttr.invalidTooltip;
 
-	tAttr = tAttr as IAttrBSSelect;
+	tAttr = tAttr as IBsSelect;
 	if (attr.validFeedback || attr.invalidFeedback || attr.validTooltip || attr.invalidTooltip) {
 		tAttr = mergeObject(
 			{ on: { input: labelFloatingFeedbackManager, invalid: labelFloatingFeedbackManager } },
@@ -84,7 +84,7 @@ export const select = (attr: IAttrBSFormFloatingLabelSelect) => {
 		);
 	}
 
-	let tElem = new TSelect(tAttr as IAttrBSSelect);
+	let tElem = new TSelect(tAttr as IBsSelect);
 
 	//put into tElem
 	if (tElemGroupBefore || tElemGroupAfter) {

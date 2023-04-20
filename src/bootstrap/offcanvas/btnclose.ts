@@ -1,13 +1,14 @@
 import { bsConsNoElemArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { btnclose as TBtnclose, IAttrBSBtnclose } from "../btnclose.js";
+import { genTagClass } from "../../core/tag.js";
+import { btnclose as TBtnclose, IBsBtnclose } from "../btnclose.js";
 
-export interface IAttrBSOffcanvasBtnclose extends IAttrBSBtnclose {
+export interface IBsOffcanvasBtnclose extends IBsBtnclose {
 	dismiss?: "offcanvas";
 	target?: string;
 }
 
-const convert = (attr: IAttrBSOffcanvasBtnclose) => {
+const convert = (attr: IBsOffcanvasBtnclose) => {
 	attr.dismiss ??= "offcanvas";
 
 	attr = mergeObject(
@@ -25,8 +26,10 @@ const convert = (attr: IAttrBSOffcanvasBtnclose) => {
 
 export class btnclose extends TBtnclose {
 	constructor(); //#1
-	constructor(attr: IAttrBSOffcanvasBtnclose); //#2
+	constructor(attr: IBsOffcanvasBtnclose); //#2
 	constructor(...arg: any[]) {
 		super(bsConsNoElemArg(convert, arg));
 	}
 }
+
+export const Btnclose = (Attr?: IBsBtnclose) => genTagClass<btnclose, IBsBtnclose>(btnclose, Attr);

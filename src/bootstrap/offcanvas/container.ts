@@ -1,13 +1,13 @@
 import { bootstrapType } from "../../core/bootstrap.js";
-import { IAttr, IElem } from "../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
 
-export interface IAttrBSOffcanvasContainer extends IAttr {
+export interface IBsOffcanvasContainer extends IAttr {
 	placement?: "start" | "end" | "top" | "bottom";
-	hide?: boolean | bootstrapType.viewport[number];
+	hide?: boolean | bootstrapType.viewport;
 	dark?: boolean;
 	backdrop?: boolean | "static";
 	scroll?: boolean;
@@ -16,7 +16,7 @@ export interface IAttrBSOffcanvasContainer extends IAttr {
 	debug?: boolean;
 }
 
-const convert = (attr: IAttrBSOffcanvasContainer) => {
+const convert = (attr: IBsOffcanvasContainer) => {
 	attr.placement ??= "start";
 
 	attr = mergeObject(
@@ -61,10 +61,13 @@ const convert = (attr: IAttrBSOffcanvasContainer) => {
 
 export class container extends div {
 	constructor(); //#1
-	constructor(attr: IAttrBSOffcanvasContainer); //#2
+	constructor(attr: IBsOffcanvasContainer); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSOffcanvasContainer, elem: IElem); //#4
+	constructor(attr: IBsOffcanvasContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSOffcanvasContainer>("elem", convert, arg));
+		super(convert(bsConstArg<IBsOffcanvasContainer>("elem", arg)));
 	}
 }
+
+export const Container = (AttrOrElem?: IBsOffcanvasContainer | IElem, Elem?: IElem) =>
+	genTagClass<container, IBsOffcanvasContainer>(container, AttrOrElem, Elem);

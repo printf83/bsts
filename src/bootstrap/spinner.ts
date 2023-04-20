@@ -1,17 +1,17 @@
-import { IAttr, IElem, tag } from "../core/tag.js";
+import { IAttr, IElem, genTagClass, tag } from "../core/tag.js";
 import { bootstrapType, bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { visuallyhidden } from "./visuallyhidden.js";
 import { mergeObject } from "../core/mergeObject.js";
 
-export interface IAttrBSSpinner extends IAttr {
+export interface IBsSpinner extends IAttr {
 	type?: "border" | "grow";
-	small?: boolean;
+	small?: true;
 	role?: "status";
-	color?: bootstrapType.textColor[number];
+	color?: bootstrapType.textColor;
 }
 
-const convert = (attr: IAttrBSSpinner) => {
+const convert = (attr: IBsSpinner) => {
 	attr.role ??= "status";
 	attr.type ??= "border";
 	attr.textColor ??= attr.color || attr.textColor;
@@ -39,19 +39,22 @@ const convert = (attr: IAttrBSSpinner) => {
 
 export class spinner extends tag {
 	constructor(); //#1
-	constructor(attr: IAttrBSSpinner); //#2
+	constructor(attr: IBsSpinner); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSSpinner, elem: IElem); //#4
+	constructor(attr: IBsSpinner, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		super(
-			bsConstArgTag<IAttrBSSpinner>(
+			bsConstArgTag<IBsSpinner>(
 				"elem",
 				"span",
 				"div",
 				(i) => (i.elem === "" ? false : i.elem ? false : true),
 				arg
 			),
-			bsConstArg<IAttrBSSpinner>("elem", convert, arg)
+			convert(bsConstArg<IBsSpinner>("elem", arg))
 		);
 	}
 }
+
+export const Spinner = (AttrOrElem?: IBsSpinner | IElem, Elem?: IElem) =>
+	genTagClass<spinner, IBsSpinner>(spinner, AttrOrElem, Elem);

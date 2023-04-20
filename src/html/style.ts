@@ -1,6 +1,6 @@
-import { tagConsArg, IAttr, tag } from "../core/tag.js";
+import { tagConsArg, IAttr, tag, genTagClass } from "../core/tag.js";
 
-export interface IAttrTagStyle extends IAttr {
+export interface ITagStyle extends IAttr {
 	media?: string;
 	type?: "text/css";
 }
@@ -8,9 +8,12 @@ export interface IAttrTagStyle extends IAttr {
 export class style extends tag {
 	constructor();
 	constructor(elem: string);
-	constructor(attr: IAttrTagStyle);
-	constructor(attr: IAttrTagStyle, elem: string);
+	constructor(attr: ITagStyle);
+	constructor(attr: ITagStyle, elem: string);
 	constructor(...arg: any[]) {
-		super("style", tagConsArg<IAttrTagStyle>("elem", arg));
+		super("style", tagConsArg<ITagStyle>("elem", arg));
 	}
 }
+
+export const Style = (AttrOrElem?: ITagStyle | string, Elem?: string) =>
+	genTagClass<style, ITagStyle>(style, AttrOrElem, Elem);

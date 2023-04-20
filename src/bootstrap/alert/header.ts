@@ -37,3 +37,19 @@ export class header extends h {
 		}
 	}
 }
+
+export const Header = (Level: HLevel, AttrOrElem?: IAttr | IElem, Elem?: IElem) => {
+	if (AttrOrElem) {
+		if (isAttr<IAttr>(AttrOrElem)) {
+			if (Elem) {
+				return new header(Level, AttrOrElem as IAttr, Elem);
+			} else {
+				return new header(Level, AttrOrElem as IAttr);
+			}
+		} else {
+			return new header(Level, AttrOrElem as IElem);
+		}
+	} else {
+		return new header(Level);
+	}
+};

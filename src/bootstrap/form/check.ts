@@ -1,7 +1,7 @@
 import { IAttr } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
-import { IAttrBSInput, input as TInput } from "../input.js";
+import { IBsInput, input as TInput } from "../input.js";
 import { label } from "../label.js";
 import {
 	genDescription,
@@ -12,7 +12,7 @@ import {
 	genValidTooltip,
 } from "./_fn.js";
 
-export interface IAttrBSFormCheck extends Omit<IAttrBSInput, "container"> {
+export interface IBsFormCheck extends Omit<IBsInput, "container"> {
 	type?: "checkbox" | "radio";
 	container?: IAttr;
 	hideLabel?: true;
@@ -26,7 +26,7 @@ export interface IAttrBSFormCheck extends Omit<IAttrBSInput, "container"> {
 	validTooltip?: string;
 }
 
-export const check = (attr: IAttrBSFormCheck) => {
+export const Check = (attr: IBsFormCheck) => {
 	attr.type ??= "checkbox";
 	attr.id ??= UUID();
 	attr.label ??= attr.id;
@@ -84,7 +84,7 @@ export const check = (attr: IAttrBSFormCheck) => {
 	delete tAttr.validFeedback;
 	delete tAttr.validTooltip;
 	delete tAttr.invalidTooltip;
-	let tElem = new TInput(tAttr as IAttrBSInput);
+	let tElem = new TInput(tAttr as IBsInput);
 
 	//put in container
 	if (attr.container) {

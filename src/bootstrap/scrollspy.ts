@@ -1,14 +1,14 @@
-import { IAttr, IElem } from "../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../core/tag.js";
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { div } from "../html/div.js";
 
-export interface IAttrBSScrollspy extends IAttr {
+export interface IBsScrollspy extends IAttr {
 	target?: string;
 	smooth?: boolean;
 	rootMargin?: string;
 }
-const convert = (attr: IAttrBSScrollspy) => {
+const convert = (attr: IBsScrollspy) => {
 	attr = mergeObject(
 		{
 			data: {
@@ -31,11 +31,11 @@ const convert = (attr: IAttrBSScrollspy) => {
 
 export class scrollspy extends div {
 	constructor(); //#1
-	constructor(attr: IAttrBSScrollspy); //#2
+	constructor(attr: IBsScrollspy); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSScrollspy, elem: IElem); //#4
+	constructor(attr: IBsScrollspy, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSScrollspy>("elem", convert, arg));
+		super(convert(bsConstArg<IBsScrollspy>("elem", arg)));
 	}
 
 	static init = (elem?: HTMLElement, option?: Partial<bootstrap.ScrollSpy.Options>) => {
@@ -46,3 +46,6 @@ export class scrollspy extends div {
 		return null;
 	};
 }
+
+export const Scrollspy = (AttrOrElem?: IBsScrollspy | IElem, Elem?: IElem) =>
+	genTagClass<scrollspy, IBsScrollspy>(scrollspy, AttrOrElem, Elem);

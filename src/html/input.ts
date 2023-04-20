@@ -1,6 +1,6 @@
-import { tagConsNoElemArg, IAttr, tag } from "../core/tag.js";
+import { tagConsNoElemArg, IAttr, tag, genTagClass } from "../core/tag.js";
 
-export interface IAttrTagInput extends IAttr {
+export interface ITagInput extends IAttr {
 	accept?: string;
 	alt?: string;
 	autocomplete?: "on" | "off";
@@ -57,8 +57,10 @@ export interface IAttrTagInput extends IAttr {
 
 export class input extends tag {
 	constructor();
-	constructor(attr: IAttrTagInput);
+	constructor(attr: ITagInput);
 	constructor(...arg: any[]) {
-		super("input", tagConsNoElemArg<IAttrTagInput>(arg));
+		super("input", tagConsNoElemArg<ITagInput>(arg));
 	}
 }
+
+export const Input = (Attr?: ITagInput) => genTagClass<input, ITagInput>(input, Attr);

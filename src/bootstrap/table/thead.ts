@@ -1,13 +1,13 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../core/tag.js";
 import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { thead as TThead } from "../../html/thead.js";
 
-export interface IAttrBSTableThead extends IAttr {
-	color?: bootstrapType.color[number];
+export interface IBsTableThead extends IAttr {
+	color?: bootstrapType.color;
 }
 
-const convert = (attr: IAttrBSTableThead) => {
+const convert = (attr: IBsTableThead) => {
 	attr.class = mergeClass(attr.class, [attr.color ? `table-${attr.color}` : undefined]);
 
 	delete attr.color;
@@ -17,10 +17,13 @@ const convert = (attr: IAttrBSTableThead) => {
 
 export class thead extends TThead {
 	constructor(); //#1
-	constructor(attr: IAttrBSTableThead); //#2
+	constructor(attr: IBsTableThead); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSTableThead, elem: IElem); //#4
+	constructor(attr: IBsTableThead, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSTableThead>("elem", convert, arg));
+		super(convert(bsConstArg<IBsTableThead>("elem", arg)));
 	}
 }
+
+export const Thead = (AttrOrElem?: IBsTableThead | IElem, Elem?: IElem) =>
+	genTagClass<thead, IBsTableThead>(thead, AttrOrElem, Elem);

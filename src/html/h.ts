@@ -1,4 +1,4 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, IAttr, IElem, tag, isAttr } from "../core/tag.js";
 
 export type HLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -21,3 +21,19 @@ export class h extends tag {
 		}
 	}
 }
+
+export const H = (Level: HLevel, AttrOrElem?: IAttr | IElem, Elem?: IElem) => {
+	if (AttrOrElem) {
+		if (isAttr<IAttr>(AttrOrElem)) {
+			if (Elem) {
+				return new h(Level, AttrOrElem as IAttr, Elem);
+			} else {
+				return new h(Level, AttrOrElem as IAttr);
+			}
+		} else {
+			return new h(Level, AttrOrElem as IElem);
+		}
+	} else {
+		return new h(Level);
+	}
+};

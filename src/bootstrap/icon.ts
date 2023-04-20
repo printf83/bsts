@@ -1,15 +1,15 @@
 import { bootstrapType, bsConstArg } from "../core/bootstrap.js";
-import { IAttr, IElem } from "../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../core/tag.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { i } from "../html/i.js";
 import { span } from "../html/span.js";
 
 type IAttrIconType = "bi" | "brand" | "solid" | "regular" | "duotone" | "light" | "sharp";
 
-export interface IAttrBSIcon extends IAttr {
+export interface IBsIcon extends IAttr {
 	id?: string;
 	type?: IAttrIconType;
-	color?: bootstrapType.color[number];
+	color?: bootstrapType.textColor;
 	weight?: "2xs" | "xs" | "sm" | "lg" | "xl" | "2xl";
 	fixwidth?: boolean;
 	spin?: boolean;
@@ -23,7 +23,7 @@ export interface IAttrBSIcon extends IAttr {
 	stack?: true | 1 | 2;
 }
 
-const convert = (attr: IAttrBSIcon) => {
+const convert = (attr: IBsIcon) => {
 	attr.type ??= "bi";
 
 	if (attr.type === "bi") {
@@ -119,7 +119,7 @@ const convert = (attr: IAttrBSIcon) => {
 	}
 };
 
-const genStaticIcon = (t: IAttrIconType, i: string, a?: IAttrBSIcon) => {
+const genStaticIcon = (t: IAttrIconType, i: string, a?: IBsIcon) => {
 	if (a) {
 		delete a.type;
 		delete a.id;
@@ -131,18 +131,20 @@ const genStaticIcon = (t: IAttrIconType, i: string, a?: IAttrBSIcon) => {
 
 export class icon extends span {
 	constructor();
-	constructor(attr: IAttrBSIcon);
+	constructor(attr: IBsIcon);
 	constructor(elem: IElem);
-	constructor(attr: IAttrBSIcon, elem: IElem);
+	constructor(attr: IBsIcon, elem: IElem);
 	constructor(...arg: any[]) {
-		super(bsConstArg("elem", convert, arg));
+		super(convert(bsConstArg("elem", arg)));
 	}
 
-	static bi = (i: string, attr?: IAttrBSIcon) => genStaticIcon("bi", i, attr);
-	static brand = (i: string, attr?: IAttrBSIcon) => genStaticIcon("brand", i, attr);
-	static solid = (i: string, attr?: IAttrBSIcon) => genStaticIcon("solid", i, attr);
-	static duotone = (i: string, attr?: IAttrBSIcon) => genStaticIcon("duotone", i, attr);
-	static light = (i: string, attr?: IAttrBSIcon) => genStaticIcon("light", i, attr);
-	static regular = (i: string, attr?: IAttrBSIcon) => genStaticIcon("regular", i, attr);
-	static sharp = (i: string, attr?: IAttrBSIcon) => genStaticIcon("sharp", i, attr);
+	static bi = (i: string, attr?: IBsIcon) => genStaticIcon("bi", i, attr);
+	static brand = (i: string, attr?: IBsIcon) => genStaticIcon("brand", i, attr);
+	static solid = (i: string, attr?: IBsIcon) => genStaticIcon("solid", i, attr);
+	static duotone = (i: string, attr?: IBsIcon) => genStaticIcon("duotone", i, attr);
+	static light = (i: string, attr?: IBsIcon) => genStaticIcon("light", i, attr);
+	static regular = (i: string, attr?: IBsIcon) => genStaticIcon("regular", i, attr);
+	static sharp = (i: string, attr?: IBsIcon) => genStaticIcon("sharp", i, attr);
 }
+
+export const Icon = (AttrOrElem?: IBsIcon | IElem, Elem?: IElem) => genTagClass<icon, IBsIcon>(icon, AttrOrElem, Elem);

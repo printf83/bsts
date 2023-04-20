@@ -1,16 +1,16 @@
-import { IAttr, IElem } from "../../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../../core/tag.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { nav } from "../../../html/nav.js";
 
-export interface IAttrBSNavContainerNav extends IAttr {
+export interface IBsNavContainerNav extends IAttr {
 	type?: "tab" | "pill" | "underline";
 	itemWidth?: "fill" | "justified";
 	vertical?: true;
 	role?: "tablist";
 }
 
-const convert = (attr: IAttrBSNavContainerNav) => {
+const convert = (attr: IBsNavContainerNav) => {
 	attr = mergeObject(
 		{
 			class: [
@@ -35,10 +35,13 @@ const convert = (attr: IAttrBSNavContainerNav) => {
 
 export class containerNav extends nav {
 	constructor(); //#1
-	constructor(attr: IAttrBSNavContainerNav); //#2
+	constructor(attr: IBsNavContainerNav); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSNavContainerNav, elem: IElem); //#4
+	constructor(attr: IBsNavContainerNav, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSNavContainerNav>("elem", convert, arg));
+		super(convert(bsConstArg<IBsNavContainerNav>("elem", arg)));
 	}
 }
+
+export const ContainerNav = (AttrOrElem?: IBsNavContainerNav | IElem, Elem?: IElem) =>
+	genTagClass<containerNav, IBsNavContainerNav>(containerNav, AttrOrElem, Elem);

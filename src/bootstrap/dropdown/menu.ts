@@ -1,28 +1,18 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../core/tag.js";
 import { mergeClass } from "../../core/mergeClass.js";
-import { bootstrapAttachRule, bootstrapBase, bootstrapRuleDB, bootstrapType } from "../../core/bootstrap.js";
-import { genBootstrapClass } from "../../core/attach/attachBootstrap.js";
+import { bootstrapType } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 
-export interface IAttrBSDropdownMenu extends IAttr {
-	positionView?: bootstrapType.positionView[number] | bootstrapType.positionView[number][];
+export interface IBsDropdownMenu extends IAttr {
+	positionView?: bootstrapType.dropdownMenuPositionView | bootstrapType.dropdownMenuPositionView[];
+	dropdownMenuPositionView?: bootstrapType.dropdownMenuPositionView | bootstrapType.dropdownMenuPositionView[];
 	debug?: boolean;
 }
 
-const rules: bootstrapRuleDB = {
-	dropdownMenuPositionView: new bootstrapAttachRule({
-		format: "dropdown-menu-$1",
-		value: bootstrapBase.positionView.concat(),
-	}),
-};
-
-const convert = (attr: IAttrBSDropdownMenu) => {
+const convert = (attr: IBsDropdownMenu) => {
 	attr.class = mergeClass(attr.class, ["dropdown-menu", attr.debug ? "debug" : undefined]);
-
-	if (attr.positionView) {
-		attr.class = mergeClass(attr.class, genBootstrapClass(rules.dropdownMenuPositionView, attr.positionView));
-	}
+	attr.dropdownMenuPositionView = attr.dropdownMenuPositionView || attr.positionView;
 
 	delete attr.positionView;
 	delete attr.debug;
@@ -32,10 +22,13 @@ const convert = (attr: IAttrBSDropdownMenu) => {
 
 export class menu extends div {
 	constructor(); //#1
-	constructor(attr: IAttrBSDropdownMenu); //#2
+	constructor(attr: IBsDropdownMenu); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSDropdownMenu, elem: IElem); //#4
+	constructor(attr: IBsDropdownMenu, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSDropdownMenu>("elem", convert, arg));
+		super(convert(bsConstArg<IBsDropdownMenu>("elem", arg)));
 	}
 }
+
+export const Menu = (AttrOrElem?: IBsDropdownMenu | IElem, Elem?: IElem) =>
+	genTagClass<menu, IBsDropdownMenu>(menu, AttrOrElem, Elem);

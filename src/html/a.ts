@@ -1,9 +1,9 @@
 import { bootstrapType } from "../core/bootstrap.js";
-import { IAttr, IElem, tag, tagConsArg } from "../core/tag.js";
+import { IAttr, IElem, genTagClass, tag, tagConsArg } from "../core/tag.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { mergeObject } from "../core/mergeObject.js";
 
-export interface IAttrTagA extends IAttr {
+export interface ITagA extends IAttr {
 	download?: string;
 	href?: string;
 	hreflang?: string;
@@ -34,23 +34,23 @@ export interface IAttrTagA extends IAttr {
 		| "tag";
 	target?: "_blank" | "_parent" | "_self" | "_top";
 	type?: string;
-	color?: bootstrapType.linkColor[number];
+	color?: bootstrapType.linkColor;
 	stretched?: true;
 
 	disabled?: boolean;
 
-	linkColor?: bootstrapType.linkColor[number];
-	linkUnderlineColor?: bootstrapType.linkUnderlineColor[number];
-	linkOffset?: bootstrapType.linkOffset[number];
-	linkOffsetHover?: bootstrapType.linkOffsetHover[number];
-	linkOpacity?: bootstrapType.linkOpacity[number];
-	linkUnderline?: bootstrapType.linkUnderline[number];
-	linkUnderlineOpacity?: bootstrapType.linkUnderlineOpacity[number];
-	linkUnderlineOpacityHover?: bootstrapType.linkUnderlineOpacityHover[number];
-	linkOpacityHover?: bootstrapType.linkOpacityHover[number];
+	linkColor?: bootstrapType.linkColor;
+	linkUnderlineColor?: bootstrapType.linkUnderlineColor;
+	linkOffset?: bootstrapType.linkOffset;
+	linkOffsetHover?: bootstrapType.linkOffsetHover;
+	linkOpacity?: bootstrapType.linkOpacity;
+	linkUnderline?: bootstrapType.linkUnderline;
+	linkUnderlineOpacity?: bootstrapType.linkUnderlineOpacity;
+	linkUnderlineOpacityHover?: bootstrapType.linkUnderlineOpacityHover;
+	linkOpacityHover?: bootstrapType.linkOpacityHover;
 }
 
-const convert = (attr: IAttrTagA) => {
+const convert = (attr: ITagA) => {
 	attr.class = mergeClass(attr.class, [
 		attr.color ? `link-${attr.color}` : undefined,
 		attr.stretched ? "stretched-link" : undefined,
@@ -78,9 +78,11 @@ const convert = (attr: IAttrTagA) => {
 export class a extends tag {
 	constructor();
 	constructor(elem: IElem);
-	constructor(attr: IAttrTagA);
-	constructor(attr: IAttrTagA, elem: IElem);
+	constructor(attr: ITagA);
+	constructor(attr: ITagA, elem: IElem);
 	constructor(...arg: any[]) {
-		super("a", convert(tagConsArg<IAttrTagA>("elem", arg)));
+		super("a", convert(tagConsArg<ITagA>("elem", arg)));
 	}
 }
+
+export const A = (AttrOrElem?: ITagA | IElem, Elem?: IElem) => genTagClass<a, ITagA>(a, AttrOrElem, Elem);

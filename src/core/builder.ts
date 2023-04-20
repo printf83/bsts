@@ -9,14 +9,14 @@ import { u } from "../html/u.js";
 import { del } from "../html/del.js";
 import { mark } from "../html/mark.js";
 import { attachAttr } from "./attach/_index.js";
-import { IAttr, isTag, tag } from "./tag.js";
+import { IAttr, isTag, tag, strHtml, isHtml } from "./tag.js";
 import { removeChildElement } from "./removeChildElement.js";
 import { removeElement } from "./removeElement.js";
 import { UUID } from "./uuid.js";
 import * as modalFn from "../bootstrap/modal/_fn.js";
 import * as toastFn from "../bootstrap/toast/_fn.js";
 
-export type buildArg = tag | string | (tag | string)[];
+export type buildArg = tag | string | strHtml | (tag | string | strHtml)[];
 
 const calcTimer = (datevalue: number) => {
 	var t1 = new Date().getTime();
@@ -256,21 +256,22 @@ const markup = (str: string) => {
 	}
 };
 
-const htmlToElement = (html: string) => {
+const htmlToElement = (strHTML: string) => {
 	var template = document.createElement("template");
-	html = html.trim(); // Never return a text node of whitespace as the result
-	template.innerHTML = html;
+	strHTML = strHTML.trim(); // Never return a text node of whitespace as the result
+	template.innerHTML = strHTML;
 	return template.content.firstChild;
 };
 
-const processElem = (i: string | tag, e: tag, element: HTMLElement) => {
+const processElem = (i: string | tag | strHtml, e: tag, element: HTMLElement) => {
 	if (i !== null) {
 		if (isTag<IAttr>(i)) {
 			let t = build(element, i as tag);
 			element = t ? t : element;
+		} else if (isHtml(i)) {
+			let t = build(element, i as strHtml);
+			element = t ? t : element;
 		} else {
-			//all text treat as html
-
 			//only pre is html
 			let g = i as string;
 			if (e.tag === "pre") {
@@ -278,18 +279,20 @@ const processElem = (i: string | tag, e: tag, element: HTMLElement) => {
 			} else {
 				let m = markup(g);
 				if (typeof m === "string") {
-					if (m.startsWith("<svg")) {
-						if (m.endsWith("</svg>")) {
-							let c = htmlToElement(g);
-							if (c) {
-								element.appendChild(c);
-							}
-						} else {
-							element.appendChild(document.createTextNode(g));
-						}
-					} else {
-						element.appendChild(document.createTextNode(g));
-					}
+					element.appendChild(document.createTextNode(g));
+
+					// if (m.startsWith("<svg")) {
+					// 	if (m.endsWith("</svg>")) {
+					// 		let c = htmlToEement(g);
+					// 		if (c) {l
+					// 			element.appendChild(c);
+					// 		}
+					// 	} else {
+					// 		element.appendChild(document.createTextNode(g));
+					// 	}
+					// } else {
+					// 	element.appendChild(document.createTextNode(g));
+					// }
 				} else {
 					m.forEach((j) => {
 						element = processElem(j, e, element);
@@ -347,6 +350,29 @@ export const build = (
 								container.appendChild(element);
 							}
 						}
+					} else if (isHtml(h)) {
+						let element = htmlToElement(h.elem!);
+
+						if (element) {
+							if (append) {
+								if (beforeElem) {
+									container.insertBefore(element, beforeElem);
+								} else {
+									container.appendChild(element);
+								}
+							} else {
+								if (container.childElementCount > 0) {
+									if (beforeElem) {
+										container.insertBefore(element, beforeElem);
+										beforeElem = element as HTMLElement;
+									} else {
+										container.insertBefore(element, container.firstChild);
+									}
+								} else {
+									container.appendChild(element);
+								}
+							}
+						}
 					}
 				}
 			});
@@ -356,7 +382,7 @@ export const build = (
 	return container;
 };
 
-export const node = (arg: buildArg): HTMLElement | HTMLElement[] | null => {
+export const getNode = (arg: buildArg): HTMLElement | HTMLElement[] | null => {
 	let container = build(document.createElement("template"), arg);
 	let childCount = container.childElementCount;
 	if (childCount === 0) return null;
@@ -364,7 +390,7 @@ export const node = (arg: buildArg): HTMLElement | HTMLElement[] | null => {
 	return Array.from(container.childNodes).map((i) => i as HTMLElement);
 };
 
-export const html = (arg: buildArg): string => {
+export const getHtml = (arg: buildArg): string => {
 	let container = build(document.createElement("template"), arg);
 	let result = container.innerHTML;
 	removeElement(container);

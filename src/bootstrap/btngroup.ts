@@ -1,14 +1,14 @@
-import { IAttr, IElem } from "../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../core/tag.js";
 import { bsConstArg } from "../core/bootstrap.js";
 import { div } from "../html/div.js";
 import { mergeObject } from "../core/mergeObject.js";
 
-export interface IAttrBSBtngroup extends IAttr {
+export interface IBsBtngroup extends IAttr {
 	role?: "group" | "toolbar";
 	weight?: "sm" | "lg";
 	vertical?: boolean;
 }
-const convert = (attr: IAttrBSBtngroup) => {
+const convert = (attr: IBsBtngroup) => {
 	attr.role ??= "group";
 
 	attr = mergeObject(
@@ -30,10 +30,17 @@ const convert = (attr: IAttrBSBtngroup) => {
 
 export class btngroup extends div {
 	constructor(); //#1
-	constructor(attr: IAttrBSBtngroup); //#2
+	constructor(attr: IBsBtngroup); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSBtngroup, elem: IElem); //#4
+	constructor(attr: IBsBtngroup, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSBtngroup>("elem", convert, arg));
+		super(convert(bsConstArg<IBsBtngroup>("elem", arg)));
 	}
 }
+
+export const Btngroup = (AttrOrElem?: IBsBtngroup | IElem, Elem?: IElem) =>
+	genTagClass<btngroup, IBsBtngroup>(btngroup, AttrOrElem, Elem);
+
+// export const a = (AttrOrElem?: IBs | IElem, Elem?: IElem) => genTagClass<a, IBs>(a, AttrOrElem, Elem);
+
+// export const a = (AttrOrElem?: IAttr | IElem, Elem?: IElem) => genTagClass<a, IAttr>(a, AttrOrElem, Elem);

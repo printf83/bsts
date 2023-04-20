@@ -1,6 +1,6 @@
-import { tagConsNoElemArg, IAttr, tag } from "../core/tag.js";
+import { tagConsNoElemArg, IAttr, tag, genTagClass } from "../core/tag.js";
 
-export interface IAttrTagMeta extends IAttr {
+export interface ITagMeta extends IAttr {
 	charset?: string;
 	content?: string;
 	httpEquiv?: "content-security-policy" | "content-type" | "default-style" | "refresh";
@@ -9,8 +9,10 @@ export interface IAttrTagMeta extends IAttr {
 
 export class meta extends tag {
 	constructor();
-	constructor(attr: IAttrTagMeta);
+	constructor(attr: ITagMeta);
 	constructor(...arg: any[]) {
-		super("meta", tagConsNoElemArg<IAttrTagMeta>(arg));
+		super("meta", tagConsNoElemArg<ITagMeta>(arg));
 	}
 }
+
+export const Meta = (Attr?: ITagMeta) => genTagClass<meta, ITagMeta>(meta, Attr);

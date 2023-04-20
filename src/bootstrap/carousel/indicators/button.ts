@@ -1,15 +1,15 @@
-import { IElem } from "../../../core/tag.js";
+import { IElem, genTagClass } from "../../../core/tag.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
-import { button as TButton, IAttrTagButton } from "../../../html/button.js";
+import { button as TButton, ITagButton } from "../../../html/button.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 
-export interface IAttrBSCarouselIndicatorsButton extends IAttrTagButton {
+export interface IBsCarouselIndicatorsButton extends ITagButton {
 	active?: boolean;
 	slide?: number;
 	target?: string;
 }
 
-const convert = (attr: IAttrBSCarouselIndicatorsButton) => {
+const convert = (attr: IBsCarouselIndicatorsButton) => {
 	attr = mergeObject(
 		{
 			class: [attr.active ? "active" : undefined],
@@ -33,10 +33,13 @@ const convert = (attr: IAttrBSCarouselIndicatorsButton) => {
 
 export class button extends TButton {
 	constructor(); //#1
-	constructor(attr: IAttrBSCarouselIndicatorsButton); //#2
+	constructor(attr: IBsCarouselIndicatorsButton); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSCarouselIndicatorsButton, elem: IElem); //#4
+	constructor(attr: IBsCarouselIndicatorsButton, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSCarouselIndicatorsButton>("elem", convert, arg));
+		super(convert(bsConstArg<IBsCarouselIndicatorsButton>("elem", arg)));
 	}
 }
+
+export const Button = (AttrOrElem?: IBsCarouselIndicatorsButton | IElem, Elem?: IElem) =>
+	genTagClass<button, IBsCarouselIndicatorsButton>(button, AttrOrElem, Elem);

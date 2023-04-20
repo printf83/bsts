@@ -1,15 +1,15 @@
-import { IElem } from "../../../core/tag.js";
+import { genTagClass, IElem } from "../../../core/tag.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeObject } from "../../../core/mergeObject.js";
-import { a, IAttrTagA } from "../../../html/a.js";
+import { a, ITagA } from "../../../html/a.js";
 
-export interface IAttrBSNavLink extends IAttrTagA {
+export interface IBsNavLink extends ITagA {
 	role?: "tab" | "button";
 	toggle?: "dropdown" | "pill" | "tab";
 	active?: boolean;
 }
 
-const convert = (attr: IAttrBSNavLink) => {
+const convert = (attr: IBsNavLink) => {
 	switch (attr.toggle) {
 		case "dropdown":
 			attr.role ??= "button";
@@ -46,10 +46,13 @@ const convert = (attr: IAttrBSNavLink) => {
 
 export class link extends a {
 	constructor(); //#1
-	constructor(attr: IAttrBSNavLink); //#2
+	constructor(attr: IBsNavLink); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSNavLink, elem: IElem); //#4
+	constructor(attr: IBsNavLink, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSNavLink>("elem", convert, arg));
+		super(convert(bsConstArg<IBsNavLink>("elem", arg)));
 	}
 }
+
+export const Link = (AttrOrElem?: IBsNavLink | IElem, Elem?: IElem) =>
+	genTagClass<link, IBsNavLink>(link, AttrOrElem, Elem);

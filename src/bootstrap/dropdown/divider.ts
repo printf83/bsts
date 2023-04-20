@@ -1,4 +1,4 @@
-import { IAttr } from "../../core/tag.js";
+import { IAttr, genTagClass } from "../../core/tag.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { hr } from "../../html/hr.js";
 
@@ -19,3 +19,5 @@ export class divider extends hr {
 		}
 	}
 }
+
+export const Divider = (Attr?: IAttr) => genTagClass<divider, IAttr>(divider, Attr);

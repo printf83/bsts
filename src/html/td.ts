@@ -1,6 +1,6 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
 
-export interface IAttrTagTd extends IAttr {
+export interface ITagTd extends IAttr {
 	colspan?: number;
 	headers?: string;
 	rowspan?: number;
@@ -9,9 +9,11 @@ export interface IAttrTagTd extends IAttr {
 export class td extends tag {
 	constructor();
 	constructor(elem: IElem);
-	constructor(attr: IAttrTagTd);
-	constructor(attr: IAttrTagTd, elem: IElem);
+	constructor(attr: ITagTd);
+	constructor(attr: ITagTd, elem: IElem);
 	constructor(...arg: any[]) {
-		super("td", tagConsArg<IAttrTagTd>("elem", arg));
+		super("td", tagConsArg<ITagTd>("elem", arg));
 	}
 }
+
+export const Td = (AttrOrElem?: ITagTd | IElem, Elem?: IElem) => genTagClass<td, ITagTd>(td, AttrOrElem, Elem);

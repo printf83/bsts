@@ -4,11 +4,11 @@ import { mergeAttr } from "../../core/mergeAttr.js";
 import { removeElement } from "../../core/removeElement.js";
 import { IAttr, IElem } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
-import { button, IAttrBSButton } from "../button.js";
+import { button, IBsButton } from "../button.js";
 import { body } from "./body.js";
-import { container, IAttrBSModalContainer } from "./container.js";
+import { container, IBsModalContainer } from "./container.js";
 import { footer } from "./footer.js";
-import { header, IAttrBSModalHeader } from "./header.js";
+import { header, IBsModalHeader } from "./header.js";
 import { title } from "./title.js";
 
 export const show = (i: container) => {
@@ -41,7 +41,7 @@ export const hide = (i: HTMLElement) => {
 };
 
 interface btnItem {
-	color?: IAttrBSButton["color"];
+	color?: IBsButton["color"];
 	elem: IElem;
 	click?: EventListener;
 }
@@ -95,7 +95,7 @@ type btnType =
 	| "yescontinue";
 
 interface btnItemDB {
-	color?: IAttrBSButton["color"];
+	color?: IBsButton["color"];
 	elem: IElem;
 }
 
@@ -211,18 +211,18 @@ const genBtn = (btn?: btnType | btnType[], fn?: EventListener | EventListener[])
 	}
 };
 
-export interface IAttrBSModalSimple extends Omit<IAttrBSModalContainer, "title"> {
+export interface IBsModalSimple extends Omit<IBsModalContainer, "title"> {
 	btn?: btnType | btnType[];
 	btnFn?: EventListener | EventListener[];
 	title?: IElem;
 	elem?: IElem;
 
-	attrHeader?: IAttrBSModalHeader;
+	attrHeader?: IBsModalHeader;
 	attrBody?: IAttr;
 	attrFooter?: IAttr;
 }
 
-export const simple = (attr: IAttrBSModalSimple) => {
+export const simple = (attr: IBsModalSimple) => {
 	let contAttr = Object.assign({}, attr);
 
 	delete contAttr.btn;
@@ -248,7 +248,7 @@ export const simple = (attr: IAttrBSModalSimple) => {
 		showHeader = !(attr.static ? false : btn.hasDismissButton);
 	}
 
-	return new container(contAttr as IAttrBSModalContainer, [
+	return new container(contAttr as IBsModalContainer, [
 		showHeader
 			? new header(
 					mergeAttr(

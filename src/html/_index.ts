@@ -1,107 +1,214 @@
-import { a, IAttrTagA } from "./a.js";
-import { abbr, IAttrTagAbbr } from "./abbr.js";
-import { address } from "./address.js";
-import { area, IAttrTagArea } from "./area.js";
-import { article } from "./article.js";
-import { aside } from "./aside.js";
-import { audio, IAttrTagAudio } from "./audio.js";
-import { b } from "./b.js";
-import { base, IAttrTagBase } from "./base.js";
-import { bdi } from "./bdi.js";
-import { bdo, IAttrTagBdo } from "./bdo.js";
-import { blockquote, IAttrTagBlockquote } from "./blockquote.js";
-import { body } from "./body.js";
-import { br } from "./br.js";
-import { button, IAttrTagButton } from "./button.js";
-import { canvas } from "./canvas.js";
-import { caption } from "./caption.js";
-import { cite } from "./cite.js";
-import { code } from "./code.js";
-import { col, IAttrTagCol } from "./col.js";
-import { colgroup, IAttrTagColgroup } from "./colgroup.js";
-import { data, IAttrTagData } from "./data.js";
-import { datalist, IAttrTagDatalist } from "./datalist.js";
-import { dd } from "./dd.js";
-import { del, IAttrTagDel } from "./del.js";
-import { details, IAttrTagDetails } from "./details.js";
-import { dfn } from "./dfn.js";
-import { dialog, IAttrTagDialog } from "./dialog.js";
-import { div } from "./div.js";
-import { dl } from "./dl.js";
-import { dt } from "./dt.js";
-import { em } from "./em.js";
-import { embed, IAttrTagEmbed } from "./embed.js";
-import { fieldset, IAttrTagFieldset } from "./fieldset.js";
-import { figcaption } from "./figcaption.js";
-import { figure } from "./figure.js";
-import { footer } from "./footer.js";
-import { form, IAttrTagForm } from "./form.js";
-import { h, HLevel } from "./h.js";
-import { head } from "./head.js";
-import { header } from "./header.js";
-import { hr } from "./hr.js";
-import { i } from "./i.js";
-import { iframe, IAttrTagIframe } from "./iframe.js";
-import { img, IAttrTagImg } from "./img.js";
-import { input, IAttrTagInput } from "./input.js";
-import { ins, IAttrTagIns } from "./ins.js";
-import { kbd } from "./kbd.js";
-import { label, IAttrTagLabel } from "./label.js";
-import { legend } from "./legend.js";
-import { li, IAttrTagLi } from "./li.js";
-import { link, IAttrTagLink } from "./link.js";
-import { main } from "./main.js";
-import { map, IAttrTagMap } from "./map.js";
-import { mark } from "./mark.js";
-import { menu } from "./menu.js";
-import { meta, IAttrTagMeta } from "./meta.js";
-import { meter, IAttrTagMeter } from "./meter.js";
-import { nav } from "./nav.js";
-import { noscript } from "./noscript.js";
-import { obj, IAttrTagObj } from "./obj.js";
-import { ol, IAttrTagOl } from "./ol.js";
-import { optgroup, IAttrTagOptgroup } from "./optgroup.js";
-import { option, IAttrTagOption } from "./option.js";
-import { output, IAttrTagOutput } from "./output.js";
-import { p, IAttrTagP } from "./p.js";
-import { param, IAttrTagParam } from "./param.js";
-import { picture, IAttrTagPicture } from "./picture.js";
-import { pre } from "./pre.js";
-import { progress, IAttrTagProgress } from "./progress.js";
-import { q, IAttrTagQ } from "./q.js";
-import { rp } from "./rp.js";
-import { rt } from "./rt.js";
-import { ruby } from "./ruby.js";
-import { s } from "./s.js";
-import { samp } from "./samp.js";
-import { script, IAttrTagScript } from "./script.js";
-import { section } from "./section.js";
-import { select, IAttrTagSelect, IAttrTagSelectItem } from "./select.js";
-import { small } from "./small.js";
-import { source, IAttrTagSource } from "./source.js";
-import { span } from "./span.js";
-import { strong } from "./strong.js";
-import { style, IAttrTagStyle } from "./style.js";
-import { sub } from "./sub.js";
-import { summary } from "./summary.js";
-import { sup } from "./sup.js";
-import { table } from "./table.js";
-import { tbody } from "./tbody.js";
-import { td, IAttrTagTd } from "./td.js";
-import { template } from "./template.js";
-import { textarea, IAttrTagTextarea } from "./textarea.js";
-import { tfoot } from "./tfoot.js";
-import { th, IAttrTagTh } from "./th.js";
-import { thead } from "./thead.js";
-import { time, IAttrTagTime } from "./time.js";
-import { title } from "./title.js";
-import { tr } from "./tr.js";
-import { track, IAttrTagTrack } from "./track.js";
-import { u } from "./u.js";
-import { ul, IAttrTagUl } from "./ul.js";
-import { variable } from "./variable.js";
-import { video, IAttrTagVideo } from "./video.js";
-import { wbr } from "./wbr.js";
+import { A, a, ITagA } from "./a.js";
+import { Abbr, abbr, ITagAbbr } from "./abbr.js";
+import { Address, address } from "./address.js";
+import { Area, area, ITagArea } from "./area.js";
+import { Article, article } from "./article.js";
+import { Aside, aside } from "./aside.js";
+import { audio, Audio, ITagAudio } from "./audio.js";
+import { b, B } from "./b.js";
+import { Base, base, ITagBase } from "./base.js";
+import { Bdi, bdi } from "./bdi.js";
+import { Bdo, bdo, ITagBdo } from "./bdo.js";
+import { Blockquote, blockquote, ITagBlockquote } from "./blockquote.js";
+import { body, Body } from "./body.js";
+import { Br, br } from "./br.js";
+import { Button, button, ITagButton } from "./button.js";
+import { Canvas, canvas } from "./canvas.js";
+import { Caption, caption } from "./caption.js";
+import { Cite, cite } from "./cite.js";
+import { Code, code } from "./code.js";
+import { Col, col, ITagCol } from "./col.js";
+import { Colgroup, colgroup, ITagColgroup } from "./colgroup.js";
+import { Data, data, ITagData } from "./data.js";
+import { Datalist, datalist, ITagDatalist } from "./datalist.js";
+import { Dd, dd } from "./dd.js";
+import { Del, del, ITagDel } from "./del.js";
+import { Details, details, ITagDetails } from "./details.js";
+import { Dfn, dfn } from "./dfn.js";
+import { Dialog, dialog, ITagDialog } from "./dialog.js";
+import { Div, div } from "./div.js";
+import { Dl, dl } from "./dl.js";
+import { Dt, dt } from "./dt.js";
+import { Em, em } from "./em.js";
+import { Embed, embed, ITagEmbed } from "./embed.js";
+import { Fieldset, fieldset, ITagFieldset } from "./fieldset.js";
+import { Figcaption, figcaption } from "./figcaption.js";
+import { Figure, figure } from "./figure.js";
+import { Footer, footer } from "./footer.js";
+import { Form, form, ITagForm } from "./form.js";
+import { H, h, HLevel } from "./h.js";
+import { Head, head } from "./head.js";
+import { Header, header } from "./header.js";
+import { Hr, hr } from "./hr.js";
+import { I, i } from "./i.js";
+import { Iframe, iframe, ITagIframe } from "./iframe.js";
+import { Img, img, ITagImg } from "./img.js";
+import { Input, input, ITagInput } from "./input.js";
+import { Ins, ins, ITagIns } from "./ins.js";
+import { Kbd, kbd } from "./kbd.js";
+import { label, ITagLabel, Label } from "./label.js";
+import { Legend, legend } from "./legend.js";
+import { li, ITagLi, Li } from "./li.js";
+import { link, ITagLink, Link } from "./link.js";
+import { Main, main } from "./main.js";
+import { map, Map, ITagMap } from "./map.js";
+import { Mark, mark } from "./mark.js";
+import { Menu, menu } from "./menu.js";
+import { meta, ITagMeta, Meta } from "./meta.js";
+import { meter, ITagMeter, Meter } from "./meter.js";
+import { Nav, nav } from "./nav.js";
+import { Noscript, noscript } from "./noscript.js";
+import { obj, ITagObj, Obj } from "./obj.js";
+import { ol, ITagOl, Ol } from "./ol.js";
+import { optgroup, ITagOptgroup, Optgroup } from "./optgroup.js";
+import { option, Option, ITagOption } from "./option.js";
+import { output, ITagOutput, Output } from "./output.js";
+import { p, ITagP, P } from "./p.js";
+import { param, ITagParam, Param } from "./param.js";
+import { picture, ITagPicture, Picture } from "./picture.js";
+import { Pre, pre } from "./pre.js";
+import { progress, ITagProgress, Progress } from "./progress.js";
+import { q, ITagQ, Q } from "./q.js";
+import { Rp, rp } from "./rp.js";
+import { Rt, rt } from "./rt.js";
+import { Ruby, ruby } from "./ruby.js";
+import { S, s } from "./s.js";
+import { Samp, samp } from "./samp.js";
+import { script, ITagScript, Script } from "./script.js";
+import { Section, section } from "./section.js";
+import { select, ITagSelect, ITagSelectItem, Select } from "./select.js";
+import { Small, small } from "./small.js";
+import { source, ITagSource, Source } from "./source.js";
+import { Span, span } from "./span.js";
+import { Strong, strong } from "./strong.js";
+import { style, ITagStyle, Style } from "./style.js";
+import { Sub, sub } from "./sub.js";
+import { Summary, summary } from "./summary.js";
+import { Sup, sup } from "./sup.js";
+import { Table, table } from "./table.js";
+import { Tbody, tbody } from "./tbody.js";
+import { td, ITagTd, Td } from "./td.js";
+import { Template, template } from "./template.js";
+import { textarea, ITagTextarea, Textarea } from "./textarea.js";
+import { Tfoot, tfoot } from "./tfoot.js";
+import { th, ITagTh, Th } from "./th.js";
+import { Thead, thead } from "./thead.js";
+import { time, ITagTime, Time } from "./time.js";
+import { Title, title } from "./title.js";
+import { Tr, tr } from "./tr.js";
+import { track, ITagTrack, Track } from "./track.js";
+import { U, u } from "./u.js";
+import { ul, ITagUl, Ul } from "./ul.js";
+import { Variable, variable } from "./variable.js";
+import { video, ITagVideo, Video } from "./video.js";
+import { Wbr, wbr } from "./wbr.js";
+
+export {
+	A,
+	Abbr,
+	Address,
+	Area,
+	Article,
+	Aside,
+	Audio,
+	B,
+	Base,
+	Bdi,
+	Bdo,
+	Blockquote,
+	Body,
+	Br,
+	Button,
+	Canvas,
+	Caption,
+	Cite,
+	Code,
+	Col,
+	Colgroup,
+	Data,
+	Datalist,
+	Dd,
+	Del,
+	Details,
+	Dfn,
+	Dialog,
+	Div,
+	Dl,
+	Dt,
+	Em,
+	Embed,
+	Fieldset,
+	Figcaption,
+	Figure,
+	Footer,
+	Form,
+	H,
+	Head,
+	Header,
+	Hr,
+	I,
+	Iframe,
+	Img,
+	Input,
+	Ins,
+	Kbd,
+	Label,
+	Legend,
+	Li,
+	Link,
+	Main,
+	Map,
+	Mark,
+	Menu,
+	Meta,
+	Meter,
+	Nav,
+	Noscript,
+	Obj,
+	Ol,
+	Optgroup,
+	Option,
+	Output,
+	P,
+	Param,
+	Picture,
+	Pre,
+	Progress,
+	Q,
+	Rp,
+	Rt,
+	Ruby,
+	S,
+	Samp,
+	Script,
+	Section,
+	Select,
+	Small,
+	Source,
+	Span,
+	Strong,
+	Style,
+	Sub,
+	Summary,
+	Sup,
+	Table,
+	Tbody,
+	Td,
+	Template,
+	Textarea,
+	Tfoot,
+	Th,
+	Thead,
+	Time,
+	Title,
+	Tr,
+	Track,
+	U,
+	Ul,
+	Variable,
+	Video,
+	Wbr,
+};
 
 export {
 	a,
@@ -208,55 +315,55 @@ export {
 	variable,
 	video,
 	wbr,
-	IAttrTagA,
-	IAttrTagAbbr,
-	IAttrTagArea,
-	IAttrTagAudio,
-	IAttrTagBase,
-	IAttrTagBdo,
-	IAttrTagBlockquote,
-	IAttrTagButton,
-	IAttrTagCol,
-	IAttrTagColgroup,
-	IAttrTagData,
-	IAttrTagDatalist,
-	IAttrTagDel,
-	IAttrTagDetails,
-	IAttrTagDialog,
-	IAttrTagEmbed,
-	IAttrTagFieldset,
-	IAttrTagForm,
+	ITagA,
+	ITagAbbr,
+	ITagArea,
+	ITagAudio,
+	ITagBase,
+	ITagBdo,
+	ITagBlockquote,
+	ITagButton,
+	ITagCol,
+	ITagColgroup,
+	ITagData,
+	ITagDatalist,
+	ITagDel,
+	ITagDetails,
+	ITagDialog,
+	ITagEmbed,
+	ITagFieldset,
+	ITagForm,
 	HLevel,
-	IAttrTagIframe,
-	IAttrTagImg,
-	IAttrTagInput,
-	IAttrTagIns,
-	IAttrTagLabel,
-	IAttrTagLi,
-	IAttrTagLink,
-	IAttrTagMap,
-	IAttrTagMeta,
-	IAttrTagMeter,
-	IAttrTagObj,
-	IAttrTagOl,
-	IAttrTagOptgroup,
-	IAttrTagOption,
-	IAttrTagOutput,
-	IAttrTagP,
-	IAttrTagParam,
-	IAttrTagPicture,
-	IAttrTagProgress,
-	IAttrTagQ,
-	IAttrTagScript,
-	IAttrTagSelect,
-	IAttrTagSelectItem,
-	IAttrTagSource,
-	IAttrTagStyle,
-	IAttrTagTd,
-	IAttrTagTextarea,
-	IAttrTagTh,
-	IAttrTagTime,
-	IAttrTagTrack,
-	IAttrTagUl,
-	IAttrTagVideo,
+	ITagIframe,
+	ITagImg,
+	ITagInput,
+	ITagIns,
+	ITagLabel,
+	ITagLi,
+	ITagLink,
+	ITagMap,
+	ITagMeta,
+	ITagMeter,
+	ITagObj,
+	ITagOl,
+	ITagOptgroup,
+	ITagOption,
+	ITagOutput,
+	ITagP,
+	ITagParam,
+	ITagPicture,
+	ITagProgress,
+	ITagQ,
+	ITagScript,
+	ITagSelect,
+	ITagSelectItem,
+	ITagSource,
+	ITagStyle,
+	ITagTd,
+	ITagTextarea,
+	ITagTh,
+	ITagTime,
+	ITagTrack,
+	ITagUl,
+	ITagVideo,
 };

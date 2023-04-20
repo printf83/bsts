@@ -1,6 +1,6 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
 
-export interface IAttrTagFieldset extends IAttr {
+export interface ITagFieldset extends IAttr {
 	disabled?: boolean;
 	form?: string;
 	name?: string;
@@ -9,9 +9,12 @@ export interface IAttrTagFieldset extends IAttr {
 export class fieldset extends tag {
 	constructor();
 	constructor(elem: IElem);
-	constructor(attr: IAttrTagFieldset);
-	constructor(attr: IAttrTagFieldset, elem: IElem);
+	constructor(attr: ITagFieldset);
+	constructor(attr: ITagFieldset, elem: IElem);
 	constructor(...arg: any[]) {
-		super("fieldset", tagConsArg<IAttrTagFieldset>("elem", arg));
+		super("fieldset", tagConsArg<ITagFieldset>("elem", arg));
 	}
 }
+
+export const Fieldset = (AttrOrElem?: ITagFieldset | IElem, Elem?: IElem) =>
+	genTagClass<fieldset, ITagFieldset>(fieldset, AttrOrElem, Elem);

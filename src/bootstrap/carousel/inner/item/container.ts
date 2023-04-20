@@ -1,14 +1,14 @@
-import { IAttr, IElem } from "../../../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../../../core/tag.js";
 import { bsConstArg } from "../../../../core/bootstrap.js";
 import { div } from "../../../../html/div.js";
 import { mergeObject } from "../../../../core/mergeObject.js";
 
-export interface IAttrBSCarouselInnerItemContainer extends IAttr {
+export interface IBsCarouselInnerItemContainer extends IAttr {
 	active?: boolean;
 	interval?: number;
 }
 
-const convert = (attr: IAttrBSCarouselInnerItemContainer) => {
+const convert = (attr: IBsCarouselInnerItemContainer) => {
 	attr = mergeObject(
 		{
 			class: ["carousel-item", attr.active ? "active" : undefined],
@@ -25,10 +25,13 @@ const convert = (attr: IAttrBSCarouselInnerItemContainer) => {
 
 export class container extends div {
 	constructor(); //#1
-	constructor(attr: IAttrBSCarouselInnerItemContainer); //#2
+	constructor(attr: IBsCarouselInnerItemContainer); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSCarouselInnerItemContainer, elem: IElem); //#4
+	constructor(attr: IBsCarouselInnerItemContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSCarouselInnerItemContainer>("elem", convert, arg));
+		super(convert(bsConstArg<IBsCarouselInnerItemContainer>("elem", arg)));
 	}
 }
+
+export const Container = (AttrOrElem?: IBsCarouselInnerItemContainer | IElem, Elem?: IElem) =>
+	genTagClass<container, IBsCarouselInnerItemContainer>(container, AttrOrElem, Elem);

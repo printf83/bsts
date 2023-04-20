@@ -1,4 +1,4 @@
-import { IAttr, IElem } from "../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../core/tag.js";
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { span } from "../html/span.js";
@@ -14,6 +14,8 @@ export class badge extends span {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttr, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg("elem", convert, arg));
+		super(convert(bsConstArg("elem", arg)));
 	}
 }
+
+export const Badge = (AttrOrElem?: IAttr | IElem, Elem?: IElem) => genTagClass<badge, IAttr>(badge, AttrOrElem, Elem);

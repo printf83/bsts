@@ -1,12 +1,13 @@
 import { bsConsNoElemArg } from "../core/bootstrap.js";
 import { mergeClass } from "../core/mergeClass.js";
-import { button, IAttrTagButton } from "../html/button.js";
+import { genTagClass } from "../core/tag.js";
+import { button, ITagButton } from "../html/button.js";
 
-export interface IAttrBSBtnclose extends IAttrTagButton {
+export interface IBsBtnclose extends ITagButton {
 	white?: boolean;
 }
 
-const convert = (attr: IAttrBSBtnclose) => {
+const convert = (attr: IBsBtnclose) => {
 	//default value
 	attr.label ??= "Close";
 	attr.type ??= "button";
@@ -22,8 +23,10 @@ const convert = (attr: IAttrBSBtnclose) => {
 
 export class btnclose extends button {
 	constructor(); //#1
-	constructor(attr: IAttrBSBtnclose); //#2
+	constructor(attr: IBsBtnclose); //#2
 	constructor(...arg: any[]) {
 		super(bsConsNoElemArg(convert, arg));
 	}
 }
+
+export const Btnclose = (Attr?: IBsBtnclose) => genTagClass<btnclose, IBsBtnclose>(btnclose, Attr);

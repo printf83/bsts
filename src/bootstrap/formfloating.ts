@@ -1,4 +1,4 @@
-import { IAttr, IElem } from "../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../core/tag.js";
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { div } from "../html/div.js";
@@ -14,6 +14,9 @@ export class formfloating extends div {
 	constructor(elem: IElem); //#3
 	constructor(attr: IAttr, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg("elem", convert, arg));
+		super(convert(bsConstArg("elem", arg)));
 	}
 }
+
+export const Formfloating = (AttrOrElem?: IAttr | IElem, Elem?: IElem) =>
+	genTagClass<formfloating, IAttr>(formfloating, AttrOrElem, Elem);

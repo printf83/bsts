@@ -1,9 +1,9 @@
-import { IAttr, IElem } from "../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../core/tag.js";
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { span } from "../html/span.js";
 
-export interface IAttrBSTooltip extends IAttr {
+export interface IBsTooltip extends IAttr {
 	inline?: boolean;
 	trigger?: "hover" | "focus" | "click" | ("hover" | "focus" | "click")[];
 	content?: string;
@@ -12,7 +12,7 @@ export interface IAttrBSTooltip extends IAttr {
 	parent?: string;
 }
 
-const convert = (attr: IAttrBSTooltip) => {
+const convert = (attr: IBsTooltip) => {
 	attr.inline ??= true;
 
 	attr = mergeObject(
@@ -47,11 +47,11 @@ const convert = (attr: IAttrBSTooltip) => {
 
 export class tooltip extends span {
 	constructor(); //#1
-	constructor(attr: IAttrBSTooltip); //#2
+	constructor(attr: IBsTooltip); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSTooltip, elem: IElem); //#4
+	constructor(attr: IBsTooltip, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSTooltip>("elem", convert, arg));
+		super(convert(bsConstArg<IBsTooltip>("elem", arg)));
 	}
 
 	static getInstance = (elem: HTMLElement) => {
@@ -61,3 +61,6 @@ export class tooltip extends span {
 		return window.bootstrap.Tooltip.getOrCreateInstance(elem);
 	};
 }
+
+export const Tooltip = (AttrOrElem?: IBsTooltip | IElem, Elem?: IElem) =>
+	genTagClass<tooltip, IBsTooltip>(tooltip, AttrOrElem, Elem);

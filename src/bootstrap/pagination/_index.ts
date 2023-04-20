@@ -1,4 +1,5 @@
-import { container, IAttrBSPaginationContainer } from "./container.js";
-import { item, IAttrBSPaginationItem } from "./item.js";
+import { Container, container, IBsPaginationContainer } from "./container.js";
+import { item, IBsPaginationItem, Item } from "./item.js";
 
-export { container, item, IAttrBSPaginationContainer, IAttrBSPaginationItem };
+export { container, item, IBsPaginationContainer, IBsPaginationItem };
+export { Container, Item };

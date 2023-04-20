@@ -1,9 +1,9 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
 
-export type IAttrBSToastContainerPlacement =
+export type IBsToastContainerPlacement =
 	| "top-start"
 	| "top-center"
 	| "top-end"
@@ -14,12 +14,12 @@ export type IAttrBSToastContainerPlacement =
 	| "bottom-center"
 	| "bottom-end";
 
-export interface IAttrBSToastContainer extends IAttr {
+export interface IBsToastContainer extends IAttr {
 	debug?: boolean;
-	placement?: IAttrBSToastContainerPlacement;
+	placement?: IBsToastContainerPlacement;
 }
 
-const convert = (attr: IAttrBSToastContainer) => {
+const convert = (attr: IBsToastContainer) => {
 	let placementAttr: IAttr = {};
 	attr.placement ??= "top-end";
 
@@ -69,10 +69,13 @@ const convert = (attr: IAttrBSToastContainer) => {
 
 export class container extends div {
 	constructor(); //#1
-	constructor(attr: IAttrBSToastContainer); //#2
+	constructor(attr: IBsToastContainer); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSToastContainer, elem: IElem); //#4
+	constructor(attr: IBsToastContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSToastContainer>("elem", convert, arg));
+		super(convert(bsConstArg<IBsToastContainer>("elem", arg)));
 	}
 }
+
+export const Container = (AttrOrElem?: IBsToastContainer | IElem, Elem?: IElem) =>
+	genTagClass<container, IBsToastContainer>(container, AttrOrElem, Elem);

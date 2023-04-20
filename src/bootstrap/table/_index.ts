@@ -1,12 +1,12 @@
-import { caption } from "../../html/caption.js";
-import { container, IAttrBSTableContainer } from "./container.js";
-import { responsive, IAttrBSTableResponsive } from "./responsive.js";
-import { tbody, IAttrBSTableTbody } from "./tbody.js";
-import { td, IAttrBSTableTd } from "./td.js";
-import { th, IAttrBSTableTh } from "./th.js";
-import { tfoot, IAttrBSTableTfoot } from "./tfoot.js";
-import { thead, IAttrBSTableThead } from "./thead.js";
-import { tr, IAttrBSTableTr } from "./tr.js";
+import { Caption, caption } from "../../html/caption.js";
+import { Container, container, IBsTableContainer } from "./container.js";
+import { responsive, IBsTableResponsive, Responsive } from "./responsive.js";
+import { tbody, IBsTableTbody, Tbody } from "./tbody.js";
+import { td, IBsTableTd, Td } from "./td.js";
+import { th, IBsTableTh, Th } from "./th.js";
+import { tfoot, IBsTableTfoot, Tfoot } from "./tfoot.js";
+import { thead, IBsTableThead, Thead } from "./thead.js";
+import { tr, IBsTableTr, Tr } from "./tr.js";
 
 export {
 	responsive,
@@ -18,12 +18,14 @@ export {
 	tfoot,
 	th,
 	caption,
-	IAttrBSTableResponsive,
-	IAttrBSTableContainer,
-	IAttrBSTableTbody,
-	IAttrBSTableTd,
-	IAttrBSTableTfoot,
-	IAttrBSTableTh,
-	IAttrBSTableThead,
-	IAttrBSTableTr,
+	IBsTableResponsive,
+	IBsTableContainer,
+	IBsTableTbody,
+	IBsTableTd,
+	IBsTableTfoot,
+	IBsTableTh,
+	IBsTableThead,
+	IBsTableTr,
 };
+
+export { Responsive, Container, Tbody, Td, Tr, Thead, Tfoot, Th, Caption };

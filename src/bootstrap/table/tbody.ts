@@ -1,13 +1,13 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { tbody as TTbody } from "../../html/tbody.js";
 
-export interface IAttrBSTableTbody extends IAttr {
+export interface IBsTableTbody extends IAttr {
 	divider?: boolean;
 }
 
-const convert = (attr: IAttrBSTableTbody) => {
+const convert = (attr: IBsTableTbody) => {
 	attr.class = mergeClass(attr.class, [attr.divider ? "table-group-divider" : undefined]);
 
 	delete attr.divider;
@@ -17,10 +17,13 @@ const convert = (attr: IAttrBSTableTbody) => {
 
 export class tbody extends TTbody {
 	constructor(); //#1
-	constructor(attr: IAttrBSTableTbody); //#2
+	constructor(attr: IBsTableTbody); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSTableTbody, elem: IElem); //#4
+	constructor(attr: IBsTableTbody, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSTableTbody>("elem", convert, arg));
+		super(convert(bsConstArg<IBsTableTbody>("elem", arg)));
 	}
 }
+
+export const Tbody = (AttrOrElem?: IBsTableTbody | IElem, Elem?: IElem) =>
+	genTagClass<tbody, IBsTableTbody>(tbody, AttrOrElem, Elem);

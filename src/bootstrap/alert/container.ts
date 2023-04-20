@@ -1,18 +1,18 @@
-import { bootstrapType } from "../../core/bootstrap.js";
-import { IAttr, IElem } from "../../core/tag.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { IAttr, IElem, genTagClass } from "../../core/tag.js";
+import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
 import { btnclose } from "../btnclose.js";
 
-export interface IAttrBSAlertContainer extends IAttr {
+export interface IBsAlertContainer extends IAttr {
 	callout?: boolean;
-	color?: bootstrapType.color[number];
 	role?: string;
-	dismissible?: true;
+
+	color?: bootstrapType.alertColor;
+	dismissible?: bootstrapType.alertDismissible;
 }
 
-const convert = (attr: IAttrBSAlertContainer) => {
+const convert = (attr: IBsAlertContainer) => {
 	//add default value
 	attr.role ??= "alert";
 	attr.color ??= "primary";
@@ -52,10 +52,13 @@ const convert = (attr: IAttrBSAlertContainer) => {
 
 export class container extends div {
 	constructor(); //#1
-	constructor(attr: IAttrBSAlertContainer); //#2
+	constructor(attr: IBsAlertContainer); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSAlertContainer, elem: IElem); //#4
+	constructor(attr: IBsAlertContainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSAlertContainer>("elem", convert, arg));
+		super(convert(bsConstArg<IBsAlertContainer>("elem", arg)));
 	}
 }
+
+export const Container = (AttrOrElem?: IBsAlertContainer | IElem, Elem?: IElem) =>
+	genTagClass<container, IBsAlertContainer>(container, AttrOrElem, Elem);

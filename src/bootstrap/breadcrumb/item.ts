@@ -1,15 +1,15 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { a } from "../../html/a.js";
 import { li } from "../../html/li.js";
 
-export interface IAttrBSBreadcrumbItem extends IAttr {
+export interface IBsBreadcrumbItem extends IAttr {
 	active?: boolean;
 	href?: string;
 }
 
-const convert = (attr: IAttrBSBreadcrumbItem) => {
+const convert = (attr: IBsBreadcrumbItem) => {
 	attr = mergeObject(
 		{
 			class: ["breadcrumb-item", attr.active ? "active" : undefined],
@@ -33,10 +33,13 @@ const convert = (attr: IAttrBSBreadcrumbItem) => {
 
 export class item extends li {
 	constructor(); //#1
-	constructor(attr: IAttrBSBreadcrumbItem); //#2
+	constructor(attr: IBsBreadcrumbItem); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSBreadcrumbItem, elem: IElem); //#4
+	constructor(attr: IBsBreadcrumbItem, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSBreadcrumbItem>("elem", convert, arg));
+		super(convert(bsConstArg<IBsBreadcrumbItem>("elem", arg)));
 	}
 }
+
+export const Item = (AttrOrElem?: IBsBreadcrumbItem | IElem, Elem?: IElem) =>
+	genTagClass<item, IBsBreadcrumbItem>(item, AttrOrElem, Elem);

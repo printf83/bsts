@@ -1,6 +1,6 @@
-import { tagConsNoElemArg, IAttr, tag } from "../core/tag.js";
+import { tagConsNoElemArg, IAttr, tag, genTagClass } from "../core/tag.js";
 
-export interface IAttrTagScript extends IAttr {
+export interface ITagScript extends IAttr {
 	async?: boolean;
 	crossorigin?: "anonymous" | "use-credentials";
 	defer?: boolean;
@@ -21,8 +21,10 @@ export interface IAttrTagScript extends IAttr {
 
 export class script extends tag {
 	constructor();
-	constructor(attr: IAttrTagScript);
+	constructor(attr: ITagScript);
 	constructor(...arg: any[]) {
-		super("script", tagConsNoElemArg<IAttrTagScript>(arg));
+		super("script", tagConsNoElemArg<ITagScript>(arg));
 	}
 }
+
+export const Script = (Attr?: ITagScript) => genTagClass<script, ITagScript>(script, Attr);

@@ -1,12 +1,12 @@
-import { IElem, tag } from "../../core/tag.js";
-import { IAttrTagDatalist, datalist as TDatalist } from "../../html/datalist.js";
+import { IElem, tag, strHtml } from "../../core/tag.js";
+import { ITagDatalist, datalist as TDatalist } from "../../html/datalist.js";
 import { div } from "../../html/div.js";
 import { input } from "../input.js";
 import { label as TLabel } from "../label.js";
 import { text } from "../inputgroup/text.js";
 import { bootstrapType } from "../../core/bootstrap.js";
 
-export const genDatalist = (id: string, datalist?: IAttrTagDatalist["item"]) => {
+export const genDatalist = (id: string, datalist?: ITagDatalist["item"]) => {
 	return datalist ? new TDatalist({ id: `${id}-datalist`, item: datalist }) : "";
 };
 
@@ -31,7 +31,7 @@ export const genInvalidTooltip = (id: string, feedback?: string) => {
 };
 
 export const genGroupItem = (id: string, item?: IElem) => {
-	let result: (string | tag)[] = [];
+	let result: (string | tag | strHtml)[] = [];
 
 	if (item) {
 		if (!Array.isArray(item)) {
@@ -102,9 +102,9 @@ export const colSetup = (
 	validfeedback?: string,
 	invalidfeedback?: string,
 	description?: string,
-	col1?: bootstrapType.col[number],
-	col2?: bootstrapType.col[number],
-	col3?: false | bootstrapType.col[number]
+	col1?: bootstrapType.col,
+	col2?: bootstrapType.col,
+	col3?: false | bootstrapType.col
 ) => {
 	//setup col if provided
 	if (col1) {

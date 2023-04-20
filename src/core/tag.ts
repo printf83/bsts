@@ -1,5 +1,5 @@
 import { mergeObject } from "./mergeObject.js";
-import { bootstrapType } from "./bootstrap.js";
+import { IBsAttr, IBsClass } from "./bootstrap.js";
 
 export interface IStyle {
 	alignContent?: string;
@@ -294,7 +294,7 @@ export interface IGlobal {
 	draggable?: string;
 	lang?: string;
 	spellcheck?: string;
-	tabindex?: string;
+	tabindex?: string | number;
 	title?: string;
 	translate?: string;
 
@@ -303,142 +303,12 @@ export interface IGlobal {
 	nomodule?: boolean;
 	playsinline?: boolean;
 	truespeed?: boolean;
+
+	attrWidth?: string | number;
+	attwHeight?: string | number;
 }
 
-export interface IGlobalAria {
-	label?: string;
-	labelledby?: string;
-	ownby?: string;
-	describedby?: string;
-	control?: string;
-}
-
-export interface IBootstrap {
-	theme?: bootstrapType.theme[number];
-
-	userSelect?: bootstrapType.userSelect[number];
-	pointerEvent?: bootstrapType.pointerEvent[number];
-	position?: bootstrapType.position[number];
-	overflow?: bootstrapType.overflow[number];
-	overflowX?: bootstrapType.overflow[number];
-	overflowY?: bootstrapType.overflow[number];
-
-	textAlign?: bootstrapType.textAlign[number];
-	verticalAlign?: bootstrapType.verticalAlign[number];
-
-	opacity?: bootstrapType.opacity[number];
-	bgOpacity?: bootstrapType.bgOpacity[number];
-	textOpacity?: bootstrapType.textOpacity[number];
-
-	textBgColor?: bootstrapType.textBgColor[number];
-	textColor?: bootstrapType.textColor[number];
-	bgColor?: bootstrapType.bgColor[number];
-
-	textTransform?: bootstrapType.textTransform[number];
-	textDecoration?: bootstrapType.textDecoration[number];
-	lineHeight?: bootstrapType.lineHeight[number];
-
-	fontSize?: bootstrapType.fontSize[number];
-	fontDisplay?: bootstrapType.fontDisplay[number];
-	fontWeight?: bootstrapType.fontWeight[number];
-
-	top?: bootstrapType.top[number];
-	bottom?: bootstrapType.bottom[number];
-	start?: bootstrapType.start[number];
-	end?: bootstrapType.end[number];
-	tMiddle?: bootstrapType.tMiddle[number];
-
-	height?: bootstrapType.height[number];
-	width?: bootstrapType.width[number];
-	maxHeight?: bootstrapType.maxHeight[number];
-	maxWidth?: bootstrapType.maxWidth[number];
-	minViewHeight?: bootstrapType.minViewHeight[number];
-	minViewWidth?: bootstrapType.minViewWidth[number];
-	viewHeight?: bootstrapType.viewHeight[number];
-	viewWidth?: bootstrapType.viewWidth[number];
-
-	loadingPlaceholder?: bootstrapType.loadingPlaceholder[number];
-	loadingPlaceholderAnimation?: bootstrapType.loadingPlaceholderAnimation[number];
-	loadingPlaceholderWeight?: bootstrapType.loadingPlaceholderWeight[number];
-
-	shadow?: bootstrapType.shadow[number];
-
-	border?: bootstrapType.border[number] | bootstrapType.border[number][];
-	borderNone?: bootstrapType.borderNone[number] | bootstrapType.borderNone[number][];
-	borderColor?: bootstrapType.borderColor[number];
-	borderOpacity?: bootstrapType.borderOpacity[number];
-	borderWidth?: bootstrapType.borderWidth[number];
-
-	rounded?: bootstrapType.rounded[number];
-	roundedNone?: bootstrapType.roundedNone[number];
-	roundedSize?: bootstrapType.roundedSize[number];
-
-	padding?: bootstrapType.padding[number] | bootstrapType.padding[number][];
-	paddingX?: bootstrapType.paddingX[number] | bootstrapType.paddingX[number][];
-	paddingY?: bootstrapType.paddingY[number] | bootstrapType.paddingY[number][];
-	paddingTop?: bootstrapType.paddingTop[number] | bootstrapType.paddingTop[number][];
-	paddingBottom?: bootstrapType.paddingBottom[number] | bootstrapType.paddingBottom[number][];
-	paddingStart?: bootstrapType.paddingStart[number] | bootstrapType.paddingStart[number][];
-	paddingEnd?: bootstrapType.paddingEnd[number] | bootstrapType.paddingEnd[number][];
-
-	margin?: bootstrapType.margin[number] | bootstrapType.margin[number][];
-	marginX?: bootstrapType.marginX[number] | bootstrapType.marginX[number][];
-	marginY?: bootstrapType.marginY[number] | bootstrapType.marginY[number][];
-	marginTop?: bootstrapType.marginTop[number] | bootstrapType.marginTop[number][];
-	marginBottom?: bootstrapType.marginBottom[number] | bootstrapType.marginBottom[number][];
-	marginStart?: bootstrapType.marginStart[number] | bootstrapType.marginStart[number][];
-	marginEnd?: bootstrapType.marginEnd[number] | bootstrapType.marginEnd[number][];
-
-	gap?: bootstrapType.gap[number] | bootstrapType.gap[number][];
-	gutter?: bootstrapType.gutter[number] | bootstrapType.gutter[number][];
-	gutterX?: bootstrapType.gutterX[number] | bootstrapType.gutterX[number][];
-	gutterY?: bootstrapType.gutterY[number] | bootstrapType.gutterY[number][];
-
-	display?: bootstrapType.display[number] | bootstrapType.display[number][];
-	print?: bootstrapType.print[number] | bootstrapType.print[number];
-	container?: bootstrapType.container[number];
-
-	flex?: bootstrapType.flex[number] | bootstrapType.flex[number][];
-	float?: bootstrapType.float[number] | bootstrapType.float[number][];
-	order?: bootstrapType.order[number] | bootstrapType.order[number][];
-	offset?: bootstrapType.offset[number] | bootstrapType.offset[number][];
-
-	alignContent?: bootstrapType.alignContent[number] | bootstrapType.alignContent[number][];
-	justifyContent?: bootstrapType.justifyContent[number] | bootstrapType.justifyContent[number][];
-	alignItem?: bootstrapType.alignItem[number] | bootstrapType.alignItem[number][];
-	alignSelf?: bootstrapType.alignSelf[number] | bootstrapType.alignSelf[number][];
-
-	visible?: bootstrapType.visible[number];
-	textWrap?: bootstrapType.textWrap[number];
-	fontItalic?: bootstrapType.fontItalic[number];
-	bgGradient?: bootstrapType.bgGradient[number];
-	textBreak?: bootstrapType.textBreak[number];
-	monospace?: bootstrapType.monospace[number];
-	row?: bootstrapType.row[number];
-	col?: bootstrapType.col[number] | bootstrapType.col[number][];
-	rowCol?: bootstrapType.rowCol[number] | bootstrapType.rowCol[number][];
-
-	zIndex?: bootstrapType.zindex[number];
-	objectFit?: bootstrapType.objectFit[number] | bootstrapType.objectFit[number][];
-	ratio?: bootstrapType.ratio[number];
-	fixed?: bootstrapType.fixed[number];
-	sticky?: bootstrapType.sticky[number] | bootstrapType.sticky[number][];
-	clearfix?: bootstrapType.clearfix[number];
-	textTruncate?: bootstrapType.textTruncate[number];
-	visually?: bootstrapType.visually[number];
-	vstack?: bootstrapType.vstack[number];
-	hstack?: bootstrapType.hstack[number];
-	h?: bootstrapType.h[number];
-	small?: bootstrapType.small[number];
-
-	iconLink?: bootstrapType.iconLink[number];
-
-	focusRing?: bootstrapType.focusRing[number];
-
-	pointer?: boolean;
-}
-
-export interface IAttr extends IGlobal, IGlobalAria, IBootstrap {
+export interface IAttr extends IGlobal, IBsAttr, IBsClass {
 	data?: IData;
 	aria?: IAria;
 	on?: IEvent;
@@ -453,35 +323,7 @@ export interface ITag {
 	// dom?: HTMLElement;
 }
 
-export type IElem = string | tag | (string | tag)[];
-
-const convert = (attr: IAttr) => {
-	if (attr.theme || attr.label || attr.labelledby || attr.ownby || attr.describedby || attr.control) {
-		attr = mergeObject(
-			{
-				data: { "bs-theme": attr.theme },
-				aria: {
-					label: attr.label,
-					labelledby: attr.labelledby,
-					owns: attr.ownby,
-					describedby: attr.describedby,
-					controls: attr.control,
-				},
-			},
-			attr
-		);
-
-		delete attr.theme;
-		delete attr.label;
-		delete attr.labelledby;
-		delete attr.ownby;
-		delete attr.describedby;
-		delete attr.control;
-		delete attr.pointer;
-	}
-
-	return attr;
-};
+export type IElem = string | tag | strHtml | (string | tag | strHtml)[];
 
 export class tag implements ITag {
 	public isbsts = true;
@@ -504,7 +346,7 @@ export class tag implements ITag {
 				if (arg[1]) {
 					this.elem = arg[1].elem;
 					delete arg[1].elem;
-					this.attr = convert(arg[1]);
+					this.attr = arg[1];
 				}
 			} else {
 				this.tag = "div";
@@ -515,12 +357,41 @@ export class tag implements ITag {
 	}
 }
 
+//now new keyword for tag
+export const Tag = (Tag: string, Attr?: IAttr) => {
+	return new tag(Tag, Attr);
+};
+
+export class strHtml {
+	ishtml = true;
+	public elem?: string;
+
+	constructor();
+	constructor(elem: string);
+	constructor(...arg: any[]) {
+		if (arg) {
+			this.elem = arg[0];
+		} else {
+			this.elem = "";
+		}
+	}
+}
+
+//now new keyword for tag
+export const StrHtml = (Html: string) => {
+	return new strHtml(Html);
+};
+
 export const isTag = <T>(obj: any): obj is T => {
 	return typeof obj === "object" && !Array.isArray(obj) && "isbsts" in obj && obj["isbsts"] === true;
 };
 
+export const isHtml = <T extends strHtml>(obj: any): obj is T => {
+	return typeof obj === "object" && !Array.isArray(obj) && "ishtml" in obj && obj["ishtml"] === true;
+};
+
 export const isAttr = <T>(obj: any): obj is T => {
-	return typeof obj === "object" && !Array.isArray(obj) && !("isbsts" in obj);
+	return typeof obj === "object" && !Array.isArray(obj) && !("isbsts" in obj) && !("ishtml" in obj);
 };
 
 export const tagConsNoElemArg = <T extends IAttr>(arg: any[]): T => {
@@ -542,5 +413,29 @@ export const tagConsArg = <T extends IAttr>(prop: string, arg: any[]): T => {
 		return mergeObject<T>({ [prop]: arg[1] } as T, arg[0]);
 	} else {
 		return {} as T;
+	}
+};
+
+const createTag = <T extends tag>(TagClass: new (...args: any[]) => T, ...ctorArgs: any[]): T => {
+	return new TagClass(...ctorArgs);
+};
+
+export const genTagClass = <T extends tag, U>(
+	TagClass: new (...args: any[]) => T,
+	AttrOrElem?: U | IElem,
+	Elem?: IElem
+) => {
+	if (AttrOrElem) {
+		if (isAttr<U>(AttrOrElem)) {
+			if (Elem) {
+				return createTag(TagClass, AttrOrElem as U, Elem) as T;
+			} else {
+				return createTag(TagClass, AttrOrElem as U) as T;
+			}
+		} else {
+			return createTag(TagClass, AttrOrElem as IElem) as T;
+		}
+	} else {
+		return createTag(TagClass) as T;
 	}
 };

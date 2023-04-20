@@ -1,15 +1,15 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-import { option, IAttrTagOption } from "./option.js";
+import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
+import { option, ITagOption } from "./option.js";
 
-export interface IAttrTagOptgroup extends IAttr {
+export interface ITagOptgroup extends IAttr {
 	disabled?: boolean;
 	label?: string;
 	attrLabel?: string;
 
-	item?: IAttrTagOption | IAttrTagOption[];
+	item?: ITagOption | ITagOption[];
 }
 
-const convert = (attr: IAttrTagOptgroup) => {
+const convert = (attr: ITagOptgroup) => {
 	if (attr.label) {
 		attr.attrLabel = attr.label;
 		delete attr.label;
@@ -33,9 +33,12 @@ const convert = (attr: IAttrTagOptgroup) => {
 export class optgroup extends tag {
 	constructor();
 	constructor(elem: IElem);
-	constructor(attr: IAttrTagOptgroup);
-	constructor(attr: IAttrTagOptgroup, elem: IElem);
+	constructor(attr: ITagOptgroup);
+	constructor(attr: ITagOptgroup, elem: IElem);
 	constructor(...arg: any[]) {
-		super("optgroup", convert(tagConsArg<IAttrTagOptgroup>("elem", arg)));
+		super("optgroup", convert(tagConsArg<ITagOptgroup>("elem", arg)));
 	}
 }
+
+export const Optgroup = (AttrOrElem?: ITagOptgroup | IElem, Elem?: IElem) =>
+	genTagClass<optgroup, ITagOptgroup>(optgroup, AttrOrElem, Elem);

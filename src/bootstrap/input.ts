@@ -1,9 +1,10 @@
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
+import { genTagClass } from "../core/tag.js";
 import { UUID } from "../core/uuid.js";
-import { IAttrTagInput, input as TInput } from "../html/input.js";
+import { ITagInput, input as TInput } from "../html/input.js";
 
-export interface IAttrBSInput extends IAttrTagInput {
+export interface IBsInput extends ITagInput {
 	weight?: "sm" | "lg";
 	toggle?: true;
 	switch?: true;
@@ -12,7 +13,7 @@ export interface IAttrBSInput extends IAttrTagInput {
 	isvalid?: boolean;
 }
 
-const convert = (attr: IAttrBSInput) => {
+const convert = (attr: IBsInput) => {
 	//set default value
 	attr.type ??= "text";
 
@@ -65,9 +66,12 @@ const convert = (attr: IAttrBSInput) => {
 export class input extends TInput {
 	constructor(); //#1
 	constructor(value: string); //#2
-	constructor(attr: IAttrBSInput); //#3
-	constructor(attr: IAttrBSInput, value: string); //#4
+	constructor(attr: IBsInput); //#3
+	constructor(attr: IBsInput, value: string); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSInput>("value", convert, arg));
+		super(convert(bsConstArg<IBsInput>("value", arg)));
 	}
 }
+
+export const Input = (AttrOrValue?: IBsInput | string, Value?: string) =>
+	genTagClass<input, IBsInput>(input, AttrOrValue, Value);
