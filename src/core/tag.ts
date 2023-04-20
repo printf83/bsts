@@ -323,7 +323,7 @@ export interface ITag {
 	// dom?: HTMLElement;
 }
 
-export type IElem = string | tag | (string | tag)[];
+export type IElem = string | tag | strHtml | (string | tag | strHtml)[];
 
 export class tag implements ITag {
 	public isbsts = true;
@@ -357,12 +357,41 @@ export class tag implements ITag {
 	}
 }
 
+//now new keyword for tag
+export const Tag = (Tag: string, Attr?: IAttr) => {
+	return new tag(Tag, Attr);
+};
+
+export class strHtml {
+	ishtml = true;
+	public elem?: string;
+
+	constructor();
+	constructor(elem: string);
+	constructor(...arg: any[]) {
+		if (arg) {
+			this.elem = arg[0];
+		} else {
+			this.elem = "";
+		}
+	}
+}
+
+//now new keyword for tag
+export const StrHtml = (Html: string) => {
+	return new strHtml(Html);
+};
+
 export const isTag = <T>(obj: any): obj is T => {
 	return typeof obj === "object" && !Array.isArray(obj) && "isbsts" in obj && obj["isbsts"] === true;
 };
 
+export const isHtml = <T extends strHtml>(obj: any): obj is T => {
+	return typeof obj === "object" && !Array.isArray(obj) && "ishtml" in obj && obj["ishtml"] === true;
+};
+
 export const isAttr = <T>(obj: any): obj is T => {
-	return typeof obj === "object" && !Array.isArray(obj) && !("isbsts" in obj);
+	return typeof obj === "object" && !Array.isArray(obj) && !("isbsts" in obj) && !("ishtml" in obj);
 };
 
 export const tagConsNoElemArg = <T extends IAttr>(arg: any[]): T => {

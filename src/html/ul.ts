@@ -5,7 +5,7 @@ import { li } from "./li.js";
 export interface ITagUl extends IAttr {
 	unstyle?: boolean;
 	inline?: boolean;
-	item?: string | tag | (string | tag)[];
+	item?: IElem;
 }
 
 const convert = (attr: ITagUl) => {

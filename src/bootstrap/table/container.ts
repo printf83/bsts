@@ -1,4 +1,4 @@
-import { IAttr, IElem, genTagClass, tag } from "../../core/tag.js";
+import { IAttr, IElem, genTagClass, tag, strHtml } from "../../core/tag.js";
 import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { table } from "../../html/table.js";
@@ -16,7 +16,7 @@ export interface IBsTableContainer extends IAttr {
 	small?: true;
 	captionLocation?: "top" | "bottom";
 
-	item?: (string | tag | (string | tag)[])[][];
+	item?: (string | tag | strHtml | (string | tag | strHtml)[])[][];
 }
 
 const convert = (attr: IBsTableContainer) => {

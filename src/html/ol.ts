@@ -8,7 +8,7 @@ export interface ITagOl extends IAttr {
 	reversed?: boolean;
 	startValue?: number;
 
-	item?: string | tag | (string | tag)[];
+	item?: IElem;
 }
 
 const convert = (attr: ITagOl) => {

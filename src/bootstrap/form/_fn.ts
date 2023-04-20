@@ -1,4 +1,4 @@
-import { IElem, tag } from "../../core/tag.js";
+import { IElem, tag, strHtml } from "../../core/tag.js";
 import { ITagDatalist, datalist as TDatalist } from "../../html/datalist.js";
 import { div } from "../../html/div.js";
 import { input } from "../input.js";
@@ -31,7 +31,7 @@ export const genInvalidTooltip = (id: string, feedback?: string) => {
 };
 
 export const genGroupItem = (id: string, item?: IElem) => {
-	let result: (string | tag)[] = [];
+	let result: (string | tag | strHtml)[] = [];
 
 	if (item) {
 		if (!Array.isArray(item)) {
