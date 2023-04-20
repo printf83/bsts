@@ -1,4 +1,4 @@
-import { IElem, genTagClass } from "../../../../core/tag.js";
+import { genTagClass } from "../../../../core/tag.js";
 import { bsConstArg } from "../../../../core/bootstrap.js";
 import { img as TImg, IBsImg } from "../../../img.js";
 
