@@ -1,4 +1,4 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../core/tag.js";
 import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { tr as TTr } from "../../html/tr.js";
@@ -29,3 +29,5 @@ export class tr extends TTr {
 		super(convert(bsConstArg<IBsTableTr>("elem", arg)));
 	}
 }
+
+export const Tr = (AttrOrElem?: IBsTableTr | IElem, Elem?: IElem) => genTagClass<tr, IBsTableTr>(tr, AttrOrElem, Elem);

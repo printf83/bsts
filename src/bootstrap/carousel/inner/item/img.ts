@@ -11,12 +11,12 @@ const convert = (attr: IBsImg) => {
 
 export class img extends TImg {
 	constructor(); //#1
-	constructor(attr: IBsImg); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: IBsImg, elem: IElem); //#4
+	constructor(src: string); //#2
+	constructor(attr: IBsImg); //#3
+	constructor(attr: IBsImg, src: string); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsImg>("elem", arg)));
+		super(convert(bsConstArg<IBsImg>("src", arg)));
 	}
 }
 
-export const Img = (AttrOrElem?: IBsImg | IElem, Elem?: IElem) => genTagClass<img, IBsImg>(img, AttrOrElem, Elem);
+export const Img = (AttrOrSrc?: IBsImg | string, Src?: string) => genTagClass<img, IBsImg>(img, AttrOrSrc, Src);

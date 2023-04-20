@@ -1,4 +1,4 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { ITagUl, ul } from "../../html/ul.js";
@@ -37,3 +37,6 @@ export class container extends nav {
 		super(convert(bsConstArg<IBsPaginationContainer>("elem", arg)));
 	}
 }
+
+export const Container = (AttrOrElem?: IBsPaginationContainer | IElem, Elem?: IElem) =>
+	genTagClass<container, IBsPaginationContainer>(container, AttrOrElem, Elem);

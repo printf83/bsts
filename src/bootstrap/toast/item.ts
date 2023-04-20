@@ -1,5 +1,5 @@
 import { bootstrapType } from "../../core/bootstrap.js";
-import { IAttr, IElem } from "../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
@@ -52,3 +52,6 @@ export class item extends div {
 		super(convert(bsConstArg<IBsToastItem>("elem", arg)));
 	}
 }
+
+export const Item = (AttrOrElem?: IBsToastItem | IElem, Elem?: IElem) =>
+	genTagClass<item, IBsToastItem>(item, AttrOrElem, Elem);

@@ -1,4 +1,4 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { small } from "../../html/small.js";
 import { mergeObject } from "../../core/mergeObject.js";
@@ -27,3 +27,5 @@ export class time extends small {
 		super(convert(bsConstArg("elem", arg)));
 	}
 }
+
+export const Time = (AttrOrElem?: IAttr | IElem, Elem?: IElem) => genTagClass<time, IAttr>(time, AttrOrElem, Elem);

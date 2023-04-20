@@ -1,4 +1,4 @@
-import { IElem } from "../../core/tag.js";
+import { genTagClass, IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { button, IBsButton } from "../button.js";
@@ -37,3 +37,6 @@ export class toggle extends button {
 		super(convert(bsConstArg<IBsOffcanvasToggle>("elem", arg)));
 	}
 }
+
+export const Toggle = (AttrOrElem?: IBsOffcanvasToggle | IElem, Elem?: IElem) =>
+	genTagClass<toggle, IBsOffcanvasToggle>(toggle, AttrOrElem, Elem);

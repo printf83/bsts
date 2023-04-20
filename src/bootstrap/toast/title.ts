@@ -1,4 +1,4 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { strong } from "../../html/strong.js";
@@ -17,3 +17,5 @@ export class title extends strong {
 		super(convert(bsConstArg("elem", arg)));
 	}
 }
+
+export const Title = (AttrOrElem?: IAttr | IElem, Elem?: IElem) => genTagClass<title, IAttr>(title, AttrOrElem, Elem);

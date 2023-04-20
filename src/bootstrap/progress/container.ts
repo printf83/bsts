@@ -1,4 +1,4 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
@@ -40,3 +40,6 @@ export class container extends div {
 		super(convert(bsConstArg<IBsProgressContainer>("elem", arg)));
 	}
 }
+
+export const Container = (AttrOrElem?: IBsProgressContainer | IElem, Elem?: IElem) =>
+	genTagClass<container, IBsProgressContainer>(container, AttrOrElem, Elem);

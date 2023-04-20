@@ -1,4 +1,4 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { IAttr, IElem, genTagClass } from "../../core/tag.js";
 import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { tfoot as TTfoot } from "../../html/tfoot.js";
@@ -24,3 +24,6 @@ export class tfoot extends TTfoot {
 		super(convert(bsConstArg<IBsTableTfoot>("elem", arg)));
 	}
 }
+
+export const Tfoot = (AttrOrElem?: IBsTableTfoot | IElem, Elem?: IElem) =>
+	genTagClass<tfoot, IBsTableTfoot>(tfoot, AttrOrElem, Elem);
