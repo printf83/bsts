@@ -26,7 +26,7 @@ export interface IBsFormCheck extends Omit<IBsInput, "container"> {
 	validTooltip?: string;
 }
 
-export const check = (attr: IBsFormCheck) => {
+export const Check = (attr: IBsFormCheck) => {
 	attr.type ??= "checkbox";
 	attr.id ??= UUID();
 	attr.label ??= attr.id;

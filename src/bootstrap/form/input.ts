@@ -61,7 +61,7 @@ export interface IBsFormInput extends Omit<IBsInput, "container"> {
 	validTooltip?: string;
 }
 
-export const input = (attr: IBsFormInput) => {
+export const Input = (attr: IBsFormInput) => {
 	let container = attr.container;
 
 	attr.type ??= "text";

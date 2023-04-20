@@ -54,7 +54,7 @@ export interface IBsFormFloatingLabelInput extends Omit<IBsInput, "container"> {
 	validTooltip?: string;
 }
 
-export const input = (attr: IBsFormFloatingLabelInput) => {
+export const Input = (attr: IBsFormFloatingLabelInput) => {
 	let container = attr.container;
 
 	attr.type ??= "text";

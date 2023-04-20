@@ -37,7 +37,7 @@ export interface IBsFormTextarea extends Omit<IBsTextarea, "container"> {
 	validTooltip?: string;
 }
 
-export const textarea = (attr: IBsFormTextarea) => {
+export const Textarea = (attr: IBsFormTextarea) => {
 	let container = attr.container;
 
 	attr.id ??= UUID();

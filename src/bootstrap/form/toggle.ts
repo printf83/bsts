@@ -8,7 +8,7 @@ export interface IBsFormToggle extends Omit<IBsInput, "container"> {
 	container?: IBsLabel;
 }
 
-export const toggle = (attr: IBsFormToggle) => {
+export const Toggle = (attr: IBsFormToggle) => {
 	attr.id ??= UUID();
 	attr.label ??= attr.id;
 

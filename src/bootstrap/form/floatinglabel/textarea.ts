@@ -30,7 +30,7 @@ export interface IBsFormFloatingLabelTextarea extends Omit<IBsTextarea, "contain
 	validTooltip?: string;
 }
 
-export const textarea = (attr: IBsFormFloatingLabelTextarea) => {
+export const Textarea = (attr: IBsFormFloatingLabelTextarea) => {
 	let container = attr.container;
 
 	attr.id ??= UUID();

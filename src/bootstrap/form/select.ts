@@ -37,7 +37,7 @@ export interface IBsFormSelect extends Omit<IBsSelect, "container"> {
 	validTooltip?: string;
 }
 
-export const select = (attr: IBsFormSelect) => {
+export const Select = (attr: IBsFormSelect) => {
 	let container = attr.container;
 
 	attr.id ??= UUID();

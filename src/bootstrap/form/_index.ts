@@ -1,19 +1,19 @@
-import { input, IBsFormInput } from "./input.js";
-import { select, IBsFormSelect } from "./select.js";
-import { textarea, IBsFormTextarea } from "./textarea.js";
-import { check, IBsFormCheck } from "./check.js";
-import { toggle, IBsFormToggle } from "./toggle.js";
-import * as floatinglabel from "./floatinglabel/_index.js";
+import { Input, IBsFormInput } from "./input.js";
+import { Select, IBsFormSelect } from "./select.js";
+import { Textarea, IBsFormTextarea } from "./textarea.js";
+import { Check, IBsFormCheck } from "./check.js";
+import { Toggle, IBsFormToggle } from "./toggle.js";
+import * as FloatingLabel from "./floatinglabel/_index.js";
 export {
-	input,
+	Input,
 	IBsFormInput,
-	select,
+	Select,
 	IBsFormSelect,
-	textarea,
+	Textarea,
 	IBsFormTextarea,
-	check,
+	Check,
 	IBsFormCheck,
-	toggle,
+	Toggle,
 	IBsFormToggle,
-	floatinglabel,
+	FloatingLabel,
 };

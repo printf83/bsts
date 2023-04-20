@@ -30,7 +30,7 @@ export interface IBsFormFloatingLabelSelect extends Omit<IBsSelect, "container">
 	validTooltip?: string;
 }
 
-export const select = (attr: IBsFormFloatingLabelSelect) => {
+export const Select = (attr: IBsFormFloatingLabelSelect) => {
 	let container = attr.container;
 
 	attr.id ??= UUID();

@@ -38,7 +38,7 @@ import { textarea, IBsTextarea, Textarea } from "./textarea.js";
 import * as toast from "./toast/_index.js";
 import { tooltip, IBsTooltip, Tooltip } from "./tooltip.js";
 import { Verticalrule, verticalrule } from "./verticalrule.js";
-import * as form from "./form/_index.js";
+import * as Form from "./form/_index.js";
 import * as figure from "./figure/_index.js";
 import * as blockquote from "./blockquote/_index.js";
 import { visuallyhidden, IBsVisuallyhidden, Visuallyhidden } from "./visuallyhidden.js";
@@ -49,7 +49,6 @@ import { Table } from "../html/table.js";
 export {
 	blockquote,
 	figure,
-	form,
 	icon,
 	button,
 	label,
@@ -113,7 +112,7 @@ export {
 export {
 	Blockquote,
 	Figure,
-	form as Form,
+	Form,
 	Icon,
 	Button,
 	Label,
