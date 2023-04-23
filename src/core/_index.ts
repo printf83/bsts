@@ -16,6 +16,7 @@ import {
 } from "./builder.js";
 import { camel2Dash } from "./camel2Dash.js";
 import { elemReady, documentReady } from "./documentReady.js";
+import { elemInfo } from "./elemInfo.js";
 import { IDEventDB, HTMLElementWithEventDB, addEvent, deleteEvent } from "./eventManager.js";
 import { keyOfType } from "./keyOfType.js";
 import { mergeAttr } from "./mergeAttr.js";
@@ -93,4 +94,5 @@ export {
 	tagConsNoElemArg,
 	genTagClass,
 	UUID,
+	elemInfo,
 };
