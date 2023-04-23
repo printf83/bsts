@@ -5,18 +5,20 @@ import { a, ITagA } from "../../html/a.js";
 
 export interface IBsDropdownItem extends ITagA {
 	active?: boolean;
+	current?: string;
 }
 
 const convert = (attr: IBsDropdownItem) => {
 	attr = mergeObject(
 		{
 			class: ["dropdown-item", attr.active ? "active" : undefined],
-			aria: { current: attr.active ? "true" : undefined },
+			aria: { current: attr.active ? (attr.current ? attr.current : "true") : undefined },
 		},
 		attr
 	);
 
 	delete attr.active;
+	delete attr.current;
 
 	return attr;
 };
