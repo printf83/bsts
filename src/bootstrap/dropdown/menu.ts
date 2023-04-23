@@ -1,19 +1,27 @@
 import { IAttr, IElem, genTagClass } from "../../core/tag.js";
-import { mergeClass } from "../../core/mergeClass.js";
 import { bootstrapType } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
 import { bsConstArg } from "../../core/bootstrap.js";
+import { mergeObject } from "../../core/mergeObject.js";
 
 export interface IBsDropdownMenu extends IAttr {
+	dynamicPosition?: false;
 	positionView?: bootstrapType.dropdownMenuPositionView | bootstrapType.dropdownMenuPositionView[];
 	dropdownMenuPositionView?: bootstrapType.dropdownMenuPositionView | bootstrapType.dropdownMenuPositionView[];
 	debug?: boolean;
 }
 
 const convert = (attr: IBsDropdownMenu) => {
-	attr.class = mergeClass(attr.class, ["dropdown-menu", attr.debug ? "debug" : undefined]);
+	attr = mergeObject(
+		{
+			class: ["dropdown-menu", attr.debug ? "debug" : undefined],
+			data: { "bs-display": attr.dynamicPosition === false ? "static" : undefined },
+		},
+		attr
+	);
 	attr.dropdownMenuPositionView = attr.dropdownMenuPositionView || attr.positionView;
 
+	delete attr.dynamicPosition;
 	delete attr.positionView;
 	delete attr.debug;
 
