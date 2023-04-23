@@ -20,7 +20,7 @@ export interface IBsModalContainer extends IAttr {
 }
 
 const convert = (attr: IBsModalContainer) => {
-	attr.animation = attr.animation === undefined ? true : attr.animation;
+	attr.animation ??= true;
 
 	attr = mergeObject(
 		{

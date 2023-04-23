@@ -7,7 +7,7 @@ import { btnclose } from "../btnclose.js";
 export interface IBsAlertContainer extends IAttr {
 	callout?: boolean;
 	role?: string;
-
+	animation?: boolean;
 	color?: bootstrapType.alertColor;
 	dismissible?: bootstrapType.alertDismissible;
 }
@@ -16,6 +16,7 @@ const convert = (attr: IBsAlertContainer) => {
 	//add default value
 	attr.role ??= "alert";
 	attr.color ??= "primary";
+	attr.animation ??= true;
 
 	//add alert class
 	attr = mergeObject(
@@ -24,7 +25,7 @@ const convert = (attr: IBsAlertContainer) => {
 				"alert",
 				attr.color ? `alert-${attr.color}` : undefined,
 				attr.dismissible ? "alert-dismissible" : undefined,
-				attr.dismissible ? "fade" : undefined,
+				attr.dismissible ? (attr.animation ? "fade" : undefined) : undefined,
 				attr.dismissible ? "show" : undefined,
 			],
 			role: attr.role,
@@ -43,6 +44,7 @@ const convert = (attr: IBsAlertContainer) => {
 		attr.elem.push(new btnclose({ data: { "bs-dismiss": "alert" } }));
 	}
 
+	delete attr.animation;
 	delete attr.callout;
 	delete attr.color;
 	delete attr.dismissible;

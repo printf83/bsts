@@ -2,6 +2,8 @@ import { a } from "../html/a.js";
 import { strong } from "../html/strong.js";
 import { b } from "../html/b.js";
 import { code } from "../html/code.js";
+import { br } from "../html/br.js";
+import { hr } from "../html/hr.js";
 import { i } from "../html/i.js";
 import { kbd } from "../html/kbd.js";
 import { span } from "../html/span.js";
@@ -245,7 +247,14 @@ const markup = (str: string) => {
 						}
 					}
 				} else {
-					return new code(escapeMarkup(s.slice(2, -2)));
+					switch (s) {
+						case "{{br}}":
+							return new br();
+						case "{{hr}}":
+							return new hr();
+						default:
+							return new code(escapeMarkup(s.slice(2, -2)));
+					}
 				}
 			} else {
 				return s;
