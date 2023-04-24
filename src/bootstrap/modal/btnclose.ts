@@ -5,6 +5,7 @@ import { btnclose as TBtnclose, IBsBtnclose } from "../btnclose.js";
 
 export interface IBsModalBtnclose extends IBsBtnclose {
 	dismiss?: "modal";
+	target?: string;
 }
 
 const convert = (attr: IBsModalBtnclose) => {
@@ -12,7 +13,7 @@ const convert = (attr: IBsModalBtnclose) => {
 
 	attr = mergeObject(
 		{
-			data: { "bs-dismiss": attr.dismiss },
+			data: { "bs-dismiss": attr.dismiss, "bs-target": attr.target },
 		},
 		attr
 	);
