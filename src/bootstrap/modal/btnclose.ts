@@ -19,6 +19,7 @@ const convert = (attr: IBsModalBtnclose) => {
 	);
 
 	delete attr.dismiss;
+	delete attr.target;
 
 	return attr;
 };
