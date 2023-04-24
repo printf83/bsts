@@ -7,6 +7,7 @@ export interface IBsNavLink extends ITagA {
 	role?: "tab" | "button";
 	toggle?: "dropdown" | "pill" | "tab";
 	active?: boolean;
+	current?: true | "page";
 }
 
 const convert = (attr: IBsNavLink) => {
@@ -21,6 +22,8 @@ const convert = (attr: IBsNavLink) => {
 		default:
 	}
 
+	attr.current ??= "page";
+
 	attr = mergeObject(
 		{
 			class: [
@@ -29,7 +32,7 @@ const convert = (attr: IBsNavLink) => {
 				attr.toggle === "dropdown" ? "dropdown-toggle" : undefined,
 			],
 			aria: {
-				current: attr.active ? "page" : undefined,
+				current: attr.active ? (attr.current === true ? "true" : attr.current) : undefined,
 				expanded: attr.toggle === "dropdown" ? "false" : undefined,
 			},
 			role: attr.role,
@@ -38,6 +41,7 @@ const convert = (attr: IBsNavLink) => {
 		attr
 	);
 
+	delete attr.current;
 	delete attr.active;
 	delete attr.toggle;
 

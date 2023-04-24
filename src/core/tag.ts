@@ -306,6 +306,7 @@ export interface IGlobal {
 
 	attrWidth?: string | number;
 	attwHeight?: string | number;
+	role?: string;
 }
 
 export interface IAttr extends IGlobal, IBsAttr, IBsClass {

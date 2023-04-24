@@ -2,6 +2,7 @@ import { IAttr, IElem, genTagClass } from "../../../core/tag.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { nav } from "../../../html/nav.js";
+import { div } from "../../../html/div.js";
 
 export interface IBsNavContainerNav extends IAttr {
 	type?: "tab" | "pill" | "underline";
@@ -30,7 +31,7 @@ const convert = (attr: IBsNavContainerNav) => {
 	delete attr.itemWidth;
 	delete attr.vertical;
 
-	return attr;
+	return { elem: new div(attr) };
 };
 
 export class containerNav extends nav {
