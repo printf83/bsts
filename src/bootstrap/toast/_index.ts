@@ -5,7 +5,7 @@ import { Header, header } from "./header.js";
 import { item, IBsToastItem, Item } from "./item.js";
 import { Time, time } from "./time.js";
 import { Title, title } from "./title.js";
-import { IBsToastSimple, show, simple } from "./_fn.js";
+import { IBsToastSimple, show, Simple } from "./_fn.js";
 
 export {
 	item,
@@ -20,7 +20,6 @@ export {
 	IBsToastItem,
 	IBsToastSimple as IBsToastTemplate,
 	show,
-	simple,
 };
 
-export { Item, Body, Btnclose, Container, Header, Time, Title };
+export { Item, Body, Btnclose, Container, Header, Time, Title, Simple };

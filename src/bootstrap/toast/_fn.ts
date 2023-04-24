@@ -94,7 +94,7 @@ export interface IBsToastSimple {
 	title?: IElem;
 }
 
-export const simple = (attr: IBsToastSimple) => {
+export const Simple = (attr: IBsToastSimple) => {
 	let defaultBtnCloseWhite = false;
 	switch (attr.color) {
 		case "dark":

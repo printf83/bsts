@@ -222,7 +222,7 @@ export interface IBsModalSimple extends Omit<IBsModalContainer, "title"> {
 	attrFooter?: IAttr;
 }
 
-export const simple = (attr: IBsModalSimple) => {
+export const Simple = (attr: IBsModalSimple) => {
 	let contAttr = Object.assign({}, attr);
 
 	delete contAttr.btn;

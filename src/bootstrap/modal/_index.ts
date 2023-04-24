@@ -4,7 +4,7 @@ import { Container, container, IBsModalContainer } from "./container.js";
 import { Footer, footer } from "./footer.js";
 import { Header, header, IBsModalHeader } from "./header.js";
 import { Title, title } from "./title.js";
-import { hide, IBsModalSimple, show, simple } from "./_fn.js";
+import { hide, IBsModalSimple, show, Simple } from "./_fn.js";
 
 export {
 	body,
@@ -18,7 +18,6 @@ export {
 	IBsModalHeader,
 	show,
 	hide,
-	simple,
 	IBsModalSimple,
 };
-export { Body, Btnclose, Container, Footer, Header, Title };
+export { Body, Btnclose, Container, Footer, Header, Title, Simple };
