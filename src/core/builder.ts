@@ -103,9 +103,15 @@ export const removeActiveToast = () => {
 
 export const init = (container: HTMLElement) => {
 	const popoverTriggerList = container.querySelectorAll('[data-bs-toggle="popover"]');
-	popoverTriggerList.forEach((i) => new window.bootstrap.Popover(i, { container: "body" }));
+	popoverTriggerList.forEach((i) => {
+		let container = i.getAttribute("data-bs-container");
+		new window.bootstrap.Popover(i, { container: container ? container : "body" });
+	});
 	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-	tooltipTriggerList.forEach((i) => new window.bootstrap.Tooltip(i, { container: "body" }));
+	tooltipTriggerList.forEach((i) => {
+		let container = i.getAttribute("data-bs-container");
+		new window.bootstrap.Tooltip(i, { container: container ? container : "body" });
+	});
 	const scrollspyTriggerList = document.querySelectorAll('[data-bs-spy="scroll"]');
 	scrollspyTriggerList.forEach((i) => window.bootstrap.ScrollSpy.getOrCreateInstance(i).refresh());
 	const timerTriggerList = document.querySelectorAll("[data-bs-timer]");

@@ -15,6 +15,7 @@ export interface IBsPopover extends IAttr {
 
 const convert = (attr: IBsPopover) => {
 	attr.inline ??= true;
+	attr.parent ??= "body";
 
 	attr = mergeObject(
 		{
