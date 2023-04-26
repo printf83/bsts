@@ -9,7 +9,6 @@ export interface IBsInput extends ITagInput {
 	toggle?: true;
 	switch?: true;
 	plaintext?: true;
-	role?: string;
 	isvalid?: boolean;
 }
 

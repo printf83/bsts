@@ -9,7 +9,7 @@ import { IBsButton } from "./button.js";
 
 export type IBootstrapTypeDisplay = bootstrapType.display | bootstrapType.display[];
 
-export interface IBsLabel extends ITagLabel, IBsButton {
+export interface IBsLabel extends ITagLabel, Omit<IBsButton, "role"> {
 	icon?: string | IBsIcon | icon;
 	iconPosition?: "start" | "end" | "top" | "bottom";
 	iconDisplay?: IBootstrapTypeDisplay;

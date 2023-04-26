@@ -306,7 +306,7 @@ export interface IGlobal {
 
 	attrWidth?: string | number;
 	attwHeight?: string | number;
-	// role?: string;
+	role?: string;
 }
 
 export interface IAttr extends IGlobal, IBsAttr, IBsClass {
@@ -364,7 +364,7 @@ export const Tag = (Tag: string, Attr?: IAttr) => {
 };
 
 export class strHtml {
-	ishtml = true;
+	public ishtml = true;
 	public elem?: string;
 
 	constructor();

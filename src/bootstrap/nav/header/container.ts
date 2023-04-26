@@ -2,15 +2,17 @@ import { IElem, genTagClass } from "../../../core/tag.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { ITagUl, ul } from "../../../html/ul.js";
+import { IBsNavItem, item } from "./item.js";
 
-export interface IBsNavContainer extends ITagUl {
+export interface IBsNavContainer extends Omit<ITagUl, "item"> {
 	type?: "tab" | "pill" | "underline";
 	itemWidth?: "fill" | "justified";
 	vertical?: true;
 	role?: "tablist";
+	item?: IBsNavItem | IBsNavItem[];
 }
 
-const convert = (attr: IBsNavContainer) => {
+const convert = (attr: IBsNavContainer): ITagUl => {
 	attr = mergeObject(
 		{
 			class: [
@@ -26,11 +28,22 @@ const convert = (attr: IBsNavContainer) => {
 		attr
 	);
 
+	if (attr.item && !attr.elem) {
+		if (!Array.isArray(attr.item)) {
+			attr.item = [attr.item];
+		}
+
+		attr.elem = attr.item.map((i) => {
+			return new item(i);
+		});
+	}
+
+	delete attr.item;
 	delete attr.type;
 	delete attr.itemWidth;
 	delete attr.vertical;
 
-	return attr;
+	return attr as ITagUl;
 };
 
 export class container extends ul {

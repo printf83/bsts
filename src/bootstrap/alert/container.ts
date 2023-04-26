@@ -6,7 +6,6 @@ import { btnclose } from "../btnclose.js";
 
 export interface IBsAlertContainer extends IAttr {
 	callout?: boolean;
-	role?: string;
 	animation?: boolean;
 	color?: bootstrapType.alertColor;
 	dismissible?: bootstrapType.alertDismissible;

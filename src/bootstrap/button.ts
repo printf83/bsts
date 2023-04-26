@@ -3,7 +3,7 @@ import { IElem, genTagClass, tag } from "../core/tag.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { ITagButton } from "../html/button.js";
 
-export interface IBsButton extends ITagButton {
+export interface IBsButton extends Omit<ITagButton, "role"> {
 	color?: bootstrapType.btnColor;
 	outline?: boolean;
 	dismiss?: "modal" | "alert" | "offcanvas" | "toast";

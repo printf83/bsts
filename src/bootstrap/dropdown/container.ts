@@ -1,10 +1,10 @@
-import { IAttr, IElem, genTagClass } from "../../core/tag.js";
+import { IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
-import { btngroup } from "../btngroup.js";
+import { IBsBtngroup, btngroup } from "../btngroup.js";
 
 export type IBsDropdownContainerDrop = "down" | "down-center" | "up" | "up-center" | "start" | "end";
-export interface IBsDropdownContainer extends IAttr {
+export interface IBsDropdownContainer extends IBsBtngroup {
 	drop?: IBsDropdownContainerDrop;
 }
 
