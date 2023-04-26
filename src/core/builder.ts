@@ -103,9 +103,9 @@ export const removeActiveToast = () => {
 
 export const init = (container: HTMLElement) => {
 	const popoverTriggerList = container.querySelectorAll('[data-bs-toggle="popover"]');
-	popoverTriggerList.forEach((i) => new window.bootstrap.Popover(i));
+	popoverTriggerList.forEach((i) => new window.bootstrap.Popover(i, { container: "body" }));
 	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-	tooltipTriggerList.forEach((i) => new window.bootstrap.Tooltip(i));
+	tooltipTriggerList.forEach((i) => new window.bootstrap.Tooltip(i, { container: "body" }));
 	const scrollspyTriggerList = document.querySelectorAll('[data-bs-spy="scroll"]');
 	scrollspyTriggerList.forEach((i) => window.bootstrap.ScrollSpy.getOrCreateInstance(i).refresh());
 	const timerTriggerList = document.querySelectorAll("[data-bs-timer]");
@@ -198,7 +198,7 @@ const markupCode = (k: string, str: string) => {
 };
 
 const escapeMarkup = (str: string) => {
-	return str.replace(/\/{/g, "{").replace(/\/}/g, "}").replace(/\/:/g, ":");
+	return str.replace(/\/{\//g, "{").replace(/\/}\//g, "}").replace(/\/:\//g, ":");
 };
 
 const markup = (str: string) => {
@@ -283,25 +283,12 @@ const processElem = (i: string | tag | strHtml, e: tag, element: HTMLElement) =>
 		} else {
 			//only pre is html
 			let g = i as string;
-			if (e.tag === "pre") {
-				element.insertAdjacentHTML("beforeend", g);
+			if (e.tag === "pre" || e.tag === "code") {
+				element.insertAdjacentText("beforeend", g.replace(/\`/g, '"'));
 			} else {
 				let m = markup(g);
 				if (typeof m === "string") {
 					element.appendChild(document.createTextNode(g));
-
-					// if (m.startsWith("<svg")) {
-					// 	if (m.endsWith("</svg>")) {
-					// 		let c = htmlToEement(g);
-					// 		if (c) {l
-					// 			element.appendChild(c);
-					// 		}
-					// 	} else {
-					// 		element.appendChild(document.createTextNode(g));
-					// 	}
-					// } else {
-					// 	element.appendChild(document.createTextNode(g));
-					// }
 				} else {
 					m.forEach((j) => {
 						element = processElem(j, e, element);
