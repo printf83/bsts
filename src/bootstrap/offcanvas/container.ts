@@ -7,7 +7,7 @@ import { div } from "../../html/div.js";
 
 export interface IBsOffcanvasContainer extends IAttr {
 	placement?: "start" | "end" | "top" | "bottom";
-	hide?: boolean | bootstrapType.viewport;
+	show?: boolean | bootstrapType.viewport;
 	dark?: boolean;
 	backdrop?: boolean | "static";
 	scroll?: boolean;
@@ -23,9 +23,8 @@ const convert = (attr: IBsOffcanvasContainer) => {
 		{
 			id: attr.id || UUID(),
 			class: [
-				!attr.hide ? "offcanvas" : undefined,
-				attr.hide === false ? "show" : undefined,
-				attr.hide ? (attr.hide === true ? "" : `offcanvas-${attr.hide}`) : undefined,
+				attr.show === true ? "show" : undefined,
+				attr.show ? (attr.show === true ? "offcanvas" : `offcanvas-${attr.show}`) : "offcanvas",
 				attr.placement ? `offcanvas-${attr.placement}` : undefined,
 				attr.debug ? "debug" : undefined,
 			],
@@ -50,7 +49,7 @@ const convert = (attr: IBsOffcanvasContainer) => {
 
 	delete attr.placement;
 	delete attr.dark;
-	delete attr.hide;
+	delete attr.show;
 	delete attr.backdrop;
 	delete attr.scroll;
 	delete attr.labelledby;
