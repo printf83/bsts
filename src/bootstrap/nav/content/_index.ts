@@ -1,5 +1,5 @@
-import { Container, container } from "./container.js";
+import { Container, container, IBsNavContentContainer } from "./container.js";
 import { item, IBsNavContentItem, Item } from "./item.js";
 
-export { container, item, IBsNavContentItem };
+export { container, IBsNavContentContainer, item, IBsNavContentItem };
 export { Container, Item };
