@@ -63,6 +63,7 @@ const convert = (attr: ITagA) => {
 		attr = mergeObject(
 			{
 				aria: { disabled: "true" },
+				tabindex: -1,
 			},
 			attr
 		);

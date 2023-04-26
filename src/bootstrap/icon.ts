@@ -24,6 +24,57 @@ export interface IBsIcon extends IAttr {
 }
 
 const convert = (attr: IBsIcon) => {
+	if (!attr.id && attr.elem && typeof attr.elem === "string") {
+		attr.id = attr.elem;
+		attr.elem = undefined;
+	}
+
+	if (!attr.type && attr.id && attr.id.indexOf(" ") > -1) {
+		let sid = attr.id.split(" ");
+		if (sid.length === 2) {
+			switch (sid[0]) {
+				case "bi":
+				case "brand":
+				case "solid":
+				case "regular":
+				case "duotone":
+				case "light":
+				case "sharp":
+					attr.type = sid[0];
+					attr.id = sid[1];
+					break;
+
+				case "fab":
+					attr.type = "brand";
+					attr.id = sid[1];
+					break;
+				case "fas":
+					attr.type = "solid";
+					attr.id = sid[1];
+					break;
+				case "far":
+					attr.type = "regular";
+					attr.id = sid[1];
+					break;
+				case "fad":
+					attr.type = "duotone";
+					attr.id = sid[1];
+					break;
+				case "fal":
+					attr.type = "light";
+					attr.id = sid[1];
+					break;
+				case "fass":
+					attr.type = "sharp";
+					attr.id = sid[1];
+					break;
+				default:
+					attr.type = "bi";
+					attr.id = sid[1];
+			}
+		}
+	}
+
 	attr.type ??= "bi";
 
 	if (attr.type === "bi") {

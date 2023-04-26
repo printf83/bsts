@@ -17,14 +17,18 @@ const convert = (attr: IBsPaginationItem) => {
 		aria: { current: attr.active ? "page" : undefined },
 	};
 
+	if (attr.disabled) {
+		attr.href = undefined;
+	}
+
 	delete attr.active;
-	delete attr.disabled;
 
 	attr.class = mergeClass(attr.class, "page-link");
 
 	if (attr.href) {
 		liAttr.elem = new a(attr);
 	} else {
+		delete attr.disabled;
 		liAttr.elem = new span(attr);
 	}
 
