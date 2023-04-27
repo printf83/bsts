@@ -7,22 +7,22 @@ import { span } from "../html/span.js";
 import { IBsIcon, icon } from "./icon.js";
 import { IBsButton } from "./button.js";
 
-export type IBootstrapTypeDisplay = bootstrapType.display | bootstrapType.display[];
+export type IBsLabelDisplay = bootstrapType.display | bootstrapType.display[];
 
 export interface IBsLabel extends ITagLabel, Omit<IBsButton, "role"> {
 	icon?: string | IBsIcon | icon;
 	iconPosition?: "start" | "end" | "top" | "bottom";
-	iconDisplay?: IBootstrapTypeDisplay;
-	labelDisplay?: IBootstrapTypeDisplay;
+	iconDisplay?: IBsLabelDisplay;
+	labelDisplay?: IBsLabelDisplay;
 
 	stretched?: boolean;
 }
 
-const fnRow = (display: IBootstrapTypeDisplay | undefined, elem: IElem) => {
+const fnRow = (display: IBsLabelDisplay | undefined, elem: IElem) => {
 	return new div({ row: true, display: display }, new div({ col: true, textAlign: "center" }, elem));
 };
 
-const fnIcon = (display: IBootstrapTypeDisplay | undefined, attr: string | IBsIcon | icon) => {
+const fnIcon = (display: IBsLabelDisplay | undefined, attr: string | IBsIcon | icon) => {
 	if (typeof attr === "string") {
 		attr = { id: attr } as IBsIcon;
 	}
@@ -34,7 +34,7 @@ const fnIcon = (display: IBootstrapTypeDisplay | undefined, attr: string | IBsIc
 	}
 };
 
-const fnElem = (display: IBootstrapTypeDisplay | undefined, elem: IElem) => {
+const fnElem = (display: IBsLabelDisplay | undefined, elem: IElem) => {
 	return new span({ display: display }, elem);
 };
 

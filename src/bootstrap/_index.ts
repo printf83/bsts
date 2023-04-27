@@ -17,7 +17,8 @@ import { icon, IBsIcon, Icon } from "./icon.js";
 import { Img, img, IBsImg } from "./img.js";
 import { input, IBsInput, Input } from "./input.js";
 import * as inputgroup from "./inputgroup/_index.js";
-import { label, IBsLabel, IBootstrapTypeDisplay, Label } from "./label.js";
+import { label, IBsLabel, IBsLabelDisplay, Label } from "./label.js";
+import { caption, IBsCaption, IBsCaptionDisplay, Caption } from "./caption.js";
 import * as list from "./list/_index.js";
 import * as listDiv from "./listDiv/_index.js";
 import * as modal from "./modal/_index.js";
@@ -52,6 +53,7 @@ export {
 	icon,
 	button,
 	label,
+	caption,
 	msg,
 	alert,
 	img,
@@ -95,6 +97,7 @@ export {
 	IBsImg,
 	IBsInput,
 	IBsLabel,
+	IBsCaption,
 	IBsMsg,
 	IBsPill,
 	IBsPopover,
@@ -103,7 +106,8 @@ export {
 	IBsTextarea,
 	IBsTooltip,
 	IBsVisuallyhidden,
-	IBootstrapTypeDisplay,
+	IBsLabelDisplay,
+	IBsCaptionDisplay,
 	IBsBtnclose,
 	IBsBtngroup,
 	IBsSpinner,
@@ -116,6 +120,7 @@ export {
 	Icon,
 	Button,
 	Label,
+	Caption,
 	Msg,
 	alert as Alert,
 	Img,

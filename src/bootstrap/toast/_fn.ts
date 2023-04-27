@@ -118,6 +118,7 @@ export const Simple = (attr: IBsToastSimple) => {
 				atomic: attr.atomic,
 				delay: attr.delay,
 				textBgColor: attr.color,
+				border: false,
 			},
 			[
 				new header([
