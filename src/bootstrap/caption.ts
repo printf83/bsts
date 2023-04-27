@@ -43,12 +43,12 @@ const convert = (attr: IBsCaption) => {
 			//append icon base on position
 			switch (attr.iconPosition) {
 				case "start":
-					attr = mergeObject({ display: "flex", gap: 3, alignItem: "center" }, attr);
+					attr = mergeObject({ display: "flex", gap: 2, alignItem: "center" }, attr);
 					attr.elem = [fnIcon(attr.iconDisplay, attr.icon!), fnElem(attr.labelDisplay, attr.elem!)];
 
 					break;
 				case "end":
-					attr = mergeObject({ display: "flex", gap: 3, alignItem: "center" }, attr);
+					attr = mergeObject({ display: "flex", gap: 2, alignItem: "center" }, attr);
 					attr.elem = [fnElem(attr.labelDisplay, attr.elem!), fnIcon(attr.iconDisplay, attr.icon!)];
 					break;
 				case "top":
@@ -96,77 +96,6 @@ const convert = (attr: IBsCaption) => {
 
 	return attr;
 };
-// const convert = (attr: IBsCaption) => {
-// 	let tElem: IElem;
-// 	let tAttr: IBsCaption = attr;
-
-// 	if (attr && typeof attr.icon !== "undefined") {
-// 		if (attr.elem) {
-// 			//default position
-// 			attr.iconPosition ??= "start";
-
-// 			//append icon base on position
-// 			switch (attr.iconPosition) {
-// 				case "start":
-// 					tElem = new div({ display: "flex", gap: 2, alignItem: "center" }, [
-// 						fnIcon(attr.iconDisplay, attr.icon),
-// 						fnElem(attr.labelDisplay, attr.elem),
-// 					]);
-// 					break;
-// 				case "end":
-// 					tElem = new div({ display: "flex", gap: 2, alignItem: "center" }, [
-// 						fnElem(attr.labelDisplay, attr.elem),
-// 						fnIcon(attr.iconDisplay, attr.icon),
-// 					]);
-// 					break;
-// 				case "top":
-// 					tElem = new div({ display: "inline-block" }, [
-// 						fnRow(attr.iconDisplay, fnIcon(undefined, attr.icon)),
-// 						fnRow(attr.labelDisplay, fnElem(undefined, attr.elem)),
-// 					]);
-// 					break;
-// 				case "bottom":
-// 					tElem = new div({ display: "inline-block" }, [
-// 						fnRow(attr.labelDisplay, fnElem(undefined, attr.elem)),
-// 						fnRow(attr.iconDisplay, fnIcon(undefined, attr.icon)),
-// 					]);
-// 					break;
-// 				default:
-// 					throw new Error("Unknow iconPosition");
-// 			}
-// 		} else {
-// 			if (attr.icon) {
-// 				if (typeof attr.icon === "string") {
-// 					attr.icon = { id: attr.icon } as IBsIcon;
-// 				}
-
-// 				if (isAttr<IBsIcon>(attr.icon)) {
-// 					tElem = new icon(attr.icon);
-// 				} else {
-// 					tElem = attr.icon;
-// 				}
-// 			} else {
-// 				tElem = "";
-// 			}
-// 		}
-// 	} else {
-// 		if (attr.elem) {
-// 			tElem = attr.elem;
-// 		} else {
-// 			tElem = "Caption";
-// 		}
-// 	}
-
-// 	delete tAttr.icon;
-// 	delete tAttr.iconPosition;
-// 	delete tAttr.iconDisplay;
-// 	delete tAttr.labelDisplay;
-
-// 	delete attr.elem;
-// 	attr.elem = tElem;
-
-// 	return attr;
-// };
 
 export class caption extends div {
 	constructor();
