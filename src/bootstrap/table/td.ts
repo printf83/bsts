@@ -2,10 +2,14 @@ import { IElem, genTagClass } from "../../core/tag.js";
 import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { ITagTd, td as TTd } from "../../html/td.js";
+import { mergeObject } from "../../core/mergeObject.js";
 
 export interface IBsTableTd extends ITagTd {
 	color?: bootstrapType.color;
 	active?: boolean;
+
+	responsiveAttr?: string;
+	responsiveTitle?: string;
 }
 
 const convert = (attr: IBsTableTd) => {
@@ -14,8 +18,21 @@ const convert = (attr: IBsTableTd) => {
 		attr.active ? "table-active" : undefined,
 	]);
 
+	if (attr.responsiveAttr && attr.responsiveTitle) {
+		attr = mergeObject(
+			{
+				data: {
+					[attr.responsiveAttr]: attr.responsiveTitle,
+				},
+			},
+			attr
+		);
+	}
+
 	delete attr.color;
 	delete attr.active;
+	delete attr.responsiveAttr;
+	delete attr.responsiveTitle;
 
 	return attr;
 };
