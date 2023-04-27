@@ -87,8 +87,6 @@ const convert = (attr: IBsTableContainer) => {
 				})
 			);
 		}
-	} else {
-		attr.responsiveAttr = undefined;
 	}
 
 	attr.class = mergeClass(attr.class, [
