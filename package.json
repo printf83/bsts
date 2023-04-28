@@ -18,19 +18,19 @@
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts.git"
 	},
-	"main": "./lib/index.mjs",
+	"main": "./lib/index.js",
 	"types": "./lib/types/index.d.ts",
 	"exports": {
 		"types": "./lib/types/index.d.ts",
-		"default": "./lib/index.mjs"
+		"default": "./lib/index.js"
 	},
 	"files": [
 		"lib/**/*"
 	],
 	"scripts": {
 		"clean": "rm -rf ./lib",
-		"clean:win": "rmdir /s lib",
-		"build": "tsc -p ./configs/tsconfig.esm.json && mv ./lib/index.js ./lib/index.mjs",
+		"clean:win": "rmdir /s /q lib",
+		"build": "tsc -p ./configs/tsconfig.esm.json",
 		"rebuild": "npm run clean && npm run build",
 		"rebuild:win": "npm run clean:win && npm run build",
 		"debug": "tsc -p ./configs/tsconfig.esm.json --watch",
