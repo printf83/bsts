@@ -106,7 +106,7 @@ export const Simple = (attr: IBsToastSimple) => {
 			break;
 	}
 
-	attr.delay ??= 5000;
+	attr.delay ??= 10000;
 	attr.atomic ??= true;
 	attr.live ??= "assertive";
 	attr.btnclosewhite ??= defaultBtnCloseWhite;
