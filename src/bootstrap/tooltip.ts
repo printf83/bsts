@@ -12,7 +12,7 @@ export interface IBsTooltip extends IAttr {
 	customClass?: string;
 	allowHtml?: boolean;
 
-	allowList?: string;
+	allowList?: object;
 	animation?: boolean;
 	boundary?: string;
 	showDelay?: string | number;
@@ -56,7 +56,7 @@ const convert = (attr: IBsTooltip) => {
 					: undefined,
 				"bs-html": attr.allowHtml === true ? "true" : undefined,
 				"bs-animation": attr.animation === false ? "false" : undefined,
-				"bs-allow-list": attr.allowList,
+				"bs-allow-list": JSON.stringify(attr.allowList),
 				"bs-boundary": attr.boundary,
 				"bs-delay": attr.delay ? attr.delay.toString() : JDelay,
 				"bs-fallback-placement": attr.fallbackPlacement
@@ -113,11 +113,41 @@ export class tooltip extends span {
 		super(convert(bsConstArg<IBsTooltip>("elem", arg)));
 	}
 
-	static getInstance = (elem: HTMLElement) => {
+	static getInstance = (elem: HTMLElement | string) => {
 		return window.bootstrap.Tooltip.getInstance(elem);
 	};
-	static getOrCreateInstance = (elem: HTMLElement) => {
+	static getOrCreateInstance = (elem: HTMLElement | string) => {
 		return window.bootstrap.Tooltip.getOrCreateInstance(elem);
+	};
+	static disable = (elem: string) => {
+		this.getOrCreateInstance(elem)?.disable();
+	};
+	static dispose = (elem: string) => {
+		this.getOrCreateInstance(elem)?.dispose();
+	};
+	static enable = (elem: string) => {
+		this.getOrCreateInstance(elem)?.enable();
+	};
+	static hide = (elem: string) => {
+		this.getOrCreateInstance(elem)?.hide();
+	};
+	static show = (elem: string) => {
+		this.getOrCreateInstance(elem)?.show();
+	};
+	static setContent = (
+		elem: string,
+		content?: Record<string, string | Element | bootstrap.Tooltip.SetContentFunction | null>
+	) => {
+		this.getOrCreateInstance(elem)?.setContent(content);
+	};
+	static toggle = (elem: string) => {
+		this.getOrCreateInstance(elem)?.toggle();
+	};
+	static toggleEnabled = (elem: string) => {
+		this.getOrCreateInstance(elem)?.toggleEnabled();
+	};
+	static update = (elem: string) => {
+		this.getOrCreateInstance(elem)?.update();
 	};
 }
 
