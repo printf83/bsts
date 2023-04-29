@@ -7,15 +7,39 @@ export interface IBsTooltip extends IAttr {
 	inline?: boolean;
 	trigger?: "hover" | "focus" | "click" | ("hover" | "focus" | "click")[];
 	content?: string;
-	placement?: "right" | "left" | "top" | "bottom";
-	customClass?: string;
+	placement?: "auto" | "right" | "left" | "top" | "bottom";
 	parent?: string;
+	customClass?: string;
+	allowHtml?: boolean;
+
+	allowList?: string;
+	animation?: boolean;
+	boundary?: string;
+	showDelay?: string | number;
+	hideDelay?: string | number;
+	delay?: string | number;
+	fallbackPlacement?: "right" | "left" | "top" | "bottom" | ("right" | "left" | "top" | "bottom")[];
+	viewOffset?: string | number[];
+	popperConfig?: object;
+	sanitize?: boolean;
+	sanitizeFn?: string;
+	selector?: string | false;
+	template?: string;
 }
 
 const convert = (attr: IBsTooltip) => {
 	attr.inline ??= true;
 
-	attr = mergeObject(
+	let JDelay: string | undefined = undefined;
+	if (attr.showDelay && attr.hideDelay) {
+		JDelay = JSON.stringify({ show: attr.showDelay, hide: attr.hideDelay });
+	} else if (attr.showDelay && !attr.hideDelay) {
+		JDelay = JSON.stringify({ show: attr.showDelay });
+	} else if (!attr.showDelay && attr.hideDelay) {
+		JDelay = JSON.stringify({ hide: attr.hideDelay });
+	}
+
+	attr = mergeObject<IBsTooltip>(
 		{
 			display: attr.inline ? "inline-block" : undefined,
 			tabindex: "0",
@@ -30,6 +54,26 @@ const convert = (attr: IBsTooltip) => {
 						? attr.trigger.join(" ")
 						: attr.trigger
 					: undefined,
+				"bs-html": attr.allowHtml === true ? "true" : undefined,
+				"bs-animation": attr.animation === false ? "false" : undefined,
+				"bs-allow-list": attr.allowList,
+				"bs-boundary": attr.boundary,
+				"bs-delay": attr.delay ? attr.delay.toString() : JDelay,
+				"bs-fallback-placement": attr.fallbackPlacement
+					? Array.isArray(attr.fallbackPlacement)
+						? JSON.stringify(attr.fallbackPlacement)
+						: attr.fallbackPlacement
+					: undefined,
+				"bs-offset": attr.viewOffset
+					? Array.isArray(attr.viewOffset)
+						? JSON.stringify(attr.viewOffset)
+						: attr.viewOffset
+					: undefined,
+				"bs-popper-config": attr.popperConfig ? JSON.stringify(attr.popperConfig) : undefined,
+				"bs-sanitize": attr.sanitize ? (attr.sanitize === true ? "true" : "false") : undefined,
+				"bs-sanitize-fn": attr.sanitizeFn,
+				"bs-selector": attr.selector ? attr.selector : undefined,
+				"bs-template": attr.template,
 			},
 		},
 		attr
@@ -41,6 +85,21 @@ const convert = (attr: IBsTooltip) => {
 	delete attr.placement;
 	delete attr.customClass;
 	delete attr.parent;
+	delete attr.allowHtml;
+
+	delete attr.allowList;
+	delete attr.animation;
+	delete attr.boundary;
+	delete attr.showDelay;
+	delete attr.hideDelay;
+	delete attr.delay;
+	delete attr.fallbackPlacement;
+	delete attr.viewOffset;
+	delete attr.popperConfig;
+	delete attr.sanitize;
+	delete attr.sanitizeFn;
+	delete attr.selector;
+	delete attr.template;
 
 	return attr;
 };
