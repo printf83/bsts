@@ -13,10 +13,10 @@ import { IAttr } from "../tag.js";
 
 export type IAttachFn = (
 	key: string,
-	elem: HTMLElement,
+	elem: Element,
 	attr: IAttr
 ) => {
-	elem: HTMLElement;
+	elem: Element;
 	attr: IAttr;
 };
 
@@ -45,7 +45,7 @@ const attrFn: IAttachFn[] = [
 	attachOther,
 ];
 
-export const attachAttr = (elem: HTMLElement, attr: IAttr): HTMLElement => {
+export const attachAttr = (elem: Element, attr: IAttr): Element => {
 	if (attr) {
 		let d = Object.assign({}, attr);
 

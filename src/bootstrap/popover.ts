@@ -31,6 +31,7 @@ export interface IBsPopover extends IAttr {
 
 const convert = (attr: IBsPopover) => {
 	attr.inline ??= true;
+	attr.autoInit ??= true;
 
 	let JDelay: string | undefined = undefined;
 	if (attr.showDelay && attr.hideDelay) {
@@ -116,37 +117,37 @@ export class popover extends span {
 		super(convert(bsConstArg<IBsPopover>("elem", arg)));
 	}
 
-	static getInstance = (elem: HTMLElement | string) => {
+	static getInstance = (elem: Element | string) => {
 		return window.bootstrap.Popover.getInstance(elem);
 	};
-	static getOrCreateInstance = (elem: HTMLElement | string) => {
+	static getOrCreateInstance = (elem: Element | string) => {
 		return window.bootstrap.Popover.getOrCreateInstance(elem);
 	};
-	static disable = (elem: string) => {
+	static disable = (elem: Element | string) => {
 		this.getInstance(elem)?.disable();
 	};
-	static dispose = (elem: string) => {
+	static dispose = (elem: Element | string) => {
 		this.getInstance(elem)?.dispose();
 	};
-	static enable = (elem: string) => {
+	static enable = (elem: Element | string) => {
 		this.getOrCreateInstance(elem)?.enable();
 	};
-	static hide = (elem: string) => {
+	static hide = (elem: Element | string) => {
 		this.getInstance(elem)?.hide();
 	};
-	static show = (elem: string) => {
+	static show = (elem: Element | string) => {
 		this.getInstance(elem)?.show();
 	};
-	static setContent = (elem: string, content?: Record<string, string | Element | null>) => {
+	static setContent = (elem: Element | string, content?: Record<string, string | Element | null>) => {
 		this.getInstance(elem)?.setContent(content);
 	};
-	static toggle = (elem: string) => {
+	static toggle = (elem: Element | string) => {
 		this.getInstance(elem)?.toggle();
 	};
-	static toggleEnabled = (elem: string) => {
+	static toggleEnabled = (elem: Element | string) => {
 		this.getInstance(elem)?.toggleEnabled();
 	};
-	static update = (elem: string) => {
+	static update = (elem: Element | string) => {
 		this.getInstance(elem)?.update();
 	};
 }

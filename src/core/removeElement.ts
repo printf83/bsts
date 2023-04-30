@@ -1,6 +1,6 @@
-import { deleteEvent, HTMLElementWithEventDB } from "./eventManager.js";
+import { deleteEvent, ElementWithEventDB } from "./eventManager.js";
 
-export const removeElement = (elem: HTMLElement | HTMLBodyElement) => {
-	deleteEvent(elem as HTMLElementWithEventDB);
+export const removeElement = (elem: Element) => {
+	deleteEvent(elem as ElementWithEventDB);
 	elem.remove();
 };

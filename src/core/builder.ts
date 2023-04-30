@@ -61,7 +61,7 @@ const calcTimer = (datevalue: number) => {
 	};
 };
 
-const runTimer = (elem: HTMLElement, delay: number) => {
+const runTimer = (elem: Element, delay: number) => {
 	const id = elem.getAttribute("id");
 	const tv = parseInt(elem.getAttribute("data-bs-timer-run")!);
 
@@ -91,7 +91,7 @@ export const removeActivePopover = () => {
 export const removeActiveModal = () => {
 	const elem = document.querySelectorAll("div.modal.show");
 	elem.forEach((i) => {
-		modalFn.hide(i as HTMLElement);
+		modalFn.hide(i);
 	});
 };
 export const removeActiveToast = () => {
@@ -101,7 +101,7 @@ export const removeActiveToast = () => {
 	});
 };
 
-export const init = (container: HTMLElement) => {
+export const init = (container: Element) => {
 	const popoverTriggerList = container.querySelectorAll('[data-bs-toggle="popover"]');
 	popoverTriggerList.forEach((i) => {
 		// let container = i.getAttribute("data-bs-container");
@@ -121,7 +121,7 @@ export const init = (container: HTMLElement) => {
 		i.setAttribute("id", i.getAttribute("id") || UUID());
 		i.setAttribute("data-bs-timer-run", i.getAttribute("data-bs-timer")!);
 		i.removeAttribute("data-bs-timer");
-		runTimer(i as HTMLElement, 1000);
+		runTimer(i, 1000);
 	});
 };
 
@@ -280,7 +280,7 @@ const htmlToElement = (strHTML: string) => {
 	return template.content.firstChild;
 };
 
-const processElem = (i: string | tag | strHtml, e: tag, element: HTMLElement) => {
+const processElem = (i: string | tag | strHtml, e: tag, element: Element) => {
 	if (i !== null) {
 		if (isTag<IAttr>(i)) {
 			let t = build(element, i as tag);
@@ -310,11 +310,11 @@ const processElem = (i: string | tag | strHtml, e: tag, element: HTMLElement) =>
 };
 
 export const build = (
-	container: HTMLElement | HTMLBodyElement,
+	container: Element,
 	arg: buildArg,
 	append: boolean = true,
-	beforeElem: HTMLElement | null = null
-): HTMLElement | HTMLBodyElement => {
+	beforeElem: Element | ChildNode | null = null
+): Element => {
 	if (arg) {
 		arg = Array.isArray(arg) ? arg : [arg];
 
@@ -368,7 +368,7 @@ export const build = (
 								if (container.childElementCount > 0) {
 									if (beforeElem) {
 										container.insertBefore(element, beforeElem);
-										beforeElem = element as HTMLElement;
+										beforeElem = element;
 									} else {
 										container.insertBefore(element, container.firstChild);
 									}
@@ -386,12 +386,12 @@ export const build = (
 	return container;
 };
 
-export const getNode = (arg: buildArg): HTMLElement | HTMLElement[] | null => {
+export const getNode = (arg: buildArg): Element | Element[] | null => {
 	let container = build(document.createElement("template"), arg);
 	let childCount = container.childElementCount;
 	if (childCount === 0) return null;
-	if (childCount === 1) return container.firstChild as HTMLElement;
-	return Array.from(container.childNodes).map((i) => i as HTMLElement);
+	if (childCount === 1) return container.firstChild as Element;
+	return Array.from(container.childNodes).map((i) => i as Element);
 };
 
 export const getHtml = (arg: buildArg): string => {
@@ -401,30 +401,26 @@ export const getHtml = (arg: buildArg): string => {
 	return result;
 };
 
-export const appendChild = (container: HTMLElement | HTMLBodyElement, arg: buildArg): HTMLElement | HTMLBodyElement => {
+export const appendChild = (container: Element, arg: buildArg): Element => {
 	container = build(container, arg);
 	return container;
 };
 
-export const prependChild = (
-	container: HTMLElement | HTMLBodyElement,
-	arg: buildArg
-): HTMLElement | HTMLBodyElement => {
+export const prependChild = (container: Element, arg: buildArg): Element => {
 	container = build(container, arg, false);
 	return container;
 };
 
-export const replaceWith = (elem: HTMLElement | HTMLBodyElement, arg: buildArg): HTMLElement | HTMLBodyElement => {
-	let parent = elem.parentNode as HTMLElement;
-	parent = build(parent, arg, true, elem);
-	removeElement(elem);
-	return parent;
+export const replaceWith = (elem: Element, arg: buildArg): Element | undefined => {
+	let parent = elem.parentNode as Element;
+	if (parent) {
+		parent = build(parent, arg, true, elem);
+		removeElement(elem);
+		return parent;
+	}
 };
 
-export const replaceChild = (
-	container: HTMLElement | HTMLBodyElement,
-	arg: buildArg
-): HTMLElement | HTMLBodyElement => {
+export const replaceChild = (container: Element, arg: buildArg): Element => {
 	removeChildElement(container);
 	container = build(container, arg);
 	return container;

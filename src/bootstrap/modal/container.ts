@@ -6,7 +6,7 @@ import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
 // import { removeElement } from "../../core/removeElement.js";
 // import { appendChild, init } from "../../core/builder.js";
-// import { addEvent, HTMLElementWithEventDB } from "../../core/eventManager.js";
+// import { addEvent, ElementWithEventDB } from "../../core/eventManager.js";
 
 export interface IBsModalContainer extends IAttr {
 	static?: boolean;

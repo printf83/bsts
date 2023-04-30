@@ -1,5 +1,5 @@
 import { appendChild, init } from "../../core/builder.js";
-import { addEvent, HTMLElementWithEventDB } from "../../core/eventManager.js";
+import { addEvent, ElementWithEventDB } from "../../core/eventManager.js";
 import { removeElement } from "../../core/removeElement.js";
 import { UUID } from "../../core/uuid.js";
 import { btnclose } from "./btnclose.js";
@@ -11,7 +11,7 @@ import { IBsToastItem, item } from "./item.js";
 import { bootstrapType } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
 import { strong } from "../../html/strong.js";
-import { IElem } from "../../core/tag.js";
+import { IElem, isTag } from "../../core/tag.js";
 
 export const getInstance = (elem: string | Element) => {
 	return window.bootstrap.Toast.getInstance(elem);
@@ -38,8 +38,8 @@ export const isShown = (elem: string | Element) => {
 	}
 };
 
-export const show = (itemOrElem: item | string, placement?: IBsToastContainerPlacement) => {
-	if (typeof itemOrElem === "string") {
+export const show = (itemOrElem: item | Element | string, placement?: IBsToastContainerPlacement) => {
+	if (!isTag<item>(itemOrElem)) {
 		getOrCreateInstance(itemOrElem)?.show();
 	} else {
 		placement ??= "top-end";
@@ -77,11 +77,11 @@ export const show = (itemOrElem: item | string, placement?: IBsToastContainerPla
 				containerClassName = ".toast-container.top-0.start-0:not(.debug)";
 		}
 
-		let containerDOM: HTMLElement = document.querySelector(containerClassName) as HTMLElement;
+		let containerDOM = document.querySelector(containerClassName);
 		if (!containerDOM) {
-			// let body = document.getElementById("main") as HTMLElement;
+			// let body = document.getElementById("main") ;
 			appendChild(document.body, new container({ placement: placement }));
-			containerDOM = document.querySelector(containerClassName) as HTMLElement;
+			containerDOM = document.querySelector(containerClassName);
 		}
 
 		if (containerDOM) {
@@ -94,12 +94,12 @@ export const show = (itemOrElem: item | string, placement?: IBsToastContainerPla
 			appendChild(containerDOM, itemOrElem);
 			let tst = document.getElementById(itemOrElem.attr.id);
 			if (tst) {
-				addEvent("hidden.bs.toast", tst as HTMLElementWithEventDB, (e) => {
+				addEvent("hidden.bs.toast", tst as ElementWithEventDB, (e) => {
 					window.bootstrap.Modal.getInstance(e.target as Element)?.dispose();
-					removeElement(e.target as HTMLElement);
+					removeElement(e.target as Element);
 				});
 
-				window.bootstrap.Toast.getOrCreateInstance(tst as Element).show();
+				window.bootstrap.Toast.getOrCreateInstance(tst).show();
 				init(tst);
 			}
 		}

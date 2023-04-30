@@ -1,5 +1,5 @@
 import { appendChild, init } from "../../core/builder.js";
-import { addEvent, HTMLElementWithEventDB } from "../../core/eventManager.js";
+import { addEvent, ElementWithEventDB } from "../../core/eventManager.js";
 import { mergeAttr } from "../../core/mergeAttr.js";
 import { removeElement } from "../../core/removeElement.js";
 import { IAttr, IElem } from "../../core/tag.js";
@@ -22,9 +22,9 @@ export const show = (i: container) => {
 
 	let mdl = document.getElementById(i.attr.id);
 	if (mdl) {
-		addEvent("hidden.bs.modal", mdl as HTMLElementWithEventDB, (e) => {
+		addEvent("hidden.bs.modal", mdl as ElementWithEventDB, (e) => {
 			window.bootstrap.Modal.getInstance(e.target as Element)?.dispose();
-			removeElement(e.target as HTMLElement);
+			removeElement(e.target as Element);
 		});
 
 		window.bootstrap.Modal.getOrCreateInstance(mdl).show();
@@ -34,9 +34,11 @@ export const show = (i: container) => {
 
 export const hide = (i: Element) => {
 	let container = i.classList.contains("modal") ? i : i.closest(".modal");
-	const mdl = window.bootstrap.Modal.getInstance(container as Element);
-	if (mdl) {
-		mdl.hide();
+	if (container) {
+		const mdl = window.bootstrap.Modal.getInstance(container);
+		if (mdl) {
+			mdl.hide();
+		}
 	}
 };
 

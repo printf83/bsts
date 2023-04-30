@@ -2,20 +2,20 @@ export interface IDEventDB {
 	[key: string]: EventListener;
 }
 
-export class HTMLElementWithEventDB extends HTMLElement {
+export class ElementWithEventDB extends HTMLElement {
 	constructor(public eventDB: IDEventDB) {
 		super();
 	}
 }
 
-const removeEvent = (elem: HTMLElementWithEventDB) => {
+const removeEvent = (elem: ElementWithEventDB) => {
 	Object.keys(elem.eventDB).forEach((k) => {
 		elem.removeEventListener(k, elem.eventDB[k], false);
 		delete elem.eventDB[k];
 	});
 };
 
-export const addEvent = (name: string, elem: HTMLElementWithEventDB, fn: EventListener) => {
+export const addEvent = (name: string, elem: ElementWithEventDB, fn: EventListener) => {
 	//create detachEventListener db
 	if (typeof elem.eventDB === "undefined") {
 		elem.eventDB = {};
@@ -28,13 +28,13 @@ export const addEvent = (name: string, elem: HTMLElementWithEventDB, fn: EventLi
 	elem.addEventListener(name, fn, false);
 };
 
-export const deleteEvent = (elem: HTMLElementWithEventDB) => {
+export const deleteEvent = (elem: ElementWithEventDB) => {
 	if (elem) {
 		let c = elem?.childNodes;
 
 		//remove event from child
 		if (c?.length > 0) {
-			let d = Array.from(c).map((i) => i as HTMLElementWithEventDB);
+			let d = Array.from(c).map((i) => i as ElementWithEventDB);
 
 			d.forEach((e) => {
 				deleteEvent(e);

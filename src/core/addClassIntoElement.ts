@@ -38,10 +38,7 @@ export const manageClass = (value: string | undefined | (string | undefined)[]):
 	return result && result.length > 0 ? result : [];
 };
 
-export const addClassIntoElement = (
-	elem: HTMLElement,
-	value: string | undefined | (string | undefined)[]
-): HTMLElement => {
+export const addClassIntoElement = (elem: Element, value: string | undefined | (string | undefined)[]): Element => {
 	try {
 		let i = manageClass(value);
 		if (i && i.length > 0) {

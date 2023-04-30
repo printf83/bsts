@@ -1079,7 +1079,7 @@ const bsClassFormatterDB: {
 	}),
 };
 
-type IBsAttrFormatter = (elem: HTMLElement, data: string | number | boolean) => HTMLElement;
+type IBsAttrFormatter = (elem: Element, data: string | number | boolean) => Element;
 
 const attrFormatterDB: {
 	[key: string]: IBsAttrFormatter;
@@ -1333,7 +1333,7 @@ export namespace attachBSClass {
 		return null;
 	};
 
-	const addClass = (rule: IBsClassFormatter, data: string | number | boolean, elem: HTMLElement) => {
+	const addClass = (rule: IBsClassFormatter, data: string | number | boolean, elem: Element) => {
 		if (rule.value && allowValue(data, rule.value)) {
 			if (rule.formatValue) {
 				elem = addClassIntoElement(elem, rule.formatValue!);
@@ -1390,7 +1390,7 @@ export namespace attachBSAttr {
 		return null;
 	};
 
-	const addAttr = (rule: IBsAttrFormatter, data: string | number | boolean, elem: HTMLElement) => {
+	const addAttr = (rule: IBsAttrFormatter, data: string | number | boolean, elem: Element) => {
 		elem = rule(elem, data);
 
 		return elem;

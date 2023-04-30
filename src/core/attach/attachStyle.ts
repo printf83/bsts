@@ -13,13 +13,13 @@ export const attachStyle: IAttachFn = (key, elem, attr) => {
 
 					if (attr.style[k]) {
 						if (attr.style[k]!.indexOf(" !important") > -1) {
-							elem.style.setProperty(
+							(<HTMLElement>elem).style.setProperty(
 								camel2Dash(i[x]),
 								attr.style[k]!.replace(" !important", ""),
 								"important"
 							);
 						} else {
-							elem.style.setProperty(camel2Dash(i[x]), attr.style[k]!);
+							(<HTMLElement>elem).style.setProperty(camel2Dash(i[x]), attr.style[k]!);
 						}
 					}
 				}
