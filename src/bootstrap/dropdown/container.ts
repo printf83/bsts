@@ -1,14 +1,14 @@
 import { IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
-import { IBsBtngroup, btngroup } from "../btngroup.js";
+import { Btngroup, btngroup } from "../btngroup.js";
 
-export type IBsDropdownContainerDrop = "down" | "down-center" | "up" | "up-center" | "start" | "end";
-export interface IBsDropdownContainer extends IBsBtngroup {
-	drop?: IBsDropdownContainerDrop;
+export type Drop = "down" | "down-center" | "up" | "up-center" | "start" | "end";
+export interface Container extends Btngroup {
+	drop?: Drop;
 }
 
-const convert = (attr: IBsDropdownContainer) => {
+const convert = (attr: Container) => {
 	attr.class = mergeClass(attr.class, [attr.drop ? `drop${attr.drop}` : undefined]);
 
 	delete attr.drop;
@@ -18,13 +18,13 @@ const convert = (attr: IBsDropdownContainer) => {
 
 export class container extends btngroup {
 	constructor(); //#1
-	constructor(attr: IBsDropdownContainer); //#2
+	constructor(attr: Container); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsDropdownContainer, elem: IElem); //#4
+	constructor(attr: Container, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsDropdownContainer>("elem", arg)));
+		super(convert(bsConstArg<Container>("elem", arg)));
 	}
 }
 
-export const Container = (AttrOrElem?: IBsDropdownContainer | IElem, Elem?: IElem) =>
-	genTagClass<container, IBsDropdownContainer>(container, AttrOrElem, Elem);
+export const Container = (AttrOrElem?: Container | IElem, Elem?: IElem) =>
+	genTagClass<container, Container>(container, AttrOrElem, Elem);

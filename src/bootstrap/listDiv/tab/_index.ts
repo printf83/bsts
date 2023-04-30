@@ -1,5 +1,4 @@
-import { Content, content } from "./content.js";
-import { pane, IBsListDivPane, Pane } from "./pane.js";
+import { content } from "./content.js";
+import { pane } from "./pane.js";
 
-export { content, pane, IBsListDivPane };
-export { Content, Pane };
+export { content, pane };

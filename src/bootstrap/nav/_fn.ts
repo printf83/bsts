@@ -1,27 +1,27 @@
 import { mergeObject } from "../../core/mergeObject.js";
 import { IElem } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
-import { IBsNavContentContainer, container as contentContainer } from "./content/container.js";
+import { Container, container as contentContainer } from "./content/container.js";
 import { header } from "../card/header.js";
-import { IBsNavContainerNav, containerNav } from "./header/containerNav.js";
+import { ContainerNav, containerNav } from "./header/containerNav.js";
 import { container as headerContainer } from "./header/container.js";
 import { mergeClass } from "../../core/mergeClass.js";
 
-export interface IBsTabItem {
+export interface TabItem {
 	label?: IElem;
 	elem?: IElem;
 	active?: boolean;
 	disabled?: boolean;
 }
 
-export interface IBsTab extends Omit<IBsNavContainerNav, "item" | "container"> {
+export interface Tab extends Omit<ContainerNav, "item" | "container"> {
 	card?: true;
 	animation?: boolean;
-	item?: IBsTabItem | IBsTabItem[];
-	attrContent?: IBsNavContentContainer;
+	item?: TabItem | TabItem[];
+	attrContent?: Container;
 }
 
-export const Tab = (attr: IBsTab) => {
+export const Tab = (attr: Tab) => {
 	if (attr.item) {
 		if (!Array.isArray(attr.item)) {
 			attr.item = [attr.item];
@@ -53,9 +53,9 @@ export const Tab = (attr: IBsTab) => {
 		});
 
 		let THeader: containerNav | headerContainer;
-		THeader = new containerNav(tAttr as IBsNavContainerNav);
+		THeader = new containerNav(tAttr as ContainerNav);
 
-		let tAttrContent = mergeObject<IBsNavContentContainer>(
+		let tAttrContent = mergeObject<Container>(
 			{
 				id: `${attr.id}_content`,
 				marginTop: attr.card || attr.vertical ? undefined : 3,

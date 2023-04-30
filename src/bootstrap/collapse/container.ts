@@ -4,11 +4,11 @@ import { mergeClass } from "../../core/mergeClass.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
 
-export interface IBsCollapseContainer extends IAttr {
+export interface Container extends IAttr {
 	horizontal?: true;
 }
 
-const convert = (attr: IBsCollapseContainer) => {
+const convert = (attr: Container) => {
 	attr.id ??= UUID();
 	attr.class = mergeClass(attr.class, ["collapse", attr.horizontal ? "collapse-horizontal" : undefined]);
 
@@ -19,13 +19,13 @@ const convert = (attr: IBsCollapseContainer) => {
 
 export class container extends div {
 	constructor(); //#1
-	constructor(attr: IBsCollapseContainer); //#2
+	constructor(attr: Container); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsCollapseContainer, elem: IElem); //#4
+	constructor(attr: Container, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsCollapseContainer>("elem", arg)));
+		super(convert(bsConstArg<Container>("elem", arg)));
 	}
 }
 
-export const Container = (AttrOrElem?: IBsCollapseContainer | IElem, Elem?: IElem) =>
-	genTagClass<container, IBsCollapseContainer>(container, AttrOrElem, Elem);
+export const Container = (AttrOrElem?: Container | IElem, Elem?: IElem) =>
+	genTagClass<container, Container>(container, AttrOrElem, Elem);

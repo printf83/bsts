@@ -2,14 +2,14 @@ import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { genTagClass } from "../core/tag.js";
 import { UUID } from "../core/uuid.js";
-import { ITagTextarea, textarea as TTextarea } from "../html/textarea.js";
+import { Textarea as ITextarea, textarea as TTextarea } from "../html/textarea.js";
 
-export interface IBsTextarea extends ITagTextarea {
+export interface Textarea extends ITextarea {
 	weight?: "sm" | "lg";
 	isvalid?: boolean;
 }
 
-const convert = (attr: IBsTextarea) => {
+const convert = (attr: Textarea) => {
 	attr = mergeObject(
 		{
 			id: attr.id || UUID(),
@@ -32,12 +32,12 @@ const convert = (attr: IBsTextarea) => {
 export class textarea extends TTextarea {
 	constructor(); //#1
 	constructor(value: string); //#2
-	constructor(attr: IBsTextarea); //#3
-	constructor(attr: IBsTextarea, value: string); //#4
+	constructor(attr: Textarea); //#3
+	constructor(attr: Textarea, value: string); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsTextarea>("value", arg)));
+		super(convert(bsConstArg<Textarea>("value", arg)));
 	}
 }
 
-export const Textarea = (AttrOrValue?: IBsTextarea | string, Value?: string) =>
-	genTagClass<textarea, IBsTextarea>(textarea, AttrOrValue, Value);
+export const Textarea = (AttrOrValue?: Textarea | string, Value?: string) =>
+	genTagClass<textarea, Textarea>(textarea, AttrOrValue, Value);

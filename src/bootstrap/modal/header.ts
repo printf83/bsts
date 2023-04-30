@@ -4,11 +4,11 @@ import { mergeClass } from "../../core/mergeClass.js";
 import { div } from "../../html/div.js";
 import { btnclose } from "./btnclose.js";
 
-export interface IBsModalHeader extends IAttr {
+export interface Header extends IAttr {
 	close?: boolean;
 }
 
-const convert = (attr: IBsModalHeader) => {
+const convert = (attr: Header) => {
 	attr.class = mergeClass(attr.class, "modal-header");
 
 	if (attr.close) {
@@ -30,13 +30,13 @@ const convert = (attr: IBsModalHeader) => {
 
 export class header extends div {
 	constructor(); //#1
-	constructor(attr: IBsModalHeader); //#2
+	constructor(attr: Header); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsModalHeader, elem: IElem); //#4
+	constructor(attr: Header, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsModalHeader>("elem", arg)));
+		super(convert(bsConstArg<Header>("elem", arg)));
 	}
 }
 
-export const Header = (AttrOrElem?: IBsModalHeader | IElem, Elem?: IElem) =>
-	genTagClass<header, IBsModalHeader>(header, AttrOrElem, Elem);
+export const Header = (AttrOrElem?: Header | IElem, Elem?: IElem) =>
+	genTagClass<header, Header>(header, AttrOrElem, Elem);

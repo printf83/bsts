@@ -1,19 +1,19 @@
 import { IElem, genTagClass } from "../../../core/tag.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeClass } from "../../../core/mergeClass.js";
-import { ITagLi, li } from "../../../html/li.js";
-import { IBsNavButton, button } from "./button.js";
-import { IBsNavLink, link } from "./link.js";
+import { Li, li } from "../../../html/li.js";
+import { Button, button } from "./button.js";
+import { Link, link } from "./link.js";
 
-export interface IBsNavItem extends ITagLi {
+export interface Item extends Li {
 	role?: "presentation";
 	dropdown?: boolean;
 
-	link?: IBsNavLink;
-	button?: IBsNavButton;
+	link?: Link;
+	button?: Button;
 }
 
-const convert = (attr: IBsNavItem) => {
+const convert = (attr: Item) => {
 	attr.class = mergeClass(attr.class, ["nav-item", attr.dropdown ? "dropdown" : undefined]);
 
 	if (attr.link && !attr.button && !attr.elem) {
@@ -31,13 +31,12 @@ const convert = (attr: IBsNavItem) => {
 
 export class item extends li {
 	constructor(); //#1
-	constructor(attr: IBsNavItem); //#2
+	constructor(attr: Item); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsNavItem, elem: IElem); //#4
+	constructor(attr: Item, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsNavItem>("elem", arg)));
+		super(convert(bsConstArg<Item>("elem", arg)));
 	}
 }
 
-export const Item = (AttrOrElem?: IBsNavItem | IElem, Elem?: IElem) =>
-	genTagClass<item, IBsNavItem>(item, AttrOrElem, Elem);
+export const Item = (AttrOrElem?: Item | IElem, Elem?: IElem) => genTagClass<item, Item>(item, AttrOrElem, Elem);

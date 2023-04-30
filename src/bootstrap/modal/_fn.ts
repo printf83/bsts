@@ -4,11 +4,11 @@ import { mergeAttr } from "../../core/mergeAttr.js";
 import { removeElement } from "../../core/removeElement.js";
 import { IAttr, IElem } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
-import { button, IBsButton } from "../button.js";
+import { button, Button } from "../button.js";
 import { body } from "./body.js";
-import { container, IBsModalContainer } from "./container.js";
+import { container, Container } from "./container.js";
 import { footer } from "./footer.js";
-import { header, IBsModalHeader } from "./header.js";
+import { header, Header } from "./header.js";
 import { title } from "./title.js";
 
 export const show = (i: container) => {
@@ -43,7 +43,7 @@ export const hide = (i: Element) => {
 };
 
 interface btnItem {
-	color?: IBsButton["color"];
+	color?: Button["color"];
 	elem: IElem;
 	click?: EventListener;
 }
@@ -97,7 +97,7 @@ type btnType =
 	| "yescontinue";
 
 interface btnItemDB {
-	color?: IBsButton["color"];
+	color?: Button["color"];
 	elem: IElem;
 }
 
@@ -213,18 +213,18 @@ const genBtn = (btn?: btnType | btnType[], fn?: EventListener | EventListener[])
 	}
 };
 
-export interface IBsModalSimple extends Omit<IBsModalContainer, "title"> {
+export interface Simple extends Omit<Container, "title"> {
 	btn?: btnType | btnType[];
 	btnFn?: EventListener | EventListener[];
 	title?: IElem;
 	elem?: IElem;
 
-	attrHeader?: IBsModalHeader;
+	attrHeader?: Header;
 	attrBody?: IAttr;
 	attrFooter?: IAttr;
 }
 
-export const Simple = (attr: IBsModalSimple) => {
+export const Simple = (attr: Simple) => {
 	let contAttr = Object.assign({}, attr);
 
 	delete contAttr.btn;
@@ -250,7 +250,7 @@ export const Simple = (attr: IBsModalSimple) => {
 		showHeader = !(attr.static ? false : btn.hasDismissButton);
 	}
 
-	return new container(contAttr as IBsModalContainer, [
+	return new container(contAttr as Container, [
 		showHeader
 			? new header(
 					mergeAttr(

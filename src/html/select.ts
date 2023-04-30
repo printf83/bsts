@@ -1,17 +1,17 @@
 import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
-import { optgroup, ITagOptgroup } from "./optgroup.js";
-import { option, ITagOption } from "./option.js";
+import { optgroup, Optgroup } from "./optgroup.js";
+import { option, Option } from "./option.js";
 
-export interface ITagSelectItem extends ITagOption, ITagOptgroup {
+export interface SelectItem extends Option, Optgroup {
 	value?: string;
 	label?: string;
 	elem?: IElem;
 	selected?: boolean;
 
-	item?: ITagSelectItem | ITagSelectItem[];
+	item?: SelectItem | SelectItem[];
 }
 
-export interface ITagSelect extends IAttr {
+export interface Select extends IAttr {
 	autofocus?: boolean;
 	disabled?: boolean;
 	form?: string;
@@ -20,10 +20,10 @@ export interface ITagSelect extends IAttr {
 	required?: boolean;
 	size?: number;
 
-	item?: ITagSelectItem | ITagSelectItem[];
+	item?: SelectItem | SelectItem[];
 }
 
-const convert = (attr: ITagSelect) => {
+const convert = (attr: Select) => {
 	if (attr.item && !attr.elem) {
 		if (!Array.isArray(attr.item)) {
 			attr.item = [attr.item];
@@ -57,12 +57,12 @@ const convert = (attr: ITagSelect) => {
 export class select extends tag {
 	constructor();
 	constructor(elem: IElem);
-	constructor(attr: ITagSelect);
-	constructor(attr: ITagSelect, elem: IElem);
+	constructor(attr: Select);
+	constructor(attr: Select, elem: IElem);
 	constructor(...arg: any[]) {
-		super("select", convert(tagConsArg<ITagSelect>("elem", arg)));
+		super("select", convert(tagConsArg<Select>("elem", arg)));
 	}
 }
 
-export const Select = (AttrOrElem?: ITagSelect | IElem, Elem?: IElem) =>
-	genTagClass<select, ITagSelect>(select, AttrOrElem, Elem);
+export const Select = (AttrOrElem?: Select | IElem, Elem?: IElem) =>
+	genTagClass<select, Select>(select, AttrOrElem, Elem);

@@ -1,14 +1,14 @@
 import { mergeObject } from "../../core/mergeObject.js";
 import { UUID } from "../../core/uuid.js";
-import { IBsInput, input as TInput } from "../input.js";
-import { IBsLabel, label } from "../label.js";
+import { Input, input as TInput } from "../input.js";
+import { Label, label } from "../label.js";
 
-export interface IBsFormToggle extends Omit<IBsInput, "container"> {
+export interface Toggle extends Omit<Input, "container"> {
 	type?: "checkbox" | "radio";
-	container?: IBsLabel;
+	container?: Label;
 }
 
-export const Toggle = (attr: IBsFormToggle) => {
+export const Toggle = (attr: Toggle) => {
 	attr.id ??= UUID();
 	attr.label ??= attr.id;
 
@@ -26,7 +26,7 @@ export const Toggle = (attr: IBsFormToggle) => {
 
 	delete attr.container;
 
-	let tElem = new TInput(attr as IBsInput);
+	let tElem = new TInput(attr as Input);
 
 	return [tElem, tLabel];
 };

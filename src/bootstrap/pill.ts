@@ -4,10 +4,10 @@ import { mergeObject } from "../core/mergeObject.js";
 import { div } from "../html/div.js";
 import { small } from "../html/small.js";
 import { span } from "../html/span.js";
-import { IBsIcon, icon } from "./icon.js";
+import { Icon, icon } from "./icon.js";
 
-export interface IBsPill extends IAttr {
-	icon?: string | IBsIcon | icon;
+export interface Pill extends IAttr {
+	icon?: string | Icon | icon;
 	iconPosition?: "start" | "end" | "top" | "bottom";
 	color?: bootstrapType.color;
 	weight?: "md" | "lg";
@@ -23,17 +23,17 @@ const fnIcon = (
 	iconPosition: "start" | "end" | "top" | "bottom" | undefined,
 	rounded: bootstrapType.rounded | undefined,
 	type: 1 | 2 | undefined,
-	attr: string | IBsIcon | icon
+	attr: string | Icon | icon
 ) => {
 	if (typeof attr === "string") {
-		attr = { id: attr } as IBsIcon;
+		attr = { id: attr } as Icon;
 	}
 
-	let a: IBsIcon = {};
-	if (isAttr<IBsIcon>(attr)) {
+	let a: Icon = {};
+	if (isAttr<Icon>(attr)) {
 		a = attr;
 	} else {
-		a = attr.attr as IBsIcon;
+		a = attr.attr as Icon;
 	}
 
 	let r: bootstrapType.rounded;
@@ -125,9 +125,9 @@ const fnElem = (
 	);
 };
 
-const convert = (attr: IBsPill) => {
+const convert = (attr: Pill) => {
 	let tElem: IElem;
-	let tAttr: IBsPill = attr;
+	let tAttr: Pill = attr;
 
 	if (attr && typeof attr.icon !== "undefined") {
 		if (attr.elem) {
@@ -166,10 +166,10 @@ const convert = (attr: IBsPill) => {
 		} else {
 			if (attr.icon) {
 				if (typeof attr.icon === "string") {
-					attr.icon = { id: attr.icon } as IBsIcon;
+					attr.icon = { id: attr.icon } as Icon;
 				}
 
-				if (isAttr<IBsIcon>(attr.icon)) {
+				if (isAttr<Icon>(attr.icon)) {
 					tElem = new icon(attr.icon);
 				} else {
 					tElem = attr.icon;
@@ -213,12 +213,11 @@ const convert = (attr: IBsPill) => {
 export class pill extends small {
 	constructor();
 	constructor(text: string);
-	constructor(attr: IBsPill);
-	constructor(attr: IBsPill, text: string);
+	constructor(attr: Pill);
+	constructor(attr: Pill, text: string);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}
 }
 
-export const Pill = (AttrOrText?: IBsPill | string, Text?: string) =>
-	genTagClass<pill, IBsPill>(pill, AttrOrText, Text);
+export const Pill = (AttrOrText?: Pill | string, Text?: string) => genTagClass<pill, Pill>(pill, AttrOrText, Text);

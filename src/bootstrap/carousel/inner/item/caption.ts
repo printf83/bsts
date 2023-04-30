@@ -1,7 +1,6 @@
 import { IAttr, IElem, genTagClass } from "../../../../core/tag.js";
 import { bsConstArg } from "../../../../core/bootstrap.js";
 import { div } from "../../../../html/div.js";
-
 import { mergeClass } from "../../../../core/mergeClass.js";
 
 const convert = (attr: IAttr) => {

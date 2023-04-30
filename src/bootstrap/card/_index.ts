@@ -1,15 +1,14 @@
-import { Link, link } from "./link.js";
-import { Container, container } from "./container.js";
-import { Img, img, IBsCardImg } from "./img.js";
-import { Body, body } from "./body.js";
-import { Footer, footer } from "./footer.js";
-import { Header, header } from "./header.js";
-import { Subtitle, subtitle } from "./subtitle.js";
-import { Text, text } from "./text.js";
-import { Title, title } from "./title.js";
-import { Imgoverlay, imgoverlay } from "./imgoverlay.js";
-import { Group, group } from "./group.js";
-import { Nav, nav } from "./nav.js";
+import { body } from "./body.js";
+import { container } from "./container.js";
+import { footer } from "./footer.js";
+import { group } from "./group.js";
+import { header } from "./header.js";
+import { img } from "./img.js";
+import { imgoverlay } from "./imgoverlay.js";
+import { link } from "./link.js";
+import { nav } from "./nav.js";
+import { subtitle } from "./subtitle.js";
+import { text } from "./text.js";
+import { title } from "./title.js";
 
-export { body, container, img, link, subtitle, text, title, header, footer, imgoverlay, group, nav, IBsCardImg };
-export { Body, Container, Img, Link, Subtitle, Text, Title, Header, Footer, Imgoverlay, Group, Nav };
+export { body, container, img, link, subtitle, text, title, header, footer, imgoverlay, group, nav };

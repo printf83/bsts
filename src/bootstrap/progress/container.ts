@@ -4,7 +4,7 @@ import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
 import { bar } from "./bar.js";
 
-export interface IBsProgressContainer extends IAttr {
+export interface Container extends IAttr {
 	role?: "progressbar";
 	value?: number;
 	min?: number;
@@ -17,7 +17,7 @@ export interface IBsProgressContainer extends IAttr {
 	text?: "none" | "percent" | "progress" | string;
 }
 
-const convert = (attr: IBsProgressContainer) => {
+const convert = (attr: Container) => {
 	attr.max ??= 100;
 	attr.min ??= 0;
 
@@ -92,13 +92,13 @@ const convert = (attr: IBsProgressContainer) => {
 
 export class container extends div {
 	constructor(); //#1
-	constructor(attr: IBsProgressContainer); //#2
+	constructor(attr: Container); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsProgressContainer, elem: IElem); //#4
+	constructor(attr: Container, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsProgressContainer>("elem", arg)));
+		super(convert(bsConstArg<Container>("elem", arg)));
 	}
 }
 
-export const Container = (AttrOrElem?: IBsProgressContainer | IElem, Elem?: IElem) =>
-	genTagClass<container, IBsProgressContainer>(container, AttrOrElem, Elem);
+export const Container = (AttrOrElem?: Container | IElem, Elem?: IElem) =>
+	genTagClass<container, Container>(container, AttrOrElem, Elem);

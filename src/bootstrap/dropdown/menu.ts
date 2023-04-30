@@ -4,14 +4,14 @@ import { div } from "../../html/div.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 
-export interface IBsDropdownMenu extends IAttr {
+export interface Menu extends IAttr {
 	dynamicPosition?: false;
 	positionView?: bootstrapType.dropdownMenuPositionView | bootstrapType.dropdownMenuPositionView[];
 	dropdownMenuPositionView?: bootstrapType.dropdownMenuPositionView | bootstrapType.dropdownMenuPositionView[];
 	debug?: boolean;
 }
 
-const convert = (attr: IBsDropdownMenu) => {
+const convert = (attr: Menu) => {
 	attr = mergeObject(
 		{
 			class: ["dropdown-menu", attr.debug ? "debug" : undefined],
@@ -30,13 +30,12 @@ const convert = (attr: IBsDropdownMenu) => {
 
 export class menu extends div {
 	constructor(); //#1
-	constructor(attr: IBsDropdownMenu); //#2
+	constructor(attr: Menu); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsDropdownMenu, elem: IElem); //#4
+	constructor(attr: Menu, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsDropdownMenu>("elem", arg)));
+		super(convert(bsConstArg<Menu>("elem", arg)));
 	}
 }
 
-export const Menu = (AttrOrElem?: IBsDropdownMenu | IElem, Elem?: IElem) =>
-	genTagClass<menu, IBsDropdownMenu>(menu, AttrOrElem, Elem);
+export const Menu = (AttrOrElem?: Menu | IElem, Elem?: IElem) => genTagClass<menu, Menu>(menu, AttrOrElem, Elem);

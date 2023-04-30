@@ -6,8 +6,8 @@ import { btnclose } from "./btnclose.js";
 import { body } from "./body.js";
 import { header } from "./header.js";
 import { time } from "./time.js";
-import { container, IBsToastContainerPlacement } from "./container.js";
-import { IBsToastItem, item } from "./item.js";
+import { container, ContainerPlacement } from "./container.js";
+import { Item, item } from "./item.js";
 import { bootstrapType } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
 import { strong } from "../../html/strong.js";
@@ -38,7 +38,7 @@ export const isShown = (elem: string | Element) => {
 	}
 };
 
-export const show = (itemOrElem: item | Element | string, placement?: IBsToastContainerPlacement) => {
+export const show = (itemOrElem: item | Element | string, placement?: ContainerPlacement) => {
 	if (!isTag<item>(itemOrElem)) {
 		getOrCreateInstance(itemOrElem)?.show();
 	} else {
@@ -106,18 +106,18 @@ export const show = (itemOrElem: item | Element | string, placement?: IBsToastCo
 	}
 };
 
-export interface IBsToastSimple {
+export interface Simple {
 	elem: IElem;
 	animation?: boolean;
 	color?: bootstrapType.textBgColor;
 	btnclosewhite?: boolean;
 	delay?: number;
 	atomic?: boolean;
-	live?: IBsToastItem["live"];
+	live?: Item["live"];
 	title?: IElem;
 }
 
-export const Simple = (attr: IBsToastSimple) => {
+export const Simple = (attr: Simple) => {
 	let defaultBtnCloseWhite = false;
 	switch (attr.color) {
 		case "dark":

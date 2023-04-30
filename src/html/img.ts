@@ -1,6 +1,6 @@
 import { tagConsNoElemArg, IAttr, tag, genTagClass } from "../core/tag.js";
 
-export interface ITagImg extends IAttr {
+export interface Img extends IAttr {
 	alt?: string;
 	crossorigin?: "anonymous" | "use-credentials";
 	ismap?: boolean;
@@ -21,10 +21,10 @@ export interface ITagImg extends IAttr {
 
 export class img extends tag {
 	constructor(); //#1
-	constructor(attr: ITagImg); //#3
+	constructor(attr: Img); //#3
 	constructor(...arg: any[]) {
-		super("img", tagConsNoElemArg<ITagImg>(arg));
+		super("img", tagConsNoElemArg<Img>(arg));
 	}
 }
 
-export const Img = (Attr?: ITagImg) => genTagClass<img, ITagImg>(img, Attr);
+export const Img = (Attr?: Img) => genTagClass<img, Img>(img, Attr);

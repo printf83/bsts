@@ -1,23 +1,9 @@
-import { Body, body } from "./body.js";
-import { Btnclose, btnclose, IBsModalBtnclose } from "./btnclose.js";
-import { Container, container, IBsModalContainer } from "./container.js";
-import { Footer, footer } from "./footer.js";
-import { Header, header, IBsModalHeader } from "./header.js";
-import { Title, title } from "./title.js";
-import { hide, IBsModalSimple, show, Simple } from "./_fn.js";
+import { hide, show } from "./_fn.js";
+import { body } from "./body.js";
+import { btnclose } from "./btnclose.js";
+import { container } from "./container.js";
+import { footer } from "./footer.js";
+import { header } from "./header.js";
+import { title } from "./title.js";
 
-export {
-	body,
-	btnclose,
-	container,
-	footer,
-	header,
-	title,
-	IBsModalBtnclose,
-	IBsModalContainer,
-	IBsModalHeader,
-	show,
-	hide,
-	IBsModalSimple,
-};
-export { Body, Btnclose, Container, Footer, Header, Title, Simple };
+export { body, btnclose, container, footer, header, title, show, hide };

@@ -1,14 +1,14 @@
 import { IAttr, IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
-import { ITagUl, ul } from "../../html/ul.js";
+import { Ul, ul } from "../../html/ul.js";
 import { nav } from "../../html/nav.js";
 
-export interface IBsPaginationContainer extends ITagUl {
+export interface Container extends Ul {
 	weight?: "sm" | "lg";
 }
 
-const convert = (attr: IBsPaginationContainer) => {
+const convert = (attr: Container) => {
 	//nav only prop is label
 	let navAttr: IAttr = {
 		label: attr.label,
@@ -30,13 +30,13 @@ const convert = (attr: IBsPaginationContainer) => {
 
 export class container extends nav {
 	constructor(); //#1
-	constructor(attr: IBsPaginationContainer); //#2
+	constructor(attr: Container); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsPaginationContainer, elem: IElem); //#4
+	constructor(attr: Container, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsPaginationContainer>("elem", arg)));
+		super(convert(bsConstArg<Container>("elem", arg)));
 	}
 }
 
-export const Container = (AttrOrElem?: IBsPaginationContainer | IElem, Elem?: IElem) =>
-	genTagClass<container, IBsPaginationContainer>(container, AttrOrElem, Elem);
+export const Container = (AttrOrElem?: Container | IElem, Elem?: IElem) =>
+	genTagClass<container, Container>(container, AttrOrElem, Elem);

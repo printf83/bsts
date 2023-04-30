@@ -3,14 +3,14 @@ import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { nav } from "../../html/nav.js";
 import { ol } from "../../html/ol.js";
-import { IBsBreadcrumbItem, item } from "./item.js";
+import { Item, item } from "./item.js";
 
-export interface IBsBreadcrumbContainer extends IAttr {
+export interface Container extends IAttr {
 	divider?: string;
-	item?: IBsBreadcrumbItem | IBsBreadcrumbItem[];
+	item?: Item | Item[];
 }
 
-const convert = (attr: IBsBreadcrumbContainer) => {
+const convert = (attr: Container) => {
 	attr = mergeObject(
 		{
 			style: {
@@ -29,7 +29,7 @@ const convert = (attr: IBsBreadcrumbContainer) => {
 		);
 	} else {
 		if (attr.item) {
-			let tItem: IBsBreadcrumbItem[] = Array.isArray(attr.item) ? attr.item : [attr.item];
+			let tItem: Item[] = Array.isArray(attr.item) ? attr.item : [attr.item];
 
 			attr.elem = new ol(
 				{
@@ -57,13 +57,13 @@ const convert = (attr: IBsBreadcrumbContainer) => {
 
 export class container extends nav {
 	constructor(); //#1
-	constructor(attr: IBsBreadcrumbContainer); //#2
+	constructor(attr: Container); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsBreadcrumbContainer, elem: IElem); //#4
+	constructor(attr: Container, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsBreadcrumbContainer>("elem", arg)));
+		super(convert(bsConstArg<Container>("elem", arg)));
 	}
 }
 
-export const Container = (AttrOrElem?: IBsBreadcrumbContainer | IElem, Elem?: IElem) =>
-	genTagClass<container, IBsBreadcrumbContainer>(container, AttrOrElem, Elem);
+export const Container = (AttrOrElem?: Container | IElem, Elem?: IElem) =>
+	genTagClass<container, Container>(container, AttrOrElem, Elem);

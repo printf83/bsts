@@ -1,10 +1,10 @@
 import { IElem, genTagClass } from "../../core/tag.js";
 import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
-import { ITagTd, td as TTd } from "../../html/td.js";
+import { Td as ITd, td as TTd } from "../../html/td.js";
 import { mergeObject } from "../../core/mergeObject.js";
 
-export interface IBsTableTd extends ITagTd {
+export interface Td extends ITd {
 	color?: bootstrapType.color;
 	active?: boolean;
 
@@ -12,7 +12,7 @@ export interface IBsTableTd extends ITagTd {
 	responsiveTitle?: string;
 }
 
-const convert = (attr: IBsTableTd) => {
+const convert = (attr: Td) => {
 	attr.class = mergeClass(attr.class, [
 		attr.color ? `table-${attr.color}` : undefined,
 		attr.active ? "table-active" : undefined,
@@ -39,12 +39,12 @@ const convert = (attr: IBsTableTd) => {
 
 export class td extends TTd {
 	constructor(); //#1
-	constructor(attr: IBsTableTd); //#2
+	constructor(attr: Td); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsTableTd, elem: IElem); //#4
+	constructor(attr: Td, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsTableTd>("elem", arg)));
+		super(convert(bsConstArg<Td>("elem", arg)));
 	}
 }
 
-export const Td = (AttrOrElem?: IBsTableTd | IElem, Elem?: IElem) => genTagClass<td, IBsTableTd>(td, AttrOrElem, Elem);
+export const Td = (AttrOrElem?: Td | IElem, Elem?: IElem) => genTagClass<td, Td>(td, AttrOrElem, Elem);

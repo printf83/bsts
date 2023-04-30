@@ -1,6 +1,6 @@
 import { tagConsNoElemArg, IAttr, tag, genTagClass } from "../core/tag.js";
 
-export interface ITagIframe extends IAttr {
+export interface Iframe extends IAttr {
 	allowfullscreen?: boolean;
 	allowpaymentrequest?: boolean;
 	loadingStyle?: "eager" | "lazy";
@@ -27,10 +27,10 @@ export interface ITagIframe extends IAttr {
 
 export class iframe extends tag {
 	constructor();
-	constructor(attr: ITagIframe);
+	constructor(attr: Iframe);
 	constructor(...arg: any[]) {
-		super("iframe", tagConsNoElemArg<ITagIframe>(arg));
+		super("iframe", tagConsNoElemArg<Iframe>(arg));
 	}
 }
 
-export const Iframe = (Attr?: ITagIframe) => genTagClass<iframe, ITagIframe>(iframe, Attr);
+export const Iframe = (Attr?: Iframe) => genTagClass<iframe, Iframe>(iframe, Attr);

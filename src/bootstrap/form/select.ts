@@ -4,7 +4,7 @@ import { IAttr, IElem, isTag } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
 import { label } from "../label.js";
-import { IBsSelect, select as TSelect } from "../select.js";
+import { Select as ISelect, select as TSelect } from "../select.js";
 import { container as TInputGroupContainer } from "../inputgroup/container.js";
 import {
 	genLabel,
@@ -18,7 +18,7 @@ import {
 	genValidTooltip,
 } from "./_fn.js";
 
-export interface IBsFormSelect extends Omit<IBsSelect, "container"> {
+export interface Select extends Omit<ISelect, "container"> {
 	description?: string;
 	container?: IAttr;
 
@@ -37,7 +37,7 @@ export interface IBsFormSelect extends Omit<IBsSelect, "container"> {
 	validTooltip?: string;
 }
 
-export const Select = (attr: IBsFormSelect) => {
+export const Select = (attr: Select) => {
 	let container = attr.container;
 
 	attr.id ??= UUID();
@@ -90,7 +90,7 @@ export const Select = (attr: IBsFormSelect) => {
 	delete tAttr.validTooltip;
 	delete tAttr.invalidTooltip;
 
-	let tElem = new TSelect(tAttr as IBsSelect);
+	let tElem = new TSelect(tAttr as ISelect);
 
 	//setup container if col provided
 	if (attr.col1) {

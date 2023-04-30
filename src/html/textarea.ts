@@ -1,6 +1,6 @@
 import { tagConsNoElemArg, IAttr, tag, genTagClass } from "../core/tag.js";
 
-export interface ITagTextarea extends IAttr {
+export interface Textarea extends IAttr {
 	autofocus?: boolean;
 	cols?: number;
 	dirname?: string;
@@ -16,7 +16,7 @@ export interface ITagTextarea extends IAttr {
 	value?: string;
 }
 
-const convert = (attr: ITagTextarea) => {
+const convert = (attr: Textarea) => {
 	//move value to elem
 
 	if (attr.value) {
@@ -38,10 +38,10 @@ const convert = (attr: ITagTextarea) => {
 
 export class textarea extends tag {
 	constructor();
-	constructor(attr: ITagTextarea);
+	constructor(attr: Textarea);
 	constructor(...arg: any[]) {
-		super("textarea", convert(tagConsNoElemArg<ITagTextarea>(arg)));
+		super("textarea", convert(tagConsNoElemArg<Textarea>(arg)));
 	}
 }
 
-export const Textarea = (Attr?: ITagTextarea) => genTagClass<textarea, ITagTextarea>(textarea, Attr);
+export const Textarea = (Attr?: Textarea) => genTagClass<textarea, Textarea>(textarea, Attr);

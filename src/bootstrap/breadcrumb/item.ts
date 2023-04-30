@@ -4,12 +4,12 @@ import { mergeObject } from "../../core/mergeObject.js";
 import { a } from "../../html/a.js";
 import { li } from "../../html/li.js";
 
-export interface IBsBreadcrumbItem extends IAttr {
+export interface Item extends IAttr {
 	active?: boolean;
 	href?: string;
 }
 
-const convert = (attr: IBsBreadcrumbItem) => {
+const convert = (attr: Item) => {
 	attr = mergeObject(
 		{
 			class: ["breadcrumb-item", attr.active ? "active" : undefined],
@@ -33,13 +33,12 @@ const convert = (attr: IBsBreadcrumbItem) => {
 
 export class item extends li {
 	constructor(); //#1
-	constructor(attr: IBsBreadcrumbItem); //#2
+	constructor(attr: Item); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsBreadcrumbItem, elem: IElem); //#4
+	constructor(attr: Item, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsBreadcrumbItem>("elem", arg)));
+		super(convert(bsConstArg<Item>("elem", arg)));
 	}
 }
 
-export const Item = (AttrOrElem?: IBsBreadcrumbItem | IElem, Elem?: IElem) =>
-	genTagClass<item, IBsBreadcrumbItem>(item, AttrOrElem, Elem);
+export const Item = (AttrOrElem?: Item | IElem, Elem?: IElem) => genTagClass<item, Item>(item, AttrOrElem, Elem);

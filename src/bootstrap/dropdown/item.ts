@@ -1,14 +1,14 @@
 import { genTagClass, IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { a, ITagA } from "../../html/a.js";
+import { a, A } from "../../html/a.js";
 
-export interface IBsDropdownItem extends ITagA {
+export interface Item extends A {
 	active?: boolean;
 	current?: string;
 }
 
-const convert = (attr: IBsDropdownItem) => {
+const convert = (attr: Item) => {
 	attr = mergeObject(
 		{
 			class: ["dropdown-item", attr.active ? "active" : undefined],
@@ -25,13 +25,12 @@ const convert = (attr: IBsDropdownItem) => {
 
 export class item extends a {
 	constructor(); //#1
-	constructor(attr: IBsDropdownItem); //#2
+	constructor(attr: Item); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsDropdownItem, elem: IElem); //#4
+	constructor(attr: Item, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsDropdownItem>("elem", arg)));
+		super(convert(bsConstArg<Item>("elem", arg)));
 	}
 }
 
-export const Item = (AttrOrElem?: IBsDropdownItem | IElem, Elem?: IElem) =>
-	genTagClass<item, IBsDropdownItem>(item, AttrOrElem, Elem);
+export const Item = (AttrOrElem?: Item | IElem, Elem?: IElem) => genTagClass<item, Item>(item, AttrOrElem, Elem);

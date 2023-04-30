@@ -4,7 +4,7 @@ import { IAttr, IElem, isTag } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
 import { label } from "../label.js";
-import { IBsTextarea, textarea as TTextarea } from "../textarea.js";
+import { Textarea as ITextarea, textarea as TTextarea } from "../textarea.js";
 import { container as TInputGroupContainer } from "../inputgroup/container.js";
 import {
 	genLabel,
@@ -18,7 +18,7 @@ import {
 	genValidTooltip,
 } from "./_fn.js";
 
-export interface IBsFormTextarea extends Omit<IBsTextarea, "container"> {
+export interface Textarea extends Omit<ITextarea, "container"> {
 	description?: string;
 	container?: IAttr;
 
@@ -37,7 +37,7 @@ export interface IBsFormTextarea extends Omit<IBsTextarea, "container"> {
 	validTooltip?: string;
 }
 
-export const Textarea = (attr: IBsFormTextarea) => {
+export const Textarea = (attr: Textarea) => {
 	let container = attr.container;
 
 	attr.id ??= UUID();
@@ -90,7 +90,7 @@ export const Textarea = (attr: IBsFormTextarea) => {
 	delete tAttr.validTooltip;
 	delete tAttr.invalidTooltip;
 
-	let tElem = new TTextarea(tAttr as IBsTextarea);
+	let tElem = new TTextarea(tAttr as ITextarea);
 
 	//setup container if col provided
 	if (attr.col1) {

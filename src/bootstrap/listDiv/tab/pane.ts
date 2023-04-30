@@ -3,13 +3,13 @@ import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeClass } from "../../../core/mergeClass.js";
 import { div } from "../../../html/div.js";
 
-export interface IBsListDivPane extends IAttr {
+export interface Pane extends IAttr {
 	animation?: boolean;
 	active?: boolean;
 	role?: "tabpanel";
 }
 
-const convert = (attr: IBsListDivPane) => {
+const convert = (attr: Pane) => {
 	attr.animation ??= true;
 	attr.role ??= "tabpanel";
 
@@ -28,13 +28,12 @@ const convert = (attr: IBsListDivPane) => {
 
 export class pane extends div {
 	constructor(); //#1
-	constructor(attr: IBsListDivPane); //#2
+	constructor(attr: Pane); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsListDivPane, elem: IElem); //#4
+	constructor(attr: Pane, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsListDivPane>("elem", arg)));
+		super(convert(bsConstArg<Pane>("elem", arg)));
 	}
 }
 
-export const Pane = (AttrOrElem?: IBsListDivPane | IElem, Elem?: IElem) =>
-	genTagClass<pane, IBsListDivPane>(pane, AttrOrElem, Elem);
+export const Pane = (AttrOrElem?: Pane | IElem, Elem?: IElem) => genTagClass<pane, Pane>(pane, AttrOrElem, Elem);

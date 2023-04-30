@@ -1,22 +1,22 @@
 import { IElem, genTagClass } from "../../../core/tag.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeObject } from "../../../core/mergeObject.js";
-import { ITagUl, ul } from "../../../html/ul.js";
-import { IBsNavItem, item } from "./item.js";
-import { IBsNavLink, link } from "./link.js";
-import { IBsNavButton, button } from "./button.js";
+import { Ul, ul } from "../../../html/ul.js";
+import { Item, item } from "./item.js";
+import { Link, link } from "./link.js";
+import { Button, button } from "./button.js";
 
-export interface IBsNavContainer extends Omit<ITagUl, "item"> {
+export interface Container extends Omit<Ul, "item"> {
 	type?: "tab" | "pill" | "underline";
 	itemWidth?: "fill" | "justified";
 	vertical?: true;
 	role?: "tablist";
-	item?: IBsNavItem | IBsNavItem[];
-	link?: IBsNavLink | IBsNavLink[];
-	button?: IBsNavButton | IBsNavButton[];
+	item?: Item | Item[];
+	link?: Link | Link[];
+	button?: Button | Button[];
 }
 
-const convert = (attr: IBsNavContainer): ITagUl => {
+const convert = (attr: Container): Ul => {
 	attr = mergeObject(
 		{
 			class: [
@@ -65,18 +65,18 @@ const convert = (attr: IBsNavContainer): ITagUl => {
 	delete attr.itemWidth;
 	delete attr.vertical;
 
-	return attr as ITagUl;
+	return attr as Ul;
 };
 
 export class container extends ul {
 	constructor(); //#1
-	constructor(attr: IBsNavContainer); //#2
+	constructor(attr: Container); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsNavContainer, elem: IElem); //#4
+	constructor(attr: Container, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsNavContainer>("elem", arg)));
+		super(convert(bsConstArg<Container>("elem", arg)));
 	}
 }
 
-export const Container = (AttrOrElem?: IBsNavContainer | IElem, Elem?: IElem) =>
-	genTagClass<container, IBsNavContainer>(container, AttrOrElem, Elem);
+export const Container = (AttrOrElem?: Container | IElem, Elem?: IElem) =>
+	genTagClass<container, Container>(container, AttrOrElem, Elem);

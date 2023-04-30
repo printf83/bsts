@@ -10,7 +10,7 @@ import { th } from "../../html/th.js";
 import { thead } from "./thead.js";
 import { mergeObject } from "../../core/mergeObject.js";
 
-export interface IBsTableContainer extends IAttr {
+export interface Container extends IAttr {
 	color?: bootstrapType.color;
 	striped?: "row" | "col";
 	hoverable?: boolean;
@@ -26,7 +26,7 @@ export interface IBsTableContainer extends IAttr {
 	item?: (string | tag | strHtml | (string | tag | strHtml)[])[][];
 }
 
-const convert = (attr: IBsTableContainer) => {
+const convert = (attr: Container) => {
 	if (attr.item && !attr.elem) {
 		attr.elem = [];
 
@@ -131,13 +131,13 @@ const convert = (attr: IBsTableContainer) => {
 
 export class container extends table {
 	constructor(); //#1
-	constructor(attr: IBsTableContainer); //#2
+	constructor(attr: Container); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsTableContainer, elem: IElem); //#4
+	constructor(attr: Container, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsTableContainer>("elem", arg)));
+		super(convert(bsConstArg<Container>("elem", arg)));
 	}
 }
 
-export const Container = (AttrOrElem?: IBsTableContainer | IElem, Elem?: IElem) =>
-	genTagClass<container, IBsTableContainer>(container, AttrOrElem, Elem);
+export const Container = (AttrOrElem?: Container | IElem, Elem?: IElem) =>
+	genTagClass<container, Container>(container, AttrOrElem, Elem);

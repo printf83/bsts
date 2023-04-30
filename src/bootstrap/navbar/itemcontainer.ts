@@ -1,14 +1,14 @@
 import { IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { ITagUl, ul } from "../../html/ul.js";
+import { Ul, ul } from "../../html/ul.js";
 
-export interface IBsNavbarItemcontainer extends ITagUl {
+export interface Itemcontainer extends Ul {
 	scroll?: boolean;
 	scrollHeight?: string;
 }
 
-const convert = (attr: IBsNavbarItemcontainer) => {
+const convert = (attr: Itemcontainer) => {
 	attr = mergeObject(
 		{
 			class: ["navbar-nav", attr.scroll ? "navbar-nav-scroll" : undefined],
@@ -22,13 +22,13 @@ const convert = (attr: IBsNavbarItemcontainer) => {
 
 export class itemcontainer extends ul {
 	constructor(); //#1
-	constructor(attr: IBsNavbarItemcontainer); //#2
+	constructor(attr: Itemcontainer); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsNavbarItemcontainer, elem: IElem); //#4
+	constructor(attr: Itemcontainer, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsNavbarItemcontainer>("elem", arg)));
+		super(convert(bsConstArg<Itemcontainer>("elem", arg)));
 	}
 }
 
-export const Itemcontainer = (AttrOrElem?: IBsNavbarItemcontainer | IElem, Elem?: IElem) =>
-	genTagClass<itemcontainer, IBsNavbarItemcontainer>(itemcontainer, AttrOrElem, Elem);
+export const Itemcontainer = (AttrOrElem?: Itemcontainer | IElem, Elem?: IElem) =>
+	genTagClass<itemcontainer, Itemcontainer>(itemcontainer, AttrOrElem, Elem);

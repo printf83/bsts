@@ -1,21 +1,21 @@
 import { genTagClass, IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
-import { a, ITagA } from "../../html/a.js";
+import { a, A } from "../../html/a.js";
 
-const convert = (attr: ITagA) => {
+const convert = (attr: A) => {
 	attr.class = mergeClass(attr.class, "alert-link");
 	return attr;
 };
 
 export class link extends a {
 	constructor(); //#1
-	constructor(attr: ITagA); //#2
+	constructor(attr: A); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: ITagA, elem: IElem); //#4
+	constructor(attr: A, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<ITagA>("elem", arg)));
+		super(convert(bsConstArg<A>("elem", arg)));
 	}
 }
 
-export const Link = (AttrOrElem?: ITagA | IElem, Elem?: IElem) => genTagClass<link, ITagA>(link, AttrOrElem, Elem);
+export const Link = (AttrOrElem?: A | IElem, Elem?: IElem) => genTagClass<link, A>(link, AttrOrElem, Elem);

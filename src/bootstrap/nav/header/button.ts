@@ -2,16 +2,16 @@ import { IElem, genTagClass } from "../../../core/tag.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { UUID } from "../../../core/uuid.js";
-import { button as TButton, ITagButton } from "../../../html/button.js";
+import { button as TButton, Button as IButton } from "../../../html/button.js";
 
-export interface IBsNavButton extends ITagButton {
+export interface Button extends IButton {
 	role?: "tab" | "button";
 	toggle?: "dropdown" | "pill" | "tab";
 	target?: string;
 	active?: boolean;
 }
 
-const convert = (attr: IBsNavButton) => {
+const convert = (attr: Button) => {
 	switch (attr.toggle) {
 		case "dropdown":
 			attr.role ??= "button";
@@ -54,13 +54,13 @@ const convert = (attr: IBsNavButton) => {
 
 export class button extends TButton {
 	constructor(); //#1
-	constructor(attr: IBsNavButton); //#2
+	constructor(attr: Button); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsNavButton, elem: IElem); //#4
+	constructor(attr: Button, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsNavButton>("elem", arg)));
+		super(convert(bsConstArg<Button>("elem", arg)));
 	}
 }
 
-export const Button = (AttrOrElem?: IBsNavButton | IElem, Elem?: IElem) =>
-	genTagClass<button, IBsNavButton>(button, AttrOrElem, Elem);
+export const Button = (AttrOrElem?: Button | IElem, Elem?: IElem) =>
+	genTagClass<button, Button>(button, AttrOrElem, Elem);

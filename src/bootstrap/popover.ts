@@ -3,7 +3,7 @@ import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { span } from "../html/span.js";
 
-export interface IBsPopover extends IAttr {
+export interface Popover extends IAttr {
 	inline?: boolean;
 	trigger?: "hover" | "focus" | "click" | ("hover" | "focus" | "click")[];
 	title?: string;
@@ -29,7 +29,7 @@ export interface IBsPopover extends IAttr {
 	template?: string;
 }
 
-const convert = (attr: IBsPopover) => {
+const convert = (attr: Popover) => {
 	attr.inline ??= true;
 	attr.autoInit ??= true;
 
@@ -110,11 +110,11 @@ const convert = (attr: IBsPopover) => {
 
 export class popover extends span {
 	constructor(); //#1
-	constructor(attr: IBsPopover); //#2
+	constructor(attr: Popover); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsPopover, elem: IElem); //#4
+	constructor(attr: Popover, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsPopover>("elem", arg)));
+		super(convert(bsConstArg<Popover>("elem", arg)));
 	}
 
 	static getInstance = (elem: Element | string) => {
@@ -152,5 +152,5 @@ export class popover extends span {
 	};
 }
 
-export const Popover = (AttrOrElem?: IBsPopover | IElem, Elem?: IElem) =>
-	genTagClass<popover, IBsPopover>(popover, AttrOrElem, Elem);
+export const Popover = (AttrOrElem?: Popover | IElem, Elem?: IElem) =>
+	genTagClass<popover, Popover>(popover, AttrOrElem, Elem);

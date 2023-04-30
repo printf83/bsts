@@ -1,9 +1,9 @@
 import { IElem, genTagClass, isAttr } from "../../../core/tag.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { span } from "../../../html/span.js";
-import { IBsCollapseToggle, toggle as TCollapseToggle } from "../../collapse/toggle.js";
+import { Toggle, toggle as TCollapseToggle } from "../../collapse/toggle.js";
 
-const convert = (attr: IBsCollapseToggle) => {
+const convert = (attr: Toggle) => {
 	attr = mergeObject(
 		{
 			defColor: false,
@@ -21,15 +21,15 @@ const convert = (attr: IBsCollapseToggle) => {
 
 export class collapse extends TCollapseToggle {
 	constructor(); //#1
-	constructor(attr: IBsCollapseToggle); //#2
+	constructor(attr: Toggle); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsCollapseToggle, elem: IElem); //#4
+	constructor(attr: Toggle, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
 			super(convert({}));
 		} else if (arg.length === 1) {
-			if (isAttr<IBsCollapseToggle>(arg[0])) {
+			if (isAttr<Toggle>(arg[0])) {
 				//#2
 				super(convert(arg[0]));
 			} else {
@@ -43,5 +43,5 @@ export class collapse extends TCollapseToggle {
 	}
 }
 
-export const Collapse = (AttrOrElem?: IBsCollapseToggle | IElem, Elem?: IElem) =>
-	genTagClass<collapse, IBsCollapseToggle>(collapse, AttrOrElem, Elem);
+export const Collapse = (AttrOrElem?: Toggle | IElem, Elem?: IElem) =>
+	genTagClass<collapse, Toggle>(collapse, AttrOrElem, Elem);

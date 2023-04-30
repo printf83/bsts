@@ -1,6 +1,6 @@
 import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
 
-export interface ITagVideo extends IAttr {
+export interface Video extends IAttr {
 	autoplay?: boolean;
 	controls?: boolean;
 	loop?: boolean;
@@ -13,12 +13,11 @@ export interface ITagVideo extends IAttr {
 export class video extends tag {
 	constructor(); //#1
 	constructor(elem: IElem); //#3
-	constructor(attr: ITagVideo); //#4
-	constructor(attr: ITagVideo, elem: IElem); //#4
+	constructor(attr: Video); //#4
+	constructor(attr: Video, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super("video", tagConsArg<ITagVideo>("elem", arg));
+		super("video", tagConsArg<Video>("elem", arg));
 	}
 }
 
-export const Video = (AttrOrElem?: ITagVideo | IElem, Elem?: IElem) =>
-	genTagClass<video, ITagVideo>(video, AttrOrElem, Elem);
+export const Video = (AttrOrElem?: Video | IElem, Elem?: IElem) => genTagClass<video, Video>(video, AttrOrElem, Elem);

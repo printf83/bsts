@@ -4,11 +4,8 @@ import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
-// import { removeElement } from "../../core/removeElement.js";
-// import { appendChild, init } from "../../core/builder.js";
-// import { addEvent, ElementWithEventDB } from "../../core/eventManager.js";
 
-export interface IBsModalContainer extends IAttr {
+export interface Container extends IAttr {
 	static?: boolean;
 	weight?: "sm" | "lg" | "xl";
 	fullscreen?: true | bootstrapType.viewport;
@@ -19,7 +16,7 @@ export interface IBsModalContainer extends IAttr {
 	debug?: boolean;
 }
 
-const convert = (attr: IBsModalContainer) => {
+const convert = (attr: Container) => {
 	attr.animation ??= true;
 
 	attr = mergeObject(
@@ -64,13 +61,13 @@ const convert = (attr: IBsModalContainer) => {
 
 export class container extends div {
 	constructor(); //#1
-	constructor(attr: IBsModalContainer); //#2
+	constructor(attr: Container); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsModalContainer, elem: IElem); //#4
+	constructor(attr: Container, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsModalContainer>("elem", arg)));
+		super(convert(bsConstArg<Container>("elem", arg)));
 	}
 }
 
-export const Container = (AttrOrElem?: IBsModalContainer | IElem, Elem?: IElem) =>
-	genTagClass<container, IBsModalContainer>(container, AttrOrElem, Elem);
+export const Container = (AttrOrElem?: Container | IElem, Elem?: IElem) =>
+	genTagClass<container, Container>(container, AttrOrElem, Elem);

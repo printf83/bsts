@@ -3,7 +3,7 @@ import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeClass } from "../../../core/mergeClass.js";
 import { div } from "../../../html/div.js";
 
-export interface IBsNavContentItem extends IAttr {
+export interface Item extends IAttr {
 	active?: boolean;
 	role?: "tabpanel";
 	labelledby?: string;
@@ -11,7 +11,7 @@ export interface IBsNavContentItem extends IAttr {
 	animation?: boolean;
 }
 
-const convert = (attr: IBsNavContentItem) => {
+const convert = (attr: Item) => {
 	attr.role ??= "tabpanel";
 	attr.tabindex ??= "0";
 	attr.animation ??= true;
@@ -30,13 +30,12 @@ const convert = (attr: IBsNavContentItem) => {
 
 export class item extends div {
 	constructor(); //#1
-	constructor(attr: IBsNavContentItem); //#2
+	constructor(attr: Item); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsNavContentItem, elem: IElem); //#4
+	constructor(attr: Item, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsNavContentItem>("elem", arg)));
+		super(convert(bsConstArg<Item>("elem", arg)));
 	}
 }
 
-export const Item = (AttrOrElem?: IBsNavContentItem | IElem, Elem?: IElem) =>
-	genTagClass<item, IBsNavContentItem>(item, AttrOrElem, Elem);
+export const Item = (AttrOrElem?: Item | IElem, Elem?: IElem) => genTagClass<item, Item>(item, AttrOrElem, Elem);

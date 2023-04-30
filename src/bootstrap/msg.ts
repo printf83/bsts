@@ -1,10 +1,10 @@
 import { IAttr, IElem, isAttr } from "../core/tag.js";
 import { div } from "../html/div.js";
-import { ITagLabel, label as TLabel } from "../html/label.js";
-import { IBsIcon, icon } from "./icon.js";
+import { Label, label as TLabel } from "../html/label.js";
+import { Icon, icon } from "./icon.js";
 
-export interface IBsMsg extends ITagLabel {
-	icon?: IBsIcon;
+export interface Msg extends Label {
+	icon?: Icon;
 	iconPosition?: "start" | "end" | "top" | "bottom";
 	iconContainer?: IAttr;
 }
@@ -13,7 +13,7 @@ const fnRow = (elem: IElem) => {
 	return new div({ row: true }, new div({ col: true, textAlign: "center" }, elem));
 };
 
-const fnIcon = (containerAttr: IAttr | undefined, attr: IBsIcon) => {
+const fnIcon = (containerAttr: IAttr | undefined, attr: Icon) => {
 	return new div(containerAttr || { fontSize: 1 }, new icon(attr!));
 };
 
@@ -21,9 +21,9 @@ const fnElem = (elem: IElem) => {
 	return new div({ display: "flex", alignItem: "center" }, new div(elem));
 };
 
-const convert = (attr: IBsMsg) => {
+const convert = (attr: Msg) => {
 	let tElem: IElem;
-	let tAttr: IBsMsg = attr;
+	let tAttr: Msg = attr;
 
 	if (attr && typeof attr.icon !== "undefined") {
 		if (attr.elem) {
@@ -81,16 +81,16 @@ const convert = (attr: IBsMsg) => {
 
 export class msg extends TLabel {
 	constructor(); //#1
-	constructor(attr: IBsMsg); //#2
+	constructor(attr: Msg); //#2
 	constructor(elem: IElem); //#3
 	constructor(icon: string, elem: IElem); //#4
-	constructor(icon: IBsIcon, elem: IElem); //#5
+	constructor(icon: Icon, elem: IElem); //#5
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
 			super(convert({}));
 		} else if (arg.length === 1) {
-			if (isAttr<IBsMsg>(arg[0])) {
+			if (isAttr<Msg>(arg[0])) {
 				//#2
 				super(convert(arg[0]));
 			} else {
@@ -109,17 +109,17 @@ export class msg extends TLabel {
 	}
 }
 
-export const Msg = (AttrOrElemOrIcon?: IBsMsg | IBsIcon | IElem, Elem?: IElem) => {
+export const Msg = (AttrOrElemOrIcon?: Msg | Icon | IElem, Elem?: IElem) => {
 	if (AttrOrElemOrIcon) {
 		if (Elem) {
 			if (typeof AttrOrElemOrIcon === "string") {
 				return new msg(AttrOrElemOrIcon as string, Elem);
 			} else {
-				return new msg(AttrOrElemOrIcon as IBsIcon, Elem);
+				return new msg(AttrOrElemOrIcon as Icon, Elem);
 			}
 		} else {
-			if (isAttr<IBsMsg>(AttrOrElemOrIcon)) {
-				return new msg(AttrOrElemOrIcon as IBsMsg);
+			if (isAttr<Msg>(AttrOrElemOrIcon)) {
+				return new msg(AttrOrElemOrIcon as Msg);
 			} else {
 				return new msg(AttrOrElemOrIcon as IElem);
 			}

@@ -4,13 +4,13 @@ import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { div } from "../../html/div.js";
 
-export interface IBsListDivContainer extends IAttr {
+export interface Container extends IAttr {
 	flush?: boolean;
 	numbered?: boolean;
 	horizontal?: boolean | bootstrapType.viewport;
 }
 
-const convert = (attr: IBsListDivContainer) => {
+const convert = (attr: Container) => {
 	attr.class = mergeClass(attr.class, [
 		"list-group",
 		attr.flush ? "list-group-flush" : undefined,
@@ -31,13 +31,13 @@ const convert = (attr: IBsListDivContainer) => {
 
 export class container extends div {
 	constructor(); //#1
-	constructor(attr: IBsListDivContainer); //#2
+	constructor(attr: Container); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsListDivContainer, elem: IElem); //#4
+	constructor(attr: Container, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsListDivContainer>("elem", arg)));
+		super(convert(bsConstArg<Container>("elem", arg)));
 	}
 }
 
-export const Container = (AttrOrElem?: IBsListDivContainer | IElem, Elem?: IElem) =>
-	genTagClass<container, IBsListDivContainer>(container, AttrOrElem, Elem);
+export const Container = (AttrOrElem?: Container | IElem, Elem?: IElem) =>
+	genTagClass<container, Container>(container, AttrOrElem, Elem);

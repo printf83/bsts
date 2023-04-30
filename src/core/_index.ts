@@ -1,5 +1,5 @@
 import { manageClass, addClassIntoElement } from "./addClassIntoElement.js";
-import { bootstrapType, IBsAttr, IBsClass, bsConsNoElemArg, bsConstArg, bsConstArgTag } from "./bootstrap.js";
+import { bootstrapType, Attr, Class, bsConsNoElemArg, bsConstArg, bsConstArgTag } from "./bootstrap.js";
 import {
 	init,
 	build,
@@ -48,8 +48,8 @@ export {
 	manageClass,
 	addClassIntoElement,
 	bootstrapType,
-	IBsAttr,
-	IBsClass,
+	Attr,
+	Class,
 	bsConsNoElemArg,
 	bsConstArg,
 	bsConstArgTag,

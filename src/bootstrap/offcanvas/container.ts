@@ -5,7 +5,7 @@ import { mergeObject } from "../../core/mergeObject.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
 
-export interface IBsOffcanvasContainer extends IAttr {
+export interface Container extends IAttr {
 	placement?: "start" | "end" | "top" | "bottom";
 	show?: boolean | bootstrapType.viewport;
 	dark?: boolean;
@@ -16,7 +16,7 @@ export interface IBsOffcanvasContainer extends IAttr {
 	debug?: boolean;
 }
 
-const convert = (attr: IBsOffcanvasContainer) => {
+const convert = (attr: Container) => {
 	attr.placement ??= "start";
 
 	attr = mergeObject(
@@ -60,13 +60,13 @@ const convert = (attr: IBsOffcanvasContainer) => {
 
 export class container extends div {
 	constructor(); //#1
-	constructor(attr: IBsOffcanvasContainer); //#2
+	constructor(attr: Container); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsOffcanvasContainer, elem: IElem); //#4
+	constructor(attr: Container, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsOffcanvasContainer>("elem", arg)));
+		super(convert(bsConstArg<Container>("elem", arg)));
 	}
 }
 
-export const Container = (AttrOrElem?: IBsOffcanvasContainer | IElem, Elem?: IElem) =>
-	genTagClass<container, IBsOffcanvasContainer>(container, AttrOrElem, Elem);
+export const Container = (AttrOrElem?: Container | IElem, Elem?: IElem) =>
+	genTagClass<container, Container>(container, AttrOrElem, Elem);

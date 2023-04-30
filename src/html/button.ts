@@ -1,6 +1,6 @@
 import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
 
-export interface ITagButton extends IAttr {
+export interface Button extends IAttr {
 	autofocus?: boolean;
 	disabled?: boolean;
 	form?: string;
@@ -17,12 +17,12 @@ export interface ITagButton extends IAttr {
 export class button extends tag {
 	constructor();
 	constructor(elem: IElem);
-	constructor(attr: ITagButton);
-	constructor(attr: ITagButton, elem: IElem);
+	constructor(attr: Button);
+	constructor(attr: Button, elem: IElem);
 	constructor(...arg: any[]) {
-		super("button", tagConsArg<ITagButton>("elem", arg));
+		super("button", tagConsArg<Button>("elem", arg));
 	}
 }
 
-export const Button = (AttrOrElem?: ITagButton | IElem, Elem?: IElem) =>
-	genTagClass<button, ITagButton>(button, AttrOrElem, Elem);
+export const Button = (AttrOrElem?: Button | IElem, Elem?: IElem) =>
+	genTagClass<button, Button>(button, AttrOrElem, Elem);

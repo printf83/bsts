@@ -5,11 +5,11 @@ import { nav } from "../../html/nav.js";
 import { header } from "../../html/header.js";
 import { mergeClass } from "../../core/mergeClass.js";
 
-export interface IBsNavbarContainer extends IAttr {
+export interface Container extends IAttr {
 	expand?: bootstrapType.viewport;
 }
 
-const convert = (attr: IBsNavbarContainer) => {
+const convert = (attr: Container) => {
 	attr.class = mergeClass(attr.class, ["navbar", attr.expand ? `navbar-expand-${attr.expand}` : undefined]);
 	delete attr.expand;
 	return attr;
@@ -17,26 +17,26 @@ const convert = (attr: IBsNavbarContainer) => {
 
 export class container extends nav {
 	constructor(); //#1
-	constructor(attr: IBsNavbarContainer); //#2
+	constructor(attr: Container); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsNavbarContainer, elem: IElem); //#4
+	constructor(attr: Container, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsNavbarContainer>("elem", arg)));
+		super(convert(bsConstArg<Container>("elem", arg)));
 	}
 }
 
-export const Container = (AttrOrElem?: IBsNavbarContainer | IElem, Elem?: IElem) =>
-	genTagClass<container, IBsNavbarContainer>(container, AttrOrElem, Elem);
+export const Container = (AttrOrElem?: Container | IElem, Elem?: IElem) =>
+	genTagClass<container, Container>(container, AttrOrElem, Elem);
 
 export class containerHeader extends header {
 	constructor(); //#1
-	constructor(attr: IBsNavbarContainer); //#2
+	constructor(attr: Container); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsNavbarContainer, elem: IElem); //#4
+	constructor(attr: Container, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsNavbarContainer>("elem", arg)));
+		super(convert(bsConstArg<Container>("elem", arg)));
 	}
 }
 
-export const ContainerHeader = (AttrOrElem?: IBsNavbarContainer | IElem, Elem?: IElem) =>
-	genTagClass<containerHeader, IBsNavbarContainer>(containerHeader, AttrOrElem, Elem);
+export const ContainerHeader = (AttrOrElem?: Container | IElem, Elem?: IElem) =>
+	genTagClass<containerHeader, Container>(containerHeader, AttrOrElem, Elem);

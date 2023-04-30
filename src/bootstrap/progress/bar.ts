@@ -4,13 +4,13 @@ import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
 
-export interface IBsProgressBar extends IAttr {
+export interface Bar extends IAttr {
 	color?: bootstrapType.color;
 	striped?: boolean;
 	animated?: boolean;
 }
 
-const convert = (attr: IBsProgressBar) => {
+const convert = (attr: Bar) => {
 	attr = mergeObject(
 		{
 			class: [
@@ -32,13 +32,12 @@ const convert = (attr: IBsProgressBar) => {
 
 export class bar extends div {
 	constructor(); //#1
-	constructor(attr: IBsProgressBar); //#2
+	constructor(attr: Bar); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsProgressBar, elem: IElem); //#4
+	constructor(attr: Bar, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsProgressBar>("elem", arg)));
+		super(convert(bsConstArg<Bar>("elem", arg)));
 	}
 }
 
-export const Bar = (AttrOrElem?: IBsProgressBar | IElem, Elem?: IElem) =>
-	genTagClass<bar, IBsProgressBar>(bar, AttrOrElem, Elem);
+export const Bar = (AttrOrElem?: Bar | IElem, Elem?: IElem) => genTagClass<bar, Bar>(bar, AttrOrElem, Elem);

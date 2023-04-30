@@ -6,22 +6,22 @@ import * as indicators from "./indicators/_index.js";
 import { UUID } from "../../core/uuid.js";
 import * as inner from "./inner/_index.js";
 
-export interface IBsCarouselItem {
+export interface CarouselItem {
 	interval?: number;
 	src?: string;
 	caption?: IElem;
 }
-export interface IBsCarousel extends IAttr {
+export interface Carousel extends IAttr {
 	fade?: boolean;
 	autoPlay?: boolean;
 	disableTouch?: boolean;
 	innerAttr?: IAttr;
-	item?: IBsCarouselItem[];
+	item?: CarouselItem[];
 	itemControl?: boolean;
 	itemIndicator?: boolean;
 }
 
-const convert = (attr: IBsCarousel) => {
+const convert = (attr: Carousel) => {
 	attr.autoPlay = attr.autoPlay !== false ? true : false;
 
 	attr = mergeObject(
@@ -105,13 +105,13 @@ const convert = (attr: IBsCarousel) => {
 
 export class container extends div {
 	constructor(); //#1
-	constructor(attr: IBsCarousel); //#2
+	constructor(attr: Carousel); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsCarousel, elem: IElem); //#4
+	constructor(attr: Carousel, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsCarousel>("elem", arg)));
+		super(convert(bsConstArg<Carousel>("elem", arg)));
 	}
 }
 
-export const Container = (AttrOrElem?: IBsCarousel | IElem, Elem?: IElem) =>
-	genTagClass<container, IBsCarousel>(container, AttrOrElem, Elem);
+export const Container = (AttrOrElem?: Carousel | IElem, Elem?: IElem) =>
+	genTagClass<container, Carousel>(container, AttrOrElem, Elem);

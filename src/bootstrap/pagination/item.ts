@@ -1,18 +1,18 @@
 import { IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
-import { ITagLi, li } from "../../html/li.js";
+import { Li, li } from "../../html/li.js";
 import { span } from "../../html/span.js";
 import { a } from "../../html/a.js";
 import { mergeClass } from "../../core/mergeClass.js";
 
-export interface IBsPaginationItem extends ITagLi {
+export interface Item extends Li {
 	active?: boolean;
 	disabled?: boolean;
 	href?: string;
 }
 
-const convert = (attr: IBsPaginationItem) => {
-	let liAttr: ITagLi = {
+const convert = (attr: Item) => {
+	let liAttr: Li = {
 		class: ["page-item", attr.active ? "active" : undefined, attr.disabled ? "disabled" : undefined],
 		aria: { current: attr.active ? "page" : undefined },
 	};
@@ -37,13 +37,12 @@ const convert = (attr: IBsPaginationItem) => {
 
 export class item extends li {
 	constructor(); //#1
-	constructor(attr: IBsPaginationItem); //#2
+	constructor(attr: Item); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsPaginationItem, elem: IElem); //#4
+	constructor(attr: Item, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsPaginationItem>("elem", arg)));
+		super(convert(bsConstArg<Item>("elem", arg)));
 	}
 }
 
-export const Item = (AttrOrElem?: IBsPaginationItem | IElem, Elem?: IElem) =>
-	genTagClass<item, IBsPaginationItem>(item, AttrOrElem, Elem);
+export const Item = (AttrOrElem?: Item | IElem, Elem?: IElem) => genTagClass<item, Item>(item, AttrOrElem, Elem);

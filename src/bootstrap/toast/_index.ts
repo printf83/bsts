@@ -1,11 +1,11 @@
-import { Body, body } from "./body.js";
-import { Btnclose, btnclose, IBsToastBtnclose } from "./btnclose.js";
-import { Container, container, IBsToastContainer } from "./container.js";
-import { Header, header } from "./header.js";
-import { item, IBsToastItem, Item } from "./item.js";
-import { Time, time } from "./time.js";
-import { Title, title } from "./title.js";
-import { dispose, getInstance, getOrCreateInstance, hide, IBsToastSimple, isShown, show, Simple } from "./_fn.js";
+import { dispose, getInstance, getOrCreateInstance, hide, isShown, show } from "./_fn.js";
+import { body } from "./body.js";
+import { btnclose } from "./btnclose.js";
+import { container } from "./container.js";
+import { header } from "./header.js";
+import { item } from "./item.js";
+import { time } from "./time.js";
+import { title } from "./title.js";
 
 export {
 	item,
@@ -15,10 +15,6 @@ export {
 	header,
 	time,
 	title,
-	IBsToastBtnclose,
-	IBsToastContainer,
-	IBsToastItem,
-	IBsToastSimple as IBsToastTemplate,
 	show,
 	getInstance,
 	getOrCreateInstance,
@@ -26,5 +22,3 @@ export {
 	dispose,
 	isShown,
 };
-
-export { Item, Body, Btnclose, Container, Header, Time, Title, Simple };

@@ -2,14 +2,14 @@ import { IElem, genTagClass } from "../core/tag.js";
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { UUID } from "../core/uuid.js";
-import { ITagSelect, select as TSelect } from "../html/select.js";
+import { Select as ISelect, select as TSelect } from "../html/select.js";
 
-export interface IBsSelect extends ITagSelect {
+export interface Select extends ISelect {
 	weight?: "sm" | "lg";
 	isvalid?: boolean;
 }
 
-const convert = (attr: IBsSelect) => {
+const convert = (attr: Select) => {
 	attr = mergeObject(
 		{
 			id: attr.id || UUID(),
@@ -31,12 +31,12 @@ const convert = (attr: IBsSelect) => {
 export class select extends TSelect {
 	constructor();
 	constructor(elem: IElem);
-	constructor(attr: IBsSelect);
-	constructor(attr: IBsSelect, elem: IElem);
+	constructor(attr: Select);
+	constructor(attr: Select, elem: IElem);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsSelect>("elem", arg)));
+		super(convert(bsConstArg<Select>("elem", arg)));
 	}
 }
 
-export const Select = (AttrOrElem?: IBsSelect | IElem, Elem?: IElem) =>
-	genTagClass<select, IBsSelect>(select, AttrOrElem, Elem);
+export const Select = (AttrOrElem?: Select | IElem, Elem?: IElem) =>
+	genTagClass<select, Select>(select, AttrOrElem, Elem);

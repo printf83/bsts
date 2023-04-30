@@ -7,19 +7,19 @@ import { item } from "./item.js";
 import { header } from "./header.js";
 import { body } from "./body.js";
 
-export interface IBsAccordionContainerItem {
+export interface ContainerItem {
 	title: IElem;
 	elem: IElem;
 	show?: boolean;
 }
 
-export interface IBsAccordionContainer extends IAttr {
+export interface Container extends IAttr {
 	flush?: boolean;
 	alwaysOpen?: boolean;
-	item?: IBsAccordionContainerItem | IBsAccordionContainerItem[];
+	item?: ContainerItem | ContainerItem[];
 }
 
-const convert = (attr: IBsAccordionContainer) => {
+const convert = (attr: Container) => {
 	attr.id ??= UUID();
 
 	attr.class = mergeClass(attr.class, ["accordion", attr.flush ? "accordion-flush" : undefined]);
@@ -60,13 +60,13 @@ const convert = (attr: IBsAccordionContainer) => {
 
 export class container extends div {
 	constructor(); //#1
-	constructor(attr: IBsAccordionContainer); //#2
+	constructor(attr: Container); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsAccordionContainer, elem: IElem); //#4
+	constructor(attr: Container, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsAccordionContainer>("elem", arg)));
+		super(convert(bsConstArg<Container>("elem", arg)));
 	}
 }
 
-export const Container = (AttrOrElem?: IBsAccordionContainer | IElem, Elem?: IElem) =>
-	genTagClass<container, IBsAccordionContainer>(container, AttrOrElem, Elem);
+export const Container = (AttrOrElem?: Container | IElem, Elem?: IElem) =>
+	genTagClass<container, Container>(container, AttrOrElem, Elem);

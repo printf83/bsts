@@ -489,7 +489,7 @@ namespace bootstrapTypeA {
 	export const dropdownMenuPositionView = _positionView;
 }
 
-interface IBsClassFormatter {
+interface ClassFormatter {
 	shared?: boolean;
 	value?: (string | number | boolean)[];
 
@@ -499,7 +499,7 @@ interface IBsClassFormatter {
 	formatFalse?: string;
 }
 
-class bsClassFormatterRule implements IBsClassFormatter {
+class bsClassFormatterRule implements ClassFormatter {
 	shared?: boolean;
 	value?: (string | number | boolean)[];
 	format?: string;
@@ -507,7 +507,7 @@ class bsClassFormatterRule implements IBsClassFormatter {
 	formatTrue?: string;
 	formatFalse?: string;
 
-	constructor(d: IBsClassFormatter) {
+	constructor(d: ClassFormatter) {
 		this.shared = d.shared;
 		this.value = d.value;
 		this.format = d.format;
@@ -1079,10 +1079,10 @@ const bsClassFormatterDB: {
 	}),
 };
 
-type IBsAttrFormatter = (elem: Element, data: string | number | boolean) => Element;
+type AttrFormatter = (elem: Element, data: string | number | boolean) => Element;
 
 const attrFormatterDB: {
-	[key: string]: IBsAttrFormatter;
+	[key: string]: AttrFormatter;
 } = {
 	theme: (elem, data) => {
 		elem.setAttribute(`data-bs-theme`, data.toString());
@@ -1132,7 +1132,7 @@ const attrFormatterDB: {
 	},
 };
 
-export interface IBsAttr {
+export interface Attr {
 	theme?: bootstrapType.theme; //[bs-theme="<theme>"]
 	pointer?: bootstrapType.pointer; //[role="button"]
 	label?: string;
@@ -1142,7 +1142,7 @@ export interface IBsAttr {
 	controlfor?: string;
 }
 
-export interface IBsClass {
+export interface Class {
 	//---------------------
 	// viewport and color handle by component
 	//---------------------
@@ -1333,7 +1333,7 @@ export namespace attachBSClass {
 		return null;
 	};
 
-	const addClass = (rule: IBsClassFormatter, data: string | number | boolean, elem: Element) => {
+	const addClass = (rule: ClassFormatter, data: string | number | boolean, elem: Element) => {
 		if (rule.value && allowValue(data, rule.value)) {
 			if (rule.formatValue) {
 				elem = addClassIntoElement(elem, rule.formatValue!);
@@ -1390,7 +1390,7 @@ export namespace attachBSAttr {
 		return null;
 	};
 
-	const addAttr = (rule: IBsAttrFormatter, data: string | number | boolean, elem: Element) => {
+	const addAttr = (rule: AttrFormatter, data: string | number | boolean, elem: Element) => {
 		elem = rule(elem, data);
 
 		return elem;

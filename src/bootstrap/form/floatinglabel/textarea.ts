@@ -2,7 +2,7 @@ import { IAttr, IElem } from "../../../core/tag.js";
 import { UUID } from "../../../core/uuid.js";
 import { div } from "../../../html/div.js";
 import { label } from "../../label.js";
-import { IBsTextarea, textarea as TTextarea } from "../../textarea.js";
+import { Textarea as ITextarea, textarea as TTextarea } from "../../textarea.js";
 import { container as TInputGroupContainer } from "../../inputgroup/container.js";
 import { formfloating } from "../../formfloating.js";
 import {
@@ -17,7 +17,7 @@ import {
 } from "../_fn.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 
-export interface IBsFormFloatingLabelTextarea extends Omit<IBsTextarea, "container"> {
+export interface Textarea extends Omit<ITextarea, "container"> {
 	description?: string;
 	container?: IAttr;
 
@@ -30,7 +30,7 @@ export interface IBsFormFloatingLabelTextarea extends Omit<IBsTextarea, "contain
 	validTooltip?: string;
 }
 
-export const Textarea = (attr: IBsFormFloatingLabelTextarea) => {
+export const Textarea = (attr: Textarea) => {
 	let container = attr.container;
 
 	attr.id ??= UUID();
@@ -66,7 +66,7 @@ export const Textarea = (attr: IBsFormFloatingLabelTextarea) => {
 	let tElemGroupAfter = genGroupItem(attr.id, attr.after);
 
 	//setup main control
-	let tAttr: IBsTextarea | IBsFormFloatingLabelTextarea = Object.assign({}, attr);
+	let tAttr: ITextarea | Textarea = Object.assign({}, attr);
 	delete tAttr.label;
 	delete tAttr.description;
 	delete tAttr.container;
@@ -77,7 +77,7 @@ export const Textarea = (attr: IBsFormFloatingLabelTextarea) => {
 	delete tAttr.validTooltip;
 	delete tAttr.invalidTooltip;
 
-	tAttr = tAttr as IBsTextarea;
+	tAttr = tAttr as ITextarea;
 	if (attr.validFeedback || attr.invalidFeedback || attr.validTooltip || attr.invalidTooltip) {
 		tAttr = mergeObject(
 			{ on: { input: labelFloatingFeedbackManager, invalid: labelFloatingFeedbackManager } },
@@ -85,7 +85,7 @@ export const Textarea = (attr: IBsFormFloatingLabelTextarea) => {
 		);
 	}
 
-	let tElem = new TTextarea(tAttr as IBsTextarea);
+	let tElem = new TTextarea(tAttr as ITextarea);
 
 	//put into tElem
 	if (tElemGroupBefore || tElemGroupAfter) {

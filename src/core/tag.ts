@@ -1,5 +1,5 @@
 import { mergeObject } from "./mergeObject.js";
-import { IBsAttr, IBsClass } from "./bootstrap.js";
+import { Attr, Class } from "./bootstrap.js";
 
 export interface IStyle {
 	alignContent?: string;
@@ -309,7 +309,7 @@ export interface IGlobal {
 	role?: string;
 }
 
-export interface IAttr extends IGlobal, IBsAttr, IBsClass {
+export interface IAttr extends IGlobal, Attr, Class {
 	data?: IData;
 	aria?: IAria;
 	on?: IEvent;

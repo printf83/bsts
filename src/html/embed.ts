@@ -1,6 +1,6 @@
 import { IAttr, tag } from "../core/tag.js";
 
-export interface ITagEmbed extends IAttr {
+export interface Embed extends IAttr {
 	src?: string;
 	type?: string;
 }
@@ -8,14 +8,14 @@ export interface ITagEmbed extends IAttr {
 export class embed extends tag {
 	constructor(); //#1
 	constructor(type: string, src: string); //#2
-	constructor(attr: ITagEmbed); //#3
+	constructor(attr: Embed); //#3
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1
 			super("embed");
 		} else if (arg.length === 2) {
 			//#2
-			super("embed", { type: arg[0], src: arg[1] } as ITagEmbed);
+			super("embed", { type: arg[0], src: arg[1] } as Embed);
 		} else if (arg.length === 1) {
 			//#3
 			super("embed", arg[0]);
@@ -23,12 +23,12 @@ export class embed extends tag {
 	}
 }
 
-export const Embed = (AttrOrType?: ITagEmbed | string, Src?: string) => {
+export const Embed = (AttrOrType?: Embed | string, Src?: string) => {
 	if (AttrOrType) {
 		if (Src) {
 			return new embed(AttrOrType as string, Src);
 		} else {
-			return new embed(AttrOrType as ITagEmbed);
+			return new embed(AttrOrType as Embed);
 		}
 	} else {
 		return new embed();

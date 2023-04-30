@@ -1,8 +1,8 @@
 import { IAttr, IElem } from "../../../core/tag.js";
 import { UUID } from "../../../core/uuid.js";
-import { ITagDatalist } from "../../../html/datalist.js";
+import { Datalist } from "../../../html/datalist.js";
 import { div } from "../../../html/div.js";
-import { IBsInput, input as TInput } from "../../input.js";
+import { Input as IInput, input as TInput } from "../../input.js";
 import { container as TInputGroupContainer } from "../../inputgroup/container.js";
 import { label } from "../../label.js";
 import { formfloating } from "../../formfloating.js";
@@ -19,7 +19,7 @@ import {
 } from "../_fn.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 
-export interface IBsFormFloatingLabelInput extends Omit<IBsInput, "container"> {
+export interface Input extends Omit<IInput, "container"> {
 	type?:
 		| "button"
 		| "color"
@@ -42,7 +42,7 @@ export interface IBsFormFloatingLabelInput extends Omit<IBsInput, "container"> {
 		| "url"
 		| "week";
 	description?: string;
-	datalist?: ITagDatalist["item"];
+	datalist?: Datalist["item"];
 	container?: IAttr;
 
 	before?: IElem;
@@ -54,7 +54,7 @@ export interface IBsFormFloatingLabelInput extends Omit<IBsInput, "container"> {
 	validTooltip?: string;
 }
 
-export const Input = (attr: IBsFormFloatingLabelInput) => {
+export const Input = (attr: Input) => {
 	let container = attr.container;
 
 	attr.type ??= "text";
@@ -95,7 +95,7 @@ export const Input = (attr: IBsFormFloatingLabelInput) => {
 	let tElemGroupAfter = genGroupItem(attr.id, attr.after);
 
 	//setup main control
-	let tAttr: IBsInput | IBsFormFloatingLabelInput = Object.assign({}, attr);
+	let tAttr: IInput | Input = Object.assign({}, attr);
 	delete tAttr.datalist;
 	delete tAttr.label;
 	delete tAttr.description;
@@ -107,7 +107,7 @@ export const Input = (attr: IBsFormFloatingLabelInput) => {
 	delete tAttr.validTooltip;
 	delete tAttr.invalidTooltip;
 
-	tAttr = tAttr as IBsInput;
+	tAttr = tAttr as IInput;
 	if (attr.validFeedback || attr.invalidFeedback || attr.validTooltip || attr.invalidTooltip) {
 		tAttr = mergeObject(
 			{ on: { input: labelFloatingFeedbackManager, invalid: labelFloatingFeedbackManager } },
@@ -115,7 +115,7 @@ export const Input = (attr: IBsFormFloatingLabelInput) => {
 		);
 	}
 
-	let tElem = new TInput(tAttr as IBsInput);
+	let tElem = new TInput(tAttr as IInput);
 
 	//put into tElem
 	if (tElemGroupBefore || tElemGroupAfter) {

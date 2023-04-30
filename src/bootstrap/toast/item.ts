@@ -4,7 +4,7 @@ import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
 
-export interface IBsToastItem extends IAttr {
+export interface Item extends IAttr {
 	role?: "alert" | "status";
 	live?: "assertive" | "polite";
 	atomic?: boolean;
@@ -15,7 +15,7 @@ export interface IBsToastItem extends IAttr {
 	debug?: boolean;
 }
 
-const convert = (attr: IBsToastItem) => {
+const convert = (attr: Item) => {
 	attr.animation ??= true;
 
 	attr = mergeObject(
@@ -56,13 +56,12 @@ const convert = (attr: IBsToastItem) => {
 
 export class item extends div {
 	constructor(); //#1
-	constructor(attr: IBsToastItem); //#2
+	constructor(attr: Item); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsToastItem, elem: IElem); //#4
+	constructor(attr: Item, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsToastItem>("elem", arg)));
+		super(convert(bsConstArg<Item>("elem", arg)));
 	}
 }
 
-export const Item = (AttrOrElem?: IBsToastItem | IElem, Elem?: IElem) =>
-	genTagClass<item, IBsToastItem>(item, AttrOrElem, Elem);
+export const Item = (AttrOrElem?: Item | IElem, Elem?: IElem) => genTagClass<item, Item>(item, AttrOrElem, Elem);

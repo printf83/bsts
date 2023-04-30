@@ -1,18 +1,18 @@
 import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
 
-export interface ITagDetails extends IAttr {
+export interface Details extends IAttr {
 	open?: boolean;
 }
 
 export class details extends tag {
 	constructor();
 	constructor(elem: IElem);
-	constructor(attr: ITagDetails);
-	constructor(attr: ITagDetails, elem: IElem);
+	constructor(attr: Details);
+	constructor(attr: Details, elem: IElem);
 	constructor(...arg: any[]) {
-		super("details", tagConsArg<ITagDetails>("elem", arg));
+		super("details", tagConsArg<Details>("elem", arg));
 	}
 }
 
-export const Details = (AttrOrElem?: ITagDetails | IElem, Elem?: IElem) =>
-	genTagClass<details, ITagDetails>(details, AttrOrElem, Elem);
+export const Details = (AttrOrElem?: Details | IElem, Elem?: IElem) =>
+	genTagClass<details, Details>(details, AttrOrElem, Elem);

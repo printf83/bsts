@@ -3,38 +3,38 @@ import { mergeObject } from "../core/mergeObject.js";
 import { IAttr, IElem, genTagClass, isAttr } from "../core/tag.js";
 import { div } from "../html/div.js";
 import { span } from "../html/span.js";
-import { IBsIcon, icon } from "./icon.js";
+import { Icon, icon } from "./icon.js";
 
-export type IBsCaptionDisplay = bootstrapType.display | bootstrapType.display[];
+export type CaptionDisplay = bootstrapType.display | bootstrapType.display[];
 
-export interface IBsCaption extends IAttr {
-	icon?: string | IBsIcon | icon;
+export interface Caption extends IAttr {
+	icon?: string | Icon | icon;
 	iconPosition?: "start" | "end" | "top" | "bottom";
-	iconDisplay?: IBsCaptionDisplay;
-	labelDisplay?: IBsCaptionDisplay;
+	iconDisplay?: CaptionDisplay;
+	labelDisplay?: CaptionDisplay;
 }
 
-const fnRow = (display: IBsCaptionDisplay | undefined, elem: IElem) => {
+const fnRow = (display: CaptionDisplay | undefined, elem: IElem) => {
 	return new div({ row: true, display: display }, new div({ col: true, textAlign: "center" }, elem));
 };
 
-const fnIcon = (display: IBsCaptionDisplay | undefined, attr: string | IBsIcon | icon) => {
+const fnIcon = (display: CaptionDisplay | undefined, attr: string | Icon | icon) => {
 	if (typeof attr === "string") {
-		attr = { id: attr } as IBsIcon;
+		attr = { id: attr } as Icon;
 	}
 
-	if (isAttr<IBsIcon>(attr)) {
+	if (isAttr<Icon>(attr)) {
 		return new span({ display: display }, new icon(attr!));
 	} else {
 		return new span({ display: display }, attr!);
 	}
 };
 
-const fnElem = (display: IBsCaptionDisplay | undefined, elem: IElem) => {
+const fnElem = (display: CaptionDisplay | undefined, elem: IElem) => {
 	return new span({ display: display }, elem);
 };
 
-const convert = (attr: IBsCaption) => {
+const convert = (attr: Caption) => {
 	if (attr && typeof attr.icon !== "undefined") {
 		if (attr.elem) {
 			//default position
@@ -71,10 +71,10 @@ const convert = (attr: IBsCaption) => {
 		} else {
 			if (attr.icon) {
 				if (typeof attr.icon === "string") {
-					attr.icon = { id: attr.icon } as IBsIcon;
+					attr.icon = { id: attr.icon } as Icon;
 				}
 
-				if (isAttr<IBsIcon>(attr.icon)) {
+				if (isAttr<Icon>(attr.icon)) {
 					attr.elem = new icon(attr.icon);
 				} else {
 					attr.elem = attr.icon;
@@ -100,12 +100,12 @@ const convert = (attr: IBsCaption) => {
 export class caption extends div {
 	constructor();
 	constructor(text: string);
-	constructor(attr: IBsCaption);
-	constructor(attr: IBsCaption, text: string);
+	constructor(attr: Caption);
+	constructor(attr: Caption, text: string);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}
 }
 
-export const Caption = (AttrOrText?: IBsCaption | string, Text?: string) =>
-	genTagClass<caption, IBsCaption>(caption, AttrOrText, Text);
+export const Caption = (AttrOrText?: Caption | string, Text?: string) =>
+	genTagClass<caption, Caption>(caption, AttrOrText, Text);

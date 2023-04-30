@@ -2,7 +2,7 @@ import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { li } from "./li.js";
 
-export interface ITagOl extends IAttr {
+export interface Ol extends IAttr {
 	unstyle?: boolean;
 	inline?: boolean;
 	reversed?: boolean;
@@ -11,7 +11,7 @@ export interface ITagOl extends IAttr {
 	item?: IElem;
 }
 
-const convert = (attr: ITagOl) => {
+const convert = (attr: Ol) => {
 	attr.class = mergeClass(attr.class, [
 		attr.unstyle ? "list-unstyle" : undefined,
 		attr.inline ? "list-inline" : undefined,
@@ -37,11 +37,11 @@ const convert = (attr: ITagOl) => {
 export class ol extends tag {
 	constructor();
 	constructor(elem: IElem);
-	constructor(attr: ITagOl);
-	constructor(attr: ITagOl, elem: IElem);
+	constructor(attr: Ol);
+	constructor(attr: Ol, elem: IElem);
 	constructor(...arg: any[]) {
-		super("ol", convert(tagConsArg<ITagOl>("elem", arg)));
+		super("ol", convert(tagConsArg<Ol>("elem", arg)));
 	}
 }
 
-export const Ol = (AttrOrElem?: ITagOl | IElem, Elem?: IElem) => genTagClass<ol, ITagOl>(ol, AttrOrElem, Elem);
+export const Ol = (AttrOrElem?: Ol | IElem, Elem?: IElem) => genTagClass<ol, Ol>(ol, AttrOrElem, Elem);

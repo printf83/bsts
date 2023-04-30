@@ -2,16 +2,16 @@ import { bootstrapType } from "../../core/bootstrap.js";
 import { IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { ITagLi, li } from "../../html/li.js";
+import { Li, li } from "../../html/li.js";
 
-export interface IBsListItem extends ITagLi {
+export interface Item extends Li {
 	active?: boolean;
 	disabled?: boolean;
 	action?: boolean;
 	color?: bootstrapType.color;
 }
 
-const convert = (attr: IBsListItem) => {
+const convert = (attr: Item) => {
 	attr = mergeObject(
 		{
 			class: [
@@ -36,13 +36,12 @@ const convert = (attr: IBsListItem) => {
 
 export class item extends li {
 	constructor(); //#1
-	constructor(attr: IBsListItem); //#2
+	constructor(attr: Item); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsListItem, elem: IElem); //#4
+	constructor(attr: Item, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsListItem>("elem", arg)));
+		super(convert(bsConstArg<Item>("elem", arg)));
 	}
 }
 
-export const Item = (AttrOrElem?: IBsListItem | IElem, Elem?: IElem) =>
-	genTagClass<item, IBsListItem>(item, AttrOrElem, Elem);
+export const Item = (AttrOrElem?: Item | IElem, Elem?: IElem) => genTagClass<item, Item>(item, AttrOrElem, Elem);

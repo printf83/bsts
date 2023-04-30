@@ -1,6 +1,5 @@
-import { Bar, bar, IBsProgressBar } from "./bar.js";
-import { Container, container, IBsProgressContainer } from "./container.js";
-import { Stacked, stacked } from "./stacked.js";
+import { bar } from "./bar.js";
+import { container } from "./container.js";
+import { stacked } from "./stacked.js";
 
-export { bar, container, stacked, IBsProgressBar, IBsProgressContainer };
-export { Bar, Container, Stacked };
+export { bar, container, stacked };

@@ -4,14 +4,14 @@ import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
 import { btnclose } from "../btnclose.js";
 
-export interface IBsAlertContainer extends IAttr {
+export interface Container extends IAttr {
 	callout?: boolean;
 	animation?: boolean;
 	color?: bootstrapType.alertColor;
 	dismissible?: bootstrapType.alertDismissible;
 }
 
-const convert = (attr: IBsAlertContainer) => {
+const convert = (attr: Container) => {
 	//add default value
 	attr.role ??= "alert";
 	attr.color ??= "primary";
@@ -53,13 +53,13 @@ const convert = (attr: IBsAlertContainer) => {
 
 export class container extends div {
 	constructor(); //#1
-	constructor(attr: IBsAlertContainer); //#2
+	constructor(attr: Container); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsAlertContainer, elem: IElem); //#4
+	constructor(attr: Container, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsAlertContainer>("elem", arg)));
+		super(convert(bsConstArg<Container>("elem", arg)));
 	}
 }
 
-export const Container = (AttrOrElem?: IBsAlertContainer | IElem, Elem?: IElem) =>
-	genTagClass<container, IBsAlertContainer>(container, AttrOrElem, Elem);
+export const Container = (AttrOrElem?: Container | IElem, Elem?: IElem) =>
+	genTagClass<container, Container>(container, AttrOrElem, Elem);

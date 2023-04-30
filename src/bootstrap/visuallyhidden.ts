@@ -1,12 +1,12 @@
 import { bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
 import { IAttr, IElem, genTagClass, tag } from "../core/tag.js";
 
-export interface IBsVisuallyhidden extends IAttr {
+export interface Visuallyhidden extends IAttr {
 	focusable?: boolean;
 	href?: string;
 }
 
-const convert = (attr: IBsVisuallyhidden) => {
+const convert = (attr: Visuallyhidden) => {
 	if (attr.href) {
 		attr.focusable ??= true;
 	}
@@ -20,16 +20,16 @@ const convert = (attr: IBsVisuallyhidden) => {
 
 export class visuallyhidden extends tag {
 	constructor(); //#1
-	constructor(attr: IBsVisuallyhidden); //#2
+	constructor(attr: Visuallyhidden); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsVisuallyhidden, elem: IElem); //#4
+	constructor(attr: Visuallyhidden, elem: IElem); //#4
 	constructor(...arg: any[]) {
 		super(
-			bsConstArgTag<IBsVisuallyhidden>("elem", "span", "a", (i) => (i.href ? true : false), arg),
-			convert(bsConstArg<IBsVisuallyhidden>("elem", arg))
+			bsConstArgTag<Visuallyhidden>("elem", "span", "a", (i) => (i.href ? true : false), arg),
+			convert(bsConstArg<Visuallyhidden>("elem", arg))
 		);
 	}
 }
 
-export const Visuallyhidden = (AttrOrElem?: IBsVisuallyhidden | IElem, Elem?: IElem) =>
-	genTagClass<visuallyhidden, IBsVisuallyhidden>(visuallyhidden, AttrOrElem, Elem);
+export const Visuallyhidden = (AttrOrElem?: Visuallyhidden | IElem, Elem?: IElem) =>
+	genTagClass<visuallyhidden, Visuallyhidden>(visuallyhidden, AttrOrElem, Elem);

@@ -2,45 +2,45 @@ import { bootstrapType, bsConstArg } from "../core/bootstrap.js";
 import { IElem, genTagClass, isAttr } from "../core/tag.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { div } from "../html/div.js";
-import { ITagLabel, label as TLabel } from "../html/label.js";
+import { Label as ILabel, label as TLabel } from "../html/label.js";
 import { span } from "../html/span.js";
-import { IBsIcon, icon } from "./icon.js";
-import { IBsButton } from "./button.js";
+import { Icon, icon } from "./icon.js";
+import { Button } from "./button.js";
 
-export type IBsLabelDisplay = bootstrapType.display | bootstrapType.display[];
+export type LabelDisplay = bootstrapType.display | bootstrapType.display[];
 
-export interface IBsLabel extends ITagLabel, Omit<IBsButton, "role"> {
-	icon?: string | IBsIcon | icon;
+export interface Label extends ILabel, Omit<Button, "role"> {
+	icon?: string | Icon | icon;
 	iconPosition?: "start" | "end" | "top" | "bottom";
-	iconDisplay?: IBsLabelDisplay;
-	labelDisplay?: IBsLabelDisplay;
+	iconDisplay?: LabelDisplay;
+	labelDisplay?: LabelDisplay;
 
 	stretched?: boolean;
 }
 
-const fnRow = (display: IBsLabelDisplay | undefined, elem: IElem) => {
+const fnRow = (display: LabelDisplay | undefined, elem: IElem) => {
 	return new div({ row: true, display: display }, new div({ col: true, textAlign: "center" }, elem));
 };
 
-const fnIcon = (display: IBsLabelDisplay | undefined, attr: string | IBsIcon | icon) => {
+const fnIcon = (display: LabelDisplay | undefined, attr: string | Icon | icon) => {
 	if (typeof attr === "string") {
-		attr = { id: attr } as IBsIcon;
+		attr = { id: attr } as Icon;
 	}
 
-	if (isAttr<IBsIcon>(attr)) {
+	if (isAttr<Icon>(attr)) {
 		return new span({ display: display }, new icon(attr!));
 	} else {
 		return new span({ display: display }, attr!);
 	}
 };
 
-const fnElem = (display: IBsLabelDisplay | undefined, elem: IElem) => {
+const fnElem = (display: LabelDisplay | undefined, elem: IElem) => {
 	return new span({ display: display }, elem);
 };
 
-const convert = (attr: IBsLabel) => {
+const convert = (attr: Label) => {
 	let tElem: IElem;
-	let tAttr: IBsLabel = attr;
+	let tAttr: Label = attr;
 
 	if (attr && typeof attr.icon !== "undefined") {
 		if (attr.elem) {
@@ -79,10 +79,10 @@ const convert = (attr: IBsLabel) => {
 		} else {
 			if (attr.icon) {
 				if (typeof attr.icon === "string") {
-					attr.icon = { id: attr.icon } as IBsIcon;
+					attr.icon = { id: attr.icon } as Icon;
 				}
 
-				if (isAttr<IBsIcon>(attr.icon)) {
+				if (isAttr<Icon>(attr.icon)) {
 					tElem = new icon(attr.icon);
 				} else {
 					tElem = attr.icon;
@@ -126,12 +126,11 @@ const convert = (attr: IBsLabel) => {
 export class label extends TLabel {
 	constructor();
 	constructor(text: string);
-	constructor(attr: IBsLabel);
-	constructor(attr: IBsLabel, text: string);
+	constructor(attr: Label);
+	constructor(attr: Label, text: string);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}
 }
 
-export const Label = (AttrOrText?: IBsLabel | string, Text?: string) =>
-	genTagClass<label, IBsLabel>(label, AttrOrText, Text);
+export const Label = (AttrOrText?: Label | string, Text?: string) => genTagClass<label, Label>(label, AttrOrText, Text);

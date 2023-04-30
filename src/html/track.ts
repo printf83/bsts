@@ -1,6 +1,6 @@
 import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
 
-export interface ITagTrack extends IAttr {
+export interface Track extends IAttr {
 	default?: boolean;
 	kind?: "captions" | "chapters" | "descriptions" | "metadata" | "subtitles";
 	label?: string;
@@ -9,7 +9,7 @@ export interface ITagTrack extends IAttr {
 	srclang?: string;
 }
 
-const convert = (attr: ITagTrack) => {
+const convert = (attr: Track) => {
 	if (attr.label) {
 		attr.attrLabel = attr.label;
 		delete attr.label;
@@ -21,12 +21,11 @@ const convert = (attr: ITagTrack) => {
 export class track extends tag {
 	constructor();
 	constructor(elem: IElem);
-	constructor(attr: ITagTrack);
-	constructor(attr: ITagTrack, elem: IElem);
+	constructor(attr: Track);
+	constructor(attr: Track, elem: IElem);
 	constructor(...arg: any[]) {
-		super("track", convert(tagConsArg<ITagTrack>("elem", arg)));
+		super("track", convert(tagConsArg<Track>("elem", arg)));
 	}
 }
 
-export const Track = (AttrOrElem?: ITagTrack | IElem, Elem?: IElem) =>
-	genTagClass<track, ITagTrack>(track, AttrOrElem, Elem);
+export const Track = (AttrOrElem?: Track | IElem, Elem?: IElem) => genTagClass<track, Track>(track, AttrOrElem, Elem);

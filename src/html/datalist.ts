@@ -1,11 +1,11 @@
 import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
 import { option } from "./option.js";
 
-export interface ITagDatalist extends IAttr {
+export interface Datalist extends IAttr {
 	item?: string | string[];
 }
 
-const convert = (attr: ITagDatalist) => {
+const convert = (attr: Datalist) => {
 	if (attr.item && !attr.elem) {
 		if (!Array.isArray(attr.item)) {
 			attr.item = [attr.item];
@@ -24,12 +24,12 @@ const convert = (attr: ITagDatalist) => {
 export class datalist extends tag {
 	constructor();
 	constructor(elem: IElem);
-	constructor(attr: ITagDatalist);
-	constructor(attr: ITagDatalist, elem: IElem);
+	constructor(attr: Datalist);
+	constructor(attr: Datalist, elem: IElem);
 	constructor(...arg: any[]) {
-		super("datalist", convert(tagConsArg<ITagDatalist>("elem", arg)));
+		super("datalist", convert(tagConsArg<Datalist>("elem", arg)));
 	}
 }
 
-export const Datalist = (AttrOrElem?: ITagDatalist | IElem, Elem?: IElem) =>
-	genTagClass<datalist, ITagDatalist>(datalist, AttrOrElem, Elem);
+export const Datalist = (AttrOrElem?: Datalist | IElem, Elem?: IElem) =>
+	genTagClass<datalist, Datalist>(datalist, AttrOrElem, Elem);

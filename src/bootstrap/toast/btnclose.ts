@@ -1,13 +1,13 @@
 import { bsConsNoElemArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { genTagClass } from "../../core/tag.js";
-import { btnclose as TBtnclose, IBsBtnclose } from "../btnclose.js";
+import { btnclose as TBtnclose, Btnclose as IBtnclose } from "../btnclose.js";
 
-export interface IBsToastBtnclose extends IBsBtnclose {
+export interface Btnclose extends IBtnclose {
 	dismiss?: "toast";
 }
 
-const convert = (attr: IBsToastBtnclose) => {
+const convert = (attr: Btnclose) => {
 	attr.dismiss ??= "toast";
 
 	attr = mergeObject(
@@ -24,10 +24,10 @@ const convert = (attr: IBsToastBtnclose) => {
 
 export class btnclose extends TBtnclose {
 	constructor(); //#1
-	constructor(attr: IBsToastBtnclose); //#2
+	constructor(attr: Btnclose); //#2
 	constructor(...arg: any[]) {
 		super(bsConsNoElemArg(convert, arg));
 	}
 }
 
-export const Btnclose = (Attr?: IBsBtnclose) => genTagClass<btnclose, IBsBtnclose>(btnclose, Attr);
+export const Btnclose = (Attr?: Btnclose) => genTagClass<btnclose, Btnclose>(btnclose, Attr);

@@ -2,9 +2,9 @@ import { bootstrapType } from "../../core/bootstrap.js";
 import { genTagClass, IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { a, ITagA } from "../../html/a.js";
+import { a, A } from "../../html/a.js";
 
-export interface IBsListDivItem extends ITagA {
+export interface Item extends A {
 	active?: boolean;
 	action?: boolean;
 	color?: bootstrapType.color;
@@ -12,7 +12,7 @@ export interface IBsListDivItem extends ITagA {
 	role?: "tab";
 }
 
-const convert = (attr: IBsListDivItem) => {
+const convert = (attr: Item) => {
 	if (attr.disabled && attr.href) {
 		delete attr.href;
 	}
@@ -46,13 +46,12 @@ const convert = (attr: IBsListDivItem) => {
 
 export class item extends a {
 	constructor(); //#1
-	constructor(attr: IBsListDivItem); //#2
+	constructor(attr: Item); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsListDivItem, elem: IElem); //#4
+	constructor(attr: Item, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsListDivItem>("elem", arg)));
+		super(convert(bsConstArg<Item>("elem", arg)));
 	}
 }
 
-export const Item = (AttrOrElem?: IBsListDivItem | IElem, Elem?: IElem) =>
-	genTagClass<item, IBsListDivItem>(item, AttrOrElem, Elem);
+export const Item = (AttrOrElem?: Item | IElem, Elem?: IElem) => genTagClass<item, Item>(item, AttrOrElem, Elem);

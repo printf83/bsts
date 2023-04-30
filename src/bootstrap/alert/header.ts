@@ -1,7 +1,6 @@
 import { IAttr, IElem, isAttr } from "../../core/tag.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { mergeObject } from "../../core/mergeObject.js";
-
 import { h, HLevel } from "../../html/h.js";
 
 const convert = (attr: IAttr) => {

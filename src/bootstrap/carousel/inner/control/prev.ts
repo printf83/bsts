@@ -1,15 +1,15 @@
 import { IElem, genTagClass } from "../../../../core/tag.js";
 import { bsConstArg } from "../../../../core/bootstrap.js";
-import { button as TButton, ITagButton } from "../../../../html/button.js";
+import { button as TButton, Button } from "../../../../html/button.js";
 import { mergeObject } from "../../../../core/mergeObject.js";
 import { span } from "../../../../html/span.js";
 import { visuallyhidden } from "../../../visuallyhidden.js";
 
-export interface IBsCarouselInnerControlPrev extends ITagButton {
+export interface Prev extends Button {
 	target?: string;
 }
 
-const convert = (attr: IBsCarouselInnerControlPrev) => {
+const convert = (attr: Prev) => {
 	attr = mergeObject(
 		{
 			class: "carousel-control-prev",
@@ -35,13 +35,12 @@ const convert = (attr: IBsCarouselInnerControlPrev) => {
 
 export class prev extends TButton {
 	constructor(); //#1
-	constructor(attr: IBsCarouselInnerControlPrev); //#2
+	constructor(attr: Prev); //#2
 	constructor(elem: IElem); //#3
-	constructor(attr: IBsCarouselInnerControlPrev, elem: IElem); //#4
+	constructor(attr: Prev, elem: IElem); //#4
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IBsCarouselInnerControlPrev>("elem", arg)));
+		super(convert(bsConstArg<Prev>("elem", arg)));
 	}
 }
 
-export const Prev = (AttrOrElem?: IBsCarouselInnerControlPrev | IElem, Elem?: IElem) =>
-	genTagClass<prev, IBsCarouselInnerControlPrev>(prev, AttrOrElem, Elem);
+export const Prev = (AttrOrElem?: Prev | IElem, Elem?: IElem) => genTagClass<prev, Prev>(prev, AttrOrElem, Elem);
