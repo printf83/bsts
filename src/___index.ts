@@ -1,4 +1,4 @@
-import * as Bs from "./bootstrap/___index.js";
-import * as Tag from "./html/___index.js";
+import * as B from "./bootstrap/___index.js";
+import * as H from "./html/___index.js";
 
-export { Bs, Tag };
+export { B, H };
