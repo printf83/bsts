@@ -13,74 +13,97 @@ import { div } from "../../html/div.js";
 import { strong } from "../../html/strong.js";
 import { IElem } from "../../core/tag.js";
 
-export const show = (placement: IBsToastContainerPlacement, i: item) => {
-	//make container
-	let containerClassName: string = ".toast-container.top-0.start-0:not(.debug)";
-	switch (placement) {
-		case "top-start":
-			containerClassName = ".toast-container.top-0.start-0:not(.debug)";
-			break;
-		case "top-center":
-			containerClassName = ".toast-container.top-0.start-50.translate-middle-x:not(.debug)";
-			break;
-		case "top-end":
-			containerClassName = ".toast-container.top-0.end-0:not(.debug)";
-			break;
-		case "middle-start":
-			containerClassName = ".toast-container.top-50.start-0.translate-middle-y:not(.debug)";
-			break;
-		case "middle-center":
-			containerClassName = ".toast-container.top-50.start-50.translate-middle:not(.debug)";
-			break;
-		case "middle-end":
-			containerClassName = ".toast-container.top-50.end-0.translate-middle-y:not(.debug)";
-			break;
-		case "bottom-start":
-			containerClassName = ".toast-container.bottom-0.start-0:not(.debug)";
-			break;
-		case "bottom-center":
-			containerClassName = ".toast-container.bottom-0.start-50.translate-middle-x:not(.debug)";
-			break;
-		case "bottom-end":
-			containerClassName = ".toast-container.bottom-0.end-0:not(.debug)";
-			break;
-		default:
-			containerClassName = ".toast-container.top-0.start-0:not(.debug)";
-	}
+export const getInstance = (elem: string) => {
+	return window.bootstrap.Toast.getInstance(elem);
+};
+export const getOrCreateInstance = (elem: string) => {
+	return window.bootstrap.Toast.getOrCreateInstance(elem);
+};
 
-	let containerDOM: HTMLElement = document.querySelector(containerClassName) as HTMLElement;
-	if (!containerDOM) {
-		// let body = document.getElementById("main") as HTMLElement;
-		appendChild(document.body, new container({ placement: placement }));
-		containerDOM = document.querySelector(containerClassName) as HTMLElement;
-	}
+export const hide = (elem: string) => {
+	getOrCreateInstance(elem)?.hide();
+};
+export const dispose = (elem: string) => {
+	getOrCreateInstance(elem)?.dispose();
+};
 
-	if (containerDOM) {
-		if (!i.attr) {
-			i.attr = {};
-		}
-
-		i.attr.id ??= UUID();
-
-		appendChild(containerDOM, i);
-		let tst = document.getElementById(i.attr.id);
-		if (tst) {
-			addEvent("hidden.bs.toast", tst as HTMLElementWithEventDB, (e) => {
-				window.bootstrap.Modal.getInstance(e.target as Element)?.dispose();
-				removeElement(e.target as HTMLElement);
-			});
-
-			window.bootstrap.Toast.getOrCreateInstance(tst as Element).show();
-			init(tst);
-		}
+export const isShown = (elem: string) => {
+	let t = getOrCreateInstance(elem);
+	if (t) {
+		return t.isShown();
+	} else {
+		return false;
 	}
 };
 
-export const hide = (i: HTMLElement) => {
-	let container = i.classList.contains("toast") ? i : i.closest(".toast");
-	const tst = window.bootstrap.Toast.getInstance(container as Element);
-	if (tst) {
-		tst.hide();
+export const show = (placementOrElem: IBsToastContainerPlacement | string, i?: item) => {
+	if (typeof placementOrElem === "string") {
+		getOrCreateInstance(placementOrElem)?.show();
+	} else {
+		let placement: IBsToastContainerPlacement = placementOrElem;
+
+		//make container
+		let containerClassName: string = ".toast-container.top-0.start-0:not(.debug)";
+		switch (placement) {
+			case "top-start":
+				containerClassName = ".toast-container.top-0.start-0:not(.debug)";
+				break;
+			case "top-center":
+				containerClassName = ".toast-container.top-0.start-50.translate-middle-x:not(.debug)";
+				break;
+			case "top-end":
+				containerClassName = ".toast-container.top-0.end-0:not(.debug)";
+				break;
+			case "middle-start":
+				containerClassName = ".toast-container.top-50.start-0.translate-middle-y:not(.debug)";
+				break;
+			case "middle-center":
+				containerClassName = ".toast-container.top-50.start-50.translate-middle:not(.debug)";
+				break;
+			case "middle-end":
+				containerClassName = ".toast-container.top-50.end-0.translate-middle-y:not(.debug)";
+				break;
+			case "bottom-start":
+				containerClassName = ".toast-container.bottom-0.start-0:not(.debug)";
+				break;
+			case "bottom-center":
+				containerClassName = ".toast-container.bottom-0.start-50.translate-middle-x:not(.debug)";
+				break;
+			case "bottom-end":
+				containerClassName = ".toast-container.bottom-0.end-0:not(.debug)";
+				break;
+			default:
+				containerClassName = ".toast-container.top-0.start-0:not(.debug)";
+		}
+
+		let containerDOM: HTMLElement = document.querySelector(containerClassName) as HTMLElement;
+		if (!containerDOM) {
+			// let body = document.getElementById("main") as HTMLElement;
+			appendChild(document.body, new container({ placement: placement }));
+			containerDOM = document.querySelector(containerClassName) as HTMLElement;
+		}
+
+		if (containerDOM) {
+			if (i) {
+				if (!i.attr) {
+					i.attr = {};
+				}
+
+				i.attr.id ??= UUID();
+
+				appendChild(containerDOM, i);
+				let tst = document.getElementById(i.attr.id);
+				if (tst) {
+					addEvent("hidden.bs.toast", tst as HTMLElementWithEventDB, (e) => {
+						window.bootstrap.Modal.getInstance(e.target as Element)?.dispose();
+						removeElement(e.target as HTMLElement);
+					});
+
+					window.bootstrap.Toast.getOrCreateInstance(tst as Element).show();
+					init(tst);
+				}
+			}
+		}
 	}
 };
 
