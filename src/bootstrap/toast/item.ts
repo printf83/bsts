@@ -11,10 +11,13 @@ export interface IBsToastItem extends IAttr {
 	autohide?: boolean;
 	delay?: number;
 	color?: bootstrapType.color;
+	animation?: boolean;
 	debug?: boolean;
 }
 
 const convert = (attr: IBsToastItem) => {
+	attr.animation ??= true;
+
 	attr = mergeObject(
 		{
 			class: ["toast", attr.debug ? "debug" : undefined],
@@ -26,6 +29,13 @@ const convert = (attr: IBsToastItem) => {
 				atomic: attr.atomic ? "true" : undefined,
 			},
 			data: {
+				"bs-animation": attr.animation
+					? attr.animation === true
+						? "true"
+						: undefined
+					: attr.animation === false
+					? "false"
+					: undefined,
 				"bs-autohide": attr.autohide === false ? "false" : undefined,
 				"bs-delay": attr.delay ? attr.delay.toString() : undefined,
 			},
@@ -38,6 +48,7 @@ const convert = (attr: IBsToastItem) => {
 	delete attr.atomic;
 	delete attr.autohide;
 	delete attr.delay;
+	delete attr.animation;
 	delete attr.debug;
 
 	return attr;

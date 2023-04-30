@@ -86,6 +86,7 @@ export const hide = (i: HTMLElement) => {
 
 export interface IBsToastSimple {
 	elem: IElem;
+	animation?: boolean;
 	color?: bootstrapType.textBgColor;
 	btnclosewhite?: boolean;
 	delay?: number;
@@ -106,7 +107,7 @@ export const Simple = (attr: IBsToastSimple) => {
 			break;
 	}
 
-	attr.delay ??= 10000;
+	attr.delay ??= 5000;
 	attr.atomic ??= true;
 	attr.live ??= "assertive";
 	attr.btnclosewhite ??= defaultBtnCloseWhite;
@@ -114,6 +115,7 @@ export const Simple = (attr: IBsToastSimple) => {
 	if (attr.title) {
 		return new item(
 			{
+				animation: attr.animation,
 				live: attr.live,
 				atomic: attr.atomic,
 				delay: attr.delay,
@@ -132,6 +134,7 @@ export const Simple = (attr: IBsToastSimple) => {
 	} else {
 		return new item(
 			{
+				animation: attr.animation,
 				live: attr.live,
 				atomic: attr.atomic,
 				border: false,
