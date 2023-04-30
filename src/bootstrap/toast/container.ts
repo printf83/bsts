@@ -3,6 +3,18 @@ import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
 
+export const IBsToastContainerPlacementA = [
+	"top-start",
+	"top-center",
+	"top-end",
+	"middle-start",
+	"middle-center",
+	"middle-end",
+	"bottom-start",
+	"bottom-center",
+	"bottom-end",
+];
+
 export type IBsToastContainerPlacement =
 	| "top-start"
 	| "top-center"

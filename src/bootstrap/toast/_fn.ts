@@ -6,7 +6,7 @@ import { btnclose } from "./btnclose.js";
 import { body } from "./body.js";
 import { header } from "./header.js";
 import { time } from "./time.js";
-import { container, IBsToastContainerPlacement } from "./container.js";
+import { container, IBsToastContainerPlacement, IBsToastContainerPlacementA } from "./container.js";
 import { IBsToastItem, item } from "./item.js";
 import { bootstrapType } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
@@ -36,12 +36,11 @@ export const isShown = (elem: string) => {
 	}
 };
 
-export const show = (placementOrElem: IBsToastContainerPlacement | string, i?: item) => {
-	if (typeof placementOrElem === "string") {
-		getOrCreateInstance(placementOrElem)?.show();
+export const show = (itemOrElem: item | string, placement?: IBsToastContainerPlacement) => {
+	if (typeof itemOrElem === "string") {
+		getOrCreateInstance(itemOrElem)?.show();
 	} else {
-		let placement: IBsToastContainerPlacement = placementOrElem;
-
+		placement ??= "top-end";
 		//make container
 		let containerClassName: string = ".toast-container.top-0.start-0:not(.debug)";
 		switch (placement) {
@@ -84,24 +83,22 @@ export const show = (placementOrElem: IBsToastContainerPlacement | string, i?: i
 		}
 
 		if (containerDOM) {
-			if (i) {
-				if (!i.attr) {
-					i.attr = {};
-				}
+			if (!itemOrElem.attr) {
+				itemOrElem.attr = {};
+			}
 
-				i.attr.id ??= UUID();
+			itemOrElem.attr.id ??= UUID();
 
-				appendChild(containerDOM, i);
-				let tst = document.getElementById(i.attr.id);
-				if (tst) {
-					addEvent("hidden.bs.toast", tst as HTMLElementWithEventDB, (e) => {
-						window.bootstrap.Modal.getInstance(e.target as Element)?.dispose();
-						removeElement(e.target as HTMLElement);
-					});
+			appendChild(containerDOM, itemOrElem);
+			let tst = document.getElementById(itemOrElem.attr.id);
+			if (tst) {
+				addEvent("hidden.bs.toast", tst as HTMLElementWithEventDB, (e) => {
+					window.bootstrap.Modal.getInstance(e.target as Element)?.dispose();
+					removeElement(e.target as HTMLElement);
+				});
 
-					window.bootstrap.Toast.getOrCreateInstance(tst as Element).show();
-					init(tst);
-				}
+				window.bootstrap.Toast.getOrCreateInstance(tst as Element).show();
+				init(tst);
 			}
 		}
 	}
