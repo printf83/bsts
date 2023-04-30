@@ -68,7 +68,7 @@ const convert = (attr: IBsTooltip) => {
 					: undefined,
 				"bs-offset": attr.viewOffset
 					? Array.isArray(attr.viewOffset)
-						? JSON.stringify(attr.viewOffset)
+						? attr.viewOffset.join(",")
 						: attr.viewOffset
 					: undefined,
 				"bs-popper-config": attr.popperConfig ? JSON.stringify(attr.popperConfig) : undefined,
