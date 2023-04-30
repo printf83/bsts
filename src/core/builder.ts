@@ -97,20 +97,22 @@ export const removeActiveModal = () => {
 export const removeActiveToast = () => {
 	const elem = document.querySelectorAll("div.toast.show");
 	elem.forEach((i) => {
-		toastFn.hide(i as HTMLElement);
+		toastFn.hide(i);
 	});
 };
 
 export const init = (container: HTMLElement) => {
 	const popoverTriggerList = container.querySelectorAll('[data-bs-toggle="popover"]');
 	popoverTriggerList.forEach((i) => {
-		let container = i.getAttribute("data-bs-container");
-		new window.bootstrap.Popover(i, { container: container ? container : "body" });
+		// let container = i.getAttribute("data-bs-container");
+		// new window.bootstrap.Popover(i, { container: container ? container : "body" });
+		new window.bootstrap.Popover(i);
 	});
 	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 	tooltipTriggerList.forEach((i) => {
-		let container = i.getAttribute("data-bs-container");
-		new window.bootstrap.Tooltip(i, { container: container ? container : "body" });
+		// let container = i.getAttribute("data-bs-container");
+		// new window.bootstrap.Tooltip(i, { container: container ? container : "body" });
+		new window.bootstrap.Tooltip(i);
 	});
 	const scrollspyTriggerList = document.querySelectorAll('[data-bs-spy="scroll"]');
 	scrollspyTriggerList.forEach((i) => window.bootstrap.ScrollSpy.getOrCreateInstance(i).refresh());

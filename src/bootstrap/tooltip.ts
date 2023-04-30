@@ -10,9 +10,9 @@ export interface IBsTooltip extends IAttr {
 	placement?: "auto" | "right" | "left" | "top" | "bottom";
 	parent?: string;
 	customClass?: string;
+
 	allowHtml?: boolean;
 	autoInit?: boolean;
-
 	allowList?: object;
 	animation?: boolean;
 	boundary?: string;
@@ -63,7 +63,7 @@ const convert = (attr: IBsTooltip) => {
 				"bs-delay": attr.delay ? attr.delay.toString() : JDelay,
 				"bs-fallback-placement": attr.fallbackPlacement
 					? Array.isArray(attr.fallbackPlacement)
-						? JSON.stringify(attr.fallbackPlacement)
+						? attr.fallbackPlacement.join(" ")
 						: attr.fallbackPlacement
 					: undefined,
 				"bs-offset": attr.viewOffset
@@ -122,34 +122,34 @@ export class tooltip extends span {
 		return window.bootstrap.Tooltip.getOrCreateInstance(elem);
 	};
 	static disable = (elem: string) => {
-		this.getOrCreateInstance(elem)?.disable();
+		this.getInstance(elem)?.disable();
 	};
 	static dispose = (elem: string) => {
-		this.getOrCreateInstance(elem)?.dispose();
+		this.getInstance(elem)?.dispose();
 	};
 	static enable = (elem: string) => {
 		this.getOrCreateInstance(elem)?.enable();
 	};
 	static hide = (elem: string) => {
-		this.getOrCreateInstance(elem)?.hide();
+		this.getInstance(elem)?.hide();
 	};
 	static show = (elem: string) => {
-		this.getOrCreateInstance(elem)?.show();
+		this.getInstance(elem)?.show();
 	};
 	static setContent = (
 		elem: string,
 		content?: Record<string, string | Element | bootstrap.Tooltip.SetContentFunction | null>
 	) => {
-		this.getOrCreateInstance(elem)?.setContent(content);
+		this.getInstance(elem)?.setContent(content);
 	};
 	static toggle = (elem: string) => {
-		this.getOrCreateInstance(elem)?.toggle();
+		this.getInstance(elem)?.toggle();
 	};
 	static toggleEnabled = (elem: string) => {
-		this.getOrCreateInstance(elem)?.toggleEnabled();
+		this.getInstance(elem)?.toggleEnabled();
 	};
 	static update = (elem: string) => {
-		this.getOrCreateInstance(elem)?.update();
+		this.getInstance(elem)?.update();
 	};
 }
 

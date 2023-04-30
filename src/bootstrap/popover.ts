@@ -9,20 +9,43 @@ export interface IBsPopover extends IAttr {
 	title?: string;
 	content?: string;
 	placement?: "right" | "left" | "top" | "bottom";
-	customClass?: string;
 	parent?: string;
+	customClass?: string;
+
+	allowHtml?: boolean;
+	autoInit?: boolean;
+	allowList?: object;
+	animation?: boolean;
+	boundary?: string;
+	showDelay?: string | number;
+	hideDelay?: string | number;
+	delay?: string | number;
+	fallbackPlacement?: "right" | "left" | "top" | "bottom" | ("right" | "left" | "top" | "bottom")[];
+	viewOffset?: string | number[];
+	popperConfig?: object;
+	sanitize?: boolean;
+	sanitizeFn?: string;
+	selector?: string | false;
+	template?: string;
 }
 
 const convert = (attr: IBsPopover) => {
 	attr.inline ??= true;
-	attr.parent ??= "body";
 
+	let JDelay: string | undefined = undefined;
+	if (attr.showDelay && attr.hideDelay) {
+		JDelay = JSON.stringify({ show: attr.showDelay, hide: attr.hideDelay });
+	} else if (attr.showDelay && !attr.hideDelay) {
+		JDelay = JSON.stringify({ show: attr.showDelay });
+	} else if (!attr.showDelay && attr.hideDelay) {
+		JDelay = JSON.stringify({ hide: attr.hideDelay });
+	}
 	attr = mergeObject(
 		{
 			display: attr.inline ? "inline-block" : attr.display,
 			tabindex: "0",
 			data: {
-				"bs-toggle": "popover",
+				"bs-toggle": attr.autoInit ? "popover" : undefined,
 				"bs-custom-class": attr.customClass,
 				"bs-title": attr.title,
 				"bs-content": attr.content,
@@ -33,6 +56,26 @@ const convert = (attr: IBsPopover) => {
 						? attr.trigger.join(" ")
 						: attr.trigger
 					: undefined,
+				"bs-html": attr.allowHtml === true ? "true" : undefined,
+				"bs-animation": attr.animation === false ? "false" : undefined,
+				"bs-allow-list": JSON.stringify(attr.allowList),
+				"bs-boundary": attr.boundary,
+				"bs-delay": attr.delay ? attr.delay.toString() : JDelay,
+				"bs-fallback-placement": attr.fallbackPlacement
+					? Array.isArray(attr.fallbackPlacement)
+						? attr.fallbackPlacement.join(" ")
+						: attr.fallbackPlacement
+					: undefined,
+				"bs-offset": attr.viewOffset
+					? Array.isArray(attr.viewOffset)
+						? JSON.stringify(attr.viewOffset)
+						: attr.viewOffset
+					: undefined,
+				"bs-popper-config": attr.popperConfig ? JSON.stringify(attr.popperConfig) : undefined,
+				"bs-sanitize": attr.sanitize ? (attr.sanitize === true ? "true" : "false") : undefined,
+				"bs-sanitize-fn": attr.sanitizeFn,
+				"bs-selector": attr.selector ? attr.selector : undefined,
+				"bs-template": attr.template,
 			},
 		},
 		attr
@@ -45,6 +88,21 @@ const convert = (attr: IBsPopover) => {
 	delete attr.placement;
 	delete attr.customClass;
 	delete attr.parent;
+	delete attr.allowHtml;
+	delete attr.autoInit;
+	delete attr.allowList;
+	delete attr.animation;
+	delete attr.boundary;
+	delete attr.showDelay;
+	delete attr.hideDelay;
+	delete attr.delay;
+	delete attr.fallbackPlacement;
+	delete attr.viewOffset;
+	delete attr.popperConfig;
+	delete attr.sanitize;
+	delete attr.sanitizeFn;
+	delete attr.selector;
+	delete attr.template;
 
 	return attr;
 };
@@ -58,11 +116,38 @@ export class popover extends span {
 		super(convert(bsConstArg<IBsPopover>("elem", arg)));
 	}
 
-	static getInstance = (elem: HTMLElement) => {
+	static getInstance = (elem: HTMLElement | string) => {
 		return window.bootstrap.Popover.getInstance(elem);
 	};
-	static getOrCreateInstance = (elem: HTMLElement) => {
+	static getOrCreateInstance = (elem: HTMLElement | string) => {
 		return window.bootstrap.Popover.getOrCreateInstance(elem);
+	};
+	static disable = (elem: string) => {
+		this.getInstance(elem)?.disable();
+	};
+	static dispose = (elem: string) => {
+		this.getInstance(elem)?.dispose();
+	};
+	static enable = (elem: string) => {
+		this.getOrCreateInstance(elem)?.enable();
+	};
+	static hide = (elem: string) => {
+		this.getInstance(elem)?.hide();
+	};
+	static show = (elem: string) => {
+		this.getInstance(elem)?.show();
+	};
+	static setContent = (elem: string, content?: Record<string, string | Element | null>) => {
+		this.getInstance(elem)?.setContent(content);
+	};
+	static toggle = (elem: string) => {
+		this.getInstance(elem)?.toggle();
+	};
+	static toggleEnabled = (elem: string) => {
+		this.getInstance(elem)?.toggleEnabled();
+	};
+	static update = (elem: string) => {
+		this.getInstance(elem)?.update();
 	};
 }
 
