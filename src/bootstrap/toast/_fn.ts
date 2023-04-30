@@ -6,29 +6,31 @@ import { btnclose } from "./btnclose.js";
 import { body } from "./body.js";
 import { header } from "./header.js";
 import { time } from "./time.js";
-import { container, IBsToastContainerPlacement, IBsToastContainerPlacementA } from "./container.js";
+import { container, IBsToastContainerPlacement } from "./container.js";
 import { IBsToastItem, item } from "./item.js";
 import { bootstrapType } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
 import { strong } from "../../html/strong.js";
 import { IElem } from "../../core/tag.js";
 
-export const getInstance = (elem: string) => {
+export const getInstance = (elem: string | Element) => {
 	return window.bootstrap.Toast.getInstance(elem);
 };
-export const getOrCreateInstance = (elem: string) => {
+export const getOrCreateInstance = (elem: string | Element) => {
 	return window.bootstrap.Toast.getOrCreateInstance(elem);
 };
-
-export const hide = (elem: string) => {
-	getOrCreateInstance(elem)?.hide();
+export const enable = (elem: string | Element) => {
+	return getOrCreateInstance(elem);
 };
-export const dispose = (elem: string) => {
-	getOrCreateInstance(elem)?.dispose();
+export const hide = (elem: string | Element) => {
+	getInstance(elem)?.hide();
+};
+export const dispose = (elem: string | Element) => {
+	getInstance(elem)?.dispose();
 };
 
-export const isShown = (elem: string) => {
-	let t = getOrCreateInstance(elem);
+export const isShown = (elem: string | Element) => {
+	let t = getInstance(elem);
 	if (t) {
 		return t.isShown();
 	} else {

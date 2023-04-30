@@ -27,12 +27,12 @@ export const show = (i: container) => {
 			removeElement(e.target as HTMLElement);
 		});
 
-		window.bootstrap.Modal.getOrCreateInstance(mdl as Element).show();
+		window.bootstrap.Modal.getOrCreateInstance(mdl).show();
 		init(mdl);
 	}
 };
 
-export const hide = (i: HTMLElement) => {
+export const hide = (i: Element) => {
 	let container = i.classList.contains("modal") ? i : i.closest(".modal");
 	const mdl = window.bootstrap.Modal.getInstance(container as Element);
 	if (mdl) {
