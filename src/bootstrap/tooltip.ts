@@ -11,6 +11,7 @@ export interface IBsTooltip extends IAttr {
 	parent?: string;
 	customClass?: string;
 	allowHtml?: boolean;
+	autoInit?: boolean;
 
 	allowList?: object;
 	animation?: boolean;
@@ -28,6 +29,7 @@ export interface IBsTooltip extends IAttr {
 }
 
 const convert = (attr: IBsTooltip) => {
+	attr.autoInit ??= true;
 	attr.inline ??= true;
 
 	let JDelay: string | undefined = undefined;
@@ -44,7 +46,7 @@ const convert = (attr: IBsTooltip) => {
 			display: attr.inline ? "inline-block" : undefined,
 			tabindex: "0",
 			data: {
-				"bs-toggle": "tooltip",
+				"bs-toggle": attr.autoInit ? "tooltip" : undefined,
 				"bs-custom-class": attr.customClass,
 				"bs-title": attr.content,
 				"bs-container": attr.parent,
@@ -86,7 +88,7 @@ const convert = (attr: IBsTooltip) => {
 	delete attr.customClass;
 	delete attr.parent;
 	delete attr.allowHtml;
-
+	delete attr.autoInit;
 	delete attr.allowList;
 	delete attr.animation;
 	delete attr.boundary;
