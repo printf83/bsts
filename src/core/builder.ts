@@ -292,7 +292,7 @@ const processElem = (i: string | tag | strHtml, e: tag, element: Element) => {
 			//only pre is html
 			let g = i as string;
 			if (e.tag === "pre" || e.tag === "code") {
-				element.insertAdjacentText("beforeend", g.replace(/\`/g, '"'));
+				element.insertAdjacentText("beforeend", g.replace(/\`/g, "'"));
 			} else {
 				let m = markup(g);
 				if (typeof m === "string") {
