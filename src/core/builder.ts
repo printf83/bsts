@@ -243,7 +243,7 @@ const markup = (str: string) => {
 									on: {
 										click: () => {
 											document.dispatchEvent(
-												new CustomEvent("bs-navigate", { detail: d.slice(4) })
+												new CustomEvent("bs.navigate", { detail: d.slice(4) })
 											);
 										},
 									},
