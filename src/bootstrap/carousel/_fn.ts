@@ -16,8 +16,8 @@ export const next = (elem: Element | string) => {
 export const nextWhenVisible = (elem: Element | string) => {
 	getOrCreateInstance(elem)?.nextWhenVisible();
 };
-export const pause = (elem: Element | string) => {
-	getOrCreateInstance(elem)?.pause();
+export const pause = (elem: Element | string, pauseType?: boolean | "hover") => {
+	getOrCreateInstance(elem)?.pause(pauseType);
 };
 export const prev = (elem: Element | string) => {
 	getOrCreateInstance(elem)?.prev();
