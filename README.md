@@ -13,7 +13,7 @@ core.documentReady(() => {
 	core.replaceChild(body, new h.div([
         new h.p("This is example p tag"),
         new h.p({lead:true,data:{test:"test-data"}},"This is example p tag with attribute"),
-        new b.button({id:"btn1",color:"primary"},"Button");
+        new b.button({id:"btn1",color:"primary"},"Button"),
     ]));
 });
 ```
@@ -30,7 +30,7 @@ core.documentReady(() => {
 	core.replaceChild(body, h.Div([
         h.P("This is example p tag"),
         h.P({lead:true,data:{test:"test-data"}},"This is example p tag with attribute"),
-        b.Button({id:"btn1",color:"primary"},"Button");
+        b.Button({id:"btn1",color:"primary"},"Button"),
     ]));
 });
 ```
