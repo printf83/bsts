@@ -13,8 +13,14 @@ export interface CarouselItem {
 }
 export interface Carousel extends IAttr {
 	fade?: boolean;
-	autoPlay?: boolean;
-	disableTouch?: boolean;
+	ride?: boolean | "carousel";
+	touch?: boolean;
+
+	interval?: number;
+	keyboard?: boolean;
+	pause?: boolean | "hover";
+	wrap?: boolean;
+
 	innerAttr?: IAttr;
 	item?: CarouselItem[];
 	itemControl?: boolean;
@@ -22,15 +28,18 @@ export interface Carousel extends IAttr {
 }
 
 const convert = (attr: Carousel) => {
-	// attr.autoPlay = attr.autoPlay !== false ? true : false;
-	attr.autoPlay ??= true;
+	attr.ride ??= attr.itemControl === false ? "carousel" : true;
 
 	attr = mergeObject(
 		{
 			class: ["carousel", "slide", attr.fade ? "carousel-fade" : undefined],
 			data: {
-				"bs-ride": attr.autoPlay === true ? "carousel" : "true",
-				"bs-touch": attr.disableTouch ? "false" : undefined,
+				"bs-interval": attr.interval,
+				"bs-keyboard": attr.keyboard,
+				"bs-pause": attr.pause,
+				"bs-wrap": attr.wrap,
+				"bs-ride": attr.ride,
+				"bs-touch": attr.touch,
 			},
 		},
 		attr
@@ -93,10 +102,15 @@ const convert = (attr: Carousel) => {
 	}
 
 	delete attr.fade;
-	delete attr.autoPlay;
-	delete attr.disableTouch;
-	delete attr.innerAttr;
+	delete attr.ride;
+	delete attr.touch;
 
+	delete attr.interval;
+	delete attr.keyboard;
+	delete attr.pause;
+	delete attr.wrap;
+
+	delete attr.innerAttr;
 	delete attr.item;
 	delete attr.itemControl;
 	delete attr.itemIndicator;
