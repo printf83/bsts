@@ -6,7 +6,10 @@ import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
 
 export interface Container extends IAttr {
-	static?: boolean;
+	backdrop?: boolean | "static";
+	focus?: boolean;
+	keyboard?: boolean;
+
 	weight?: "sm" | "lg" | "xl";
 	fullscreen?: true | bootstrapType.viewport;
 	centered?: boolean;
@@ -18,6 +21,7 @@ export interface Container extends IAttr {
 
 const convert = (attr: Container) => {
 	attr.animation ??= true;
+	attr.keyboard ??= attr.backdrop === "static" ? false : undefined;
 
 	attr = mergeObject(
 		{
@@ -25,8 +29,9 @@ const convert = (attr: Container) => {
 			class: ["modal", attr.animation && !attr.debug ? "fade" : undefined, attr.debug ? "debug" : undefined],
 			tabindex: "-1",
 			data: {
-				"bs-backdrop": attr.static ? "static" : undefined,
-				"bs-keyboard": attr.static ? "false" : undefined,
+				"bs-backdrop": attr.backdrop,
+				"bs-keyboard": attr.keyboard,
+				"bs-focus": attr.focus,
 			},
 			aria: {
 				hidden: attr.debug ? undefined : "true",
@@ -52,7 +57,7 @@ const convert = (attr: Container) => {
 		attr.elem ? new div({ class: "modal-content" }, attr.elem) : new div({ class: "modal-content" })
 	);
 
-	delete attr.static;
+	delete attr.backdrop;
 	delete attr.animation;
 	delete attr.debug;
 

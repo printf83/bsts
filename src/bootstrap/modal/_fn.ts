@@ -1,8 +1,8 @@
-import { appendChild, init } from "../../core/builder.js";
+import { appendChild, init as InitAll } from "../../core/builder.js";
 import { addEvent, ElementWithEventDB } from "../../core/eventManager.js";
 import { mergeAttr } from "../../core/mergeAttr.js";
 import { removeElement } from "../../core/removeElement.js";
-import { IAttr, IElem } from "../../core/tag.js";
+import { IAttr, IElem, isTag } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
 import { button, Button } from "../button.js";
 import { body } from "./body.js";
@@ -11,34 +11,58 @@ import { footer } from "./footer.js";
 import { header, Header } from "./header.js";
 import { title } from "./title.js";
 
-export const show = (i: container) => {
-	if (!i.attr) {
-		i.attr = {};
-	}
-
-	i.attr.id ??= UUID();
-
-	appendChild(document.body, i);
-
-	let mdl = document.getElementById(i.attr.id);
-	if (mdl) {
-		addEvent("hidden.bs.modal", mdl as ElementWithEventDB, (e) => {
-			window.bootstrap.Modal.getInstance(e.target as Element)?.dispose();
-			removeElement(e.target as Element);
-		});
-
-		window.bootstrap.Modal.getOrCreateInstance(mdl).show();
-		init(mdl);
+export const init = (elem: string | Element, options?: Partial<bootstrap.Modal.Options>) => {
+	return new window.bootstrap.Modal(elem, options);
+};
+export const getInstance = (elem: string | Element) => {
+	return window.bootstrap.Modal.getInstance(elem);
+};
+export const getOrCreateInstance = (elem: string | Element) => {
+	return window.bootstrap.Modal.getOrCreateInstance(elem);
+};
+export const handleUpdate = (elem: string | Element) => {
+	getOrCreateInstance(elem)?.handleUpdate();
+};
+export const toggle = (elem: string | Element) => {
+	getOrCreateInstance(elem)?.toggle();
+};
+export const dispose = (elem: string | Element) => {
+	getOrCreateInstance(elem)?.dispose();
+};
+export const hide = (elem: string | Element) => {
+	if (typeof elem === "string") {
+		getOrCreateInstance(elem)?.hide();
+	} else {
+		const mdl = elem.classList.contains("modal") ? elem : elem.closest(".modal");
+		if (mdl) {
+			getOrCreateInstance(mdl)?.hide();
+		}
 	}
 };
 
-export const hide = (i: Element) => {
-	let container = i.classList.contains("modal") ? i : i.closest(".modal");
-	if (container) {
-		const mdl = window.bootstrap.Modal.getInstance(container);
-		if (mdl) {
-			mdl.hide();
+export const show = (elem: string | Element | container, relatedTarget?: HTMLElement) => {
+	if (isTag<container>(elem)) {
+		if (!elem.attr) {
+			elem.attr = {};
 		}
+
+		elem.attr.id ??= UUID();
+
+		appendChild(document.body, elem);
+
+		let mdl = document.getElementById(elem.attr.id);
+		if (mdl) {
+			addEvent("hidden.bs.modal", mdl as ElementWithEventDB, (e) => {
+				const target = e.target as Element;
+				dispose(target);
+				removeElement(target);
+			});
+
+			getOrCreateInstance(mdl).show(relatedTarget);
+			InitAll(mdl);
+		}
+	} else {
+		getOrCreateInstance(elem)?.show(relatedTarget);
 	}
 };
 
@@ -240,14 +264,14 @@ export const Simple = (attr: Simple) => {
 	let showFooter: boolean = btn.btn.length > 0;
 
 	if (!btn.hasDismissButton) {
-		contAttr.static ??= true;
-		attr.static ??= true;
+		contAttr.backdrop ??= "static";
+		attr.backdrop ??= "static";
 	}
 
 	if (attr.title) {
 		showHeader = true;
 	} else {
-		showHeader = !(attr.static ? false : btn.hasDismissButton);
+		showHeader = !(attr.backdrop === "static" ? false : btn.hasDismissButton);
 	}
 
 	return new container(contAttr as Container, [
@@ -255,7 +279,7 @@ export const Simple = (attr: Simple) => {
 			? new header(
 					mergeAttr(
 						{
-							close: attr.static ? false : btn.hasDismissButton,
+							close: attr.backdrop === "static" ? false : btn.hasDismissButton,
 						},
 						attr.attrHeader
 					),
