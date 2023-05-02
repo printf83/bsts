@@ -8,8 +8,9 @@ export interface Item extends A {
 	active?: boolean;
 	action?: boolean;
 	color?: bootstrapType.color;
-	toggle?: boolean;
 	role?: "tab";
+
+	autoInit?: boolean;
 }
 
 const convert = (attr: Item) => {
@@ -26,20 +27,20 @@ const convert = (attr: Item) => {
 				attr.active ? "active" : undefined,
 			],
 			data: {
-				"bs-toggle": attr.toggle ? "list" : undefined,
+				"bs-toggle": attr.autoInit ? "list" : undefined,
 			},
 		},
 		attr
 	);
 
-	if (attr.toggle) {
+	if (attr.autoInit) {
 		attr.role ??= "tab";
 	}
 
 	delete attr.active;
 	delete attr.action;
 	delete attr.color;
-	delete attr.toggle;
+	delete attr.autoInit;
 
 	return attr;
 };

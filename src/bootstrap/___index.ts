@@ -15,7 +15,7 @@ import * as Inputgroup from "./inputgroup/___index.js";
 import { Label, LabelDisplay } from "./label.js";
 import { Caption, CaptionDisplay } from "./caption.js";
 import * as List from "./list/___index.js";
-import * as ListDiv from "./listDiv/___index.js";
+import * as TabList from "./tabList/___index.js";
 import * as Modal from "./modal/___index.js";
 import { Msg } from "./msg.js";
 import * as Nav from "./nav/___index.js";
@@ -65,7 +65,7 @@ export {
 	Card,
 	Collapse,
 	List,
-	ListDiv,
+	TabList,
 	Nav,
 	Modal,
 	Toast,

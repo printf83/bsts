@@ -22,7 +22,7 @@ import { input } from "./input.js";
 import * as inputgroup from "./inputgroup/_index.js";
 import { label } from "./label.js";
 import * as list from "./list/_index.js";
-import * as listDiv from "./listDiv/_index.js";
+import * as tabList from "./tabList/_index.js";
 import * as modal from "./modal/_index.js";
 import { msg } from "./msg.js";
 import * as nav from "./nav/_index.js";
@@ -68,7 +68,7 @@ export {
 	card,
 	collapse,
 	list,
-	listDiv,
+	tabList,
 	badge,
 	visuallyhidden,
 	nav,

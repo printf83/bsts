@@ -24,7 +24,7 @@ import { Input } from "./input.js";
 import * as Inputgroup from "./inputgroup/__index.js";
 import { Label } from "./label.js";
 import * as List from "./list/__index.js";
-import * as ListDiv from "./listDiv/__index.js";
+import * as TabList from "./tabList/__index.js";
 import * as Modal from "./modal/__index.js";
 import { Msg } from "./msg.js";
 import * as Nav from "./nav/__index.js";
@@ -70,7 +70,7 @@ export {
 	Card,
 	Collapse,
 	List,
-	ListDiv,
+	TabList,
 	Badge,
 	Visuallyhidden,
 	Nav,
