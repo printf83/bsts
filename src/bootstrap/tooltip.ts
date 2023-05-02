@@ -115,6 +115,10 @@ export class tooltip extends span {
 		super(convert(bsConstArg<Tooltip>("elem", arg)));
 	}
 
+	static init = (elem: Element | string, options?: Partial<bootstrap.Tooltip.Options>) => {
+		return new window.bootstrap.Tooltip(elem, options);
+	};
+
 	static getInstance = (elem: Element | string) => {
 		return window.bootstrap.Tooltip.getInstance(elem);
 	};

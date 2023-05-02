@@ -117,6 +117,10 @@ export class popover extends span {
 		super(convert(bsConstArg<Popover>("elem", arg)));
 	}
 
+	static init = (elem: Element | string, options?: Partial<bootstrap.Popover.Options>) => {
+		return new window.bootstrap.Popover(elem, options);
+	};
+
 	static getInstance = (elem: Element | string) => {
 		return window.bootstrap.Popover.getInstance(elem);
 	};

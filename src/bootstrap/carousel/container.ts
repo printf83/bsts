@@ -22,7 +22,8 @@ export interface Carousel extends IAttr {
 }
 
 const convert = (attr: Carousel) => {
-	attr.autoPlay = attr.autoPlay !== false ? true : false;
+	// attr.autoPlay = attr.autoPlay !== false ? true : false;
+	attr.autoPlay ??= true;
 
 	attr = mergeObject(
 		{

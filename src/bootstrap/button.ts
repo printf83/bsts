@@ -92,6 +92,22 @@ export class button extends tag {
 			convert(bsConstArg<Button>("elem", arg))
 		);
 	}
+
+	static init = (elem: Element | string) => {
+		return new window.bootstrap.Button(elem);
+	};
+	static getInstance = (elem: Element | string) => {
+		return window.bootstrap.Button.getInstance(elem);
+	};
+	static getOrCreateInstance = (elem: Element | string) => {
+		return window.bootstrap.Button.getOrCreateInstance(elem);
+	};
+	static toggle = (elem: Element | string) => {
+		this.getInstance(elem)?.toggle();
+	};
+	static dispose = (elem: Element | string) => {
+		this.getInstance(elem)?.dispose();
+	};
 }
 
 export const Button = (AttrOrElem?: Button | IElem, Elem?: IElem) =>
