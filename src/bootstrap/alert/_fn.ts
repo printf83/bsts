@@ -8,7 +8,7 @@ export const getOrCreateInstance = (elem: string | Element) => {
 	return window.bootstrap.Alert.getOrCreateInstance(elem);
 };
 export const close = (elem: string | Element) => {
-	return getInstance(elem)?.close();
+	return getOrCreateInstance(elem)?.close();
 };
 export const dispose = (elem: string | Element) => {
 	return getInstance(elem)?.dispose();

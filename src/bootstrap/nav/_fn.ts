@@ -21,6 +21,7 @@ export interface Tab extends Omit<ContainerNav, "item" | "container"> {
 	attrContent?: Container;
 }
 
+//only available as function
 export const Tab = (attr: Tab) => {
 	if (attr.item) {
 		if (!Array.isArray(attr.item)) {

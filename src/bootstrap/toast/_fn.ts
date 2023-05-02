@@ -23,14 +23,14 @@ export const enable = (elem: string | Element) => {
 	return getOrCreateInstance(elem);
 };
 export const hide = (elem: string | Element) => {
-	getInstance(elem)?.hide();
+	getOrCreateInstance(elem)?.hide();
 };
 export const dispose = (elem: string | Element) => {
 	getInstance(elem)?.dispose();
 };
 
 export const isShown = (elem: string | Element) => {
-	let t = getInstance(elem);
+	let t = getOrCreateInstance(elem);
 	if (t) {
 		return t.isShown();
 	} else {
@@ -95,11 +95,12 @@ export const show = (itemOrElem: item | Element | string, placement?: ContainerP
 			let tst = document.getElementById(itemOrElem.attr.id);
 			if (tst) {
 				addEvent("hidden.bs.toast", tst as ElementWithEventDB, (e) => {
-					window.bootstrap.Modal.getInstance(e.target as Element)?.dispose();
-					removeElement(e.target as Element);
+					const target = e.target as Element;
+					dispose(target);
+					removeElement(target);
 				});
 
-				window.bootstrap.Toast.getOrCreateInstance(tst).show();
+				show(tst);
 				init(tst);
 			}
 		}

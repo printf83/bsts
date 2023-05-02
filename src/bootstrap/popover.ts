@@ -120,7 +120,6 @@ export class popover extends span {
 	static init = (elem: Element | string, options?: Partial<bootstrap.Popover.Options>) => {
 		return new window.bootstrap.Popover(elem, options);
 	};
-
 	static getInstance = (elem: Element | string) => {
 		return window.bootstrap.Popover.getInstance(elem);
 	};
@@ -128,7 +127,7 @@ export class popover extends span {
 		return window.bootstrap.Popover.getOrCreateInstance(elem);
 	};
 	static disable = (elem: Element | string) => {
-		this.getInstance(elem)?.disable();
+		this.getOrCreateInstance(elem)?.disable();
 	};
 	static dispose = (elem: Element | string) => {
 		this.getInstance(elem)?.dispose();
@@ -137,22 +136,22 @@ export class popover extends span {
 		this.getOrCreateInstance(elem)?.enable();
 	};
 	static hide = (elem: Element | string) => {
-		this.getInstance(elem)?.hide();
+		this.getOrCreateInstance(elem)?.hide();
 	};
 	static show = (elem: Element | string) => {
-		this.getInstance(elem)?.show();
+		this.getOrCreateInstance(elem)?.show();
 	};
 	static setContent = (elem: Element | string, content?: Record<string, string | Element | null>) => {
-		this.getInstance(elem)?.setContent(content);
+		this.getOrCreateInstance(elem)?.setContent(content);
 	};
 	static toggle = (elem: Element | string) => {
-		this.getInstance(elem)?.toggle();
+		this.getOrCreateInstance(elem)?.toggle();
 	};
 	static toggleEnabled = (elem: Element | string) => {
-		this.getInstance(elem)?.toggleEnabled();
+		this.getOrCreateInstance(elem)?.toggleEnabled();
 	};
 	static update = (elem: Element | string) => {
-		this.getInstance(elem)?.update();
+		this.getOrCreateInstance(elem)?.update();
 	};
 }
 

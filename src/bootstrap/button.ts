@@ -103,7 +103,7 @@ export class button extends tag {
 		return window.bootstrap.Button.getOrCreateInstance(elem);
 	};
 	static toggle = (elem: Element | string) => {
-		this.getInstance(elem)?.toggle();
+		this.getOrCreateInstance(elem)?.toggle();
 	};
 	static dispose = (elem: Element | string) => {
 		this.getInstance(elem)?.dispose();

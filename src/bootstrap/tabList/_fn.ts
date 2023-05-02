@@ -8,7 +8,7 @@ export const getOrCreateInstance = (elem: string | Element) => {
 	return window.bootstrap.Tab.getOrCreateInstance(elem);
 };
 export const show = (elem: string | Element) => {
-	getInstance(elem)?.show();
+	getOrCreateInstance(elem)?.show();
 };
 export const dispose = (elem: string | Element) => {
 	getInstance(elem)?.dispose();
