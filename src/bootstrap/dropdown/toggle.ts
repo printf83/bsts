@@ -5,17 +5,22 @@ import { button, Button } from "../button.js";
 import { visuallyhidden } from "../visuallyhidden.js";
 
 export interface Toggle extends Button {
-	menuOffset?: string;
-	menuReference?: "toggle" | "parent";
-	menuAutoClose?: "true" | "false" | "auto" | "manual" | "inside" | "outside";
+	viewOffset?: string | number[];
+	reference?: "toggle" | "parent";
+	autoClose?: "true" | "false" | "auto" | "manual" | "inside" | "outside";
+
+	boundary?: string;
+	positioning?: "dynamic" | "static";
+	popperConfig?: object;
+
 	split?: boolean;
 	navItem?: boolean;
 }
 
 const convert = (attr: Toggle) => {
-	if (attr.menuAutoClose) {
-		if (attr.menuAutoClose === "auto") attr.menuAutoClose = "true";
-		if (attr.menuAutoClose === "manual") attr.menuAutoClose = "false";
+	if (attr.autoClose) {
+		if (attr.autoClose === "auto") attr.autoClose = "true";
+		if (attr.autoClose === "manual") attr.autoClose = "false";
 	}
 
 	attr = mergeObject(
@@ -27,9 +32,16 @@ const convert = (attr: Toggle) => {
 			],
 			data: {
 				"bs-toggle": "dropdown",
-				"bs-offset": attr.menuOffset,
-				"bs-reference": attr.menuReference,
-				"bs-auto-close": attr.menuAutoClose,
+				"bs-offset": attr.viewOffset
+					? Array.isArray(attr.viewOffset)
+						? attr.viewOffset.join(",")
+						: attr.viewOffset
+					: undefined,
+				"bs-reference": attr.reference,
+				"bs-auto-close": attr.autoClose,
+				"bs-boundary": attr.boundary,
+				"bs-positioning": attr.positioning,
+				"bs-popper-config": attr.popperConfig ? JSON.stringify(attr.popperConfig) : undefined,
 			},
 			aria: { expanded: "false" },
 			defColor: !attr.navItem,
@@ -43,9 +55,12 @@ const convert = (attr: Toggle) => {
 		attr.elem ??= "Dropdown";
 	}
 
-	delete attr.menuOffset;
-	delete attr.menuReference;
-	delete attr.menuAutoClose;
+	delete attr.viewOffset;
+	delete attr.reference;
+	delete attr.autoClose;
+	delete attr.boundary;
+	delete attr.positioning;
+	delete attr.popperConfig;
 	delete attr.split;
 	delete attr.navItem;
 
