@@ -25,6 +25,7 @@ import { mergeObject } from "./mergeObject.js";
 import { removeChildElement } from "./removeChildElement.js";
 import { removeElement } from "./removeElement.js";
 import { removeEmptyArray } from "./removeEmptyArray.js";
+import { rndBetween } from "./rndBetween.js";
 import {
 	tag,
 	IAria,
@@ -94,5 +95,6 @@ export {
 	tagConsNoElemArg,
 	genTagClass,
 	UUID,
+	rndBetween,
 	elemInfo,
 };
