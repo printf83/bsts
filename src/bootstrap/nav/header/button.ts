@@ -53,10 +53,10 @@ const convert = (attr: Button) => {
 };
 
 export class button extends TButton {
-	constructor(); //#1
-	constructor(attr: Button); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: Button, elem: IElem); //#4
+	constructor();
+	constructor(attr: Button);
+	constructor(elem: IElem);
+	constructor(attr: Button, elem: IElem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Button>("elem", arg)));
 	}

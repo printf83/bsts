@@ -9,10 +9,10 @@ const convert = (attr: IAttr) => {
 };
 
 export class text extends p {
-	constructor(); //#1
-	constructor(attr: IAttr); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: IAttr, elem: IElem); //#4
+	constructor();
+	constructor(attr: IAttr);
+	constructor(elem: IElem);
+	constructor(attr: IAttr, elem: IElem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}

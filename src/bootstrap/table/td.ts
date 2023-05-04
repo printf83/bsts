@@ -38,10 +38,10 @@ const convert = (attr: Td) => {
 };
 
 export class td extends TTd {
-	constructor(); //#1
-	constructor(attr: Td); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: Td, elem: IElem); //#4
+	constructor();
+	constructor(attr: Td);
+	constructor(elem: IElem);
+	constructor(attr: Td, elem: IElem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Td>("elem", arg)));
 	}

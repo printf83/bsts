@@ -20,10 +20,10 @@ const convert = (attr: IToggle) => {
 };
 
 export class offcanvas extends TToggle {
-	constructor(); //#1
-	constructor(attr: IToggle); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: IToggle, elem: IElem); //#4
+	constructor();
+	constructor(attr: IToggle);
+	constructor(elem: IElem);
+	constructor(attr: IToggle, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1

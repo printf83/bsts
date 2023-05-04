@@ -23,10 +23,10 @@ const convert = (attr: Img) => {
 };
 
 export class img extends TImg {
-	constructor(); //#1
-	constructor(src: string); //#2
-	constructor(attr: Img); //#3
-	constructor(attr: Img, src: string); //#3
+	constructor();
+	constructor(src: string);
+	constructor(attr: Img);
+	constructor(attr: Img, src: string);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Img>("src", arg)));
 	}

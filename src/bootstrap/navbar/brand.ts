@@ -12,10 +12,10 @@ const convert = (attr: Brand) => {
 };
 
 export class brand extends tag {
-	constructor(); //#1
-	constructor(attr: Brand); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: Brand, elem: IElem); //#4
+	constructor();
+	constructor(attr: Brand);
+	constructor(elem: IElem);
+	constructor(attr: Brand, elem: IElem);
 	constructor(...arg: any[]) {
 		super(
 			bsConstArgTag<Brand>("elem", "span", "a", (i) => (i.href ? true : false), arg),

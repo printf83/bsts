@@ -27,10 +27,10 @@ const convert = (attr: Pane) => {
 };
 
 export class pane extends div {
-	constructor(); //#1
-	constructor(attr: Pane); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: Pane, elem: IElem); //#4
+	constructor();
+	constructor(attr: Pane);
+	constructor(elem: IElem);
+	constructor(attr: Pane, elem: IElem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Pane>("elem", arg)));
 	}

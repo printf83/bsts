@@ -20,8 +20,8 @@ export interface Img extends IAttr {
 }
 
 export class img extends tag {
-	constructor(); //#1
-	constructor(attr: Img); //#3
+	constructor();
+	constructor(attr: Img);
 	constructor(...arg: any[]) {
 		super("img", tagConsNoElemArg<Img>(arg));
 	}

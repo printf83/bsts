@@ -21,10 +21,10 @@ const convert = (attr: Itemcontainer) => {
 };
 
 export class itemcontainer extends ul {
-	constructor(); //#1
-	constructor(attr: Itemcontainer); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: Itemcontainer, elem: IElem); //#4
+	constructor();
+	constructor(attr: Itemcontainer);
+	constructor(elem: IElem);
+	constructor(attr: Itemcontainer, elem: IElem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Itemcontainer>("elem", arg)));
 	}

@@ -14,10 +14,10 @@ const convert = (attr: Container) => {
 };
 
 export class collapse extends TCollapseContainer {
-	constructor(); //#1
-	constructor(attr: Container); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: Container, elem: IElem); //#4
+	constructor();
+	constructor(attr: Container);
+	constructor(elem: IElem);
+	constructor(attr: Container, elem: IElem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Container>("elem", arg)));
 	}

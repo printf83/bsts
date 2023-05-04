@@ -19,10 +19,10 @@ const convert = (attr: Visuallyhidden) => {
 };
 
 export class visuallyhidden extends tag {
-	constructor(); //#1
-	constructor(attr: Visuallyhidden); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: Visuallyhidden, elem: IElem); //#4
+	constructor();
+	constructor(attr: Visuallyhidden);
+	constructor(elem: IElem);
+	constructor(attr: Visuallyhidden, elem: IElem);
 	constructor(...arg: any[]) {
 		super(
 			bsConstArgTag<Visuallyhidden>("elem", "span", "a", (i) => (i.href ? true : false), arg),

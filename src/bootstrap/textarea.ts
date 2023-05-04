@@ -30,10 +30,10 @@ const convert = (attr: Textarea) => {
 };
 
 export class textarea extends TTextarea {
-	constructor(); //#1
-	constructor(value: string); //#2
-	constructor(attr: Textarea); //#3
-	constructor(attr: Textarea, value: string); //#4
+	constructor();
+	constructor(value: string);
+	constructor(attr: Textarea);
+	constructor(attr: Textarea, value: string);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Textarea>("value", arg)));
 	}

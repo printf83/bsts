@@ -16,10 +16,10 @@ const convert = (attr: Tfoot) => {
 };
 
 export class tfoot extends TTfoot {
-	constructor(); //#1
-	constructor(attr: Tfoot); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: Tfoot, elem: IElem); //#4
+	constructor();
+	constructor(attr: Tfoot);
+	constructor(elem: IElem);
+	constructor(attr: Tfoot, elem: IElem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Tfoot>("elem", arg)));
 	}

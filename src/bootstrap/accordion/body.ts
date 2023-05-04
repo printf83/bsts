@@ -32,10 +32,10 @@ const convert = (attr: Body) => {
 };
 
 export class body extends container {
-	constructor(); //#1
-	constructor(attr: Body); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: Body, elem: IElem); //#4
+	constructor();
+	constructor(attr: Body);
+	constructor(elem: IElem);
+	constructor(attr: Body, elem: IElem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Body>("elem", arg)));
 	}

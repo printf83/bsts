@@ -38,10 +38,10 @@ const convert = (attr: Spinner) => {
 };
 
 export class spinner extends tag {
-	constructor(); //#1
-	constructor(attr: Spinner); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: Spinner, elem: IElem); //#4
+	constructor();
+	constructor(attr: Spinner);
+	constructor(elem: IElem);
+	constructor(attr: Spinner, elem: IElem);
 	constructor(...arg: any[]) {
 		super(
 			bsConstArgTag<Spinner>("elem", "span", "div", (i) => (i.elem === "" ? false : i.elem ? false : true), arg),

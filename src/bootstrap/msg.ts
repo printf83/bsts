@@ -80,11 +80,11 @@ const convert = (attr: Msg) => {
 };
 
 export class msg extends TLabel {
-	constructor(); //#1
-	constructor(attr: Msg); //#2
-	constructor(elem: IElem); //#3
-	constructor(icon: string, elem: IElem); //#4
-	constructor(icon: Icon, elem: IElem); //#5
+	constructor();
+	constructor(attr: Msg);
+	constructor(elem: IElem);
+	constructor(icon: string, elem: IElem);
+	constructor(icon: Icon, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1

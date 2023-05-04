@@ -21,10 +21,10 @@ const convert = (attr: Tr) => {
 };
 
 export class tr extends TTr {
-	constructor(); //#1
-	constructor(attr: Tr); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: Tr, elem: IElem); //#4
+	constructor();
+	constructor(attr: Tr);
+	constructor(elem: IElem);
+	constructor(attr: Tr, elem: IElem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Tr>("elem", arg)));
 	}

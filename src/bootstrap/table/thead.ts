@@ -16,10 +16,10 @@ const convert = (attr: Thead) => {
 };
 
 export class thead extends TThead {
-	constructor(); //#1
-	constructor(attr: Thead); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: Thead, elem: IElem); //#4
+	constructor();
+	constructor(attr: Thead);
+	constructor(elem: IElem);
+	constructor(attr: Thead, elem: IElem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Thead>("elem", arg)));
 	}

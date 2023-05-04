@@ -16,10 +16,10 @@ const convert = (attr: Responsive) => {
 };
 
 export class responsive extends div {
-	constructor(); //#1
-	constructor(attr: Responsive); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: Responsive, elem: IElem); //#4
+	constructor();
+	constructor(attr: Responsive);
+	constructor(elem: IElem);
+	constructor(attr: Responsive, elem: IElem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Responsive>("elem", arg)));
 	}

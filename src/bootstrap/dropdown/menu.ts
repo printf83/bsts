@@ -29,10 +29,10 @@ const convert = (attr: Menu) => {
 };
 
 export class menu extends div {
-	constructor(); //#1
-	constructor(attr: Menu); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: Menu, elem: IElem); //#4
+	constructor();
+	constructor(attr: Menu);
+	constructor(elem: IElem);
+	constructor(attr: Menu, elem: IElem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Menu>("elem", arg)));
 	}

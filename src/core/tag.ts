@@ -334,9 +334,9 @@ export class tag implements ITag {
 	public attr?: IAttr;
 	// public dom?: Element;
 
-	constructor(); //#1
-	constructor(tag: string); //#2
-	constructor(tag: string, attr?: IAttr); //#3
+	constructor();
+	constructor(tag: string);
+	constructor(tag: string, attr?: IAttr);
 	constructor(...arg: any[]) {
 		if (arg) {
 			if (arg.length === 1) {

@@ -22,8 +22,8 @@ const convert = (attr: Btnclose) => {
 };
 
 export class btnclose extends button {
-	constructor(); //#1
-	constructor(attr: Btnclose); //#2
+	constructor();
+	constructor(attr: Btnclose);
 	constructor(...arg: any[]) {
 		super(bsConsNoElemArg(convert, arg));
 	}

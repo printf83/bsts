@@ -63,10 +63,10 @@ const convert = (attr: Input) => {
 };
 
 export class input extends TInput {
-	constructor(); //#1
-	constructor(value: string); //#2
-	constructor(attr: Input); //#3
-	constructor(attr: Input, value: string); //#4
+	constructor();
+	constructor(value: string);
+	constructor(attr: Input);
+	constructor(attr: Input, value: string);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Input>("value", arg)));
 	}

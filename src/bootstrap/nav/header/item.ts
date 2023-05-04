@@ -30,10 +30,10 @@ const convert = (attr: Item) => {
 };
 
 export class item extends li {
-	constructor(); //#1
-	constructor(attr: Item); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: Item, elem: IElem); //#4
+	constructor();
+	constructor(attr: Item);
+	constructor(elem: IElem);
+	constructor(attr: Item, elem: IElem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Item>("elem", arg)));
 	}

@@ -10,11 +10,11 @@ const convert = (attr: IAttr) => {
 };
 
 export class header extends h {
-	constructor(); //#1
-	constructor(level: HLevel); //#2
-	constructor(level: HLevel, attr: IAttr); //#3
-	constructor(level: HLevel, elem: IElem); //#4
-	constructor(level: HLevel, attr: IAttr, elem: IElem); //#5
+	constructor();
+	constructor(level: HLevel);
+	constructor(level: HLevel, attr: IAttr);
+	constructor(level: HLevel, elem: IElem);
+	constructor(level: HLevel, attr: IAttr, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1

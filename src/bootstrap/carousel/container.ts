@@ -119,10 +119,10 @@ const convert = (attr: Carousel) => {
 };
 
 export class container extends div {
-	constructor(); //#1
-	constructor(attr: Carousel); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: Carousel, elem: IElem); //#4
+	constructor();
+	constructor(attr: Carousel);
+	constructor(elem: IElem);
+	constructor(attr: Carousel, elem: IElem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Carousel>("elem", arg)));
 	}

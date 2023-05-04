@@ -34,10 +34,10 @@ const convert = (attr: Next) => {
 };
 
 export class next extends TButton {
-	constructor(); //#1
-	constructor(attr: Next); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: Next, elem: IElem); //#4
+	constructor();
+	constructor(attr: Next);
+	constructor(elem: IElem);
+	constructor(attr: Next, elem: IElem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Next>("elem", arg)));
 	}

@@ -6,9 +6,9 @@ export interface Embed extends IAttr {
 }
 
 export class embed extends tag {
-	constructor(); //#1
-	constructor(type: string, src: string); //#2
-	constructor(attr: Embed); //#3
+	constructor();
+	constructor(type: string, src: string);
+	constructor(attr: Embed);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1

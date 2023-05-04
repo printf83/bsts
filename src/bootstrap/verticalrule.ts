@@ -9,8 +9,8 @@ const convert = (attr: IAttr) => {
 };
 
 export class verticalrule extends div {
-	constructor(); //#1
-	constructor(attr: IAttr); //#2
+	constructor();
+	constructor(attr: IAttr);
 	constructor(...arg: any[]) {
 		super(bsConsNoElemArg(convert, arg));
 	}

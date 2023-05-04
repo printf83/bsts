@@ -8,8 +8,8 @@ const convert = (attr: IAttr) => {
 };
 
 export class divider extends hr {
-	constructor(); //#1
-	constructor(attr: IAttr); //#2
+	constructor();
+	constructor(attr: IAttr);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
 			//#1

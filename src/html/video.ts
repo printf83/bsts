@@ -11,10 +11,10 @@ export interface Video extends IAttr {
 }
 
 export class video extends tag {
-	constructor(); //#1
-	constructor(elem: IElem); //#3
-	constructor(attr: Video); //#4
-	constructor(attr: Video, elem: IElem); //#4
+	constructor();
+	constructor(elem: IElem);
+	constructor(attr: Video);
+	constructor(attr: Video, elem: IElem);
 	constructor(...arg: any[]) {
 		super("video", tagConsArg<Video>("elem", arg));
 	}

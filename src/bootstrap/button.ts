@@ -74,18 +74,14 @@ const convert = (attr: Button) => {
 		delete attr.disabled;
 	}
 
-	// dont delete
-	// delete a.href;
-	// delete a.role;
-
 	return attr;
 };
 
 export class button extends tag {
-	constructor(); //#1
-	constructor(attr: Button); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: Button, elem: IElem); //#4
+	constructor();
+	constructor(attr: Button);
+	constructor(elem: IElem);
+	constructor(attr: Button, elem: IElem);
 	constructor(...arg: any[]) {
 		super(
 			bsConstArgTag<Button>("elem", "button", "a", (i) => (i.href ? true : false), arg),

@@ -29,10 +29,10 @@ const convert = (attr: Toggle) => {
 };
 
 export class toggle extends button {
-	constructor(); //#1
-	constructor(attr: Toggle); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: Toggle, elem: IElem); //#4
+	constructor();
+	constructor(attr: Toggle);
+	constructor(elem: IElem);
+	constructor(attr: Toggle, elem: IElem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Toggle>("elem", arg)));
 	}

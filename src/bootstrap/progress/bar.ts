@@ -31,10 +31,10 @@ const convert = (attr: Bar) => {
 };
 
 export class bar extends div {
-	constructor(); //#1
-	constructor(attr: Bar); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: Bar, elem: IElem); //#4
+	constructor();
+	constructor(attr: Bar);
+	constructor(elem: IElem);
+	constructor(attr: Bar, elem: IElem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Bar>("elem", arg)));
 	}
