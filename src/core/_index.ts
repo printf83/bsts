@@ -18,6 +18,7 @@ import { camel2Dash } from "./camel2Dash.js";
 import { elemReady, documentReady } from "./documentReady.js";
 import { elemInfo } from "./elemInfo.js";
 import { IDEventDB, ElementWithEventDB, addEvent, deleteEvent } from "./eventManager.js";
+import { placeholder } from "./placeholder.js";
 import { keyOfType } from "./keyOfType.js";
 import { mergeAttr } from "./mergeAttr.js";
 import { mergeClass } from "./mergeClass.js";
@@ -96,5 +97,6 @@ export {
 	genTagClass,
 	UUID,
 	rndBetween,
+	placeholder,
 	elemInfo,
 };
