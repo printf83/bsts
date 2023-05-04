@@ -5,9 +5,17 @@ import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 
 export interface Menu extends IAttr {
-	dynamicPosition?: false;
+	viewOffset?: string | number[];
+	reference?: "toggle" | "parent";
+	autoClose?: "true" | "false" | "auto" | "manual" | "inside" | "outside";
+
+	boundary?: string;
+	positioning?: "dynamic" | "static";
+	popperConfig?: object;
+
 	positionView?: bootstrapType.dropdownMenuPositionView | bootstrapType.dropdownMenuPositionView[];
 	dropdownMenuPositionView?: bootstrapType.dropdownMenuPositionView | bootstrapType.dropdownMenuPositionView[];
+
 	debug?: boolean;
 }
 
@@ -15,13 +23,35 @@ const convert = (attr: Menu) => {
 	attr = mergeObject(
 		{
 			class: ["dropdown-menu", attr.debug ? "debug" : undefined],
-			data: { "bs-display": attr.dynamicPosition === false ? "static" : undefined },
+			// data: { "bs-display": attr.positioning === false ? "static" : undefined },
+
+			data: {
+				"bs-offset": attr.viewOffset
+					? Array.isArray(attr.viewOffset)
+						? attr.viewOffset.join(",")
+						: attr.viewOffset
+					: undefined,
+				"bs-reference": attr.reference,
+				"bs-auto-close": attr.autoClose,
+				"bs-boundary": attr.boundary,
+				"bs-positioning": attr.positioning,
+				"bs-popper-config": attr.popperConfig ? JSON.stringify(attr.popperConfig) : undefined,
+			},
 		},
 		attr
 	);
+
 	attr.dropdownMenuPositionView = attr.dropdownMenuPositionView || attr.positionView;
 
-	delete attr.dynamicPosition;
+	delete attr.viewOffset;
+	delete attr.reference;
+	delete attr.autoClose;
+
+	delete attr.boundary;
+	delete attr.positioning;
+	delete attr.popperConfig;
+
+	delete attr.positioning;
 	delete attr.positionView;
 	delete attr.debug;
 
