@@ -1,6 +1,6 @@
 {
 	"name": "@printf83/bsts",
-	"version": "0.1.97",
+	"version": "0.1.98",
 	"description": "Bootstrap TS builder",
 	"keywords": [
 		"bootstrap 5",
@@ -34,7 +34,8 @@
 		"rebuild": "npm run clean && npm run build",
 		"rebuild:win": "npm run clean:win && npm run build",
 		"debug": "tsc -p ./configs/tsconfig.esm.json --watch",
-		"prepack": "npm run clean && npm run build"
+		"prepack": "npm run clean && npm run build",
+		"prepack:win": "npm run clean:win && npm run build"
 	},
 	"devDependencies": {
 		"@types/bootstrap": "^5.2.6",

@@ -45,6 +45,7 @@ import {
 } from "./tag.js";
 
 import { UUID } from "./uuid.js";
+import { uppecaseFirst } from "./uppercaseFirst.js";
 
 export {
 	manageClass,
@@ -96,6 +97,7 @@ export {
 	tagConsNoElemArg,
 	genTagClass,
 	UUID,
+	uppecaseFirst,
 	rndBetween,
 	placeholder,
 	elemInfo,
