@@ -43,6 +43,7 @@ import * as Toast from "./toast/__index.js";
 import { Tooltip } from "./tooltip.js";
 import { Verticalrule } from "./verticalrule.js";
 import { Visuallyhidden } from "./visuallyhidden.js";
+import { Time } from "./time.js";
 
 export {
 	Blockquote,
@@ -90,4 +91,5 @@ export {
 	Scrollspy,
 	Verticalrule,
 	Spinner,
+	Time,
 };

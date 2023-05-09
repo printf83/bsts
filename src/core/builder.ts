@@ -17,49 +17,9 @@ import { removeElement } from "./removeElement.js";
 import { UUID } from "./uuid.js";
 import * as modalFn from "../bootstrap/modal/_fn.js";
 import * as toastFn from "../bootstrap/toast/_fn.js";
+import { calcTimer } from "./calcTimer.js";
 
 export type buildArg = tag | string | strHtml | (tag | string | strHtml)[];
-
-const calcTimer = (datevalue: number) => {
-	var t1 = new Date().getTime();
-	var t2 = datevalue;
-	var next = -1;
-	var msg = `Just now`;
-
-	if (t1 > t2) {
-		var diff = t1 - t2;
-		var sec = parseInt((diff / 1000).toString(), 10);
-
-		if (sec < 1) {
-			next = 1000;
-			msg = `Just now`;
-		} else if (sec >= 1 && sec < 60) {
-			//second
-			next = 1000;
-			msg = `${sec} second${sec > 1 ? "s" : ""} ago`;
-		} else if (sec >= 60 && sec < 3600) {
-			//minute
-			next = 60000;
-			let t = parseInt((sec / 60).toString(), 10);
-			msg = `${t} minute${t > 1 ? "s" : ""} ago`;
-		} else if (sec >= 3600 && sec < 86400) {
-			//hour
-			next = 3600000;
-			let t = parseInt((sec / 3600).toString(), 10);
-			msg = `${t} hour${t > 1 ? "s" : ""} ago`;
-		} else {
-			//do not on timer
-			next = -1;
-			let t = parseInt((sec / 86400).toString(), 10);
-			msg = `${t} day${t > 1 ? "s" : ""} ago`;
-		}
-	}
-
-	return {
-		next: next,
-		msg: msg,
-	};
-};
 
 const runTimer = (elem: Element, delay: number) => {
 	const id = elem.getAttribute("id");

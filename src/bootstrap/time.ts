@@ -1,9 +1,9 @@
-import { IAttr, IElem, genTagClass } from "../../core/tag.js";
-import { bsConstArg } from "../../core/bootstrap.js";
-import { small } from "../../html/small.js";
-import { mergeObject } from "../../core/mergeObject.js";
-import { calcTimer } from "../../core/calcTimer.js";
-import { uppercaseFirst } from "../../core/uppercaseFirst.js";
+import { IAttr, IElem, genTagClass } from "../core/tag.js";
+import { bsConstArg } from "../core/bootstrap.js";
+import { span } from "../html/span.js";
+import { mergeObject } from "../core/mergeObject.js";
+import { calcTimer } from "../core/calcTimer.js";
+import { uppercaseFirst } from "../core/uppercaseFirst.js";
 
 const convert = (attr: IAttr) => {
 	const currentTime = new Date().getTime();
@@ -23,7 +23,7 @@ const convert = (attr: IAttr) => {
 	return attr;
 };
 
-export class time extends small {
+export class time extends span {
 	constructor();
 	constructor(attr: IAttr);
 	constructor(elem: IElem);
