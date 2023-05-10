@@ -113,9 +113,11 @@ type btnType =
 	| "continue"
 	| "delete"
 	| "save"
+	| "savechanges"
 	| "agree"
 	| "disagree"
 	| "reject"
+	| "close"
 	| "yesdelete"
 	| "yessave"
 	| "yescontinue";
@@ -136,6 +138,11 @@ const btnTypeDB = (btnType: btnType): btnItemDB => {
 			return {
 				color: "transparent",
 				elem: "Cancel",
+			};
+		case "close":
+			return {
+				color: "transparent",
+				elem: "Close",
 			};
 		case "yes":
 			return {
@@ -166,6 +173,11 @@ const btnTypeDB = (btnType: btnType): btnItemDB => {
 			return {
 				color: "primary",
 				elem: "Save",
+			};
+		case "savechanges":
+			return {
+				color: "primary",
+				elem: "Save changes",
 			};
 		case "agree":
 			return {
