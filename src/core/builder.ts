@@ -62,20 +62,30 @@ export const removeActiveToast = () => {
 };
 
 export const init = (container: Element) => {
+	//popover
 	const popoverTriggerList = container.querySelectorAll('[data-bs-toggle="popover"]');
 	popoverTriggerList.forEach((i) => {
-		// let container = i.getAttribute("data-bs-container");
-		// new window.bootstrap.Popover(i, { container: container ? container : "body" });
 		new window.bootstrap.Popover(i);
 	});
+
+	//tooltip
 	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 	tooltipTriggerList.forEach((i) => {
-		// let container = i.getAttribute("data-bs-container");
-		// new window.bootstrap.Tooltip(i, { container: container ? container : "body" });
 		new window.bootstrap.Tooltip(i);
 	});
+
+	//carousel
+	const carouselTriggerList = document.querySelectorAll('[data-bs-ride="carousel"]');
+	carouselTriggerList.forEach((i) => {
+		new window.bootstrap.Carousel(i);
+	});
+
+	//scrollspy
 	const scrollspyTriggerList = document.querySelectorAll('[data-bs-spy="scroll"]');
-	scrollspyTriggerList.forEach((i) => window.bootstrap.ScrollSpy.getOrCreateInstance(i).refresh());
+	scrollspyTriggerList.forEach((i) => window.bootstrap.ScrollSpy.getOrCreateInstance(i));
+	// scrollspyTriggerList.forEach((i) => window.bootstrap.ScrollSpy.getOrCreateInstance(i).refresh());
+
+	//timer
 	const timerTriggerList = document.querySelectorAll("[data-bs-timer]");
 	timerTriggerList.forEach((i) => {
 		i.setAttribute("id", i.getAttribute("id") || UUID());
