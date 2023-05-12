@@ -5,7 +5,7 @@ import { UUID } from "../../core/uuid.js";
 import { btnclose } from "./btnclose.js";
 import { body } from "./body.js";
 import { header } from "./header.js";
-import { time } from "./time.js";
+import { timer } from "./timer.js";
 import { container, ContainerPlacement } from "./container.js";
 import { Item, item } from "./item.js";
 import { bootstrapType } from "../../core/bootstrap.js";
@@ -150,7 +150,7 @@ export const Simple = (attr: Simple) => {
 			[
 				new header([
 					new div({ marginEnd: "auto" }, new strong(attr.title)),
-					attr.delay > 5000 ? new time() : "",
+					attr.delay > 5000 ? new timer() : "",
 					new btnclose(),
 				]),
 				new body(attr.elem),

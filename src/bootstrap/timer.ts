@@ -23,7 +23,7 @@ const convert = (attr: IAttr) => {
 	return attr;
 };
 
-export class time extends span {
+export class timer extends span {
 	constructor();
 	constructor(attr: IAttr);
 	constructor(elem: IElem);
@@ -33,4 +33,4 @@ export class time extends span {
 	}
 }
 
-export const Time = (AttrOrElem?: IAttr | IElem, Elem?: IElem) => genTagClass<time, IAttr>(time, AttrOrElem, Elem);
+export const Timer = (AttrOrElem?: IAttr | IElem, Elem?: IElem) => genTagClass<timer, IAttr>(timer, AttrOrElem, Elem);
