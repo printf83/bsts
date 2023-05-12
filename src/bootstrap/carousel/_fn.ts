@@ -4,8 +4,8 @@ export const init = (elem: Element | string, options?: Partial<bootstrap.Carouse
 export const getInstance = (elem: Element | string) => {
 	return window.bootstrap.Carousel.getInstance(elem);
 };
-export const getOrCreateInstance = (elem: Element | string) => {
-	return window.bootstrap.Carousel.getOrCreateInstance(elem);
+export const getOrCreateInstance = (elem: Element | string, options?: Partial<bootstrap.Carousel.Options>) => {
+	return window.bootstrap.Carousel.getOrCreateInstance(elem, options);
 };
 export const cycle = (elem: Element | string) => {
 	getOrCreateInstance(elem)?.cycle();

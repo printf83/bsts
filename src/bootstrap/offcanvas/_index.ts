@@ -6,3 +6,6 @@ import { title } from "./title.js";
 import { toggle } from "./toggle.js";
 
 export { body, btnclose, container, header, title, toggle };
+
+import { dispose, getInstance, getOrCreateInstance, hide, init, show, toggle as toggles } from "./_fn.js";
+export { init, dispose, getInstance, getOrCreateInstance, hide, show, toggles };

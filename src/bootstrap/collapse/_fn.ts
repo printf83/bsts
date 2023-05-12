@@ -5,8 +5,8 @@ export const init = (elem: string | Element, options?: Partial<bootstrap.Collaps
 export const getInstance = (elem: string | Element) => {
 	return window.bootstrap.Collapse.getInstance(elem);
 };
-export const getOrCreateInstance = (elem: string | Element) => {
-	return window.bootstrap.Collapse.getOrCreateInstance(elem);
+export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Collapse.Options>) => {
+	return window.bootstrap.Collapse.getOrCreateInstance(elem, options);
 };
 export const hide = (elem: string | Element) => {
 	getOrCreateInstance(elem)?.hide();

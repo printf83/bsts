@@ -1,4 +1,4 @@
-import { appendChild, init } from "../../core/builder.js";
+import { appendChild, init as coreInit } from "../../core/builder.js";
 import { addEvent, ElementWithEventDB } from "../../core/eventManager.js";
 import { removeElement } from "../../core/removeElement.js";
 import { UUID } from "../../core/uuid.js";
@@ -13,15 +13,17 @@ import { div } from "../../html/div.js";
 import { strong } from "../../html/strong.js";
 import { IElem, isTag } from "../../core/tag.js";
 
+export const init = (elem: string | Element, options?: Partial<bootstrap.Toast.Options>) => {
+	return new window.bootstrap.Toast(elem, options);
+};
+
 export const getInstance = (elem: string | Element) => {
 	return window.bootstrap.Toast.getInstance(elem);
 };
-export const getOrCreateInstance = (elem: string | Element) => {
-	return window.bootstrap.Toast.getOrCreateInstance(elem);
+export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Toast.Options>) => {
+	return window.bootstrap.Toast.getOrCreateInstance(elem, options);
 };
-export const enable = (elem: string | Element) => {
-	return getOrCreateInstance(elem);
-};
+
 export const hide = (elem: string | Element) => {
 	getOrCreateInstance(elem)?.hide();
 };
@@ -101,7 +103,7 @@ export const show = (itemOrElem: item | Element | string, placement?: ContainerP
 				});
 
 				show(tst);
-				init(tst);
+				coreInit(tst);
 			}
 		}
 	}

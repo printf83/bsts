@@ -4,8 +4,8 @@ export const init = (elem: string | Element, options?: Partial<bootstrap.Dropdow
 export const getInstance = (elem: string | Element) => {
 	return window.bootstrap.Dropdown.getInstance(elem);
 };
-export const getOrCreateInstance = (elem: string | Element) => {
-	return window.bootstrap.Dropdown.getOrCreateInstance(elem);
+export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Dropdown.Options>) => {
+	return window.bootstrap.Dropdown.getOrCreateInstance(elem, options);
 };
 export const hide = (elem: string | Element) => {
 	getOrCreateInstance(elem)?.hide();

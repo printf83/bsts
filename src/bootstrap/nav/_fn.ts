@@ -45,9 +45,9 @@ export const Tab = (attr: Tab) => {
 			return {
 				active: i.active,
 				disabled: i.disabled,
-				id: `${attr.id}_tab_${ix}`,
-				target: `#${attr.id}_content_${ix}`,
-				controlfor: `#${attr.id}_content_${ix}`,
+				id: `${attr.id}-tab-${ix}`,
+				target: `#${attr.id}-content-${ix}`,
+				controlfor: `#${attr.id}-content-${ix}`,
 				toggle: "tab",
 				elem: i.label,
 			};
@@ -58,14 +58,14 @@ export const Tab = (attr: Tab) => {
 
 		let tAttrContent = mergeObject<Container>(
 			{
-				id: `${attr.id}_content`,
+				id: `${attr.id}-content`,
 				marginTop: attr.card || attr.vertical ? undefined : 3,
 				class: attr.card ? "card-body" : undefined,
 				item: attr.item.map((i, ix) => {
 					return {
-						id: `${attr.id}_content_${ix}`,
+						id: `${attr.id}-content-${ix}`,
 						role: "tabpanel",
-						labelledby: `${attr.id}_tab_${ix}`,
+						labelledby: `${attr.id}-tab-${ix}`,
 						active: i.active,
 						animation: attr.animation,
 						elem: i.elem,

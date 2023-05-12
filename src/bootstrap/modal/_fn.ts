@@ -17,14 +17,14 @@ export const init = (elem: string | Element, options?: Partial<bootstrap.Modal.O
 export const getInstance = (elem: string | Element) => {
 	return window.bootstrap.Modal.getInstance(elem);
 };
-export const getOrCreateInstance = (elem: string | Element) => {
-	return window.bootstrap.Modal.getOrCreateInstance(elem);
+export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Modal.Options>) => {
+	return window.bootstrap.Modal.getOrCreateInstance(elem, options);
 };
 export const handleUpdate = (elem: string | Element) => {
 	getOrCreateInstance(elem)?.handleUpdate();
 };
-export const toggle = (elem: string | Element) => {
-	getOrCreateInstance(elem)?.toggle();
+export const toggle = (elem: string | Element, relatedTarget?: HTMLElement) => {
+	getOrCreateInstance(elem)?.toggle(relatedTarget);
 };
 export const dispose = (elem: string | Element) => {
 	getOrCreateInstance(elem)?.dispose();
