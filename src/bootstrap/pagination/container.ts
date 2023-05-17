@@ -54,6 +54,10 @@ const genElem = (attr: Container) => {
 		attr.lastLabel ??= new icon("chevron-bar-right");
 		attr.prevLabel ??= new icon("chevron-left");
 		attr.firstLabel ??= new icon("chevron-bar-left");
+		// attr.nextLable ??= new icon({ type: "solid", id: "angle-right" });
+		// attr.lastLabel ??= new icon({ type: "solid", id: "angles-right" });
+		// attr.prevLabel ??= new icon({ type: "solid", id: "angle-left" });
+		// attr.firstLabel ??= new icon({ type: "solid", id: "angles-left" });
 
 		let res: item[] = [];
 		let curpage = attr.skip / attr.limit + 1;
@@ -121,7 +125,7 @@ const genElem = (attr: Container) => {
 					new item({
 						disabled: !(curpage > 1),
 						label: "First page",
-						href: "#",
+						// href: "#",
 						data: {
 							"bs-skip": 0,
 						},
@@ -142,7 +146,7 @@ const genElem = (attr: Container) => {
 					new item({
 						disabled: !(curpage > 1),
 						label: "Previous Page",
-						href: "#",
+						// href: "#",
 						data: {
 							"bs-skip": (curpage - 2) * attr.limit,
 						},
@@ -163,7 +167,7 @@ const genElem = (attr: Container) => {
 					new item({
 						active: x === c,
 						label: `Page ${x.toString()}`,
-						href: "#",
+						// href: "#",
 						data: {
 							"bs-skip": (x - 1) * attr.limit,
 						},
@@ -182,10 +186,9 @@ const genElem = (attr: Container) => {
 			if (attr.nextPrev) {
 				res.push(
 					new item({
-						class: "page-item",
 						disabled: !(curpage < btncount),
 						label: "Next Page",
-						href: "#",
+						// href: "#",
 						data: {
 							"bs-skip": curpage * attr.limit,
 						},
@@ -204,10 +207,9 @@ const genElem = (attr: Container) => {
 			if (attr.firstLast) {
 				res.push(
 					new item({
-						class: "page-item",
 						disabled: !(curpage < btncount),
 						label: "Last Page",
-						href: "#",
+						// href: "#",
 						data: {
 							"bs-skip": (btncount - 1) * attr.limit,
 						},

@@ -10,7 +10,7 @@ export class ElementWithEventDB extends HTMLElement {
 
 const removeEvent = (elem: ElementWithEventDB) => {
 	Object.keys(elem.eventDB).forEach((k) => {
-		elem.removeEventListener(k, elem.eventDB[k], false);
+		elem.removeEventListener(k, elem.eventDB[k], true);
 		delete elem.eventDB[k];
 	});
 };
@@ -25,7 +25,7 @@ export const addEvent = (name: string, elem: ElementWithEventDB, fn: EventListen
 	elem.eventDB[name] = fn;
 
 	//add event to element
-	elem.addEventListener(name, fn, false);
+	elem.addEventListener(name, fn, true);
 };
 
 export const deleteEvent = (elem: ElementWithEventDB) => {

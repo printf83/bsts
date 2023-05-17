@@ -1,7 +1,7 @@
 import { IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { Li, li } from "../../html/li.js";
-import { span } from "../../html/span.js";
+import { button } from "../../html/button.js";
 import { a } from "../../html/a.js";
 import { mergeClass } from "../../core/mergeClass.js";
 
@@ -29,7 +29,7 @@ const convert = (attr: Item) => {
 		liAttr.elem = new a(attr);
 	} else {
 		// delete attr.disabled;
-		liAttr.elem = new span(attr);
+		liAttr.elem = new button(attr);
 	}
 
 	return liAttr;
