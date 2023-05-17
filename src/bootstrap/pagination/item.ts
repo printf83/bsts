@@ -28,7 +28,7 @@ const convert = (attr: Item) => {
 	if (attr.href) {
 		liAttr.elem = new a(attr);
 	} else {
-		delete attr.disabled;
+		// delete attr.disabled;
 		liAttr.elem = new span(attr);
 	}
 
