@@ -2,6 +2,7 @@ import { IAttr, IElem, genTagClass } from "../core/tag.js";
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { span } from "../html/span.js";
+import { addEvent } from "../core/eventManager.js";
 
 export interface Popover extends IAttr {
 	inline?: boolean;
@@ -118,13 +119,19 @@ export class popover extends span {
 	}
 
 	static init = (elem: Element | string, options?: Partial<bootstrap.Popover.Options>) => {
-		return new window.bootstrap.Popover(elem, options);
+		return this.getOrCreateInstance(elem, options);
 	};
 	static getInstance = (elem: Element | string) => {
 		return window.bootstrap.Popover.getInstance(elem);
 	};
-	static getOrCreateInstance = (elem: Element | string) => {
-		return window.bootstrap.Popover.getOrCreateInstance(elem);
+	static getOrCreateInstance = (elem: Element | string, options?: Partial<bootstrap.Popover.Options>) => {
+		addEvent("destroy", elem, (i) => {
+			console.log("Dispose popover", i);
+			this.hide(i.target as Element);
+			this.dispose(i.target as Element);
+		});
+
+		return window.bootstrap.Popover.getOrCreateInstance(elem, options);
 	};
 	static disable = (elem: Element | string) => {
 		this.getOrCreateInstance(elem)?.disable();

@@ -1,52 +1,68 @@
-export interface IDEventDB {
-	[key: string]: EventListener;
-}
-
-export class ElementWithEventDB extends HTMLElement {
-	constructor(public eventDB: IDEventDB) {
+export class ElementWithAbortController extends HTMLElement {
+	constructor(public abortController?: AbortController) {
 		super();
 	}
 }
 
-const removeEvent = (elem: ElementWithEventDB) => {
-	Object.keys(elem.eventDB).forEach((k) => {
-		elem.removeEventListener(k, elem.eventDB[k], true);
-		delete elem.eventDB[k];
-	});
-};
-
-export const addEvent = (name: string, elem: ElementWithEventDB, fn: EventListener) => {
-	//create detachEventListener db
-	if (typeof elem.eventDB === "undefined") {
-		elem.eventDB = {};
+const detachEvent = (elem: Element | ElementWithAbortController) => {
+	if ("abortController" in elem) {
+		(elem as ElementWithAbortController).abortController?.abort();
+		delete elem.abortController;
 	}
-
-	//keep fn in detectEventLIstener db
-	elem.eventDB[name] = fn;
-
-	//add event to element
-	elem.addEventListener(name, fn, true);
 };
 
-export const deleteEvent = (elem: ElementWithEventDB) => {
-	if (elem) {
-		let c = elem?.childNodes;
-
-		//remove event from child
-		if (c?.length > 0) {
-			let d = Array.from(c).map((i) => i as ElementWithEventDB);
-
-			d.forEach((e) => {
-				deleteEvent(e);
-				if ("eventDB" in e) {
-					removeEvent(e);
-				}
+export const addEvent = (name: string, elem: string | Element | ElementWithAbortController, fn: EventListener) => {
+	if (typeof elem === "string") {
+		let e = document.querySelectorAll(elem);
+		if (e) {
+			e.forEach((i) => {
+				addEvent(name, i, fn);
 			});
 		}
+	} else {
+		//create detachEventListener db
+		if ("abortController" in elem) {
+			if (typeof elem.abortController === "undefined") {
+				elem.abortController = new AbortController();
+			}
 
-		//detach event from elem
-		if ("eventDB" in elem) {
-			removeEvent(elem);
+			//add event to element
+			//using signal to remove listerner
+			elem.addEventListener(name, fn, { signal: elem.abortController.signal });
+		} else {
+			elem["abortController"] = new AbortController();
+			//add event to element
+			//using signal to remove listerner
+			elem.addEventListener(name, fn, { signal: elem["abortController"].signal });
+		}
+	}
+};
+
+export const removeEvent = (elem: string | Element | ElementWithAbortController) => {
+	if (typeof elem === "string") {
+		let e = document.querySelectorAll(elem);
+		if (e) {
+			e.forEach((i) => {
+				removeEvent(i);
+			});
+		}
+	} else {
+		if (elem) {
+			let c = elem?.childNodes;
+
+			//remove event from child
+			if (c?.length > 0) {
+				let d = Array.from(c).map((i) => i as ElementWithAbortController);
+
+				d.forEach((e) => {
+					removeEvent(e);
+				});
+			}
+
+			//detach event from elem
+			if ("controller" in elem) {
+				detachEvent(elem);
+			}
 		}
 	}
 };

@@ -1,10 +1,16 @@
+import { addEvent } from "../../core/eventManager.js";
+
 export const init = (elem: Element | string, options?: Partial<bootstrap.Carousel.Options>) => {
-	return new window.bootstrap.Carousel(elem, options);
+	return getOrCreateInstance(elem, options);
 };
 export const getInstance = (elem: Element | string) => {
 	return window.bootstrap.Carousel.getInstance(elem);
 };
 export const getOrCreateInstance = (elem: Element | string, options?: Partial<bootstrap.Carousel.Options>) => {
+	addEvent("destroy", elem, (i) => {
+		console.log("Dispose carousel", i);
+		dispose(i.target as Element);
+	});
 	return window.bootstrap.Carousel.getOrCreateInstance(elem, options);
 };
 export const cycle = (elem: Element | string) => {

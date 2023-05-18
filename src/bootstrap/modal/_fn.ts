@@ -1,5 +1,6 @@
-import { appendChild, init as InitAll } from "../../core/builder.js";
-import { addEvent, ElementWithEventDB } from "../../core/eventManager.js";
+import { appendChild } from "../../core/builder.js";
+import { init as coreInit } from "../../core/init.js";
+import { addEvent, ElementWithAbortController } from "../../core/eventManager.js";
 import { mergeAttr } from "../../core/mergeAttr.js";
 import { removeElement } from "../../core/removeElement.js";
 import { IAttr, IElem, isTag } from "../../core/tag.js";
@@ -12,12 +13,18 @@ import { header, Header } from "./header.js";
 import { title } from "./title.js";
 
 export const init = (elem: string | Element, options?: Partial<bootstrap.Modal.Options>) => {
-	return new window.bootstrap.Modal(elem, options);
+	return getOrCreateInstance(elem, options);
 };
 export const getInstance = (elem: string | Element) => {
 	return window.bootstrap.Modal.getInstance(elem);
 };
 export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Modal.Options>) => {
+	addEvent("destroy", elem, (i) => {
+		console.log("Dispose modal", i);
+		hide(i.target as Element);
+		dispose(i.target as Element);
+	});
+
 	return window.bootstrap.Modal.getOrCreateInstance(elem, options);
 };
 export const handleUpdate = (elem: string | Element) => {
@@ -52,14 +59,14 @@ export const show = (elem: string | Element | container, relatedTarget?: HTMLEle
 
 		let mdl = document.getElementById(elem.attr.id);
 		if (mdl) {
-			addEvent("hidden.bs.modal", mdl as ElementWithEventDB, (e) => {
+			addEvent("hidden.bs.modal", mdl as ElementWithAbortController, (e) => {
 				const target = e.target as Element;
-				dispose(target);
+				// dispose(target);
 				removeElement(target);
 			});
 
 			getOrCreateInstance(mdl).show(relatedTarget);
-			InitAll(mdl);
+			coreInit(mdl);
 		}
 	} else {
 		getOrCreateInstance(elem)?.show(relatedTarget);

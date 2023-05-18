@@ -1,6 +1,7 @@
-import { deleteEvent, ElementWithEventDB } from "./eventManager.js";
+import { removeEvent, ElementWithAbortController } from "./eventManager.js";
 
 export const removeElement = (elem: Element) => {
-	deleteEvent(elem as ElementWithEventDB);
+	elem.dispatchEvent(new CustomEvent("destroy"));
+	removeEvent(elem as ElementWithAbortController);
 	elem.remove();
 };

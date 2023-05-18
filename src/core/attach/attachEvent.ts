@@ -1,4 +1,4 @@
-import { addEvent, ElementWithEventDB } from "../eventManager.js";
+import { addEvent, ElementWithAbortController } from "../eventManager.js";
 import { IAttachFn } from "./_index.js";
 
 export const attachEvent: IAttachFn = (key, elem, attr) => {
@@ -8,7 +8,7 @@ export const attachEvent: IAttachFn = (key, elem, attr) => {
 			if (prop) {
 				for (let x = 0; x < prop.length; x++) {
 					if (typeof attr.on[prop[x]] === "function") {
-						addEvent(prop[x], elem as ElementWithEventDB, attr.on[prop[x]]!);
+						addEvent(prop[x], elem as ElementWithAbortController, attr.on[prop[x]]!);
 					}
 				}
 			}

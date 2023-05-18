@@ -1,23 +1,20 @@
 import { manageClass, addClassIntoElement } from "./addClassIntoElement.js";
 import { bootstrapType, Attr, Class, bsConsNoElemArg, bsConstArg, bsConstArgTag } from "./bootstrap.js";
+import { build, getNode, getHtml, appendChild, prependChild, replaceChild, replaceWith } from "./builder.js";
+import { init, initCarousel, initPopover, initScrollSpy, initTimer, initTooltip } from "./init.js";
+
 import {
-	init,
-	build,
-	getNode,
-	getHtml,
-	appendChild,
-	prependChild,
-	replaceChild,
-	replaceWith,
+	removeAllActivePopup,
 	removeActiveModal,
 	removeActivePopover,
 	removeActiveToast,
 	removeActiveTooltip,
-} from "./builder.js";
+} from "./removePopoup.js";
+
 import { camel2Dash } from "./camel2Dash.js";
 import { elemReady, documentReady } from "./documentReady.js";
 import { elemInfo } from "./elemInfo.js";
-import { IDEventDB, ElementWithEventDB, addEvent, deleteEvent } from "./eventManager.js";
+import { ElementWithAbortController, addEvent, removeEvent } from "./eventManager.js";
 import { placeholder } from "./placeholder.js";
 import { keyOfType } from "./keyOfType.js";
 import { mergeAttr } from "./mergeAttr.js";
@@ -57,6 +54,11 @@ export {
 	bsConstArg,
 	bsConstArgTag,
 	init,
+	initCarousel,
+	initPopover,
+	initScrollSpy,
+	initTimer,
+	initTooltip,
 	build,
 	getNode,
 	getHtml,
@@ -64,6 +66,7 @@ export {
 	prependChild,
 	replaceChild,
 	replaceWith,
+	removeAllActivePopup,
 	removeActiveModal,
 	removeActivePopover,
 	removeActiveToast,
@@ -71,10 +74,9 @@ export {
 	camel2Dash,
 	elemReady,
 	documentReady,
-	IDEventDB,
-	ElementWithEventDB,
+	ElementWithAbortController,
 	addEvent,
-	deleteEvent,
+	removeEvent,
 	keyOfType,
 	mergeAttr,
 	mergeClass,

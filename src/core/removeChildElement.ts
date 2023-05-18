@@ -1,8 +1,8 @@
-import { deleteEvent, ElementWithEventDB } from "./eventManager.js";
+import { removeEvent, ElementWithAbortController } from "./eventManager.js";
 
 export const removeChildElement = (elem: Element) => {
 	while (elem.firstChild) {
-		deleteEvent(elem.firstChild as ElementWithEventDB);
+		removeEvent(elem.firstChild as ElementWithAbortController);
 		elem.firstChild.remove();
 	}
 };

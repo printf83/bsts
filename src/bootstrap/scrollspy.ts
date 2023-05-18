@@ -2,6 +2,7 @@ import { IAttr, IElem, genTagClass } from "../core/tag.js";
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { div } from "../html/div.js";
+import { addEvent } from "../core/eventManager.js";
 
 export interface Scrollspy extends IAttr {
 	target?: string;
@@ -40,6 +41,11 @@ export class scrollspy extends div {
 
 	static init = (elem?: Element, option?: Partial<bootstrap.ScrollSpy.Options>) => {
 		if (elem) {
+			addEvent("destroy", elem, (i) => {
+				console.log("Dispose scrollspy", i);
+				window.bootstrap.ScrollSpy.getInstance(i.target as Element)?.dispose();
+			});
+
 			return new window.bootstrap.ScrollSpy(elem, option);
 		}
 

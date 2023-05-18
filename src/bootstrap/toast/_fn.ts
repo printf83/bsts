@@ -1,5 +1,6 @@
-import { appendChild, init as coreInit } from "../../core/builder.js";
-import { addEvent, ElementWithEventDB } from "../../core/eventManager.js";
+import { appendChild } from "../../core/builder.js";
+import { init as coreInit } from "../../core/init.js";
+import { addEvent, ElementWithAbortController } from "../../core/eventManager.js";
 import { removeElement } from "../../core/removeElement.js";
 import { UUID } from "../../core/uuid.js";
 import { btnclose } from "./btnclose.js";
@@ -14,13 +15,19 @@ import { strong } from "../../html/strong.js";
 import { IElem, isTag } from "../../core/tag.js";
 
 export const init = (elem: string | Element, options?: Partial<bootstrap.Toast.Options>) => {
-	return new window.bootstrap.Toast(elem, options);
+	return getOrCreateInstance(elem, options);
 };
 
 export const getInstance = (elem: string | Element) => {
 	return window.bootstrap.Toast.getInstance(elem);
 };
 export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Toast.Options>) => {
+	addEvent("destroy", elem, (i) => {
+		console.log("Dispose toast", i);
+		hide(i.target as Element);
+		dispose(i.target as Element);
+	});
+
 	return window.bootstrap.Toast.getOrCreateInstance(elem, options);
 };
 
@@ -96,9 +103,9 @@ export const show = (itemOrElem: item | Element | string, placement?: ContainerP
 			appendChild(containerDOM, itemOrElem);
 			let tst = document.getElementById(itemOrElem.attr.id);
 			if (tst) {
-				addEvent("hidden.bs.toast", tst as ElementWithEventDB, (e) => {
+				addEvent("hidden.bs.toast", tst as ElementWithAbortController, (e) => {
 					const target = e.target as Element;
-					dispose(target);
+					// dispose(target);
 					removeElement(target);
 				});
 

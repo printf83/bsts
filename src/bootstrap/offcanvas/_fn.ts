@@ -1,10 +1,17 @@
+import { addEvent } from "../../core/eventManager.js";
+
 export const init = (elem: string | Element, options?: Partial<bootstrap.Offcanvas.Options>) => {
-	return new window.bootstrap.Offcanvas(elem, options);
+	return getOrCreateInstance(elem, options);
 };
 export const getInstance = (elem: string | Element) => {
 	return window.bootstrap.Offcanvas.getInstance(elem);
 };
 export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Offcanvas.Options>) => {
+	addEvent("destroy", elem, (i) => {
+		console.log("Dispose offcanvas", i);
+		dispose(i.target as Element);
+	});
+
 	return window.bootstrap.Offcanvas.getOrCreateInstance(elem, options);
 };
 export const hide = (elem: string | Element) => {

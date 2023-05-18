@@ -1,11 +1,18 @@
+import { addEvent } from "../../core/eventManager.js";
+
 export const init = (elem: string | Element, options?: Partial<bootstrap.Collapse.Options>) => {
-	return new window.bootstrap.Collapse(elem, options);
+	return getOrCreateInstance(elem, options);
 };
 
 export const getInstance = (elem: string | Element) => {
 	return window.bootstrap.Collapse.getInstance(elem);
 };
 export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Collapse.Options>) => {
+	addEvent("destroy", elem, (i) => {
+		console.log("Dispose collapse", i);
+		dispose(i.target as Element);
+	});
+
 	return window.bootstrap.Collapse.getOrCreateInstance(elem, options);
 };
 export const hide = (elem: string | Element) => {

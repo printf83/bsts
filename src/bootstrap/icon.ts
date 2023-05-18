@@ -156,14 +156,16 @@ const convert = (attr: Icon) => {
 	if (attr.type === "bi") {
 		delete attr.type;
 		return {
-			class: "bi-svg-container",
+			aria: { hidden: true },
+			class: "bs-ico-bi",
 			elem: new i(attr as IAttr),
 			data: { class: attr.class ? (Array.isArray(attr.class) ? attr.class.join(" ") : attr.class) : undefined },
 		};
 	} else {
 		delete attr.type;
 		return {
-			class: "fa-svg-container",
+			aria: { hidden: true },
+			class: "bs-ico-fa",
 			elem: new i(attr as IAttr),
 			data: { class: attr.class ? (Array.isArray(attr.class) ? attr.class.join(" ") : attr.class) : undefined },
 		};

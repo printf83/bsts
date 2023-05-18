@@ -1,10 +1,17 @@
+import { addEvent } from "../../core/eventManager.js";
+
 export const init = (elem: string | Element, options?: Partial<bootstrap.Dropdown.Options>) => {
-	return new window.bootstrap.Dropdown(elem, options);
+	return getOrCreateInstance(elem, options);
 };
 export const getInstance = (elem: string | Element) => {
 	return window.bootstrap.Dropdown.getInstance(elem);
 };
 export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Dropdown.Options>) => {
+	addEvent("destroy", elem, (i) => {
+		console.log("Dispose dropdown", i);
+		dispose(i.target as Element);
+	});
+
 	return window.bootstrap.Dropdown.getOrCreateInstance(elem, options);
 };
 export const hide = (elem: string | Element) => {
