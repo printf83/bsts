@@ -1,4 +1,4 @@
-let lastRndBetween: number;
+// let lastRndBetween: number;
 
 export const rndBetween = (min: number, max: number) => {
 	if (min === max) {
@@ -9,13 +9,15 @@ export const rndBetween = (min: number, max: number) => {
 		max = min + 1;
 	}
 
-	let result: number;
-	do {
-		result = Math.floor(Math.random() * (max - min + 1) + min);
-	} while (result === lastRndBetween);
+	// let result: number;
+	// do {
+	// 	result = Math.floor(Math.random() * (max - min + 1) + min);
+	// } while (result === lastRndBetween);
 
-	lastRndBetween = result;
-	return result;
+	// lastRndBetween = result;
+	// return result;
+
+	return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
 // export const rndBetween = (min: number, max: number): number => {
