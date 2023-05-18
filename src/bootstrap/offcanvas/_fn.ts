@@ -8,8 +8,11 @@ export const getInstance = (elem: string | Element) => {
 };
 export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Offcanvas.Options>) => {
 	addEvent("destroy", elem, (i) => {
-		console.log("Dispose offcanvas", i);
-		dispose(i.target as Element);
+		// console.log("Dispose offcanvas", i);
+		const m = getInstance(i.target as Element);
+		if (m) {
+			m.dispose();
+		}
 	});
 
 	return window.bootstrap.Offcanvas.getOrCreateInstance(elem, options);

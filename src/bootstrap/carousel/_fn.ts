@@ -8,9 +8,14 @@ export const getInstance = (elem: Element | string) => {
 };
 export const getOrCreateInstance = (elem: Element | string, options?: Partial<bootstrap.Carousel.Options>) => {
 	addEvent("destroy", elem, (i) => {
-		console.log("Dispose carousel", i);
-		dispose(i.target as Element);
+		// console.log("Dispose carousel", i);
+		const m = getInstance(i.target as Element);
+		if (m) {
+			m.dispose();
+		}
 	});
+
+	console.log("Attach carousel", elem);
 	return window.bootstrap.Carousel.getOrCreateInstance(elem, options);
 };
 export const cycle = (elem: Element | string) => {

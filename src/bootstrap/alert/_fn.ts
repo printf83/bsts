@@ -8,8 +8,12 @@ export const getInstance = (elem: string | Element) => {
 };
 export const getOrCreateInstance = (elem: string | Element) => {
 	addEvent("destroy", elem, (i) => {
-		console.log("Dispose alert", i);
-		dispose(i.target as Element);
+		// console.log("Dispose alert", i);
+
+		const m = getInstance(i.target as Element);
+		if (m) {
+			m.dispose();
+		}
 	});
 
 	return window.bootstrap.Alert.getOrCreateInstance(elem);

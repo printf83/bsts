@@ -23,9 +23,12 @@ export const getInstance = (elem: string | Element) => {
 };
 export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Toast.Options>) => {
 	addEvent("destroy", elem, (i) => {
-		console.log("Dispose toast", i);
-		hide(i.target as Element);
-		dispose(i.target as Element);
+		// console.log("Dispose toast", i);
+		const m = getInstance(i.target as Element);
+		if (m) {
+			m.hide();
+			m.dispose();
+		}
 	});
 
 	return window.bootstrap.Toast.getOrCreateInstance(elem, options);
@@ -88,7 +91,6 @@ export const show = (itemOrElem: item | Element | string, placement?: ContainerP
 
 		let containerDOM = document.querySelector(containerClassName);
 		if (!containerDOM) {
-			// let body = document.getElementById("main") ;
 			appendChild(document.body, new container({ placement: placement }));
 			containerDOM = document.querySelector(containerClassName);
 		}
@@ -105,7 +107,6 @@ export const show = (itemOrElem: item | Element | string, placement?: ContainerP
 			if (tst) {
 				addEvent("hidden.bs.toast", tst as ElementWithAbortController, (e) => {
 					const target = e.target as Element;
-					// dispose(target);
 					removeElement(target);
 				});
 

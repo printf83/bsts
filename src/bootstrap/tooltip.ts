@@ -124,9 +124,13 @@ export class tooltip extends span {
 	};
 	static getOrCreateInstance = (elem: Element | string, options?: Partial<bootstrap.Tooltip.Options>) => {
 		addEvent("destroy", elem, (i) => {
-			console.log("Dispose tooltip", i);
-			this.hide(i.target as Element);
-			this.dispose(i.target as Element);
+			// console.log("Dispose tooltip", i);
+
+			const m = this.getInstance(i.target as Element);
+			if (m) {
+				m.hide();
+				m.dispose();
+			}
 		});
 
 		return window.bootstrap.Tooltip.getOrCreateInstance(elem, options);

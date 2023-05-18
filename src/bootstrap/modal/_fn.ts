@@ -20,9 +20,12 @@ export const getInstance = (elem: string | Element) => {
 };
 export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Modal.Options>) => {
 	addEvent("destroy", elem, (i) => {
-		console.log("Dispose modal", i);
-		hide(i.target as Element);
-		dispose(i.target as Element);
+		// console.log("Dispose modal", i);
+		const m = getInstance(i.target as Element);
+		if (m) {
+			m.hide();
+			m.dispose();
+		}
 	});
 
 	return window.bootstrap.Modal.getOrCreateInstance(elem, options);

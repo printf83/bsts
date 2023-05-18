@@ -9,8 +9,11 @@ export const getInstance = (elem: string | Element) => {
 };
 export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Collapse.Options>) => {
 	addEvent("destroy", elem, (i) => {
-		console.log("Dispose collapse", i);
-		dispose(i.target as Element);
+		// console.log("Dispose collapse", i);
+		const m = getInstance(i.target as Element);
+		if (m) {
+			m.dispose();
+		}
 	});
 
 	return window.bootstrap.Collapse.getOrCreateInstance(elem, options);

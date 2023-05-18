@@ -42,8 +42,12 @@ export class scrollspy extends div {
 	static init = (elem?: Element, option?: Partial<bootstrap.ScrollSpy.Options>) => {
 		if (elem) {
 			addEvent("destroy", elem, (i) => {
-				console.log("Dispose scrollspy", i);
-				window.bootstrap.ScrollSpy.getInstance(i.target as Element)?.dispose();
+				// console.log("Dispose scrollspy", i);
+
+				const m = window.bootstrap.ScrollSpy.getInstance(i.target as Element);
+				if (m) {
+					m.dispose();
+				}
 			});
 
 			return new window.bootstrap.ScrollSpy(elem, option);

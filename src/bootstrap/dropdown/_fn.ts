@@ -8,8 +8,12 @@ export const getInstance = (elem: string | Element) => {
 };
 export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Dropdown.Options>) => {
 	addEvent("destroy", elem, (i) => {
-		console.log("Dispose dropdown", i);
-		dispose(i.target as Element);
+		// console.log("Dispose dropdown", i);
+		const m = getInstance(i.target as Element);
+		if (m) {
+			m.hide();
+			m.dispose();
+		}
 	});
 
 	return window.bootstrap.Dropdown.getOrCreateInstance(elem, options);
