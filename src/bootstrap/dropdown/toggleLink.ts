@@ -1,5 +1,5 @@
 import { genTagClass, IElem } from "../../core/tag.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { a, A } from "../../html/a.js";
 import { visuallyhidden } from "../visuallyhidden.js";
@@ -15,6 +15,7 @@ export interface ToggleLink extends A {
 
 	split?: boolean;
 	navItem?: boolean;
+	color?: bootstrapType.linkColor;
 }
 
 const convert = (attr: ToggleLink) => {
@@ -44,6 +45,9 @@ const convert = (attr: ToggleLink) => {
 				"bs-popper-config": attr.popperConfig ? JSON.stringify(attr.popperConfig) : undefined,
 			},
 			aria: { expanded: "false" },
+			textDecoration: "none",
+			display: "block",
+			linkColor: attr.color,
 		},
 		attr
 	);
@@ -54,6 +58,7 @@ const convert = (attr: ToggleLink) => {
 		attr.elem ??= "Dropdown";
 	}
 
+	delete attr.color;
 	delete attr.viewOffset;
 	delete attr.reference;
 	delete attr.autoClose;
