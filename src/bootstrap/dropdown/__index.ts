@@ -5,4 +5,5 @@ import { Item } from "./item.js";
 import { Menu } from "./menu.js";
 import { Text } from "./text.js";
 import { Toggle } from "./toggle.js";
-export { Item, Divider, Menu, Toggle, Header, Container, Text };
+import { ToggleLink } from "./toggleLink.js";
+export { Item, Divider, Menu, Toggle, ToggleLink, Header, Container, Text };
