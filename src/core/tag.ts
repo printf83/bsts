@@ -305,7 +305,7 @@ export interface IGlobal {
 	truespeed?: boolean;
 
 	attrWidth?: string | number;
-	attwHeight?: string | number;
+	attrHeight?: string | number;
 	role?: string;
 }
 
