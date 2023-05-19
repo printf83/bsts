@@ -7,7 +7,7 @@ const dbAlias: { [key: string]: string } = {
 	startValue: "start",
 	attrLabel: "label",
 	attrWidth: "width",
-	attwHeight: "height",
+	attrHeight: "height",
 };
 
 export const attachAlias: IAttachFn = (key, elem, attr) => {
