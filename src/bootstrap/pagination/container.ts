@@ -50,10 +50,10 @@ const genElem = (attr: Container) => {
 		attr.skip ??= 0;
 		attr.limit ??= 10;
 		attr.maxBtnCount ??= 3;
-		attr.nextLable ??= new icon("chevron-right");
-		attr.lastLabel ??= new icon("chevron-bar-right");
-		attr.prevLabel ??= new icon("chevron-left");
-		attr.firstLabel ??= new icon("chevron-bar-left");
+		attr.nextLable ??= new icon({ handleBubble: true, type: "bi", id: "chevron-right" });
+		attr.lastLabel ??= new icon({ handleBubble: true, type: "bi", id: "chevron-bar-right" });
+		attr.prevLabel ??= new icon({ handleBubble: true, type: "bi", id: "chevron-left" });
+		attr.firstLabel ??= new icon({ handleBubble: true, type: "bi", id: "chevron-bar-left" });
 
 		let res: item[] = [];
 		let curpage = attr.skip / attr.limit + 1;
