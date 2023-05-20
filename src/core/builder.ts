@@ -121,7 +121,7 @@ export const build = (
 };
 
 export const getNode = (arg: buildArg): Element | Element[] | null => {
-	let container = build(document.createElement("template"), arg);
+	let container = build(document.createElement("div"), arg);
 	let childCount = container.childElementCount;
 	if (childCount === 0) return null;
 	if (childCount === 1) return container.firstChild as Element;
@@ -129,7 +129,7 @@ export const getNode = (arg: buildArg): Element | Element[] | null => {
 };
 
 export const getHtml = (arg: buildArg): string => {
-	let container = build(document.createElement("template"), arg);
+	let container = build(document.createElement("div"), arg);
 	let result = container.innerHTML;
 	removeElement(container);
 	return result;
