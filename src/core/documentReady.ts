@@ -1,3 +1,5 @@
+import { svgBubbleManager } from "./svgBubble.js";
+
 export const elemReady = (doc: Document, callback: Function) => {
 	if (doc.readyState != "loading") {
 		callback();
@@ -9,6 +11,7 @@ export const elemReady = (doc: Document, callback: Function) => {
 
 export const documentReady = (callback: Function) => {
 	elemReady(document, () => {
+		svgBubbleManager();
 		callback();
 	});
 };
