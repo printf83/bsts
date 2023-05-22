@@ -1192,7 +1192,7 @@ export interface Class {
 
 	//---------------------
 
-	textAlign?: bootstrapType.textAlign;
+	textAlign?: bootstrapType.textAlign | bootstrapType.textAlign[];
 	verticalAlign?: bootstrapType.verticalAlign;
 
 	//---------------------
