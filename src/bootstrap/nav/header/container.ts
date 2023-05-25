@@ -14,6 +14,7 @@ export interface Container extends Omit<Ul, "item"> {
 	item?: Item | Item[];
 	link?: Link | Link[];
 	button?: Button | Button[];
+	handleActive?: boolean;
 }
 
 const convert = (attr: Container): Ul => {

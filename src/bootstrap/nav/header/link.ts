@@ -10,6 +10,23 @@ export interface Link extends A {
 	current?: true | "page";
 }
 
+const handleActive = (event: Event) => {
+	const target = (event.target as Element).closest(".nav-link") as Element;
+	const container = target.closest(".nav");
+	const lastActive = container?.querySelector(".nav-link.active");
+
+	let lastCurrent: string | null = "";
+
+	if (lastActive) {
+		lastCurrent = lastActive.getAttribute("aria-current");
+		lastActive.removeAttribute("aria-current");
+		lastActive.classList.remove("active");
+	}
+
+	target.setAttribute("aria-current", lastCurrent ? lastCurrent : "page");
+	target.classList.add("active");
+};
+
 const convert = (attr: Link) => {
 	switch (attr.toggle) {
 		case "dropdown":
@@ -23,6 +40,19 @@ const convert = (attr: Link) => {
 	}
 
 	attr.current ??= "page";
+
+	//handle item active
+	if (!attr.toggle) {
+		if (attr.on) {
+			if (!attr.on.click) {
+				attr.on["click"] = handleActive;
+			}
+		} else {
+			attr.on = {
+				click: handleActive,
+			};
+		}
+	}
 
 	attr = mergeObject(
 		{
