@@ -8,23 +8,43 @@ export interface Link extends A {
 	toggle?: "dropdown" | "pill" | "tab";
 	active?: boolean;
 	current?: true | "page";
+	handleActive?: boolean;
 }
 
 const handleActive = (event: Event) => {
 	const target = (event.target as Element).closest(".nav-link") as Element;
 	const container = target.closest(".nav");
-	const lastActive = container?.querySelector(".nav-link.active");
+	if (container) {
+		let lastCurrent: string | null = "";
+		const lastActive = container?.querySelector(".nav-link.active");
 
-	let lastCurrent: string | null = "";
+		if (lastActive) {
+			lastCurrent = lastActive.getAttribute("aria-current");
+			lastActive.removeAttribute("aria-current");
+			lastActive.classList.remove("active");
 
-	if (lastActive) {
-		lastCurrent = lastActive.getAttribute("aria-current");
-		lastActive.removeAttribute("aria-current");
-		lastActive.classList.remove("active");
+			container.dispatchEvent(
+				new CustomEvent("change.bs.nav", {
+					detail: {
+						target: target,
+						relatedTarget: lastActive,
+					},
+				})
+			);
+		} else {
+			container.dispatchEvent(
+				new CustomEvent("change.bs.nav", {
+					detail: {
+						target: target,
+						relatedTarget: null,
+					},
+				})
+			);
+		}
+
+		target.setAttribute("aria-current", lastCurrent ? lastCurrent : "page");
+		target.classList.add("active");
 	}
-
-	target.setAttribute("aria-current", lastCurrent ? lastCurrent : "page");
-	target.classList.add("active");
 };
 
 const convert = (attr: Link) => {
@@ -42,7 +62,7 @@ const convert = (attr: Link) => {
 	attr.current ??= "page";
 
 	//handle item active
-	if (!attr.toggle) {
+	if (attr.handleActive) {
 		if (attr.on) {
 			if (!attr.on.click) {
 				attr.on["click"] = handleActive;
@@ -71,6 +91,7 @@ const convert = (attr: Link) => {
 		attr
 	);
 
+	delete attr.handleActive;
 	delete attr.current;
 	delete attr.active;
 	delete attr.toggle;

@@ -9,9 +9,55 @@ export interface Item extends Li {
 	disabled?: boolean;
 	action?: boolean;
 	color?: bootstrapType.color;
+	handleActive?: boolean;
 }
 
+const handleActive = (event: Event) => {
+	const target = (event.target as Element).closest(".list-group-item") as Element;
+	const container = target.closest(".list-group");
+	if (container) {
+		const lastActive = container?.querySelector(".list-group-item.active");
+
+		if (lastActive) {
+			lastActive.classList.remove("active");
+
+			container.dispatchEvent(
+				new CustomEvent("change.bs.list", {
+					detail: {
+						target: target,
+						relatedTarget: lastActive,
+					},
+				})
+			);
+		} else {
+			container.dispatchEvent(
+				new CustomEvent("change.bs.list", {
+					detail: {
+						target: target,
+						relatedTarget: null,
+					},
+				})
+			);
+		}
+
+		target.classList.add("active");
+	}
+};
+
 const convert = (attr: Item) => {
+	//handle item active
+	if (attr.handleActive) {
+		if (attr.on) {
+			if (!attr.on.click) {
+				attr.on["click"] = handleActive;
+			}
+		} else {
+			attr.on = {
+				click: handleActive,
+			};
+		}
+	}
+
 	attr = mergeObject(
 		{
 			class: [
@@ -26,6 +72,7 @@ const convert = (attr: Item) => {
 		attr
 	);
 
+	delete attr.handleActive;
 	delete attr.active;
 	delete attr.disabled;
 	delete attr.action;
