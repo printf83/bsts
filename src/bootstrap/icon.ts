@@ -21,24 +21,24 @@ export interface Icon extends IAttr {
 	rotate?: 90 | 180 | 270 | "horizontal" | "vertical" | "both";
 	inverse?: boolean;
 	stack?: true | 1 | 2;
-	// handleBubble?: boolean;
+	handleBubble?: boolean;
 }
 
-// const bubbleEvent = (event: Event) => {
-// 	event.preventDefault();
-// 	event.stopPropagation();
+const bubbleEvent = (event: Event) => {
+	event.preventDefault();
+	event.stopPropagation();
 
-// 	const target = event.target as Element;
-// 	const a = target.closest("a");
-// 	if (a) {
-// 		a.click();
-// 	} else {
-// 		const button = target.closest("button");
-// 		if (button) {
-// 			button.click();
-// 		}
-// 	}
-// };
+	const target = event.target as Element;
+	const a = target.closest("a");
+	if (a) {
+		a.click();
+	} else {
+		const button = target.closest("button");
+		if (button) {
+			button.click();
+		}
+	}
+};
 
 const convert = (attr: Icon) => {
 	if (!attr.id && attr.elem && typeof attr.elem === "string") {
@@ -152,7 +152,6 @@ const convert = (attr: Icon) => {
 						: undefined,
 				],
 				textColor: attr.color,
-				focusable: false,
 			},
 			attr
 		);
@@ -170,15 +169,16 @@ const convert = (attr: Icon) => {
 	delete attr.rotate;
 	delete attr.inverse;
 	delete attr.stack;
+	delete attr.handleBubble;
 
 	if (attr.type === "bi") {
 		delete attr.type;
 		return {
 			aria: { hidden: true },
 			class: "bs-ico-bi",
-			// on: {
-			// 	click: attr.handleBubble ? bubbleEvent : undefined,
-			// },
+			on: {
+				click: attr.handleBubble ? bubbleEvent : undefined,
+			},
 			elem: new i(attr as IAttr),
 			data: { class: attr.class ? (Array.isArray(attr.class) ? attr.class.join(" ") : attr.class) : undefined },
 		};
@@ -187,9 +187,9 @@ const convert = (attr: Icon) => {
 		return {
 			aria: { hidden: true },
 			class: "bs-ico-fa",
-			// on: {
-			// 	click: attr.handleBubble ? bubbleEvent : undefined,
-			// },
+			on: {
+				click: attr.handleBubble ? bubbleEvent : undefined,
+			},
 			elem: new i(attr as IAttr),
 			data: { class: attr.class ? (Array.isArray(attr.class) ? attr.class.join(" ") : attr.class) : undefined },
 		};

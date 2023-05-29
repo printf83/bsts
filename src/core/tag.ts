@@ -297,7 +297,6 @@ export interface IGlobal {
 	tabindex?: string | number;
 	title?: string;
 	translate?: string;
-	focusable?: boolean; //use by svg icon (b.icon)
 
 	hidden?: boolean;
 	itemscope?: boolean;
