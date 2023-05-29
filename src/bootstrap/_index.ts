@@ -13,6 +13,7 @@ import { col } from "./col.js";
 import * as collapse from "./collapse/_index.js";
 import { container } from "./container.js";
 import * as dropdown from "./dropdown/_index.js";
+import * as form from "./form/_index.js";
 import * as figure from "./figure/_index.js";
 import { formfloating } from "./formfloating.js";
 import { grid } from "./grid.js";
@@ -47,6 +48,7 @@ import { timer } from "./timer.js";
 export {
 	blockquote,
 	figure,
+	form,
 	icon,
 	button,
 	label,
