@@ -169,6 +169,9 @@ const convert = (attr: Icon) => {
 	delete attr.rotate;
 	delete attr.inverse;
 	delete attr.stack;
+
+	let handleBubble = attr.handleBubble;
+
 	delete attr.handleBubble;
 
 	if (attr.type === "bi") {
@@ -177,7 +180,7 @@ const convert = (attr: Icon) => {
 			aria: { hidden: true },
 			class: "bs-ico-bi",
 			on: {
-				click: attr.handleBubble ? bubbleEvent : undefined,
+				click: handleBubble ? bubbleEvent : undefined,
 			},
 			elem: new i(attr as IAttr),
 			data: { class: attr.class ? (Array.isArray(attr.class) ? attr.class.join(" ") : attr.class) : undefined },
@@ -188,7 +191,7 @@ const convert = (attr: Icon) => {
 			aria: { hidden: true },
 			class: "bs-ico-fa",
 			on: {
-				click: attr.handleBubble ? bubbleEvent : undefined,
+				click: handleBubble ? bubbleEvent : undefined,
 			},
 			elem: new i(attr as IAttr),
 			data: { class: attr.class ? (Array.isArray(attr.class) ? attr.class.join(" ") : attr.class) : undefined },
