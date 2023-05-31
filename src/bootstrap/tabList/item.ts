@@ -9,7 +9,6 @@ export interface Item extends A {
 	action?: boolean;
 	color?: bootstrapType.color;
 	role?: "tab";
-
 	autoInit?: boolean;
 }
 
