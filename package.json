@@ -23,7 +23,7 @@
 	"exports": {
 		"types": "./lib/types/index.d.ts",
 		"default": "./lib/index.js"
-	},
+		},
 	"files": [
 		"lib/**/*"
 	],
