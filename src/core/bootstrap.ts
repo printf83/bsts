@@ -214,6 +214,12 @@ export namespace bootstrapType {
 	export type h = fontDisplay;
 	export type small = true;
 
+	//bsts css
+	export type linkNormal = COLOR | BODYTEXTCOLOR;
+	export type linkHover = linkNormal;
+	export type linkActive = linkNormal;
+	export type linkActiveBg = linkNormal;
+
 	//specific component only
 	export type linkColor = COLOR | BODYTEXTCOLOR;
 	export type linkUnderlineColor = linkColor;
@@ -469,6 +475,12 @@ namespace bootstrapTypeA {
 	export const visually = ["hidden", "hidden-focusable"];
 	export const h = fontDisplay;
 	export const small = [true];
+
+	//bsts css
+	export const linkNormal = [...COLOR, ...BODYTEXTCOLOR];
+	export const linkHover = linkNormal;
+	export const linkActive = linkNormal;
+	export const linkActiveBg = linkNormal;
 
 	//specific component only
 	export const linkColor = [...COLOR, ...BODYTEXTCOLOR];
@@ -1012,6 +1024,25 @@ const bsClassFormatterDB: {
 
 	//---------------------
 
+	linkNormal: new bsClassFormatterRule({
+		format: "link-normal-$1",
+		value: bootstrapTypeA.linkNormal,
+	}),
+	linkHover: new bsClassFormatterRule({
+		format: "link-hover-$1",
+		value: bootstrapTypeA.linkHover,
+	}),
+	linkActive: new bsClassFormatterRule({
+		format: "link-active-$1",
+		value: bootstrapTypeA.linkActive,
+	}),
+	linkActiveBg: new bsClassFormatterRule({
+		format: "link-active-bg-$1",
+		value: bootstrapTypeA.linkActiveBg,
+	}),
+
+	//---------------------
+
 	linkColor: new bsClassFormatterRule({
 		format: "link-$1",
 		value: bootstrapTypeA.linkColor,
@@ -1306,6 +1337,13 @@ export interface Class {
 	//---------------------
 
 	iconLink?: bootstrapType.iconLink;
+
+	//---------------------
+
+	linkNormal?: bootstrapType.linkNormal;
+	linkHover?: bootstrapType.linkHover;
+	linkActive?: bootstrapType.linkActive;
+	linkActiveBg?: bootstrapType.linkActiveBg;
 }
 
 let allowClassProp: (string | undefined)[] = [];

@@ -7,12 +7,13 @@ export interface Toggle extends Button {
 	link?: true;
 	target?: string;
 	expanded?: boolean;
+	icon?: boolean;
 }
 
 const convert = (attr: Toggle) => {
 	attr = mergeObject(
 		{
-			class: [attr.expanded ? "" : "collapsed"],
+			class: [attr.expanded ? undefined : "collapsed", attr.icon ? "btn-toggle" : undefined],
 			data: {
 				"bs-toggle": "collapse",
 				"bs-target": attr.link ? undefined : attr.target,

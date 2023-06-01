@@ -2,7 +2,6 @@ import { attachAttr } from "./attach/_index.js";
 import { IAttr, isTag, tag, strHtml, isHtml } from "./tag.js";
 import { removeChildElement } from "./removeChildElement.js";
 import { removeElement } from "./removeElement.js";
-
 import { markup } from "./markup.js";
 
 export type buildArg = tag | string | strHtml | (tag | string | strHtml)[];

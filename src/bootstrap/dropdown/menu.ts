@@ -16,13 +16,19 @@ export interface Menu extends IAttr {
 	positionView?: bootstrapType.dropdownMenuPositionView | bootstrapType.dropdownMenuPositionView[];
 	dropdownMenuPositionView?: bootstrapType.dropdownMenuPositionView | bootstrapType.dropdownMenuPositionView[];
 
+	customStyle?: 1;
+
 	debug?: boolean;
 }
 
 const convert = (attr: Menu) => {
 	attr = mergeObject(
 		{
-			class: ["dropdown-menu", attr.debug ? "debug" : undefined],
+			class: [
+				"dropdown-menu",
+				attr.customStyle ? `custom-style-${attr.customStyle}` : undefined,
+				attr.debug ? "debug" : undefined,
+			],
 			// data: { "bs-display": attr.positioning === false ? "static" : undefined },
 
 			data: {
@@ -54,6 +60,8 @@ const convert = (attr: Menu) => {
 	delete attr.positioning;
 	delete attr.positionView;
 	delete attr.debug;
+
+	delete attr.customStyle;
 
 	return attr;
 };
