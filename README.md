@@ -23,14 +23,14 @@ or without new keyword:
 
 
 ```
-import {core, B, H} from "@printf83/bsts";
+import {core, $} from "@printf83/bsts";
 
 core.documentReady(() => {
 	let body = document.getElementById("main") as Element;
-	core.replaceChild(body, H.Div([
-        H.P("This is example p tag"),
-        H.P({lead:true,data:{test:"test-data"}},"This is example p tag with attribute"),
-        B.Button({id:"btn1",color:"primary"},"Button"),
+	core.replaceChild(body, $.H.Div([
+        $.H.P("This is example p tag"),
+        $.H.P({lead:true,data:{test:"test-data"}},"This is example p tag with attribute"),
+        $.B.Button({id:"btn1",color:"primary"},"Button"),
     ]));
 });
 ```
