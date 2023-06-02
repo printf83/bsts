@@ -34,7 +34,8 @@
 		"rebuild": "npm run clean && npm run build",
 		"rebuild:win": "npm run clean:win && npm run build",
 		"debug": "tsc -p ./configs/tsconfig.esm.json --watch",
-		"link": "npm link"
+		"link": "npm link",
+		"prepack": "npm run rebuild"
 	},
 	"devDependencies": {
 		"@types/bootstrap": "^5.2.6",
