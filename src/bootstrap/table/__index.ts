@@ -8,4 +8,14 @@ import { Th } from "./th.js";
 import { Thead } from "./thead.js";
 import { Tr } from "./tr.js";
 
-export { Responsive, Container, Tbody, Td, Tr, Thead, Tfoot, Th, Caption };
+export {
+	Responsive as responsive,
+	Container as container,
+	Tbody as tbody,
+	Td as td,
+	Tr as tr,
+	Thead as thead,
+	Tfoot as tfoot,
+	Th as th,
+	Caption as caption,
+};

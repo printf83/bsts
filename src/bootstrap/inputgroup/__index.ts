@@ -1,4 +1,4 @@
 import { Container } from "./container.js";
 import { Text } from "./text.js";
 
-export { Container, Text };
+export { Container as container, Text as text };

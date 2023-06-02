@@ -1,4 +1,4 @@
 import { Content } from "./content.js";
 import { Pane } from "./pane.js";
 
-export { Content, Pane };
+export { Content as content, Pane as pane };

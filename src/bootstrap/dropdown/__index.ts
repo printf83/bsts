@@ -6,4 +6,16 @@ import { Menu } from "./menu.js";
 import { Text } from "./text.js";
 import { Toggle } from "./toggle.js";
 import { ToggleLink } from "./toggleLink.js";
-export { Item, Divider, Menu, Toggle, ToggleLink, Header, Container, Text };
+export {
+	Item as item,
+	Divider as divider,
+	Menu as menu,
+	Toggle as toggle,
+	ToggleLink as toggleLink,
+	Header as header,
+	Container as container,
+	Text as text,
+};
+
+import { dispose, getInstance, getOrCreateInstance, hide, init, show, toggle as toggles, update } from "./_fn.js";
+export { init, dispose, getInstance, getOrCreateInstance, hide, show, toggles, update };

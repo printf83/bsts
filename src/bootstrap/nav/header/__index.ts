@@ -4,4 +4,4 @@ import { ContainerNav } from "./containerNav.js";
 import { Item } from "./item.js";
 import { Link } from "./link.js";
 
-export { Container, ContainerNav, Item, Link, Button };
+export { Container as container, ContainerNav as containerNav, Item as item, Link as link, Button as button };

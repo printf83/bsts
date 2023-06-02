@@ -6,4 +6,16 @@ import { Header } from "./header.js";
 import { Item } from "./item.js";
 import { Timer } from "./timer.js";
 import { Title } from "./title.js";
-export { Item, Body, Btnclose, Container, Header, Timer, Title, Simple };
+export {
+	Item as item,
+	Body as body,
+	Btnclose as btnclose,
+	Container as container,
+	Header as header,
+	Timer as timer,
+	Title as title,
+	Simple as simple,
+};
+
+import { dispose, getInstance, getOrCreateInstance, hide, isShown, show } from "./_fn.js";
+export { show, getInstance, getOrCreateInstance, hide, dispose, isShown };

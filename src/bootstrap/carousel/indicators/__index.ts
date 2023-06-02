@@ -1,4 +1,4 @@
 import { Button } from "./button.js";
 import { Container } from "./container.js";
 
-export { Container, Button };
+export { Container as container, Button as button };

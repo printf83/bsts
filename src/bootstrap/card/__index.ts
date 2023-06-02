@@ -11,4 +11,17 @@ import { Subtitle } from "./subtitle.js";
 import { Text } from "./text.js";
 import { Title } from "./title.js";
 
-export { Body, Container, Img, Link, Subtitle, Text, Title, Header, Footer, Imgoverlay, Group, Nav };
+export {
+	Body as body,
+	Container as container,
+	Img as img,
+	Link as link,
+	Subtitle as subtitle,
+	Text as text,
+	Title as title,
+	Header as header,
+	Footer as footer,
+	Imgoverlay as imgoverlay,
+	Group as group,
+	Nav as nav,
+};

@@ -9,15 +9,15 @@ import { Text } from "./text.js";
 import * as Toggle from "./toggle/__index.js";
 
 export {
-	Container,
-	ContainerHeader,
-	Innercontainer,
-	InnercontainerNav,
-	Brand,
-	Toggle,
-	Collapse,
-	Itemcontainer,
-	Text,
-	Item,
-	Link,
+	Container as container,
+	ContainerHeader as containerHeader,
+	Innercontainer as innercontainer,
+	InnercontainerNav as innercontainerNav,
+	Brand as brand,
+	Toggle as toggle,
+	Collapse as collapse,
+	Itemcontainer as itemcontainer,
+	Text as text,
+	Item as item,
+	Link as link,
 };
