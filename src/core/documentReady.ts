@@ -8,7 +8,14 @@ import { svgInLinkAndButton } from "./css/svgInLinkAndButton.js";
 import { tableResponsive } from "./css/tableResponsive.js";
 
 const setCSS = () => {
-	const css = [btnToggle, dropdownMenuStyle, svgInLinkAndButton, tableResponsive, aHover, aColor()].join("\n");
+	const css = [
+		btnToggle,
+		dropdownMenuStyle,
+		svgInLinkAndButton,
+		tableResponsive("bs-title-name"),
+		aHover,
+		aColor(),
+	].join("\n");
 
 	if (!document.getElementById("bsts-css-container")) {
 		appendChild(document.head, new style({ id: "bsts-css-container" }, css));

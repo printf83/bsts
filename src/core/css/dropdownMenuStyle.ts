@@ -1,4 +1,7 @@
 export const dropdownMenuStyle = `
+/* 
+src/core/css/dropdownMenuStyle.ts 
+--------------------------------- */
 
 .dropdown-menu.custom-style-1{
     padding:calc(var(--bs-dropdown-spacer)*2);
