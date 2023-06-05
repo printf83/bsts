@@ -62,6 +62,7 @@ src/core/css/tableResponsive.ts
         padding: 0.125rem 1.5rem;
         display: grid;
         gap: 0.5rem;
+        background-color: unset;
     }
 
     table.table[data-bs-responsive-title="${title}"] tbody td {
@@ -69,7 +70,6 @@ src/core/css/tableResponsive.ts
     }
 }
 @media (max-width: 576px) {
-    
 
     table.table[data-bs-responsive-title="${title}"] tbody td::before{
         content: attr(data-${title});
