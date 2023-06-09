@@ -34,6 +34,7 @@ import * as Toast from "./toast/___index.js";
 import { Tooltip } from "./tooltip.js";
 import * as Form from "./form/___index.js";
 import { Visuallyhidden } from "./visuallyhidden.js";
+import { Calendar } from "./calendar.js";
 
 export {
 	Button,
@@ -55,6 +56,7 @@ export {
 	Btnclose,
 	Btngroup,
 	Spinner,
+	Calendar,
 };
 
 export {

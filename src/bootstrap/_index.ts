@@ -44,6 +44,7 @@ import { tooltip } from "./tooltip.js";
 import { verticalrule } from "./verticalrule.js";
 import { visuallyhidden } from "./visuallyhidden.js";
 import { timer } from "./timer.js";
+import { calendar } from "./calendar.js";
 
 export {
 	blockquote,
@@ -92,4 +93,5 @@ export {
 	verticalrule,
 	spinner,
 	timer,
+	calendar,
 };

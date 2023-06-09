@@ -3,6 +3,7 @@ import { appendChild } from "./builder.js";
 import { aColor } from "./css/aColor.js";
 import { aHover } from "./css/aHover.js";
 import { btnToggle } from "./css/btnToggle.js";
+import { calendar } from "./css/calendar.js";
 import { dropdownMenuStyle } from "./css/dropdownMenuStyle.js";
 import { svgInLinkAndButton } from "./css/svgInLinkAndButton.js";
 import { tableResponsive } from "./css/tableResponsive.js";
@@ -15,6 +16,7 @@ const setCSS = () => {
 		tableResponsive("bs-title-name"),
 		aHover,
 		aColor(),
+		calendar,
 	].join("\n");
 
 	if (!document.getElementById("bsts-css-container")) {
