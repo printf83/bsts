@@ -400,7 +400,7 @@ export class calendar extends div {
 	constructor();
 	constructor(attr: Calendar);
 	constructor(...arg: any[]) {
-		super(convert(bsConsNoElemArg(convert, arg)));
+		super(bsConsNoElemArg(convert, arg));
 	}
 }
 
