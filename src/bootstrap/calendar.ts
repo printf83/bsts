@@ -2,7 +2,7 @@ import { IAttr, genTagClass } from "../core/tag.js";
 import { bsConsNoElemArg } from "../core/bootstrap.js";
 import { div } from "../html/div.js";
 import { replaceWith } from "../core/builder.js";
-import { ul } from "../html/ul.js";
+import { Ul, ul } from "../html/ul.js";
 import { li } from "../html/li.js";
 import * as modal from "../bootstrap/modal/_index.js";
 import * as inputgroup from "../bootstrap/inputgroup/_index.js";
@@ -12,130 +12,54 @@ import { a } from "../html/a.js";
 import { option } from "../html/option.js";
 import { select } from "../bootstrap/select.js";
 import { input } from "../bootstrap/input.js";
-import { mergeClass } from "../core/mergeClass.js";
+import { mergeObject } from "../core/mergeObject.js";
 
-interface CalendarHeader {
-	view: Date;
-	monthTitle: string[];
-	onchange: (sender: Element, view: Date) => void;
-}
-
-interface CalendarItem {
-	multiple: boolean;
-	view: Date;
-	startDate?: Date;
-	endDate?: Date;
-	dayTitle: string[];
-	onchange: (sender: Element, arg: { startDate?: Date; endDate?: Date }) => void;
-}
-
-const genCalendarHeader = (arg: CalendarHeader) => {
-	return new div({ display: "flex", justifyContent: "between", alignItem: "center", paddingBottom: 2 }, [
-		new button(
-			{
-				color: "transparent",
-				on: {
-					click: (e) => {
-						const target = e.target as Element;
-						arg.view.setMonth(arg.view.getMonth() - 1);
-						arg.onchange(target, arg.view);
-					},
-				},
-			},
-			new icon({ id: "arrow-left" })
-		),
-		new div(
-			{ marginX: "auto" },
-			new button(
-				{
-					color: "transparent",
-					fontWeight: "bold",
-					on: {
-						click: (e) => {
-							const target = e.target as Element;
-							modal.show(
-								modal.simple({
-									on: {
-										"show.bs.modal": (e) => {
-											const mdl = e.target as Element;
-											(mdl.querySelector("select[name='month']") as HTMLSelectElement).value =
-												arg.view.getMonth().toString();
-											(mdl.querySelector("input[name='year']") as HTMLInputElement).value =
-												arg.view.getFullYear().toString();
-										},
-									},
-									title: "Calendar",
-									elem: new inputgroup.container([
-										new select(
-											{
-												name: "month",
-											},
-											arg.monthTitle.map((i, ix) => {
-												return new option({ value: ix.toString(), elem: i });
-											})
-										),
-										new input({ name: "year", type: "number", min: 0, max: 9999 }),
-									]),
-									btn: ["ok", "cancel"],
-									btnFn: (e) => {
-										const mdl = (e.target as Element).closest(".modal") as Element;
-										const mdlMonth = parseInt(
-											(mdl.querySelector("select[name='month']") as HTMLSelectElement).value
-										);
-										const mdlYear = parseInt(
-											(mdl.querySelector("input[name='year']") as HTMLInputElement).value
-										);
-
-										arg.view.setMonth(mdlMonth);
-										arg.view.setFullYear(mdlYear);
-										arg.onchange(target, arg.view);
-
-										modal.hide(mdl);
-									},
-								})
-							);
-						},
-					},
-				},
-				`${arg.monthTitle[arg.view.getMonth()]} ${arg.view.getFullYear()}`
-			)
-		),
-		new button(
-			{
-				color: "transparent",
-				on: {
-					click: (e) => {
-						const target = e.target as Element;
-						arg.view.setMonth(arg.view.getMonth() + 1);
-						arg.onchange(target, arg.view);
-					},
-				},
-			},
-			new icon({ id: "arrow-right" })
-		),
-	]);
+const copyDate = (d: Date) => {
+	return new Date(d.getTime());
 };
 
-const genCalendarItem = (arg: CalendarItem) => {
-	if (arg.multiple && arg.startDate && arg.endDate) {
-		if (arg.startDate > arg.endDate) {
-			arg.startDate = arg.endDate;
-		}
+/* item */
+interface Item extends Ul {
+	multiple?: boolean;
+	view?: Date;
+	startDate?: Date;
+	endDate?: Date;
+	dayTitle?: string[];
+}
 
-		if (arg.endDate < arg.startDate) {
-			arg.endDate = arg.startDate;
-		}
-	} else if (!arg.multiple) {
-		arg.endDate = undefined;
+const convertItem = (attr: Item) => {
+	attr.multiple ??= false;
+	attr.view ??= new Date();
+
+	if (attr.dayTitle && attr.dayTitle.length !== 7) {
+		attr.dayTitle = undefined;
 	}
 
-	const startDate = arg.startDate ? arg.startDate : undefined;
+	attr.dayTitle ??= ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+	if (attr.multiple) {
+		if (attr.startDate && attr.endDate) {
+			if (attr.startDate > attr.endDate) {
+				attr.startDate = attr.endDate;
+			}
+
+			if (attr.endDate < attr.startDate) {
+				attr.endDate = attr.startDate;
+			}
+		}
+	} else if (!attr.multiple) {
+		attr.endDate = undefined;
+	}
+
+	const multiple = attr.multiple;
+
+	const startDate = attr.startDate ? copyDate(attr.startDate) : undefined;
 	const strStartDate = startDate
 		? `${startDate.getFullYear()}-${startDate.getMonth()}-${startDate.getDate()}`
 		: undefined;
 	const startTime = startDate ? startDate.getTime() : undefined;
 
-	const endDate = arg.endDate ? arg.endDate : undefined;
+	const endDate = attr.endDate ? copyDate(attr.endDate) : undefined;
 	const strEndDate = endDate ? `${endDate.getFullYear()}-${endDate.getMonth()}-${endDate.getDate()}` : undefined;
 	const endTime = endDate ? endDate.getTime() : undefined;
 
@@ -145,8 +69,8 @@ const genCalendarItem = (arg: CalendarItem) => {
 	const todayDate = today.getDate();
 	const strToday = `${todayYear}-${todayMonth}-${todayDate}`;
 
-	arg.view.setDate(1);
-	const current = arg.view;
+	attr.view.setDate(1);
+	const current = copyDate(attr.view);
 	const currentYear = current.getFullYear();
 	const currentMonth = current.getMonth();
 	const currentDayCount = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -168,8 +92,8 @@ const genCalendarItem = (arg: CalendarItem) => {
 	let days: li[] = [];
 
 	//add days
-	for (let w = 0; w < arg.dayTitle.length; w++) {
-		days.push(new li({ class: "day" }, `${arg.dayTitle[w]}`));
+	for (let w = 0; w < attr.dayTitle.length; w++) {
+		days.push(new li({ class: "day" }, `${attr.dayTitle[w]}`));
 	}
 
 	//add prev month date
@@ -182,8 +106,8 @@ const genCalendarItem = (arg: CalendarItem) => {
 			new li(
 				{
 					class: [
-						strStartDate && d === strStartDate ? "selected" : undefined,
-						strEndDate && d === strEndDate ? "selected" : undefined,
+						strStartDate && d === strStartDate ? "selected-start" : undefined,
+						strEndDate && d === strEndDate ? "selected-end" : undefined,
 						startTime && endTime && dDate > startTime && dDate < endTime ? "selected" : undefined,
 					],
 				},
@@ -203,40 +127,48 @@ const genCalendarItem = (arg: CalendarItem) => {
 					class: [
 						"current-month",
 						d === strToday ? "today" : undefined,
-						strStartDate && d === strStartDate ? "selected" : undefined,
-						strEndDate && d === strEndDate ? "selected" : undefined,
+						strStartDate && d === strStartDate ? "selected-start" : undefined,
+						strEndDate && d === strEndDate ? "selected-end" : undefined,
 						startTime && endTime && dDate > startTime && dDate < endTime ? "selected" : undefined,
 					],
 					data: { value: dDate },
 					on: {
 						click: (e) => {
 							const target = e.target as Element;
+							const container = target.closest(".calendar-item") as Element;
 							const dataValue = target.closest("li")?.getAttribute("data-value");
 							if (dataValue) {
 								const value = parseInt(dataValue);
 
-								if (arg.multiple) {
-									if (arg.startDate && arg.endDate) {
-										arg.startDate = new Date(value);
-										arg.endDate = undefined;
-									} else if (arg.startDate && !arg.endDate) {
-										const sValue = arg.startDate.getTime();
+								let resStartDate: Date | undefined;
+								let resEndDate: Date | undefined;
 
-										if (sValue > value) {
-											arg.startDate = new Date(value);
-											arg.endDate = new Date(sValue);
+								if (multiple) {
+									if (startDate && endDate) {
+										resStartDate = new Date(value);
+										resEndDate = undefined;
+									} else if (startDate && !endDate) {
+										if (startTime! > value) {
+											resStartDate = new Date(value);
+											resEndDate = new Date(startTime!);
 										} else {
-											arg.endDate = new Date(value);
+											resStartDate = new Date(startTime!);
+											resEndDate = new Date(value);
 										}
 									}
 								} else {
-									arg.startDate = new Date(value);
+									resStartDate = new Date(value);
+									resEndDate = undefined;
 								}
 
-								arg.onchange(target, {
-									startDate: arg.startDate,
-									endDate: arg.endDate,
-								});
+								container.dispatchEvent(
+									new CustomEvent("change.bs.calendar.item", {
+										detail: {
+											startDate: resStartDate,
+											endDate: resEndDate,
+										},
+									})
+								);
 							}
 						},
 					},
@@ -255,8 +187,8 @@ const genCalendarItem = (arg: CalendarItem) => {
 			new li(
 				{
 					class: [
-						strStartDate && d === strStartDate ? "selected" : undefined,
-						strEndDate && d === strEndDate ? "selected" : undefined,
+						strStartDate && d === strStartDate ? "selected-start" : undefined,
+						strEndDate && d === strEndDate ? "selected-end" : undefined,
 						startTime && endTime && dDate > startTime && dDate < endTime ? "selected" : undefined,
 					],
 				},
@@ -265,7 +197,9 @@ const genCalendarItem = (arg: CalendarItem) => {
 		);
 	}
 
-	return new ul(
+	attr.elem = days;
+
+	attr = mergeObject(
 		{
 			unstyle: true,
 			display: "grid",
@@ -274,29 +208,36 @@ const genCalendarItem = (arg: CalendarItem) => {
 			class: "calendar-item",
 			style: { "grid-template-columns": "1fr 1fr 1fr 1fr 1fr 1fr 1fr" },
 		},
-		days
+		attr
 	);
+
+	delete attr.dayTitle;
+	delete attr.endDate;
+	delete attr.multiple;
+	delete attr.startDate;
+	delete attr.view;
+
+	return attr;
 };
 
-const genCalendar = (arg?: {
-	multiple?: boolean;
-	view?: Date;
-	startDate?: Date;
-	endDate?: Date;
-	dayTitle?: string[];
-	monthTitle?: string[];
-	onchange?: (sender: Element, arg: { startDate?: Date; endDate?: Date }) => void;
-}) => {
-	arg ??= {};
-
-	arg.multiple ??= false;
-	arg.view ??= new Date();
-
-	if (arg.monthTitle && arg.monthTitle.length !== 12) {
-		arg.monthTitle = undefined;
+class item extends ul {
+	constructor();
+	constructor(attr: Item);
+	constructor(...arg: any[]) {
+		super(bsConsNoElemArg(convertItem, arg));
 	}
+}
 
-	arg.monthTitle ??= [
+/* header */
+
+interface Header extends IAttr {
+	view?: Date;
+	monthTitle?: string[];
+}
+
+const convertHeader = (attr: Header) => {
+	attr.view ??= new Date();
+	attr.monthTitle ??= [
 		"January",
 		"February",
 		"March",
@@ -311,61 +252,143 @@ const genCalendar = (arg?: {
 		"December",
 	];
 
-	if (arg.dayTitle && arg.dayTitle.length !== 7) {
-		arg.dayTitle = undefined;
+	if (attr.view && attr.monthTitle) {
+		const view = copyDate(attr.view);
+		const monthTitle = [...attr.monthTitle];
+
+		attr.elem = [
+			new button(
+				{
+					color: "transparent",
+					on: {
+						click: (e) => {
+							const target = e.target as Element;
+							const container = target.closest(".calendar-header") as Element;
+
+							view.setMonth(view.getMonth() - 1);
+
+							container.dispatchEvent(
+								new CustomEvent("change.bs.calendar.header", {
+									detail: view,
+								})
+							);
+						},
+					},
+				},
+				new icon({ id: "arrow-left" })
+			),
+			new div(
+				{ marginX: "auto" },
+				new button(
+					{
+						color: "transparent",
+						fontWeight: "bold",
+						on: {
+							click: (e) => {
+								const target = e.target as Element;
+								const container = target.closest(".calendar-header") as Element;
+
+								modal.show(
+									modal.simple({
+										on: {
+											"show.bs.modal": (e) => {
+												const mdl = e.target as Element;
+												(mdl.querySelector("select[name='month']") as HTMLSelectElement).value =
+													view.getMonth().toString();
+												(mdl.querySelector("input[name='year']") as HTMLInputElement).value =
+													view.getFullYear().toString();
+											},
+										},
+										title: "Calendar",
+										elem: new inputgroup.container([
+											new select(
+												{
+													name: "month",
+												},
+												monthTitle.map((i, ix) => {
+													return new option({ value: ix.toString(), elem: i });
+												})
+											),
+											new input({ name: "year", type: "number", min: 0, max: 9999 }),
+										]),
+										btn: ["ok", "cancel"],
+										btnFn: (e) => {
+											const mdl = (e.target as Element).closest(".modal") as Element;
+											const mdlMonth = parseInt(
+												(mdl.querySelector("select[name='month']") as HTMLSelectElement).value
+											);
+											const mdlYear = parseInt(
+												(mdl.querySelector("input[name='year']") as HTMLInputElement).value
+											);
+
+											view.setMonth(mdlMonth);
+											view.setFullYear(mdlYear);
+
+											container.dispatchEvent(
+												new CustomEvent("change.bs.calendar.header", {
+													detail: view,
+												})
+											);
+
+											modal.hide(mdl);
+										},
+									})
+								);
+							},
+						},
+					},
+					`${attr.monthTitle[attr.view.getMonth()]} ${attr.view.getFullYear()}`
+				)
+			),
+			new button(
+				{
+					color: "transparent",
+					on: {
+						click: (e) => {
+							const target = e.target as Element;
+							const container = target.closest(".calendar-header") as Element;
+
+							view.setMonth(view.getMonth() + 1);
+
+							container.dispatchEvent(
+								new CustomEvent("change.bs.calendar.header", {
+									detail: view,
+								})
+							);
+						},
+					},
+				},
+				new icon({ id: "arrow-right" })
+			),
+		];
 	}
 
-	arg.dayTitle ??= ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+	attr = mergeObject(
+		{
+			class: "calendar-header",
+			display: "flex",
+			justifyContent: "between",
+			alignItem: "center",
+			paddingBottom: 2,
+		},
+		attr
+	);
 
-	return new div({ class: "calendar", padding: 2 }, [
-		genCalendarHeader({
-			view: arg.view,
-			monthTitle: arg.monthTitle,
-			onchange: (sender, view) => {
-				let calendarContainer = sender.closest(".calendar");
-				if (calendarContainer) {
-					replaceWith(
-						calendarContainer,
-						genCalendar({
-							multiple: arg?.multiple,
-							dayTitle: arg?.dayTitle,
-							monthTitle: arg?.monthTitle,
-							startDate: arg?.startDate,
-							endDate: arg?.endDate,
-							view: view,
-							onchange: arg?.onchange,
-						})
-					);
-				}
-			},
-		}),
-		genCalendarItem({
-			multiple: arg?.multiple,
-			startDate: arg?.startDate,
-			endDate: arg?.endDate,
-			view: arg.view,
-			dayTitle: arg.dayTitle,
-			onchange: (sender, detail) => {
-				let calendarContainer = sender.closest(".calendar");
-				if (calendarContainer) {
-					replaceWith(
-						calendarContainer,
-						genCalendar({
-							multiple: arg?.multiple,
-							dayTitle: arg?.dayTitle,
-							monthTitle: arg?.monthTitle,
-							startDate: detail?.startDate,
-							endDate: detail?.endDate,
-							view: arg?.view,
-							onchange: arg?.onchange,
-						})
-					);
-				}
-			},
-		}),
-	]);
+	delete attr.view;
+	delete attr.monthTitle;
+
+	return attr;
 };
 
+class header extends div {
+	constructor();
+	constructor(attr: Header);
+	constructor(...arg: any[]) {
+		super(bsConsNoElemArg(convertHeader, arg));
+	}
+}
+
+/* main */
 export interface Calendar extends IAttr {
 	multiple?: boolean;
 	view?: Date;
@@ -376,15 +399,104 @@ export interface Calendar extends IAttr {
 }
 
 const convert = (attr: Calendar) => {
-	attr.class = mergeClass(attr.class, "calendar-container");
-	attr.elem = genCalendar({
+	const data = {
 		multiple: attr.multiple,
-		view: attr.view,
-		startDate: attr.startDate,
-		endDate: attr.endDate,
+		view: attr.view ? copyDate(attr.view) : undefined,
+		startDate: attr.startDate ? copyDate(attr.startDate) : undefined,
+		endDate: attr.endDate ? copyDate(attr.endDate) : undefined,
 		dayTitle: attr.dayTitle,
 		monthTitle: attr.monthTitle,
-	});
+	};
+
+	const onItemChange = (e: Event) => {
+		const itemContainer = e.target as Element;
+		const container = itemContainer.closest(".calendar") as Element;
+		const result = (e as CustomEvent).detail;
+
+		data.startDate = result.startDate;
+		data.endDate = result.endDate;
+
+		replaceWith(
+			itemContainer,
+			new item({
+				view: data.view,
+				startDate: data.startDate,
+				endDate: data.endDate,
+				multiple: data.multiple,
+				dayTitle: data.dayTitle,
+				on: {
+					"change.bs.calendar.item": onItemChange,
+				},
+			})
+		);
+
+		container.dispatchEvent(
+			new CustomEvent("change.bs.calendar", {
+				detail: {
+					startDate: data.startDate,
+					endDate: data.endDate,
+				},
+			})
+		);
+	};
+
+	const onHeaderChange = (e: Event) => {
+		const headerContainer = e.target as Element;
+		const itemContainer = headerContainer.nextElementSibling as Element;
+		data.view = (e as CustomEvent).detail;
+
+		replaceWith(
+			headerContainer,
+			new header({
+				view: data.view,
+				monthTitle: data.monthTitle,
+				on: {
+					"change.bs.calendar.header": onHeaderChange,
+				},
+			})
+		);
+
+		replaceWith(
+			itemContainer,
+			new item({
+				view: data.view,
+				startDate: data.startDate,
+				endDate: data.endDate,
+				multiple: data.multiple,
+				dayTitle: data.dayTitle,
+				on: {
+					"change.bs.calendar.item": onItemChange,
+				},
+			})
+		);
+	};
+
+	attr.elem = [
+		new header({
+			view: data.view,
+			monthTitle: data.monthTitle,
+			on: {
+				"change.bs.calendar.header": onHeaderChange,
+			},
+		}),
+		new item({
+			view: data.view,
+			startDate: data.startDate,
+			endDate: data.endDate,
+			multiple: data.multiple,
+			dayTitle: data.dayTitle,
+			on: {
+				"change.bs.calendar.item": onItemChange,
+			},
+		}),
+	];
+
+	attr = mergeObject(
+		{
+			class: "calendar",
+		},
+		attr
+	);
 
 	delete attr.multiple;
 	delete attr.view;

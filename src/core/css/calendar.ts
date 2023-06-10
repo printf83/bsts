@@ -30,23 +30,33 @@ src/core/css/calendar.ts
 }
 
 .calendar-item li.current-month.today a {
-    color: #fff !important;
+    text-decoration: underline;
     font-weight: 600;
+    font-style: italic;
 }
 
-.calendar-item li.current-month.today{
-    background-color: rgba(var(--bs-primary-rgb),1);
-}
-
-.calendar-item li.current-month.today:hover{
-    background-color: rgba(var(--bs-primary-rgb),0.75);
-}
-
-.calendar-item li.selected:not(.today) {
+.calendar-item li.selected,
+.calendar-item li.selected-start,
+.calendar-item li.selected-end {
     background-color: rgba(var(--bs-primary-rgb),0.25);
 }
 
-.calendar-item li.selected:not(.today):hover{
+.calendar-item li.selected:hover{
     background-color: rgba(var(--bs-primary-rgb),0.15);
+}
+
+.calendar-item li.current-month.selected-start, 
+.calendar-item li.current-month.selected-end{
+    background-color: rgba(var(--bs-primary-rgb),1);
+}
+.calendar-item li.current-month.selected-start a, 
+.calendar-item li.current-month.selected-end a{
+    color: #fff !important;    
+    font-weight: 600;
+}
+
+.calendar-item li.current-month.selected-start:hover, 
+.calendar-item li.current-month.selected-end:hover{
+    background-color: rgba(var(--bs-primary-rgb),0.75);
 }
 `;
