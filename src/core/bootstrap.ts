@@ -219,6 +219,8 @@ export namespace bootstrapType {
 	export type linkHover = linkNormal;
 	export type linkActive = linkNormal;
 	export type linkActiveBg = linkNormal;
+	export type linkBg = linkNormal;
+	export type linkHoverBg = linkNormal;
 
 	//specific component only
 	export type linkColor = COLOR | BODYTEXTCOLOR;
@@ -481,6 +483,8 @@ namespace bootstrapTypeA {
 	export const linkHover = linkNormal;
 	export const linkActive = linkNormal;
 	export const linkActiveBg = linkNormal;
+	export const linkBg = linkNormal;
+	export const linkHoverBg = linkNormal;
 
 	//specific component only
 	export const linkColor = [...COLOR, ...BODYTEXTCOLOR];
@@ -1040,6 +1044,14 @@ const bsClassFormatterDB: {
 		format: "link-active-bg-$1",
 		value: bootstrapTypeA.linkActiveBg,
 	}),
+	linkHoverBg: new bsClassFormatterRule({
+		format: "link-hover-bg-$1",
+		value: bootstrapTypeA.linkHoverBg,
+	}),
+	linkBg: new bsClassFormatterRule({
+		format: "link-bg-$1",
+		value: bootstrapTypeA.linkBg,
+	}),
 
 	//---------------------
 
@@ -1344,6 +1356,8 @@ export interface Class {
 	linkHover?: bootstrapType.linkHover;
 	linkActive?: bootstrapType.linkActive;
 	linkActiveBg?: bootstrapType.linkActiveBg;
+	linkBg?: bootstrapType.linkBg;
+	linkHoverBg?: bootstrapType.linkHoverBg;
 }
 
 let allowClassProp: (string | undefined)[] = [];
