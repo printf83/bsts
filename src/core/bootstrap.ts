@@ -215,12 +215,15 @@ export namespace bootstrapType {
 	export type small = true;
 
 	//bsts css
-	export type linkNormal = COLOR | BODYTEXTCOLOR;
+	export type linkNormal = COLOR | BODYTEXTCOLOR | "link" | "transparent";
+	export type linkBorder = linkNormal;
 	export type linkHover = linkNormal;
 	export type linkActive = linkNormal;
 	export type linkActiveBg = linkNormal;
+	export type linkActiveBorder = linkNormal;
 	export type linkBg = linkNormal;
 	export type linkHoverBg = linkNormal;
+	export type linkHoverBorder = linkNormal;
 
 	//specific component only
 	export type linkColor = COLOR | BODYTEXTCOLOR;
@@ -479,12 +482,15 @@ namespace bootstrapTypeA {
 	export const small = [true];
 
 	//bsts css
-	export const linkNormal = [...COLOR, ...BODYTEXTCOLOR];
+	export const linkNormal = [...COLOR, ...BODYTEXTCOLOR, "link", "transparent"];
+	export const linkBorder = linkNormal;
 	export const linkHover = linkNormal;
 	export const linkActive = linkNormal;
 	export const linkActiveBg = linkNormal;
+	export const linkActiveBorder = linkNormal;
 	export const linkBg = linkNormal;
 	export const linkHoverBg = linkNormal;
+	export const linkHoverBorder = linkNormal;
 
 	//specific component only
 	export const linkColor = [...COLOR, ...BODYTEXTCOLOR];
@@ -1032,9 +1038,17 @@ const bsClassFormatterDB: {
 		format: "link-normal-$1",
 		value: bootstrapTypeA.linkNormal,
 	}),
+	linkBorder: new bsClassFormatterRule({
+		format: "link-border-$1",
+		value: bootstrapTypeA.linkBorder,
+	}),
 	linkHover: new bsClassFormatterRule({
 		format: "link-hover-$1",
 		value: bootstrapTypeA.linkHover,
+	}),
+	linkHoverBorder: new bsClassFormatterRule({
+		format: "link-hover-border-$1",
+		value: bootstrapTypeA.linkHoverBorder,
 	}),
 	linkActive: new bsClassFormatterRule({
 		format: "link-active-$1",
@@ -1043,6 +1057,10 @@ const bsClassFormatterDB: {
 	linkActiveBg: new bsClassFormatterRule({
 		format: "link-active-bg-$1",
 		value: bootstrapTypeA.linkActiveBg,
+	}),
+	linkActiveBorder: new bsClassFormatterRule({
+		format: "link-active-border-$1",
+		value: bootstrapTypeA.linkActiveBorder,
 	}),
 	linkHoverBg: new bsClassFormatterRule({
 		format: "link-hover-bg-$1",
@@ -1353,9 +1371,12 @@ export interface Class {
 	//---------------------
 
 	linkNormal?: bootstrapType.linkNormal;
+	linkBorder?: bootstrapType.linkBorder;
 	linkHover?: bootstrapType.linkHover;
+	linkHoverBorder?: bootstrapType.linkHoverBorder;
 	linkActive?: bootstrapType.linkActive;
 	linkActiveBg?: bootstrapType.linkActiveBg;
+	linkActiveBorder?: bootstrapType.linkActiveBorder;
 	linkBg?: bootstrapType.linkBg;
 	linkHoverBg?: bootstrapType.linkHoverBg;
 }

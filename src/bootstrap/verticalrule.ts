@@ -5,6 +5,7 @@ import { mergeClass } from "../core/mergeClass.js";
 
 const convert = (attr: IAttr) => {
 	attr.class = mergeClass(attr.class, ["vr"]);
+	attr.elem = ` `; //" ";
 	return attr;
 };
 
