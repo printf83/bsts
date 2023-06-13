@@ -289,7 +289,7 @@ const convertHeader = (attr: Header) => {
 								const container = target.closest(".calendar-header") as Element;
 
 								modal.show(
-									modal.simple({
+									modal.create({
 										on: {
 											"show.bs.modal": (e) => {
 												const mdl = e.target as Element;

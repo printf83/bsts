@@ -117,7 +117,7 @@ export const show = (itemOrElem: item | Element | string, placement?: ContainerP
 	}
 };
 
-export interface Simple {
+export interface Create {
 	elem: IElem;
 	animation?: boolean;
 	color?: bootstrapType.textBgColor;
@@ -128,7 +128,7 @@ export interface Simple {
 	title?: IElem;
 }
 
-export const Simple = (attr: Simple) => {
+export const Create = (attr: Create) => {
 	let defaultBtnCloseWhite = false;
 	switch (attr.color) {
 		case "dark":

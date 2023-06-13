@@ -4,9 +4,9 @@ import { header } from "./header.js";
 import { item } from "./item.js";
 import { menu } from "./menu.js";
 import { text } from "./text.js";
-import { toggle } from "./toggle.js";
-import { toggleLink } from "./toggleLink.js";
-export { item, divider, menu, toggle, toggleLink, header, container, text };
+import { button } from "./button.js";
+import { buttonLink } from "./buttonLink.js";
+export { item, divider, menu, button, buttonLink, header, container, text };
 
-import { dispose, getInstance, getOrCreateInstance, hide, init, show, toggle as toggles, update } from "./_fn.js";
-export { init, dispose, getInstance, getOrCreateInstance, hide, show, toggles, update };
+import { dispose, getInstance, getOrCreateInstance, hide, init, show, toggle, update } from "./_fn.js";
+export { init, dispose, getInstance, getOrCreateInstance, hide, show, toggle, update };

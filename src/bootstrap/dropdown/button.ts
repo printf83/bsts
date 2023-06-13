@@ -1,10 +1,10 @@
 import { genTagClass, IElem } from "../../core/tag.js";
-import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
+import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { a, A } from "../../html/a.js";
+import { button as Tbutton, Button as TButton } from "../button.js";
 import { visuallyhidden } from "../visuallyhidden.js";
 
-export interface ToggleLink extends A {
+export interface Button extends TButton {
 	viewOffset?: string | number[];
 	reference?: "toggle" | "parent";
 	autoClose?: "true" | "false" | "auto" | "manual" | "inside" | "outside";
@@ -15,10 +15,9 @@ export interface ToggleLink extends A {
 
 	split?: boolean;
 	navItem?: boolean;
-	color?: bootstrapType.linkColor;
 }
 
-const convert = (attr: ToggleLink) => {
+const convert = (attr: Button) => {
 	if (attr.autoClose) {
 		if (attr.autoClose === "auto") attr.autoClose = "true";
 		if (attr.autoClose === "manual") attr.autoClose = "false";
@@ -45,9 +44,7 @@ const convert = (attr: ToggleLink) => {
 				"bs-popper-config": attr.popperConfig ? JSON.stringify(attr.popperConfig) : undefined,
 			},
 			aria: { expanded: "false" },
-			textDecoration: "none",
-			display: "block",
-			linkColor: attr.color,
+			defColor: !attr.navItem,
 		},
 		attr
 	);
@@ -58,7 +55,6 @@ const convert = (attr: ToggleLink) => {
 		attr.elem ??= "Dropdown";
 	}
 
-	delete attr.color;
 	delete attr.viewOffset;
 	delete attr.reference;
 	delete attr.autoClose;
@@ -71,15 +67,15 @@ const convert = (attr: ToggleLink) => {
 	return attr;
 };
 
-export class toggleLink extends a {
+export class button extends Tbutton {
 	constructor();
-	constructor(attr: ToggleLink);
+	constructor(attr: Button);
 	constructor(elem: IElem);
-	constructor(attr: ToggleLink, elem: IElem);
+	constructor(attr: Button, elem: IElem);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<ToggleLink>("elem", arg)));
+		super(convert(bsConstArg<Button>("elem", arg)));
 	}
 }
 
-export const ToggleLink = (AttrOrElem?: ToggleLink | IElem, Elem?: IElem) =>
-	genTagClass<toggleLink, ToggleLink>(toggleLink, AttrOrElem, Elem);
+export const Toggle = (AttrOrElem?: Button | IElem, Elem?: IElem) =>
+	genTagClass<button, Button>(button, AttrOrElem, Elem);

@@ -1,7 +1,7 @@
 import { Container, Drop } from "./container.js";
 import { Item } from "./item.js";
 import { Menu } from "./menu.js";
-import { Toggle } from "./toggle.js";
-import { ToggleLink } from "./toggleLink.js";
+import { Button } from "./button.js";
+import { ButtonLink } from "./buttonLink.js";
 
-export { Container, Drop, Item, Menu, Toggle, ToggleLink };
+export { Container, Drop, Item, Menu, Button, ButtonLink };

@@ -1,16 +1,16 @@
 import { genTagClass, IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { button, Button } from "../button.js";
+import { button as Tbutton, Button as TButton } from "../button.js";
 
-export interface Toggle extends Button {
+export interface Button extends TButton {
 	link?: true;
 	target?: string;
 	expanded?: boolean;
 	icon?: boolean;
 }
 
-const convert = (attr: Toggle) => {
+const convert = (attr: Button) => {
 	attr = mergeObject(
 		{
 			class: [attr.expanded ? undefined : "collapsed", attr.icon ? "btn-toggle" : undefined],
@@ -32,15 +32,15 @@ const convert = (attr: Toggle) => {
 	return attr;
 };
 
-export class toggle extends button {
+export class button extends Tbutton {
 	constructor();
-	constructor(attr: Toggle);
+	constructor(attr: Button);
 	constructor(elem: IElem);
-	constructor(attr: Toggle, elem: IElem);
+	constructor(attr: Button, elem: IElem);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Toggle>("elem", arg)));
+		super(convert(bsConstArg<Button>("elem", arg)));
 	}
 }
 
-export const Toggle = (AttrOrElem?: Toggle | IElem, Elem?: IElem) =>
-	genTagClass<toggle, Toggle>(toggle, AttrOrElem, Elem);
+export const Toggle = (AttrOrElem?: Button | IElem, Elem?: IElem) =>
+	genTagClass<button, Button>(button, AttrOrElem, Elem);

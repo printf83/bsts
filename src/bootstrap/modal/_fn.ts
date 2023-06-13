@@ -259,7 +259,7 @@ const genBtn = (btn?: btnType | btnType[], fn?: EventListener | EventListener[])
 	}
 };
 
-export interface Simple extends Omit<Container, "title"> {
+export interface Create extends Omit<Container, "title"> {
 	btn?: btnType | btnType[];
 	btnFn?: EventListener | EventListener[];
 	title?: IElem;
@@ -270,7 +270,7 @@ export interface Simple extends Omit<Container, "title"> {
 	attrFooter?: IAttr;
 }
 
-export const Simple = (attr: Simple) => {
+export const Create = (attr: Create) => {
 	let contAttr = Object.assign({}, attr);
 
 	delete contAttr.btn;

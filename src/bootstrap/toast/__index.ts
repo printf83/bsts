@@ -1,4 +1,4 @@
-import { Simple } from "./_fn.js";
+import { Create } from "./_fn.js";
 import { Body } from "./body.js";
 import { Btnclose } from "./btnclose.js";
 import { Container } from "./container.js";
@@ -14,7 +14,7 @@ export {
 	Header as header,
 	Timer as timer,
 	Title as title,
-	Simple as simple,
+	Create as create,
 };
 
 import { dispose, getInstance, getOrCreateInstance, hide, isShown, show } from "./_fn.js";
