@@ -8,6 +8,7 @@ import { dropdownMenuStyle } from "./css/dropdownMenuStyle.js";
 import { svgInLinkAndButton } from "./css/svgInLinkAndButton.js";
 import { tableResponsive } from "./css/tableResponsive.js";
 
+//set css on document ready
 const setCSS = () => {
 	const css = [
 		btnToggle,
@@ -24,7 +25,33 @@ const setCSS = () => {
 	}
 };
 
-export const elemReady = (doc: Document, callback: Function) => {
+//setup DOMInserted
+const setupDOMWatcher = () => {
+	const observer = new MutationObserver(function (m) {
+		//i dont know if this is good or not
+		m.forEach(function (e) {
+			for (var i = 0; i < e.addedNodes.length; i++) {
+				dispactchBuildEvent(e.addedNodes[i]);
+			}
+		});
+	});
+
+	observer.observe(document.documentElement, { childList: true, subtree: true });
+};
+
+const dispactchBuildEvent = (node: Node) => {
+	if (node.hasChildNodes()) {
+		for (var j = 0; j < node.childNodes.length; j++) {
+			dispactchBuildEvent(node.childNodes[j]);
+		}
+		node.dispatchEvent(new CustomEvent("build"));
+	}
+
+	node.dispatchEvent(new CustomEvent("build"));
+};
+
+//documentReady
+const elemReady = (doc: Document, callback: Function) => {
 	if (doc.readyState != "loading") {
 		callback();
 	} else {
@@ -33,9 +60,16 @@ export const elemReady = (doc: Document, callback: Function) => {
 	}
 };
 
+let documentReadyTrigged = false;
 export const documentReady = (callback: Function) => {
-	elemReady(document, () => {
-		setCSS();
-		callback();
-	});
+	if (!documentReadyTrigged) {
+		documentReadyTrigged = true;
+		elemReady(document, () => {
+			setupDOMWatcher();
+			setCSS();
+			callback();
+		});
+	} else {
+		console.warn("documentReady sould be called once");
+	}
 };

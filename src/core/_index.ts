@@ -12,7 +12,7 @@ import {
 } from "./removePopoup.js";
 
 import { camel2Dash } from "./camel2Dash.js";
-import { elemReady, documentReady } from "./documentReady.js";
+import { documentReady } from "./documentReady.js";
 import { elemInfo } from "./elemInfo.js";
 import { ElementWithAbortController, addEvent, removeEvent } from "./eventManager.js";
 import { placeholder } from "./placeholder.js";
@@ -72,7 +72,6 @@ export {
 	removeActiveToast,
 	removeActiveTooltip,
 	camel2Dash,
-	elemReady,
 	documentReady,
 	ElementWithAbortController,
 	addEvent,
