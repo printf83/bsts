@@ -3,12 +3,12 @@ import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { h } from "../../html/h.js";
 import { UUID } from "../../core/uuid.js";
-import { Toggle, toggle } from "../collapse/toggle.js";
+import { Button, button } from "../collapse/button.js";
 
-const convert = (attr: Toggle) => {
+const convert = (attr: Button) => {
 	attr.id ??= UUID();
 	attr.class = mergeClass(attr.class, "accordion-header");
-	attr.elem = new toggle(
+	attr.elem = new button(
 		{
 			class: "accordion-button",
 			defColor: false,
@@ -30,13 +30,13 @@ const convert = (attr: Toggle) => {
 
 export class header extends h {
 	constructor();
-	constructor(attr: Toggle);
+	constructor(attr: Button);
 	constructor(elem: IElem);
-	constructor(attr: Toggle, elem: IElem);
+	constructor(attr: Button, elem: IElem);
 	constructor(...arg: any[]) {
-		super(2, convert(bsConstArg<Toggle>("elem", arg)));
+		super(2, convert(bsConstArg<Button>("elem", arg)));
 	}
 }
 
-export const Header = (AttrOrElem?: Toggle | IElem, Elem?: IElem) =>
-	genTagClass<header, Toggle>(header, AttrOrElem, Elem);
+export const Header = (AttrOrElem?: Button | IElem, Elem?: IElem) =>
+	genTagClass<header, Button>(header, AttrOrElem, Elem);

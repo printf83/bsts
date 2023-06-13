@@ -1,7 +1,7 @@
 import { IElem, genTagClass, isAttr } from "../../../core/tag.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { span } from "../../../html/span.js";
-import { Toggle as IToggle, toggle as TToggle } from "../../offcanvas/toggle.js";
+import { Button as IToggle, button as TToggle } from "../../offcanvas/button.js";
 
 const convert = (attr: IToggle) => {
 	attr = mergeObject(
