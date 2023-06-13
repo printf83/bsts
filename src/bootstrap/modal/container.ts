@@ -16,6 +16,9 @@ export interface Container extends IAttr {
 	scrollable?: boolean;
 	animation?: boolean;
 
+	dialogAttr?: IAttr;
+	contentAttr?: IAttr;
+
 	debug?: boolean;
 }
 
@@ -40,7 +43,7 @@ const convert = (attr: Container) => {
 		attr
 	);
 
-	attr.elem = new div(
+	const dialogProp = mergeObject(
 		{
 			class: [
 				"modal-dialog",
@@ -53,12 +56,33 @@ const convert = (attr: Container) => {
 				attr.scrollable ? "modal-dialog-scrollable" : undefined,
 				attr.centered ? "modal-dialog-centered" : undefined,
 			],
+			role: "document",
 		},
-		attr.elem ? new div({ class: "modal-content" }, attr.elem) : new div({ class: "modal-content" })
+		attr.dialogAttr
 	);
 
+	const contentProp = mergeObject(
+		{
+			class: "modal-content",
+		},
+		attr.contentAttr
+	);
+
+	attr.elem = new div(dialogProp, attr.elem ? new div(contentProp, attr.elem) : new div(contentProp));
+
 	delete attr.backdrop;
+	delete attr.focus;
+	delete attr.keyboard;
+
+	delete attr.weight;
+	delete attr.fullscreen;
+	delete attr.centered;
+	delete attr.scrollable;
 	delete attr.animation;
+
+	delete attr.dialogAttr;
+	delete attr.contentAttr;
+
 	delete attr.debug;
 
 	return attr;
