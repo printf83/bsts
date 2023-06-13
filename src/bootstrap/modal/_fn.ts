@@ -11,6 +11,8 @@ import { container, Container } from "./container.js";
 import { footer } from "./footer.js";
 import { header, Header } from "./header.js";
 import { title } from "./title.js";
+import { bootstrapType } from "../../core/bootstrap.js";
+import { btnclose } from "./btnclose.js";
 
 export const init = (elem: string | Element, options?: Partial<bootstrap.Modal.Options>) => {
 	return getOrCreateInstance(elem, options);
@@ -76,24 +78,27 @@ export const show = (elem: string | Element | container, relatedTarget?: HTMLEle
 	}
 };
 
+type customStyleButton = "ios" | "android";
+
 interface btnItem {
 	color?: Button["color"];
 	elem: IElem;
 	click?: EventListener;
 }
 
-const genBtnItem = (btn?: btnItem | btnItem[]) => {
+const genBtnItem = (customStyle?: customStyleButton, btn?: btnItem | btnItem[]) => {
 	if (btn) {
 		if (!Array.isArray(btn)) {
 			btn = [btn];
 		}
 
-		return btn
-			.map((i) => {
+		if (customStyle === "ios") {
+			return btn.map((i) => {
 				if (typeof i.click === "function") {
 					return new button(
 						{
-							color: i.color,
+							weight: "lg",
+							color: i.color ? (i.color === "transparent" ? "secondary" : i.color) : undefined,
 							on: { click: i.click },
 						},
 						i.elem
@@ -101,14 +106,79 @@ const genBtnItem = (btn?: btnItem | btnItem[]) => {
 				} else {
 					return new button(
 						{
-							color: i.color,
+							weight: "lg",
+							color: i.color ? (i.color === "transparent" ? "secondary" : i.color) : undefined,
 							dismiss: "modal",
 						},
 						i.elem
 					);
 				}
-			})
-			.reverse();
+			});
+		} else if (customStyle === "android") {
+			const lastBtnIndex = btn.length - 1;
+			return btn.map((i, ix) => {
+				if (typeof i.click === "function") {
+					return new button(
+						{
+							fontWeight: i.color ? (i.color !== "transparent" ? "bold" : undefined) : undefined,
+							border: ix < lastBtnIndex ? "end" : undefined,
+							flex: ["grow-1", "wrap"],
+							textDecoration: "none",
+							textColor: i.color !== "transparent" ? (i.color as bootstrapType.textColor) : "primary",
+
+							color: "transparent",
+							rounded: 0,
+							weight: "lg",
+							fontSize: 6,
+							paddingY: 3,
+							margin: 0,
+							on: { click: i.click },
+						},
+						i.elem
+					);
+				} else {
+					return new button(
+						{
+							fontWeight: i.color ? (i.color !== "transparent" ? "bold" : undefined) : undefined,
+							border: ix < lastBtnIndex ? "end" : undefined,
+							flex: ["grow-1", "wrap"],
+							textDecoration: "none",
+							textColor: i.color !== "transparent" ? (i.color as bootstrapType.textColor) : "primary",
+							color: "transparent",
+							rounded: 0,
+							weight: "lg",
+							fontSize: 6,
+							paddingY: 3,
+							margin: 0,
+							dismiss: "modal",
+						},
+						i.elem
+					);
+				}
+			});
+		} else {
+			return btn
+				.map((i) => {
+					if (typeof i.click === "function") {
+						return new button(
+							{
+								color: i.color,
+								on: { click: i.click },
+							},
+							i.elem
+						);
+					} else {
+						return new button(
+							{
+								color: i.color,
+								dismiss: "modal",
+							},
+							i.elem
+						);
+					}
+				})
+				.reverse();
+		}
 	} else {
 		return [];
 	}
@@ -130,7 +200,9 @@ type btnType =
 	| "close"
 	| "yesdelete"
 	| "yessave"
-	| "yescontinue";
+	| "yescontinue"
+	| "yesenable"
+	| "nothanks";
 
 interface btnItemDB {
 	color?: Button["color"];
@@ -219,10 +291,20 @@ const btnTypeDB = (btnType: btnType): btnItemDB => {
 				color: "primary",
 				elem: "Yes, continue",
 			};
+		case "yesenable":
+			return {
+				color: "primary",
+				elem: "Yes, enable",
+			};
+		case "nothanks":
+			return {
+				color: "transparent",
+				elem: "No thanks",
+			};
 	}
 };
 
-const genBtn = (btn?: btnType | btnType[], fn?: EventListener | EventListener[]) => {
+const genBtn = (customStyle?: customStyleButton, btn?: btnType | btnType[], fn?: EventListener | EventListener[]) => {
 	let hasDismissButton: boolean = false;
 
 	if (btn) {
@@ -239,12 +321,12 @@ const genBtn = (btn?: btnType | btnType[], fn?: EventListener | EventListener[])
 			}
 		}
 
+		if (aFn.length < btn.length) {
+			hasDismissButton = true;
+		}
+
 		let tBtnItem: btnItem[] = [];
 		for (let x = 0; x < btn.length; x++) {
-			if (aFn.length <= x) {
-				hasDismissButton = true;
-			}
-
 			let t = btnTypeDB(btn[x]);
 			tBtnItem.push({
 				color: t.color,
@@ -253,13 +335,14 @@ const genBtn = (btn?: btnType | btnType[], fn?: EventListener | EventListener[])
 			});
 		}
 
-		return { hasDismissButton: hasDismissButton, btn: genBtnItem(tBtnItem) };
+		return { hasDismissButton: hasDismissButton, btn: genBtnItem(customStyle, tBtnItem) };
 	} else {
 		return { hasDismissButton: false, btn: [] };
 	}
 };
 
 export interface Create extends Omit<Container, "title"> {
+	customStyle?: customStyleButton;
 	btn?: btnType | btnType[];
 	btnFn?: EventListener | EventListener[];
 	title?: IElem;
@@ -273,6 +356,7 @@ export interface Create extends Omit<Container, "title"> {
 export const Create = (attr: Create) => {
 	let contAttr = Object.assign({}, attr);
 
+	delete contAttr.customStyle;
 	delete contAttr.btn;
 	delete contAttr.btnFn;
 	delete contAttr.title;
@@ -281,7 +365,7 @@ export const Create = (attr: Create) => {
 	delete contAttr.attrBody;
 	delete contAttr.attrFooter;
 
-	let btn = genBtn(attr.btn, attr.btnFn);
+	let btn = genBtn(attr.customStyle, attr.btn, attr.btnFn);
 	let showHeader: boolean = false;
 	let showFooter: boolean = btn.btn.length > 0;
 
@@ -296,19 +380,103 @@ export const Create = (attr: Create) => {
 		showHeader = !(attr.backdrop === "static" ? false : btn.hasDismissButton);
 	}
 
-	return new container(contAttr as Container, [
-		showHeader
-			? new header(
-					mergeAttr(
-						{
-							close: attr.backdrop === "static" ? false : btn.hasDismissButton,
-						},
-						attr.attrHeader
-					),
-					new title(attr.title || document.title)
-			  )
-			: "",
-		new body(attr.attrBody ? attr.attrBody : {}, attr.elem ? attr.elem : ""),
-		showFooter ? new footer(attr.attrFooter ? attr.attrFooter : {}, btn.btn) : "",
-	]);
+	if (attr.customStyle === "ios") {
+		contAttr.contentAttr = { rounded: 4 };
+
+		return new container(contAttr as Container, [
+			showHeader
+				? new header(
+						mergeAttr(
+							{
+								borderNone: "bottom",
+								close: attr.backdrop === "static",
+							},
+							attr.attrHeader
+						),
+						new title(attr.title || document.title)
+				  )
+				: "",
+			new body(mergeAttr({ paddingY: 0 }, attr.attrBody), attr.elem ? attr.elem : ""),
+			showFooter
+				? new footer(
+						mergeAttr(
+							{
+								flex: "column",
+								alignItem: "stretch",
+								width: 100,
+								gap: 2,
+								paddingBottom: 3,
+								borderNone: "top",
+							},
+							attr.attrFooter
+						),
+						btn.btn
+				  )
+				: "",
+		]);
+	} else if (attr.customStyle === "android") {
+		return new container(contAttr as Container, [
+			showHeader
+				? new header(
+						mergeAttr(
+							{
+								textAlign: "center",
+								padding: 4,
+								paddingBottom: 0,
+								borderNone: "bottom",
+								position: "relative",
+								close: false, //manually create float btnclose
+							},
+							attr.attrHeader
+						),
+						[
+							new title({ width: 100 }, attr.title || document.title),
+							attr.backdrop === "static" || btn.hasDismissButton
+								? ""
+								: new btnclose({
+										float: "end",
+										top: 0,
+										end: 0,
+										marginTop: 2,
+										marginEnd: 2,
+										opacity: "25",
+										position: "absolute",
+								  }),
+						]
+				  )
+				: "",
+			new body(
+				mergeAttr({ padding: 4, paddingTop: showHeader ? 0 : undefined, textAlign: "center" }, attr.attrBody),
+				attr.elem ? attr.elem : ""
+			),
+			showFooter
+				? new footer(
+						mergeAttr(
+							{
+								flex: ["nowrap", "grow-1"],
+								padding: 0,
+							},
+							attr.attrFooter
+						),
+						btn.btn
+				  )
+				: "",
+		]);
+	} else {
+		return new container(contAttr as Container, [
+			showHeader
+				? new header(
+						mergeAttr(
+							{
+								close: attr.backdrop === "static" ? false : !btn.hasDismissButton,
+							},
+							attr.attrHeader
+						),
+						new title(attr.title || document.title)
+				  )
+				: "",
+			new body(attr.attrBody ? attr.attrBody : {}, attr.elem ? attr.elem : ""),
+			showFooter ? new footer(attr.attrFooter ? attr.attrFooter : {}, btn.btn) : "",
+		]);
+	}
 };
