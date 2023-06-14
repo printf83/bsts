@@ -381,6 +381,7 @@ export const Create = (attr: Create) => {
 
 	if (attr.customStyle === "ios") {
 		contAttr.contentAttr = { rounded: 4 };
+		contAttr.view = "end";
 
 		return new container(contAttr as Container, [
 			showHeader

@@ -12,7 +12,7 @@ export interface Container extends IAttr {
 
 	weight?: "sm" | "lg" | "xl";
 	fullscreen?: true | bootstrapType.viewport;
-	centered?: boolean;
+	view?: "center" | "end";
 	scrollable?: boolean;
 	animation?: boolean;
 
@@ -54,8 +54,11 @@ const convert = (attr: Container) => {
 						: `modal-fullscreen-${attr.fullscreen}-down`
 					: undefined,
 				attr.scrollable ? "modal-dialog-scrollable" : undefined,
-				attr.centered ? "modal-dialog-centered" : undefined,
+				attr.view ? "modal-dialog-centered" : undefined,
 			],
+			display: attr.view === "end" ? "flex" : undefined,
+			flex: attr.view === "end" ? "column" : undefined,
+			justifyContent: attr.view === "end" ? "end" : undefined,
 			role: "document",
 		},
 		attr.dialogAttr
@@ -76,7 +79,7 @@ const convert = (attr: Container) => {
 
 	delete attr.weight;
 	delete attr.fullscreen;
-	delete attr.centered;
+	delete attr.view;
 	delete attr.scrollable;
 	delete attr.animation;
 
