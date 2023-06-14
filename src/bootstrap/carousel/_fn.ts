@@ -15,7 +15,7 @@ export const getOrCreateInstance = (elem: Element | string, options?: Partial<bo
 		}
 	});
 
-	console.log("Attach carousel", elem);
+	// console.log("Attach carousel", elem);
 	return window.bootstrap.Carousel.getOrCreateInstance(elem, options);
 };
 export const cycle = (elem: Element | string) => {

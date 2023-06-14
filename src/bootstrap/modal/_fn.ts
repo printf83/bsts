@@ -66,7 +66,6 @@ export const show = (elem: string | Element | container, relatedTarget?: HTMLEle
 		if (mdl) {
 			addEvent("hidden.bs.modal", mdl as ElementWithAbortController, (e) => {
 				const target = e.target as Element;
-				// dispose(target);
 				removeElement(target);
 			});
 

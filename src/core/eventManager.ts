@@ -6,7 +6,7 @@ export class ElementWithAbortController extends HTMLElement {
 
 const detachEvent = (elem: Element | ElementWithAbortController) => {
 	if ("abortController" in elem) {
-		// console.log(`Deattach all event`, elem);
+		//console.log(`Deattach all event`, elem);
 		(elem as ElementWithAbortController).abortController?.abort();
 		delete elem.abortController;
 	}
@@ -17,6 +17,7 @@ export const addEvent = (name: string, elem: string | Element | ElementWithAbort
 		let e = document.querySelectorAll(elem);
 		if (e) {
 			e.forEach((i) => {
+				i.classList.add("bs-destroy-event");
 				addEvent(name, i, fn);
 			});
 		}
@@ -25,6 +26,7 @@ export const addEvent = (name: string, elem: string | Element | ElementWithAbort
 		if ("abortController" in elem) {
 			if (typeof elem.abortController === "undefined") {
 				elem.abortController = new AbortController();
+				elem.classList.add("bs-destroy-event");
 			}
 
 			//add event to element
@@ -35,6 +37,7 @@ export const addEvent = (name: string, elem: string | Element | ElementWithAbort
 			});
 		} else {
 			(elem as ElementWithAbortController).abortController = new AbortController();
+			elem.classList.add("bs-destroy-event");
 			//add event to element
 			//using signal to remove listerner
 
@@ -44,7 +47,7 @@ export const addEvent = (name: string, elem: string | Element | ElementWithAbort
 			});
 		}
 
-		// console.log(`Attach event ${name}`, elem);
+		//console.log(`Attach event ${name}`, elem);
 	}
 };
 
