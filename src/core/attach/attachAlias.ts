@@ -11,6 +11,7 @@ const dbAlias: { [key: string]: string } = {
 };
 
 export const attachAlias: IAttachFn = (key, elem, attr) => {
+	let changed = false;
 	if (attr && typeof attr !== "undefined") {
 		if (key in dbAlias) {
 			let a = keyOfType(key, attr);
@@ -18,11 +19,12 @@ export const attachAlias: IAttachFn = (key, elem, attr) => {
 			if (typeof attr[a] !== "undefined") {
 				elem.setAttribute(dbAlias[b], attr[a]!.toString());
 				delete attr[a];
+				changed = true;
 			}
 
-			return { attr, elem };
+			return { attr, elem, changed };
 		}
 	}
 
-	return { attr, elem };
+	return { attr, elem, changed };
 };

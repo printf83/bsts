@@ -8,6 +8,7 @@ interface IAttrHref extends IAttr {
 }
 
 export const attachHref: IAttachFn = (key, elem, attr: IAttrHref) => {
+	let changed = false;
 	if (key === "href") {
 		if (attr && typeof attr.href !== "undefined") {
 			let i = Array.isArray(attr.href) ? attr.href.join(" ") : attr.href;
@@ -23,8 +24,9 @@ export const attachHref: IAttachFn = (key, elem, attr: IAttrHref) => {
 			}
 
 			delete attr.href;
+			changed = true;
 		}
 	}
 
-	return { attr, elem };
+	return { attr, elem, changed };
 };

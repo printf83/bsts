@@ -30,24 +30,22 @@ const setupDOMWatcher = () => {
 	const observer = new MutationObserver(function (m) {
 		//i dont know if this is good or not
 		m.forEach(function (e) {
-			for (var i = 0; i < e.addedNodes.length; i++) {
-				dispactchBuildEvent(e.addedNodes[i]);
+			if (e.addedNodes && e.addedNodes.length > 0) {
+				const elem = document.documentElement.querySelectorAll(".bs-build-event");
+				if (elem && elem.length > 0) {
+					elem.forEach((i) => {
+						i.classList.remove("bs-build-event");
+						i.dispatchEvent(new CustomEvent("build"));
+					});
+				}
 			}
 		});
 	});
 
-	observer.observe(document.documentElement, { childList: true, subtree: true });
-};
-
-const dispactchBuildEvent = (node: Node) => {
-	if (node.hasChildNodes()) {
-		for (var j = 0; j < node.childNodes.length; j++) {
-			dispactchBuildEvent(node.childNodes[j]);
-		}
-		node.dispatchEvent(new CustomEvent("build"));
-	}
-
-	node.dispatchEvent(new CustomEvent("build"));
+	observer.observe(document.documentElement, {
+		childList: true,
+		subtree: true,
+	});
 };
 
 //documentReady

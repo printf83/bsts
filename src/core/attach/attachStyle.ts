@@ -3,11 +3,12 @@ import { keyOfType } from "./../keyOfType.js";
 import { IAttachFn } from "./_index.js";
 
 export const attachStyle: IAttachFn = (key, elem, attr) => {
+	let changed = false;
 	if (key === "style") {
 		if (attr && typeof attr.style !== "undefined") {
 			let i = Object.keys(attr.style);
 
-			if (i) {
+			if (i && i.length > 0) {
 				for (let x = 0; x < i.length; x++) {
 					let k = keyOfType(i[x], attr.style);
 
@@ -26,8 +27,9 @@ export const attachStyle: IAttachFn = (key, elem, attr) => {
 			}
 
 			delete attr.style;
+			changed = true;
 		}
 	}
 
-	return { attr, elem };
+	return { attr, elem, changed };
 };

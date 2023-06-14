@@ -1,5 +1,6 @@
 import * as modalFn from "../bootstrap/modal/_fn.js";
 import * as toastFn from "../bootstrap/toast/_fn.js";
+import { removeElement } from "./removeElement.js";
 
 export const removeAllActivePopup = () => {
 	removeActiveTooltip();
@@ -10,12 +11,12 @@ export const removeAllActivePopup = () => {
 
 export const removeActiveTooltip = () => {
 	const elem = document.querySelectorAll("div.tooltip.show");
-	elem.forEach((i) => i.remove());
+	elem.forEach((i) => removeElement(i));
 };
 
 export const removeActivePopover = () => {
 	const elem = document.querySelectorAll("div.popover.show");
-	elem.forEach((i) => i.remove());
+	elem.forEach((i) => removeElement(i));
 };
 
 export const removeActiveModal = () => {

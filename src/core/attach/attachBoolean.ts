@@ -35,6 +35,7 @@ const dbBoolean = [
 ];
 
 export const attachBoolean: IAttachFn = (key, elem, attr) => {
+	let changed = false;
 	if (dbBoolean.indexOf(key) > -1) {
 		let k = keyOfType(key, attr);
 
@@ -48,8 +49,9 @@ export const attachBoolean: IAttachFn = (key, elem, attr) => {
 			}
 
 			delete attr[k];
+			changed = true;
 		}
 	}
 
-	return { attr, elem };
+	return { attr, elem, changed };
 };

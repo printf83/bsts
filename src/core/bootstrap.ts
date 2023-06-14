@@ -1425,6 +1425,7 @@ export namespace attachBSClass {
 	};
 
 	export const attach: IAttachFn = (key, elem, attr) => {
+		let changed = false;
 		let allowKey = allowProp(key);
 		if (allowKey) {
 			let a = keyOfType(key, attr);
@@ -1442,9 +1443,10 @@ export namespace attachBSClass {
 			});
 
 			delete attr[a];
+			changed = true;
 		}
 
-		return { attr, elem };
+		return { attr, elem, changed };
 	};
 }
 
@@ -1470,6 +1472,7 @@ export namespace attachBSAttr {
 	};
 
 	export const attach: IAttachFn = (key, elem, attr) => {
+		let changed = false;
 		let allowKey = allow(key);
 		if (allowKey) {
 			let a = keyOfType(key, attr);
@@ -1487,9 +1490,10 @@ export namespace attachBSAttr {
 			});
 
 			delete attr[a];
+			changed = true;
 		}
 
-		return { attr, elem };
+		return { attr, elem, changed };
 	};
 }
 

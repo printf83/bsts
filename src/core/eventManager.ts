@@ -6,7 +6,7 @@ export class ElementWithAbortController extends HTMLElement {
 
 const detachEvent = (elem: Element | ElementWithAbortController) => {
 	if ("abortController" in elem) {
-		// console.log(`Deattach all event`, elem);
+		console.log(`Deattach all event`, elem);
 		(elem as ElementWithAbortController).abortController?.abort();
 		delete elem.abortController;
 	}
@@ -29,16 +29,22 @@ export const addEvent = (name: string, elem: string | Element | ElementWithAbort
 
 			//add event to element
 			//using signal to remove listerner
-			elem.addEventListener(name, fn, { signal: elem.abortController.signal });
+			elem.addEventListener(name, fn, {
+				signal: elem.abortController.signal,
+				once: name === "build" || name === "destroy" ? true : undefined,
+			});
 		} else {
 			(elem as ElementWithAbortController).abortController = new AbortController();
 			//add event to element
 			//using signal to remove listerner
 
-			elem.addEventListener(name, fn, { signal: (elem as ElementWithAbortController).abortController!.signal });
+			elem.addEventListener(name, fn, {
+				signal: (elem as ElementWithAbortController).abortController!.signal,
+				once: name === "build" || name === "destroy" ? true : undefined,
+			});
 		}
 
-		//console.log(`Attach event ${name}`, elem);
+		console.log(`Attach event ${name}`, elem);
 	}
 };
 
