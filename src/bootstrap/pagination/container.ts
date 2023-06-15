@@ -50,10 +50,7 @@ const genElem = (attr: Container) => {
 		attr.skip ??= 0;
 		attr.limit ??= 10;
 		attr.maxBtnCount ??= 3;
-		// attr.nextLable ??= new icon({ type: "bi", id: "chevron-right" });
-		// attr.lastLabel ??= new icon({ type: "bi", id: "chevron-bar-right" });
-		// attr.prevLabel ??= new icon({ type: "bi", id: "chevron-left" });
-		// attr.firstLabel ??= new icon({ type: "bi", id: "chevron-bar-left" });
+
 		attr.nextLable ??= new icon({ handleBubble: true, type: "bi", id: "chevron-right" });
 		attr.lastLabel ??= new icon({ handleBubble: true, type: "bi", id: "chevron-bar-right" });
 		attr.prevLabel ??= new icon({ handleBubble: true, type: "bi", id: "chevron-left" });

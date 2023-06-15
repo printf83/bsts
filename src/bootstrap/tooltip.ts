@@ -139,6 +139,7 @@ export class tooltip extends span {
 			}
 		});
 
+		// console.log("Attach tooltip", elem);
 		return window.bootstrap.Tooltip.getOrCreateInstance(elem, options);
 	};
 	static disable = (elem: Element | string) => {

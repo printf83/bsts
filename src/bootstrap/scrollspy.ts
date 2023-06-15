@@ -56,6 +56,7 @@ export class scrollspy extends div {
 				}
 			});
 
+			// console.log("Init scrollspy", elem);
 			return new window.bootstrap.ScrollSpy(elem, option);
 		}
 

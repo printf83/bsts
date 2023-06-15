@@ -16,6 +16,7 @@ export const getOrCreateInstance = (elem: string | Element, options?: Partial<bo
 		}
 	});
 
+	// console.log("Attach collapse", elem);
 	return window.bootstrap.Collapse.getOrCreateInstance(elem, options);
 };
 export const hide = (elem: string | Element) => {

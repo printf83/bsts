@@ -28,7 +28,6 @@ const convert = (attr: Item) => {
 	if (attr.href) {
 		liAttr.elem = new a(attr);
 	} else {
-		// delete attr.disabled;
 		liAttr.elem = new button(attr);
 	}
 

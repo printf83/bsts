@@ -1,5 +1,4 @@
 import { appendChild } from "../../core/builder.js";
-// import { init as coreInit } from "../../core/init.js";
 import { addEvent, ElementWithAbortController } from "../../core/eventManager.js";
 import { removeElement } from "../../core/removeElement.js";
 import { UUID } from "../../core/uuid.js";
@@ -31,6 +30,7 @@ export const getOrCreateInstance = (elem: string | Element, options?: Partial<bo
 		}
 	});
 
+	// console.log("Attach toast", elem);
 	return window.bootstrap.Toast.getOrCreateInstance(elem, options);
 };
 
@@ -111,7 +111,6 @@ export const show = (itemOrElem: item | Element | string, placement?: ContainerP
 				});
 
 				show(tst);
-				// coreInit(tst);
 			}
 		}
 	}

@@ -58,8 +58,6 @@ const convert = (attr: Button) => {
 			attr.role ??= "tab";
 			break;
 		default:
-		// attr.role ??= "tab";
-		// attr.toggle ??= "tab";
 	}
 
 	//handle item active

@@ -16,6 +16,7 @@ export const getOrCreateInstance = (elem: string | Element, options?: Partial<bo
 		}
 	});
 
+	// console.log("Attach dropdown", elem);
 	return window.bootstrap.Dropdown.getOrCreateInstance(elem, options);
 };
 export const hide = (elem: string | Element) => {

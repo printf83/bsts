@@ -197,9 +197,7 @@ const convert = (attr: Pill) => {
 
 	attr = mergeObject(
 		{
-			// class: ["btn", attr.weight ? (attr.weight === "md" ? undefined : "btn-lg") : "btn-sm"],
 			display: "inline-block",
-			// padding: 0,
 			fontSize: attr.weight ? (attr.weight === "md" ? 5 : 4) : 6,
 		},
 		attr

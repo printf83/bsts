@@ -29,7 +29,6 @@ const convert = (attr: Menu) => {
 				attr.customStyle ? `custom-style-${attr.customStyle}` : undefined,
 				attr.debug ? "debug" : undefined,
 			],
-			// data: { "bs-display": attr.positioning === false ? "static" : undefined },
 
 			data: {
 				"bs-offset": attr.viewOffset

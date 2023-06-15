@@ -16,6 +16,7 @@ export const getOrCreateInstance = (elem: string | Element) => {
 		}
 	});
 
+	// console.log("Attach alert", elem);
 	return window.bootstrap.Alert.getOrCreateInstance(elem);
 };
 export const close = (elem: string | Element) => {

@@ -40,7 +40,3 @@ export class btngroup extends div {
 
 export const Btngroup = (AttrOrElem?: Btngroup | IElem, Elem?: IElem) =>
 	genTagClass<btngroup, Btngroup>(btngroup, AttrOrElem, Elem);
-
-// export const a = (AttrOrElem?:  | IElem, Elem?: IElem) => genTagClass<a, >(a, AttrOrElem, Elem);
-
-// export const a = (AttrOrElem?: IAttr | IElem, Elem?: IElem) => genTagClass<a, IAttr>(a, AttrOrElem, Elem);

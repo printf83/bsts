@@ -7,6 +7,7 @@ import { markup } from "./markup.js";
 export type buildArg = tag | string | strHtml | (tag | string | strHtml)[];
 
 const htmlToElement = (strHTML: string) => {
+	//TODO: ths using template. need to check if template is working
 	var template = document.createElement("template");
 	strHTML = strHTML.trim(); // Never return a text node of whitespace as the result
 	template.innerHTML = strHTML;
@@ -66,8 +67,6 @@ export const build = (
 								element = processElem(i, e, element);
 							});
 						}
-
-						// e.dom = element;
 
 						if (append) {
 							if (beforeElem) {

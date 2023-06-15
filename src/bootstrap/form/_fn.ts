@@ -87,16 +87,6 @@ export const genLabel = (id: string, label?: string, hideLabel?: boolean) => {
 	} else {
 		return "";
 	}
-
-	// return label
-	// 	? new TLabel(
-	// 			{
-	// 				for: id,
-	// 				visually: hideLabel ? "hidden" : undefined,
-	// 			},
-	// 			label
-	// 	  )
-	// 	: "";
 };
 export const colSetup = (
 	validfeedback?: string,

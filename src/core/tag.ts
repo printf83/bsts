@@ -321,7 +321,6 @@ export interface ITag {
 	tag: string;
 	elem?: IElem;
 	attr?: IAttr;
-	// dom?: Element;
 }
 
 export type IElem = string | tag | strHtml | (string | tag | strHtml)[];
@@ -332,7 +331,6 @@ export class tag implements ITag {
 	public tag: string = "div";
 	public elem?: IElem;
 	public attr?: IAttr;
-	// public dom?: Element;
 
 	constructor();
 	constructor(tag: string);

@@ -1,5 +1,4 @@
 import { appendChild } from "../../core/builder.js";
-// import { init as coreInit } from "../../core/init.js";
 import { addEvent, ElementWithAbortController } from "../../core/eventManager.js";
 import { mergeAttr } from "../../core/mergeAttr.js";
 import { removeElement } from "../../core/removeElement.js";
@@ -30,6 +29,7 @@ export const getOrCreateInstance = (elem: string | Element, options?: Partial<bo
 		}
 	});
 
+	// console.log("Attach modal", elem);
 	return window.bootstrap.Modal.getOrCreateInstance(elem, options);
 };
 export const handleUpdate = (elem: string | Element) => {
@@ -70,7 +70,6 @@ export const show = (elem: string | Element | container, relatedTarget?: HTMLEle
 			});
 
 			getOrCreateInstance(mdl).show(relatedTarget);
-			// coreInit(mdl);
 		}
 	} else {
 		getOrCreateInstance(elem)?.show(relatedTarget);

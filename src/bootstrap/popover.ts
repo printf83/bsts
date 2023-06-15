@@ -141,6 +141,7 @@ export class popover extends span {
 			}
 		});
 
+		// console.log("Attach popover", elem);
 		return window.bootstrap.Popover.getOrCreateInstance(elem, options);
 	};
 	static disable = (elem: Element | string) => {
