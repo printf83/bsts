@@ -14,7 +14,7 @@ const convert = (attr: Scrollspy) => {
 	attr = mergeObject(
 		{
 			data: {
-				"bs-spy": "scroll",
+				// "bs-spy": "scroll", //manually init the scrollspy by bsts
 				"bs-target": attr.target,
 				"bs-smooth-scroll": attr.smooth ? "true" : undefined,
 				"bs-root-margin": attr.rootMargin,
