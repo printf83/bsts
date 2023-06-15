@@ -389,7 +389,7 @@ export const Create = (attr: Create) => {
 						mergeAttr(
 							{
 								borderNone: "bottom",
-								close: attr.backdrop === "static",
+								close: attr.backdrop === "static" ? false : btn.hasDismissButton,
 							},
 							attr.attrHeader
 						),
@@ -431,9 +431,8 @@ export const Create = (attr: Create) => {
 						),
 						[
 							new title({ width: 100 }, attr.title || document.title),
-							attr.backdrop === "static" || btn.hasDismissButton
-								? ""
-								: new btnclose({
+							(attr.backdrop === "static" ? false : btn.hasDismissButton)
+								? new btnclose({
 										float: "end",
 										top: 0,
 										end: 0,
@@ -441,7 +440,8 @@ export const Create = (attr: Create) => {
 										marginEnd: 2,
 										opacity: "25",
 										position: "absolute",
-								  }),
+								  })
+								: "",
 						]
 				  )
 				: "",
@@ -468,7 +468,7 @@ export const Create = (attr: Create) => {
 				? new header(
 						mergeAttr(
 							{
-								close: attr.backdrop === "static" ? false : !btn.hasDismissButton,
+								close: attr.backdrop === "static" ? false : btn.hasDismissButton,
 							},
 							attr.attrHeader
 						),
