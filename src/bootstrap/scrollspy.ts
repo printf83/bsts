@@ -18,6 +18,12 @@ const convert = (attr: Scrollspy) => {
 				"bs-smooth-scroll": attr.smooth ? "true" : undefined,
 				"bs-root-margin": attr.rootMargin,
 			},
+			on: {
+				build: (e) => {
+					const target = e.target as Element;
+					scrollspy.init(target);
+				},
+			},
 			tabindex: attr.tabindex || "0",
 		},
 		attr

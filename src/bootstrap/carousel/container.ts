@@ -5,6 +5,7 @@ import { mergeObject } from "../../core/mergeObject.js";
 import * as indicators from "./indicators/_index.js";
 import { UUID } from "../../core/uuid.js";
 import * as inner from "./inner/_index.js";
+import { init } from "./_fn.js";
 
 export interface CarouselItem {
 	interval?: number;
@@ -40,6 +41,15 @@ const convert = (attr: Carousel) => {
 				"bs-wrap": attr.wrap,
 				"bs-ride": attr.ride,
 				"bs-touch": attr.touch,
+			},
+			on: {
+				build:
+					attr.ride === "carousel"
+						? (e) => {
+								const target = e.target as Element;
+								init(target);
+						  }
+						: undefined,
 			},
 		},
 		attr

@@ -79,6 +79,12 @@ const convert = (attr: Popover) => {
 				"bs-selector": attr.selector ? attr.selector : undefined,
 				"bs-template": attr.template,
 			},
+			on: {
+				build: (e) => {
+					const target = e.target as Element;
+					popover.init(target);
+				},
+			},
 		},
 		attr
 	);

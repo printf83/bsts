@@ -1,5 +1,5 @@
 import { appendChild } from "../../core/builder.js";
-import { init as coreInit } from "../../core/init.js";
+// import { init as coreInit } from "../../core/init.js";
 import { addEvent, ElementWithAbortController } from "../../core/eventManager.js";
 import { mergeAttr } from "../../core/mergeAttr.js";
 import { removeElement } from "../../core/removeElement.js";
@@ -70,7 +70,7 @@ export const show = (elem: string | Element | container, relatedTarget?: HTMLEle
 			});
 
 			getOrCreateInstance(mdl).show(relatedTarget);
-			coreInit(mdl);
+			// coreInit(mdl);
 		}
 	} else {
 		getOrCreateInstance(elem)?.show(relatedTarget);

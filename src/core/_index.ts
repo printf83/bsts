@@ -1,7 +1,6 @@
 import { manageClass, addClassIntoElement } from "./addClassIntoElement.js";
 import { bootstrapType, Attr, Class, bsConsNoElemArg, bsConstArg, bsConstArgTag } from "./bootstrap.js";
 import { build, getNode, getHtml, appendChild, prependChild, replaceChild, replaceWith } from "./builder.js";
-import { init, initCarousel, initPopover, initScrollSpy, initTimer, initTooltip } from "./init.js";
 
 import {
 	removeAllActivePopup,
@@ -53,12 +52,12 @@ export {
 	bsConsNoElemArg,
 	bsConstArg,
 	bsConstArgTag,
-	init,
-	initCarousel,
-	initPopover,
-	initScrollSpy,
-	initTimer,
-	initTooltip,
+	// init,
+	// initCarousel,
+	// initPopover,
+	// initScrollSpy,
+	// initTimer,
+	// initTooltip,
 	build,
 	getNode,
 	getHtml,
