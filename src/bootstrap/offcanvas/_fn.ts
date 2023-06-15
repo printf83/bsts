@@ -1,4 +1,5 @@
 import { addEvent } from "../../core/eventManager.js";
+import { console } from "../../core/console.js";
 
 export const init = (elem: string | Element, options?: Partial<bootstrap.Offcanvas.Options>) => {
 	return getOrCreateInstance(elem, options);
@@ -8,13 +9,14 @@ export const getInstance = (elem: string | Element) => {
 };
 export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Offcanvas.Options>) => {
 	addEvent("destroy", elem, (i) => {
-		// console.log("Dispose offcanvas", i);
+		console.log("Dispose offcanvas", i);
 		const m = getInstance(i.target as Element);
 		if (m) {
 			m.dispose();
 		}
 	});
 
+	console.log("Attach offcanvas", elem);
 	return window.bootstrap.Offcanvas.getOrCreateInstance(elem, options);
 };
 export const hide = (elem: string | Element) => {

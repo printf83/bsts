@@ -1,4 +1,5 @@
 import { addEvent } from "../../core/eventManager.js";
+import { console } from "../../core/console.js";
 
 export const init = (elem: string | Element, options?: Partial<bootstrap.Dropdown.Options>) => {
 	return getOrCreateInstance(elem, options);
@@ -8,7 +9,7 @@ export const getInstance = (elem: string | Element) => {
 };
 export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Dropdown.Options>) => {
 	addEvent("destroy", elem, (i) => {
-		// console.log("Dispose dropdown", i);
+		console.log("Dispose dropdown", i);
 		const m = getInstance(i.target as Element);
 		if (m) {
 			m.hide();
@@ -16,7 +17,7 @@ export const getOrCreateInstance = (elem: string | Element, options?: Partial<bo
 		}
 	});
 
-	// console.log("Attach dropdown", elem);
+	console.log("Attach dropdown", elem);
 	return window.bootstrap.Dropdown.getOrCreateInstance(elem, options);
 };
 export const hide = (elem: string | Element) => {

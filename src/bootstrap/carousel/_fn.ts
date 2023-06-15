@@ -1,4 +1,5 @@
 import { addEvent } from "../../core/eventManager.js";
+import { console } from "../../core/console.js";
 
 export const init = (elem: Element | string, options?: Partial<bootstrap.Carousel.Options>) => {
 	return getOrCreateInstance(elem, options);
@@ -8,14 +9,14 @@ export const getInstance = (elem: Element | string) => {
 };
 export const getOrCreateInstance = (elem: Element | string, options?: Partial<bootstrap.Carousel.Options>) => {
 	addEvent("destroy", elem, (i) => {
-		// console.log("Dispose carousel", i);
+		console.log("Dispose carousel", i);
 		const m = getInstance(i.target as Element);
 		if (m) {
 			m.dispose();
 		}
 	});
 
-	// console.log("Attach carousel", elem);
+	console.log("Attach carousel", elem);
 	return window.bootstrap.Carousel.getOrCreateInstance(elem, options);
 };
 export const cycle = (elem: Element | string) => {

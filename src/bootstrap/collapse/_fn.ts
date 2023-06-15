@@ -1,4 +1,5 @@
 import { addEvent } from "../../core/eventManager.js";
+import { console } from "../../core/console.js";
 
 export const init = (elem: string | Element, options?: Partial<bootstrap.Collapse.Options>) => {
 	return getOrCreateInstance(elem, options);
@@ -9,14 +10,14 @@ export const getInstance = (elem: string | Element) => {
 };
 export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Collapse.Options>) => {
 	addEvent("destroy", elem, (i) => {
-		// console.log("Dispose collapse", i);
+		console.log("Dispose collapse", i);
 		const m = getInstance(i.target as Element);
 		if (m) {
 			m.dispose();
 		}
 	});
 
-	// console.log("Attach collapse", elem);
+	console.log("Attach collapse", elem);
 	return window.bootstrap.Collapse.getOrCreateInstance(elem, options);
 };
 export const hide = (elem: string | Element) => {

@@ -1,3 +1,5 @@
+import { console } from "../core/console.js";
+
 export class ElementWithAbortController extends HTMLElement {
 	constructor(public abortController?: AbortController) {
 		super();
@@ -6,7 +8,7 @@ export class ElementWithAbortController extends HTMLElement {
 
 const detachEvent = (elem: Element | ElementWithAbortController) => {
 	if ("abortController" in elem) {
-		//console.log(`Deattach all event`, elem);
+		console.log(`Deattach all event`, elem);
 		(elem as ElementWithAbortController).abortController?.abort();
 		delete elem.abortController;
 	}
@@ -47,7 +49,7 @@ export const addEvent = (name: string, elem: string | Element | ElementWithAbort
 			});
 		}
 
-		//console.log(`Attach event ${name}`, elem);
+		console.log(`Attach event ${name}`, elem);
 	}
 };
 

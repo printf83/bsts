@@ -3,6 +3,7 @@ import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { span } from "../html/span.js";
 import { addEvent } from "../core/eventManager.js";
+import { console } from "../core/console.js";
 
 export interface Tooltip extends IAttr {
 	inline?: boolean;
@@ -130,7 +131,7 @@ export class tooltip extends span {
 	};
 	static getOrCreateInstance = (elem: Element | string, options?: Partial<bootstrap.Tooltip.Options>) => {
 		addEvent("destroy", elem, (i) => {
-			// console.log("Dispose tooltip", i);
+			console.log("Dispose tooltip", i);
 
 			const m = this.getInstance(i.target as Element);
 			if (m) {
@@ -139,7 +140,7 @@ export class tooltip extends span {
 			}
 		});
 
-		// console.log("Attach tooltip", elem);
+		console.log("Attach tooltip", elem);
 		return window.bootstrap.Tooltip.getOrCreateInstance(elem, options);
 	};
 	static disable = (elem: Element | string) => {

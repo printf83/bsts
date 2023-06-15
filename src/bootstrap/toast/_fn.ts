@@ -12,6 +12,7 @@ import { bootstrapType } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
 import { strong } from "../../html/strong.js";
 import { IElem, isTag } from "../../core/tag.js";
+import { console } from "../../core/console.js";
 
 export const init = (elem: string | Element, options?: Partial<bootstrap.Toast.Options>) => {
 	return getOrCreateInstance(elem, options);
@@ -22,7 +23,7 @@ export const getInstance = (elem: string | Element) => {
 };
 export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Toast.Options>) => {
 	addEvent("destroy", elem, (i) => {
-		// console.log("Dispose toast", i);
+		console.log("Dispose toast", i);
 		const m = getInstance(i.target as Element);
 		if (m) {
 			m.hide();
@@ -30,7 +31,7 @@ export const getOrCreateInstance = (elem: string | Element, options?: Partial<bo
 		}
 	});
 
-	// console.log("Attach toast", elem);
+	console.log("Attach toast", elem);
 	return window.bootstrap.Toast.getOrCreateInstance(elem, options);
 };
 

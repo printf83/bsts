@@ -3,6 +3,7 @@ import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { span } from "../html/span.js";
 import { addEvent } from "../core/eventManager.js";
+import { console } from "../core/console.js";
 
 export interface Popover extends IAttr {
 	inline?: boolean;
@@ -132,7 +133,7 @@ export class popover extends span {
 	};
 	static getOrCreateInstance = (elem: Element | string, options?: Partial<bootstrap.Popover.Options>) => {
 		addEvent("destroy", elem, (i) => {
-			// console.log("Dispose popover", i);
+			console.log("Dispose popover", i);
 
 			const m = this.getInstance(i.target as Element);
 			if (m) {
@@ -141,7 +142,7 @@ export class popover extends span {
 			}
 		});
 
-		// console.log("Attach popover", elem);
+		console.log("Attach popover", elem);
 		return window.bootstrap.Popover.getOrCreateInstance(elem, options);
 	};
 	static disable = (elem: Element | string) => {

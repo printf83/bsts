@@ -12,6 +12,7 @@ import { header, Header } from "./header.js";
 import { title } from "./title.js";
 import { bootstrapType } from "../../core/bootstrap.js";
 import { btnclose } from "./btnclose.js";
+import { console } from "../../core/console.js";
 
 export const init = (elem: string | Element, options?: Partial<bootstrap.Modal.Options>) => {
 	return getOrCreateInstance(elem, options);
@@ -21,7 +22,7 @@ export const getInstance = (elem: string | Element) => {
 };
 export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Modal.Options>) => {
 	addEvent("destroy", elem, (i) => {
-		// console.log("Dispose modal", i);
+		console.log("Dispose modal", i);
 		const m = getInstance(i.target as Element);
 		if (m) {
 			m.hide();
@@ -29,7 +30,7 @@ export const getOrCreateInstance = (elem: string | Element, options?: Partial<bo
 		}
 	});
 
-	// console.log("Attach modal", elem);
+	console.log("Attach modal", elem);
 	return window.bootstrap.Modal.getOrCreateInstance(elem, options);
 };
 export const handleUpdate = (elem: string | Element) => {

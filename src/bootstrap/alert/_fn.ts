@@ -1,4 +1,5 @@
 import { addEvent } from "../../core/eventManager.js";
+import { console } from "../../core/console.js";
 
 export const init = (elem: string | Element) => {
 	return getOrCreateInstance(elem);
@@ -8,7 +9,7 @@ export const getInstance = (elem: string | Element) => {
 };
 export const getOrCreateInstance = (elem: string | Element) => {
 	addEvent("destroy", elem, (i) => {
-		// console.log("Dispose alert", i);
+		console.log("Dispose alert", i);
 
 		const m = getInstance(i.target as Element);
 		if (m) {
@@ -16,7 +17,7 @@ export const getOrCreateInstance = (elem: string | Element) => {
 		}
 	});
 
-	// console.log("Attach alert", elem);
+	console.log("Attach alert", elem);
 	return window.bootstrap.Alert.getOrCreateInstance(elem);
 };
 export const close = (elem: string | Element) => {

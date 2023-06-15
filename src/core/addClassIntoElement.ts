@@ -1,4 +1,5 @@
 import { removeEmptyArray } from "./removeEmptyArray.js";
+import { console } from "./console.js";
 
 export const manageClass = (value: string | undefined | (string | undefined)[]): string[] => {
 	let result: string[] = [];
