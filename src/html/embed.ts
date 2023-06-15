@@ -11,13 +11,10 @@ export class embed extends tag {
 	constructor(attr: Embed);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
-			//#1
 			super("embed");
 		} else if (arg.length === 2) {
-			//#2
 			super("embed", { type: arg[0], src: arg[1] } as Embed);
 		} else if (arg.length === 1) {
-			//#3
 			super("embed", arg[0]);
 		}
 	}

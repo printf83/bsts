@@ -1,7 +1,8 @@
-import { IElem, genTagClass, isAttr } from "../../../core/tag.js";
+import { IElem, genTagClass } from "../../../core/tag.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { span } from "../../../html/span.js";
 import { Button, button } from "../../collapse/button.js";
+import { bsConstArg } from "../../../core/bootstrap.js";
 
 const convert = (attr: Button) => {
 	attr = mergeObject(
@@ -25,21 +26,7 @@ export class collapse extends button {
 	constructor(elem: IElem);
 	constructor(attr: Button, elem: IElem);
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			//#1
-			super(convert({}));
-		} else if (arg.length === 1) {
-			if (isAttr<Button>(arg[0])) {
-				//#2
-				super(convert(arg[0]));
-			} else {
-				//#3
-				super(convert({ elem: arg[0] }));
-			}
-		} else if (arg.length === 2) {
-			//#4
-			super(convert(mergeObject({ elem: arg[1] }, arg[0])));
-		}
+		super(convert(bsConstArg<Button>("elem", arg)));
 	}
 }
 

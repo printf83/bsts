@@ -18,7 +18,6 @@ export interface Textarea extends IAttr {
 
 const convert = (attr: Textarea) => {
 	//move value to elem
-
 	if (attr.value) {
 		if (attr.elem) {
 			if (Array.isArray(attr.elem)) {

@@ -1,7 +1,8 @@
-import { IElem, genTagClass, isAttr } from "../../../core/tag.js";
+import { IElem, genTagClass } from "../../../core/tag.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { span } from "../../../html/span.js";
 import { Button as IToggle, button as TToggle } from "../../offcanvas/button.js";
+import { bsConstArg } from "../../../core/bootstrap.js";
 
 const convert = (attr: IToggle) => {
 	attr = mergeObject(
@@ -25,21 +26,7 @@ export class offcanvas extends TToggle {
 	constructor(elem: IElem);
 	constructor(attr: IToggle, elem: IElem);
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			//#1
-			super(convert({}));
-		} else if (arg.length === 1) {
-			if (isAttr<IToggle>(arg[0])) {
-				//#2
-				super(convert(arg[0]));
-			} else {
-				//#3
-				super(convert({ elem: arg[0] }));
-			}
-		} else if (arg.length === 2) {
-			//#4
-			super(convert(mergeObject({ elem: arg[1] }, arg[0])));
-		}
+		super(convert(bsConstArg<IToggle>("elem", arg)));
 	}
 }
 

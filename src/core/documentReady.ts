@@ -30,22 +30,6 @@ const setCSS = () => {
 //setup DOMInserted
 var BSTS_DOMWatcherID: string = ""; //GLOBAL
 const setupDOMWatcher = () => {
-	// const observer = new MutationObserver(function (m) {
-	// 	if (m && m.length > 0) {
-	// 		m.forEach((n) => {
-	// 			if (n.addedNodes && n.addedNodes.length > 0) {
-	// 				const elem = (n.target as Element).querySelectorAll(".bs-build-event");
-	// 				if (elem && elem.length > 0) {
-	// 					elem.forEach((i) => {
-	// 						i.classList.remove("bs-build-event");
-	// 						i.dispatchEvent(new CustomEvent("build"));
-	// 					});
-	// 				}
-	// 			}
-	// 		});
-	// 	}
-	// });
-
 	const observer = new MutationObserver(function (m) {
 		if (m[0].addedNodes && m[0].addedNodes.length > 0) {
 			BSTS_DOMWatcherID = UUID();

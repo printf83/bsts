@@ -1,6 +1,7 @@
 import { IAttr, genTagClass } from "../../core/tag.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { hr } from "../../html/hr.js";
+import { bsConsNoElemArg } from "../../core/bootstrap.js";
 
 const convert = (attr: IAttr) => {
 	attr.class = mergeClass(attr.class, "dropdown-divider");
@@ -11,12 +12,7 @@ export class divider extends hr {
 	constructor();
 	constructor(attr: IAttr);
 	constructor(...arg: any[]) {
-		if (arg.length === 0) {
-			//#1
-			super(convert({}));
-		} else if (arg.length === 1) {
-			super(convert(arg[0]));
-		}
+		super(bsConsNoElemArg(convert, arg));
 	}
 }
 

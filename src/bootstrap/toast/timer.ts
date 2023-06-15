@@ -3,8 +3,6 @@ import { bsConstArg } from "../../core/bootstrap.js";
 import { small } from "../../html/small.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { initTimer } from "../timer.js";
-// import { icon } from "../icon.js";
-// import { caption } from "../caption.js";
 
 const convert = (attr: IAttr) => {
 	const currentTime = new Date().getTime();

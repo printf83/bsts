@@ -87,22 +87,17 @@ export class msg extends TLabel {
 	constructor(icon: Icon, elem: IElem);
 	constructor(...arg: any[]) {
 		if (arg.length === 0) {
-			//#1
 			super(convert({}));
 		} else if (arg.length === 1) {
 			if (isAttr<Msg>(arg[0])) {
-				//#2
 				super(convert(arg[0]));
 			} else {
-				//#3
 				super(convert({ elem: arg[0] }));
 			}
 		} else if (arg.length === 2) {
 			if (typeof arg[0] === "string") {
-				//#4
 				super(convert({ icon: { id: arg[0] }, elem: arg[1] }));
 			} else {
-				//#5
 				super(convert({ icon: arg[0], elem: arg[1] }));
 			}
 		}
