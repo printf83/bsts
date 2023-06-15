@@ -1,13 +1,13 @@
 const DEBUG = false;
 
-export const console = {
+export const bstsConsole = {
 	log: (...data: any[]) => {
-		if (DEBUG) console.log(data);
+		if (DEBUG) console.log(...data);
 	},
 	warn: (...data: any[]) => {
-		console.warn(data);
+		console.warn(...data);
 	},
 	error: (...data: any[]) => {
-		console.error(data);
+		console.error(...data);
 	},
 };

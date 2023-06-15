@@ -1,5 +1,5 @@
 import { addEvent } from "../../core/eventManager.js";
-import { console } from "../../core/console.js";
+import { bstsConsole as console } from "../../core/console.js";
 
 export const init = (elem: string | Element, options?: Partial<bootstrap.Dropdown.Options>) => {
 	return getOrCreateInstance(elem, options);

@@ -1,4 +1,4 @@
-import { console } from "../core/console.js";
+import { bstsConsole as console } from "../core/console.js";
 
 export class ElementWithAbortController extends HTMLElement {
 	constructor(public abortController?: AbortController) {

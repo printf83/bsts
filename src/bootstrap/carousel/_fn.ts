@@ -1,5 +1,5 @@
 import { addEvent } from "../../core/eventManager.js";
-import { console } from "../../core/console.js";
+import { bstsConsole as console } from "../../core/console.js";
 
 export const init = (elem: Element | string, options?: Partial<bootstrap.Carousel.Options>) => {
 	return getOrCreateInstance(elem, options);

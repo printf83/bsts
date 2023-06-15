@@ -12,7 +12,7 @@ import { bootstrapType } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
 import { strong } from "../../html/strong.js";
 import { IElem, isTag } from "../../core/tag.js";
-import { console } from "../../core/console.js";
+import { bstsConsole as console } from "../../core/console.js";
 
 export const init = (elem: string | Element, options?: Partial<bootstrap.Toast.Options>) => {
 	return getOrCreateInstance(elem, options);

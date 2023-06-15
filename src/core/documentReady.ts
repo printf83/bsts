@@ -7,7 +7,7 @@ import { calendar } from "./css/calendar.js";
 import { dropdownMenuStyle } from "./css/dropdownMenuStyle.js";
 import { svgInLinkAndButton } from "./css/svgInLinkAndButton.js";
 import { tableResponsive } from "./css/tableResponsive.js";
-import { console } from "./console.js";
+import { bstsConsole as console } from "./console.js";
 
 //set css on document ready
 const setCSS = () => {

@@ -3,7 +3,7 @@ import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { div } from "../html/div.js";
 import { addEvent } from "../core/eventManager.js";
-import { console } from "../core/console.js";
+import { bstsConsole as console } from "../core/console.js";
 
 export interface Scrollspy extends IAttr {
 	target?: string;
