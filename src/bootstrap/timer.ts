@@ -3,8 +3,8 @@ import { bsConstArg } from "../core/bootstrap.js";
 import { span } from "../html/span.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { calcTimer } from "../core/calcTimer.js";
-import { uppercaseFirst } from "../core/uppercaseFirst.js";
 import { UUID } from "../core/uuid.js";
+import { spinner } from "./spinner.js";
 
 const runTimer = (elem: Element, delay: number) => {
 	const id = elem.getAttribute("id");
@@ -25,7 +25,7 @@ const runTimer = (elem: Element, delay: number) => {
 	);
 };
 
-const initTimer = (elem: Element) => {
+export const initTimer = (elem: Element) => {
 	elem.setAttribute("id", elem.getAttribute("id") || UUID());
 	elem.setAttribute("data-bs-timer-run", elem.getAttribute("data-bs-timer")!);
 	elem.removeAttribute("data-bs-timer");
@@ -34,6 +34,7 @@ const initTimer = (elem: Element) => {
 
 const convert = (attr: IAttr) => {
 	const currentTime = new Date().getTime();
+
 	attr.elem ??= currentTime.toString();
 
 	if (attr.elem) {
@@ -52,8 +53,7 @@ const convert = (attr: IAttr) => {
 					},
 					attr
 				);
-				let ct = calcTimer(intTime);
-				attr.elem = uppercaseFirst(ct.msg);
+				attr.elem = new spinner({ small: true }, "");
 			}
 		}
 	}

@@ -2,8 +2,9 @@ import { IAttr, IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { small } from "../../html/small.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { calcTimer } from "../../core/calcTimer.js";
-import { uppercaseFirst } from "../../core/uppercaseFirst.js";
+import { initTimer } from "../timer.js";
+// import { icon } from "../icon.js";
+// import { caption } from "../caption.js";
 
 const convert = (attr: IAttr) => {
 	const currentTime = new Date().getTime();
@@ -13,9 +14,19 @@ const convert = (attr: IAttr) => {
 		if (typeof attr.elem === "string") {
 			const intTime = parseInt(attr.elem);
 			if (!isNaN(intTime)) {
-				attr = mergeObject({ data: { "bs-timer": intTime } }, attr);
-				let ct = calcTimer(intTime);
-				attr.elem = uppercaseFirst(ct.msg);
+				attr = mergeObject(
+					{
+						data: { "bs-timer": intTime },
+						on: {
+							build: (e) => {
+								const target = e.target as Element;
+								initTimer(target);
+							},
+						},
+					},
+					attr
+				);
+				attr.elem = "Just now";
 			}
 		}
 	}
