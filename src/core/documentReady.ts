@@ -8,7 +8,7 @@ import { dropdownMenuStyle } from "./css/dropdownMenuStyle.js";
 import { svgInLinkAndButton } from "./css/svgInLinkAndButton.js";
 import { tableResponsive } from "./css/tableResponsive.js";
 import { bstsConsole as console } from "./console.js";
-import { UUID } from "./uuid.js";
+// import { UUID } from "./uuid.js";
 
 //set css on document ready
 const setCSS = () => {
