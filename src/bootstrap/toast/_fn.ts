@@ -23,15 +23,16 @@ export const getInstance = (elem: string | Element) => {
 };
 export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Toast.Options>) => {
 	addEvent("destroy", elem, (i) => {
-		console.log("Dispose toast", i);
-		const m = getInstance(i.target as Element);
+		const target = i.target as Element;
+		console.info(`Dispose bootstrap toast from $1`, target);
+		const m = getInstance(target);
 		if (m) {
 			m.hide();
 			m.dispose();
 		}
 	});
 
-	console.log("Attach toast", elem);
+	console.info(`Initialize bootstrap toast to $1`, elem);
 	return window.bootstrap.Toast.getOrCreateInstance(elem, options);
 };
 

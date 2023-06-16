@@ -9,15 +9,16 @@ export const getInstance = (elem: string | Element) => {
 };
 export const getOrCreateInstance = (elem: string | Element) => {
 	addEvent("destroy", elem, (i) => {
-		console.log("Dispose alert", i);
+		const target = i.target as Element;
+		console.info(`Dispose bootstrap alert from $1`, target);
 
-		const m = getInstance(i.target as Element);
+		const m = getInstance(target);
 		if (m) {
 			m.dispose();
 		}
 	});
 
-	console.log("Attach alert", elem);
+	console.info(`Initialize bootstrap alert to $1`, elem);
 	return window.bootstrap.Alert.getOrCreateInstance(elem);
 };
 export const close = (elem: string | Element) => {

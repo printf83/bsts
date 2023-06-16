@@ -9,15 +9,17 @@ export const getInstance = (elem: string | Element) => {
 };
 export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Dropdown.Options>) => {
 	addEvent("destroy", elem, (i) => {
-		console.log("Dispose dropdown", i);
-		const m = getInstance(i.target as Element);
+		const target = i.target as Element;
+		console.info(`Dispose bootstrap dropdown from $1`, target);
+
+		const m = getInstance(target);
 		if (m) {
 			m.hide();
 			m.dispose();
 		}
 	});
 
-	console.log("Attach dropdown", elem);
+	console.info(`Initialize bootstrap dropdown to $1`, elem);
 	return window.bootstrap.Dropdown.getOrCreateInstance(elem, options);
 };
 export const hide = (elem: string | Element) => {

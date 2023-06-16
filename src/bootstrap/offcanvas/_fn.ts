@@ -9,14 +9,16 @@ export const getInstance = (elem: string | Element) => {
 };
 export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Offcanvas.Options>) => {
 	addEvent("destroy", elem, (i) => {
-		console.log("Dispose offcanvas", i);
-		const m = getInstance(i.target as Element);
+		const target = i.target as Element;
+		console.info(`Dispose bootstrap offcanvas from $1`, target);
+
+		const m = getInstance(target);
 		if (m) {
 			m.dispose();
 		}
 	});
 
-	console.log("Attach offcanvas", elem);
+	console.info(`Initialize bootstrap offcanvas to $1`, elem);
 	return window.bootstrap.Offcanvas.getOrCreateInstance(elem, options);
 };
 export const hide = (elem: string | Element) => {

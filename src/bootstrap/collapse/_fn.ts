@@ -10,14 +10,16 @@ export const getInstance = (elem: string | Element) => {
 };
 export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Collapse.Options>) => {
 	addEvent("destroy", elem, (i) => {
-		console.log("Dispose collapse", i);
-		const m = getInstance(i.target as Element);
+		const target = i.target as Element;
+		console.info(`Dispose bootstrap collapse from $1`, target);
+
+		const m = getInstance(target);
 		if (m) {
 			m.dispose();
 		}
 	});
 
-	console.log("Attach collapse", elem);
+	console.info(`Initialize bootstrap collapse to $1`, elem);
 	return window.bootstrap.Collapse.getOrCreateInstance(elem, options);
 };
 export const hide = (elem: string | Element) => {

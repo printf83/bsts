@@ -9,14 +9,16 @@ export const getInstance = (elem: Element | string) => {
 };
 export const getOrCreateInstance = (elem: Element | string, options?: Partial<bootstrap.Carousel.Options>) => {
 	addEvent("destroy", elem, (i) => {
-		console.log("Dispose carousel", i);
-		const m = getInstance(i.target as Element);
+		const target = i.target as Element;
+		console.info(`Dispose bootstrap carousel from $1`, target);
+
+		const m = getInstance(target);
 		if (m) {
 			m.dispose();
 		}
 	});
 
-	console.log("Attach carousel", elem);
+	console.info(`Initialize bootstrap carousel to $1`, elem);
 	return window.bootstrap.Carousel.getOrCreateInstance(elem, options);
 };
 export const cycle = (elem: Element | string) => {

@@ -22,15 +22,17 @@ export const getInstance = (elem: string | Element) => {
 };
 export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Modal.Options>) => {
 	addEvent("destroy", elem, (i) => {
-		console.log("Dispose modal", i);
-		const m = getInstance(i.target as Element);
+		const target = i.target as Element;
+		console.info(`Dispose bootstrap modal from $1`, target);
+
+		const m = getInstance(target);
 		if (m) {
 			m.hide();
 			m.dispose();
 		}
 	});
 
-	console.log("Attach modal", elem);
+	console.info(`Initialize bootstrap modal to $1`, elem);
 	return window.bootstrap.Modal.getOrCreateInstance(elem, options);
 };
 export const handleUpdate = (elem: string | Element) => {

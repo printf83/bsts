@@ -131,16 +131,17 @@ export class tooltip extends span {
 	};
 	static getOrCreateInstance = (elem: Element | string, options?: Partial<bootstrap.Tooltip.Options>) => {
 		addEvent("destroy", elem, (i) => {
-			console.log("Dispose tooltip", i);
+			const target = i.target as Element;
+			console.info(`Dispose bootstrap tooltip from $1`, target);
 
-			const m = this.getInstance(i.target as Element);
+			const m = this.getInstance(target);
 			if (m) {
 				m.hide();
 				m.dispose();
 			}
 		});
 
-		console.log("Attach tooltip", elem);
+		console.info(`Initialize bootstrap tooltip to $1`, elem);
 		return window.bootstrap.Tooltip.getOrCreateInstance(elem, options);
 	};
 	static disable = (elem: Element | string) => {

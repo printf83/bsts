@@ -133,16 +133,17 @@ export class popover extends span {
 	};
 	static getOrCreateInstance = (elem: Element | string, options?: Partial<bootstrap.Popover.Options>) => {
 		addEvent("destroy", elem, (i) => {
-			console.log("Dispose popover", i);
+			const target = i.target as Element;
+			console.info(`Dispose bootstrap popover from $1`, target);
 
-			const m = this.getInstance(i.target as Element);
+			const m = this.getInstance(target);
 			if (m) {
 				m.hide();
 				m.dispose();
 			}
 		});
 
-		console.log("Attach popover", elem);
+		console.info(`Initialize bootstrap popover to $1`, elem);
 		return window.bootstrap.Popover.getOrCreateInstance(elem, options);
 	};
 	static disable = (elem: Element | string) => {

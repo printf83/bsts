@@ -5,6 +5,7 @@ import { mergeObject } from "../core/mergeObject.js";
 import { calcTimer } from "../core/calcTimer.js";
 import { UUID } from "../core/uuid.js";
 import { spinner } from "./spinner.js";
+import { bstsConsole as console } from "../core/console.js";
 
 const runTimer = (elem: Element, delay: number) => {
 	const id = elem.getAttribute("id");
@@ -17,6 +18,8 @@ const runTimer = (elem: Element, delay: number) => {
 				let res = calcTimer(tv);
 				e.innerText = res.msg;
 				runTimer(e, res.next);
+			} else {
+				console.info(`Stop timer for #${id}`);
 			}
 		},
 		delay,
@@ -29,6 +32,9 @@ export const initTimer = (elem: Element) => {
 	elem.setAttribute("id", elem.getAttribute("id") || UUID());
 	elem.setAttribute("data-bs-timer-run", elem.getAttribute("data-bs-timer")!);
 	elem.removeAttribute("data-bs-timer");
+
+	console.info(`Start timer for $1`, elem);
+
 	runTimer(elem, 1000);
 };
 

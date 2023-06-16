@@ -2,6 +2,8 @@ import { bootstrapType, bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
 import { IElem, genTagClass, tag } from "../core/tag.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { Button as TButton } from "../html/button.js";
+import { addEvent } from "../core/eventManager.js";
+import { bstsConsole as console } from "../core/console.js";
 
 export interface Button extends Omit<TButton, "role"> {
 	color?: bootstrapType.btnColor;
@@ -90,12 +92,23 @@ export class button extends tag {
 	}
 
 	static init = (elem: Element | string) => {
-		return new window.bootstrap.Button(elem);
+		return this.getOrCreateInstance(elem);
 	};
 	static getInstance = (elem: Element | string) => {
 		return window.bootstrap.Button.getInstance(elem);
 	};
 	static getOrCreateInstance = (elem: Element | string) => {
+		addEvent("destroy", elem, (i) => {
+			const target = i.target as Element;
+			console.info(`Dispose bootstrap button from $1`, target);
+
+			const m = this.getInstance(target);
+			if (m) {
+				m.dispose();
+			}
+		});
+
+		console.info(`Initialize bootstrap button to $1`, elem);
 		return window.bootstrap.Button.getOrCreateInstance(elem);
 	};
 	static toggle = (elem: Element | string) => {
