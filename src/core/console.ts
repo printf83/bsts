@@ -1,4 +1,4 @@
-const DEBUG = false;
+const DEBUG = true;
 
 export const bstsConsole = {
 	log: (...data: any[]) => {

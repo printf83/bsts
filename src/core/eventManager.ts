@@ -8,9 +8,13 @@ export class ElementWithAbortController extends HTMLElement {
 
 const detachEvent = (elem: Element | ElementWithAbortController) => {
 	if ("abortController" in elem) {
-		console.log(`Deattach all event`, elem);
-		(elem as ElementWithAbortController).abortController?.abort();
-		delete elem.abortController;
+		const abortController = (elem as ElementWithAbortController).abortController;
+		if (abortController) {
+			console.log(`Deattach all event`, elem);
+			abortController.abort();
+
+			delete elem.abortController;
+		}
 	}
 };
 
@@ -75,9 +79,7 @@ export const removeEvent = (elem: string | Element | ElementWithAbortController)
 			}
 
 			//detach event from elem
-			if ("abortController" in elem) {
-				detachEvent(elem);
-			}
+			detachEvent(elem);
 		}
 	}
 };
