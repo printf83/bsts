@@ -2,6 +2,15 @@ import { removeEvent, ElementWithAbortController } from "./eventManager.js";
 
 export const removeElement = (elem: Element) => {
 	dispatchDestroyEvent(elem);
+	removeAllElement(elem);
+};
+
+const removeAllElement = (elem: Element) => {
+	// while (elem.firstChild) {
+	// 	removeAllElement(elem.firstChild as Element);
+	// }
+
+	// elem.remove();
 	elem.remove();
 };
 
