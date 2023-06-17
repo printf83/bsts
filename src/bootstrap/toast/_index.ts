@@ -4,7 +4,7 @@ import { btnclose } from "./btnclose.js";
 import { container } from "./container.js";
 import { header } from "./header.js";
 import { item } from "./item.js";
-import { timer } from "./timer.js";
+import { timer } from "../timer.js";
 import { title } from "./title.js";
 
 export { create, item, body, btnclose, container, header, timer, title };

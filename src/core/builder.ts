@@ -4,7 +4,7 @@ import { removeChildElement } from "./removeChildElement.js";
 import { removeElement } from "./removeElement.js";
 import { markup } from "./markup.js";
 
-export type buildArg = tag | string | strHtml | (tag | string | strHtml)[];
+export type buildArg = tag | number | string | strHtml | (tag | string | number | strHtml)[];
 
 const htmlToElement = (strHTML: string) => {
 	//TODO: ths using template. need to check if template is working
@@ -14,7 +14,7 @@ const htmlToElement = (strHTML: string) => {
 	return template.content.firstChild;
 };
 
-const processElem = (i: string | tag | strHtml, e: tag, element: Element) => {
+const processElem = (i: number | string | tag | strHtml, e: tag, element: Element) => {
 	if (i !== null) {
 		if (isTag<IAttr>(i)) {
 			let t = build(element, i as tag);

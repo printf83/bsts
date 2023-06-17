@@ -39,7 +39,7 @@ export const calcTimer = (datevalue: number) => {
 		let sec = parseInt((diff / 1000).toString(), 10);
 
 		if (sec < 1) {
-			next = 1000;
+			next = -2;
 			msg = `ready`;
 		} else if (sec >= 1 && sec < 60) {
 			//second

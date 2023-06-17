@@ -5,7 +5,7 @@ import { UUID } from "../../core/uuid.js";
 import { btnclose } from "./btnclose.js";
 import { body } from "./body.js";
 import { header } from "./header.js";
-import { timer } from "./timer.js";
+import { timer } from "../timer.js";
 import { container, ContainerPlacement } from "./container.js";
 import { Item, item } from "./item.js";
 import { bootstrapType } from "../../core/bootstrap.js";

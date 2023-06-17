@@ -323,7 +323,7 @@ export interface ITag {
 	attr?: IAttr;
 }
 
-export type IElem = string | tag | strHtml | (string | tag | strHtml)[];
+export type IElem = number | string | tag | strHtml | (number | string | tag | strHtml)[];
 
 export class tag implements ITag {
 	public isbsts = true;

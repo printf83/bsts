@@ -1,6 +1,6 @@
 import { elemInfo } from "./elemInfo.js";
 
-const DEBUG = false;
+const DEBUG = true;
 
 export const bstsConsole = {
 	log: (...data: any[]) => {

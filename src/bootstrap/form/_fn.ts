@@ -31,7 +31,7 @@ export const genInvalidTooltip = (id: string, feedback?: string) => {
 };
 
 export const genGroupItem = (id: string, item?: IElem) => {
-	let result: (string | tag | strHtml)[] = [];
+	let result: (number | string | tag | strHtml)[] = [];
 
 	if (item) {
 		if (!Array.isArray(item)) {
