@@ -19,8 +19,6 @@ import { keyOfType } from "./keyOfType.js";
 import { mergeAttr } from "./mergeAttr.js";
 import { mergeClass } from "./mergeClass.js";
 import { mergeObject } from "./mergeObject.js";
-import { removeChildElement } from "./removeChildElement.js";
-import { removeElement } from "./removeElement.js";
 import { removeEmptyArray } from "./removeEmptyArray.js";
 import { rndBetween } from "./rndBetween.js";
 import {
@@ -73,8 +71,6 @@ export {
 	mergeAttr,
 	mergeClass,
 	mergeObject,
-	removeChildElement,
-	removeElement,
 	removeEmptyArray,
 	tag,
 	IAria,

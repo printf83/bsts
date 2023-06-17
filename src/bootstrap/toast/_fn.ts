@@ -1,6 +1,5 @@
 import { appendChild } from "../../core/builder.js";
 import { addEvent, ElementWithAbortController } from "../../core/eventManager.js";
-import { removeElement } from "../../core/removeElement.js";
 import { UUID } from "../../core/uuid.js";
 import { btnclose } from "./btnclose.js";
 import { body } from "./body.js";
@@ -108,8 +107,7 @@ export const show = (itemOrElem: item | Element | string, placement?: ContainerP
 			let tst = document.getElementById(itemOrElem.attr.id);
 			if (tst) {
 				addEvent("hidden.bs.toast", tst as ElementWithAbortController, (e) => {
-					const target = e.target as Element;
-					removeElement(target);
+					(e.target as Element).remove();
 				});
 
 				show(tst);

@@ -8,7 +8,7 @@ import { dropdownMenuStyle } from "./css/dropdownMenuStyle.js";
 import { svgInLinkAndButton } from "./css/svgInLinkAndButton.js";
 import { tableResponsive } from "./css/tableResponsive.js";
 import { bstsConsole as console } from "./console.js";
-import { UUID } from "./uuid.js";
+import { ElementWithAbortController, removeEvent } from "./eventManager.js";
 
 //set css on document ready
 const setCSS = () => {
@@ -27,29 +27,59 @@ const setCSS = () => {
 	}
 };
 
+const dispatchDestroyEvent = (elem: Element) => {
+	if (elem.nodeType !== 3) {
+		const listOfElem = elem.querySelectorAll(".bs-destroy-event");
+		if (listOfElem && listOfElem.length > 0) {
+			listOfElem.forEach((i) => {
+				i.dispatchEvent(new CustomEvent("destroy"));
+				removeEvent(i as ElementWithAbortController);
+			});
+		}
+
+		if (elem.classList.contains("bs-destroy-event")) {
+			elem.dispatchEvent(new CustomEvent("destroy"));
+			removeEvent(elem as ElementWithAbortController);
+		}
+	}
+};
+
+const dispatchBuildEvent = (elem: Element) => {
+	if (elem.nodeType !== 3) {
+		const listOfElem = elem.querySelectorAll(".bs-build-event");
+		if (listOfElem && listOfElem.length > 0) {
+			listOfElem.forEach((i) => {
+				i.classList.remove("bs-build-event");
+				i.dispatchEvent(new CustomEvent("build"));
+			});
+		}
+
+		if (elem.classList.contains("bs-build-event")) {
+			elem.classList.remove("bs-build-event");
+			elem.dispatchEvent(new CustomEvent("build"));
+		}
+	}
+};
+
 //setup DOMInserted
-var BSTS_DOMWatcherID: string = ""; //GLOBAL
 const setupDOMWatcher = () => {
 	const observer = new MutationObserver(function (m) {
-		if (m[0].addedNodes && m[0].addedNodes.length > 0) {
-			BSTS_DOMWatcherID = UUID();
-			setTimeout(
-				(id: string) => {
-					if (id === BSTS_DOMWatcherID) {
-						const elem = document.documentElement.querySelectorAll(".bs-build-event");
-						if (elem && elem.length > 0) {
-							elem.forEach((i) => {
-								i.classList.remove("bs-build-event");
-								i.dispatchEvent(new CustomEvent("build"));
-							});
-						}
-					} else {
-						console.log("DOMWatcherID change");
-					}
-				},
-				300,
-				BSTS_DOMWatcherID
-			);
+		if (m && m.length > 0) {
+			m.forEach((n) => {
+				//check remove node
+				if (n.removedNodes && n.removedNodes.length > 0) {
+					n.removedNodes.forEach((i) => {
+						dispatchDestroyEvent(i as Element);
+					});
+				}
+
+				//check added node
+				if (n.addedNodes && n.addedNodes.length > 0) {
+					n.addedNodes.forEach((i) => {
+						dispatchBuildEvent(i as Element);
+					});
+				}
+			});
 		}
 	});
 

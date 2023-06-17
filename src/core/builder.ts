@@ -1,7 +1,5 @@
 import { attachAttr } from "./attach/_index.js";
 import { IAttr, isTag, tag, strHtml, isHtml } from "./tag.js";
-import { removeChildElement } from "./removeChildElement.js";
-import { removeElement } from "./removeElement.js";
 import { markup } from "./markup.js";
 
 export type buildArg = tag | number | string | strHtml | (tag | string | number | strHtml)[];
@@ -129,7 +127,7 @@ export const getNode = (arg: buildArg): Element | Element[] | null => {
 export const getHtml = (arg: buildArg): string => {
 	let container = build(document.createElement("div"), arg);
 	let result = container.innerHTML;
-	removeElement(container);
+	container.remove();
 	return result;
 };
 
@@ -147,13 +145,16 @@ export const replaceWith = (elem: Element, arg: buildArg): Element | undefined =
 	let parent = elem.parentNode as Element;
 	if (parent) {
 		parent = build(parent, arg, true, elem);
-		removeElement(elem);
+		elem.remove();
 		return parent;
 	}
 };
 
 export const replaceChild = (container: Element, arg: buildArg): Element => {
-	removeChildElement(container);
+	while (container.firstChild) {
+		container.firstChild.remove();
+	}
+
 	container = build(container, arg);
 	return container;
 };
