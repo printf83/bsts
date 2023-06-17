@@ -23,7 +23,6 @@ export const addEvent = (name: string, elem: string | Element | ElementWithAbort
 		let e = document.querySelectorAll(elem);
 		if (e) {
 			e.forEach((i) => {
-				i.classList.add("bs-destroy-event");
 				addEvent(name, i, fn);
 			});
 		}

@@ -9,8 +9,13 @@ export interface Scrollspy extends IAttr {
 	target?: string;
 	smooth?: boolean;
 	rootMargin?: string;
+	initDelay?: number;
 }
 const convert = (attr: Scrollspy) => {
+	attr.initDelay ??= 300;
+
+	const initDelay = attr.initDelay;
+
 	attr = mergeObject(
 		{
 			data: {
@@ -22,7 +27,18 @@ const convert = (attr: Scrollspy) => {
 			on: {
 				build: (e) => {
 					const target = e.target as Element;
-					scrollspy.init(target);
+
+					if (initDelay) {
+						setTimeout(
+							(target: Element) => {
+								scrollspy.init(target);
+							},
+							initDelay,
+							target
+						);
+					} else {
+						scrollspy.init(target);
+					}
 				},
 			},
 			tabindex: attr.tabindex || "0",
@@ -30,6 +46,7 @@ const convert = (attr: Scrollspy) => {
 		attr
 	);
 
+	delete attr.initDelay;
 	delete attr.target;
 	delete attr.smooth;
 	delete attr.rootMargin;
