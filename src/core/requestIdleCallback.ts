@@ -6,7 +6,7 @@ export const requestIdleCallback = (callback: Function, timeout?: number) => {
 			return window.requestIdleCallback(callback as IdleRequestCallback);
 		}
 	} else {
-		return setTimeout(callback as TimerHandler, timeout);
+		return setTimeout(callback as TimerHandler, timeout ? timeout : 1);
 	}
 };
 
