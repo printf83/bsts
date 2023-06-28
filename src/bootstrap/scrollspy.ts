@@ -4,6 +4,7 @@ import { mergeObject } from "../core/mergeObject.js";
 import { div } from "../html/div.js";
 import { addEvent } from "../core/eventManager.js";
 import { bstsConsole as console } from "../core/console.js";
+import { UUID } from "../core/uuid.js";
 
 export interface Scrollspy extends IAttr {
 	target?: string;
@@ -12,7 +13,8 @@ export interface Scrollspy extends IAttr {
 	initDelay?: number;
 }
 const convert = (attr: Scrollspy) => {
-	attr.initDelay ??= 300;
+	attr.initDelay ??= 1000;
+	attr.id ??= UUID();
 
 	const initDelay = attr.initDelay;
 
@@ -27,17 +29,21 @@ const convert = (attr: Scrollspy) => {
 			on: {
 				build: (e) => {
 					const target = e.target as Element;
+					const id = target.id;
 
 					if (initDelay) {
 						setTimeout(
-							(target: Element) => {
-								scrollspy.init(target);
+							(id: string) => {
+								const target = document.getElementById(id);
+								if (target) {
+									scrollspy.init(target as Element);
+								}
 							},
 							initDelay,
-							target
+							id
 						);
 					} else {
-						scrollspy.init(target);
+						scrollspy.init(document.getElementById(id) as Element);
 					}
 				},
 			},
