@@ -29,9 +29,9 @@ const setCSS = () => {
 
 const dispatchDestroyEvent = (elem: Element) => {
 	if (elem.nodeType !== 3) {
-		const listOfElem = elem.querySelectorAll(".bs-destroy-event");
+		const listOfElem = elem.getElementsByClassName("bs-destroy-event");
 		if (listOfElem && listOfElem.length > 0) {
-			listOfElem.forEach((i) => {
+			Array.from(listOfElem).forEach((i) => {
 				i.dispatchEvent(new CustomEvent("destroy"));
 				removeEvent(i as ElementWithAbortController);
 			});
@@ -46,9 +46,9 @@ const dispatchDestroyEvent = (elem: Element) => {
 
 const dispatchBuildEvent = (elem: Element) => {
 	if (elem.nodeType !== 3) {
-		const listOfElem = elem.querySelectorAll(".bs-build-event");
+		const listOfElem = elem.getElementsByClassName("bs-build-event");
 		if (listOfElem && listOfElem.length > 0) {
-			listOfElem.forEach((i) => {
+			Array.from(listOfElem).forEach((i) => {
 				i.classList.remove("bs-build-event");
 				i.dispatchEvent(new CustomEvent("build"));
 			});

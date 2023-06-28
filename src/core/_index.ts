@@ -40,6 +40,7 @@ import {
 
 import { UUID } from "./uuid.js";
 import { uppercaseFirst } from "./uppercaseFirst.js";
+import { cancelIdleCallback, requestIdleCallback } from "./requestIdleCallback.js";
 
 export {
 	manageClass,
@@ -72,6 +73,8 @@ export {
 	mergeClass,
 	mergeObject,
 	removeEmptyArray,
+	requestIdleCallback,
+	cancelIdleCallback,
 	tag,
 	IAria,
 	IAttr,
