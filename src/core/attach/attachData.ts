@@ -13,7 +13,7 @@ export const attachData: IAttachFn = (key, elem, attr) => {
 				}
 			}
 
-			delete attr.data;
+			// delete attr.data;
 			changed = true;
 		}
 	}

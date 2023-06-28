@@ -26,7 +26,7 @@ export const attachStyle: IAttachFn = (key, elem, attr) => {
 				}
 			}
 
-			delete attr.style;
+			// delete attr.style;
 			changed = true;
 		}
 	}

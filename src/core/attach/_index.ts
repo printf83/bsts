@@ -78,15 +78,23 @@ export const attachAttr = (elem: Element, attr: IAttr): Element => {
 			let attrFnLength = attrFn.length;
 
 			for (let x = 0; x < propLength; x++) {
-				for (let y = 0; y < attrFnLength; y++) {
-					let k = keyOfType(prop[x], d);
+				let handleByAttrFn = false;
+				let k = keyOfType(prop[x], d);
 
+				for (let y = 0; y < attrFnLength; y++) {
 					if (typeof d[k] !== "undefined" && d[k] !== null) {
+						if (y === attrFnLength - 1 && handleByAttrFn) {
+							break;
+						}
+
 						let { elem: e, attr: a, changed: c } = attrFn[y](prop[x], elem, d);
 						if (c) {
+							handleByAttrFn = true;
 							elem = e;
 							d = a;
 						}
+					} else {
+						break;
 					}
 				}
 			}

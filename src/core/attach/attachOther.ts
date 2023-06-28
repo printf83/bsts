@@ -7,7 +7,7 @@ export const attachOther: IAttachFn = (key, elem, attr) => {
 		let k = keyOfType(key, attr);
 		let i = Array.isArray(attr[k]) ? attr[k] : attr[k];
 		elem.setAttribute(key, i!.toString());
-		delete attr[k];
+		// delete attr[k];
 		changed = true;
 	}
 

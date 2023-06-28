@@ -18,7 +18,7 @@ export const attachAlias: IAttachFn = (key, elem, attr) => {
 			let b = keyOfType(key, dbAlias);
 			if (typeof attr[a] !== "undefined") {
 				elem.setAttribute(dbAlias[b], attr[a]!.toString());
-				delete attr[a];
+				// delete attr[a];
 				changed = true;
 			}
 
