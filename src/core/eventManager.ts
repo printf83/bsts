@@ -1,19 +1,18 @@
 import { bstsConsole as console } from "../core/console.js";
 
 export class ElementWithAbortController extends HTMLElement {
-	constructor(public abortController?: AbortController) {
+	constructor(public AbortController?: AbortController) {
 		super();
 	}
 }
 
 const detachEvent = (elem: Element | ElementWithAbortController) => {
-	if ("abortController" in elem) {
-		const abortController = (elem as ElementWithAbortController).abortController;
-		if (abortController) {
+	if ("AbortController" in elem) {
+		const AbortController = (elem as ElementWithAbortController).AbortController;
+		if (AbortController) {
 			console.info(`Deattach all event from $1`, elem);
-			abortController.abort();
-
-			delete elem.abortController;
+			AbortController.abort();
+			delete elem.AbortController;
 		}
 	}
 };
@@ -28,26 +27,26 @@ export const addEvent = (name: string, elem: string | Element | ElementWithAbort
 		}
 	} else {
 		//create detachEventListener db
-		if ("abortController" in elem) {
-			if (typeof elem.abortController === "undefined") {
-				elem.abortController = new AbortController();
+		if ("AbortController" in elem) {
+			if (typeof elem.AbortController === "undefined") {
+				elem.AbortController = new AbortController();
 				elem.classList.add("bs-destroy-event");
 			}
 
 			//add event to element
 			//using signal to remove listerner
 			elem.addEventListener(name, fn, {
-				signal: elem.abortController.signal,
+				signal: elem.AbortController.signal,
 				once: name === "build" || name === "destroy" ? true : undefined,
 			});
 		} else {
-			(elem as ElementWithAbortController).abortController = new AbortController();
+			(elem as ElementWithAbortController).AbortController = new AbortController();
 			elem.classList.add("bs-destroy-event");
 			//add event to element
 			//using signal to remove listerner
 
 			elem.addEventListener(name, fn, {
-				signal: (elem as ElementWithAbortController).abortController!.signal,
+				signal: (elem as ElementWithAbortController).AbortController!.signal,
 				once: name === "build" || name === "destroy" ? true : undefined,
 			});
 		}
