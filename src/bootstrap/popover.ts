@@ -126,7 +126,7 @@ export class popover extends span {
 	}
 
 	static init = (elem: Element | string, options?: Partial<bootstrap.Popover.Options>) => {
-		return this.getOrCreateInstance(elem, options);
+		return popover.getOrCreateInstance(elem, options);
 	};
 	static getInstance = (elem: Element | string) => {
 		return window.bootstrap.Popover.getInstance(elem);
@@ -136,7 +136,7 @@ export class popover extends span {
 			const target = i.target as Element;
 			console.info(`Dispose bootstrap popover from $1`, target);
 
-			const m = this.getInstance(target);
+			const m = popover.getInstance(target);
 			if (m) {
 				m.hide();
 				m.dispose();
@@ -147,31 +147,31 @@ export class popover extends span {
 		return window.bootstrap.Popover.getOrCreateInstance(elem, options);
 	};
 	static disable = (elem: Element | string) => {
-		this.getOrCreateInstance(elem)?.disable();
+		popover.getOrCreateInstance(elem)?.disable();
 	};
 	static dispose = (elem: Element | string) => {
-		this.getInstance(elem)?.dispose();
+		popover.getInstance(elem)?.dispose();
 	};
 	static enable = (elem: Element | string) => {
-		this.getOrCreateInstance(elem)?.enable();
+		popover.getOrCreateInstance(elem)?.enable();
 	};
 	static hide = (elem: Element | string) => {
-		this.getOrCreateInstance(elem)?.hide();
+		popover.getOrCreateInstance(elem)?.hide();
 	};
 	static show = (elem: Element | string) => {
-		this.getOrCreateInstance(elem)?.show();
+		popover.getOrCreateInstance(elem)?.show();
 	};
 	static setContent = (elem: Element | string, content?: Record<string, string | Element | null>) => {
-		this.getOrCreateInstance(elem)?.setContent(content);
+		popover.getOrCreateInstance(elem)?.setContent(content);
 	};
 	static toggle = (elem: Element | string) => {
-		this.getOrCreateInstance(elem)?.toggle();
+		popover.getOrCreateInstance(elem)?.toggle();
 	};
 	static toggleEnabled = (elem: Element | string) => {
-		this.getOrCreateInstance(elem)?.toggleEnabled();
+		popover.getOrCreateInstance(elem)?.toggleEnabled();
 	};
 	static update = (elem: Element | string) => {
-		this.getOrCreateInstance(elem)?.update();
+		popover.getOrCreateInstance(elem)?.update();
 	};
 }
 

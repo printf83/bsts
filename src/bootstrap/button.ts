@@ -92,7 +92,7 @@ export class button extends tag {
 	}
 
 	static init = (elem: Element | string) => {
-		return this.getOrCreateInstance(elem);
+		return button.getOrCreateInstance(elem);
 	};
 	static getInstance = (elem: Element | string) => {
 		return window.bootstrap.Button.getInstance(elem);
@@ -100,10 +100,10 @@ export class button extends tag {
 	static getOrCreateInstance = (elem: Element | string) => {
 		addEvent("destroy", elem, (i) => {
 			const target = i.target as Element;
-			console.info(`Dispose bootstrap button from $1`, target);
 
-			const m = this.getInstance(target);
+			const m = button.getInstance(target);
 			if (m) {
+				console.info(`Dispose bootstrap button from $1`, target);
 				m.dispose();
 			}
 		});
@@ -112,10 +112,10 @@ export class button extends tag {
 		return window.bootstrap.Button.getOrCreateInstance(elem);
 	};
 	static toggle = (elem: Element | string) => {
-		this.getOrCreateInstance(elem)?.toggle();
+		button.getOrCreateInstance(elem)?.toggle();
 	};
 	static dispose = (elem: Element | string) => {
-		this.getInstance(elem)?.dispose();
+		button.getInstance(elem)?.dispose();
 	};
 }
 

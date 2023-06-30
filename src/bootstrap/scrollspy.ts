@@ -69,23 +69,31 @@ export class scrollspy extends div {
 		super(convert(bsConstArg<Scrollspy>("elem", arg)));
 	}
 
-	static init = (elem?: Element, option?: Partial<bootstrap.ScrollSpy.Options>) => {
-		if (elem) {
-			addEvent("destroy", elem, (i) => {
-				const target = i.target as Element;
+	static init = (elem: Element | string, options?: Partial<bootstrap.ScrollSpy.Options>) => {
+		return scrollspy.getOrCreateInstance(elem, options);
+	};
+	static getInstance = (elem: Element | string) => {
+		return window.bootstrap.ScrollSpy.getInstance(elem);
+	};
+	static getOrCreateInstance = (elem: Element | string, options?: Partial<bootstrap.ScrollSpy.Options>) => {
+		addEvent("destroy", elem, (i) => {
+			const target = i.target as Element;
+
+			const m = scrollspy.getInstance(target);
+			if (m) {
 				console.info(`Dispose bootstrap scrollspy from $1`, target);
+				m.dispose();
+			}
+		});
 
-				const m = window.bootstrap.ScrollSpy.getInstance(target);
-				if (m) {
-					m.dispose();
-				}
-			});
-
-			console.info(`Initialize bootstrap scrollspy to $1`, elem);
-			return new window.bootstrap.ScrollSpy(elem, option);
-		}
-
-		return null;
+		console.info(`Initialize bootstrap scrollspy to $1`, elem);
+		return window.bootstrap.ScrollSpy.getOrCreateInstance(elem, options);
+	};
+	static dispose = (elem: Element | string) => {
+		scrollspy.getInstance(elem)?.dispose();
+	};
+	static refresh = (elem: Element | string) => {
+		scrollspy.getOrCreateInstance(elem)?.refresh();
 	};
 }
 

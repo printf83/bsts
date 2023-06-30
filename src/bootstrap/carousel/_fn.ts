@@ -10,10 +10,10 @@ export const getInstance = (elem: Element | string) => {
 export const getOrCreateInstance = (elem: Element | string, options?: Partial<bootstrap.Carousel.Options>) => {
 	addEvent("destroy", elem, (i) => {
 		const target = i.target as Element;
-		console.info(`Dispose bootstrap carousel from $1`, target);
 
 		const m = getInstance(target);
 		if (m) {
+			console.info(`Dispose bootstrap carousel from $1`, target);
 			m.dispose();
 		}
 	});

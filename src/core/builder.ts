@@ -143,16 +143,16 @@ export const prependChild = (container: Element, arg: buildArg): Element => {
 
 export const removeElement = (elem: Element) => {
 	if (elem.nodeType !== 3) {
-		const listOfElem = elem.getElementsByClassName("bs-destroy-event");
-		if (listOfElem && listOfElem.length > 0) {
-			while (elem.firstChild) {
-				removeElement(elem.firstChild as Element);
-			}
-		}
-
-		// while (elem.firstChild) {
-		// 	removeElement(elem.firstChild as Element);
+		// const listOfElem = elem.getElementsByClassName("bs-destroy-event");
+		// if (listOfElem && listOfElem.length > 0) {
+		// 	while (elem.firstChild) {
+		// 		removeElement(elem.firstChild as Element);
+		// 	}
 		// }
+
+		while (elem.firstChild) {
+			removeElement(elem.firstChild as Element);
+		}
 	}
 
 	elem.remove();

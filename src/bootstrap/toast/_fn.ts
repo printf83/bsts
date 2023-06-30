@@ -23,9 +23,9 @@ export const getInstance = (elem: string | Element) => {
 export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Toast.Options>) => {
 	addEvent("destroy", elem, (i) => {
 		const target = i.target as Element;
-		console.info(`Dispose bootstrap toast from $1`, target);
 		const m = getInstance(target);
 		if (m) {
+			console.info(`Dispose bootstrap toast from $1`, target);
 			m.hide();
 			m.dispose();
 		}
