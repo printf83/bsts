@@ -1,6 +1,15 @@
 import { manageClass, addClassIntoElement } from "./addClassIntoElement.js";
 import { bootstrapType, Attr, Class, bsConsNoElemArg, bsConstArg, bsConstArgTag } from "./bootstrap.js";
-import { build, getNode, getHtml, appendChild, prependChild, replaceChild, replaceWith } from "./builder.js";
+import {
+	build,
+	getNode,
+	getHtml,
+	appendChild,
+	prependChild,
+	replaceChild,
+	replaceWith,
+	removeElement,
+} from "./builder.js";
 
 import {
 	removeAllActivePopup,
@@ -58,6 +67,7 @@ export {
 	prependChild,
 	replaceChild,
 	replaceWith,
+	removeElement,
 	removeAllActivePopup,
 	removeActiveModal,
 	removeActivePopover,

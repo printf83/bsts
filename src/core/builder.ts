@@ -127,7 +127,7 @@ export const getNode = (arg: buildArg): Element | Element[] | null => {
 export const getHtml = (arg: buildArg): string => {
 	let container = build(document.createElement("div"), arg);
 	let result = container.innerHTML;
-	container.remove();
+	removeElement(container);
 	return result;
 };
 
@@ -141,18 +141,35 @@ export const prependChild = (container: Element, arg: buildArg): Element => {
 	return container;
 };
 
+export const removeElement = (elem: Element) => {
+	if (elem.nodeType !== 3) {
+		const listOfElem = elem.getElementsByClassName("bs-destroy-event");
+		if (listOfElem && listOfElem.length > 0) {
+			while (elem.firstChild) {
+				removeElement(elem.firstChild as Element);
+			}
+		}
+
+		// while (elem.firstChild) {
+		// 	removeElement(elem.firstChild as Element);
+		// }
+	}
+
+	elem.remove();
+};
+
 export const replaceWith = (elem: Element, arg: buildArg): Element | undefined => {
 	let parent = elem.parentNode as Element;
 	if (parent) {
 		parent = build(parent, arg, true, elem);
-		elem.remove();
+		removeElement(elem);
 		return parent;
 	}
 };
 
 export const replaceChild = (container: Element, arg: buildArg): Element => {
 	while (container.firstChild) {
-		container.firstChild.remove();
+		removeElement(container.firstChild as Element);
 	}
 
 	container = build(container, arg);

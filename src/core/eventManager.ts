@@ -10,7 +10,7 @@ const detachEvent = (elem: Element | ElementWithAbortController) => {
 	if ("AbortController" in elem) {
 		const AbortController = (elem as ElementWithAbortController).AbortController;
 		if (AbortController) {
-			console.info(`Deattach all event from $1`, elem);
+			//console.info(`Deattach all event from $1`, elem);
 			AbortController.abort();
 
 			elem.AbortController = undefined;
@@ -65,7 +65,7 @@ export const addEvent = (name: string, elem: string | Element | ElementWithAbort
 			}
 		}
 
-		console.info(`Attach ${name} event to $1`, elem);
+		//console.info(`Attach ${name} event to $1`, elem);
 	}
 };
 

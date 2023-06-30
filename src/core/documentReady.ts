@@ -29,14 +29,6 @@ const setCSS = () => {
 
 const dispatchDestroyEvent = (elem: Element) => {
 	if (elem.nodeType !== 3) {
-		const listOfElem = elem.getElementsByClassName("bs-destroy-event");
-		if (listOfElem && listOfElem.length > 0) {
-			Array.from(listOfElem).forEach((i) => {
-				i.dispatchEvent(new CustomEvent("destroy"));
-				removeEvent(i as ElementWithAbortController);
-			});
-		}
-
 		if (elem.classList.contains("bs-destroy-event")) {
 			elem.dispatchEvent(new CustomEvent("destroy"));
 			removeEvent(elem as ElementWithAbortController);

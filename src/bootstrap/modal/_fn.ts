@@ -1,4 +1,4 @@
-import { appendChild } from "../../core/builder.js";
+import { appendChild, removeElement } from "../../core/builder.js";
 import { addEvent, ElementWithAbortController } from "../../core/eventManager.js";
 import { mergeAttr } from "../../core/mergeAttr.js";
 import { IAttr, IElem, isTag } from "../../core/tag.js";
@@ -67,7 +67,7 @@ export const show = (elem: string | Element | container, relatedTarget?: HTMLEle
 		let mdl = document.getElementById(elem.attr.id);
 		if (mdl) {
 			addEvent("hidden.bs.modal", mdl as ElementWithAbortController, (e) => {
-				(e.target as Element).remove();
+				removeElement(e.target as Element);
 			});
 
 			getOrCreateInstance(mdl).show(relatedTarget);

@@ -124,7 +124,7 @@ export class tooltip extends span {
 	}
 
 	static init = (elem: Element | string, options?: Partial<bootstrap.Tooltip.Options>) => {
-		return this.getOrCreateInstance(elem, options);
+		return tooltip.getOrCreateInstance(elem, options);
 	};
 	static getInstance = (elem: Element | string) => {
 		return window.bootstrap.Tooltip.getInstance(elem);
@@ -134,7 +134,7 @@ export class tooltip extends span {
 			const target = i.target as Element;
 			console.info(`Dispose bootstrap tooltip from $1`, target);
 
-			const m = this.getInstance(target);
+			const m = tooltip.getInstance(target);
 			if (m) {
 				m.hide();
 				m.dispose();
@@ -145,34 +145,34 @@ export class tooltip extends span {
 		return window.bootstrap.Tooltip.getOrCreateInstance(elem, options);
 	};
 	static disable = (elem: Element | string) => {
-		this.getOrCreateInstance(elem)?.disable();
+		tooltip.getOrCreateInstance(elem)?.disable();
 	};
 	static dispose = (elem: Element | string) => {
-		this.getInstance(elem)?.dispose();
+		tooltip.getInstance(elem)?.dispose();
 	};
 	static enable = (elem: Element | string) => {
-		this.getOrCreateInstance(elem)?.enable();
+		tooltip.getOrCreateInstance(elem)?.enable();
 	};
 	static hide = (elem: Element | string) => {
-		this.getOrCreateInstance(elem)?.hide();
+		tooltip.getOrCreateInstance(elem)?.hide();
 	};
 	static show = (elem: Element | string) => {
-		this.getOrCreateInstance(elem)?.show();
+		tooltip.getOrCreateInstance(elem)?.show();
 	};
 	static setContent = (
 		elem: Element | string,
 		content?: Record<string, string | Element | bootstrap.Tooltip.SetContentFunction | null>
 	) => {
-		this.getOrCreateInstance(elem)?.setContent(content);
+		tooltip.getOrCreateInstance(elem)?.setContent(content);
 	};
 	static toggle = (elem: Element | string) => {
-		this.getOrCreateInstance(elem)?.toggle();
+		tooltip.getOrCreateInstance(elem)?.toggle();
 	};
 	static toggleEnabled = (elem: Element | string) => {
-		this.getOrCreateInstance(elem)?.toggleEnabled();
+		tooltip.getOrCreateInstance(elem)?.toggleEnabled();
 	};
 	static update = (elem: Element | string) => {
-		this.getOrCreateInstance(elem)?.update();
+		tooltip.getOrCreateInstance(elem)?.update();
 	};
 }
 

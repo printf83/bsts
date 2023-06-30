@@ -1,4 +1,4 @@
-import { appendChild } from "../../core/builder.js";
+import { appendChild, removeElement } from "../../core/builder.js";
 import { addEvent, ElementWithAbortController } from "../../core/eventManager.js";
 import { UUID } from "../../core/uuid.js";
 import { btnclose } from "./btnclose.js";
@@ -107,7 +107,7 @@ export const show = (itemOrElem: item | Element | string, placement?: ContainerP
 			let tst = document.getElementById(itemOrElem.attr.id);
 			if (tst) {
 				addEvent("hidden.bs.toast", tst as ElementWithAbortController, (e) => {
-					(e.target as Element).remove();
+					removeElement(e.target as Element);
 				});
 
 				show(tst);
