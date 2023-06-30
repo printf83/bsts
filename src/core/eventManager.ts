@@ -12,6 +12,8 @@ const detachEvent = (elem: Element | ElementWithAbortController) => {
 		if (AbortController) {
 			console.info(`Deattach all event from $1`, elem);
 			AbortController.abort();
+
+			elem.AbortController = undefined;
 			delete elem.AbortController;
 		}
 	}
@@ -35,20 +37,32 @@ export const addEvent = (name: string, elem: string | Element | ElementWithAbort
 
 			//add event to element
 			//using signal to remove listerner
-			elem.addEventListener(name, fn, {
-				signal: elem.AbortController.signal,
-				once: name === "build" || name === "destroy" ? true : undefined,
-			});
+			if (name === "build" || name === "destroy") {
+				elem.addEventListener(name, fn, {
+					signal: elem.AbortController.signal,
+					once: true,
+				});
+			} else {
+				elem.addEventListener(name, fn, {
+					signal: elem.AbortController.signal,
+				});
+			}
 		} else {
 			(elem as ElementWithAbortController).AbortController = new AbortController();
 			elem.classList.add("bs-destroy-event");
+
 			//add event to element
 			//using signal to remove listerner
-
-			elem.addEventListener(name, fn, {
-				signal: (elem as ElementWithAbortController).AbortController!.signal,
-				once: name === "build" || name === "destroy" ? true : undefined,
-			});
+			if (name === "build" || name === "destroy") {
+				elem.addEventListener(name, fn, {
+					signal: (elem as ElementWithAbortController).AbortController!.signal,
+					once: true,
+				});
+			} else {
+				elem.addEventListener(name, fn, {
+					signal: (elem as ElementWithAbortController).AbortController!.signal,
+				});
+			}
 		}
 
 		console.info(`Attach ${name} event to $1`, elem);
