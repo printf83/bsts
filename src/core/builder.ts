@@ -6,10 +6,10 @@ export type buildArg = tag | number | string | strHtml | (tag | string | number 
 
 const htmlToElement = (strHTML: string) => {
 	//TODO: ths using template. need to check if template is working
-	var template = document.createElement("template");
+	var template = document.createElement("div");
 	strHTML = strHTML.trim(); // Never return a text node of whitespace as the result
 	template.innerHTML = strHTML;
-	return template.content.firstChild;
+	return template.firstChild;
 };
 
 const processElem = (i: number | string | tag | strHtml, e: tag, element: Element) => {
@@ -143,16 +143,16 @@ export const prependChild = (container: Element, arg: buildArg): Element => {
 
 export const removeElement = (elem: Element) => {
 	if (elem.nodeType !== 3) {
-		// const listOfElem = elem.getElementsByClassName("bs-destroy-event");
-		// if (listOfElem && listOfElem.length > 0) {
-		// 	while (elem.firstChild) {
-		// 		removeElement(elem.firstChild as Element);
-		// 	}
-		// }
-
-		while (elem.firstChild) {
-			removeElement(elem.firstChild as Element);
+		const listOfElem = elem.getElementsByClassName("bs-destroy-event");
+		if (listOfElem && listOfElem.length > 0) {
+			while (elem.firstChild) {
+				removeElement(elem.firstChild as Element);
+			}
 		}
+
+		// while (elem.firstChild) {
+		// 	removeElement(elem.firstChild as Element);
+		// }
 	}
 
 	elem.remove();
