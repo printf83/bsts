@@ -46,7 +46,7 @@ const convert = (attr: Container) => {
 
 	if (!attr.elem) {
 		let showValue = "";
-		let percent = `${Math.round(((attr.value! - attr.min!) / (attr.max! - attr.min!)) * 100)}%`;
+		let percent = `${((attr.value! - attr.min!) / (attr.max! - attr.min!)) * 100}%`;
 		switch (attr.text) {
 			case "none":
 				showValue = "";
