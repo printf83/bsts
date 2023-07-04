@@ -828,6 +828,7 @@ const bsClassFormatterDB: {
 
 	shadow: new bsClassFormatterRule({
 		format: "shadow-$1",
+		formatTrue: "shadow",
 		formatValue: "shadow",
 		formatFalse: "shadow-none",
 		value: bootstrapTypeA.shadow,
