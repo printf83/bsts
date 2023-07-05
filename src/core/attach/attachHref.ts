@@ -15,6 +15,7 @@ export const attachHref: IAttachFn = (key, elem, attr: IAttrHref) => {
 
 			if (CONVERTHASHTOVOID) {
 				if (i === "#") {
+					elem.setAttribute("rel", "nofollow");
 					elem.setAttribute("href", "javascript:void(0);");
 				} else {
 					elem.setAttribute("href", i);
