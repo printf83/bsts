@@ -5,7 +5,7 @@ import { div } from "../html/div.js";
 import { addEvent } from "../core/eventManager.js";
 import { bstsConsole as console } from "../core/console.js";
 import { UUID } from "../core/uuid.js";
-import { disconnectResizeObserver, observeResizeObserver } from "../core/resizeObserverManager.js";
+// import { disconnectResizeObserver, observeResizeObserver } from "../core/resizeObserverManager.js";
 
 export interface Scrollspy extends IAttr {
 	target?: string;

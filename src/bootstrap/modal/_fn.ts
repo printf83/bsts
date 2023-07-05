@@ -12,7 +12,7 @@ import { title } from "./title.js";
 import { bootstrapType } from "../../core/bootstrap.js";
 import { btnclose } from "./btnclose.js";
 import { bstsConsole as console } from "../../core/console.js";
-import { disconnectResizeObserver, observeResizeObserver } from "../../core/resizeObserverManager.js";
+// import { disconnectResizeObserver, observeResizeObserver } from "../../core/resizeObserverManager.js";
 
 export const init = (elem: string | Element, options?: Partial<bootstrap.Modal.Options>) => {
 	return getOrCreateInstance(elem, options);
