@@ -50,14 +50,15 @@ export const unobserveResizeObserver = (elem: string | Element | ElementWithResi
 
 export const observeResizeObserver = (
 	elem: string | Element | ElementWithResizeObserver,
-	callback: ResizeObserverCallback,
-	options?: ResizeObserverOptions
+	callback: (entry: ResizeObserverEntry[], observer: ResizeObserver, arg?: any[]) => void,
+	options?: ResizeObserverOptions,
+	arg?: any[]
 ) => {
 	if (typeof elem === "string") {
 		let e = document.querySelectorAll(elem);
 		if (e) {
 			e.forEach((i) => {
-				observeResizeObserver(i, callback);
+				observeResizeObserver(i, callback, options, arg);
 			});
 		}
 	} else {
@@ -73,18 +74,20 @@ export const observeResizeObserver = (
 							elem: Element | ElementWithResizeObserver,
 							resizeId: string,
 							entry: ResizeObserverEntry[],
-							observe: ResizeObserver
+							observe: ResizeObserver,
+							arg: any[]
 						) => {
 							if (elem.getAttribute("data-resize-id") === resizeId) {
 								elem.removeAttribute("data-resize-id");
-								callback(entry, observe);
+								callback(entry, observe, arg);
 							}
 						},
 						300,
 						elem,
 						resizeId,
 						entry,
-						observer
+						observer,
+						arg
 					);
 				}
 			});

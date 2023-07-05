@@ -30,20 +30,23 @@ export const disconnectMutationObserver = (elem: string | Element | ElementWithM
 
 export const observeMutationObserver = (
 	elem: string | Element | ElementWithMutationObserver,
-	callback: MutationCallback,
-	options?: MutationObserverInit
+	callback: (mutation: MutationRecord[], observer: MutationObserver, arg?: any[]) => void,
+	options?: MutationObserverInit,
+	arg?: any[]
 ) => {
 	if (typeof elem === "string") {
 		let e = document.querySelectorAll(elem);
 		if (e) {
 			e.forEach((i) => {
-				observeMutationObserver(i, callback);
+				observeMutationObserver(i, callback, options, arg);
 			});
 		}
 	} else {
 		if (!("MutationObserver" in elem)) {
 			console.info(`Setup MutationObserver for $1`, elem);
-			(elem as ElementWithMutationObserver).MutationObserver = new MutationObserver(callback);
+			(elem as ElementWithMutationObserver).MutationObserver = new MutationObserver((mutation, observer) => {
+				callback(mutation, observer, arg);
+			});
 		}
 
 		const ob = (elem as ElementWithMutationObserver).MutationObserver;

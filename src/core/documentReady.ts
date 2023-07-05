@@ -83,19 +83,19 @@ const setupDOMWatcher = () => {
 
 	observeMutationObserver(
 		document.documentElement,
-		function (m) {
-			if (m && m.length > 0) {
-				m.forEach((n) => {
+		function (mutation) {
+			if (mutation && mutation.length > 0) {
+				mutation.forEach((mutationNode) => {
 					//check remove node
-					if (n.removedNodes && n.removedNodes.length > 0) {
-						n.removedNodes.forEach((i) => {
+					if (mutationNode.removedNodes && mutationNode.removedNodes.length > 0) {
+						mutationNode.removedNodes.forEach((i) => {
 							dispatchDestroyEvent(i as Element);
 						});
 					}
 
 					//check added node
-					if (n.addedNodes && n.addedNodes.length > 0) {
-						n.addedNodes.forEach((i) => {
+					if (mutationNode.addedNodes && mutationNode.addedNodes.length > 0) {
+						mutationNode.addedNodes.forEach((i) => {
 							dispatchBuildEvent(i as Element);
 						});
 					}
