@@ -50,8 +50,26 @@ import {
 import { UUID } from "./uuid.js";
 import { uppercaseFirst } from "./uppercaseFirst.js";
 import { cancelIdleCallback, requestIdleCallback } from "./requestIdleCallback.js";
+import {
+	ElementWithMutationObserver,
+	observeMutationObserver,
+	disconnectMutationObserver,
+} from "./mutationObserverManager.js";
+import {
+	ElementWithResizeObserver,
+	observeResizeObserver,
+	unobserveResizeObserver,
+	disconnectResizeObserver,
+} from "./resizeObserverManager.js";
 
 export {
+	ElementWithMutationObserver,
+	observeMutationObserver,
+	disconnectMutationObserver,
+	ElementWithResizeObserver,
+	observeResizeObserver,
+	unobserveResizeObserver,
+	disconnectResizeObserver,
 	manageClass,
 	addClassIntoElement,
 	bootstrapType,

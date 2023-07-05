@@ -12,6 +12,7 @@ import { title } from "./title.js";
 import { bootstrapType } from "../../core/bootstrap.js";
 import { btnclose } from "./btnclose.js";
 import { bstsConsole as console } from "../../core/console.js";
+import { disconnectResizeObserver, observeResizeObserver } from "../../core/resizeObserverManager.js";
 
 export const init = (elem: string | Element, options?: Partial<bootstrap.Modal.Options>) => {
 	return getOrCreateInstance(elem, options);
@@ -23,6 +24,8 @@ export const getOrCreateInstance = (elem: string | Element, options?: Partial<bo
 	addEvent("destroy", elem, (i) => {
 		const target = i.target as Element;
 
+		// disconnectResizeObserver(target);
+
 		const m = getInstance(target);
 		if (m) {
 			console.info(`Dispose bootstrap modal from $1`, target);
@@ -30,6 +33,10 @@ export const getOrCreateInstance = (elem: string | Element, options?: Partial<bo
 			m.dispose();
 		}
 	});
+
+	// observeResizeObserver(elem, (r) => {
+	// 	handleUpdate(elem);
+	// });
 
 	console.info(`Initialize bootstrap modal to $1`, elem);
 	return window.bootstrap.Modal.getOrCreateInstance(elem, options);

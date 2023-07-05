@@ -9,6 +9,7 @@ import { svgInLinkAndButton } from "./css/svgInLinkAndButton.js";
 import { tableResponsive } from "./css/tableResponsive.js";
 import { bstsConsole as console } from "./console.js";
 import { ElementWithAbortController, removeEvent } from "./eventManager.js";
+import { observeMutationObserver } from "./mutationObserverManager.js";
 
 //set css on document ready
 const setCSS = () => {
@@ -55,30 +56,54 @@ const dispatchBuildEvent = (elem: Element) => {
 
 //setup DOMInserted
 const setupDOMWatcher = () => {
-	const observer = new MutationObserver(function (m) {
-		if (m && m.length > 0) {
-			m.forEach((n) => {
-				//check remove node
-				if (n.removedNodes && n.removedNodes.length > 0) {
-					n.removedNodes.forEach((i) => {
-						dispatchDestroyEvent(i as Element);
-					});
-				}
+	// const observer = new MutationObserver(function (m) {
+	// 	if (m && m.length > 0) {
+	// 		m.forEach((n) => {
+	// 			//check remove node
+	// 			if (n.removedNodes && n.removedNodes.length > 0) {
+	// 				n.removedNodes.forEach((i) => {
+	// 					dispatchDestroyEvent(i as Element);
+	// 				});
+	// 			}
 
-				//check added node
-				if (n.addedNodes && n.addedNodes.length > 0) {
-					n.addedNodes.forEach((i) => {
-						dispatchBuildEvent(i as Element);
-					});
-				}
-			});
-		}
-	});
+	// 			//check added node
+	// 			if (n.addedNodes && n.addedNodes.length > 0) {
+	// 				n.addedNodes.forEach((i) => {
+	// 					dispatchBuildEvent(i as Element);
+	// 				});
+	// 			}
+	// 		});
+	// 	}
+	// });
 
-	observer.observe(document.documentElement, {
-		childList: true,
-		subtree: true,
-	});
+	// observer.observe(document.documentElement, {
+	// 	childList: true,
+	// 	subtree: true,
+	// });
+
+	observeMutationObserver(
+		document.documentElement,
+		function (m) {
+			if (m && m.length > 0) {
+				m.forEach((n) => {
+					//check remove node
+					if (n.removedNodes && n.removedNodes.length > 0) {
+						n.removedNodes.forEach((i) => {
+							dispatchDestroyEvent(i as Element);
+						});
+					}
+
+					//check added node
+					if (n.addedNodes && n.addedNodes.length > 0) {
+						n.addedNodes.forEach((i) => {
+							dispatchBuildEvent(i as Element);
+						});
+					}
+				});
+			}
+		},
+		{ childList: true, subtree: true }
+	);
 };
 
 //documentReady

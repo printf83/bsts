@@ -5,6 +5,7 @@ import { div } from "../html/div.js";
 import { addEvent } from "../core/eventManager.js";
 import { bstsConsole as console } from "../core/console.js";
 import { UUID } from "../core/uuid.js";
+import { disconnectResizeObserver, observeResizeObserver } from "../core/resizeObserverManager.js";
 
 export interface Scrollspy extends IAttr {
 	target?: string;
@@ -79,12 +80,19 @@ export class scrollspy extends div {
 		addEvent("destroy", elem, (i) => {
 			const target = i.target as Element;
 
+			// disconnectResizeObserver(target);
+
 			const m = scrollspy.getInstance(target);
 			if (m) {
 				console.info(`Dispose bootstrap scrollspy from $1`, target);
 				m.dispose();
 			}
 		});
+
+		// observeResizeObserver(elem, (r) => {
+		// 	console.log("scrollspy.refresh", r);
+		// 	scrollspy.refresh(elem);
+		// });
 
 		console.info(`Initialize bootstrap scrollspy to $1`, elem);
 		return window.bootstrap.ScrollSpy.getOrCreateInstance(elem, options);
@@ -93,7 +101,7 @@ export class scrollspy extends div {
 		scrollspy.getInstance(elem)?.dispose();
 	};
 	static refresh = (elem: Element | string) => {
-		scrollspy.getOrCreateInstance(elem)?.refresh();
+		scrollspy.getInstance(elem)?.refresh();
 	};
 }
 
