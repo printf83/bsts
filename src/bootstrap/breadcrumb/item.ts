@@ -1,34 +1,28 @@
-import { IAttr, IElem, genTagClass } from "../../core/tag.js";
+import { IElem, genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
-import { mergeObject } from "../../core/mergeObject.js";
-import { a } from "../../html/a.js";
-import { li } from "../../html/li.js";
+import { a, A } from "../../html/a.js";
+import { Li, li } from "../../html/li.js";
 
-export interface Item extends IAttr {
+export interface Item extends A {
 	active?: boolean;
 	href?: string;
 }
 
 const convert = (attr: Item) => {
-	attr = mergeObject(
-		{
-			class: ["breadcrumb-item", attr.active ? "active" : undefined],
-			aria: { current: attr.active ? "page" : undefined },
-		},
-		attr
-	);
+	let active = attr.active;
 
-	if (!attr.active && attr.href) {
-		if (attr.elem) {
-			attr.elem = new a({ href: attr.href }, attr.elem);
-		} else {
-			attr.elem = new a({ href: attr.href });
-		}
+	if (active) {
+		delete attr.href;
 	}
 
+	delete attr.color;
 	delete attr.active;
 
-	return attr;
+	return {
+		class: ["breadcrumb-item", active ? "active" : undefined],
+		aria: { current: active ? "page" : undefined },
+		elem: new a(attr),
+	} as Li;
 };
 
 export class item extends li {
