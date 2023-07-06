@@ -84,7 +84,7 @@ export const show = (elem: string | Element | container, relatedTarget?: HTMLEle
 	}
 };
 
-type customStyleButton = "ios" | "android";
+type customStyleButton = 1 | 2;
 
 interface btnItem {
 	color?: Button["color"];
@@ -98,7 +98,7 @@ const genBtnItem = (customStyle?: customStyleButton, btn?: btnItem | btnItem[]) 
 			btn = [btn];
 		}
 
-		if (customStyle === "ios") {
+		if (customStyle === 1) {
 			return btn.map((i) => {
 				if (typeof i.click === "function") {
 					return new button(
@@ -120,7 +120,7 @@ const genBtnItem = (customStyle?: customStyleButton, btn?: btnItem | btnItem[]) 
 					);
 				}
 			});
-		} else if (customStyle === "android") {
+		} else if (customStyle === 2) {
 			const lastBtnIndex = btn.length - 1;
 			return btn.map((i, ix) => {
 				if (typeof i.click === "function") {
@@ -386,7 +386,7 @@ export const Create = (attr: Create) => {
 		showHeader = !(attr.backdrop === "static" ? false : btn.hasDismissButton);
 	}
 
-	if (attr.customStyle === "ios") {
+	if (attr.customStyle === 1) {
 		contAttr.contentAttr = { rounded: 4 };
 		contAttr.view = "end";
 
@@ -421,7 +421,7 @@ export const Create = (attr: Create) => {
 				  )
 				: "",
 		]);
-	} else if (attr.customStyle === "android") {
+	} else if (attr.customStyle === 2) {
 		return new container(contAttr as Container, [
 			showHeader
 				? new header(
