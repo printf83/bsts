@@ -42,19 +42,21 @@ const fnIcon = (
 	switch (iconPosition) {
 		case "end":
 			r = `end-${n}` as bootstrapType.rounded;
-			a.weight ??= "sm";
+			// a.weight ??= "sm";
 			break;
 		case "start":
 			r = `start-${n}` as bootstrapType.rounded;
-			a.weight ??= "sm";
+			// a.weight ??= "sm";
 			break;
 		case "top":
 			r = `top-${n}` as bootstrapType.rounded;
-			a.weight ??= "2xl";
+			// a.weight ??= "2xl";
+			a.fontSize = 2;
 			break;
 		case "bottom":
 			r = `bottom-${n}` as bootstrapType.rounded;
-			a.weight ??= "2xl";
+			// a.weight ??= "2xl";
+			a.fontSize = 2;
 			break;
 		default:
 			r = `start-${n}` as bootstrapType.rounded;
