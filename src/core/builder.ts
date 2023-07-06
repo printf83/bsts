@@ -28,7 +28,7 @@ const processElem = (i: number | string | tag | strHtml, e: tag, element: Elemen
 			} else {
 				let m = markup(g);
 				if (typeof m === "string") {
-					element.appendChild(document.createTextNode(` ${g}`));
+					element.appendChild(document.createTextNode(g));
 				} else {
 					m.forEach((j) => {
 						element = processElem(j, e, element);
