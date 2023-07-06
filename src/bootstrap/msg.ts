@@ -33,13 +33,13 @@ const convert = (attr: Msg) => {
 			//append icon base on position
 			switch (attr.iconPosition) {
 				case "start":
-					tElem = new div({ display: "flex", gap: 4 }, [
+					tElem = new div({ display: "flex", gap: 3 }, [
 						fnIcon(attr.iconContainer, attr.icon),
 						fnElem(attr.elem),
 					]);
 					break;
 				case "end":
-					tElem = new div({ display: "flex", gap: 4 }, [
+					tElem = new div({ display: "flex", gap: 3 }, [
 						fnElem(attr.elem),
 						fnIcon(attr.iconContainer, attr.icon),
 					]);
