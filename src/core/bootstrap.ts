@@ -1131,34 +1131,34 @@ const attrFormatterDB: {
 
 		return elem;
 	},
-	// gridTemplateColumn: (elem, data) => {
-	// 	if (data) {
-	// 		(elem as HTMLElement).style.gridTemplateColumns = data.toString();
-	// 	}
+	gridTemplateColumns: (elem, data) => {
+		if (data) {
+			(elem as HTMLElement).style.gridTemplateColumns = data.toString();
+		}
 
-	// 	return elem;
-	// },
-	// gridTemplateArea: (elem, data) => {
-	// 	if (data) {
-	// 		(elem as HTMLElement).style.gridTemplateAreas = data.toString();
-	// 	}
+		return elem;
+	},
+	gridTemplateAreas: (elem, data) => {
+		if (data) {
+			(elem as HTMLElement).style.gridTemplateAreas = data.toString();
+		}
 
-	// 	return elem;
-	// },
-	// gridTemplateRow: (elem, data) => {
-	// 	if (data) {
-	// 		(elem as HTMLElement).style.gridTemplateRows = data.toString();
-	// 	}
+		return elem;
+	},
+	gridTemplateRows: (elem, data) => {
+		if (data) {
+			(elem as HTMLElement).style.gridTemplateRows = data.toString();
+		}
 
-	// 	return elem;
-	// },
-	// gridArea: (elem, data) => {
-	// 	if (data) {
-	// 		(elem as HTMLElement).style.gridArea = data.toString();
-	// 	}
+		return elem;
+	},
+	gridArea: (elem, data) => {
+		if (data) {
+			(elem as HTMLElement).style.gridArea = data.toString();
+		}
 
-	// 	return elem;
-	// },
+		return elem;
+	},
 };
 
 export interface Attr {
@@ -1169,10 +1169,11 @@ export interface Attr {
 	ownby?: string;
 	describedby?: string;
 	controlfor?: string;
-	// gridArea?: string;
-	// gridTemplateColumn?: string;
-	// gridTemplateRow?: string;
-	// gridTemplateArea?: string;
+
+	gridArea?: string;
+	gridTemplateColumns?: string;
+	gridTemplateRows?: string;
+	gridTemplateAreas?: string;
 }
 
 export interface Class {

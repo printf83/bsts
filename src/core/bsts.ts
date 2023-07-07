@@ -171,7 +171,7 @@ const bsClassFormatterDB: {
 		value: bstsTypeA.rotate,
 	}),
 	flip: new bsClassFormatterRule({
-		format: "fli[-$1",
+		format: "flip-$1",
 		value: bstsTypeA.flip,
 	}),
 

@@ -336,7 +336,7 @@ export const animation = () => {
 
 	const kf_shake = `
     @keyframes bs-shake {
-        0%, 100% {
+        0%, 5%, 95%, 100% {
             transform: translateX(0);
         }
         16%, 50%, 83% {

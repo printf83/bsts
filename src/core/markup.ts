@@ -98,7 +98,6 @@ const escapeMarkup = (str: string) => {
 
 export const markup = (str: string) => {
 	let reg = /\{\{(.*?)}\}/gm;
-
 	if (str.match(reg)) {
 		let matchResult: RegExpExecArray | null;
 		let result: string[] = [];
