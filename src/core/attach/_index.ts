@@ -5,6 +5,7 @@ import { attachAria } from "./attachAria.js";
 import { attachData } from "./attachData.js";
 import { attachBoolean } from "./attachBoolean.js";
 import { attachBSAttr, attachBSClass } from "../bootstrap.js";
+import { attachBSTSClass } from "../bsts.js";
 import { attachEvent, hasBuildAndDestroyEvent } from "./attachEvent.js";
 import { attachStyle } from "./attachStyle.js";
 import { attachClass } from "./attachClass.js";
@@ -40,6 +41,7 @@ const attrFn: IAttachFn[] = [
 	attachAria,
 	attachBSClass.attach,
 	attachBSAttr.attach,
+	attachBSTSClass.attach,
 	attachEvent,
 	attachStyle,
 	attachClass,

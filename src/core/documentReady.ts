@@ -1,7 +1,7 @@
 import { style } from "../html/style.js";
 import { appendChild } from "./builder.js";
 import { aColor } from "./css/aColor.js";
-import { aHover } from "./css/aHover.js";
+import { main } from "./css/main.js";
 import { btnToggle } from "./css/btnToggle.js";
 import { calendar } from "./css/calendar.js";
 import { dropdownMenuStyle } from "./css/dropdownMenuStyle.js";
@@ -20,7 +20,7 @@ const setCSS = () => {
 		dropdownMenuStyle,
 		svgInLinkAndButton,
 		tableResponsive("bs-title-name"),
-		aHover,
+		main,
 		aColor(),
 		calendar,
 		animation(),

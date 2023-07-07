@@ -1,16 +1,24 @@
-import { mergeObject } from "./mergeObject.js";
-import { IAttr, isAttr } from "./tag.js";
 import { addClassIntoElement } from "./addClassIntoElement.js";
 import { IAttachFn } from "./attach/_index.js";
 import { keyOfType } from "./keyOfType.js";
-import { AttrFormatter, bsClassFormatterRule } from "./bootstrap.js";
+import { ClassFormatter, bsClassFormatterRule } from "./bootstrap.js";
 
 export namespace bstsType {
 	type ROTATE = 45 | 90 | 135 | 180 | 225 | 270 | 315;
 	type REPEAT = 1 | 2 | 3 | 5 | 10 | "infinite";
 
+	//this from bootstrapType
+	type COLOR = "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "light" | "dark";
+	type BODYCOLOR = "body" | "body-secondary" | "body-tertiary";
+	type OTHERCOLOR = "white" | "black";
+	type BODYTEXTCOLOR = BODYCOLOR | OTHERCOLOR | "body-emphasis";
+	//------------------------
+
+	//transform
 	export type rotate = ROTATE | `${ROTATE}`;
 	export type flip = "horizontal" | "vertical" | "both";
+
+	//animate
 	export type animate =
 		| "rotation"
 		| "sidetoside"
@@ -60,15 +68,35 @@ export namespace bstsType {
 	export type animateDelay = animateDuration;
 	export type animateFill = "none" | "forwards" | "backwards" | "both" | "none-backward" | "both-foward-none";
 	export type animateTiming = "ease" | "ease-in-out" | "linear" | "zoom" | "bounce";
+
+	//link
+	export type linkNormal = COLOR | BODYTEXTCOLOR | "link" | "transparent";
+	export type linkBorder = linkNormal;
+	export type linkHover = linkNormal;
+	export type linkActive = linkNormal;
+	export type linkActiveBg = linkNormal;
+	export type linkActiveBorder = linkNormal;
+	export type linkBg = linkNormal;
+	export type linkHoverBg = linkNormal;
+	export type linkHoverBorder = linkNormal;
 }
 
 namespace bstsTypeA {
 	const ROTATE = [45, 90, 135, 180, 225, 270, 315];
 	const REPEAT = [1, 2, 3, 5, 10];
 
-	export const rotate = [...ROTATE, ...ROTATE.map((i) => `${i}`)];
+	//this from bootstrapA
+	const COLOR = ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"];
+	const BODYCOLOR = ["body", "body-secondary", "body-tertiary"];
+	const OTHERCOLOR = ["white", "black"];
+	const BODYTEXTCOLOR = [...BODYCOLOR, ...OTHERCOLOR, "body-emphasis"];
+	//---------------------
 
+	//transform
+	export const rotate = [...ROTATE, ...ROTATE.map((i) => `${i}`)];
 	export const flip = ["horizontal", "vertical", "both"];
+
+	//animate
 	export const animate = [
 		"rotation",
 		"sidetoside",
@@ -121,6 +149,18 @@ namespace bstsTypeA {
 	export const animateDelay = [...animateDuration];
 	export const animateFill = ["none", "forwards", "backwards", "both", "none-backward", "both-foward-none"];
 	export const animateTiming = ["ease", "ease-in-out", "linear", "zoom", "bounce"];
+
+	//link
+	//bsts css
+	export const linkNormal = [...COLOR, ...BODYTEXTCOLOR, "link", "transparent"];
+	export const linkBorder = linkNormal;
+	export const linkHover = linkNormal;
+	export const linkActive = linkNormal;
+	export const linkActiveBg = linkNormal;
+	export const linkActiveBorder = linkNormal;
+	export const linkBg = linkNormal;
+	export const linkHoverBg = linkNormal;
+	export const linkHoverBorder = linkNormal;
 }
 
 const bsClassFormatterDB: {
@@ -161,12 +201,54 @@ const bsClassFormatterDB: {
 		format: "animate-timing-$1",
 		value: bstsTypeA.animateTiming,
 	}),
+
+	//---------------------
+
+	linkNormal: new bsClassFormatterRule({
+		format: "link-normal-$1",
+		value: bstsTypeA.linkNormal,
+	}),
+	linkBorder: new bsClassFormatterRule({
+		format: "link-border-$1",
+		value: bstsTypeA.linkBorder,
+	}),
+	linkHover: new bsClassFormatterRule({
+		format: "link-hover-$1",
+		value: bstsTypeA.linkHover,
+	}),
+	linkHoverBorder: new bsClassFormatterRule({
+		format: "link-hover-border-$1",
+		value: bstsTypeA.linkHoverBorder,
+	}),
+	linkActive: new bsClassFormatterRule({
+		format: "link-active-$1",
+		value: bstsTypeA.linkActive,
+	}),
+	linkActiveBg: new bsClassFormatterRule({
+		format: "link-active-bg-$1",
+		value: bstsTypeA.linkActiveBg,
+	}),
+	linkActiveBorder: new bsClassFormatterRule({
+		format: "link-active-border-$1",
+		value: bstsTypeA.linkActiveBorder,
+	}),
+	linkHoverBg: new bsClassFormatterRule({
+		format: "link-hover-bg-$1",
+		value: bstsTypeA.linkHoverBg,
+	}),
+	linkBg: new bsClassFormatterRule({
+		format: "link-bg-$1",
+		value: bstsTypeA.linkBg,
+	}),
+
+	//---------------------
 };
 
 export interface ITransform {
 	rotate?: bstsType.rotate;
 	flip?: bstsType.flip;
 }
+
 export interface IAnimate {
 	animate?: bstsType.animate;
 	animateDuration?: bstsType.animateDuration;
@@ -177,9 +259,21 @@ export interface IAnimate {
 	animateTiming?: bstsType.animateTiming;
 }
 
+export interface ILink {
+	linkNormal?: bstsType.linkNormal;
+	linkBorder?: bstsType.linkBorder;
+	linkHover?: bstsType.linkHover;
+	linkHoverBorder?: bstsType.linkHoverBorder;
+	linkActive?: bstsType.linkActive;
+	linkActiveBg?: bstsType.linkActiveBg;
+	linkActiveBorder?: bstsType.linkActiveBorder;
+	linkBg?: bstsType.linkBg;
+	linkHoverBg?: bstsType.linkHoverBg;
+}
+
 let allowClassProp: (string | undefined)[] = [];
 
-export namespace attachBSClass {
+export namespace attachBSTSClass {
 	const allowValue = <T extends string | number | boolean>(
 		valueToCheck: string | number | boolean,
 		listOfPossible: (string | number | boolean)[]
@@ -245,104 +339,3 @@ export namespace attachBSClass {
 		return { attr, elem, changed };
 	};
 }
-
-let allowAttrProp: (string | undefined)[] = [];
-
-export namespace attachBSAttr {
-	const allow = (key: string) => {
-		if (allowAttrProp.length === 0) {
-			allowAttrProp = Object.keys(attrFormatterDB);
-		}
-
-		if (allowAttrProp.indexOf(key) > -1) {
-			return key;
-		}
-
-		return null;
-	};
-
-	const addAttr = (rule: AttrFormatter, data: string | number | boolean, elem: Element) => {
-		elem = rule(elem, data);
-
-		return elem;
-	};
-
-	export const attach: IAttachFn = (key, elem, attr) => {
-		let changed = false;
-		let allowKey = allow(key);
-		if (allowKey) {
-			let a = keyOfType(key, attr);
-			let b = keyOfType(allowKey, attrFormatterDB);
-			let data: (string | number | boolean)[] = [];
-
-			if (!Array.isArray(attr[a])) {
-				data = [attr[a] as string | number | boolean];
-			} else {
-				data = attr[a] as (string | number | boolean)[];
-			}
-
-			data.forEach((i) => {
-				elem = addAttr(attrFormatterDB[b], i, elem);
-			});
-
-			delete attr[a];
-			changed = true;
-		}
-
-		return { attr, elem, changed };
-	};
-}
-
-export const bsConsNoElemArg = <T extends IAttr>(fn: <T extends IAttr>(attr: T) => IAttr, arg?: any[]) => {
-	if (arg) {
-		if (arg.length === 1) {
-			return fn(arg[0] as T);
-		} else {
-			return fn({});
-		}
-	} else {
-		return fn({});
-	}
-};
-
-export const bsConstArg = <T extends IAttr>(prop: string, arg?: any[]) => {
-	if (arg) {
-		if (arg.length === 1) {
-			if (isAttr<T>(arg[0])) {
-				return arg[0] as T;
-			} else {
-				return { [prop]: arg[0] } as T;
-			}
-		} else if (arg.length === 2) {
-			return mergeObject<T>({ [prop]: arg[1] } as T, arg[0] as T);
-		} else {
-			return {} as T;
-		}
-	} else {
-		return {} as T;
-	}
-};
-
-export const bsConstArgTag = <T extends IAttr>(
-	prop: string,
-	t1: string,
-	t2: string,
-	fn: (i: T) => boolean,
-	arg?: any[]
-) => {
-	if (arg) {
-		if (arg.length === 1) {
-			if (isAttr<T>(arg[0])) {
-				return fn(arg[0]) ? t2 : t1;
-			} else {
-				return t1;
-			}
-		} else if (arg.length === 2) {
-			return fn(mergeObject<T>({ [prop]: arg[1] } as T, arg[0] as T)) ? t2 : t1;
-		} else {
-			return t1;
-		}
-	} else {
-		return t1;
-	}
-};

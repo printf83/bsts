@@ -63,7 +63,7 @@ export const animation = () => {
     `;
 	const barrel_roll = `
     .animate-barrel-roll {
-        animation-name: bs-barrel-role;
+        animation-name: bs-barrel-roll;
         animation-duration: 400ms;	
         animation-timing-function: ease;	
         animation-iteration-count: 1;
@@ -204,6 +204,7 @@ export const animation = () => {
     ${barrel_roll}
     ${floater}
     ${wiggle}
+    ${pound}
     ${heartbeat}
     ${roller_right}
     ${roller_left}
