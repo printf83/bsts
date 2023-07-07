@@ -521,7 +521,7 @@ interface ClassFormatter {
 	formatFalse?: string;
 }
 
-class bsClassFormatterRule implements ClassFormatter {
+export class bsClassFormatterRule implements ClassFormatter {
 	shared?: boolean;
 	value?: (string | number | boolean)[];
 	format?: string;
@@ -1141,7 +1141,7 @@ const bsClassFormatterDB: {
 	}),
 };
 
-type AttrFormatter = (elem: Element, data: string | number | boolean) => Element;
+export type AttrFormatter = (elem: Element, data: string | number | boolean) => Element;
 
 const attrFormatterDB: {
 	[key: string]: AttrFormatter;

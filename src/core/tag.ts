@@ -309,7 +309,7 @@ export interface IGlobal {
 	role?: string;
 }
 
-export interface IAttr extends IGlobal, Attr, Class {
+export interface IAttr extends IGlobal, IAnimateTransform, Attr, Class {
 	data?: IData;
 	aria?: IAria;
 	on?: IEvent;

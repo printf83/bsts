@@ -10,6 +10,8 @@ import { tableResponsive } from "./css/tableResponsive.js";
 import { bstsConsole as console } from "./console.js";
 import { ElementWithAbortController, removeEvent } from "./eventManager.js";
 import { observeMutationObserver } from "./mutationObserverManager.js";
+import { animation } from "./css/animation.js";
+import { transform } from "./css/transform.js";
 
 //set css on document ready
 const setCSS = () => {
@@ -21,6 +23,8 @@ const setCSS = () => {
 		aHover,
 		aColor(),
 		calendar,
+		animation(),
+		transform(),
 	].join("\n");
 
 	if (!document.getElementById("bsts-css-container")) {
