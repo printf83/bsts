@@ -10,12 +10,7 @@ a.nav-link:hover,
     cursor: pointer;
 }
 
-.bs-ico-bi {
-    text-align: center;
-    width: 1.25em;
-}
 .bs-ico-bi i{
     display: inline-block !important;
-    
 }
 `;

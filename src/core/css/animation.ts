@@ -2,149 +2,180 @@ export const animation = () => {
 	/*  Animation
     ------------------------*/
 
-	const rotation = `
-    .animate-rotation {
-        animation-name: bs-rotation;
+	const animateFn = (name: string, code: string) => `
+    i.animate-${name}::before,
+    .animate-${name}:not(i) {
+        animation-name: bs-${name};
+        ${code}
+    }
+    `;
+
+	const animateFn2 = (name: string, code: string) => `
+    .animate-${name} {
+        animation-name: bs-${name};
+        ${code}
+    }
+    `;
+
+	const rotation = animateFn(
+		`rotation`,
+		`
         animation-duration: 4s;	
         animation-timing-function: linear;	
         animation-iteration-count: infinite;
-    }
-    `;
+        `
+	);
 
-	const sidetoside = `
-    .animate-sidetoside {
-        animation-name: bs-sidetoside;
+	const sidetoside = animateFn(
+		`sidetoside`,
+		`
         animation-duration: 3s;	
         animation-timing-function: ease;	
         animation-iteration-count: infinite;
-    }
-    `;
+        `
+	);
 
-	const zoom_in = `
-    .animate-zoom-in {
-        animation-name: bs-zoom-in;
+	const zoom_in = animateFn2(
+		`zoom-in`,
+		`
+        animation-duration: 1s;	
+        animation-timing-function: cubic-bezier(0.5, 0.2, 0.3, 1.0);	
+        animation-iteration-count: 1;
+        `
+	);
+
+	const zoom_out = animateFn2(
+		`zoom-out`,
+		`
         animation-duration: 1s;	
         animation-timing-function: cubic-bezier(0.5, 0.2, 0.3, 1.0);	
         animation-iteration-count: 1;	
-    }
-    `;
-	const zoom_out = `
-    .animate-zoom-out {
-        animation-name: bs-zoom-out;
-        animation-duration: 1s;	
-        animation-timing-function: cubic-bezier(0.5, 0.2, 0.3, 1.0);	
-        animation-iteration-count: 1;	
-        animation-fill-mode: forwards;	
-    }
-    `;
-	const spin = `
-    .animate-spin {
-        animation-name: bs-spin;
+        animation-fill-mode: forwards;
+        `
+	);
+
+	const spin = animateFn(
+		`spin`,
+		`
         animation-duration: 2s;	
         animation-timing-function: linear;	
         animation-iteration-count: infinite;
-    }
-    `;
-	const pulse = `
-    .animate-pulse {
-        animation-name: bs-pulse;
+        `
+	);
+
+	const pulse = animateFn(
+		`pulse`,
+		`
         animation-duration: 2s;	
         animation-timing-function: linear;	
         animation-iteration-count: infinite;
-    }
-    `;
-	const shake = `
-    .animate-shake {
-        animation-name: bs-shake;
+        `
+	);
+
+	const shake = animateFn(
+		`shake`,
+		`
         animation-duration: 400ms;	
         animation-timing-function: ease;	
         animation-iteration-count: infinite;
-    }
-    `;
-	const barrel_roll = `
-    .animate-barrel-roll {
-        animation-name: bs-barrel-roll;
+        `
+	);
+
+	const barrel_roll = animateFn2(
+		`barrel-roll`,
+		`
         animation-duration: 400ms;	
         animation-timing-function: ease;	
         animation-iteration-count: 1;
-    }
-    `;
-	const floater = `
-    .animate-floater {
-        animation-name: bs-floater;
+        `
+	);
+
+	const floater = animateFn(
+		`floater`,
+		`
         animation-duration: 1500ms;	
         animation-iteration-count: infinite;
-    }
-    `;
-	const wiggle = `
-    .animate-wiggle {
-        animation-name: bs-wiggle;
-        animation-duration: 2500ms;	
+        `
+	);
+
+	const wiggle = animateFn(
+		`wiggle`,
+		`
+        animation-duration: 250ms;	
         animation-iteration-count: infinite;
-    }
-    `;
-	const pound = `
-    .animate-pound {
-        animation-name: bs-pound;
+        `
+	);
+
+	const pound = animateFn(
+		`pound`,
+		`
         animation-duration: 500ms;	
         animation-timing-function: ease;	
         animation-iteration-count: infinite;
-    }
-    `;
-	const heartbeat = `
-    .animate-heartbeat {
-        animation-name: bs-heartbeat;
-        animation-duration: 3s;	
+        `
+	);
+
+	const heartbeat = animateFn(
+		`heartbeat`,
+		`
+        animation-duration: 1s;	
         animation-timing-function: ease;	
         animation-iteration-count: infinite;
-    }
-    `;
-	const roller_right = `
-    .animate-roller-right {
-        animation-name: bs-roller-right;
+        `
+	);
+
+	const roller_right = animateFn2(
+		`roller-right`,
+		`
         animation-duration: 2s;	
         animation-timing-function: ease;	
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
-    }
-    `;
-	const roller_left = `
-    .animate-roller-left {
-        animation-name: bs-roller-left;
+        `
+	);
+
+	const roller_left = animateFn2(
+		`roller-left`,
+		`
         animation-duration: 2s;	
         animation-timing-function: ease;	
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
-    }
-    `;
-	const slide_down = `
-    .animate-slide-down {
-        animation-name: bs-slide-down;
+        `
+	);
+
+	const slide_down = animateFn2(
+		`slide-down`,
+		`
         animation-duration: 1s;	
-        animation-timing-function: ease;	
-    }
-    `;
-	const slide_up = `
-    .animate-slide-up {
-        animation-name: bs-slide-up;
+        animation-timing-function: ease;
+        `
+	);
+
+	const slide_up = animateFn2(
+		`slide-up`,
+		`
         animation-duration: 1s;	
-        animation-timing-function: ease;	
-    }
-    `;
-	const slide_left = `
-    .animate-slide-left {
-        animation-name: bs-slide-left;
+        animation-timing-function: ease;
+        `
+	);
+
+	const slide_left = animateFn2(
+		`slide-left`,
+		`
         animation-duration: 1s;	
-        animation-timing-function: ease;	
-    }
-    `;
-	const slide_right = `
-    .animate-slide-right {
-        animation-name: bs-slide-right;
+        animation-timing-function: ease;
+        `
+	);
+
+	const slide_right = animateFn2(
+		`slide-right`,
+		`
         animation-duration: 1s;	
-        animation-timing-function: ease;	
-    }
-    `;
+        animation-timing-function: ease;
+        `
+	);
+
 	const fade_in = `
     .animate-fade-in {
         animation-name: bs-fade-in;
