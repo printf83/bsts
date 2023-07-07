@@ -191,6 +191,11 @@ export interface IStyle {
 	widows?: string;
 	zIndex?: string;
 
+	gridArea?: string;
+	gridTemplateColumns?: string;
+	gridTemplateRows?: string;
+	gridTemplateAreas?: string;
+
 	[key: string]: string | undefined;
 }
 

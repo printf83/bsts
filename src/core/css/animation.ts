@@ -176,53 +176,59 @@ export const animation = () => {
         `
 	);
 
-	const fade_in = `
-    .animate-fade-in {
-        animation-name: bs-fade-in;
-        animation-duration: 2s;	
-        animation-timing-function: ease;	
-    }
-    `;
-	const fade_out = `
-    .animate-fade-out {
-        animation-name: bs-fade-out;
+	const fade_in = animateFn2(
+		`fade-in`,
+		`
         animation-duration: 2s;	
         animation-timing-function: ease;
-        animation-fill-mode: forwards;	
-    }
-    `;
-	const rotate_in_right = `
-    .animate-rotate-in-right {
-        animation-name: bs-rotate-in-right;
+        `
+	);
+
+	const fade_out = animateFn2(
+		`fade-out`,
+		`
+        animation-duration: 2s;	
+        animation-timing-function: ease;
+        animation-fill-mode: forwards;
+        `
+	);
+
+	const rotate_in_right = animateFn2(
+		`rotate-in-right`,
+		`
         animation-duration: 3s;	
         animation-timing-function: ease-in-out;
         animation-iteration-count: 1;
-    }
-    `;
-	const rotate_in_left = `
-    .animate-rotate-in-left {
-        animation-name: bs-rotate-in-left;
+        `
+	);
+
+	const rotate_in_left = animateFn2(
+		`rotate-in-left`,
+		`
         animation-duration: 3s;	
         animation-timing-function: ease-in-out;
         animation-iteration-count: 1;
-    }
-    `;
-	const rotate_in = `
-    .animate-rotate-in {
-        animation-name: bs-rotate-in;
+        `
+	);
+
+	const rotate_in = animateFn2(
+		`rotate-in`,
+		`
         animation-duration: 3s;	
         animation-timing-function: ease;
         animation-iteration-count: 1;
         transform-origin: center;
-    }
-    `;
-	const bounce_in = `
-    .animate-bounce-in {
+        `
+	);
+
+	const bounce_in = animateFn2(
+		`bounce-in`,
+		`
         animation-name: bs-bounce-in;
         animation-duration: 800ms;	
         animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-    }
-    `;
+        `
+	);
 
 	const animate = `
     ${rotation}
