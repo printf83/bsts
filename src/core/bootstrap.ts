@@ -214,17 +214,6 @@ export namespace bootstrapType {
 	export type h = fontDisplay;
 	export type small = true;
 
-	//bsts css
-	export type linkNormal = COLOR | BODYTEXTCOLOR | "link" | "transparent";
-	export type linkBorder = linkNormal;
-	export type linkHover = linkNormal;
-	export type linkActive = linkNormal;
-	export type linkActiveBg = linkNormal;
-	export type linkActiveBorder = linkNormal;
-	export type linkBg = linkNormal;
-	export type linkHoverBg = linkNormal;
-	export type linkHoverBorder = linkNormal;
-
 	//specific component only
 	export type linkColor = COLOR | BODYTEXTCOLOR;
 	export type linkUnderlineColor = linkColor;
@@ -481,17 +470,6 @@ namespace bootstrapTypeA {
 	export const h = fontDisplay;
 	export const small = [true];
 
-	//bsts css
-	export const linkNormal = [...COLOR, ...BODYTEXTCOLOR, "link", "transparent"];
-	export const linkBorder = linkNormal;
-	export const linkHover = linkNormal;
-	export const linkActive = linkNormal;
-	export const linkActiveBg = linkNormal;
-	export const linkActiveBorder = linkNormal;
-	export const linkBg = linkNormal;
-	export const linkHoverBg = linkNormal;
-	export const linkHoverBorder = linkNormal;
-
 	//specific component only
 	export const linkColor = [...COLOR, ...BODYTEXTCOLOR];
 	export const linkUnderlineColor = linkColor;
@@ -511,7 +489,7 @@ namespace bootstrapTypeA {
 	export const dropdownMenuPositionView = _positionView;
 }
 
-interface ClassFormatter {
+export interface ClassFormatter {
 	shared?: boolean;
 	value?: (string | number | boolean)[];
 
@@ -521,7 +499,7 @@ interface ClassFormatter {
 	formatFalse?: string;
 }
 
-class bsClassFormatterRule implements ClassFormatter {
+export class bsClassFormatterRule implements ClassFormatter {
 	shared?: boolean;
 	value?: (string | number | boolean)[];
 	format?: string;
@@ -1035,45 +1013,6 @@ const bsClassFormatterDB: {
 
 	//---------------------
 
-	linkNormal: new bsClassFormatterRule({
-		format: "link-normal-$1",
-		value: bootstrapTypeA.linkNormal,
-	}),
-	linkBorder: new bsClassFormatterRule({
-		format: "link-border-$1",
-		value: bootstrapTypeA.linkBorder,
-	}),
-	linkHover: new bsClassFormatterRule({
-		format: "link-hover-$1",
-		value: bootstrapTypeA.linkHover,
-	}),
-	linkHoverBorder: new bsClassFormatterRule({
-		format: "link-hover-border-$1",
-		value: bootstrapTypeA.linkHoverBorder,
-	}),
-	linkActive: new bsClassFormatterRule({
-		format: "link-active-$1",
-		value: bootstrapTypeA.linkActive,
-	}),
-	linkActiveBg: new bsClassFormatterRule({
-		format: "link-active-bg-$1",
-		value: bootstrapTypeA.linkActiveBg,
-	}),
-	linkActiveBorder: new bsClassFormatterRule({
-		format: "link-active-border-$1",
-		value: bootstrapTypeA.linkActiveBorder,
-	}),
-	linkHoverBg: new bsClassFormatterRule({
-		format: "link-hover-bg-$1",
-		value: bootstrapTypeA.linkHoverBg,
-	}),
-	linkBg: new bsClassFormatterRule({
-		format: "link-bg-$1",
-		value: bootstrapTypeA.linkBg,
-	}),
-
-	//---------------------
-
 	linkColor: new bsClassFormatterRule({
 		format: "link-$1",
 		value: bootstrapTypeA.linkColor,
@@ -1141,7 +1080,7 @@ const bsClassFormatterDB: {
 	}),
 };
 
-type AttrFormatter = (elem: Element, data: string | number | boolean) => Element;
+export type AttrFormatter = (elem: Element, data: string | number | boolean) => Element;
 
 const attrFormatterDB: {
 	[key: string]: AttrFormatter;
@@ -1192,6 +1131,34 @@ const attrFormatterDB: {
 
 		return elem;
 	},
+	gridTemplateColumns: (elem, data) => {
+		if (data) {
+			(elem as HTMLElement).style.gridTemplateColumns = data.toString();
+		}
+
+		return elem;
+	},
+	gridTemplateAreas: (elem, data) => {
+		if (data) {
+			(elem as HTMLElement).style.gridTemplateAreas = data.toString();
+		}
+
+		return elem;
+	},
+	gridTemplateRows: (elem, data) => {
+		if (data) {
+			(elem as HTMLElement).style.gridTemplateRows = data.toString();
+		}
+
+		return elem;
+	},
+	gridArea: (elem, data) => {
+		if (data) {
+			(elem as HTMLElement).style.gridArea = data.toString();
+		}
+
+		return elem;
+	},
 };
 
 export interface Attr {
@@ -1202,6 +1169,11 @@ export interface Attr {
 	ownby?: string;
 	describedby?: string;
 	controlfor?: string;
+
+	gridArea?: string;
+	gridTemplateColumns?: string;
+	gridTemplateRows?: string;
+	gridTemplateAreas?: string;
 }
 
 export interface Class {
@@ -1370,16 +1342,6 @@ export interface Class {
 	iconLink?: bootstrapType.iconLink;
 
 	//---------------------
-
-	linkNormal?: bootstrapType.linkNormal;
-	linkBorder?: bootstrapType.linkBorder;
-	linkHover?: bootstrapType.linkHover;
-	linkHoverBorder?: bootstrapType.linkHoverBorder;
-	linkActive?: bootstrapType.linkActive;
-	linkActiveBg?: bootstrapType.linkActiveBg;
-	linkActiveBorder?: bootstrapType.linkActiveBorder;
-	linkBg?: bootstrapType.linkBg;
-	linkHoverBg?: bootstrapType.linkHoverBg;
 }
 
 let allowClassProp: (string | undefined)[] = [];

@@ -22,7 +22,16 @@ const processElem = (i: number | string | tag | strHtml, e: tag, element: Elemen
 			element = t ? t : element;
 		} else {
 			//only pre is html
-			let g = i as string;
+			let typeofI = typeof i;
+			let g: string = "";
+			if (typeofI === "number") {
+				g = i.toString();
+			} else if (typeofI === "string") {
+				g = i as string;
+			} else {
+				throw new Error(`Unsupported element type:${typeofI}`);
+			}
+
 			if (e.tag === "pre" || e.tag === "code") {
 				element.insertAdjacentText("beforeend", g.replace(/\`/g, "'"));
 			} else {

@@ -1,5 +1,6 @@
 import { mergeObject } from "./mergeObject.js";
 import { Attr, Class } from "./bootstrap.js";
+import { IAnimate, ILink, ITransform } from "./bsts.js";
 
 export interface IStyle {
 	alignContent?: string;
@@ -190,6 +191,11 @@ export interface IStyle {
 	widows?: string;
 	zIndex?: string;
 
+	gridArea?: string;
+	gridTemplateColumns?: string;
+	gridTemplateRows?: string;
+	gridTemplateAreas?: string;
+
 	[key: string]: string | undefined;
 }
 
@@ -309,7 +315,7 @@ export interface IGlobal {
 	role?: string;
 }
 
-export interface IAttr extends IGlobal, Attr, Class {
+export interface IAttr extends IGlobal, IAnimate, ITransform, ILink, Attr, Class {
 	data?: IData;
 	aria?: IAria;
 	on?: IEvent;
