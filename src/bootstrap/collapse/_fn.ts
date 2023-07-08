@@ -1,14 +1,15 @@
 import { addEvent } from "../../core/eventManager.js";
 import { bstsConsole as console } from "../../core/console.js";
+import { Collapse as BSCollapse } from "bootstrap";
 
-export const init = (elem: string | Element, options?: Partial<bootstrap.Collapse.Options>) => {
+export const init = (elem: string | Element, options?: Partial<BSCollapse.Options>) => {
 	return getOrCreateInstance(elem, options);
 };
 
 export const getInstance = (elem: string | Element) => {
-	return window.bootstrap.Collapse.getInstance(elem);
+	return BSCollapse.getInstance(elem);
 };
-export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Collapse.Options>) => {
+export const getOrCreateInstance = (elem: string | Element, options?: Partial<BSCollapse.Options>) => {
 	addEvent("destroy", elem, (i) => {
 		const target = i.target as Element;
 
@@ -20,7 +21,7 @@ export const getOrCreateInstance = (elem: string | Element, options?: Partial<bo
 	});
 
 	console.info(`Initialize bootstrap collapse to $1`, elem);
-	return window.bootstrap.Collapse.getOrCreateInstance(elem, options);
+	return BSCollapse.getOrCreateInstance(elem, options);
 };
 export const hide = (elem: string | Element) => {
 	getOrCreateInstance(elem)?.hide();

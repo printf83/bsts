@@ -4,6 +4,7 @@ import { mergeObject } from "../core/mergeObject.js";
 import { span } from "../html/span.js";
 import { addEvent } from "../core/eventManager.js";
 import { bstsConsole as console } from "../core/console.js";
+import { Tooltip as BSTooltip } from "bootstrap";
 
 export interface Tooltip extends IAttr {
 	inline?: boolean;
@@ -123,13 +124,13 @@ export class tooltip extends span {
 		super(convert(bsConstArg<Tooltip>("elem", arg)));
 	}
 
-	static init = (elem: Element | string, options?: Partial<bootstrap.Tooltip.Options>) => {
+	static init = (elem: Element | string, options?: Partial<BSTooltip.Options>) => {
 		return tooltip.getOrCreateInstance(elem, options);
 	};
 	static getInstance = (elem: Element | string) => {
-		return window.bootstrap.Tooltip.getInstance(elem);
+		return BSTooltip.getInstance(elem);
 	};
-	static getOrCreateInstance = (elem: Element | string, options?: Partial<bootstrap.Tooltip.Options>) => {
+	static getOrCreateInstance = (elem: Element | string, options?: Partial<BSTooltip.Options>) => {
 		addEvent("destroy", elem, (i) => {
 			const target = i.target as Element;
 
@@ -142,7 +143,7 @@ export class tooltip extends span {
 		});
 
 		console.info(`Initialize bootstrap tooltip to $1`, elem);
-		return window.bootstrap.Tooltip.getOrCreateInstance(elem, options);
+		return BSTooltip.getOrCreateInstance(elem, options);
 	};
 	static disable = (elem: Element | string) => {
 		tooltip.getOrCreateInstance(elem)?.disable();
@@ -161,7 +162,7 @@ export class tooltip extends span {
 	};
 	static setContent = (
 		elem: Element | string,
-		content?: Record<string, string | Element | bootstrap.Tooltip.SetContentFunction | null>
+		content?: Record<string, string | Element | BSTooltip.SetContentFunction | null>
 	) => {
 		tooltip.getOrCreateInstance(elem)?.setContent(content);
 	};

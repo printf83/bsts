@@ -4,6 +4,7 @@ import { mergeObject } from "../core/mergeObject.js";
 import { span } from "../html/span.js";
 import { addEvent } from "../core/eventManager.js";
 import { bstsConsole as console } from "../core/console.js";
+import { Popover as BSPopover } from "bootstrap";
 
 export interface Popover extends IAttr {
 	inline?: boolean;
@@ -125,13 +126,13 @@ export class popover extends span {
 		super(convert(bsConstArg<Popover>("elem", arg)));
 	}
 
-	static init = (elem: Element | string, options?: Partial<bootstrap.Popover.Options>) => {
+	static init = (elem: Element | string, options?: Partial<BSPopover.Options>) => {
 		return popover.getOrCreateInstance(elem, options);
 	};
 	static getInstance = (elem: Element | string) => {
-		return window.bootstrap.Popover.getInstance(elem);
+		return BSPopover.getInstance(elem);
 	};
-	static getOrCreateInstance = (elem: Element | string, options?: Partial<bootstrap.Popover.Options>) => {
+	static getOrCreateInstance = (elem: Element | string, options?: Partial<BSPopover.Options>) => {
 		addEvent("destroy", elem, (i) => {
 			const target = i.target as Element;
 			console.info(`Dispose bootstrap popover from $1`, target);
@@ -144,7 +145,7 @@ export class popover extends span {
 		});
 
 		console.info(`Initialize bootstrap popover to $1`, elem);
-		return window.bootstrap.Popover.getOrCreateInstance(elem, options);
+		return BSPopover.getOrCreateInstance(elem, options);
 	};
 	static disable = (elem: Element | string) => {
 		popover.getOrCreateInstance(elem)?.disable();

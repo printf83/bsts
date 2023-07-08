@@ -1,13 +1,14 @@
 import { addEvent } from "../../core/eventManager.js";
 import { bstsConsole as console } from "../../core/console.js";
+import { Offcanvas as BSOffcanvas } from "bootstrap";
 
-export const init = (elem: string | Element, options?: Partial<bootstrap.Offcanvas.Options>) => {
+export const init = (elem: string | Element, options?: Partial<BSOffcanvas.Options>) => {
 	return getOrCreateInstance(elem, options);
 };
 export const getInstance = (elem: string | Element) => {
-	return window.bootstrap.Offcanvas.getInstance(elem);
+	return BSOffcanvas.getInstance(elem);
 };
-export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Offcanvas.Options>) => {
+export const getOrCreateInstance = (elem: string | Element, options?: Partial<BSOffcanvas.Options>) => {
 	addEvent("destroy", elem, (i) => {
 		const target = i.target as Element;
 
@@ -19,7 +20,7 @@ export const getOrCreateInstance = (elem: string | Element, options?: Partial<bo
 	});
 
 	console.info(`Initialize bootstrap offcanvas to $1`, elem);
-	return window.bootstrap.Offcanvas.getOrCreateInstance(elem, options);
+	return BSOffcanvas.getOrCreateInstance(elem, options);
 };
 export const hide = (elem: string | Element) => {
 	getOrCreateInstance(elem)?.hide();

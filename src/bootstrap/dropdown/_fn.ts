@@ -1,13 +1,14 @@
 import { addEvent } from "../../core/eventManager.js";
 import { bstsConsole as console } from "../../core/console.js";
+import { Dropdown as BSDropdown } from "bootstrap";
 
-export const init = (elem: string | Element, options?: Partial<bootstrap.Dropdown.Options>) => {
+export const init = (elem: string | Element, options?: Partial<BSDropdown.Options>) => {
 	return getOrCreateInstance(elem, options);
 };
 export const getInstance = (elem: string | Element) => {
-	return window.bootstrap.Dropdown.getInstance(elem);
+	return BSDropdown.getInstance(elem);
 };
-export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Dropdown.Options>) => {
+export const getOrCreateInstance = (elem: string | Element, options?: Partial<BSDropdown.Options>) => {
 	addEvent("destroy", elem, (i) => {
 		const target = i.target as Element;
 
@@ -20,7 +21,7 @@ export const getOrCreateInstance = (elem: string | Element, options?: Partial<bo
 	});
 
 	console.info(`Initialize bootstrap dropdown to $1`, elem);
-	return window.bootstrap.Dropdown.getOrCreateInstance(elem, options);
+	return BSDropdown.getOrCreateInstance(elem, options);
 };
 export const hide = (elem: string | Element) => {
 	getOrCreateInstance(elem)?.hide();

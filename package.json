@@ -1,6 +1,6 @@
 {
 	"name": "@printf83/bsts",
-	"version": "0.1.143",
+	"version": "0.2.0",
 	"description": "Bootstrap TS builder",
 	"keywords": [
 		"bootstrap 5",
@@ -18,27 +18,34 @@
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts.git"
 	},
-	"main": "./lib/index.js",
-	"types": "./lib/types/index.d.ts",
+	"main": "index.js",
 	"exports": {
-		"types": "./lib/types/index.d.ts",
-		"default": "./lib/index.js"
-	},
-	"files": [
-		"lib/**/*"
-	],
-	"scripts": {
-		"clean": "rm -rf ./lib",
-		"clean:win": "rmdir /s /q lib",
-		"build": "tsc -p ./configs/tsconfig.esm.json",
-		"rebuild": "npm run clean && npm run build",
-		"rebuild:win": "npm run clean:win && npm run build",
-		"debug": "tsc -p ./configs/tsconfig.esm.json --watch",
-		"link": "npm link",
-		"prepack": "npm run rebuild"
+		".": {
+			"types": "./build/types/index.d.ts",
+			"require": "./build/cjs/index.js",
+			"import": "./build/esm/index.js",
+			"default": "./build/esm/index.js"
+		}
 	},
 	"devDependencies": {
 		"@types/bootstrap": "^5.2.6",
+		"@types/node": "^20.4.1",
 		"typescript": "^5.1.6"
+	},
+	"dependencies": {
+		"bootstrap": "^5.3.0"
+	},
+	"scripts": {
+		"link": "npm link",
+		"compile": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
+		"build:clean": "rm -rf ./build",
+		"build:clean:win": "rmdir /s /q lib",
+		"prepare": "node ./scripts/prepare-package-json",
+		"build": "npm run build:clean && npm run compile",
+		"build:win": "npm run build:clean:win && npm run compile",
+		"build:prepare": "npm run build:clean && npm run compile && npm run prepare",
+		"build:win:prepare": "npm run build:clean:win && npm run compile && npm run prepare",
+		"prepack": "npm run build",
+		"prepack:win": "npm run build:win"
 	}
 }

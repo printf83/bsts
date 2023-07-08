@@ -12,15 +12,16 @@ import { title } from "./title.js";
 import { bootstrapType } from "../../core/bootstrap.js";
 import { btnclose } from "./btnclose.js";
 import { bstsConsole as console } from "../../core/console.js";
+import {Modal as BSModal} from "bootstrap";
 // import { disconnectResizeObserver, observeResizeObserver } from "../../core/resizeObserverManager.js";
 
-export const init = (elem: string | Element, options?: Partial<bootstrap.Modal.Options>) => {
+export const init = (elem: string | Element, options?: Partial<BSModal.Options>) => {
 	return getOrCreateInstance(elem, options);
 };
 export const getInstance = (elem: string | Element) => {
-	return window.bootstrap.Modal.getInstance(elem);
+	return BSModal.getInstance(elem);
 };
-export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Modal.Options>) => {
+export const getOrCreateInstance = (elem: string | Element, options?: Partial<BSModal.Options>) => {
 	addEvent("destroy", elem, (i) => {
 		const target = i.target as Element;
 
@@ -39,7 +40,7 @@ export const getOrCreateInstance = (elem: string | Element, options?: Partial<bo
 	// });
 
 	console.info(`Initialize bootstrap modal to $1`, elem);
-	return window.bootstrap.Modal.getOrCreateInstance(elem, options);
+	return BSModal.getOrCreateInstance(elem, options);
 };
 export const handleUpdate = (elem: string | Element) => {
 	getOrCreateInstance(elem)?.handleUpdate();

@@ -12,15 +12,16 @@ import { div } from "../../html/div.js";
 import { strong } from "../../html/strong.js";
 import { IElem, isTag } from "../../core/tag.js";
 import { bstsConsole as console } from "../../core/console.js";
+import { Toast as BSToast } from "bootstrap";
 
-export const init = (elem: string | Element, options?: Partial<bootstrap.Toast.Options>) => {
+export const init = (elem: string | Element, options?: Partial<BSToast.Options>) => {
 	return getOrCreateInstance(elem, options);
 };
 
 export const getInstance = (elem: string | Element) => {
-	return window.bootstrap.Toast.getInstance(elem);
+	return BSToast.getInstance(elem);
 };
-export const getOrCreateInstance = (elem: string | Element, options?: Partial<bootstrap.Toast.Options>) => {
+export const getOrCreateInstance = (elem: string | Element, options?: Partial<BSToast.Options>) => {
 	addEvent("destroy", elem, (i) => {
 		const target = i.target as Element;
 		const m = getInstance(target);
@@ -32,7 +33,7 @@ export const getOrCreateInstance = (elem: string | Element, options?: Partial<bo
 	});
 
 	console.info(`Initialize bootstrap toast to $1`, elem);
-	return window.bootstrap.Toast.getOrCreateInstance(elem, options);
+	return BSToast.getOrCreateInstance(elem, options);
 };
 
 export const hide = (elem: string | Element) => {
