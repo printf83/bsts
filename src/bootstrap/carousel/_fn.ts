@@ -1,13 +1,14 @@
 import { addEvent } from "../../core/eventManager.js";
 import { bstsConsole as console } from "../../core/console.js";
+import { Carousel as BSCarousel } from "bootstrap";
 
-export const init = (elem: Element | string, options?: Partial<bootstrap.Carousel.Options>) => {
+export const init = (elem: Element | string, options?: Partial<BSCarousel.Options>) => {
 	return getOrCreateInstance(elem, options);
 };
 export const getInstance = (elem: Element | string) => {
-	return window.bootstrap.Carousel.getInstance(elem);
+	return BSCarousel.getInstance(elem);
 };
-export const getOrCreateInstance = (elem: Element | string, options?: Partial<bootstrap.Carousel.Options>) => {
+export const getOrCreateInstance = (elem: Element | string, options?: Partial<BSCarousel.Options>) => {
 	addEvent("destroy", elem, (i) => {
 		const target = i.target as Element;
 
@@ -19,7 +20,7 @@ export const getOrCreateInstance = (elem: Element | string, options?: Partial<bo
 	});
 
 	console.info(`Initialize bootstrap carousel to $1`, elem);
-	return window.bootstrap.Carousel.getOrCreateInstance(elem, options);
+	return BSCarousel.getOrCreateInstance(elem, options);
 };
 export const cycle = (elem: Element | string) => {
 	getOrCreateInstance(elem)?.cycle();

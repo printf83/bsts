@@ -5,6 +5,7 @@ import { div } from "../html/div.js";
 import { addEvent } from "../core/eventManager.js";
 import { bstsConsole as console } from "../core/console.js";
 import { UUID } from "../core/uuid.js";
+import { ScrollSpy as BSScrollSpy } from "bootstrap";
 // import { disconnectResizeObserver, observeResizeObserver } from "../core/resizeObserverManager.js";
 
 export interface Scrollspy extends IAttr {
@@ -70,13 +71,13 @@ export class scrollspy extends div {
 		super(convert(bsConstArg<Scrollspy>("elem", arg)));
 	}
 
-	static init = (elem: Element | string, options?: Partial<bootstrap.ScrollSpy.Options>) => {
+	static init = (elem: Element | string, options?: Partial<BSScrollSpy.Options>) => {
 		return scrollspy.getOrCreateInstance(elem, options);
 	};
 	static getInstance = (elem: Element | string) => {
-		return window.bootstrap.ScrollSpy.getInstance(elem);
+		return BSScrollSpy.getInstance(elem);
 	};
-	static getOrCreateInstance = (elem: Element | string, options?: Partial<bootstrap.ScrollSpy.Options>) => {
+	static getOrCreateInstance = (elem: Element | string, options?: Partial<BSScrollSpy.Options>) => {
 		addEvent("destroy", elem, (i) => {
 			const target = i.target as Element;
 
@@ -95,7 +96,7 @@ export class scrollspy extends div {
 		// });
 
 		console.info(`Initialize bootstrap scrollspy to $1`, elem);
-		return window.bootstrap.ScrollSpy.getOrCreateInstance(elem, options);
+		return BSScrollSpy.getOrCreateInstance(elem, options);
 	};
 	static dispose = (elem: Element | string) => {
 		scrollspy.getInstance(elem)?.dispose();

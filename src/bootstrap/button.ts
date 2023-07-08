@@ -4,6 +4,7 @@ import { mergeObject } from "../core/mergeObject.js";
 import { Button as TButton } from "../html/button.js";
 import { addEvent } from "../core/eventManager.js";
 import { bstsConsole as console } from "../core/console.js";
+import { Button as BSButton } from "bootstrap";
 
 export interface Button extends Omit<TButton, "role"> {
 	color?: bootstrapType.btnColor;
@@ -95,7 +96,7 @@ export class button extends tag {
 		return button.getOrCreateInstance(elem);
 	};
 	static getInstance = (elem: Element | string) => {
-		return window.bootstrap.Button.getInstance(elem);
+		return BSButton.getInstance(elem);
 	};
 	static getOrCreateInstance = (elem: Element | string) => {
 		addEvent("destroy", elem, (i) => {
@@ -109,7 +110,7 @@ export class button extends tag {
 		});
 
 		console.info(`Initialize bootstrap button to $1`, elem);
-		return window.bootstrap.Button.getOrCreateInstance(elem);
+		return BSButton.getOrCreateInstance(elem);
 	};
 	static toggle = (elem: Element | string) => {
 		button.getOrCreateInstance(elem)?.toggle();
