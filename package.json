@@ -1,6 +1,6 @@
 {
 	"name": "@printf83/bsts",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "Bootstrap TS builder",
 	"keywords": [
 		"bootstrap 5",
@@ -18,7 +18,8 @@
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts.git"
 	},
-	"main": "index.js",
+	"main": "./build/esm/index.js",
+	"types": "./build/types/index.d.ts",
 	"exports": {
 		".": {
 			"types": "./build/types/index.d.ts",
