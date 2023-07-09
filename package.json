@@ -1,6 +1,6 @@
 {
 	"name": "@printf83/bsts",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"description": "Bootstrap TS builder",
 	"keywords": [
 		"bootstrap 5",
@@ -36,15 +36,13 @@
 	},
 	"scripts": {
 		"link": "npm link",
-		"compile": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
-		"build:clean": "rm -rf ./build",
-		"build:clean:win": "rmdir /s /q lib",
-		"prepare": "node ./scripts/prepare-package-json",
-		"build": "npm run build:clean && npm run compile",
-		"build:win": "npm run build:clean:win && npm run compile",
-		"build:prepare": "npm run build:clean && npm run compile && npm run prepare",
-		"build:win:prepare": "npm run build:clean:win && npm run compile && npm run prepare",
-		"prepack": "npm run build",
-		"prepack:win": "npm run build:win"
+		"compile": "npx tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
+		"clean": "rm -rf ./build",
+		"clean.win": "rmdir /s /q build",
+		"prepare": "npx node ./scripts/prepare-package-json",
+		"build": "npm run clean && npm run compile",
+		"build.win": "npm run clean.win && npm run compile",
+		"build.prepare": "npm run clean && npm run compile && npm run prepare",
+		"build.prepare.win": "npm run clean.win && npm run compile && npm run prepare"
 	}
 }
