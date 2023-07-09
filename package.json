@@ -4,8 +4,6 @@
 	"description": "Bootstrap TS builder",
 	"keywords": [
 		"bootstrap 5",
-		"api",
-		"sdk",
 		"typescript"
 	],
 	"author": "Hamzah A <printf83@gmail.com>",
