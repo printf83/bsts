@@ -389,9 +389,12 @@ export const Create = (attr: Create) => {
 
 	if (attr.customStyle === 1) {
 		contAttr.contentAttr = { rounded: 4 };
-		contAttr.animate = "slide-up";
-		contAttr.animateDuration = "250ms";
 		contAttr.view = "end";
+
+		if (!attr.debug) {
+			contAttr.animate = "slide-up";
+			contAttr.animateDuration = "300ms";
+		}
 
 		return new container(contAttr as Container, [
 			showHeader

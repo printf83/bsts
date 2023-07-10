@@ -609,7 +609,29 @@ export const animation = () => {
 	/*  Utilities
     ------------------------*/
 
-	const util_duration = ["250ms", "400ms", "500ms", "800ms", "1s", "1500ms", "2s", "2500ms", "3s", "4s", "5s"]
+	const util_duration = [
+		"50ms",
+		"100ms",
+		"250ms",
+		"300ms",
+		"350ms",
+		"400ms",
+		"450ms",
+		"500ms",
+		"600ms",
+		"700ms",
+		"800ms",
+		"900ms",
+		"1s",
+		"1500ms",
+		"2s",
+		"2500ms",
+		"3s",
+		"3500ms",
+		"4s",
+		"4500ms",
+		"5s",
+	]
 		.map(
 			(i) => `
             .animate-duration-${i} {
@@ -648,7 +670,29 @@ export const animation = () => {
 			}
 		})
 		.join("\n");
-	const util_delay = ["250ms", "400ms", "500ms", "800ms", "1s", "1500ms", "2s", "2500ms", "3s", "4s", "5s"]
+	const util_delay = [
+		"50ms",
+		"100ms",
+		"250ms",
+		"300ms",
+		"350ms",
+		"400ms",
+		"450ms",
+		"500ms",
+		"600ms",
+		"700ms",
+		"800ms",
+		"900ms",
+		"1s",
+		"1500ms",
+		"2s",
+		"2500ms",
+		"3s",
+		"3500ms",
+		"4s",
+		"4500ms",
+		"5s",
+	]
 		.map(
 			(i) => `
             .animate-delay-${i} {
