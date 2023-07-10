@@ -1,6 +1,6 @@
 import { bootstrapType, bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
-import { IAttr, IElem, genTagClass, isAttr } from "../core/tag.js";
+import { IAttr, IElem, genTagClass, isAttr, tag } from "../core/tag.js";
 import { div } from "../html/div.js";
 import { span } from "../html/span.js";
 import { Icon, icon } from "./icon.js";
@@ -14,24 +14,22 @@ export interface Caption extends IAttr {
 	labelDisplay?: CaptionDisplay;
 }
 
-const fnRow = (display: CaptionDisplay | undefined, elem: IElem) => {
-	return new div({ row: true, display: display }, new div({ col: true, textAlign: "center" }, elem));
-};
-
 const fnIcon = (display: CaptionDisplay | undefined, attr: string | Icon | icon) => {
 	if (typeof attr === "string") {
-		attr = { id: attr } as Icon;
-	}
-
-	if (isAttr<Icon>(attr)) {
-		return new span({ display: display }, new icon(attr!));
+		return new icon({ id: attr, display: display });
+	} else if (isAttr<Icon>(attr)) {
+		return new icon(mergeObject(attr, { display: display }));
 	} else {
-		return new span({ display: display }, attr!);
+		return attr;
 	}
 };
 
 const fnElem = (display: CaptionDisplay | undefined, elem: IElem) => {
-	return new span({ display: display }, elem);
+	if (display) {
+		return new span({ display: display }, elem);
+	} else {
+		return elem as tag;
+	}
 };
 
 const convert = (attr: Caption) => {
@@ -43,27 +41,26 @@ const convert = (attr: Caption) => {
 			//append icon base on position
 			switch (attr.iconPosition) {
 				case "start":
-					attr = mergeObject({ display: "flex", gap: 2, alignItem: "center" }, attr);
+					attr = mergeObject({ display: "flex", gap: 2, alignItem: "center", justifyContent: "start" }, attr);
 					attr.elem = [fnIcon(attr.iconDisplay, attr.icon!), fnElem(attr.labelDisplay, attr.elem!)];
-
 					break;
 				case "end":
-					attr = mergeObject({ display: "flex", gap: 2, alignItem: "center" }, attr);
+					attr = mergeObject({ display: "flex", gap: 2, alignItem: "center", justifyContent: "end" }, attr);
 					attr.elem = [fnElem(attr.labelDisplay, attr.elem!), fnIcon(attr.iconDisplay, attr.icon!)];
 					break;
 				case "top":
-					attr = mergeObject({ display: "inline-block" }, attr);
-					attr.elem = [
-						fnRow(attr.iconDisplay, fnIcon(undefined, attr.icon!)),
-						fnRow(attr.labelDisplay, fnElem(undefined, attr.elem!)),
-					];
+					attr = mergeObject(
+						{ display: "grid", gap: 2, alignItem: "center", justifyContent: "center" },
+						attr
+					);
+					attr.elem = [fnIcon(attr.iconDisplay, attr.icon!), fnElem(attr.labelDisplay, attr.elem!)];
 					break;
 				case "bottom":
-					attr = mergeObject({ display: "inline-block" }, attr);
-					attr.elem = [
-						fnRow(attr.labelDisplay, fnElem(undefined, attr.elem!)),
-						fnRow(attr.iconDisplay, fnIcon(undefined, attr.icon!)),
-					];
+					attr = mergeObject(
+						{ display: "grid", gap: 2, alignItem: "center", justifyContent: "center" },
+						attr
+					);
+					attr.elem = [fnElem(attr.labelDisplay, attr.elem!), fnIcon(attr.iconDisplay, attr.icon!)];
 					break;
 				default:
 					throw new Error("Unknow iconPosition");
@@ -71,10 +68,8 @@ const convert = (attr: Caption) => {
 		} else {
 			if (attr.icon) {
 				if (typeof attr.icon === "string") {
-					attr.icon = { id: attr.icon } as Icon;
-				}
-
-				if (isAttr<Icon>(attr.icon)) {
+					attr.elem = new icon({ id: attr.icon });
+				} else if (isAttr<Icon>(attr.icon)) {
 					attr.elem = new icon(attr.icon);
 				} else {
 					attr.elem = attr.icon;

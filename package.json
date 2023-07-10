@@ -16,7 +16,7 @@
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts.git"
 	},
-	"main": "./build/esm/index.js",
+	"main":"./build/esm/index.js",
 	"types": "./build/types/index.d.ts",
 	"exports": {
 		".": {
@@ -38,6 +38,7 @@
 		"link": "npm link",		
 		"clean": "npx node scripts/clean.cjs",
 		"compile": "npx tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
+		"debug": "npx tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json -w",
 		"prepare": "npx node ./scripts/esm-package-json.cjs",
 		"build": "npm run clean && npm run compile && npm run prepare",
 		"prepack":"npm run build"
