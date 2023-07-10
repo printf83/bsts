@@ -9,28 +9,40 @@ export const colorExtend = () => {
 			let ivar = i;
 			if (i.indexOf("-emphasis") > -1) {
 				ivar = `${i.replace("-emphasis", "")}-text-emphasis`;
+			} else if (i === "body-tertiary") {
+				ivar = "tertiary-text";
+			} else if (i === "body-emphasis") {
+				ivar = "emphasis-text";
 			} else {
 				ivar = `${i}`;
 			}
 
-			return { name: i, var: `var(--bs-${i})` };
+			return { name: i, var: `var(--bs-${ivar})` };
 		});
 
 		let bgColor = bootstrapTypeA.bgColor.map((i) => {
 			let ivar = i;
 			if (i.indexOf("-subtle") > -1) {
 				ivar = `${i.replace("-subtle", "")}-bg-subtle`;
+			} else if (i === "body-tertiary") {
+				ivar = "tertiary-bg";
+			} else if (i === "body-emphasis") {
+				ivar = "emphasis-bg";
 			} else {
 				ivar = `${i}`;
 			}
 
-			return { name: i, var: `var(--bs-${i})` };
+			return { name: i, var: `var(--bs-${ivar})` };
 		});
 
 		let borderColor = bootstrapTypeA.borderColor.map((i) => {
 			let ivar = i;
 			if (i.indexOf("-subtle") > -1) {
 				ivar = `${i.replace("-subtle", "")}-border-subtle`;
+			} else if (i === "body-tertiary") {
+				ivar = "tertiary-border";
+			} else if (i === "body-emphasis") {
+				ivar = "emphasis-border";
 			} else {
 				ivar = `${i}`;
 			}

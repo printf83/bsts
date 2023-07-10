@@ -56,14 +56,14 @@ const convert = (attr: Label) => {
 					break;
 				case "top":
 					attr = mergeObject(
-						{ display: "grid", gap: 2, alignItem: "center", justifyContent: "center" },
+						{ display: "grid", gap: 1, alignItem: "center", justifyContent: "center", textAlign: "center" },
 						attr
 					);
 					attr.elem = [fnIcon(attr.iconDisplay, attr.icon!), fnElem(attr.labelDisplay, attr.elem!)];
 					break;
 				case "bottom":
 					attr = mergeObject(
-						{ display: "grid", gap: 2, alignItem: "center", justifyContent: "center" },
+						{ display: "grid", gap: 1, alignItem: "center", justifyContent: "center", textAlign: "center" },
 						attr
 					);
 					attr.elem = [fnElem(attr.labelDisplay, attr.elem!), fnIcon(attr.iconDisplay, attr.icon!)];
