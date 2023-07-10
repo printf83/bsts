@@ -1,6 +1,5 @@
 import { style } from "../html/style.js";
 import { appendChild } from "./builder.js";
-import { aColor } from "./css/aColor.js";
 import { main } from "./css/main.js";
 import { btnToggle } from "./css/btnToggle.js";
 import { calendar } from "./css/calendar.js";
@@ -22,7 +21,6 @@ const setCSS = () => {
 		svgInLinkAndButton,
 		tableResponsive("bs-title-name"),
 		main,
-		aColor(),
 		colorExtend(),
 		calendar,
 		animation(),

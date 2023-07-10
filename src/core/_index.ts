@@ -1,6 +1,6 @@
 import { manageClass, addClassIntoElement } from "./addClassIntoElement.js";
-import { bootstrapType, Attr, Class, bsConsNoElemArg, bsConstArg, bsConstArgTag } from "./bootstrap.js";
-import { bstsType, IAnimate, ITransform, ILink, IBsts } from "./bsts.js";
+import { bootstrapType, bootstrapTypeA, Attr, Class, bsConsNoElemArg, bsConstArg, bsConstArgTag } from "./bootstrap.js";
+import { bstsType, bstsTypeA, IBsts } from "./bsts.js";
 
 import {
 	build,
@@ -75,15 +75,14 @@ export {
 	manageClass,
 	addClassIntoElement,
 	bootstrapType,
+	bootstrapTypeA,
 	Attr,
 	Class,
 	bsConsNoElemArg,
 	bsConstArg,
 	bsConstArgTag,
 	bstsType,
-	IAnimate,
-	ITransform,
-	ILink,
+	bstsTypeA,
 	IBsts,
 	build,
 	getNode,

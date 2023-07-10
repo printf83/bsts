@@ -7,13 +7,6 @@ export namespace bstsType {
 	type ROTATE = 45 | 90 | 135 | 180 | 225 | 270 | 315;
 	type REPEAT = 1 | 2 | 3 | 5 | 10 | "infinite";
 
-	//this from bootstrapType
-	type COLOR = "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "light" | "dark";
-	type BODYCOLOR = "body" | "body-secondary" | "body-tertiary";
-	type OTHERCOLOR = "white" | "black";
-	type BODYTEXTCOLOR = BODYCOLOR | OTHERCOLOR | "body-emphasis";
-	//------------------------
-
 	//transform
 	export type rotate = ROTATE | `${ROTATE}`;
 	export type flip = "horizontal" | "vertical" | "both";
@@ -79,17 +72,6 @@ export namespace bstsType {
 	export type animateFill = "none" | "forwards" | "backwards" | "both" | "none-backward" | "both-foward-none";
 	export type animateTiming = "ease" | "ease-in-out" | "linear" | "zoom" | "bounce";
 
-	//link
-	export type linkNormal = COLOR | BODYTEXTCOLOR | "link" | "transparent";
-	export type linkBorder = linkNormal;
-	export type linkHover = linkNormal;
-	export type linkActive = linkNormal;
-	export type linkActiveBg = linkNormal;
-	export type linkActiveBorder = linkNormal;
-	export type linkBg = linkNormal;
-	export type linkHoverBg = linkNormal;
-	export type linkHoverBorder = linkNormal;
-
 	//extend bgColor, textColor and borderColor
 	//for active, focus, hover
 
@@ -109,16 +91,9 @@ export namespace bstsType {
 	export type borderColorFocus = bootstrapType.borderColor;
 }
 
-namespace bstsTypeA {
+export namespace bstsTypeA {
 	const ROTATE = [45, 90, 135, 180, 225, 270, 315];
 	const REPEAT = [1, 2, 3, 5, 10];
-
-	//this from bootstrapA
-	const COLOR = ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"];
-	const BODYCOLOR = ["body", "body-secondary", "body-tertiary"];
-	const OTHERCOLOR = ["white", "black"];
-	const BODYTEXTCOLOR = [...BODYCOLOR, ...OTHERCOLOR, "body-emphasis"];
-	//---------------------
 
 	//transform
 	export const rotate = [...ROTATE, ...ROTATE.map((i) => `${i}`)];
@@ -188,18 +163,6 @@ namespace bstsTypeA {
 	export const animateFill = ["none", "forwards", "backwards", "both", "none-backward", "both-foward-none"];
 	export const animateTiming = ["ease", "ease-in-out", "linear", "zoom", "bounce"];
 
-	//link
-	//bsts css
-	export const linkNormal = [...COLOR, ...BODYTEXTCOLOR, "link", "transparent"];
-	export const linkBorder = linkNormal;
-	export const linkHover = linkNormal;
-	export const linkActive = linkNormal;
-	export const linkActiveBg = linkNormal;
-	export const linkActiveBorder = linkNormal;
-	export const linkBg = linkNormal;
-	export const linkHoverBg = linkNormal;
-	export const linkHoverBorder = linkNormal;
-
 	//extend bgColor, textColor and borderColor
 	//for active, focus, hover
 
@@ -260,45 +223,6 @@ const bsClassFormatterDB: {
 
 	//---------------------
 
-	linkNormal: new bsClassFormatterRule({
-		format: "link-normal-$1",
-		value: bstsTypeA.linkNormal,
-	}),
-	linkBorder: new bsClassFormatterRule({
-		format: "link-border-$1",
-		value: bstsTypeA.linkBorder,
-	}),
-	linkHover: new bsClassFormatterRule({
-		format: "link-hover-$1",
-		value: bstsTypeA.linkHover,
-	}),
-	linkHoverBorder: new bsClassFormatterRule({
-		format: "link-hover-border-$1",
-		value: bstsTypeA.linkHoverBorder,
-	}),
-	linkActive: new bsClassFormatterRule({
-		format: "link-active-$1",
-		value: bstsTypeA.linkActive,
-	}),
-	linkActiveBg: new bsClassFormatterRule({
-		format: "link-active-bg-$1",
-		value: bstsTypeA.linkActiveBg,
-	}),
-	linkActiveBorder: new bsClassFormatterRule({
-		format: "link-active-border-$1",
-		value: bstsTypeA.linkActiveBorder,
-	}),
-	linkHoverBg: new bsClassFormatterRule({
-		format: "link-hover-bg-$1",
-		value: bstsTypeA.linkHoverBg,
-	}),
-	linkBg: new bsClassFormatterRule({
-		format: "link-bg-$1",
-		value: bstsTypeA.linkBg,
-	}),
-
-	//---------------------
-
 	bgColorActive: new bsClassFormatterRule({
 		format: "bg-active-$1",
 		value: bstsTypeA.bgColorActive,
@@ -345,12 +269,10 @@ const bsClassFormatterDB: {
 	//---------------------
 };
 
-export interface ITransform {
+export interface IBsts {
 	rotate?: bstsType.rotate;
 	flip?: bstsType.flip;
-}
 
-export interface IAnimate {
 	animate?: bstsType.animate;
 	animateDuration?: bstsType.animateDuration;
 	animateRepeat?: bstsType.animateRepeat;
@@ -358,21 +280,7 @@ export interface IAnimate {
 	animateDelay?: bstsType.animateDelay;
 	animateFill?: bstsType.animateFill;
 	animateTiming?: bstsType.animateTiming;
-}
 
-export interface ILink {
-	linkNormal?: bstsType.linkNormal;
-	linkBorder?: bstsType.linkBorder;
-	linkHover?: bstsType.linkHover;
-	linkHoverBorder?: bstsType.linkHoverBorder;
-	linkActive?: bstsType.linkActive;
-	linkActiveBg?: bstsType.linkActiveBg;
-	linkActiveBorder?: bstsType.linkActiveBorder;
-	linkBg?: bstsType.linkBg;
-	linkHoverBg?: bstsType.linkHoverBg;
-}
-
-export interface IBsts {
 	bgColorActive?: bstsType.bgColorActive;
 	bgColorHover?: bstsType.bgColorHover;
 	bgColorFocus?: bstsType.bgColorFocus;
