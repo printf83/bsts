@@ -392,7 +392,7 @@ export const Create = (attr: Create) => {
 		contAttr.view = "end";
 
 		if (!attr.debug) {
-			contAttr.animate = "slide-up";
+			contAttr.animate = "slide-in-bottom";
 			contAttr.animateDuration = "300ms";
 		}
 

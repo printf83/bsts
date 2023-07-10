@@ -25,18 +25,28 @@ export namespace bstsType {
 		| "wiggle"
 		| "pound"
 		| "heartbeat"
-		| "roller-right"
-		| "roller-left"
-		| "slide-down"
-		| "slide-up"
-		| "slide-left"
-		| "slide-right"
+		| "roller-in-right"
+		| "roller-in-left"
+		| "roller-out-right"
+		| "roller-out-left"
+		| "slide-in-bottom"
+		| "slide-in-top"
+		| "slide-in-left"
+		| "slide-in-right"
+		| "slide-out-bottom"
+		| "slide-out-top"
+		| "slide-out-left"
+		| "slide-out-right"
 		| "fade-in"
 		| "fade-out"
 		| "rotate-in-right"
 		| "rotate-in-left"
 		| "rotate-in"
-		| "bounce-in";
+		| "rotate-out-right"
+		| "rotate-out-left"
+		| "rotate-out"
+		| "bounce-in"
+		| "bounce-out";
 	export type animateDuration =
 		| "50ms"
 		| "100ms"
@@ -113,18 +123,28 @@ export namespace bstsTypeA {
 		"wiggle",
 		"pound",
 		"heartbeat",
-		"roller-right",
-		"roller-left",
-		"slide-down",
-		"slide-up",
-		"slide-left",
-		"slide-right",
+		"roller-in-right",
+		"roller-in-left",
+		"roller-out-right",
+		"roller-out-left",
+		"slide-in-bottom",
+		"slide-in-top",
+		"slide-in-left",
+		"slide-in-right",
+		"slide-out-bottom",
+		"slide-out-top",
+		"slide-out-left",
+		"slide-out-right",
 		"fade-in",
 		"fade-out",
 		"rotate-in-right",
 		"rotate-in-left",
 		"rotate-in",
+		"rotate-out-right",
+		"rotate-out-left",
+		"rotate-out",
 		"bounce-in",
+		"bounce-out",
 	];
 	export const animateDuration = [
 		"50ms",
