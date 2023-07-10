@@ -60,31 +60,6 @@ const dispatchBuildEvent = (elem: Element) => {
 
 //setup DOMInserted
 const setupDOMWatcher = () => {
-	// const observer = new MutationObserver(function (m) {
-	// 	if (m && m.length > 0) {
-	// 		m.forEach((n) => {
-	// 			//check remove node
-	// 			if (n.removedNodes && n.removedNodes.length > 0) {
-	// 				n.removedNodes.forEach((i) => {
-	// 					dispatchDestroyEvent(i as Element);
-	// 				});
-	// 			}
-
-	// 			//check added node
-	// 			if (n.addedNodes && n.addedNodes.length > 0) {
-	// 				n.addedNodes.forEach((i) => {
-	// 					dispatchBuildEvent(i as Element);
-	// 				});
-	// 			}
-	// 		});
-	// 	}
-	// });
-
-	// observer.observe(document.documentElement, {
-	// 	childList: true,
-	// 	subtree: true,
-	// });
-
 	observeMutationObserver(
 		document.documentElement,
 		function (mutation) {

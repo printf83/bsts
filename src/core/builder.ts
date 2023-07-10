@@ -5,7 +5,6 @@ import { markup } from "./markup.js";
 export type buildArg = tag | number | string | strHtml | (tag | string | number | strHtml)[];
 
 const htmlToElement = (strHTML: string) => {
-	//TODO: ths using template. need to check if template is working
 	var template = document.createElement("div");
 	strHTML = strHTML.trim(); // Never return a text node of whitespace as the result
 	template.innerHTML = strHTML;
@@ -158,10 +157,6 @@ export const removeElement = (elem: Element) => {
 				removeElement(elem.firstChild as Element);
 			}
 		}
-
-		// while (elem.firstChild) {
-		// 	removeElement(elem.firstChild as Element);
-		// }
 	}
 
 	elem.remove();

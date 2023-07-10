@@ -95,7 +95,6 @@ export const observeResizeObserver = (
 
 		const ob = (elem as ElementWithResizeObserver).ResizeObserver;
 		if (ob) {
-			// console.info(`Observer resize for $1`, elem);
 			ob.observe(elem, options);
 		}
 	}

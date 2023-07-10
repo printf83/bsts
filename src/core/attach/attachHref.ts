@@ -24,7 +24,6 @@ export const attachHref: IAttachFn = (key, elem, attr: IAttrHref) => {
 				elem.setAttribute("href", i);
 			}
 
-			// delete attr.href;
 			changed = true;
 		}
 	}

@@ -51,7 +51,6 @@ export const observeMutationObserver = (
 
 		const ob = (elem as ElementWithMutationObserver).MutationObserver;
 		if (ob) {
-			// console.info(`Observer mutation for $1`, elem);
 			ob.observe(elem, options);
 		}
 	}

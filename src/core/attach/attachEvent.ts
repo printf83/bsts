@@ -15,7 +15,6 @@ export const attachEvent: IAttachFn = (key, elem, attr) => {
 				}
 			}
 
-			// delete attr.on;
 			changed = true;
 		}
 	}

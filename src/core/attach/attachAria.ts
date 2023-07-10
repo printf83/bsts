@@ -13,7 +13,6 @@ export const attachAria: IAttachFn = (key, elem, attr) => {
 				}
 			}
 
-			// delete attr.aria;
 			changed = true;
 		}
 	}

@@ -48,7 +48,6 @@ export const attachBoolean: IAttachFn = (key, elem, attr) => {
 				}
 			}
 
-			// delete attr[k];
 			changed = true;
 		}
 	}
