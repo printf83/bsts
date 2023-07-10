@@ -1,0 +1,20 @@
+import { IElem, tag, strHtml } from "../../core/tag.js";
+import { Datalist, datalist as TDatalist } from "../../html/datalist.js";
+import { div } from "../../html/div.js";
+import { label as TLabel } from "../label.js";
+import { bootstrapType } from "../../core/bootstrap.js";
+export declare const genDatalist: (id: string, datalist?: Datalist["item"]) => "" | TDatalist;
+export declare const genDescription: (id: string, description?: string) => "" | div;
+export declare const genValidFeedback: (id: string, feedback?: string) => "" | div;
+export declare const genInvalidFeedback: (id: string, feedback?: string) => "" | div;
+export declare const genValidTooltip: (id: string, feedback?: string) => "" | div;
+export declare const genInvalidTooltip: (id: string, feedback?: string) => "" | div;
+export declare const genGroupItem: (id: string, item?: IElem) => (string | number | tag | strHtml)[];
+export declare const genLabel: (id: string, label?: string, hideLabel?: boolean) => "" | TLabel;
+export declare const colSetup: (validfeedback?: string, invalidfeedback?: string, description?: string, col1?: bootstrapType.col, col2?: bootstrapType.col, col3?: false | bootstrapType.col) => {
+    col1: bootstrapType.col | undefined;
+    col2: bootstrapType.col | undefined;
+    col3: false | bootstrapType.col | undefined;
+};
+export declare const descriptionSetup: (id: string, describedby?: string, description?: string, validFeedback?: string, invalidFeedback?: string, validTooltip?: string, invalidTooltip?: string) => string | undefined;
+export declare const labelFloatingFeedbackManager: (e: Event) => void;

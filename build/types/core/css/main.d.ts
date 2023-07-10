@@ -1,0 +1,1 @@
+export declare const main = "\n/* \nsrc/core/css/main.ts \n---------------------- */\n\na:hover > *,\na.nav-link:hover,\n[data-bs-toggle=\"collapse\"]:hover,\n.dropdown-item {\n    cursor: pointer;\n}\n\n.bs-ico-bi i{\n    display: inline-block !important;\n}\n";
