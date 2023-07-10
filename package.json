@@ -35,14 +35,10 @@
 		"bootstrap": "^5.3.0"
 	},
 	"scripts": {
-		"link": "npm link",
+		"link": "npm link",		
+		"clean": "npx node scripts/clean.cjs",
 		"compile": "npx tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
-		"clean": "rm -rf ./build",
-		"clean.win": "rmdir /s /q build",
-		"prepare": "npx node ./scripts/prepare-package-json",
-		"build": "npm run clean && npm run compile",
-		"build.win": "npm run clean.win && npm run compile",
-		"build.prepare": "npm run clean && npm run compile && npm run prepare",
-		"build.prepare.win": "npm run clean.win && npm run compile && npm run prepare"
+		"prepare": "npx node ./scripts/esm-package-json.cjs",
+		"build": "npm run clean && npm run compile && npm run prepare"
 	}
 }

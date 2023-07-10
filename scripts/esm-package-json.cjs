@@ -14,6 +14,8 @@ function createEsmModulePackageJson() {
 					fs.writeFile(packageJsonFile, new Uint8Array(Buffer.from('{"type": "module"}')), function (err) {
 						if (err) {
 							throw err;
+						} else {
+							console.log(`Create package.json on ${path.join(buildDir, dir)}`);
 						}
 					});
 				}
