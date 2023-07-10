@@ -1,1 +1,0 @@
-export declare const svgInLinkAndButton = "\n/* \nsrc/core/css/svgInLinkAndButton.ts \n---------------------------------- */\n\na span.bs-ico-bi i,\na span.bs-ico-fa i,\nbutton span.bs-ico-bi i,\nbutton span.bs-ico-fa i{\n    cursor: pointer;\n}\n";
