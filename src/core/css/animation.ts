@@ -613,7 +613,7 @@ export const animation = () => {
 		.map(
 			(i) => `
             .animate-duration-${i} {
-                animation-duration: ${i}ms;
+                animation-duration: ${i};
             }`
 		)
 		.join("\n");

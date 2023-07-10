@@ -12,7 +12,7 @@ import { title } from "./title.js";
 import { bootstrapType } from "../../core/bootstrap.js";
 import { btnclose } from "./btnclose.js";
 import { bstsConsole as console } from "../../core/console.js";
-import {Modal as BSModal} from "bootstrap";
+import { Modal as BSModal } from "bootstrap";
 // import { disconnectResizeObserver, observeResizeObserver } from "../../core/resizeObserverManager.js";
 
 export const init = (elem: string | Element, options?: Partial<BSModal.Options>) => {
@@ -389,6 +389,8 @@ export const Create = (attr: Create) => {
 
 	if (attr.customStyle === 1) {
 		contAttr.contentAttr = { rounded: 4 };
+		contAttr.animate = "slide-up";
+		contAttr.animateDuration = "250ms";
 		contAttr.view = "end";
 
 		return new container(contAttr as Container, [

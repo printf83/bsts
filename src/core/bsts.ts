@@ -45,16 +45,26 @@ export namespace bstsType {
 		| "rotate-in"
 		| "bounce-in";
 	export type animateDuration =
+		| "50ms"
+		| "100ms"
 		| "250ms"
+		| "300ms"
+		| "350ms"
 		| "400ms"
+		| "450ms"
 		| "500ms"
+		| "600ms"
+		| "700ms"
 		| "800ms"
+		| "900ms"
 		| "1s"
 		| "1500ms"
 		| "2s"
 		| "2500ms"
 		| "3s"
+		| "3500ms"
 		| "4s"
+		| "4500ms"
 		| "5s";
 
 	export type animateRepeat = REPEAT | `${REPEAT}` | "infinite";
@@ -124,16 +134,26 @@ namespace bstsTypeA {
 		"bounce-in",
 	];
 	export const animateDuration = [
+		"50ms",
+		"100ms",
 		"250ms",
+		"300ms",
+		"350ms",
 		"400ms",
+		"450ms",
 		"500ms",
+		"600ms",
+		"700ms",
 		"800ms",
+		"900ms",
 		"1s",
 		"1500ms",
 		"2s",
 		"2500ms",
 		"3s",
+		"3500ms",
 		"4s",
+		"4500ms",
 		"5s",
 	];
 
