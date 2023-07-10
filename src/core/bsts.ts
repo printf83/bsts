@@ -1,7 +1,7 @@
 import { addClassIntoElement } from "./addClassIntoElement.js";
 import { IAttachFn } from "./attach/_index.js";
 import { keyOfType } from "./keyOfType.js";
-import { ClassFormatter, bsClassFormatterRule } from "./bootstrap.js";
+import { ClassFormatter, bootstrapType, bootstrapTypeA, bsClassFormatterRule } from "./bootstrap.js";
 
 export namespace bstsType {
 	type ROTATE = 45 | 90 | 135 | 180 | 225 | 270 | 315;
@@ -89,6 +89,24 @@ export namespace bstsType {
 	export type linkBg = linkNormal;
 	export type linkHoverBg = linkNormal;
 	export type linkHoverBorder = linkNormal;
+
+	//extend bgColor, textColor and borderColor
+	//for active, focus, hover
+
+	//bgColor extend
+	export type bgColorActive = bootstrapType.bgColor;
+	export type bgColorHover = bootstrapType.bgColor;
+	export type bgColorFocus = bootstrapType.bgColor;
+
+	//textColor extend
+	export type textColorActive = bootstrapType.textColor;
+	export type textColorHover = bootstrapType.textColor;
+	export type textColorFocus = bootstrapType.textColor;
+
+	//borderColor extend
+	export type borderColorActive = bootstrapType.borderColor;
+	export type borderColorHover = bootstrapType.borderColor;
+	export type borderColorFocus = bootstrapType.borderColor;
 }
 
 namespace bstsTypeA {
@@ -181,6 +199,24 @@ namespace bstsTypeA {
 	export const linkBg = linkNormal;
 	export const linkHoverBg = linkNormal;
 	export const linkHoverBorder = linkNormal;
+
+	//extend bgColor, textColor and borderColor
+	//for active, focus, hover
+
+	//bgColor extend
+	export const bgColorActive = bootstrapTypeA.bgColor;
+	export const bgColorHover = bootstrapTypeA.bgColor;
+	export const bgColorFocus = bootstrapTypeA.bgColor;
+
+	//textColor extend
+	export const textColorActive = bootstrapTypeA.textColor;
+	export const textColorHover = bootstrapTypeA.textColor;
+	export const textColorFocus = bootstrapTypeA.textColor;
+
+	//borderColor extend
+	export const borderColorActive = bootstrapTypeA.borderColor;
+	export const borderColorHover = bootstrapTypeA.borderColor;
+	export const borderColorFocus = bootstrapTypeA.borderColor;
 }
 
 const bsClassFormatterDB: {
@@ -262,6 +298,51 @@ const bsClassFormatterDB: {
 	}),
 
 	//---------------------
+
+	bgColorActive: new bsClassFormatterRule({
+		format: "bg-active-$1",
+		value: bstsTypeA.bgColorActive,
+	}),
+	bgColorHover: new bsClassFormatterRule({
+		format: "bg-hover-$1",
+		value: bstsTypeA.bgColorHover,
+	}),
+	bgColorFocus: new bsClassFormatterRule({
+		format: "bg-focus-$1",
+		value: bstsTypeA.bgColorFocus,
+	}),
+
+	//---------------------
+
+	textColorActive: new bsClassFormatterRule({
+		format: "text-active-$1",
+		value: bstsTypeA.textColorActive,
+	}),
+	textColorHover: new bsClassFormatterRule({
+		format: "text-hover-$1",
+		value: bstsTypeA.textColorHover,
+	}),
+	textColorFocus: new bsClassFormatterRule({
+		format: "text-focus-$1",
+		value: bstsTypeA.textColorFocus,
+	}),
+
+	//---------------------
+
+	borderColorActive: new bsClassFormatterRule({
+		format: "border-active-$1",
+		value: bstsTypeA.borderColorActive,
+	}),
+	borderColorHover: new bsClassFormatterRule({
+		format: "border-hover-$1",
+		value: bstsTypeA.borderColorHover,
+	}),
+	borderColorFocus: new bsClassFormatterRule({
+		format: "border-focus-$1",
+		value: bstsTypeA.borderColorFocus,
+	}),
+
+	//---------------------
 };
 
 export interface ITransform {
@@ -289,6 +370,18 @@ export interface ILink {
 	linkActiveBorder?: bstsType.linkActiveBorder;
 	linkBg?: bstsType.linkBg;
 	linkHoverBg?: bstsType.linkHoverBg;
+}
+
+export interface IBsts {
+	bgColorActive?: bstsType.bgColorActive;
+	bgColorHover?: bstsType.bgColorHover;
+	bgColorFocus?: bstsType.bgColorFocus;
+	textColorActive?: bstsType.textColorActive;
+	textColorHover?: bstsType.textColorHover;
+	textColorFocus?: bstsType.textColorFocus;
+	borderColorActive?: bstsType.borderColorActive;
+	borderColorHover?: bstsType.borderColorHover;
+	borderColorFocus?: bstsType.borderColorFocus;
 }
 
 let allowClassProp: (string | undefined)[] = [];

@@ -12,6 +12,7 @@ import { ElementWithAbortController, removeEvent } from "./eventManager.js";
 import { observeMutationObserver } from "./mutationObserverManager.js";
 import { animation } from "./css/animation.js";
 import { transform } from "./css/transform.js";
+import { colorExtend } from "./css/colorExtend.js";
 
 //set css on document ready
 const setCSS = () => {
@@ -22,6 +23,7 @@ const setCSS = () => {
 		tableResponsive("bs-title-name"),
 		main,
 		aColor(),
+		colorExtend(),
 		calendar,
 		animation(),
 		transform(),

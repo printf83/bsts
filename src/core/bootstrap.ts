@@ -233,7 +233,7 @@ export namespace bootstrapType {
 	export type dropdownMenuPositionView = _positionView;
 }
 
-namespace bootstrapTypeA {
+export namespace bootstrapTypeA {
 	const VIEWPORT = ["sm", "md", "lg", "xl", "xxl"];
 	const SPACER = ["auto", 0, 1, 2, 3, 4, 5];
 	const GRID = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
