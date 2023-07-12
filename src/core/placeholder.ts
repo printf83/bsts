@@ -13,7 +13,7 @@ export const placeholder = (
 
 	let aR = Array(rndBetween(min, max)).fill("");
 	return aR.map(
-		(i) =>
+		() =>
 			new span(
 				{
 					loadingPlaceholder: true,
