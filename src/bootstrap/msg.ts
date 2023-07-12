@@ -1,8 +1,7 @@
 import { bootstrapType, bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
-import { IAttr, IElem, genTagClass, isAttr, tag } from "../core/tag.js";
+import { IAttr, IElem, genTagClass, isAttr } from "../core/tag.js";
 import { div } from "../html/div.js";
-import { span } from "../html/span.js";
 import { Icon, icon } from "./icon.js";
 
 export type MsgDisplay = bootstrapType.display | bootstrapType.display[];
