@@ -2,7 +2,6 @@ import { bsConstArg } from "../core/bootstrap.js";
 import { IAttr, IElem, genTagClass } from "../core/tag.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { i } from "../html/i.js";
-import { span } from "../html/span.js";
 
 type IAttrIconType = "bi";
 

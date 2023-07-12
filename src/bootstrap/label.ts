@@ -1,7 +1,6 @@
 import { bootstrapType, bsConstArg } from "../core/bootstrap.js";
 import { IElem, genTagClass, isAttr, tag } from "../core/tag.js";
 import { mergeClass } from "../core/mergeClass.js";
-import { div } from "../html/div.js";
 import { Label as ILabel, label as TLabel } from "../html/label.js";
 import { span } from "../html/span.js";
 import { Icon, icon } from "./icon.js";
@@ -37,8 +36,6 @@ const fnElem = (display: LabelDisplay | undefined, elem: IElem) => {
 };
 
 const convert = (attr: Label) => {
-	let tAttr: Label = attr;
-
 	if (attr && typeof attr.icon !== "undefined") {
 		if (attr.elem) {
 			//default position
