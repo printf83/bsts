@@ -6,7 +6,7 @@ import { attachData } from "./attachData.js";
 import { attachBoolean } from "./attachBoolean.js";
 import { attachBSAttr, attachBSClass } from "../bootstrap.js";
 import { attachBSTSClass } from "../bsts.js";
-import { attachEvent, hasBuildAndDestroyEvent } from "./attachEvent.js";
+import { attachEvent } from "./attachEvent.js";
 import { attachStyle } from "./attachStyle.js";
 import { attachClass } from "./attachClass.js";
 import { attachAlias } from "./attachAlias.js";
@@ -52,26 +52,6 @@ const attrFn: IAttachFn[] = [
 export const attachAttr = (elem: Element, attr: IAttr): Element => {
 	if (attr) {
 		let d = Object.assign({}, attr);
-
-		//add hasdestroy and hasbuild
-		let { hasBuild, hasDestroy } = hasBuildAndDestroyEvent(d);
-		if (hasBuild || hasDestroy) {
-			if (d.class) {
-				if (Array.isArray(d.class)) {
-					if (hasBuild) d.class.push("bs-build-event");
-					if (hasDestroy) d.class.push("bs-destroy-event");
-				} else {
-					let o = d.class.split(" ");
-					if (hasBuild) o.push("bs-build-event");
-					if (hasDestroy) o.push("bs-destroy-event");
-					d.class = o.join(" ");
-				}
-			} else {
-				d.class = [];
-				if (hasBuild) d.class.push("bs-build-event");
-				if (hasDestroy) d.class.push("bs-destroy-event");
-			}
-		}
 
 		//convert to attribute
 		let prop = Object.keys(d);

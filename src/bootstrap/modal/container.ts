@@ -4,6 +4,7 @@ import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
+import { handleUpdate } from "./_fn.js";
 
 export interface Container extends IAttr {
 	backdrop?: boolean | "static";
@@ -35,6 +36,12 @@ const convert = (attr: Container) => {
 				"bs-backdrop": attr.backdrop,
 				"bs-keyboard": attr.keyboard,
 				"bs-focus": attr.focus,
+			},
+			on: {
+				resize: (e: Event) => {
+					const target = e.target as Element;
+					handleUpdate(target);
+				},
 			},
 			aria: {
 				hidden: attr.debug ? undefined : "true",

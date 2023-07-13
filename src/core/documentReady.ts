@@ -7,7 +7,7 @@ import { dropdownMenuStyle } from "./css/dropdownMenuStyle.js";
 import { svgInLinkAndButton } from "./css/svgInLinkAndButton.js";
 import { tableResponsive } from "./css/tableResponsive.js";
 import { bstsConsole as console } from "./console.js";
-import { ElementWithAbortController, removeEvent } from "./eventManager.js";
+import { removeEvent } from "./eventManager.js";
 import { observeMutationObserver } from "./mutationObserverManager.js";
 import { animation } from "./css/animation.js";
 import { transform } from "./css/transform.js";
@@ -34,27 +34,22 @@ const setCSS = () => {
 
 const dispatchDestroyEvent = (elem: Element) => {
 	if (elem.nodeType !== 3) {
-		if (elem.classList.contains("bs-destroy-event")) {
-			elem.dispatchEvent(new CustomEvent("destroy"));
-			removeEvent(elem as ElementWithAbortController);
+		while (elem.firstChild) {
+			dispatchDestroyEvent(elem.firstChild as Element);
 		}
+
+		elem.dispatchEvent(new CustomEvent("destroy"));
+		removeEvent(elem);
 	}
 };
 
 const dispatchBuildEvent = (elem: Element) => {
 	if (elem.nodeType !== 3) {
-		const listOfElem = elem.getElementsByClassName("bs-build-event");
-		if (listOfElem && listOfElem.length > 0) {
-			Array.from(listOfElem).forEach((i) => {
-				i.classList.remove("bs-build-event");
-				i.dispatchEvent(new CustomEvent("build"));
-			});
+		while (elem.firstChild) {
+			dispatchBuildEvent(elem.firstChild as Element);
 		}
 
-		if (elem.classList.contains("bs-build-event")) {
-			elem.classList.remove("bs-build-event");
-			elem.dispatchEvent(new CustomEvent("build"));
-		}
+		elem.dispatchEvent(new CustomEvent("build"));
 	}
 };
 

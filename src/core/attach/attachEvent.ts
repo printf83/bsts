@@ -1,5 +1,4 @@
 import { addEvent, ElementWithAbortController } from "../eventManager.js";
-import { IAttr } from "../tag.js";
 import { IAttachFn } from "./_index.js";
 
 export const attachEvent: IAttachFn = (key, elem, attr) => {
@@ -20,21 +19,4 @@ export const attachEvent: IAttachFn = (key, elem, attr) => {
 	}
 
 	return { attr, elem, changed };
-};
-
-export const hasBuildAndDestroyEvent = (attr: IAttr) => {
-	let hasBuild = false;
-	let hasDestroy = false;
-
-	if (attr && typeof attr.on !== "undefined") {
-		let prop = Object.keys(attr.on);
-		if (prop && prop.length > 0) {
-			hasDestroy = true;
-			if (prop.indexOf("build") > -1) {
-				hasBuild = true;
-			}
-		}
-	}
-
-	return { hasBuild, hasDestroy };
 };

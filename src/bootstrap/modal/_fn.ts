@@ -43,6 +43,7 @@ export const getOrCreateInstance = (elem: string | Element, options?: Partial<BS
 	return BSModal.getOrCreateInstance(elem, options);
 };
 export const handleUpdate = (elem: string | Element) => {
+	console.log("modal.handleUpdate for $1", elem);
 	getOrCreateInstance(elem)?.handleUpdate();
 };
 export const toggle = (elem: string | Element, relatedTarget?: HTMLElement) => {
