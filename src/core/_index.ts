@@ -64,7 +64,10 @@ import {
 	disconnectResizeObserver,
 } from "./resizeObserverManager.js";
 
+import * as dataManager from "./dataManager.js";
+
 export {
+	dataManager,
 	ElementWithMutationObserver,
 	observeMutationObserver,
 	disconnectMutationObserver,
