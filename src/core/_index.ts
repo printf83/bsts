@@ -64,9 +64,13 @@ import {
 	disconnectResizeObserver,
 } from "./resizeObserverManager.js";
 
+import { setCSSVar, getCSSVar } from "./CSSVar.js";
+
 import * as dataManager from "./dataManager.js";
 
 export {
+	setCSSVar,
+	getCSSVar,
 	dataManager,
 	ElementWithMutationObserver,
 	observeMutationObserver,
