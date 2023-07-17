@@ -64,13 +64,16 @@ import {
 	disconnectResizeObserver,
 } from "./resizeObserverManager.js";
 
-import { setCSSVar, getCSSVar } from "./CSSVar.js";
+import { setCSSVar, getCSSVar, getRGBVar, RGBToHex, hexToRGB } from "./CSSVar.js";
 
 import * as dataManager from "./dataManager.js";
 
 export {
 	setCSSVar,
 	getCSSVar,
+	getRGBVar,
+	RGBToHex,
+	hexToRGB,
 	dataManager,
 	ElementWithMutationObserver,
 	observeMutationObserver,

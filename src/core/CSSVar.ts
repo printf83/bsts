@@ -1,4 +1,4 @@
-const hexToRGB = (hex: string) => {
+export const hexToRGB = (hex: string) => {
 	var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
 	hex = hex.replace(shorthandRegex, function (_m, r, g, b) {
 		return r + r + g + g + b + b;
@@ -11,10 +11,14 @@ const hexToRGB = (hex: string) => {
 				g: parseInt(result[2], 16),
 				b: parseInt(result[3], 16),
 		  }
-		: null;
+		: {
+				r: 0,
+				g: 0,
+				b: 0,
+		  };
 };
 
-const RGBToHex = (r: number, g: number, b: number) => {
+export const RGBToHex = (r: number, g: number, b: number) => {
 	return "#" + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1);
 };
 
@@ -27,7 +31,6 @@ export const setCSSVar = (variableName: string, value: string) => {
 				root.style.setProperty(variableName, `${v.r},${v.g},${v.b}`);
 			}
 		} else {
-			root.style.setProperty(variableName, value);
 		}
 	}
 };
@@ -45,5 +48,28 @@ export const getCSSVar = (variableName: string) => {
 		}
 	} else {
 		return "#ffffff";
+	}
+};
+
+export const getRGBVar = (variableName: string) => {
+	let root = document.querySelector(":root") as HTMLStyleElement;
+	if (root) {
+		let value = getComputedStyle(root).getPropertyValue(variableName);
+		if (value.startsWith("#")) {
+			return hexToRGB(value);
+		} else {
+			let v = value.replace(/^rgba?\(|\s+|\)$/g, "").split(",");
+			return {
+				r: parseInt(v[0]),
+				g: parseInt(v[1]),
+				b: parseInt(v[2]),
+			};
+		}
+	} else {
+		return {
+			r: 0,
+			g: 0,
+			b: 0,
+		};
 	}
 };
