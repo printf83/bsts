@@ -7,8 +7,8 @@ export const attachAria: IAttachFn = (key, elem, attr) => {
 			let prop = Object.keys(attr.aria);
 			if (prop && prop.length > 0) {
 				for (let x = 0; x < prop.length; x++) {
-					if (attr.aria[prop[x]] !== undefined) {
-						elem.setAttribute(`aria-${prop[x]}`, attr.aria[prop[x]]!.toString());
+					if (attr.aria[prop[x]!] !== undefined) {
+						elem.setAttribute(`aria-${prop[x]}`, attr.aria[prop[x]!]!.toString());
 					}
 				}
 			}

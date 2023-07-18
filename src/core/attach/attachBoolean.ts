@@ -36,19 +36,22 @@ const dbBoolean = [
 
 export const attachBoolean: IAttachFn = (key, elem, attr) => {
 	let changed = false;
-	if (dbBoolean.indexOf(key) > -1) {
-		let k = keyOfType(key, attr);
 
-		if (attr && typeof attr[k] !== "undefined") {
-			if (attr[k] === true) {
-				if (key === "indeterminate") {
-					(<HTMLInputElement>elem).indeterminate = true;
-				} else {
-					elem.setAttribute(key, key);
+	if (key) {
+		if (dbBoolean.indexOf(key) > -1) {
+			let k = keyOfType(key, attr);
+
+			if (attr && typeof attr[k] !== "undefined") {
+				if (attr[k] === true) {
+					if (key === "indeterminate") {
+						(<HTMLInputElement>elem).indeterminate = true;
+					} else {
+						elem.setAttribute(key, key);
+					}
 				}
-			}
 
-			changed = true;
+				changed = true;
+			}
 		}
 	}
 

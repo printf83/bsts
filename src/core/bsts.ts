@@ -325,20 +325,22 @@ export namespace attachBSTSClass {
 		return false;
 	};
 
-	const allowProp = (key: string) => {
-		if (allowClassProp.length === 0) {
-			allowClassProp = Object.keys(bsClassFormatterDB);
-		}
+	const allowProp = (key?: string) => {
+		if (key) {
+			if (allowClassProp.length === 0) {
+				allowClassProp = Object.keys(bsClassFormatterDB);
+			}
 
-		if (allowClassProp.indexOf(key) > -1) {
-			return key;
+			if (allowClassProp.indexOf(key) > -1) {
+				return key;
+			}
 		}
 
 		return null;
 	};
 
-	const addClass = (rule: ClassFormatter, data: string | number | boolean, elem: Element) => {
-		if (rule.value && allowValue(data, rule.value)) {
+	const addClass = (rule: ClassFormatter | undefined, data: string | number | boolean, elem: Element) => {
+		if (rule && rule.value && allowValue(data, rule.value)) {
 			if (rule.formatValue) {
 				elem = addClassIntoElement(elem, rule.formatValue!);
 			}
@@ -357,6 +359,7 @@ export namespace attachBSTSClass {
 
 	export const attach: IAttachFn = (key, elem, attr) => {
 		let changed = false;
+
 		let allowKey = allowProp(key);
 		if (allowKey) {
 			let a = keyOfType(key, attr);

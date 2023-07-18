@@ -9,8 +9,8 @@ export const attachEvent: IAttachFn = (key, elem, attr) => {
 			let prop = Object.keys(attr.on);
 			if (prop && prop.length > 0) {
 				for (let x = 0; x < prop.length; x++) {
-					if (typeof attr.on[prop[x]] === "function") {
-						addEvent(prop[x], elem as ElementWithAbortController, attr.on[prop[x]]!);
+					if (typeof attr.on[prop[x]!] === "function") {
+						addEvent(prop[x]!, elem as ElementWithAbortController, attr.on[prop[x]!]!);
 					}
 				}
 			}

@@ -8,9 +8,9 @@ export const hexToRGB = (hex?: string, alpha?: number) => {
 		var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 		return result
 			? {
-					r: parseInt(result[1], 16),
-					g: parseInt(result[2], 16),
-					b: parseInt(result[3], 16),
+					r: parseInt(result[1] ?? "0", 16),
+					g: parseInt(result[2] ?? "0", 16),
+					b: parseInt(result[3] ?? "0", 16),
 					a: alpha,
 			  }
 			: {
@@ -32,14 +32,14 @@ export const RGBToHex = (rgb?: string) => {
 		let b: number = 0;
 
 		if (v.length === 1) {
-			r = parseInt(v[0]);
+			r = parseInt(v[0] ?? "0");
 		} else if (v.length === 2) {
-			r = parseInt(v[0]);
-			g = parseInt(v[1]);
+			r = parseInt(v[0] ?? "0");
+			g = parseInt(v[1] ?? "0");
 		} else if (v.length >= 3) {
-			r = parseInt(v[0]);
-			g = parseInt(v[1]);
-			b = parseInt(v[2]);
+			r = parseInt(v[0] ?? "0");
+			g = parseInt(v[1] ?? "0");
+			b = parseInt(v[2] ?? "0");
 		}
 
 		return "#" + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1);
@@ -108,12 +108,12 @@ export const varToRgb = (value?: string, alpha?: number) => {
 		if (value.startsWith("#")) {
 			return hexToRGB(value, alpha);
 		} else {
-			let v = value.replace(/^rgba?\(|\s+|\)$/g, "").split(",");
+			let splitedValue = value.replace(/^rgba?\(|\s+|\)$/g, "").split(",");
 			return {
-				r: parseInt(v[0]),
-				g: parseInt(v[1]),
-				b: parseInt(v[2]),
-				a: alpha ? alpha : v.length >= 4 ? parseInt(v[3]) : undefined,
+				r: parseInt(splitedValue[0] ?? "0"),
+				g: parseInt(splitedValue[1] ?? "0"),
+				b: parseInt(splitedValue[2] ?? "0"),
+				a: alpha ? alpha : splitedValue.length >= 4 ? parseInt(splitedValue[3] ?? "1") : undefined,
 			};
 		}
 	} else {
