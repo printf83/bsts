@@ -1,4 +1,4 @@
-export const hexToRGB = (hex?: string) => {
+export const hexToRGB = (hex?: string, alpha?: number) => {
 	if (hex) {
 		var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
 		hex = hex.replace(shorthandRegex, function (_m, r, g, b) {
@@ -11,13 +11,13 @@ export const hexToRGB = (hex?: string) => {
 					r: parseInt(result[1], 16),
 					g: parseInt(result[2], 16),
 					b: parseInt(result[3], 16),
-					a: undefined,
+					a: alpha,
 			  }
 			: {
 					r: 0,
 					g: 0,
 					b: 0,
-					a: undefined,
+					a: alpha,
 			  };
 	} else {
 		return undefined;
@@ -106,7 +106,7 @@ export const varToHexColor = (value?: string) => {
 export const varToRgb = (value?: string, alpha?: number) => {
 	if (value) {
 		if (value.startsWith("#")) {
-			return hexToRGB(value);
+			return hexToRGB(value, alpha);
 		} else {
 			let v = value.replace(/^rgba?\(|\s+|\)$/g, "").split(",");
 			return {
