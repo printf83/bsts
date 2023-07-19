@@ -216,7 +216,7 @@ interface btnItemDB {
 	elem: IElem;
 }
 
-const btnTypeDB = (btnType: btnType): btnItemDB => {
+const btnTypeDB = (btnType?: btnType): btnItemDB => {
 	switch (btnType) {
 		case "ok":
 			return {
@@ -307,6 +307,11 @@ const btnTypeDB = (btnType: btnType): btnItemDB => {
 			return {
 				color: "transparent",
 				elem: "No thanks",
+			};
+		default:
+			return {
+				color: "primary",
+				elem: "Okay",
 			};
 	}
 };

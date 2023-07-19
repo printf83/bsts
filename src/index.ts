@@ -6,3 +6,7 @@ import * as I from "./___index.js";
 import * as $ from "./fn.js";
 
 export { core, t, s, h, b, I, $ };
+
+//test if ts-reset is installed
+// const result = JSON.parse("{}");
+// console.log(result);

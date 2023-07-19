@@ -34,7 +34,7 @@ const convert = (attr: Container) => {
 			attr.elem.push(
 				new thead({
 					elem: new tr({
-						elem: attr.item[0].map((i) => {
+						elem: attr.item[0]?.map((i) => {
 							return new th({ scope: "col" }, i);
 						}),
 					}),
@@ -47,13 +47,13 @@ const convert = (attr: Container) => {
 			if (attr.responsiveHeader) {
 				responsiveHeader = attr.responsiveHeader;
 			} else {
-				if (attr.item.length >= 2 && attr.item[0].length === attr.item[1].length) {
-					responsiveHeader = attr.item[0].map((i) => i.toString());
+				if (attr.item.length >= 2 && attr.item[0]?.length === attr.item[1]?.length) {
+					responsiveHeader = attr.item[0]?.map((i) => i.toString()) ?? [];
 				}
 			}
 		}
 
-		if (attr.responsiveAttr && attr.item.length >= 2 && responsiveHeader.length === attr.item[1].length) {
+		if (attr.responsiveAttr && attr.item.length >= 2 && responsiveHeader.length === attr.item[1]?.length) {
 			attr.elem.push(
 				new tbody({
 					divider: attr.item.length > 1,
