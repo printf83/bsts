@@ -1,4 +1,4 @@
-import { IElem, genTagClass } from "../../core/tag.js";
+import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { h } from "../../html/h.js";
@@ -37,6 +37,3 @@ export class header extends h {
 		super(2, convert(bsConstArg<Button>("elem", arg)));
 	}
 }
-
-export const Header = (AttrOrElem?: Button | IElem, Elem?: IElem) =>
-	genTagClass<header, Button>(header, AttrOrElem, Elem);

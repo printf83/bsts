@@ -1,5 +1,5 @@
 import { bsConstArg, bsConstArgTag } from "../../core/bootstrap.js";
-import { IAttr, IElem, genTagClass, tag } from "../../core/tag.js";
+import { IAttr, IElem, tag } from "../../core/tag.js";
 import { mergeClass } from "../../core/mergeClass.js";
 
 export interface Brand extends IAttr {
@@ -23,5 +23,3 @@ export class brand extends tag {
 		);
 	}
 }
-
-export const Brand = (AttrOrElem?: Brand | IElem, Elem?: IElem) => genTagClass<brand, Brand>(brand, AttrOrElem, Elem);

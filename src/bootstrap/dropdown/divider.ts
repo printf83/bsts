@@ -1,4 +1,4 @@
-import { IAttr, genTagClass } from "../../core/tag.js";
+import { IAttr } from "../../core/tag.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { hr } from "../../html/hr.js";
 import { bsConsNoElemArg } from "../../core/bootstrap.js";
@@ -15,5 +15,3 @@ export class divider extends hr {
 		super(bsConsNoElemArg(convert, arg));
 	}
 }
-
-export const Divider = (Attr?: IAttr) => genTagClass<divider, IAttr>(divider, Attr);

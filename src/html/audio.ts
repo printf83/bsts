@@ -1,4 +1,4 @@
-import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
+import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
 
 export interface Audio extends IAttr {
 	autoplay?: boolean;
@@ -19,5 +19,3 @@ export class audio extends tag {
 		super("audio", tagConsArg("elem", arg));
 	}
 }
-
-export const Audio = (AttrOrElem?: Audio | IElem, Elem?: IElem) => genTagClass<audio, Audio>(audio, AttrOrElem, Elem);

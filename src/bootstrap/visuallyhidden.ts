@@ -1,5 +1,5 @@
 import { bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
-import { IAttr, IElem, genTagClass, tag } from "../core/tag.js";
+import { IAttr, IElem, tag } from "../core/tag.js";
 
 export interface Visuallyhidden extends IAttr {
 	focusable?: boolean;
@@ -30,6 +30,3 @@ export class visuallyhidden extends tag {
 		);
 	}
 }
-
-export const Visuallyhidden = (AttrOrElem?: Visuallyhidden | IElem, Elem?: IElem) =>
-	genTagClass<visuallyhidden, Visuallyhidden>(visuallyhidden, AttrOrElem, Elem);

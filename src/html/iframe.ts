@@ -1,4 +1,4 @@
-import { tagConsNoElemArg, IAttr, tag, genTagClass } from "../core/tag.js";
+import { tagConsNoElemArg, IAttr, tag } from "../core/tag.js";
 
 export interface Iframe extends IAttr {
 	allowfullscreen?: boolean;
@@ -32,5 +32,3 @@ export class iframe extends tag {
 		super("iframe", tagConsNoElemArg<Iframe>(arg));
 	}
 }
-
-export const Iframe = (Attr?: Iframe) => genTagClass<iframe, Iframe>(iframe, Attr);

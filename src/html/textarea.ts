@@ -1,4 +1,4 @@
-import { tagConsNoElemArg, IAttr, tag, genTagClass } from "../core/tag.js";
+import { tagConsNoElemArg, IAttr, tag } from "../core/tag.js";
 
 export interface Textarea extends IAttr {
 	autofocus?: boolean;
@@ -42,5 +42,3 @@ export class textarea extends tag {
 		super("textarea", convert(tagConsNoElemArg<Textarea>(arg)));
 	}
 }
-
-export const Textarea = (Attr?: Textarea) => genTagClass<textarea, Textarea>(textarea, Attr);

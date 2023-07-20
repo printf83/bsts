@@ -1,4 +1,4 @@
-import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
+import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
 
 export interface Option extends IAttr {
 	disabled?: boolean;
@@ -15,6 +15,3 @@ export class option extends tag {
 		super("option", tagConsArg<Option>("elem", arg));
 	}
 }
-
-export const Option = (AttrOrElem?: Option | IElem, Elem?: IElem) =>
-	genTagClass<option, Option>(option, AttrOrElem, Elem);

@@ -1,4 +1,4 @@
-import { IElem, genTagClass } from "../../core/tag.js";
+import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { container as BSNavHeaderContainer, Container } from "../nav/header/container.js";
@@ -20,5 +20,3 @@ export class nav extends BSNavHeaderContainer {
 		super(convert(bsConstArg<Container>("elem", arg)));
 	}
 }
-
-export const Nav = (AttrOrElem?: Container | IElem, Elem?: IElem) => genTagClass<nav, Container>(nav, AttrOrElem, Elem);

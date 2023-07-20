@@ -420,27 +420,3 @@ export const tagConsArg = <T extends IAttr>(prop: string, arg: any[]): T => {
 		return {} as T;
 	}
 };
-
-const createTag = <T extends tag>(TagClass: new (...args: any[]) => T, ...ctorArgs: any[]): T => {
-	return new TagClass(...ctorArgs);
-};
-
-export const genTagClass = <T extends tag, U>(
-	TagClass: new (...args: any[]) => T,
-	AttrOrElem?: U | IElem,
-	Elem?: IElem
-) => {
-	if (AttrOrElem) {
-		if (isAttr<U>(AttrOrElem)) {
-			if (Elem) {
-				return createTag(TagClass, AttrOrElem as U, Elem) as T;
-			} else {
-				return createTag(TagClass, AttrOrElem as U) as T;
-			}
-		} else {
-			return createTag(TagClass, AttrOrElem as IElem) as T;
-		}
-	} else {
-		return createTag(TagClass) as T;
-	}
-};

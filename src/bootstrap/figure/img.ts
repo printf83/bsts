@@ -1,4 +1,3 @@
-import { genTagClass } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { img as TImg, Img as IImg } from "../img.js";
@@ -17,5 +16,3 @@ export class img extends TImg {
 		super(convert(bsConstArg<IImg>("src", arg)));
 	}
 }
-
-export const Img = (AttrOrSrc?: IImg | string, Src?: string) => genTagClass<img, IImg>(img, AttrOrSrc, Src);

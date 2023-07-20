@@ -1,6 +1,6 @@
 import { bootstrapType, bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
-import { IAttr, IElem, genTagClass, isAttr } from "../core/tag.js";
+import { IAttr, IElem, isAttr } from "../core/tag.js";
 import { div } from "../html/div.js";
 import { Icon, icon } from "./icon.js";
 
@@ -100,5 +100,3 @@ export class msg extends div {
 		super(convert(bsConstArg("elem", arg)));
 	}
 }
-
-export const Msg = (AttrOrText?: Msg | string, Text?: string) => genTagClass<msg, Msg>(msg, AttrOrText, Text);
