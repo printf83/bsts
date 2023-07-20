@@ -18,21 +18,4 @@ core.documentReady(() => {
 });
 ```
 
-
-or without new keyword:
-
-
-```
-import {core, $} from "@printf83/bsts";
-
-core.documentReady(() => {
-	let body = document.getElementById("main") as Element;
-	core.replaceChild(body, $.h.div([
-        $.h.p("This is example p tag"),
-        $.h.p({lead:true,data:{test:"test-data"}},"This is example p tag with attribute"),
-        $.b.button({id:"btn1",color:"primary"},"Button"),
-    ]));
-});
-```
-
 Check [bsts testing website](https://printf83.github.io/bsts-test/) or [github](https://github.com/printf83/bsts-test) for more example code
