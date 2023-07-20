@@ -1,4 +1,4 @@
-import { IElem, genTagClass } from "../../../core/tag.js";
+import { IElem } from "../../../core/tag.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { Ul, ul } from "../../../html/ul.js";
@@ -77,6 +77,3 @@ export class container extends ul {
 		super(convert(bsConstArg<Container>("elem", arg)));
 	}
 }
-
-export const Container = (AttrOrElem?: Container | IElem, Elem?: IElem) =>
-	genTagClass<container, Container>(container, AttrOrElem, Elem);

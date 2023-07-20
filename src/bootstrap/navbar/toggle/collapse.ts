@@ -1,4 +1,4 @@
-import { IElem, genTagClass } from "../../../core/tag.js";
+import { IElem } from "../../../core/tag.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { span } from "../../../html/span.js";
 import { Button, button } from "../../collapse/button.js";
@@ -29,6 +29,3 @@ export class collapse extends button {
 		super(convert(bsConstArg<Button>("elem", arg)));
 	}
 }
-
-export const Collapse = (AttrOrElem?: Button | IElem, Elem?: IElem) =>
-	genTagClass<collapse, Button>(collapse, AttrOrElem, Elem);

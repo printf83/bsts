@@ -46,7 +46,6 @@ import {
 	isTag,
 	tagConsArg,
 	tagConsNoElemArg,
-	genTagClass,
 } from "./tag.js";
 
 import { UUID } from "./uuid.js";
@@ -148,7 +147,6 @@ export {
 	isTag,
 	tagConsArg,
 	tagConsNoElemArg,
-	genTagClass,
 	UUID,
 	uppercaseFirst,
 	rndBetween,

@@ -1,4 +1,4 @@
-import { IAttr, IElem, genTagClass } from "../../core/tag.js";
+import { IAttr, IElem } from "../../core/tag.js";
 import { bootstrapType } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
 import { bsConstArg } from "../../core/bootstrap.js";
@@ -74,5 +74,3 @@ export class menu extends div {
 		super(convert(bsConstArg<Menu>("elem", arg)));
 	}
 }
-
-export const Menu = (AttrOrElem?: Menu | IElem, Elem?: IElem) => genTagClass<menu, Menu>(menu, AttrOrElem, Elem);

@@ -1,4 +1,4 @@
-import { IAttr, IElem, genTagClass } from "../../core/tag.js";
+import { IAttr, IElem } from "../../core/tag.js";
 import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { div } from "../../html/div.js";
@@ -24,6 +24,3 @@ export class responsive extends div {
 		super(convert(bsConstArg<Responsive>("elem", arg)));
 	}
 }
-
-export const Responsive = (AttrOrElem?: Responsive | IElem, Elem?: IElem) =>
-	genTagClass<responsive, Responsive>(responsive, AttrOrElem, Elem);

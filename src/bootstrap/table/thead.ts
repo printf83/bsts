@@ -1,4 +1,4 @@
-import { IAttr, IElem, genTagClass } from "../../core/tag.js";
+import { IAttr, IElem } from "../../core/tag.js";
 import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { thead as TThead } from "../../html/thead.js";
@@ -24,5 +24,3 @@ export class thead extends TThead {
 		super(convert(bsConstArg<Thead>("elem", arg)));
 	}
 }
-
-export const Thead = (AttrOrElem?: Thead | IElem, Elem?: IElem) => genTagClass<thead, Thead>(thead, AttrOrElem, Elem);

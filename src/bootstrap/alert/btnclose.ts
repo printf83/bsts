@@ -1,6 +1,6 @@
 import { bsConsNoElemArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { genTagClass } from "../../core/tag.js";
+
 import { btnclose as TBtnclose, Btnclose as IBtnclose } from "../btnclose.js";
 
 export interface Btnclose extends IBtnclose {
@@ -29,5 +29,3 @@ export class btnclose extends TBtnclose {
 		super(bsConsNoElemArg(convert, arg));
 	}
 }
-
-export const Btnclose = (Attr?: Btnclose) => genTagClass<btnclose, Btnclose>(btnclose, Attr);

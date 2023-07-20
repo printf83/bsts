@@ -1,4 +1,4 @@
-import { IAttr, IElem, genTagClass, tag } from "../core/tag.js";
+import { IAttr, IElem, tag } from "../core/tag.js";
 import { bootstrapType, bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { visuallyhidden } from "./visuallyhidden.js";
@@ -49,6 +49,3 @@ export class spinner extends tag {
 		);
 	}
 }
-
-export const Spinner = (AttrOrElem?: Spinner | IElem, Elem?: IElem) =>
-	genTagClass<spinner, Spinner>(spinner, AttrOrElem, Elem);

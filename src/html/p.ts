@@ -1,4 +1,4 @@
-import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
+import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
 import { mergeClass } from "../core/mergeClass.js";
 
 export interface P extends IAttr {
@@ -20,5 +20,3 @@ export class p extends tag {
 		super("p", convert(tagConsArg<P>("elem", arg)));
 	}
 }
-
-export const P = (AttrOrElem?: P | IElem, Elem?: IElem) => genTagClass<p, P>(p, AttrOrElem, Elem);
