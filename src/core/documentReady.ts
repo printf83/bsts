@@ -28,7 +28,10 @@ const setCSS = () => {
 	].join("\n");
 
 	if (!document.getElementById("bsts-css-container")) {
-		appendChild(document.head, new style({ id: "bsts-css-container" }, css));
+		appendChild(
+			document.head,
+			new style({ id: "bsts-css-container" }, css.replaceAll("\n", "").replaceAll("\t", ""))
+		);
 	}
 };
 
