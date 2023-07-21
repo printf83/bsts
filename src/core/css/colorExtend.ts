@@ -58,50 +58,74 @@ export const colorExtend = () => {
 			`,
 			bgColor
 				.map((i) => {
-					return `.bg-active-${i.name}:active, .bg-active-${i.name}.active, .active .bg-active-${i.name} { background-color: ${i.var} !important; }`;
+					return `.bg-active-${i.name}:active,
+					.bg-active-${i.name}.active, 
+					.active .bg-active-${i.name} { 
+						background-color: ${i.var} !important; 
+					}`;
 				})
-				.join(""),
+				.join("\n"),
 			bgColor
 				.map((i) => {
-					return `.bg-hover-${i.name}:hover { background-color: ${i.var} !important; }`;
+					return `.bg-hover-${i.name}:hover { 
+						background-color: ${i.var} !important; 
+					}`;
 				})
-				.join(""),
+				.join("\n"),
 			bgColor
 				.map((i) => {
-					return `.bg-focus-${i.name}:focus { background-color: ${i.var} !important; }`;
+					return `.bg-focus-${i.name}:focus { 
+						background-color: ${i.var} !important; 
+					}`;
 				})
-				.join(""),
+				.join("\n"),
 			textColor
 				.map((i) => {
-					return `.text-active-${i.name}:active, .text-active-${i.name}.active, .active .text-active-${i.name} { color: ${i.var} !important; }`;
+					return `.text-active-${i.name}:active, 
+					.text-active-${i.name}.active, 
+					.active .text-active-${i.name} { 
+						color: ${i.var} !important; 
+					}`;
 				})
-				.join(""),
+				.join("\n"),
 			textColor
 				.map((i) => {
-					return `.text-hover-${i.name}:hover { color: ${i.var} !important; }`;
+					return `.text-hover-${i.name}:hover { 
+						color: ${i.var} !important; 
+					}`;
 				})
-				.join(""),
+				.join("\n"),
 			textColor
 				.map((i) => {
-					return `.text-focus-${i.name}:focus { color: ${i.var} !important; }`;
+					return `.text-focus-${i.name}:focus { 
+						color: ${i.var} !important; 
+					}`;
 				})
-				.join(""),
+				.join("\n"),
 			borderColor
 				.map((i) => {
-					return `.border-active-${i.name}:active, .border-active-${i.name}.active, .active .border-active-${i.name} { border-color: ${i.var} !important; }`;
+					return `.border-active-${i.name}:active, 
+					.border-active-${i.name}.active, 
+					.active .border-active-${i.name} { 
+						border-color: ${i.var} !important; 
+					}`;
 				})
-				.join(""),
+				.join("\n"),
 			borderColor
 				.map((i) => {
-					return `.border-hover-${i.name}:hover { border-color: ${i.var} !important; }`;
+					return `.border-hover-${i.name}:hover { 
+						border-color: ${i.var} !important; 
+					}`;
 				})
-				.join(""),
+				.join("\n"),
 			borderColor
 				.map((i) => {
-					return `.border-focus-${i.name}:focus { border-color: ${i.var} !important; }`;
+					return `.border-focus-${i.name}:focus { 
+						border-color: ${i.var} !important; 
+					}`;
 				})
-				.join(""),
-		].join("");
+				.join("\n"),
+		].join("\n");
 
 		return colorExtendDB;
 	}
