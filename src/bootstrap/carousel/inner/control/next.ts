@@ -1,4 +1,4 @@
-import { IElem, genTagClass } from "../../../../core/tag.js";
+import { IElem } from "../../../../core/tag.js";
 import { bsConstArg } from "../../../../core/bootstrap.js";
 import { button as TButton, Button } from "../../../../html/button.js";
 import { mergeObject } from "../../../../core/mergeObject.js";
@@ -42,5 +42,3 @@ export class next extends TButton {
 		super(convert(bsConstArg<Next>("elem", arg)));
 	}
 }
-
-export const Next = (AttrOrElem?: Next | IElem, Elem?: IElem) => genTagClass<next, Next>(next, AttrOrElem, Elem);

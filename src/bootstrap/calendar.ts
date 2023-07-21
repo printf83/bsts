@@ -1,4 +1,4 @@
-import { IAttr, genTagClass } from "../core/tag.js";
+import { IAttr } from "../core/tag.js";
 import { bsConsNoElemArg } from "../core/bootstrap.js";
 import { div } from "../html/div.js";
 import { replaceWith } from "../core/builder.js";
@@ -515,5 +515,3 @@ export class calendar extends div {
 		super(bsConsNoElemArg(convert, arg));
 	}
 }
-
-export const Calendar = (Attr?: Calendar) => genTagClass<calendar, Calendar>(calendar, Attr);

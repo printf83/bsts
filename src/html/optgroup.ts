@@ -1,4 +1,4 @@
-import { tagConsArg, IAttr, IElem, tag, genTagClass } from "../core/tag.js";
+import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
 import { option, Option } from "./option.js";
 
 export interface Optgroup extends IAttr {
@@ -39,6 +39,3 @@ export class optgroup extends tag {
 		super("optgroup", convert(tagConsArg<Optgroup>("elem", arg)));
 	}
 }
-
-export const Optgroup = (AttrOrElem?: Optgroup | IElem, Elem?: IElem) =>
-	genTagClass<optgroup, Optgroup>(optgroup, AttrOrElem, Elem);

@@ -19,19 +19,23 @@ export const manageClass = (value: string | undefined | (string | undefined)[]):
 	if (i && i.length > 0) {
 		for (let x = 0; x < i.length; x++) {
 			let j = i[x];
-			let h: string[] = [];
+			if (j) {
+				let h: string[] = [];
 
-			if (j.indexOf(" ") > -1) {
-				h = j.split(" ");
-				h = removeEmptyArray(h);
+				if (j.indexOf(" ") > -1) {
+					h = j.split(" ");
+					h = removeEmptyArray(h);
 
-				if (h && h.length > 0) {
-					for (let y = 0; y < h.length; y++) {
-						result.push(h[y]);
+					if (h && h.length > 0) {
+						for (let y = 0; y < h.length; y++) {
+							if (h[y] !== undefined) {
+								result.push(h[y]!);
+							}
+						}
 					}
+				} else {
+					result.push(j);
 				}
-			} else {
-				result.push(j);
 			}
 		}
 	}

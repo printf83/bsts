@@ -1,4 +1,4 @@
-import { IAttr, IElem, genTagClass } from "../../core/tag.js";
+import { IAttr, IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
@@ -17,6 +17,3 @@ export class stacked extends div {
 		super(convert(bsConstArg("elem", arg)));
 	}
 }
-
-export const Stacked = (AttrOrElem?: IAttr | IElem, Elem?: IElem) =>
-	genTagClass<stacked, IAttr>(stacked, AttrOrElem, Elem);

@@ -13,7 +13,7 @@ import { attachAlias } from "./attachAlias.js";
 import { IAttr } from "../tag.js";
 
 export type IAttachFn = (
-	key: string,
+	key: string | undefined,
 	elem: Element,
 	attr: IAttr
 ) => {
@@ -89,7 +89,7 @@ export const attachAttr = (elem: Element, attr: IAttr): Element => {
 							break;
 						}
 
-						let { elem: e, attr: a, changed: c } = attrFn[y](prop[x], elem, d);
+						let { elem: e, attr: a, changed: c } = attrFn[y]!(prop[x], elem, d);
 						if (c) {
 							handleByAttrFn = true;
 							elem = e;

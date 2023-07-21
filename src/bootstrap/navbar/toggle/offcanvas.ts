@@ -1,4 +1,4 @@
-import { IElem, genTagClass } from "../../../core/tag.js";
+import { IElem } from "../../../core/tag.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { span } from "../../../html/span.js";
 import { Button as IToggle, button as TToggle } from "../../offcanvas/button.js";
@@ -29,6 +29,3 @@ export class offcanvas extends TToggle {
 		super(convert(bsConstArg<IToggle>("elem", arg)));
 	}
 }
-
-export const Offcanvas = (AttrOrElem?: IToggle | IElem, Elem?: IElem) =>
-	genTagClass<offcanvas, IToggle>(offcanvas, AttrOrElem, Elem);

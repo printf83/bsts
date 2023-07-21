@@ -1,4 +1,4 @@
-import { tagConsNoElemArg, IAttr, tag, genTagClass } from "../core/tag.js";
+import { tagConsNoElemArg, IAttr, tag } from "../core/tag.js";
 
 export interface Meta extends IAttr {
 	charset?: string;
@@ -14,5 +14,3 @@ export class meta extends tag {
 		super("meta", tagConsNoElemArg<Meta>(arg));
 	}
 }
-
-export const Meta = (Attr?: Meta) => genTagClass<meta, Meta>(meta, Attr);

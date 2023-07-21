@@ -1,5 +1,5 @@
 import { bootstrapType, bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
-import { IElem, genTagClass, tag } from "../core/tag.js";
+import { IElem, tag } from "../core/tag.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { Button as TButton } from "../html/button.js";
 import { addEvent } from "../core/eventManager.js";
@@ -119,6 +119,3 @@ export class button extends tag {
 		button.getInstance(elem)?.dispose();
 	};
 }
-
-export const Button = (AttrOrElem?: Button | IElem, Elem?: IElem) =>
-	genTagClass<button, Button>(button, AttrOrElem, Elem);

@@ -46,7 +46,6 @@ import {
 	isTag,
 	tagConsArg,
 	tagConsNoElemArg,
-	genTagClass,
 } from "./tag.js";
 
 import { UUID } from "./uuid.js";
@@ -64,7 +63,33 @@ import {
 	disconnectResizeObserver,
 } from "./resizeObserverManager.js";
 
+import {
+	setCSSVar,
+	getCSSVar,
+	getCSSVarHexColor,
+	getCSSVarRgbColor,
+	getCSSVarRgb,
+	RGBToHex,
+	hexToRGB,
+	varToHexColor,
+	varToRgb,
+	varToRgbColor,
+} from "./CSSVar.js";
+
+import * as dataManager from "./dataManager.js";
+
 export {
+	setCSSVar,
+	getCSSVar,
+	getCSSVarHexColor,
+	getCSSVarRgbColor,
+	getCSSVarRgb,
+	RGBToHex,
+	hexToRGB,
+	varToHexColor,
+	varToRgb,
+	varToRgbColor,
+	dataManager,
 	ElementWithMutationObserver,
 	observeMutationObserver,
 	disconnectMutationObserver,
@@ -122,7 +147,6 @@ export {
 	isTag,
 	tagConsArg,
 	tagConsNoElemArg,
-	genTagClass,
 	UUID,
 	uppercaseFirst,
 	rndBetween,

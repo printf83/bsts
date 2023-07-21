@@ -32,7 +32,9 @@ const processElem = (i: number | string | tag | strHtml, e: tag, element: Elemen
 			}
 
 			if (e.tag === "pre" || e.tag === "code") {
-				element.insertAdjacentText("beforeend", g.replace(/\`/g, "'"));
+				// element.insertAdjacentText("beforeend", g.replace(/\`/g, "\\`").replace(/\$\{/g, "\\$\\{"));
+				element.insertAdjacentText("beforeend", g);
+				// element.insertAdjacentText("beforeend", g.replaceAll("`", '"'));
 			} else {
 				let m = markup(g);
 				if (typeof m === "string") {

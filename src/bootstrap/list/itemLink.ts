@@ -1,5 +1,5 @@
 import { bootstrapType } from "../../core/bootstrap.js";
-import { IElem, genTagClass } from "../../core/tag.js";
+import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { A, a } from "../../html/a.js";
@@ -90,6 +90,3 @@ export class itemLink extends a {
 		super(convert(bsConstArg<ItemLink>("elem", arg)));
 	}
 }
-
-export const Item = (AttrOrElem?: ItemLink | IElem, Elem?: IElem) =>
-	genTagClass<itemLink, ItemLink>(itemLink, AttrOrElem, Elem);

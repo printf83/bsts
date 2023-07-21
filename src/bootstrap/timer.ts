@@ -1,4 +1,4 @@
-import { IAttr, genTagClass } from "../core/tag.js";
+import { IAttr } from "../core/tag.js";
 import { bsConstArg } from "../core/bootstrap.js";
 import { span } from "../html/span.js";
 import { mergeObject } from "../core/mergeObject.js";
@@ -113,5 +113,3 @@ export class timer extends span {
 		super(convert(bsConstArg<Timer>("time", arg)));
 	}
 }
-
-export const Timer = (AttrOrTime?: Timer | number, Elem?: number) => genTagClass<timer, Timer>(timer, AttrOrTime, Elem);

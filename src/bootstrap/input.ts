@@ -1,6 +1,6 @@
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
-import { genTagClass } from "../core/tag.js";
+
 import { UUID } from "../core/uuid.js";
 import { Input as IInput, input as TInput } from "../html/input.js";
 
@@ -71,6 +71,3 @@ export class input extends TInput {
 		super(convert(bsConstArg<Input>("value", arg)));
 	}
 }
-
-export const Input = (AttrOrValue?: Input | string, Value?: string) =>
-	genTagClass<input, Input>(input, AttrOrValue, Value);

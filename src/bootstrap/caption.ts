@@ -1,6 +1,6 @@
 import { bootstrapType, bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
-import { IAttr, IElem, genTagClass, isAttr, tag } from "../core/tag.js";
+import { IAttr, IElem, isAttr, tag } from "../core/tag.js";
 import { div } from "../html/div.js";
 import { span } from "../html/span.js";
 import { Icon, icon } from "./icon.js";
@@ -101,6 +101,3 @@ export class caption extends div {
 		super(convert(bsConstArg("elem", arg)));
 	}
 }
-
-export const Caption = (AttrOrText?: Caption | string, Text?: string) =>
-	genTagClass<caption, Caption>(caption, AttrOrText, Text);

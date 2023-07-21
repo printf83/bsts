@@ -1,6 +1,6 @@
 {
 	"name": "@printf83/bsts",
-	"version": "0.2.11",
+	"version": "0.3.0",
 	"description": "Bootstrap TS builder",
 	"keywords": [
 		"bootstrap 5",
@@ -27,6 +27,7 @@
 		}
 	},
 	"devDependencies": {
+		"@total-typescript/ts-reset": "^0.4.2",
 		"@types/bootstrap": "^5.2.6",
 		"@types/node": "^20.4.1",
 		"typescript": "^5.1.6"
@@ -36,10 +37,10 @@
 	},
 	"scripts": {
 		"link": "npm link",
-		"clean": "npx node scripts/clean.cjs",
-		"compile": "npx tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
-		"debug": "npx tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json -w",
-		"prepare": "npx node ./scripts/esm-package-json.cjs",
+		"clean": "node scripts/clean.cjs",
+		"compile": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
+		"debug": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json -w",
+		"prepare": "node ./scripts/esm-package-json.cjs",
 		"build": "npm run clean && npm run compile && npm run prepare",
 		"prepack": "npm run build"
 	}
