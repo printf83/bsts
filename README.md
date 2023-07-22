@@ -19,3 +19,4 @@ core.documentReady(() => {
 ```
 
 Check [bsts testing website](https://printf83.github.io/bsts-test/) or [github](https://github.com/printf83/bsts-test) for more example code
+Update : 21/07/2023

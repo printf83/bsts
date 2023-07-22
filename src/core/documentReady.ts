@@ -12,6 +12,10 @@ import { observeMutationObserver } from "./mutationObserverManager.js";
 import { animation } from "./css/animation.js";
 import { transform } from "./css/transform.js";
 import { colorExtend } from "./css/colorExtend.js";
+import { borderWidthExtend } from "./css/borderWidthExtend.js";
+import { fontItalicExtend } from "./css/fontItalicExtend.js";
+import { textDecorationExtend } from "./css/textDecorationExtend.js";
+import { fontWeightExtend } from "./css/fontWeightExtend.js";
 
 //set css on document ready
 const setCSS = () => {
@@ -22,13 +26,20 @@ const setCSS = () => {
 		tableResponsive("bs-title-name"),
 		main,
 		colorExtend(),
+		borderWidthExtend(),
+		fontItalicExtend(),
+		textDecorationExtend(),
+		fontWeightExtend(),
 		calendar,
 		animation(),
 		transform(),
 	].join("\n");
 
 	if (!document.getElementById("bsts-css-container")) {
-		appendChild(document.head, new style({ id: "bsts-css-container" }, css));
+		appendChild(
+			document.head,
+			new style({ id: "bsts-css-container" }, css.replaceAll("\n", "").replaceAll("\t", ""))
+		);
 	}
 };
 

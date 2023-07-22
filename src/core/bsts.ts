@@ -99,6 +99,26 @@ export namespace bstsType {
 	export type borderColorActive = bootstrapType.borderColor;
 	export type borderColorHover = bootstrapType.borderColor;
 	export type borderColorFocus = bootstrapType.borderColor;
+
+	//fontItalic extend
+	export type fontItalicActive = bootstrapType.fontItalic;
+	export type fontItalicHover = bootstrapType.fontItalic;
+	export type fontItalicFocus = bootstrapType.fontItalic;
+
+	//textDecoration extend
+	export type textDecorationActive = bootstrapType.textDecoration;
+	export type textDecorationHover = bootstrapType.textDecoration;
+	export type textDecorationFocus = bootstrapType.textDecoration;
+
+	//borderWidth extend
+	export type borderWidthActive = bootstrapType.borderWidth;
+	export type borderWidthHover = bootstrapType.borderWidth;
+	export type borderWidthFocus = bootstrapType.borderWidth;
+
+	//fontWeight extend
+	export type fontWeightActive = bootstrapType.fontWeight;
+	export type fontWeightHover = bootstrapType.fontWeight;
+	export type fontWeightFocus = bootstrapType.fontWeight;
 }
 
 export namespace bstsTypeA {
@@ -200,6 +220,26 @@ export namespace bstsTypeA {
 	export const borderColorActive = bootstrapTypeA.borderColor;
 	export const borderColorHover = bootstrapTypeA.borderColor;
 	export const borderColorFocus = bootstrapTypeA.borderColor;
+
+	//fontItalic extend
+	export const fontItalicActive = bootstrapTypeA.fontItalic;
+	export const fontItalicHover = bootstrapTypeA.fontItalic;
+	export const fontItalicFocus = bootstrapTypeA.fontItalic;
+
+	//textDecoration extend
+	export const textDecorationActive = bootstrapTypeA.textDecoration;
+	export const textDecorationHover = bootstrapTypeA.textDecoration;
+	export const textDecorationFocus = bootstrapTypeA.textDecoration;
+
+	//borderWidth extend
+	export const borderWidthActive = bootstrapTypeA.borderWidth;
+	export const borderWidthHover = bootstrapTypeA.borderWidth;
+	export const borderWidthFocus = bootstrapTypeA.borderWidth;
+
+	//fontWeight extend
+	export const fontWeightActive = bootstrapTypeA.fontWeight;
+	export const fontWeightHover = bootstrapTypeA.fontWeight;
+	export const fontWeightFocus = bootstrapTypeA.fontWeight;
 }
 
 const bsClassFormatterDB: {
@@ -287,6 +327,69 @@ const bsClassFormatterDB: {
 	}),
 
 	//---------------------
+
+	fontItalicActive: new bsClassFormatterRule({
+		formatTrue: "fst-active-italic",
+		formatFalse: "fst-active-normal",
+		value: bstsTypeA.fontItalicActive,
+	}),
+	fontItalicHover: new bsClassFormatterRule({
+		formatTrue: "fst-hover-italic",
+		formatFalse: "fst-hover-normal",
+		value: bstsTypeA.fontItalicHover,
+	}),
+	fontItalicFocus: new bsClassFormatterRule({
+		formatTrue: "fst-focus-italic",
+		formatFalse: "fst-focus-normal",
+		value: bstsTypeA.fontItalicFocus,
+	}),
+
+	//---------------------
+
+	textDecorationActive: new bsClassFormatterRule({
+		format: "text-decoration-active-$1",
+		value: bstsTypeA.textDecorationActive,
+	}),
+	textDecorationHover: new bsClassFormatterRule({
+		format: "text-decoration-hover-$1",
+		value: bstsTypeA.textDecorationHover,
+	}),
+	textDecorationFocus: new bsClassFormatterRule({
+		format: "text-decoration-focus-$1",
+		value: bstsTypeA.textDecorationFocus,
+	}),
+
+	//---------------------
+
+	borderWidthActive: new bsClassFormatterRule({
+		format: "border-active-$1",
+		value: bstsTypeA.borderWidthActive,
+	}),
+	borderWidthHover: new bsClassFormatterRule({
+		format: "border-hover-$1",
+		value: bstsTypeA.borderWidthHover,
+	}),
+	borderWidthFocus: new bsClassFormatterRule({
+		format: "border-focus-$1",
+		value: bstsTypeA.borderWidthFocus,
+	}),
+
+	//---------------------
+
+	fontWeightActive: new bsClassFormatterRule({
+		format: "fw-active-$1",
+		value: bstsTypeA.fontWeightActive,
+	}),
+	fontWeightHover: new bsClassFormatterRule({
+		format: "fw-hover-$1",
+		value: bstsTypeA.fontWeightHover,
+	}),
+	fontWeightFocus: new bsClassFormatterRule({
+		format: "fw-focus-$1",
+		value: bstsTypeA.fontWeightFocus,
+	}),
+
+	//---------------------
 };
 
 export interface IBsts {
@@ -310,6 +413,22 @@ export interface IBsts {
 	borderColorActive?: bstsType.borderColorActive;
 	borderColorHover?: bstsType.borderColorHover;
 	borderColorFocus?: bstsType.borderColorFocus;
+
+	fontItalicActive?: bstsType.fontItalicActive;
+	fontItalicHover?: bstsType.fontItalicHover;
+	fontItalicFocus?: bstsType.fontItalicFocus;
+
+	textDecorationActive?: bstsType.textDecorationActive;
+	textDecorationHover?: bstsType.textDecorationHover;
+	textDecorationFocus?: bstsType.textDecorationFocus;
+
+	borderWidthActive?: bstsType.borderWidthActive;
+	borderWidthHover?: bstsType.borderWidthHover;
+	borderWidthFocus?: bstsType.borderWidthFocus;
+
+	fontWeightActive?: bstsType.fontWeightActive;
+	fontWeightHover?: bstsType.fontWeightHover;
+	fontWeightFocus?: bstsType.fontWeightFocus;
 }
 
 let allowClassProp: (string | undefined)[] = [];
