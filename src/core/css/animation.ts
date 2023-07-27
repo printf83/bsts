@@ -886,8 +886,9 @@ export const animation = () => {
 	]
 		.map(
 			(i) => `
-            .animate-duration-${i} {
-                animation-duration: ${i};
+            i.animate-duration-${i}::before,
+            .animate-duration-${i}:not(i) {
+                animation-duration: ${i} !important;
             }`
 		)
 		.join("\n");
@@ -895,8 +896,9 @@ export const animation = () => {
 	const util_repeat = [1, 2, 3, 5, 10, "infinite"]
 		.map(
 			(i) => `
-            .animate-repeat-${i} {
-                animation-iteration-count: ${i};
+            i.animate-repeat-${i}::before,
+            .animate-repeat-${i}:not(i) {
+                animation-iteration-count: ${i} !important;
             }`
 		)
 		.join("\n");
@@ -911,13 +913,15 @@ export const animation = () => {
 		.map((i) => {
 			if (typeof i === "string") {
 				return `
-                .animate-direction-${i} {
-                    animation-direction: ${i};
+                i.animate-direction-${i}::before,
+                .animate-direction-${i}:not(i) {
+                    animation-direction: ${i} !important;
                 }`;
 			} else {
 				return `
+                i.animate-direction-${i.name}::before,
                 .animate-direction-${i.name} {
-                    animation-direction: ${i.value};
+                    animation-direction: ${i.value} !important;
                 }`;
 			}
 		})
@@ -947,8 +951,9 @@ export const animation = () => {
 	]
 		.map(
 			(i) => `
-            .animate-delay-${i} {
-                animation-delay: ${i};
+            i.animate-delay-${i}::before,
+            .animate-delay-${i}:not(i) {
+                animation-delay: ${i} !important;
             }`
 		)
 		.join("\n");
@@ -963,13 +968,15 @@ export const animation = () => {
 		.map((i) => {
 			if (typeof i === "string") {
 				return `
-                .animate-fill-${i} {
-                    animation-fill-mode: ${i};
+                i.animate-fill-${i}::before,
+                .animate-fill-${i}:not(i) {
+                    animation-fill-mode: ${i} !important;
                 }`;
 			} else {
 				return `
-                .animate-fill-${i.name} {
-                    animation-fill-mode: ${i.value};
+                i.animate-fill-${i.name}::before,
+                .animate-fill-${i.name}:not(i) {
+                    animation-fill-mode: ${i.value} !important;
                 }`;
 			}
 		})
@@ -989,13 +996,15 @@ export const animation = () => {
 	].map((i) => {
 		if (typeof i === "string") {
 			return `
-                .animate-timing-${i} {
-                    animation-timing-function: ${i};
+                i.animate-timing-${i}::before,
+                .animate-timing-${i}:not(i) {
+                    animation-timing-function: ${i} !important;
                 }`;
 		} else {
 			return `
-                .animate-timing-${i.name} {
-                    animation-timing-function: ${i.value};
+                .animate-timing-${i.name}::before,
+                .animate-timing-${i.name}:not(i) {
+                    animation-timing-function: ${i.value} !important;
                 }`;
 		}
 	});
