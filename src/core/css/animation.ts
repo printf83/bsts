@@ -993,21 +993,23 @@ export const animation = () => {
 			name: "bounce",
 			value: "cubic-bezier(0.215, 0.610, 0.355, 1.000)",
 		},
-	].map((i) => {
-		if (typeof i === "string") {
-			return `
+	]
+		.map((i) => {
+			if (typeof i === "string") {
+				return `
                 i.animate-timing-${i}::before,
                 .animate-timing-${i}:not(i) {
                     animation-timing-function: ${i} !important;
                 }`;
-		} else {
-			return `
+			} else {
+				return `
                 .animate-timing-${i.name}::before,
                 .animate-timing-${i.name}:not(i) {
                     animation-timing-function: ${i.value} !important;
                 }`;
-		}
-	});
+			}
+		})
+		.join("\n");
 
 	const util = `
     ${util_duration}
