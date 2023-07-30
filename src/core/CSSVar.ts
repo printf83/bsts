@@ -1,3 +1,5 @@
+import { bstsConsole as console } from "./console.js";
+
 export const hexToRGB = (hex?: string, alpha?: number) => {
 	if (hex) {
 		var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
@@ -52,6 +54,9 @@ export const setCSSVar = (variableName: string, value: string, selector?: string
 	let root = document.querySelector(selector ? selector : ":root") as HTMLStyleElement;
 	if (root) {
 		root.style.setProperty(variableName, value);
+	} else {
+		console.warn(`Cannot find ${selector} to save CSS variable. Use :root instead to set ${variableName}`);
+		root = document.querySelector(":root") as HTMLStyleElement;
 	}
 };
 
@@ -60,7 +65,14 @@ export const getCSSVar = (variableName: string, selector?: string) => {
 	if (root) {
 		return getComputedStyle(root).getPropertyValue(variableName);
 	} else {
-		return undefined;
+		console.warn(`Cannot find ${selector} to get CSS variable. Use :root instead to get ${variableName}`);
+		root = document.querySelector(selector ? selector : ":root") as HTMLStyleElement;
+
+		if (root) {
+			return getComputedStyle(root).getPropertyValue(variableName);
+		} else {
+			return undefined;
+		}
 	}
 };
 
