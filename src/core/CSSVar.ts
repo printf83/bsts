@@ -48,15 +48,15 @@ export const RGBToHex = (rgb?: string) => {
 	}
 };
 
-export const setCSSVar = (variableName: string, value: string) => {
-	let root = document.querySelector(":root") as HTMLStyleElement;
+export const setCSSVar = (variableName: string, value: string, selector?: string) => {
+	let root = document.querySelector(selector ? selector : ":root") as HTMLStyleElement;
 	if (root) {
 		root.style.setProperty(variableName, value);
 	}
 };
 
-export const getCSSVar = (variableName: string) => {
-	let root = document.querySelector(":root") as HTMLStyleElement;
+export const getCSSVar = (variableName: string, selector?: string) => {
+	let root = document.querySelector(selector ? selector : ":root") as HTMLStyleElement;
 	if (root) {
 		return getComputedStyle(root).getPropertyValue(variableName);
 	} else {
@@ -64,8 +64,8 @@ export const getCSSVar = (variableName: string) => {
 	}
 };
 
-export const getCSSVarHexColor = (variableName: string) => {
-	const value = getCSSVar(variableName);
+export const getCSSVarHexColor = (variableName: string, selector?: string) => {
+	const value = getCSSVar(variableName, selector);
 	if (value) {
 		return varToHexColor(value);
 	} else {
@@ -73,8 +73,8 @@ export const getCSSVarHexColor = (variableName: string) => {
 	}
 };
 
-export const getCSSVarRgbColor = (variableName: string, alpha?: number) => {
-	const value = getCSSVar(variableName);
+export const getCSSVarRgbColor = (variableName: string, alpha?: number, selector?: string) => {
+	const value = getCSSVar(variableName, selector);
 	if (value) {
 		return varToRgbColor(value, alpha);
 	} else {
@@ -82,8 +82,8 @@ export const getCSSVarRgbColor = (variableName: string, alpha?: number) => {
 	}
 };
 
-export const getCSSVarRgb = (variableName: string, alpha?: number) => {
-	const value = getCSSVar(variableName);
+export const getCSSVarRgb = (variableName: string, alpha?: number, selector?: string) => {
+	const value = getCSSVar(variableName, selector);
 	if (value) {
 		return varToRgb(value, alpha);
 	} else {
