@@ -1,34 +1,74 @@
 import { bstsConsole as console } from "./console.js";
 
 export const hexToHSL = (hex?: string, alpha?: number) => {
-	const rgb = hexToRGB(hex, alpha);
-	if (rgb) {
-		(rgb.r /= 255), (rgb.g /= 255), (rgb.b /= 255);
-		var max = Math.max(rgb.r, rgb.g, rgb.b),
-			min = Math.min(rgb.r, rgb.g, rgb.b);
-		var h,
-			s,
+	const val = hexToRGB(hex, alpha);
+	if (val) {
+		val.r /= 255;
+		val.g /= 255;
+		val.b /= 255;
+		const max = Math.max(val.r, val.g, val.b);
+		const min = Math.min(val.r, val.g, val.b);
+		let h = 0,
+			s = 0,
 			l = (max + min) / 2;
-		if (max == min) {
+		if (max === min) {
 			h = s = 0; // achromatic
 		} else {
-			var d = max - min;
+			const d = max - min;
 			s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
 			switch (max) {
-				case rgb.r:
-					h = (rgb.g - rgb.b) / d + (rgb.g < rgb.b ? 6 : 0);
+				case val.r:
+					h = (val.g - val.b) / d + (val.g < val.b ? 6 : 0);
 					break;
-				case rgb.g:
-					h = (rgb.b - rgb.r) / d + 2;
+				case val.g:
+					h = (val.b - val.r) / d + 2;
 					break;
-				case rgb.b:
-					h = (rgb.r - rgb.g) / d + 4;
+				case val.b:
+					h = (val.r - val.g) / d + 4;
 					break;
 			}
-			h! /= 6;
+			h /= 6;
 		}
+		const HSL: { h: number; s: number; l: number } = { h: h * 360, s: s * 100, l: l * 100 };
+		return HSL;
 	} else {
 		return undefined;
+	}
+};
+
+export const hslToRGB = (hsl: { h: number; s: number; l: number }, alpha?: number) => {
+	hsl.s /= 100;
+	hsl.l /= 100;
+	const k = (n: number) => (n + hsl.h / 30) % 12;
+	const a = hsl.s * Math.min(hsl.l, 1 - hsl.l);
+	const f = (n: number) => hsl.l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+	return {
+		r: 255 * f(0),
+		g: 255 * f(8),
+		b: 255 * f(4),
+		a: alpha,
+	};
+};
+
+export const hslToHex = (hsl: { h: number; s: number; l: number }, alpha?: number) => {
+	const rgb = hslToRGB(hsl, alpha);
+
+	if (alpha) {
+		return RGBToHex(`rgba(${rgb.r},${rgb.g},${rgb.b},${rgb.a})`);
+	} else {
+		return RGBToHex(`rgb(${rgb.r},${rgb.g},${rgb.b})`);
+	}
+};
+
+export const hexIsDark = (hex?: string, luma?: number) => {
+	luma ??= 155;
+
+	let rgb = hexToRGB(hex);
+	if (rgb) {
+		const brightness = (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000;
+		return brightness <= luma;
+	} else {
+		return false;
 	}
 };
 
@@ -119,7 +159,7 @@ export const RGBToHex = (rgb?: string) => {
 
 		return "#" + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1);
 	} else {
-		return undefined;
+		return "#000000";
 	}
 };
 
