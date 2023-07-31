@@ -1,3 +1,77 @@
+import { bstsConsole as console } from "./console.js";
+
+export const hexToHSL = (hex?: string, alpha?: number) => {
+	const val = hexToRGB(hex, alpha);
+	if (val) {
+		val.r /= 255;
+		val.g /= 255;
+		val.b /= 255;
+		const max = Math.max(val.r, val.g, val.b);
+		const min = Math.min(val.r, val.g, val.b);
+		let h = 0,
+			s = 0,
+			l = (max + min) / 2;
+		if (max === min) {
+			h = s = 0; // achromatic
+		} else {
+			const d = max - min;
+			s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+			switch (max) {
+				case val.r:
+					h = (val.g - val.b) / d + (val.g < val.b ? 6 : 0);
+					break;
+				case val.g:
+					h = (val.b - val.r) / d + 2;
+					break;
+				case val.b:
+					h = (val.r - val.g) / d + 4;
+					break;
+			}
+			h /= 6;
+		}
+		const HSL: { h: number; s: number; l: number } = { h: h * 360, s: s * 100, l: l * 100 };
+		return HSL;
+	} else {
+		return undefined;
+	}
+};
+
+export const hslToRGB = (hsl: { h: number; s: number; l: number }, alpha?: number) => {
+	hsl.s /= 100;
+	hsl.l /= 100;
+	const k = (n: number) => (n + hsl.h / 30) % 12;
+	const a = hsl.s * Math.min(hsl.l, 1 - hsl.l);
+	const f = (n: number) => hsl.l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+	return {
+		r: 255 * f(0),
+		g: 255 * f(8),
+		b: 255 * f(4),
+		a: alpha,
+	};
+};
+
+export const hslToHex = (hsl: { h: number; s: number; l: number }, alpha?: number) => {
+	const rgb = hslToRGB(hsl, alpha);
+
+	if (alpha) {
+		return RGBToHex(`rgba(${rgb.r},${rgb.g},${rgb.b},${rgb.a})`);
+	} else {
+		return RGBToHex(`rgb(${rgb.r},${rgb.g},${rgb.b})`);
+	}
+};
+
+export const hexIsDark = (hex?: string, luma?: number) => {
+	luma ??= 155;
+
+	let rgb = hexToRGB(hex);
+	if (rgb) {
+		const brightness = (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000;
+		return brightness <= luma;
+	} else {
+		return false;
+	}
+};
+
 export const hexToRGB = (hex?: string, alpha?: number) => {
 	if (hex) {
 		var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
@@ -24,6 +98,47 @@ export const hexToRGB = (hex?: string, alpha?: number) => {
 	}
 };
 
+// const hue2rgb = (p: number, q: number, t: number) => {
+// 	if (t < 0) t += 1;
+// 	if (t > 1) t -= 1;
+// 	if (t < 1 / 6) return p + (q - p) * 6 * t;
+// 	if (t < 1 / 2) return q;
+// 	if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+// 	return p;
+// };
+
+// const toHex = (x: number) => {
+// 	const hex = Math.round(x * 255).toString(16);
+// 	return hex.length === 1 ? "0" + hex : hex;
+// };
+
+// export const HSLToHex = (hsl?: string) => {
+// 	if (hsl) {
+// 		let v = hsl.replace(/^hsla?\(|\s+|\)$/g, "").split(",");
+// 		let h: number = 0;
+// 		let s: number = 0;
+// 		let l: number = 0;
+
+// 		h /= 360;
+// 		s /= 100;
+// 		l /= 100;
+// 		let r, g, b;
+// 		if (s === 0) {
+// 			r = g = b = l; // achromatic
+// 		} else {
+// 			const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+// 			const p = 2 * l - q;
+// 			r = hue2rgb(p, q, h + 1 / 3);
+// 			g = hue2rgb(p, q, h);
+// 			b = hue2rgb(p, q, h - 1 / 3);
+// 		}
+
+// 		return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+// 	} else {
+// 		return undefined;
+// 	}
+// };
+
 export const RGBToHex = (rgb?: string) => {
 	if (rgb) {
 		let v = rgb.replace(/^rgba?\(|\s+|\)$/g, "").split(",");
@@ -44,28 +159,38 @@ export const RGBToHex = (rgb?: string) => {
 
 		return "#" + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1);
 	} else {
-		return undefined;
+		return "#000000";
 	}
 };
 
-export const setCSSVar = (variableName: string, value: string) => {
-	let root = document.querySelector(":root") as HTMLStyleElement;
+export const setCSSVar = (variableName: string, value: string, selector?: string) => {
+	let root = document.querySelector(selector ? selector : ":root") as HTMLStyleElement;
 	if (root) {
 		root.style.setProperty(variableName, value);
+	} else {
+		console.warn(`Cannot find ${selector} to save CSS variable. Use :root instead to set ${variableName}`);
+		root = document.querySelector(":root") as HTMLStyleElement;
 	}
 };
 
-export const getCSSVar = (variableName: string) => {
-	let root = document.querySelector(":root") as HTMLStyleElement;
+export const getCSSVar = (variableName: string, selector?: string) => {
+	let root = document.querySelector(selector ? selector : ":root") as HTMLStyleElement;
 	if (root) {
 		return getComputedStyle(root).getPropertyValue(variableName);
 	} else {
-		return undefined;
+		console.warn(`Cannot find ${selector} to get CSS variable. Use :root instead to get ${variableName}`);
+		root = document.querySelector(selector ? selector : ":root") as HTMLStyleElement;
+
+		if (root) {
+			return getComputedStyle(root).getPropertyValue(variableName);
+		} else {
+			return undefined;
+		}
 	}
 };
 
-export const getCSSVarHexColor = (variableName: string) => {
-	const value = getCSSVar(variableName);
+export const getCSSVarHexColor = (variableName: string, selector?: string) => {
+	const value = getCSSVar(variableName, selector);
 	if (value) {
 		return varToHexColor(value);
 	} else {
@@ -73,8 +198,8 @@ export const getCSSVarHexColor = (variableName: string) => {
 	}
 };
 
-export const getCSSVarRgbColor = (variableName: string, alpha?: number) => {
-	const value = getCSSVar(variableName);
+export const getCSSVarRgbColor = (variableName: string, alpha?: number, selector?: string) => {
+	const value = getCSSVar(variableName, selector);
 	if (value) {
 		return varToRgbColor(value, alpha);
 	} else {
@@ -82,8 +207,8 @@ export const getCSSVarRgbColor = (variableName: string, alpha?: number) => {
 	}
 };
 
-export const getCSSVarRgb = (variableName: string, alpha?: number) => {
-	const value = getCSSVar(variableName);
+export const getCSSVarRgb = (variableName: string, alpha?: number, selector?: string) => {
+	const value = getCSSVar(variableName, selector);
 	if (value) {
 		return varToRgb(value, alpha);
 	} else {

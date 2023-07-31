@@ -1,6 +1,6 @@
 {
 	"name": "@printf83/bsts",
-	"version": "0.3.4",
+	"version": "0.3.7",
 	"description": "Bootstrap TS builder",
 	"keywords": [
 		"bootstrap 5",
@@ -41,7 +41,8 @@
 		"compile": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
 		"debug": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json -w",
 		"prepare": "node ./scripts/esm-package-json.cjs",
-		"build": "npm run clean && npm run compile && npm run prepare",
-		"prepack": "npm run build"
+		"build": "npm run compile && npm run prepare",
+		"rebuild": "npm run clean && npm run compile && npm run prepare",
+		"prepack": "npm run rebuild"
 	}
 }
