@@ -695,17 +695,17 @@ export const danger = (hex: string, light: string = "#fff", dark: string = "#000
 
 		.form-control.is-invalid, .was-validated .form-control:invalid {
 			background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='${encodeURIComponent(
-				bsDarkFormInvalidBorder
+				hex
 			)}'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='${encodeURIComponent(
-		bsDarkFormInvalidBorder
+		hex
 	)}' stroke='none'/%3e%3c/svg%3e");
 		}
 
 		.form-select.is-invalid:not([multiple]):not([size]), .form-select.is-invalid:not([multiple])[size="1"], .was-validated .form-select:invalid:not([multiple]):not([size]), .was-validated .form-select:invalid:not([multiple])[size="1"]{
 			--bs-form-select-bg-icon:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='${encodeURIComponent(
-				bsDarkFormInvalidBorder
+				hex
 			)}'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='${encodeURIComponent(
-		bsDarkFormInvalidBorder
+		hex
 	)}' stroke='none'/%3e%3c/svg%3e");
 		}
 		
@@ -825,13 +825,13 @@ export const success = (hex: string, light: string = "#fff", dark: string = "#00
 
 		.form-control.is-valid, .was-validated .form-control:valid {
 			background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='${encodeURIComponent(
-				bsDarkFormValidBorder
+				hex
 			)}' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
 		}
 
 		.form-select.is-valid:not([multiple]):not([size]), .form-select.is-valid:not([multiple])[size="1"], .was-validated .form-select:valid:not([multiple]):not([size]), .was-validated .form-select:valid:not([multiple])[size="1"]{
 			--bs-form-select-bg-icon:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='${encodeURIComponent(
-				bsDarkFormValidBorder
+				hex
 			)}' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
 		}
 		
@@ -995,6 +995,9 @@ export const primary = (hex: string, light: string = "#fff", dark: string = "#00
 		.form-check-input[type=checkbox]:indeterminate {
 			background-color: ${hex};
 			border-color: ${hex};
+			--bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='${encodeURIComponent(
+				btnColor
+			)}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
 		}
 
 		.form-range::-moz-range-thumb, .form-range::-webkit-slider-thumb {
@@ -1056,11 +1059,13 @@ export const primary = (hex: string, light: string = "#fff", dark: string = "#00
 
 		.nav-pills {
 			--bs-nav-pills-link-active-bg: ${hex};
+			--bs-nav-pills-link-active-color: ${btnColor};
 		}
 
 		.pagination {
 			--bs-pagination-color: ${hex};
 			--bs-pagination-active-bg: ${hex};
+			--bs-pagination-active-color: ${btnColor};
 			--bs-pagination-active-border-color: ${hex};
 			--bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(${rgb}, 0.25);
 		}

@@ -61,7 +61,7 @@ export const hslToHex = (hsl: { h: number; s: number; l: number }, alpha?: numbe
 };
 
 export const hexIsDark = (hex?: string, luma?: number) => {
-	luma ??= 155;
+	luma ??= 135; //155
 
 	let rgb = hexToRGB(hex);
 	if (rgb) {
