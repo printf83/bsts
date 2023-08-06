@@ -80,9 +80,12 @@ import {
 	varToRgbColor,
 } from "./CSSVar.js";
 
+import * as accentColor from "./accentColor.js";
+
 import * as dataManager from "./dataManager.js";
 
 export {
+	accentColor,
 	setCSSVar,
 	getCSSVar,
 	getCSSVarHexColor,
