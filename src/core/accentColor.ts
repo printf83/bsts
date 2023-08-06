@@ -1000,11 +1000,44 @@ export const primary = (hex: string, light: string = "#fff", dark: string = "#00
 			)}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
 		}
 
-		.form-range::-moz-range-thumb, .form-range::-webkit-slider-thumb {
+		.form-range::-moz-range-thumb {
+			background-color: ${hex};
+		}
+ 
+		.form-range::-webkit-slider-thumb {
+			-webkit-appearance: none;
 			background-color: ${hex};
 		}
 
-		.form-range:focus::-moz-range-thumb, .form-range:focus::-webkit-slider-thumb {
+		.form-range::-ms-track {
+			background-color: ${hex};
+		}
+ 
+		.form-range::-ms-fill-lower {
+			background-color: ${hex};
+		}
+ 
+		.form-range::-ms-fill-upper {
+			background-color: ${hex};
+		}
+
+		.form-range:focus::-moz-range-thumb {
+			box-shadow: 0 0 0 .25rem rgba(${rgb},.25);
+		}
+ 
+		.form-range:focus::-webkit-slider-thumb {
+			box-shadow: 0 0 0 .25rem rgba(${rgb},.25);
+		}
+
+		.form-range:focus::-ms-thumb {
+			box-shadow: 0 0 0 .25rem rgba(${rgb},.25);
+		}
+
+		.form-range:focus::-ms-fill-lower {
+			box-shadow: 0 0 0 .25rem rgba(${rgb},.25);
+		}
+
+		.form-range:focus::-ms-fill-upper {
 			box-shadow: 0 0 0 .25rem rgba(${rgb},.25);
 		}
 
