@@ -928,18 +928,15 @@ export const primary = (hex: string, light: string = "#fff", dark: string = "#00
 	const bsFormSwitchBgImgIndeterminate = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='${esBtnColor}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e")`;
 	const bsFormSwitchBgImgCheckedRadio = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='${esBtnColor}'/%3e%3c/svg%3e")`;
 
-	//select
-	const esBsBodyBg = encodeURIComponent(hex); //TODO: original value is #212529 (hardcoded) //need to move this to body group
-	const bsFormSelectBgImg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='${esBsBodyBg}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e")`; //--bs-form-select-bg-img
+	//form-select
+	const esBsTextEmphasis = encodeURIComponent(bsTextEmphasis);
+	const esBsDarkTextEmphasis = encodeURIComponent(bsDarkTextEmphasis);
+	const bsFormSelectBgImg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='${esBsTextEmphasis}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e")`; //--bs-form-select-bg-img
+	const bsDarkFormSelectBgImg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='${esBsDarkTextEmphasis}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e")`; //--bs-form-select-bg-img
 
 	//accordion svg
-	const esBsTextEmphasis = encodeURIComponent(bsTextEmphasis);
-	const bsAccordionBtnIcon = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='${esBsBodyBg}'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e")`;
 	const bsAccordionBtnActiveIcon = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='${esBsTextEmphasis}'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e")`;
-	/*
-	--bs-accordion-btn-icon: ;
-			--bs-accordion-btn-active-icon: ;
-	*/
+	const bsDarkAccordionBtnActiveIcon = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='${esBsDarkTextEmphasis}'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e")`;
 
 	return `
 		::selection {
@@ -1017,9 +1014,7 @@ export const primary = (hex: string, light: string = "#fff", dark: string = "#00
 			--bs-form-check-bg-image: ${bsFormSwitchBgImgCheckedRadio};
 		}
 
-		.form-select {
-			--bs-form-select-bg-img: ${bsFormSelectBgImg};
-		}
+		
 
 		.form-range::-moz-range-thumb {
 			background-color: ${hex};
@@ -1125,10 +1120,21 @@ export const primary = (hex: string, light: string = "#fff", dark: string = "#00
 		}
 
 		.accordion {
-			--bs-accordion-btn-icon: ${bsAccordionBtnIcon};
 			--bs-accordion-btn-active-icon: ${bsAccordionBtnActiveIcon};
 			--bs-accordion-btn-focus-border-color: ${bsFocusBorder};
     		--bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(${rgb}, 0.25);
+		}
+
+		.form-select:focus {
+			--bs-form-select-bg-img: ${bsFormSelectBgImg};
+		}
+
+		[data-bs-theme=dark] .accordion-button::after {
+			--bs-accordion-btn-active-icon: ${bsDarkAccordionBtnActiveIcon};
+		}
+
+		[data-bs-theme='dark'] .form-select:focus {
+			--bs-form-select-bg-img: ${bsDarkFormSelectBgImg};
 		}
 	`;
 };
@@ -1170,6 +1176,16 @@ export const body = (hex: string) => {
 	const bsDarkTertiaryBgRGB = getRGBString(bsDarkTertiaryBg); //--bs-secondary-bg-rgb
 	const bsDarkBorderColor = calcHex(baseColor, "#495057", hex); //--bs-border-color
 
+	//select
+	const esBsBodyBg = encodeURIComponent(bsBodyColor);
+	const esBsDarkBodyBg = encodeURIComponent(bsDarkBodyColor);
+	const bsFormSelectBgImg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='${esBsBodyBg}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e")`; //--bs-form-select-bg-img
+	const bsDarkFormSelectBgImg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='${esBsDarkBodyBg}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e")`; //--bs-form-select-bg-img
+
+	//accordion svg
+	const bsAccordionBtnIcon = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='${esBsBodyBg}'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e")`;
+	const bsDarkAccordionBtnIcon = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='${esBsDarkBodyBg}'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e")`;
+
 	return `
 		:root, [data-bs-theme='light'] {
 			--bs-body-bg: ${hex};
@@ -1206,6 +1222,23 @@ export const body = (hex: string) => {
 			--bs-tertiary-bg: ${bsDarkTertiaryBg};
 			--bs-tertiary-bg-rgb: ${bsDarkTertiaryBgRGB};
 			--bs-border-color: ${bsDarkBorderColor};
+		}
+
+
+		.accordion {
+			--bs-accordion-btn-icon: ${bsAccordionBtnIcon};
+		}
+
+		.form-select {
+			--bs-form-select-bg-img: ${bsFormSelectBgImg};
+		}
+
+		[data-bs-theme=dark] .accordion-button::after {
+			--bs-accordion-btn-icon: ${bsDarkAccordionBtnIcon};
+		}
+
+		[data-bs-theme='dark'] .form-select {
+			--bs-form-select-bg-img: ${bsDarkFormSelectBgImg};
 		}
 	`;
 };
