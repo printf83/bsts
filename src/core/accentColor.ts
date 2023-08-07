@@ -655,6 +655,11 @@ export const danger = (hex: string, light: string = "#fff", dark: string = "#000
 	const bsTableHoverBg = calcHex(baseColor, "#e5c7ca", hex); //--bs-table-hover-bg
 	const bsTableHoverColor = calcFontHex(bsTableHoverBg, light, dark); //--bs-table-hover-color
 
+	//formcontrol invalid icon
+	const esHex = encodeURIComponent(hex);
+	const formControlInvalidImg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='${esHex}'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='${esHex}' stroke='none'/%3e%3c/svg%3e")`;
+	const bsFormSelectBgIcon = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='${esHex}'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='${esHex}' stroke='none'/%3e%3c/svg%3e")`;
+
 	return `
 		:root, [data-bs-theme='light'] {
 			--bs-danger: ${hex};
@@ -694,19 +699,11 @@ export const danger = (hex: string, light: string = "#fff", dark: string = "#000
 		}
 
 		.form-control.is-invalid, .was-validated .form-control:invalid {
-			background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='${encodeURIComponent(
-				hex
-			)}'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='${encodeURIComponent(
-		hex
-	)}' stroke='none'/%3e%3c/svg%3e");
+			background-image: ${formControlInvalidImg};
 		}
 
 		.form-select.is-invalid:not([multiple]):not([size]), .form-select.is-invalid:not([multiple])[size="1"], .was-validated .form-select:invalid:not([multiple]):not([size]), .was-validated .form-select:invalid:not([multiple])[size="1"]{
-			--bs-form-select-bg-icon:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='${encodeURIComponent(
-				hex
-			)}'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='${encodeURIComponent(
-		hex
-	)}' stroke='none'/%3e%3c/svg%3e");
+			--bs-form-select-bg-icon: ${bsFormSelectBgIcon};
 		}
 		
 		.text-bg-danger {
@@ -789,6 +786,11 @@ export const success = (hex: string, light: string = "#fff", dark: string = "#00
 	const bsTableHoverBg = calcHex(baseColor, "#c1d6cc", hex); //--bs-table-hover-bg
 	const bsTableHoverColor = calcFontHex(bsTableHoverBg, light, dark); //--bs-table-hover-color
 
+	//formcontrol valid icon
+	const esHex = encodeURIComponent(hex);
+	const formControlValidImg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='${esHex}' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e")`;
+	const bsFormSelectBgIcon = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='${esHex}' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e")`;
+
 	return `
 		:root, [data-bs-theme='light'] {
 			--bs-success: ${hex};
@@ -824,15 +826,11 @@ export const success = (hex: string, light: string = "#fff", dark: string = "#00
 		}
 
 		.form-control.is-valid, .was-validated .form-control:valid {
-			background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='${encodeURIComponent(
-				hex
-			)}' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+			background-image: ${formControlValidImg};
 		}
 
 		.form-select.is-valid:not([multiple]):not([size]), .form-select.is-valid:not([multiple])[size="1"], .was-validated .form-select:valid:not([multiple]):not([size]), .was-validated .form-select:valid:not([multiple])[size="1"]{
-			--bs-form-select-bg-icon:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='${encodeURIComponent(
-				hex
-			)}' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+			--bs-form-select-bg-icon: ${bsFormSelectBgIcon};
 		}
 		
 		.text-bg-success {
@@ -920,6 +918,29 @@ export const primary = (hex: string, light: string = "#fff", dark: string = "#00
 	const bsTableHoverBg = calcHex(baseColor, "#bfd1ec", hex); //--bs-table-hover-bg
 	const bsTableHoverColor = calcFontHex(bsTableHoverBg, light, dark); //--bs-table-hover-color
 
+	//checkbox and radio svg
+	const esBsFocusBorder = encodeURIComponent(bsFocusBorder);
+	const esBtnColor = encodeURIComponent(btnColor);
+
+	const bsFormSwitchBg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='${esBsFocusBorder}'/%3e%3c/svg%3e")`;
+	const bsFormSwitchBgChecked = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='${esBtnColor}'/%3e%3c/svg%3e")`;
+	const bsFormSwitchBgImgChecked = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='${esBtnColor}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e")`;
+	const bsFormSwitchBgImgIndeterminate = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='${esBtnColor}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e")`;
+	const bsFormSwitchBgImgCheckedRadio = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='${esBtnColor}'/%3e%3c/svg%3e")`;
+
+	//select
+	const esBsBodyBg = encodeURIComponent(hex); //TODO: original value is #212529 (hardcoded) //need to move this to body group
+	const bsFormSelectBgImg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='${esBsBodyBg}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e")`; //--bs-form-select-bg-img
+
+	//accordion svg
+	const esBsTextEmphasis = encodeURIComponent(bsTextEmphasis);
+	const bsAccordionBtnIcon = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='${esBsBodyBg}'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e")`;
+	const bsAccordionBtnActiveIcon = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='${esBsTextEmphasis}'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e")`;
+	/*
+	--bs-accordion-btn-icon: ;
+			--bs-accordion-btn-active-icon: ;
+	*/
+
 	return `
 		::selection {
 			color: ${btnColor};
@@ -970,21 +991,15 @@ export const primary = (hex: string, light: string = "#fff", dark: string = "#00
 		}
 
 		.form-switch .form-check-input:focus {
-			--bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='${encodeURIComponent(
-				bsFocusBorder
-			)}'/%3e%3c/svg%3e");
+			--bs-form-switch-bg: ${bsFormSwitchBg};
 		}
 
 		.form-switch .form-check-input:checked {
-			--bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='${encodeURIComponent(
-				btnColor
-			)}'/%3e%3c/svg%3e");
+			--bs-form-switch-bg: ${bsFormSwitchBgChecked};
 		}
 
 		.form-check-input:checked[type='checkbox'] {
-			--bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='${encodeURIComponent(
-				btnColor
-			)}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+			--bs-form-check-bg-image: ${bsFormSwitchBgImgChecked};
 		}
 
 		.form-check-input:checked {
@@ -995,9 +1010,15 @@ export const primary = (hex: string, light: string = "#fff", dark: string = "#00
 		.form-check-input[type=checkbox]:indeterminate {
 			background-color: ${hex};
 			border-color: ${hex};
-			--bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='${encodeURIComponent(
-				btnColor
-			)}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
+			--bs-form-check-bg-image: ${bsFormSwitchBgImgIndeterminate};
+		}
+
+		.form-check-input:checked[type=radio] {
+			--bs-form-check-bg-image: ${bsFormSwitchBgImgCheckedRadio};
+		}
+
+		.form-select {
+			--bs-form-select-bg-img: ${bsFormSelectBgImg};
 		}
 
 		.form-range::-moz-range-thumb {
@@ -1104,10 +1125,8 @@ export const primary = (hex: string, light: string = "#fff", dark: string = "#00
 		}
 
 		.accordion {
-			--bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-			--bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='${encodeURIComponent(
-				bsTextEmphasis
-			)}'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+			--bs-accordion-btn-icon: ${bsAccordionBtnIcon};
+			--bs-accordion-btn-active-icon: ${bsAccordionBtnActiveIcon};
 			--bs-accordion-btn-focus-border-color: ${bsFocusBorder};
     		--bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(${rgb}, 0.25);
 		}
