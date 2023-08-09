@@ -69,6 +69,10 @@ import {
 	getCSSVarHexColor,
 	getCSSVarRgbColor,
 	getCSSVarRgb,
+	hexIsDark,
+	hexToHSL,
+	hslToRGB,
+	hslToHex,
 	RGBToHex,
 	hexToRGB,
 	varToHexColor,
@@ -76,14 +80,21 @@ import {
 	varToRgbColor,
 } from "./CSSVar.js";
 
+import * as accentColor from "./accentColor.js";
+
 import * as dataManager from "./dataManager.js";
 
 export {
+	accentColor,
 	setCSSVar,
 	getCSSVar,
 	getCSSVarHexColor,
 	getCSSVarRgbColor,
 	getCSSVarRgb,
+	hexIsDark,
+	hexToHSL,
+	hslToRGB,
+	hslToHex,
 	RGBToHex,
 	hexToRGB,
 	varToHexColor,

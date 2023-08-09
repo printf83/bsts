@@ -280,6 +280,10 @@ const bsClassFormatterDB: {
 		format: "animate-timing-$1",
 		value: bstsTypeA.animateTiming,
 	}),
+	animateDirection: new bsClassFormatterRule({
+		format: "animate-direction-$1",
+		value: bstsTypeA.animateDirection,
+	}),
 
 	//---------------------
 
