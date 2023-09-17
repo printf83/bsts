@@ -362,11 +362,6 @@ export class tag implements ITag {
 	}
 }
 
-//now new keyword for tag
-export const Tag = (Tag: string, Attr?: IAttr) => {
-	return new tag(Tag, Attr);
-};
-
 export class strHtml {
 	public ishtml = true;
 	public elem?: string;
@@ -381,11 +376,6 @@ export class strHtml {
 		}
 	}
 }
-
-//now new keyword for tag
-export const StrHtml = (Html: string) => {
-	return new strHtml(Html);
-};
 
 export const isTag = <T>(obj: any): obj is T => {
 	return typeof obj === "object" && !Array.isArray(obj) && "isbsts" in obj && obj["isbsts"] === true;
