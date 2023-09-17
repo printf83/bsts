@@ -1,5 +1,5 @@
 import { Check } from "./check.js";
-import * as FloatingLabel from "./floatinglabel/___index.js";
+import * as FloatingLabel from "./floatinglabel/_types.js";
 import { Input } from "./input.js";
 import { Select } from "./select.js";
 import { Textarea } from "./textarea.js";
