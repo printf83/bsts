@@ -1146,6 +1146,7 @@ export const body = (hex: string) => {
 
 	const bsBodyColor = calcHex(baseColor, "#212529", hex); //--bs-body-color
 	const bsBodyColorRGB = getRGBString(bsBodyColor); //--bs-body-color-rgb
+	const bsHighlightColor = calcHex(baseColor, "#212529", hex); //--bs-highlight-color
 	const bsEmphasisColor = calcHex(baseColor, "#000000", hex); //--bs-emphasis-color
 	const bsEmphasisColorRGB = getRGBString(bsEmphasisColor); //--bs-emphasis-color-rgb
 	const bsSecondaryColor = `rgba(${bsBodyColorRGB}, 0.75)`; //--bs-secondary-color
@@ -1164,6 +1165,7 @@ export const body = (hex: string) => {
 
 	const bsDarkBodyColor = calcHex(baseColor, "#dee2e6", hex); //--bs-body-color
 	const bsDarkBodyColorRGB = getRGBString(bsDarkBodyColor); //--bs-body-color-rgb
+	const bsDarkHighlightColor = calcHex(baseColor, "#dee2e6", hex); //--bs-highlight-color
 	const bsDarkEmphasisColor = calcHex(baseColor, "#ffffff", hex); //--bs-emphasis-color
 	const bsDarkEmphasisColorRGB = getRGBString(bsDarkEmphasisColor); //--bs-emphasis-color-rgb
 	const bsDarkSecondaryColor = `rgba(${bsDarkBodyColorRGB}, 0.75)`; //--bs-secondary-color
@@ -1192,6 +1194,7 @@ export const body = (hex: string) => {
 			--bs-body-bg-rgb: ${rgb};
 			--bs-body-color: ${bsBodyColor};
 			--bs-body-color-rgb: ${bsBodyColorRGB};
+			--bs-highlight-color: ${bsHighlightColor};
 			--bs-emphasis-color: ${bsEmphasisColor};
 			--bs-emphasis-color-rgb: ${bsEmphasisColorRGB};
 			--bs-secondary-color: ${bsSecondaryColor};
@@ -1211,6 +1214,7 @@ export const body = (hex: string) => {
 			--bs-body-bg-rgb: ${rgbDark};
 			--bs-body-color: ${bsDarkBodyColor};
 			--bs-body-color-rgb: ${bsDarkBodyColorRGB};
+			--bs-highlight-color: ${bsDarkHighlightColor};
 			--bs-emphasis-color: ${bsDarkEmphasisColor};
 			--bs-emphasis-color-rgb: ${bsDarkEmphasisColorRGB};
 			--bs-secondary-color: ${bsDarkSecondaryColor};
