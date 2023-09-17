@@ -420,7 +420,7 @@ export const warning = (hex: string, light: string = "#fff", dark: string = "#00
 	const bsDarkTextEmphasis = calcHex(baseColor, "#ffda6a", hex); //--bs-warning-text-emphasis
 	const bsDarkBgSubtle = calcHex(baseColor, "#332701", hex); //--bs-warning-bg-subtle
 	const bsDarkBorderSubtle = calcHex(baseColor, "#997404", hex); //--bs-warning-border-subtle
-	const bsDarkHighlightBg = calcHex(baseColor, "#ffe69c", hex); //--bs-highlight-bg
+	const bsDarkHighlightBg = calcHex(baseColor, "#664d03", hex); //--bs-highlight-bg
 
 	//.table-warning
 	const bsTableBg = calcHex(baseColor, "#fff3cd", hex); //--bs-table-bg

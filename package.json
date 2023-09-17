@@ -1,6 +1,6 @@
 {
 	"name": "@printf83/bsts",
-	"version": "5.3.2001",
+	"version": "0.3.12",
 	"description": "Bootstrap TS builder",
 	"keywords": [
 		"bootstrap 5",
