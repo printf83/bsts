@@ -6,7 +6,7 @@ import { mergeObject } from "../../../core/mergeObject.js";
 
 const convert = (attr: IAttr) => {
 	attr.class = mergeClass(attr.class, "carousel-inner");
-	attr = mergeObject({ class: "carousel-inner", rounded: true }, attr);
+	attr = mergeObject({ class: "carousel-inner" }, attr);
 	return attr;
 };
 
