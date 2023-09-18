@@ -7,7 +7,7 @@ import { UUID } from "../../core/uuid.js";
 import * as inner from "./inner/_index.js";
 import { init } from "./_fn.js";
 
-export interface CarouselItem {
+export interface CarouselItem extends IAttr {
 	interval?: number;
 	src?: string;
 	caption?: IElem;
@@ -81,6 +81,7 @@ const convert = (attr: Carousel) => {
 				attr.item.map((i, ix) => {
 					return new inner.item.container(
 						{
+							textAlign: i.textAlign,
 							interval: i.interval,
 							active: ix === 0 ? true : undefined,
 						},
