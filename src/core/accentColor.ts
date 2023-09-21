@@ -1057,6 +1057,26 @@ export const primary = (hex: string, light: string = "#fff", dark: string = "#00
 			box-shadow: 0 0 0 .25rem rgba(${rgb},.25);
 		}
 
+		.form-range::-moz-range-thumb:active {
+			background-color: rgba(${rgb},.75);
+		}
+ 
+		.form-range::-webkit-slider-thumb:active {
+			background-color: rgba(${rgb},.75);
+		}
+
+		.form-range::-ms-thumb:active {
+			background-color: rgba(${rgb},.75);
+		}
+
+		.form-range::-ms-fill-lower:active {
+			background-color: rgba(${rgb},.75);
+		}
+
+		.form-range::-ms-fill-upper:active {
+			background-color: rgba(${rgb},.75);
+		}
+
 		.dropdown-item {
 			--bs-dropdown-link-active-bg: ${hex};
 		}
