@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    /* Visit https://aka.ms/tsconfig to read more about this file */
+    /* Visit https://aka.ms/tsconfig to read more about this file */ 
     "target": "ES6",
     "module": "commonjs",
     "outDir": "./build",
