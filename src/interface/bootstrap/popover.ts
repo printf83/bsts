@@ -1,6 +1,6 @@
 import { IAttr } from "../../core/tag.js";
 
-export interface Popover extends IAttr {
+export interface popover extends IAttr {
 	inline?: boolean;
 	trigger?: "hover" | "focus" | "click" | ("hover" | "focus" | "click")[];
 	title?: string;

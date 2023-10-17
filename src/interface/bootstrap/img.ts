@@ -1,6 +1,6 @@
-import { img as IImg } from "../html/img.js";
+import { img as HImg } from "../html/img.js";
 
-export interface Img extends IImg {
+export interface img extends HImg {
 	fluid?: true;
 	thumbnail?: true;
 }

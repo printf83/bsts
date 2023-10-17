@@ -1,15 +1,15 @@
 import { bootstrapType } from "../../core/bootstrap.js";
-import { Label as ILabel } from "../../html/label.js";
-import { Icon } from "./icon.js";
-import { icon } from "../../bootstrap/icon.js";
-import { Button } from "./button.js";
+import { label as HLabel } from "../html/label.js";
+import { icon as IIcon } from "./icon.js";
+import { icon as BIcon } from "../../bootstrap/icon.js";
+import { button as IButton } from "./button.js";
 
-export type LabelDisplay = bootstrapType.display | bootstrapType.display[];
+export type labelDisplay = bootstrapType.display | bootstrapType.display[];
 
-export interface Label extends ILabel, Omit<Button, "role"> {
-	icon?: string | Icon | icon;
+export interface label extends HLabel, Omit<IButton, "role"> {
+	icon?: string | IIcon | BIcon;
 	iconPosition?: "start" | "end" | "top" | "bottom";
-	iconDisplay?: LabelDisplay;
-	labelDisplay?: LabelDisplay;
+	iconDisplay?: labelDisplay;
+	labelDisplay?: labelDisplay;
 	stretched?: boolean;
 }

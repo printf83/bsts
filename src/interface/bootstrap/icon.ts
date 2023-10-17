@@ -1,9 +1,9 @@
 import { IAttr } from "../../core/tag.js";
 
-type IAttrIconType = "bi";
+export type iconType = "bi";
 
-export interface Icon extends IAttr {
+export interface icon extends IAttr {
 	id?: string;
-	type?: IAttrIconType;
+	type?: iconType;
 	handleBubble?: boolean;
 }

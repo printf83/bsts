@@ -1,9 +1,9 @@
 import { mergeObject } from "../../core/mergeObject.js";
 import { UUID } from "../../core/uuid.js";
-import { Input, input as TInput } from "../input.js";
+import { input, input as TInput } from "../input.js";
 import { Label, label } from "../label.js";
 
-export interface Toggle extends Omit<Input, "container"> {
+export interface Toggle extends Omit<input, "container"> {
 	type?: "checkbox" | "radio";
 	container?: Label;
 }
@@ -26,7 +26,7 @@ export const Toggle = (attr: Toggle) => {
 
 	delete attr.container;
 
-	let tElem = new TInput(attr as Input);
+	let tElem = new TInput(attr as input);
 
 	return [tElem, tLabel];
 };

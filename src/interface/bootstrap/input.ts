@@ -1,6 +1,6 @@
-import { Input as IInput } from "../../html/input.js";
+import { input as HInput } from "../html/input.js";
 
-export interface Input extends IInput {
+export interface input extends HInput {
 	weight?: "sm" | "lg";
 	toggle?: true;
 	switch?: true;

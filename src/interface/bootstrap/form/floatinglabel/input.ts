@@ -2,7 +2,7 @@ import { IAttr, IElem } from "../../../core/tag.js";
 import { UUID } from "../../../core/uuid.js";
 import { Datalist } from "../../../html/datalist.js";
 import { div } from "../../../html/div.js";
-import { Input as IInput, input as TInput } from "../../input.js";
+import { input as IInput, input as TInput } from "../../input.js";
 import { container as TInputGroupContainer } from "../../inputgroup/container.js";
 import { label } from "../../label.js";
 import { formfloating } from "../../formfloating.js";

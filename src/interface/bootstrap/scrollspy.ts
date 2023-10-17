@@ -1,6 +1,6 @@
 import { IAttr } from "../../core/tag.js";
 
-export interface Scrollspy extends IAttr {
+export interface scrollspy extends IAttr {
 	target?: string;
 	smooth?: boolean;
 	rootMargin?: string;

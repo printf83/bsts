@@ -1,5 +1,5 @@
-import { Button } from "../../html/button.js";
+import { button as HButton } from "../html/button.js";
 
-export interface Btnclose extends Button {
+export interface btnclose extends HButton {
 	white?: boolean;
 }

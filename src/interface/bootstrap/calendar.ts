@@ -1,8 +1,8 @@
 import { IAttr } from "../../core/tag.js";
-import { Ul } from "../../html/ul.js";
+import { ul as HUl } from "../html/ul.js";
 
 /* item */
-export interface Item extends Ul {
+export interface item extends HUl {
 	multiple?: boolean;
 	view?: Date;
 	startDate?: Date;
@@ -12,13 +12,13 @@ export interface Item extends Ul {
 
 /* header */
 
-export interface Header extends IAttr {
+export interface header extends IAttr {
 	view?: Date;
 	monthTitle?: string[];
 }
 
 /* main */
-export interface Calendar extends IAttr {
+export interface calendar extends IAttr {
 	multiple?: boolean;
 	view?: Date;
 	startDate?: Date;

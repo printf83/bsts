@@ -1,11 +1,10 @@
 import { bootstrapType } from "../../core/bootstrap.js";
 import { IAttr } from "../../core/tag.js";
+import { icon as IIcon } from "./icon.js";
+import { icon as BIcon } from "../../bootstrap/icon.js";
 
-import { Icon } from "./icon.js";
-import { icon } from "../../bootstrap/icon.js";
-
-export interface Pill extends IAttr {
-	icon?: string | Icon | icon;
+export interface pill extends IAttr {
+	icon?: string | IIcon | BIcon;
 	iconPosition?: "start" | "end" | "top" | "bottom";
 	color?: bootstrapType.color;
 	weight?: "md" | "lg";

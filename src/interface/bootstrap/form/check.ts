@@ -1,7 +1,7 @@
 import { IAttr } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
-import { Input, input as TInput } from "../input.js";
+import { input, input as TInput } from "../input.js";
 import { label } from "../label.js";
 import {
 	genDescription,
@@ -12,7 +12,7 @@ import {
 	genValidTooltip,
 } from "./_fn.js";
 
-export interface Check extends Omit<Input, "container"> {
+export interface Check extends Omit<input, "container"> {
 	type?: "checkbox" | "radio";
 	container?: IAttr;
 	hideLabel?: true;
@@ -84,7 +84,7 @@ export const Check = (attr: Check) => {
 	delete tAttr.validFeedback;
 	delete tAttr.validTooltip;
 	delete tAttr.invalidTooltip;
-	let tElem = new TInput(tAttr as Input);
+	let tElem = new TInput(tAttr as input);
 
 	//put in container
 	if (attr.container) {
