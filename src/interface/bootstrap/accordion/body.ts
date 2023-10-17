@@ -1,6 +1,6 @@
-import { Container } from "../collapse/container.js";
+import { container } from "../collapse/container.js";
 
-export interface Body extends Container {
+export interface body extends container {
 	labelledby?: string;
 	parent?: string;
 	show?: boolean;
