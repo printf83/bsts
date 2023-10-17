@@ -1,6 +1,6 @@
 import { IAttr } from "../../core/tag.js";
 
-export interface Button extends IAttr {
+export interface button extends IAttr {
 	autofocus?: boolean;
 	disabled?: boolean;
 	form?: string;

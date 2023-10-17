@@ -1,6 +1,6 @@
 import { IAttr } from "../../core/tag.js";
 
-export interface Textarea extends IAttr {
+export interface textarea extends IAttr {
 	autofocus?: boolean;
 	cols?: number;
 	dirname?: string;
@@ -14,31 +14,4 @@ export interface Textarea extends IAttr {
 	rows?: number;
 	wrap?: "hard" | "soft";
 	value?: string;
-}
-
-const convert = (attr: Textarea) => {
-	//move value to elem
-	if (attr.value) {
-		if (attr.elem) {
-			if (Array.isArray(attr.elem)) {
-				attr.elem = [...attr.elem, attr.value];
-			} else {
-				attr.elem = [attr.elem, attr.value];
-			}
-		} else {
-			attr.elem = attr.value;
-		}
-
-		delete attr.value;
-	}
-
-	return attr;
-};
-
-export class textarea extends tag {
-	constructor();
-	constructor(attr: Textarea);
-	constructor(...arg: any[]) {
-		super("textarea", convert(tagConsNoElemArg<Textarea>(arg)));
-	}
 }

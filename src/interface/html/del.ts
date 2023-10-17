@@ -1,6 +1,6 @@
 import { IAttr } from "../../core/tag.js";
 
-export interface Del extends IAttr {
+export interface del extends IAttr {
 	cite?: string;
 	datetime?: string | Date;
 }

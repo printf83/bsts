@@ -1,6 +1,6 @@
 import { IAttr } from "../../core/tag.js";
 
-export interface Link extends IAttr {
+export interface link extends IAttr {
 	crossorigin?: "anonymous" | "use-credentials";
 	href?: string;
 	hreflang?: string;
@@ -30,12 +30,4 @@ export interface Link extends IAttr {
 
 	sizes?: string;
 	type?: string;
-}
-
-export class link extends tag {
-	constructor();
-	constructor(attr: Link);
-	constructor(...arg: any[]) {
-		super("link", tagConsNoElemArg<Link>(arg));
-	}
 }

@@ -1,6 +1,6 @@
 import { IAttr } from "../../core/tag.js";
 
-export interface Form extends IAttr {
+export interface form extends IAttr {
 	acceptCharset?: string;
 	action?: string;
 	autocomplete?: "on" | "off";

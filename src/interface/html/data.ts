@@ -1,5 +1,5 @@
 import { IAttr } from "../../core/tag.js";
 
-export interface Data extends IAttr {
+export interface data extends IAttr {
 	value?: string;
 }

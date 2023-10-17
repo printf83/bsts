@@ -1,6 +1,6 @@
 import { IAttr } from "../../core/tag.js";
 
-export interface Script extends IAttr {
+export interface script extends IAttr {
 	async?: boolean;
 	crossorigin?: "anonymous" | "use-credentials";
 	defer?: boolean;
@@ -17,12 +17,4 @@ export interface Script extends IAttr {
 		| "unsafe-url";
 	src?: string;
 	type?: string;
-}
-
-export class script extends tag {
-	constructor();
-	constructor(attr: Script);
-	constructor(...arg: any[]) {
-		super("script", tagConsNoElemArg<Script>(arg));
-	}
 }

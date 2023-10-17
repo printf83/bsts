@@ -1,6 +1,6 @@
 import { IAttr } from "../../core/tag.js";
 
-export interface Input extends IAttr {
+export interface input extends IAttr {
 	accept?: string;
 	alt?: string;
 	autocomplete?: "on" | "off";
@@ -53,12 +53,4 @@ export interface Input extends IAttr {
 		| "url"
 		| "week";
 	value?: string | number;
-}
-
-export class input extends tag {
-	constructor();
-	constructor(attr: Input);
-	constructor(...arg: any[]) {
-		super("input", tagConsNoElemArg<Input>(arg));
-	}
 }

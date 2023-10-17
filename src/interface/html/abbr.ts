@@ -1,5 +1,5 @@
 import { IAttr } from "../../core/tag.js";
 
-export interface Abbr extends IAttr {
+export interface abbr extends IAttr {
 	small?: true;
 }

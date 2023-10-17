@@ -1,6 +1,6 @@
 import { IAttr } from "../../core/tag.js";
 
-export interface Area extends IAttr {
+export interface area extends IAttr {
 	alt?: string;
 	coords?: string;
 	download?: string;

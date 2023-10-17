@@ -1,5 +1,5 @@
 import { IAttr } from "../../core/tag.js";
 
-export interface Bdo extends IAttr {
+export interface bdo extends IAttr {
 	dir?: "ltr" | "rtl";
 }

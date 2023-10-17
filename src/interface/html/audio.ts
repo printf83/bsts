@@ -1,6 +1,6 @@
 import { IAttr } from "../../core/tag.js";
 
-export interface Audio extends IAttr {
+export interface audio extends IAttr {
 	autoplay?: boolean;
 	controls?: boolean;
 	loop?: boolean;

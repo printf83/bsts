@@ -1,5 +1,5 @@
 import { IAttr } from "../../core/tag.js";
 
-export interface Colgroup extends IAttr {
+export interface colgroup extends IAttr {
 	span?: number;
 }

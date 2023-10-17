@@ -1,7 +1,7 @@
 import { bootstrapType } from "../../core/bootstrap.js";
 import { IAttr } from "../../core/tag.js";
 
-export interface A extends IAttr {
+export interface a extends IAttr {
 	download?: string;
 	href?: string;
 	hreflang?: string;
