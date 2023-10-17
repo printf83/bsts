@@ -35,7 +35,7 @@ import * as toast from "./toast/_index.js";
 import { tooltip } from "./tooltip.js";
 import { visuallyhidden } from "./visuallyhidden.js";
 import { timer } from "./timer.js";
-import { calendar } from "./calendar.js";
+import * as calendar from "./calendar.js";
 
 export {
 	form,

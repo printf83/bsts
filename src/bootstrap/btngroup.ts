@@ -2,12 +2,8 @@ import { IAttr, IElem } from "../core/tag.js";
 import { bsConstArg } from "../core/bootstrap.js";
 import { div } from "../html/div.js";
 import { mergeObject } from "../core/mergeObject.js";
+import { btngroup as Btngroup } from "../interface/bootstrap/btngroup.js";
 
-export interface Btngroup extends Omit<IAttr, "role"> {
-	role?: "group" | "toolbar";
-	weight?: "sm" | "lg";
-	vertical?: boolean;
-}
 const convert = (attr: Btngroup): IAttr => {
 	attr.role ??= "group";
 

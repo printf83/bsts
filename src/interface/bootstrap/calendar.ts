@@ -18,7 +18,7 @@ export interface header extends IAttr {
 }
 
 /* main */
-export interface calendar extends IAttr {
+export interface container extends IAttr {
 	multiple?: boolean;
 	view?: Date;
 	startDate?: Date;

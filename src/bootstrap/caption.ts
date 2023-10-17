@@ -1,18 +1,10 @@
-import { bootstrapType, bsConstArg } from "../core/bootstrap.js";
+import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
-import { IAttr, IElem, isAttr, tag } from "../core/tag.js";
+import { IElem, isAttr, tag } from "../core/tag.js";
 import { div } from "../html/div.js";
 import { span } from "../html/span.js";
 import { Icon, icon } from "./icon.js";
-
-export type CaptionDisplay = bootstrapType.display | bootstrapType.display[];
-
-export interface Caption extends IAttr {
-	icon?: string | Icon | icon;
-	iconPosition?: "start" | "end" | "top" | "bottom";
-	iconDisplay?: CaptionDisplay;
-	labelDisplay?: CaptionDisplay;
-}
+import { caption as Caption, captionDisplay as CaptionDisplay } from "../interface/bootstrap/caption.js";
 
 const fnIcon = (display: CaptionDisplay | undefined, attr: string | Icon | icon) => {
 	if (typeof attr === "string") {
