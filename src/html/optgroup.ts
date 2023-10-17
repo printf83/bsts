@@ -1,13 +1,6 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-import { option, Option } from "./option.js";
-
-export interface Optgroup extends IAttr {
-	disabled?: boolean;
-	label?: string;
-	attrLabel?: string;
-
-	item?: Option | Option[];
-}
+import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { option } from "./option.js";
+import { optgroup as Optgroup } from "../interface/html/optgroup.js";
 
 const convert = (attr: Optgroup) => {
 	if (attr.label) {

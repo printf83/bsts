@@ -1,9 +1,5 @@
-import { IAttr, tag } from "../core/tag.js";
-
-export interface Embed extends IAttr {
-	src?: string;
-	type?: string;
-}
+import { tag } from "../core/tag.js";
+import { embed as Embed } from "../interface/html/embed.js";
 
 export class embed extends tag {
 	constructor();

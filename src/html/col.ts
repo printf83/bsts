@@ -1,8 +1,5 @@
-import { tagConsNoElemArg, IAttr, tag } from "../core/tag.js";
-
-export interface Col extends IAttr {
-	span?: number;
-}
+import { tagConsNoElemArg, tag } from "../core/tag.js";
+import { col as Col } from "../interface/html/col.js";
 
 export class col extends tag {
 	constructor();

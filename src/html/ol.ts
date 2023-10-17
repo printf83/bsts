@@ -1,15 +1,7 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, IElem, tag } from "../core/tag.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { li } from "./li.js";
-
-export interface Ol extends IAttr {
-	unstyle?: boolean;
-	inline?: boolean;
-	reversed?: boolean;
-	startValue?: number;
-
-	item?: IElem;
-}
+import { ol as Ol } from "../interface/html/ol.js";
 
 const convert = (attr: Ol) => {
 	attr.class = mergeClass(attr.class, [

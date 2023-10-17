@@ -1,9 +1,5 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Progress extends IAttr {
-	max?: number;
-	value?: number;
-}
+import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { progress as Progress } from "../interface/html/progress.js";
 
 export class progress extends tag {
 	constructor();

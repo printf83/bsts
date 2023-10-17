@@ -1,18 +1,5 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Button extends IAttr {
-	autofocus?: boolean;
-	disabled?: boolean;
-	form?: string;
-	formaction?: string;
-	formenctype?: "application/x-www-form-urlencoded" | "multipart/form-data" | "text/plain	";
-	formmethod?: "get" | "post";
-	formnovalidate?: boolean;
-	formtarget?: string;
-	name?: string;
-	type?: "button" | "reset" | "submit";
-	value?: string;
-}
+import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { button as Button } from "../interface/bootstrap/button.js";
 
 export class button extends tag {
 	constructor();

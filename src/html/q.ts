@@ -1,8 +1,5 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Q extends IAttr {
-	cite?: string;
-}
+import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { q as Q } from "../interface/html/q.js";
 
 export class q extends tag {
 	constructor();

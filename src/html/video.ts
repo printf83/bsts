@@ -1,14 +1,5 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Video extends IAttr {
-	autoplay?: boolean;
-	controls?: boolean;
-	loop?: boolean;
-	muted?: boolean;
-	poster?: string;
-	preload?: "auto" | "metadata" | "none";
-	src?: string;
-}
+import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { video as Video } from "../interface/html/video.js";
 
 export class video extends tag {
 	constructor();

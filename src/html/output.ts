@@ -1,10 +1,5 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Output extends IAttr {
-	for?: string;
-	from?: string;
-	name?: string;
-}
+import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { output as Output } from "../interface/html/output.js";
 
 export class output extends tag {
 	constructor();

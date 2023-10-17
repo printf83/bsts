@@ -1,8 +1,5 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Blockquote extends IAttr {
-	cite?: string;
-}
+import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { blockquote as Blockquote } from "../interface/html/blockquote.js";
 
 export class blockquote extends tag {
 	constructor();

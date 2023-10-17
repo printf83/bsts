@@ -1,10 +1,5 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Option extends IAttr {
-	disabled?: boolean;
-	selected?: boolean;
-	value?: string;
-}
+import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { option as Option } from "../interface/html/option.js";
 
 export class option extends tag {
 	constructor();

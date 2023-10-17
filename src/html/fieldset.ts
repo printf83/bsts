@@ -1,10 +1,5 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Fieldset extends IAttr {
-	disabled?: boolean;
-	form?: string;
-	name?: string;
-}
+import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { fieldset as Fieldset } from "../interface/html/fieldset.js";
 
 export class fieldset extends tag {
 	constructor();

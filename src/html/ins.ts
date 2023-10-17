@@ -1,9 +1,5 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Ins extends IAttr {
-	cite?: string;
-	datetime?: string | Date;
-}
+import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { ins as Ins } from "../interface/html/ins.js";
 
 export class ins extends tag {
 	constructor();

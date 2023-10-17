@@ -1,13 +1,5 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Picture extends IAttr {
-	dataText?: string;
-	form?: string;
-	name?: string;
-	type?: string;
-	typemustmatch?: boolean;
-	usemap?: string;
-}
+import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { picture as Picture } from "../interface/html/picture.js";
 
 export class picture extends tag {
 	constructor();

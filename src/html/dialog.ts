@@ -1,8 +1,5 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Dialog extends IAttr {
-	open?: boolean;
-}
+import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { dialog as Dialog } from "../interface/html/dialog.js";
 
 export class dialog extends tag {
 	constructor();

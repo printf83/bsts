@@ -1,9 +1,6 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, IElem, tag } from "../core/tag.js";
 import { mergeClass } from "../core/mergeClass.js";
-
-export interface P extends IAttr {
-	lead?: boolean;
-}
+import { p as P } from "../interface/html/p.js";
 
 const convert = (attr: P) => {
 	attr.class = mergeClass(attr.class, attr.lead ? "lead" : undefined);

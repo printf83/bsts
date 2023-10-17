@@ -1,8 +1,5 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Details extends IAttr {
-	open?: boolean;
-}
+import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { details as Details } from "../interface/html/details.js";
 
 export class details extends tag {
 	constructor();

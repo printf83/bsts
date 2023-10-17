@@ -1,10 +1,5 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Td extends IAttr {
-	colspan?: number;
-	headers?: string;
-	rowspan?: number;
-}
+import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { td as Td } from "../interface/html/td.js";
 
 export class td extends tag {
 	constructor();

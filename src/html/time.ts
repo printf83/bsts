@@ -1,8 +1,5 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Time extends IAttr {
-	datetime?: Date;
-}
+import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { time as Time } from "../interface/html/time.js";
 
 export class time extends tag {
 	constructor();

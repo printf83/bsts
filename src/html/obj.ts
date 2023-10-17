@@ -1,13 +1,5 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Obj extends IAttr {
-	dataText?: string;
-	form?: string;
-	name?: string;
-	type?: string;
-	typemustmatch?: boolean;
-	usemap?: string;
-}
+import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { obj as Obj } from "../interface/html/obj.js";
 
 export class obj extends tag {
 	constructor();

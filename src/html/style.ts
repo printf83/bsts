@@ -1,9 +1,5 @@
-import { tagConsArg, IAttr, tag } from "../core/tag.js";
-
-export interface Style extends IAttr {
-	media?: string;
-	type?: "text/css";
-}
+import { tagConsArg, tag } from "../core/tag.js";
+import { style as Style } from "../interface/html/style.js";
 
 export class style extends tag {
 	constructor();

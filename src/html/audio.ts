@@ -1,13 +1,5 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Audio extends IAttr {
-	autoplay?: boolean;
-	controls?: boolean;
-	loop?: boolean;
-	muted?: boolean;
-	preload?: "auto" | "metadata" | "none";
-	src?: string;
-}
+import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { audio as Audio } from "../interface/html/audio.js";
 
 export class audio extends tag {
 	constructor();

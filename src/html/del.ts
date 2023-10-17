@@ -1,9 +1,5 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Del extends IAttr {
-	cite?: string;
-	datetime?: string | Date;
-}
+import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { del as Del } from "../interface/html/del.js";
 
 export class del extends tag {
 	constructor();

@@ -1,9 +1,6 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, IElem, tag } from "../core/tag.js";
 import { mergeClass } from "../core/mergeClass.js";
-
-export interface Abbr extends IAttr {
-	small?: true;
-}
+import { abbr as Abbr } from "../interface/html/abbr.js";
 
 const convert = (attr: Abbr) => {
 	attr.class = mergeClass(attr.class, attr.small ? "initialism" : undefined);

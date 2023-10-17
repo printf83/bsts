@@ -1,8 +1,5 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Colgroup extends IAttr {
-	span?: number;
-}
+import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { colgroup as Colgroup } from "../interface/html/colgroup.js";
 
 export class colgroup extends tag {
 	constructor();

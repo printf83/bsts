@@ -1,9 +1,6 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, IElem, tag } from "../core/tag.js";
 import { option } from "./option.js";
-
-export interface Datalist extends IAttr {
-	item?: string | string[];
-}
+import { datalist as Datalist } from "../interface/html/datalist.js";
 
 const convert = (attr: Datalist) => {
 	if (attr.item && !attr.elem) {

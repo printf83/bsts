@@ -1,10 +1,6 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, IElem, tag } from "../core/tag.js";
 import { mergeClass } from "../core/mergeClass.js";
-
-export interface Li extends IAttr {
-	value?: string;
-	inline?: boolean;
-}
+import { li as Li } from "../interface/html/li.js";
 
 const convert = (attr: Li) => {
 	attr.class = mergeClass(attr.class, [attr.inline ? "list-inline-item" : undefined]);

@@ -1,9 +1,5 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Label extends IAttr {
-	for?: string;
-	form?: string;
-}
+import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { label as Label } from "../interface/html/label.js";
 
 export class label extends tag {
 	constructor();

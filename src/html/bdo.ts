@@ -1,8 +1,5 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Bdo extends IAttr {
-	dir?: "ltr" | "rtl";
-}
+import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { bdo as Bdo } from "../interface/html/bdo.js";
 
 export class bdo extends tag {
 	constructor();
