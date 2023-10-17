@@ -1,7 +1,7 @@
 import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
-import { h } from "../../html/h.js";
+import { h2 } from "../../html/h2.js";
 import { UUID } from "../../core/uuid.js";
 import { Button, button } from "../collapse/button.js";
 
@@ -28,12 +28,12 @@ const convert = (attr: Button) => {
 	return attr;
 };
 
-export class header extends h {
+export class header extends h2 {
 	constructor();
 	constructor(attr: Button);
 	constructor(elem: IElem);
 	constructor(attr: Button, elem: IElem);
 	constructor(...arg: any[]) {
-		super(2, convert(bsConstArg<Button>("elem", arg)));
+		super(convert(bsConstArg<Button>("elem", arg)));
 	}
 }
