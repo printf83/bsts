@@ -11,9 +11,9 @@ const convert = (attr: Li) => {
 
 export class li extends tag {
 	constructor();
-	constructor(elem: elem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Li);
-	constructor(attr: Li, elem: elem);
+	constructor(attr: Li, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("li", convert(tagConsArg<Li>("elem", arg)));
 	}

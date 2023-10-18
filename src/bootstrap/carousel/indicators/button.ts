@@ -29,8 +29,8 @@ const convert = (attr: Button) => {
 export class button extends HButton {
 	constructor();
 	constructor(attr: Button);
-	constructor(elem: elem);
-	constructor(attr: Button, elem: elem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Button, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Button>("elem", arg)));
 	}

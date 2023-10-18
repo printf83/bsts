@@ -11,9 +11,9 @@ const convert = (attr: Abbr) => {
 
 export class abbr extends tag {
 	constructor();
-	constructor(elem: elem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Abbr);
-	constructor(attr: Abbr, elem: elem);
+	constructor(attr: Abbr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("abbr", convert(tagConsArg<Abbr>("elem", arg)));
 	}

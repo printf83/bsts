@@ -69,8 +69,8 @@ const convert = (attr: Button) => {
 export class button extends tag {
 	constructor();
 	constructor(attr: Button);
-	constructor(elem: elem);
-	constructor(attr: Button, elem: elem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Button, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(
 			bsConstArgTag<Button>("elem", "button", "a", (i) => (i.href ? true : false), arg),

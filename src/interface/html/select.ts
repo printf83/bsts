@@ -6,7 +6,7 @@ import { option } from "./option.js";
 export interface selectItem extends option, optgroup {
 	value?: string;
 	label?: string;
-	elem?: elem;
+	elem?: elem | elem[];
 	selected?: boolean;
 
 	item?: selectItem | selectItem[];

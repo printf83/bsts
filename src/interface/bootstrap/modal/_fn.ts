@@ -8,7 +8,7 @@ export type customStyleButton = 1 | 2;
 
 export interface btnItem {
 	color?: button["color"];
-	elem: elem;
+	elem: elem | elem[];
 	click?: EventListener;
 }
 
@@ -34,15 +34,15 @@ export type btnType =
 
 export interface btnItemDB {
 	color?: button["color"];
-	elem: elem;
+	elem: elem | elem[];
 }
 
 export interface create extends Omit<container, "title"> {
 	customStyle?: customStyleButton;
 	btn?: btnType | btnType[];
 	btnFn?: EventListener | EventListener[];
-	title?: elem;
-	elem?: elem;
+	title?: elem | elem[];
+	elem?: elem | elem[];
 
 	attrHeader?: header;
 	attrBody?: attr;

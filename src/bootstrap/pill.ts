@@ -80,7 +80,7 @@ const fnElem = (
 	color: bsType.color | undefined,
 	iconPosition: "start" | "end" | "top" | "bottom" | undefined,
 	rounded: bsType.rounded | undefined,
-	elem: elem
+	elem: elem | elem[]
 ) => {
 	let r: bsType.rounded;
 	let n: number = typeof rounded === "number" ? rounded : 1;
@@ -120,7 +120,7 @@ const fnElem = (
 };
 
 const convert = (attr: Pill) => {
-	let tElem: elem;
+	let tElem: elem | elem[];
 	let tAttr: Pill = attr;
 
 	if (attr && typeof attr.icon !== "undefined") {

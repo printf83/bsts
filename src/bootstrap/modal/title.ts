@@ -21,8 +21,8 @@ const convert = (attr: attr) => {
 export class title extends h1 {
 	constructor();
 	constructor(attr: attr);
-	constructor(elem: elem);
-	constructor(attr: attr, elem: elem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}

@@ -29,8 +29,8 @@ const convert = (attr: Body) => {
 export class body extends container {
 	constructor();
 	constructor(attr: Body);
-	constructor(elem: elem);
-	constructor(attr: Body, elem: elem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Body, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Body>("elem", arg)));
 	}

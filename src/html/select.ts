@@ -37,9 +37,9 @@ const convert = (attr: Select) => {
 
 export class select extends tag {
 	constructor();
-	constructor(elem: elem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Select);
-	constructor(attr: Select, elem: elem);
+	constructor(attr: Select, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("select", convert(tagConsArg<Select>("elem", arg)));
 	}

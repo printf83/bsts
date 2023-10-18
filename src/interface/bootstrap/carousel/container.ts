@@ -4,7 +4,7 @@ import { elem } from "../../core/elem.js";
 export interface carouselItem extends attr {
 	interval?: number;
 	src?: string;
-	caption?: elem;
+	caption?: elem | elem[];
 }
 export interface carousel extends attr {
 	fade?: boolean;

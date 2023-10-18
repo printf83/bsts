@@ -17,7 +17,7 @@ const fnIcon = (display: MsgDisplay | undefined, attr: string | Icon | icon) => 
 	}
 };
 
-const fnElem = (display: MsgDisplay | undefined, elem: elem) => {
+const fnElem = (display: MsgDisplay | undefined, elem: elem | elem[]) => {
 	if (display) {
 		return new div({ display: display }, elem);
 	} else {

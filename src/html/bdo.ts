@@ -4,9 +4,9 @@ import { bdo as Bdo } from "../interface/html/bdo.js";
 
 export class bdo extends tag {
 	constructor();
-	constructor(elem: elem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Bdo);
-	constructor(attr: Bdo, elem: elem);
+	constructor(attr: Bdo, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("bdo", tagConsArg<Bdo>("elem", arg));
 	}

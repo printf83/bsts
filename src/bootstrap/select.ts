@@ -26,9 +26,9 @@ const convert = (attr: Select) => {
 
 export class select extends TSelect {
 	constructor();
-	constructor(elem: elem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Select);
-	constructor(attr: Select, elem: elem);
+	constructor(attr: Select, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Select>("elem", arg)));
 	}

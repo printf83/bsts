@@ -19,8 +19,8 @@ const convert = (attr: attr) => {
 export class grid extends div {
 	constructor();
 	constructor(attr: attr);
-	constructor(elem: elem);
-	constructor(attr: attr, elem: elem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}

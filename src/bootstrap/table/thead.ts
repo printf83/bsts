@@ -15,8 +15,8 @@ const convert = (attr: Thead) => {
 export class thead extends HThead {
 	constructor();
 	constructor(attr: Thead);
-	constructor(elem: elem);
-	constructor(attr: Thead, elem: elem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Thead, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Thead>("elem", arg)));
 	}

@@ -7,5 +7,5 @@ export interface ol extends attr {
 	reversed?: boolean;
 	startValue?: number;
 
-	item?: elem;
+	item?: elem | elem[];
 }

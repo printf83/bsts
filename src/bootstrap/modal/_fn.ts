@@ -328,8 +328,8 @@ export interface Create extends Omit<Container, "title"> {
 	customStyle?: customStyleButton;
 	btn?: btnType | btnType[];
 	btnFn?: EventListener | EventListener[];
-	title?: elem;
-	elem?: elem;
+	title?: elem | elem[];
+	elem?: elem | elem[];
 
 	attrHeader?: Header;
 	attrBody?: attr;

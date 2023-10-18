@@ -4,9 +4,9 @@ import { elem } from "../interface/core/elem.js";
 
 export class caption extends tag {
 	constructor();
-	constructor(elem: elem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: attr);
-	constructor(attr: attr, elem: elem);
+	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("caption", tagConsArg("elem", arg));
 	}

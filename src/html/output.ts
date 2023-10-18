@@ -4,9 +4,9 @@ import { output as Output } from "../interface/html/output.js";
 
 export class output extends tag {
 	constructor();
-	constructor(elem: elem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Output);
-	constructor(attr: Output, elem: elem);
+	constructor(attr: Output, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("output", tagConsArg<Output>("elem", arg));
 	}

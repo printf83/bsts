@@ -19,8 +19,8 @@ const convert = (attr: Tr) => {
 export class tr extends HTr {
 	constructor();
 	constructor(attr: Tr);
-	constructor(elem: elem);
-	constructor(attr: Tr, elem: elem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Tr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Tr>("elem", arg)));
 	}
