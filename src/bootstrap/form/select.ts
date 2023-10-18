@@ -1,10 +1,9 @@
-import { bootstrapType } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { IAttr, IElem, isTag } from "../../core/tag.js";
+import { isTag } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
 import { label } from "../label.js";
-import { Select as ISelect, select as TSelect } from "../select.js";
+import { select as TSelect } from "../select.js";
 import { container as TInputGroupContainer } from "../inputgroup/container.js";
 import {
 	genLabel,
@@ -18,26 +17,10 @@ import {
 	genValidTooltip,
 } from "./_fn.js";
 
-export interface Select extends Omit<ISelect, "container"> {
-	description?: string;
-	container?: IAttr;
+import { select as BSelect } from "../../interface/bootstrap/select.js";
+import { select as ISelect } from "../../interface/bootstrap/form/select.js";
 
-	hideLabel?: true;
-
-	before?: IElem;
-	after?: IElem;
-
-	col1?: bootstrapType.col;
-	col2?: bootstrapType.col;
-	col3?: false | bootstrapType.col;
-
-	invalidFeedback?: string;
-	validFeedback?: string;
-	invalidTooltip?: string;
-	validTooltip?: string;
-}
-
-export const Select = (attr: Select) => {
+export const Select = (attr: ISelect) => {
 	let container = attr.container;
 
 	attr.id ??= UUID();
@@ -90,7 +73,7 @@ export const Select = (attr: Select) => {
 	delete tAttr.validTooltip;
 	delete tAttr.invalidTooltip;
 
-	let tElem = new TSelect(tAttr as ISelect);
+	let tElem = new TSelect(tAttr as BSelect);
 
 	//setup container if col provided
 	if (attr.col1) {

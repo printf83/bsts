@@ -1,8 +1,7 @@
-import { IAttr, IElem } from "../../../core/tag.js";
 import { UUID } from "../../../core/uuid.js";
 import { div } from "../../../html/div.js";
 import { label } from "../../label.js";
-import { Select as ISelect, select as TSelect } from "../../select.js";
+import { select as TSelect } from "../../select.js";
 import { container as TInputGroupContainer } from "../../inputgroup/container.js";
 import { formfloating } from "../../formfloating.js";
 import {
@@ -16,21 +15,10 @@ import {
 	labelFloatingFeedbackManager,
 } from "../_fn.js";
 import { mergeObject } from "../../../core/mergeObject.js";
+import { select as BSelect } from "../../../interface/bootstrap/form/floatinglabel/select.js";
+import { select as ISelect } from "../../../interface/bootstrap/select.js";
 
-export interface Select extends Omit<ISelect, "container"> {
-	description?: string;
-	container?: IAttr;
-
-	before?: IElem;
-	after?: IElem;
-
-	invalidFeedback?: string;
-	validFeedback?: string;
-	invalidTooltip?: string;
-	validTooltip?: string;
-}
-
-export const Select = (attr: Select) => {
+export const Select = (attr: BSelect) => {
 	let container = attr.container;
 
 	attr.id ??= UUID();
@@ -65,7 +53,7 @@ export const Select = (attr: Select) => {
 	let tElemGroupAfter = genGroupItem(attr.id, attr.after);
 
 	//setup main control
-	let tAttr: ISelect | Select = Object.assign({}, attr);
+	let tAttr: ISelect | BSelect = Object.assign({}, attr);
 	delete tAttr.label;
 	delete tAttr.description;
 	delete tAttr.container;
