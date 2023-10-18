@@ -1,22 +1,9 @@
 import { IElem } from "../../core/tag.js";
-import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
+import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { a, A } from "../../html/a.js";
+import { a } from "../../html/a.js";
 import { visuallyhidden } from "../visuallyhidden.js";
-
-export interface ButtonLink extends A {
-	viewOffset?: string | number[];
-	reference?: "toggle" | "parent";
-	autoClose?: "true" | "false" | "auto" | "manual" | "inside" | "outside";
-
-	boundary?: string;
-	positioning?: "dynamic" | "static";
-	popperConfig?: object;
-
-	split?: boolean;
-	navItem?: boolean;
-	color?: bootstrapType.linkColor;
-}
+import { buttonLink as ButtonLink } from "../../interface/bootstrap/dropdown/buttonLink.js";
 
 const convert = (attr: ButtonLink) => {
 	if (attr.autoClose) {

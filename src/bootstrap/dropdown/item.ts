@@ -1,13 +1,8 @@
 import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { a, A } from "../../html/a.js";
-
-export interface Item extends A {
-	active?: boolean;
-	current?: string;
-	handleActive?: boolean;
-}
+import { a } from "../../html/a.js";
+import { item as Item } from "../../interface/bootstrap/dropdown/item.js";
 
 const handleActive = (event: Event) => {
 	const target = (event.target as Element).closest(".dropdown-item") as Element;

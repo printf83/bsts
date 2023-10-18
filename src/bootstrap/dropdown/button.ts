@@ -1,21 +1,9 @@
 import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { button as Tbutton, Button as TButton } from "../button.js";
+import { button as Tbutton } from "../button.js";
 import { visuallyhidden } from "../visuallyhidden.js";
-
-export interface Button extends TButton {
-	viewOffset?: string | number[];
-	reference?: "toggle" | "parent";
-	autoClose?: "true" | "false" | "auto" | "manual" | "inside" | "outside";
-
-	boundary?: string;
-	positioning?: "dynamic" | "static";
-	popperConfig?: object;
-
-	split?: boolean;
-	navItem?: boolean;
-}
+import { button as Button } from "../../interface/bootstrap/dropdown/button.js";
 
 const convert = (attr: Button) => {
 	if (attr.autoClose) {

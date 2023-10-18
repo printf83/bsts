@@ -1,25 +1,8 @@
-import { IAttr, IElem } from "../../core/tag.js";
-import { bootstrapType } from "../../core/bootstrap.js";
+import { IElem } from "../../core/tag.js";
 import { div } from "../../html/div.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-
-export interface Menu extends IAttr {
-	viewOffset?: string | number[];
-	reference?: "toggle" | "parent";
-	autoClose?: "true" | "false" | "auto" | "manual" | "inside" | "outside";
-
-	boundary?: string;
-	positioning?: "dynamic" | "static";
-	popperConfig?: object;
-
-	positionView?: bootstrapType.dropdownMenuPositionView | bootstrapType.dropdownMenuPositionView[];
-	dropdownMenuPositionView?: bootstrapType.dropdownMenuPositionView | bootstrapType.dropdownMenuPositionView[];
-
-	customStyle?: 1;
-
-	debug?: boolean;
-}
+import { menu as Menu } from "../../interface/bootstrap/dropdown/menu.js";
 
 const convert = (attr: Menu) => {
 	attr = mergeObject(
