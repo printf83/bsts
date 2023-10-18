@@ -2,12 +2,8 @@ import { IElem } from "../core/tag.js";
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { UUID } from "../core/uuid.js";
-import { Select as ISelect, select as TSelect } from "../html/select.js";
-
-export interface Select extends ISelect {
-	weight?: "sm" | "lg";
-	isvalid?: boolean;
-}
+import { select as TSelect } from "../html/select.js";
+import { select as Select } from "../interface/bootstrap/select.js";
 
 const convert = (attr: Select) => {
 	attr = mergeObject(

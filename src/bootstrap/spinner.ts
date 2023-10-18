@@ -1,15 +1,9 @@
-import { IAttr, IElem, tag } from "../core/tag.js";
-import { bootstrapType, bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
+import { IElem, tag } from "../core/tag.js";
+import { bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { visuallyhidden } from "./visuallyhidden.js";
 import { mergeObject } from "../core/mergeObject.js";
-
-export interface Spinner extends IAttr {
-	type?: "border" | "grow";
-	small?: true;
-	role?: "status";
-	color?: bootstrapType.textColor;
-}
+import { spinner as Spinner } from "../interface/bootstrap/spinner.js";
 
 const convert = (attr: Spinner) => {
 	attr.role ??= "status";

@@ -1,15 +1,8 @@
 import { bsConstArg } from "../core/bootstrap.js";
-import { IAttr, IElem } from "../core/tag.js";
+import { IElem } from "../core/tag.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { i } from "../html/i.js";
-
-type IAttrIconType = "bi";
-
-export interface Icon extends IAttr {
-	id?: string;
-	type?: IAttrIconType;
-	handleBubble?: boolean;
-}
+import { icon as Icon, iconType } from "../interface/bootstrap/icon.js";
 
 const bubbleEvent = (event: Event) => {
 	event.preventDefault();
@@ -69,7 +62,7 @@ const convert = (attr: Icon) => {
 	return attr;
 };
 
-const genStaticIcon = (t: IAttrIconType, i: string, a?: Icon) => {
+const genStaticIcon = (t: iconType, i: string, a?: Icon) => {
 	if (a) {
 		delete a.type;
 		delete a.id;

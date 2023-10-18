@@ -1,36 +1,11 @@
-import { IAttr, IElem } from "../core/tag.js";
+import { IElem } from "../core/tag.js";
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { span } from "../html/span.js";
 import { addEvent } from "../core/eventManager.js";
 import { bstsConsole as console } from "../core/console.js";
 import { Popover as BSPopover } from "bootstrap";
-
-export interface Popover extends IAttr {
-	inline?: boolean;
-	trigger?: "hover" | "focus" | "click" | ("hover" | "focus" | "click")[];
-	title?: string;
-	content?: string;
-	placement?: "right" | "left" | "top" | "bottom";
-	parent?: string;
-	customClass?: string;
-
-	allowHtml?: boolean;
-	autoInit?: boolean;
-	allowList?: object;
-	animation?: boolean;
-	boundary?: string;
-	showDelay?: string | number;
-	hideDelay?: string | number;
-	delay?: string | number;
-	fallbackPlacement?: "right" | "left" | "top" | "bottom" | ("right" | "left" | "top" | "bottom")[];
-	viewOffset?: string | number[];
-	popperConfig?: object;
-	sanitize?: boolean;
-	sanitizeFn?: string;
-	selector?: string | false;
-	template?: string;
-}
+import { popover as Popover } from "../interface/bootstrap/popover.js";
 
 const convert = (attr: Popover) => {
 	attr.inline ??= true;

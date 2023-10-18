@@ -1,17 +1,10 @@
-import { bootstrapType, bsConstArg } from "../core/bootstrap.js";
+import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
-import { IAttr, IElem, isAttr } from "../core/tag.js";
+import { IElem, isAttr } from "../core/tag.js";
 import { div } from "../html/div.js";
-import { Icon, icon } from "./icon.js";
-
-export type MsgDisplay = bootstrapType.display | bootstrapType.display[];
-
-export interface Msg extends IAttr {
-	icon?: string | Icon | icon;
-	iconPosition?: "start" | "end" | "top" | "bottom";
-	iconDisplay?: MsgDisplay;
-	labelDisplay?: MsgDisplay;
-}
+import { icon } from "./icon.js";
+import { icon as Icon } from "../interface/bootstrap/icon.js";
+import { msg as Msg, msgDisplay as MsgDisplay } from "../interface/bootstrap/msg.js";
 
 const fnIcon = (display: MsgDisplay | undefined, attr: string | Icon | icon) => {
 	if (typeof attr === "string") {

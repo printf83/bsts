@@ -3,7 +3,8 @@ import { mergeObject } from "../core/mergeObject.js";
 import { IElem, isAttr, tag } from "../core/tag.js";
 import { div } from "../html/div.js";
 import { span } from "../html/span.js";
-import { Icon, icon } from "./icon.js";
+import { icon } from "./icon.js";
+import { icon as Icon } from "../interface/bootstrap/icon.js";
 import { caption as Caption, captionDisplay as CaptionDisplay } from "../interface/bootstrap/caption.js";
 
 const fnIcon = (display: CaptionDisplay | undefined, attr: string | Icon | icon) => {

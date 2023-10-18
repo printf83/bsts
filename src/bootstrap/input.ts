@@ -2,15 +2,8 @@ import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 
 import { UUID } from "../core/uuid.js";
-import { Input as IInput, input as TInput } from "../html/input.js";
-
-export interface Input extends IInput {
-	weight?: "sm" | "lg";
-	toggle?: true;
-	switch?: true;
-	plaintext?: true;
-	isvalid?: boolean;
-}
+import { input as HInput } from "../html/input.js";
+import { input as Input } from "../interface/bootstrap/input.js";
 
 const convert = (attr: Input) => {
 	//set default value
@@ -62,7 +55,7 @@ const convert = (attr: Input) => {
 	return attr;
 };
 
-export class input extends TInput {
+export class input extends HInput {
 	constructor();
 	constructor(value: string);
 	constructor(attr: Input);

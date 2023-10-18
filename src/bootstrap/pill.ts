@@ -1,18 +1,12 @@
 import { bootstrapType, bsConstArg } from "../core/bootstrap.js";
-import { IAttr, IElem, isAttr } from "../core/tag.js";
+import { IElem, isAttr } from "../core/tag.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { div } from "../html/div.js";
 import { small } from "../html/small.js";
 import { span } from "../html/span.js";
-import { Icon, icon } from "./icon.js";
-
-export interface Pill extends IAttr {
-	icon?: string | Icon | icon;
-	iconPosition?: "start" | "end" | "top" | "bottom";
-	color?: bootstrapType.color;
-	weight?: "md" | "lg";
-	type?: 1 | 2;
-}
+import { icon } from "./icon.js";
+import { icon as Icon } from "../interface/bootstrap/icon.js";
+import { pill as Pill } from "../interface/bootstrap/pill.js";
 
 const fnRow = (elem: IElem) => {
 	return new div({ row: true }, new div({ col: true, textAlign: "center" }, elem));

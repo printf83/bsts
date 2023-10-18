@@ -1,4 +1,4 @@
-import { IAttr, IElem } from "../core/tag.js";
+import { IElem } from "../core/tag.js";
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { div } from "../html/div.js";
@@ -6,14 +6,8 @@ import { addEvent } from "../core/eventManager.js";
 import { bstsConsole as console } from "../core/console.js";
 import { UUID } from "../core/uuid.js";
 import { ScrollSpy as BSScrollSpy } from "bootstrap";
-// import { disconnectResizeObserver, observeResizeObserver } from "../core/resizeObserverManager.js";
+import { scrollspy as Scrollspy } from "../interface/bootstrap/scrollspy.js";
 
-export interface Scrollspy extends IAttr {
-	target?: string;
-	smooth?: boolean;
-	rootMargin?: string;
-	initDelay?: number;
-}
 const convert = (attr: Scrollspy) => {
 	attr.initDelay ??= 1000;
 	attr.id ??= UUID();

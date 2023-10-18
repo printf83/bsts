@@ -1,10 +1,6 @@
 import { bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
-import { IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Visuallyhidden extends IAttr {
-	focusable?: boolean;
-	href?: string;
-}
+import { IElem, tag } from "../core/tag.js";
+import { visuallyhidden as Visuallyhidden } from "../interface/bootstrap/visuallyhidden.js";
 
 const convert = (attr: Visuallyhidden) => {
 	if (attr.href) {

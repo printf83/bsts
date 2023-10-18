@@ -1,10 +1,10 @@
-import { IAttr } from "../core/tag.js";
 import { bsConstArg } from "../core/bootstrap.js";
 import { span } from "../html/span.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { calcTimer } from "../core/calcTimer.js";
 import { UUID } from "../core/uuid.js";
 import { bstsConsole as console } from "../core/console.js";
+import { timer as Timer } from "../interface/bootstrap/timer.js";
 
 const runTimer = (elem: Element, delay: number, callback?: Function) => {
 	const id = elem.getAttribute("id");
@@ -48,11 +48,6 @@ export const initTimer = (elem: Element, callback?: Function) => {
 	console.info(`Start timer for $1`, elem);
 	runTimer(elem, 0, callback);
 };
-
-export interface Timer extends IAttr {
-	time?: number;
-	callback?: Function;
-}
 
 const convert = (attr: Timer) => {
 	const currentTime = new Date().getTime();
