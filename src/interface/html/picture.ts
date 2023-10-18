@@ -1,6 +1,6 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
-export interface picture extends IAttr {
+export interface picture extends attr {
 	dataText?: string;
 	form?: string;
 	name?: string;

@@ -1,6 +1,6 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
-export interface style extends IAttr {
+export interface style extends attr {
 	media?: string;
 	type?: "text/css";
 }

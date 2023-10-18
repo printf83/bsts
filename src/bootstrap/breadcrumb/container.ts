@@ -1,4 +1,5 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { attr } from "../../interface/core/attr.js";
+import { elem } from "../../interface/core/elem.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { nav } from "../../html/nav.js";
@@ -32,7 +33,7 @@ const convert = (attr: Container) => {
 
 	return {
 		label: label,
-		elem: new ol(attr as IAttr),
+		elem: new ol(attr as attr),
 		style: {
 			"--bs-breadcrumb-divider": divider ? divider : undefined,
 		},
@@ -42,8 +43,8 @@ const convert = (attr: Container) => {
 export class container extends nav {
 	constructor();
 	constructor(attr: Container);
-	constructor(elem: IElem);
-	constructor(attr: Container, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Container, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Container>("elem", arg)));
 	}

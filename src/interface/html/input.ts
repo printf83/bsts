@@ -1,6 +1,6 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
-export interface input extends IAttr {
+export interface input extends attr {
 	accept?: string;
 	alt?: string;
 	autocomplete?: "on" | "off";

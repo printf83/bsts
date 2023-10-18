@@ -1,4 +1,4 @@
-import { IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { thead as HThead } from "../../html/thead.js";
@@ -15,8 +15,8 @@ const convert = (attr: Thead) => {
 export class thead extends HThead {
 	constructor();
 	constructor(attr: Thead);
-	constructor(elem: IElem);
-	constructor(attr: Thead, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Thead, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Thead>("elem", arg)));
 	}

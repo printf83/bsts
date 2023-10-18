@@ -1,5 +1,5 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
-export interface map extends IAttr {
+export interface map extends attr {
 	name?: string;
 }

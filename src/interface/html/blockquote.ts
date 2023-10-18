@@ -1,5 +1,5 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
-export interface blockquote extends IAttr {
+export interface blockquote extends attr {
 	cite?: string;
 }

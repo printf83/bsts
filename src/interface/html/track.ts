@@ -1,6 +1,6 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
-export interface track extends IAttr {
+export interface track extends attr {
 	default?: boolean;
 	kind?: "captions" | "chapters" | "descriptions" | "metadata" | "subtitles";
 	label?: string;

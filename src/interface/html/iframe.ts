@@ -1,6 +1,6 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
-export interface iframe extends IAttr {
+export interface iframe extends attr {
 	allowfullscreen?: boolean;
 	allowpaymentrequest?: boolean;
 	loadingStyle?: "eager" | "lazy";

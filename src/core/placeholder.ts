@@ -1,6 +1,6 @@
 import { span } from "../html/span.js";
+import { bsType } from "../interface/core/bsType.js";
 import { rndBetween } from "./rndBetween.js";
-import { bootstrapType } from "./bootstrap.js";
 
 export const placeholder = (
 	min: number,
@@ -18,7 +18,7 @@ export const placeholder = (
 				{
 					loadingPlaceholder: true,
 					marginEnd: 1,
-					col: rndBetween(minCol!, maxCol!) as bootstrapType.col,
+					col: rndBetween(minCol!, maxCol!) as bsType.col,
 				},
 				""
 			)

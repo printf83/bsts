@@ -1,5 +1,5 @@
-import { IAttr } from "../../../core/tag.js";
+import { attr } from "../../core/attr.js";
 
-export interface brand extends IAttr {
+export interface brand extends attr {
 	href?: string;
 }

@@ -1,4 +1,4 @@
-import { IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { tbody as HTbody } from "../../html/tbody.js";
@@ -15,8 +15,8 @@ const convert = (attr: Tbody) => {
 export class tbody extends HTbody {
 	constructor();
 	constructor(attr: Tbody);
-	constructor(elem: IElem);
-	constructor(attr: Tbody, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Tbody, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Tbody>("elem", arg)));
 	}

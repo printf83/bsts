@@ -1,4 +1,5 @@
-import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { tagConsArg, tag } from "../core/tag.js";
+import { elem } from "../interface/core/elem.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { li } from "./li.js";
 import { ol as Ol } from "../interface/html/ol.js";
@@ -28,9 +29,9 @@ const convert = (attr: Ol) => {
 
 export class ol extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: elem);
 	constructor(attr: Ol);
-	constructor(attr: Ol, elem: IElem);
+	constructor(attr: Ol, elem: elem);
 	constructor(...arg: any[]) {
 		super("ol", convert(tagConsArg<Ol>("elem", arg)));
 	}

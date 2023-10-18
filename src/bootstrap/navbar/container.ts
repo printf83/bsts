@@ -1,4 +1,4 @@
-import { IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { nav } from "../../html/nav.js";
 import { header } from "../../html/header.js";
@@ -35,8 +35,8 @@ const convert = (attr: Container) => {
 export class container extends nav {
 	constructor();
 	constructor(attr: Container);
-	constructor(elem: IElem);
-	constructor(attr: Container, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Container, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Container>("elem", arg)));
 	}
@@ -45,8 +45,8 @@ export class container extends nav {
 export class containerHeader extends header {
 	constructor();
 	constructor(attr: Container);
-	constructor(elem: IElem);
-	constructor(attr: Container, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Container, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Container>("elem", arg)));
 	}

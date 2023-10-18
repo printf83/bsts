@@ -1,4 +1,4 @@
-import { IElem } from "../../../core/tag.js";
+import { elem } from "../../../interface/core/elem.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeClass } from "../../../core/mergeClass.js";
 import { div } from "../../../html/div.js";
@@ -24,8 +24,8 @@ const convert = (attr: Pane) => {
 export class pane extends div {
 	constructor();
 	constructor(attr: Pane);
-	constructor(elem: IElem);
-	constructor(attr: Pane, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Pane, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Pane>("elem", arg)));
 	}

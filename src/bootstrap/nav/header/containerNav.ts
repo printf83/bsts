@@ -1,4 +1,4 @@
-import { IElem } from "../../../core/tag.js";
+import { elem } from "../../../interface/core/elem.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { nav } from "../../../html/nav.js";
@@ -53,8 +53,8 @@ const convert = (attr: ContainerNav) => {
 export class containerNav extends nav {
 	constructor();
 	constructor(attr: ContainerNav);
-	constructor(elem: IElem);
-	constructor(attr: ContainerNav, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: ContainerNav, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<ContainerNav>("elem", arg)));
 	}

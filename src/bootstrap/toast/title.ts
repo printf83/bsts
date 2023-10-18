@@ -1,18 +1,19 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { attr } from "../../interface/core/attr.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { strong } from "../../html/strong.js";
 
-const convert = (attr: IAttr) => {
+const convert = (attr: attr) => {
 	attr = mergeObject({ marginEnd: "auto" }, attr);
 	return attr;
 };
 
 export class title extends strong {
 	constructor();
-	constructor(attr: IAttr);
-	constructor(elem: IElem);
-	constructor(attr: IAttr, elem: IElem);
+	constructor(attr: attr);
+	constructor(elem: elem);
+	constructor(attr: attr, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}

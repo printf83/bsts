@@ -1,7 +1,7 @@
-import { bootstrapType } from "../../core/bootstrap.js";
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
+import { bsType } from "../core/bsType.js";
 
-export interface a extends IAttr {
+export interface a extends attr {
 	download?: string;
 	href?: string;
 	hreflang?: string;
@@ -32,18 +32,18 @@ export interface a extends IAttr {
 		| "tag";
 	target?: "_blank" | "_parent" | "_self" | "_top";
 	type?: string;
-	color?: bootstrapType.linkColor;
+	color?: bsType.linkColor;
 	stretched?: true;
 
 	disabled?: boolean;
 
-	linkColor?: bootstrapType.linkColor;
-	linkUnderlineColor?: bootstrapType.linkUnderlineColor;
-	linkOffset?: bootstrapType.linkOffset;
-	linkOffsetHover?: bootstrapType.linkOffsetHover;
-	linkOpacity?: bootstrapType.linkOpacity;
-	linkUnderline?: bootstrapType.linkUnderline;
-	linkUnderlineOpacity?: bootstrapType.linkUnderlineOpacity;
-	linkUnderlineOpacityHover?: bootstrapType.linkUnderlineOpacityHover;
-	linkOpacityHover?: bootstrapType.linkOpacityHover;
+	linkColor?: bsType.linkColor;
+	linkUnderlineColor?: bsType.linkUnderlineColor;
+	linkOffset?: bsType.linkOffset;
+	linkOffsetHover?: bsType.linkOffsetHover;
+	linkOpacity?: bsType.linkOpacity;
+	linkUnderline?: bsType.linkUnderline;
+	linkUnderlineOpacity?: bsType.linkUnderlineOpacity;
+	linkUnderlineOpacityHover?: bsType.linkUnderlineOpacityHover;
+	linkOpacityHover?: bsType.linkOpacityHover;
 }

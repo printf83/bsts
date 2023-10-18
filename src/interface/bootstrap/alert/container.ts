@@ -1,9 +1,9 @@
-import { IAttr } from "../../../core/tag.js";
-import { bootstrapType } from "../../../core/bootstrap.js";
+import { attr } from "../../core/attr.js";
+import { bsType } from "../../core/bsType.js";
 
-export interface container extends IAttr {
+export interface container extends attr {
 	callout?: boolean;
 	animation?: boolean;
-	color?: bootstrapType.alertColor;
-	dismissible?: bootstrapType.alertDismissible;
+	color?: bsType.alertColor;
+	dismissible?: bsType.alertDismissible;
 }

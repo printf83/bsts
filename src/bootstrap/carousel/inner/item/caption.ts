@@ -1,9 +1,10 @@
-import { IAttr, IElem } from "../../../../core/tag.js";
+import { elem } from "../../../../interface/core/elem.js";
+import { attr } from "../../../../interface/core/attr.js";
 import { bsConstArg } from "../../../../core/bootstrap.js";
 import { div } from "../../../../html/div.js";
 import { mergeClass } from "../../../../core/mergeClass.js";
 
-const convert = (attr: IAttr) => {
+const convert = (attr: attr) => {
 	attr.class = mergeClass(attr.class, ["carousel-caption"]);
 	attr.display ??= ["none", "md-block"];
 
@@ -12,9 +13,9 @@ const convert = (attr: IAttr) => {
 
 export class caption extends div {
 	constructor();
-	constructor(attr: IAttr);
-	constructor(elem: IElem);
-	constructor(attr: IAttr, elem: IElem);
+	constructor(attr: attr);
+	constructor(elem: elem);
+	constructor(attr: attr, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}

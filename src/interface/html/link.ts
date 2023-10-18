@@ -1,6 +1,6 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
-export interface link extends IAttr {
+export interface link extends attr {
 	crossorigin?: "anonymous" | "use-credentials";
 	href?: string;
 	hreflang?: string;

@@ -1,4 +1,4 @@
-import { IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { tfoot as HTfoot } from "../../html/tfoot.js";
@@ -15,8 +15,8 @@ const convert = (attr: Tfoot) => {
 export class tfoot extends HTfoot {
 	constructor();
 	constructor(attr: Tfoot);
-	constructor(elem: IElem);
-	constructor(attr: Tfoot, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Tfoot, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Tfoot>("elem", arg)));
 	}

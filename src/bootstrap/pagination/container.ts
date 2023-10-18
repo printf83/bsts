@@ -1,4 +1,5 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { attr } from "../../interface/core/attr.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { ul } from "../../html/ul.js";
@@ -221,7 +222,7 @@ const genElem = (attr: Container) => {
 
 const convert = (attr: Container) => {
 	//nav only prop is label
-	let navAttr: IAttr = {
+	let navAttr: attr = {
 		label: attr.label,
 	};
 
@@ -257,8 +258,8 @@ const convert = (attr: Container) => {
 export class container extends nav {
 	constructor();
 	constructor(attr: Container);
-	constructor(elem: IElem);
-	constructor(attr: Container, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Container, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Container>("elem", arg)));
 	}

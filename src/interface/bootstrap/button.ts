@@ -1,8 +1,8 @@
-import { bootstrapType } from "../../core/bootstrap.js";
+import { bsType } from "../core/bsType.js";
 import { button as HButton } from "../html/button.js";
 
 export interface button extends Omit<HButton, "role"> {
-	color?: bootstrapType.btnColor;
+	color?: bsType.btnColor;
 	outline?: boolean;
 	dismiss?: "modal" | "alert" | "offcanvas" | "toast";
 	weight?: "lg" | "sm";

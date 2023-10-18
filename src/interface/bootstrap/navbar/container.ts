@@ -1,7 +1,7 @@
-import { bootstrapType } from "../../../core/bootstrap.js";
-import { IAttr } from "../../../core/tag.js";
+import { bsType } from "../../core/bsType.js";
+import { attr } from "../../core/attr.js";
 
-export interface container extends IAttr {
+export interface container extends attr {
 	textColorRGB?: string;
-	expand?: bootstrapType.viewport;
+	expand?: bsType.viewport;
 }

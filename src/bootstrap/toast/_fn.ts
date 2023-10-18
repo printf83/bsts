@@ -7,14 +7,15 @@ import { header } from "./header.js";
 import { timer } from "../timer.js";
 import { container } from "./container.js";
 import { item } from "./item.js";
-import { bootstrapType } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
 import { strong } from "../../html/strong.js";
-import { IElem, isTag } from "../../core/tag.js";
+import { isTag } from "../../core/tag.js";
 import { bstsConsole as console } from "../../core/console.js";
 import { Toast as BSToast } from "bootstrap";
 import { containerPlacement as ContainerPlacement } from "../../interface/bootstrap/toast/container.js";
 import { item as Item } from "../../interface/bootstrap/toast/item.js";
+import { elem } from "../../interface/core/elem.js";
+import { bsType } from "../../interface/core/bsType.js";
 
 export const init = (elem: string | Element, options?: Partial<BSToast.Options>) => {
 	return getOrCreateInstance(elem, options);
@@ -120,14 +121,14 @@ export const show = (itemOrElem: item | Element | string, placement?: ContainerP
 };
 
 export interface Create {
-	elem: IElem;
+	elem: elem;
 	animation?: boolean;
-	color?: bootstrapType.textBgColor;
+	color?: bsType.textBgColor;
 	btnclosewhite?: boolean;
 	delay?: number;
 	atomic?: boolean;
 	live?: Item["live"];
-	title?: IElem;
+	title?: elem;
 }
 
 export const Create = (attr: Create) => {

@@ -1,4 +1,4 @@
-import { IElem } from "../../../core/tag.js";
+import { elem } from "../../../interface/core/elem.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { span } from "../../../html/span.js";
 import { button as BToggle } from "../../offcanvas/button.js";
@@ -24,8 +24,8 @@ const convert = (attr: IToggle) => {
 export class offcanvas extends BToggle {
 	constructor();
 	constructor(attr: IToggle);
-	constructor(elem: IElem);
-	constructor(attr: IToggle, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: IToggle, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<IToggle>("elem", arg)));
 	}

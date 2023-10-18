@@ -1,8 +1,8 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
 export type iconType = "bi";
 
-export interface icon extends IAttr {
+export interface icon extends attr {
 	id?: string;
 	type?: iconType;
 	handleBubble?: boolean;

@@ -1,4 +1,3 @@
-import { IElem } from "../core/tag.js";
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { span } from "../html/span.js";
@@ -6,6 +5,7 @@ import { addEvent } from "../core/eventManager.js";
 import { bstsConsole as console } from "../core/console.js";
 import { Popover as BSPopover } from "bootstrap";
 import { popover as Popover } from "../interface/bootstrap/popover.js";
+import { elem } from "../interface/core/elem.js";
 
 const convert = (attr: Popover) => {
 	attr.inline ??= true;
@@ -95,8 +95,8 @@ const convert = (attr: Popover) => {
 export class popover extends span {
 	constructor();
 	constructor(attr: Popover);
-	constructor(elem: IElem);
-	constructor(attr: Popover, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Popover, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Popover>("elem", arg)));
 	}

@@ -1,18 +1,19 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { attr } from "../../interface/core/attr.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { span } from "../../html/span.js";
 
-const convert = (attr: IAttr) => {
+const convert = (attr: attr) => {
 	attr.class = mergeClass(attr.class, "input-group-text");
 	return attr;
 };
 
 export class text extends span {
 	constructor();
-	constructor(attr: IAttr);
-	constructor(elem: IElem);
-	constructor(attr: IAttr, elem: IElem);
+	constructor(attr: attr);
+	constructor(elem: elem);
+	constructor(attr: attr, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}

@@ -1,6 +1,6 @@
-import { IAttr } from "../../../../core/tag.js";
+import { attr } from "../../../core/attr.js";
 
-export interface pane extends IAttr {
+export interface pane extends attr {
 	animation?: boolean;
 	active?: boolean;
 	role?: "tabpanel";

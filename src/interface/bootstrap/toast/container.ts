@@ -1,4 +1,4 @@
-import { IAttr } from "../../../core/tag.js";
+import { attr } from "../../core/attr.js";
 
 export const containerPlacementA = [
 	"top-start",
@@ -23,7 +23,7 @@ export type containerPlacement =
 	| "bottom-center"
 	| "bottom-end";
 
-export interface container extends IAttr {
+export interface container extends attr {
 	debug?: boolean;
 	placement?: containerPlacement;
 }

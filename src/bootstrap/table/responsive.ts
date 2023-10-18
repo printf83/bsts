@@ -1,4 +1,4 @@
-import { IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { div } from "../../html/div.js";
@@ -15,8 +15,8 @@ const convert = (attr: Responsive) => {
 export class responsive extends div {
 	constructor();
 	constructor(attr: Responsive);
-	constructor(elem: IElem);
-	constructor(attr: Responsive, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Responsive, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Responsive>("elem", arg)));
 	}

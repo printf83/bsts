@@ -1,14 +1,14 @@
 import { item } from "./item.js";
-import { bootstrapType } from "../../../core/bootstrap.js";
-import { IElem } from "../../../core/tag.js";
+import { bsType } from "../../core/bsType.js";
+import { elem } from "../../core/elem.js";
 
 export interface create {
-	elem: IElem;
+	elem: elem;
 	animation?: boolean;
-	color?: bootstrapType.textBgColor;
+	color?: bsType.textBgColor;
 	btnclosewhite?: boolean;
 	delay?: number;
 	atomic?: boolean;
 	live?: item["live"];
-	title?: IElem;
+	title?: elem;
 }

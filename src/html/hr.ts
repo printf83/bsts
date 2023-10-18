@@ -1,9 +1,10 @@
-import { tagConsNoElemArg, IAttr, tag } from "../core/tag.js";
+import { tagConsNoElemArg, tag } from "../core/tag.js";
+import { attr } from "../interface/core/attr.js";
 
 export class hr extends tag {
 	constructor();
-	constructor(attr: IAttr);
+	constructor(attr: attr);
 	constructor(...arg: any[]) {
-		super("hr", tagConsNoElemArg<IAttr>(arg));
+		super("hr", tagConsNoElemArg<attr>(arg));
 	}
 }

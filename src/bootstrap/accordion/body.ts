@@ -1,4 +1,4 @@
-import { IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { UUID } from "../../core/uuid.js";
 import { container } from "../collapse/container.js";
@@ -29,8 +29,8 @@ const convert = (attr: Body) => {
 export class body extends container {
 	constructor();
 	constructor(attr: Body);
-	constructor(elem: IElem);
-	constructor(attr: Body, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Body, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Body>("elem", arg)));
 	}

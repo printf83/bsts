@@ -1,4 +1,4 @@
-import { IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { li } from "../../html/li.js";
@@ -76,8 +76,8 @@ const convert = (attr: Item) => {
 export class item extends li {
 	constructor();
 	constructor(attr: Item);
-	constructor(elem: IElem);
-	constructor(attr: Item, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Item, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Item>("elem", arg)));
 	}

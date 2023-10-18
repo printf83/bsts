@@ -1,9 +1,9 @@
-import { IAttr } from "../core/tag.js";
 import { bsConsNoElemArg } from "../core/bootstrap.js";
 import { div } from "../html/div.js";
 import { mergeClass } from "../core/mergeClass.js";
+import { attr } from "../interface/core/attr.js";
 
-const convert = (attr: IAttr) => {
+const convert = (attr: attr) => {
 	attr.class = mergeClass(attr.class, ["vr"]);
 	attr.elem = ` `; //" ";
 	return attr;
@@ -11,7 +11,7 @@ const convert = (attr: IAttr) => {
 
 export class verticalrule extends div {
 	constructor();
-	constructor(attr: IAttr);
+	constructor(attr: attr);
 	constructor(...arg: any[]) {
 		super(bsConsNoElemArg(convert, arg));
 	}

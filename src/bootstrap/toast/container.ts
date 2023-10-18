@@ -1,11 +1,12 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { attr } from "../../interface/core/attr.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
 import { container as Container } from "../../interface/bootstrap/toast/container.js";
 
 const convert = (attr: Container) => {
-	let placementAttr: IAttr = {};
+	let placementAttr: attr = {};
 	attr.placement ??= "top-end";
 
 	switch (attr.placement) {
@@ -55,8 +56,8 @@ const convert = (attr: Container) => {
 export class container extends div {
 	constructor();
 	constructor(attr: Container);
-	constructor(elem: IElem);
-	constructor(attr: Container, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Container, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Container>("elem", arg)));
 	}

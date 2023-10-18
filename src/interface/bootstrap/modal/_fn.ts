@@ -1,4 +1,5 @@
-import { IAttr, IElem } from "../../../core/tag.js";
+import { attr } from "../../core/attr.js";
+import { elem } from "../../core/elem.js";
 import { button } from "../button.js";
 import { container } from "./container.js";
 import { header } from "./header.js";
@@ -7,7 +8,7 @@ export type customStyleButton = 1 | 2;
 
 export interface btnItem {
 	color?: button["color"];
-	elem: IElem;
+	elem: elem;
 	click?: EventListener;
 }
 
@@ -33,17 +34,17 @@ export type btnType =
 
 export interface btnItemDB {
 	color?: button["color"];
-	elem: IElem;
+	elem: elem;
 }
 
 export interface create extends Omit<container, "title"> {
 	customStyle?: customStyleButton;
 	btn?: btnType | btnType[];
 	btnFn?: EventListener | EventListener[];
-	title?: IElem;
-	elem?: IElem;
+	title?: elem;
+	elem?: elem;
 
 	attrHeader?: header;
-	attrBody?: IAttr;
-	attrFooter?: IAttr;
+	attrBody?: attr;
+	attrFooter?: attr;
 }

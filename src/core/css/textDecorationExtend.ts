@@ -1,4 +1,4 @@
-import { bootstrapTypeA } from "../bootstrap.js";
+import { bsTypeA } from "../../interface/core/bsTypeA.js";
 
 let textDecorationExtendDB: string | undefined = undefined;
 export const textDecorationExtend = () => {
@@ -15,7 +15,7 @@ export const textDecorationExtend = () => {
         }
         `;
 
-		let textDecoration = bootstrapTypeA.textDecoration.map((i) => {
+		let textDecoration = bsTypeA.textDecoration.map((i) => {
 			return { name: i, var: `var(--bs-text-decoration-${i})` };
 		});
 

@@ -1,5 +1,5 @@
-import { IAttr } from "../../../core/tag.js";
+import { attr } from "../../core/attr.js";
 
-export interface tbody extends IAttr {
+export interface tbody extends attr {
 	divider?: boolean;
 }

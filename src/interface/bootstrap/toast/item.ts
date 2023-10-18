@@ -1,13 +1,13 @@
-import { bootstrapType } from "../../../core/bootstrap.js";
-import { IAttr } from "../../../core/tag.js";
+import { bsType } from "../../core/bsType.js";
+import { attr } from "../../core/attr.js";
 
-export interface item extends IAttr {
+export interface item extends attr {
 	role?: "alert" | "status";
 	live?: "assertive" | "polite";
 	atomic?: boolean;
 	autohide?: boolean;
 	delay?: number;
-	color?: bootstrapType.color;
+	color?: bsType.color;
 	animation?: boolean;
 	debug?: boolean;
 }

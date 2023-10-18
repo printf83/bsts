@@ -1,14 +1,14 @@
-import { IAttr } from "../../../core/tag.js";
-import { bootstrapType } from "../../../core/bootstrap.js";
+import { attr } from "../../core/attr.js";
+import { bsType } from "../../core/bsType.js";
 
-export interface container extends IAttr {
+export interface container extends attr {
 	role?: "progressbar";
 	value?: number;
 	min?: number;
 	max?: number;
 
 	stacked?: boolean;
-	color?: bootstrapType.textBgColor;
+	color?: bsType.textBgColor;
 	striped?: boolean;
 	animated?: boolean;
 	text?: "none" | "percent" | "progress" | string;

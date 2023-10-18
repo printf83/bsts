@@ -1,6 +1,6 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
-export interface td extends IAttr {
+export interface td extends attr {
 	colspan?: number;
 	headers?: string;
 	rowspan?: number;

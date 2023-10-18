@@ -1,4 +1,4 @@
-import { IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { button as Tbutton } from "../button.js";
@@ -58,8 +58,8 @@ const convert = (attr: Button) => {
 export class button extends Tbutton {
 	constructor();
 	constructor(attr: Button);
-	constructor(elem: IElem);
-	constructor(attr: Button, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Button, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Button>("elem", arg)));
 	}

@@ -1,5 +1,5 @@
 import { bsConstArg } from "../core/bootstrap.js";
-import { IElem } from "../core/tag.js";
+import { elem } from "../interface/core/elem.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { i } from "../html/i.js";
 import { icon as Icon, iconType } from "../interface/bootstrap/icon.js";
@@ -75,8 +75,8 @@ const genStaticIcon = (t: iconType, i: string, a?: Icon) => {
 export class icon extends i {
 	constructor();
 	constructor(attr: Icon);
-	constructor(elem: IElem);
-	constructor(attr: Icon, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Icon, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}

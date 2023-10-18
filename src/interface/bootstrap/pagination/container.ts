@@ -1,4 +1,4 @@
-import { IElem } from "../../../core/tag.js";
+import { elem } from "../../core/elem.js";
 import { ul as HUl } from "../../html/ul.js";
 
 export interface container extends HUl {
@@ -11,8 +11,8 @@ export interface container extends HUl {
 	maxBtnCount?: number;
 	firstLast?: boolean;
 	nextPrev?: boolean;
-	nextLable?: IElem;
-	prevLabel?: IElem;
-	firstLabel?: IElem;
-	lastLabel?: IElem;
+	nextLable?: elem;
+	prevLabel?: elem;
+	firstLabel?: elem;
+	lastLabel?: elem;
 }

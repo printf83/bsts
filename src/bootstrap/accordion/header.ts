@@ -1,4 +1,4 @@
-import { IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { h2 } from "../../html/h2.js";
@@ -32,8 +32,8 @@ const convert = (attr: Header) => {
 export class header extends h2 {
 	constructor();
 	constructor(attr: Header);
-	constructor(elem: IElem);
-	constructor(attr: Header, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Header, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Header>("elem", arg)));
 	}

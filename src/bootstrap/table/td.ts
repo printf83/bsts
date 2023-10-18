@@ -1,4 +1,4 @@
-import { IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { td as HTd } from "../../html/td.js";
@@ -33,8 +33,8 @@ const convert = (attr: Td) => {
 export class td extends HTd {
 	constructor();
 	constructor(attr: Td);
-	constructor(elem: IElem);
-	constructor(attr: Td, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Td, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Td>("elem", arg)));
 	}

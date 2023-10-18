@@ -1,6 +1,7 @@
 import { attachAttr } from "./attach/_index.js";
-import { IAttr, isTag, tag, strHtml, isHtml } from "./tag.js";
+import { isTag, tag, strHtml, isHtml } from "./tag.js";
 import { markup } from "./markup.js";
+import { attr } from "../interface/core/attr.js";
 
 export type buildArg = tag | number | string | strHtml | (tag | string | number | strHtml)[];
 
@@ -13,7 +14,7 @@ const htmlToElement = (strHTML: string) => {
 
 const processElem = (i: number | string | tag | strHtml, e: tag, element: Element) => {
 	if (i !== null) {
-		if (isTag<IAttr>(i)) {
+		if (isTag<attr>(i)) {
 			let t = build(element, i as tag);
 			element = t ? t : element;
 		} else if (isHtml(i)) {
@@ -61,7 +62,7 @@ export const build = (
 		if (arg.length > 0) {
 			arg.forEach((h) => {
 				if (h !== null) {
-					if (isTag<IAttr>(h)) {
+					if (isTag<attr>(h)) {
 						let e = h as tag;
 						let element = e.attr
 							? attachAttr(document.createElement(e.tag), e.attr!)

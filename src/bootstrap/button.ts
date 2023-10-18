@@ -1,5 +1,6 @@
 import { bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
-import { IElem, tag } from "../core/tag.js";
+import { tag } from "../core/tag.js";
+import { elem } from "../interface/core/elem.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { addEvent } from "../core/eventManager.js";
 import { bstsConsole as console } from "../core/console.js";
@@ -68,8 +69,8 @@ const convert = (attr: Button) => {
 export class button extends tag {
 	constructor();
 	constructor(attr: Button);
-	constructor(elem: IElem);
-	constructor(attr: Button, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Button, elem: elem);
 	constructor(...arg: any[]) {
 		super(
 			bsConstArgTag<Button>("elem", "button", "a", (i) => (i.href ? true : false), arg),

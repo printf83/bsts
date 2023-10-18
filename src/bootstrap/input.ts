@@ -1,6 +1,5 @@
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
-
 import { UUID } from "../core/uuid.js";
 import { input as HInput } from "../html/input.js";
 import { input as Input } from "../interface/bootstrap/input.js";

@@ -1,6 +1,6 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
-export interface fieldset extends IAttr {
+export interface fieldset extends attr {
 	disabled?: boolean;
 	form?: string;
 	name?: string;

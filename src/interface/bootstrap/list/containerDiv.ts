@@ -1,8 +1,8 @@
-import { bootstrapType } from "../../../core/bootstrap.js";
-import { IAttr } from "../../../core/tag.js";
+import { bsType } from "../../core/bsType.js";
+import { attr } from "../../core/attr.js";
 
-export interface containerDiv extends IAttr {
+export interface containerDiv extends attr {
 	flush?: boolean;
 	numbered?: boolean;
-	horizontal?: boolean | bootstrapType.viewport;
+	horizontal?: boolean | bsType.viewport;
 }

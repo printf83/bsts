@@ -1,4 +1,4 @@
-import { bootstrapTypeA } from "../bootstrap.js";
+import { bsTypeA } from "../../interface/core/bsTypeA.js";
 
 let fontItalicExtendDB: string | undefined = undefined;
 export const fontItalicExtend = () => {
@@ -13,7 +13,7 @@ export const fontItalicExtend = () => {
         }
         `;
 
-		let fontItalic = bootstrapTypeA.fontItalic.map((i) => {
+		let fontItalic = bsTypeA.fontItalic.map((i) => {
 			if (i === true) {
 				return { name: "italic", var: `var(--bs-fst-italic)` };
 			} else {

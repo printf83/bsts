@@ -1,6 +1,6 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
-export interface progress extends IAttr {
+export interface progress extends attr {
 	max?: number;
 	value?: number;
 }

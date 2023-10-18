@@ -1,4 +1,4 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../../interface/core/attr.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
 import { input as TInput } from "../input.js";
@@ -29,7 +29,7 @@ export const Check = (attr: ICheck) => {
 		attr.invalidTooltip
 	);
 
-	let tContainer: IAttr = {
+	let tContainer: attr = {
 		class: [
 			attr.hideLabel ? undefined : "form-check",
 			attr.switch ? "form-switch" : undefined,
