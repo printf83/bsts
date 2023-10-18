@@ -1,4 +1,5 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { attr } from "../../interface/core/attr.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
 import { nav } from "../../html/nav.js";

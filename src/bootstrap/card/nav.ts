@@ -1,4 +1,4 @@
-import { IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { container as BSNavHeaderContainer } from "../nav/header/container.js";

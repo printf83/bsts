@@ -1,9 +1,9 @@
-import { IElem } from "../core/tag.js";
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { UUID } from "../core/uuid.js";
 import { select as TSelect } from "../html/select.js";
 import { select as Select } from "../interface/bootstrap/select.js";
+import { elem } from "../interface/core/elem.js";
 
 const convert = (attr: Select) => {
 	attr = mergeObject(

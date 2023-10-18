@@ -1,4 +1,4 @@
-import { IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { nav } from "../../html/nav.js";
 import { header } from "../../html/header.js";

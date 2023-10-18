@@ -1,7 +1,7 @@
 import { appendChild, removeElement } from "../../core/builder.js";
 import { addEvent, ElementWithAbortController } from "../../core/eventManager.js";
 import { mergeAttr } from "../../core/mergeAttr.js";
-import { IAttr, IElem, isTag } from "../../core/tag.js";
+import { isTag } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
 import { button } from "../button.js";
 import { body } from "./body.js";
@@ -9,13 +9,15 @@ import { container } from "./container.js";
 import { footer } from "./footer.js";
 import { header } from "./header.js";
 import { title } from "./title.js";
-import { bootstrapType } from "../../core/bootstrap.js";
 import { btnclose } from "./btnclose.js";
 import { bstsConsole as console } from "../../core/console.js";
 import { Modal as BSModal } from "bootstrap";
 import { btnItem, customStyleButton, btnType, btnItemDB } from "../../interface/bootstrap/modal/_fn.js";
 import { header as Header } from "../../interface/bootstrap/modal/header.js";
 import { container as Container } from "../../interface/bootstrap/modal/container.js";
+import { elem } from "../../interface/core/elem.js";
+import { attr } from "../../interface/core/attr.js";
+import { bsType } from "../../interface/core/bsType.js";
 
 export const init = (elem: string | Element, options?: Partial<BSModal.Options>) => {
 	return getOrCreateInstance(elem, options);
@@ -125,7 +127,7 @@ const genBtnItem = (customStyle?: customStyleButton, btn?: btnItem | btnItem[]) 
 							border: ix < lastBtnIndex ? "end" : undefined,
 							flex: ["grow-1", "wrap"],
 							textDecoration: "none",
-							textColor: i.color !== "transparent" ? (i.color as bootstrapType.textColor) : "primary",
+							textColor: i.color !== "transparent" ? (i.color as bsType.textColor) : "primary",
 
 							color: "transparent",
 							rounded: 0,
@@ -144,7 +146,7 @@ const genBtnItem = (customStyle?: customStyleButton, btn?: btnItem | btnItem[]) 
 							border: ix < lastBtnIndex ? "end" : undefined,
 							flex: ["grow-1", "wrap"],
 							textDecoration: "none",
-							textColor: i.color !== "transparent" ? (i.color as bootstrapType.textColor) : "primary",
+							textColor: i.color !== "transparent" ? (i.color as bsType.textColor) : "primary",
 							color: "transparent",
 							rounded: 0,
 							weight: "lg",

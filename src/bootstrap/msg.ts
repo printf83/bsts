@@ -1,10 +1,11 @@
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
-import { IElem, isAttr } from "../core/tag.js";
+import { isAttr } from "../core/tag.js";
 import { div } from "../html/div.js";
 import { icon } from "./icon.js";
 import { icon as Icon } from "../interface/bootstrap/icon.js";
 import { msg as Msg, msgDisplay as MsgDisplay } from "../interface/bootstrap/msg.js";
+import { elem } from "../interface/core/elem.js";
 
 const fnIcon = (display: MsgDisplay | undefined, attr: string | Icon | icon) => {
 	if (typeof attr === "string") {

@@ -1,4 +1,5 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { attr } from "../../interface/core/attr.js";
+import { elem } from "../../interface/core/elem.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { nav } from "../../html/nav.js";
@@ -32,7 +33,7 @@ const convert = (attr: Container) => {
 
 	return {
 		label: label,
-		elem: new ol(attr as IAttr),
+		elem: new ol(attr as attr),
 		style: {
 			"--bs-breadcrumb-divider": divider ? divider : undefined,
 		},

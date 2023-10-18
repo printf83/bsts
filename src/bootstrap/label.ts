@@ -1,12 +1,13 @@
 import { bsConstArg } from "../core/bootstrap.js";
-import { IElem, isAttr, tag } from "../core/tag.js";
+import { isAttr, tag } from "../core/tag.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { mergeObject } from "../core/mergeObject.js";
-import { label as TLabel } from "../html/label.js";
+import { label as HLabel } from "../html/label.js";
 import { span } from "../html/span.js";
 import { icon } from "./icon.js";
 import { icon as Icon } from "../interface/bootstrap/icon.js";
 import { label as Label, labelDisplay as LabelDisplay } from "../interface/bootstrap/label.js";
+import { elem } from "../interface/core/elem.js";
 
 const fnIcon = (display: LabelDisplay | undefined, attr: string | Icon | icon) => {
 	if (typeof attr === "string") {
@@ -98,7 +99,7 @@ const convert = (attr: Label) => {
 	return attr;
 };
 
-export class label extends TLabel {
+export class label extends HLabel {
 	constructor();
 	constructor(text: string);
 	constructor(attr: Label);
