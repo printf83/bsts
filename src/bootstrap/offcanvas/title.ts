@@ -4,7 +4,7 @@ import { mergeClass } from "../../core/mergeClass.js";
 import { UUID } from "../../core/uuid.js";
 import { h5 } from "../../html/h5.js";
 
-const convert = (attr: IAttr) => {
+const convert = (attr: attr) => {
 	attr.id ??= UUID();
 	attr.class = mergeClass(attr.class, "offcanvas-title");
 	return attr;
@@ -12,9 +12,9 @@ const convert = (attr: IAttr) => {
 
 export class title extends h5 {
 	constructor();
-	constructor(attr: IAttr);
+	constructor(attr: attr);
 	constructor(elem: elem);
-	constructor(attr: IAttr, elem: elem);
+	constructor(attr: attr, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}

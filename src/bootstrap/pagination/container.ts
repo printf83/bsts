@@ -221,7 +221,7 @@ const genElem = (attr: Container) => {
 
 const convert = (attr: Container) => {
 	//nav only prop is label
-	let navAttr: IAttr = {
+	let navAttr: attr = {
 		label: attr.label,
 	};
 

@@ -3,16 +3,16 @@ import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeClass } from "../../../core/mergeClass.js";
 import { div } from "../../../html/div.js";
 
-const convert = (attr: IAttr) => {
+const convert = (attr: attr) => {
 	attr.class = mergeClass(attr.class, "carousel-indicators");
 	return attr;
 };
 
 export class container extends div {
 	constructor();
-	constructor(attr: IAttr);
+	constructor(attr: attr);
 	constructor(elem: elem);
-	constructor(attr: IAttr, elem: elem);
+	constructor(attr: attr, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}

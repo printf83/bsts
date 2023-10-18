@@ -3,16 +3,16 @@ import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { figcaption } from "../../html/figcaption.js";
 
-const convert = (attr: IAttr) => {
+const convert = (attr: attr) => {
 	attr.class = mergeClass(attr.class, "figure-caption");
 	return attr;
 };
 
 export class caption extends figcaption {
 	constructor();
-	constructor(attr: IAttr);
+	constructor(attr: attr);
 	constructor(elem: elem);
-	constructor(attr: IAttr, elem: elem);
+	constructor(attr: attr, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}

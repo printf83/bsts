@@ -3,7 +3,7 @@ import { bsConstArg } from "../../core/bootstrap.js";
 import { span } from "../../html/span.js";
 import { mergeClass } from "../../core/mergeClass.js";
 
-const convert = (attr: IAttr) => {
+const convert = (attr: attr) => {
 	attr.class = mergeClass(attr.class, "dropdown-item-text");
 
 	return attr;
@@ -11,9 +11,9 @@ const convert = (attr: IAttr) => {
 
 export class text extends span {
 	constructor();
-	constructor(attr: IAttr);
+	constructor(attr: attr);
 	constructor(elem: elem);
-	constructor(attr: IAttr, elem: elem);
+	constructor(attr: attr, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}

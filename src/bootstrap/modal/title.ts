@@ -4,7 +4,7 @@ import { UUID } from "../../core/uuid.js";
 import { h1 } from "../../html/h1.js";
 import { mergeObject } from "../../core/mergeObject.js";
 
-const convert = (attr: IAttr) => {
+const convert = (attr: attr) => {
 	attr = mergeObject(
 		{
 			id: attr.id || UUID(),
@@ -19,9 +19,9 @@ const convert = (attr: IAttr) => {
 
 export class title extends h1 {
 	constructor();
-	constructor(attr: IAttr);
+	constructor(attr: attr);
 	constructor(elem: elem);
-	constructor(attr: IAttr, elem: elem);
+	constructor(attr: attr, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}

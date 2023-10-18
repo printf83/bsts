@@ -3,7 +3,7 @@ import { bsConsNoElemArg } from "../core/bootstrap.js";
 import { div } from "../html/div.js";
 import { mergeClass } from "../core/mergeClass.js";
 
-const convert = (attr: IAttr) => {
+const convert = (attr: attr) => {
 	attr.class = mergeClass(attr.class, ["vr"]);
 	attr.elem = ` `; //" ";
 	return attr;
@@ -11,7 +11,7 @@ const convert = (attr: IAttr) => {
 
 export class verticalrule extends div {
 	constructor();
-	constructor(attr: IAttr);
+	constructor(attr: attr);
 	constructor(...arg: any[]) {
 		super(bsConsNoElemArg(convert, arg));
 	}

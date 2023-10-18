@@ -5,7 +5,7 @@ import { div } from "../../html/div.js";
 import { container as Container } from "../../interface/bootstrap/toast/container.js";
 
 const convert = (attr: Container) => {
-	let placementAttr: IAttr = {};
+	let placementAttr: attr = {};
 	attr.placement ??= "top-end";
 
 	switch (attr.placement) {

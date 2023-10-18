@@ -1,5 +1,5 @@
 import { bsConstArg } from "../core/bootstrap.js";
-import { IElem } from "../core/tag.js";
+import { elem } from "../interface/core/elem.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { i } from "../html/i.js";
 import { icon as Icon, iconType } from "../interface/bootstrap/icon.js";

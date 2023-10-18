@@ -1,4 +1,5 @@
-import { IElem, tag } from "../core/tag.js";
+import { tag } from "../core/tag.js";
+import { elem } from "../interface/core/elem.js";
 import { bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { visuallyhidden } from "./visuallyhidden.js";

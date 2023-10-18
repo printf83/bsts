@@ -330,8 +330,8 @@ export interface Create extends Omit<Container, "title"> {
 	elem?: elem;
 
 	attrHeader?: Header;
-	attrBody?: IAttr;
-	attrFooter?: IAttr;
+	attrBody?: attr;
+	attrFooter?: attr;
 }
 
 export const Create = (attr: Create) => {

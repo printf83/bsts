@@ -3,15 +3,15 @@ import { bsConstArg } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
 import { nav } from "../../html/nav.js";
 
-const convert = (attr: IAttr) => {
+const convert = (attr: attr) => {
 	return attr;
 };
 
 export class innercontainer extends div {
 	constructor();
-	constructor(attr: IAttr);
+	constructor(attr: attr);
 	constructor(elem: elem);
-	constructor(attr: IAttr, elem: elem);
+	constructor(attr: attr, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}
@@ -19,9 +19,9 @@ export class innercontainer extends div {
 
 export class innercontainerNav extends nav {
 	constructor();
-	constructor(attr: IAttr);
+	constructor(attr: attr);
 	constructor(elem: elem);
-	constructor(attr: IAttr, elem: elem);
+	constructor(attr: attr, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}
