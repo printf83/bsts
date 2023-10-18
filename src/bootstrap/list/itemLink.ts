@@ -1,16 +1,8 @@
-import { bootstrapType } from "../../core/bootstrap.js";
 import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { A, a } from "../../html/a.js";
-
-export interface ItemLink extends A {
-	active?: boolean;
-	disabled?: boolean;
-	action?: boolean;
-	color?: bootstrapType.color;
-	handleActive?: boolean;
-}
+import { a } from "../../html/a.js";
+import { itemLink as ItemLink } from "../../interface/bootstrap/list/itemLink.js";
 
 const handleActive = (event: Event) => {
 	const target = (event.target as Element).closest(".list-group-item") as Element;

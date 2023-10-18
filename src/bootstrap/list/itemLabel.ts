@@ -1,16 +1,8 @@
-import { bootstrapType } from "../../core/bootstrap.js";
 import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { Label, label } from "../../html/label.js";
-
-export interface ItemLabel extends Label {
-	active?: boolean;
-	disabled?: boolean;
-	action?: boolean;
-	color?: bootstrapType.color;
-	handleActive?: boolean;
-}
+import { label } from "../../html/label.js";
+import { itemLabel as ItemLabel } from "../../interface/bootstrap/list/itemLabel.js";
 
 const handleActive = (event: Event) => {
 	const target = (event.target as Element).closest(".list-group-item") as Element;
