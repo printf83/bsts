@@ -1,7 +1,8 @@
-import { IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
-import { container as BSNavHeaderContainer, Container } from "../nav/header/container.js";
+import { container as BSNavHeaderContainer } from "../nav/header/container.js";
+import { container as Container } from "../../interface/bootstrap/nav/header/container.js";
 
 const convert = (attr: Container) => {
 	attr.type ??= "tab";
@@ -14,8 +15,8 @@ const convert = (attr: Container) => {
 export class nav extends BSNavHeaderContainer {
 	constructor();
 	constructor(attr: Container);
-	constructor(elem: IElem);
-	constructor(attr: Container, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Container, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Container>("elem", arg)));
 	}

@@ -1,14 +1,12 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Bdo extends IAttr {
-	dir?: "ltr" | "rtl";
-}
+import { tagConsArg, tag } from "../core/tag.js";
+import { elem } from "../interface/core/elem.js";
+import { bdo as Bdo } from "../interface/html/bdo.js";
 
 export class bdo extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Bdo);
-	constructor(attr: Bdo, elem: IElem);
+	constructor(attr: Bdo, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("bdo", tagConsArg<Bdo>("elem", arg));
 	}

@@ -1,28 +1,16 @@
 import { mergeObject } from "../../core/mergeObject.js";
-import { IElem } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
-import { Container, container as contentContainer } from "./content/container.js";
+import { container as contentContainer } from "./content/container.js";
 import { header } from "../card/header.js";
-import { ContainerNav, containerNav } from "./header/containerNav.js";
+import { containerNav } from "./header/containerNav.js";
 import { container as headerContainer } from "./header/container.js";
 import { mergeClass } from "../../core/mergeClass.js";
-
-export interface TabItem {
-	label?: IElem;
-	elem?: IElem;
-	active?: boolean;
-	disabled?: boolean;
-}
-
-export interface Tab extends Omit<ContainerNav, "item" | "container"> {
-	card?: true;
-	animation?: boolean;
-	item?: TabItem | TabItem[];
-	attrContent?: Container;
-}
+import { container as TabContainer } from "../../interface/bootstrap/nav/_fn.js";
+import { container as ContentContainer } from "../../interface/bootstrap/nav/content/container.js";
+import { containerNav as ContainerNav } from "../../interface/bootstrap/nav/header/containerNav.js";
 
 //only available as function
-export const Tab = (attr: Tab) => {
+export const Tab = (attr: TabContainer) => {
 	if (attr.item) {
 		if (!Array.isArray(attr.item)) {
 			attr.item = [attr.item];
@@ -56,7 +44,7 @@ export const Tab = (attr: Tab) => {
 		let THeader: containerNav | headerContainer;
 		THeader = new containerNav(tAttr as ContainerNav);
 
-		let tAttrContent = mergeObject<Container>(
+		let tAttrContent = mergeObject<ContentContainer>(
 			{
 				id: `${attr.id}-content`,
 				marginTop: attr.card || attr.vertical ? undefined : 3,

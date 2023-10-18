@@ -1,8 +1,6 @@
-import { IAttr, IElem } from "../../../core/tag.js";
 import { UUID } from "../../../core/uuid.js";
-import { Datalist } from "../../../html/datalist.js";
 import { div } from "../../../html/div.js";
-import { Input as IInput, input as TInput } from "../../input.js";
+import { input as TInput } from "../../input.js";
 import { container as TInputGroupContainer } from "../../inputgroup/container.js";
 import { label } from "../../label.js";
 import { formfloating } from "../../formfloating.js";
@@ -19,42 +17,10 @@ import {
 } from "../_fn.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 
-export interface Input extends Omit<IInput, "container"> {
-	type?:
-		| "button"
-		| "color"
-		| "date"
-		| "datetime-local"
-		| "email"
-		| "file"
-		| "hidden"
-		| "image"
-		| "month"
-		| "number"
-		| "password"
-		| "range"
-		| "reset"
-		| "search"
-		| "submit"
-		| "tel"
-		| "text"
-		| "time"
-		| "url"
-		| "week";
-	description?: string;
-	datalist?: Datalist["item"];
-	container?: IAttr;
+import { input as BInput } from "../../../interface/bootstrap/form/floatinglabel/input.js";
+import { input as IInput } from "../../../interface/bootstrap/input.js";
 
-	before?: IElem;
-	after?: IElem;
-
-	invalidFeedback?: string;
-	validFeedback?: string;
-	invalidTooltip?: string;
-	validTooltip?: string;
-}
-
-export const Input = (attr: Input) => {
+export const Input = (attr: BInput) => {
 	let container = attr.container;
 
 	attr.type ??= "text";
@@ -95,7 +61,7 @@ export const Input = (attr: Input) => {
 	let tElemGroupAfter = genGroupItem(attr.id, attr.after);
 
 	//setup main control
-	let tAttr: IInput | Input = Object.assign({}, attr);
+	let tAttr: IInput | BInput = Object.assign({}, attr);
 	delete tAttr.datalist;
 	delete tAttr.label;
 	delete tAttr.description;

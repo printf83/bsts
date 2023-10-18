@@ -1,9 +1,5 @@
-import { IAttr, tag } from "../core/tag.js";
-
-export interface Embed extends IAttr {
-	src?: string;
-	type?: string;
-}
+import { tag } from "../core/tag.js";
+import { embed as Embed } from "../interface/html/embed.js";
 
 export class embed extends tag {
 	constructor();
@@ -19,15 +15,3 @@ export class embed extends tag {
 		}
 	}
 }
-
-export const Embed = (AttrOrType?: Embed | string, Src?: string) => {
-	if (AttrOrType) {
-		if (Src) {
-			return new embed(AttrOrType as string, Src);
-		} else {
-			return new embed(AttrOrType as Embed);
-		}
-	} else {
-		return new embed();
-	}
-};

@@ -1,9 +1,9 @@
-import { IAttr } from "../tag.js";
+import { attr } from "../../interface/core/attr.js";
 import { IAttachFn } from "./_index.js";
 
 const CONVERTHASHTOVOID = true;
 
-interface IAttrHref extends IAttr {
+interface IAttrHref extends attr {
 	href?: string;
 }
 

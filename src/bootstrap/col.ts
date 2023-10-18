@@ -1,9 +1,10 @@
 import { bsConstArg } from "../core/bootstrap.js";
-import { IAttr, IElem } from "../core/tag.js";
+import { attr } from "../interface/core/attr.js";
+import { elem } from "../interface/core/elem.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { div } from "../html/div.js";
 
-const convert = (attr: IAttr) => {
+const convert = (attr: attr) => {
 	attr = mergeObject(
 		{
 			col: true,
@@ -16,9 +17,9 @@ const convert = (attr: IAttr) => {
 
 export class col extends div {
 	constructor();
-	constructor(attr: IAttr);
-	constructor(elem: IElem);
-	constructor(attr: IAttr, elem: IElem);
+	constructor(attr: attr);
+	constructor(elem: elem | elem[]);
+	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}

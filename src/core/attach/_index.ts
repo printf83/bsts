@@ -10,15 +10,15 @@ import { attachEvent, hasBuildAndDestroyEvent } from "./attachEvent.js";
 import { attachStyle } from "./attachStyle.js";
 import { attachClass } from "./attachClass.js";
 import { attachAlias } from "./attachAlias.js";
-import { IAttr } from "../tag.js";
+import { attr } from "../../interface/core/attr.js";
 
 export type IAttachFn = (
 	key: string | undefined,
 	elem: Element,
-	attr: IAttr
+	attr: attr
 ) => {
 	elem: Element;
-	attr: IAttr;
+	attr: attr;
 	changed: boolean;
 };
 
@@ -49,7 +49,7 @@ const attrFn: IAttachFn[] = [
 	attachOther,
 ];
 
-export const attachAttr = (elem: Element, attr: IAttr): Element => {
+export const attachAttr = (elem: Element, attr: attr): Element => {
 	if (attr) {
 		let d = Object.assign({}, attr);
 

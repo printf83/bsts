@@ -1,20 +1,5 @@
-import { tagConsNoElemArg, IAttr, tag } from "../core/tag.js";
-
-export interface Textarea extends IAttr {
-	autofocus?: boolean;
-	cols?: number;
-	dirname?: string;
-	disabled?: boolean;
-	form?: string;
-	maxlength?: number;
-	name?: string;
-	placeholder?: string;
-	readonly?: boolean;
-	required?: boolean;
-	rows?: number;
-	wrap?: "hard" | "soft";
-	value?: string;
-}
+import { tagConsNoElemArg, tag } from "../core/tag.js";
+import { textarea as Textarea } from "../interface/html/textarea.js";
 
 const convert = (attr: Textarea) => {
 	//move value to elem

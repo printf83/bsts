@@ -1,9 +1,5 @@
-import { tagConsNoElemArg, IAttr, tag } from "../core/tag.js";
-
-export interface Param extends IAttr {
-	name?: string;
-	value?: string;
-}
+import { tagConsNoElemArg, tag } from "../core/tag.js";
+import { param as Param } from "../interface/html/param.js";
 
 export class param extends tag {
 	constructor();

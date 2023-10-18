@@ -1,8 +1,7 @@
-import { IAttr, IElem } from "../../../core/tag.js";
 import { UUID } from "../../../core/uuid.js";
 import { div } from "../../../html/div.js";
 import { label } from "../../label.js";
-import { Textarea as ITextarea, textarea as TTextarea } from "../../textarea.js";
+import { textarea as TTextarea } from "../../textarea.js";
 import { container as TInputGroupContainer } from "../../inputgroup/container.js";
 import { formfloating } from "../../formfloating.js";
 import {
@@ -16,21 +15,10 @@ import {
 	labelFloatingFeedbackManager,
 } from "../_fn.js";
 import { mergeObject } from "../../../core/mergeObject.js";
+import { textarea as BTextarea } from "../../../interface/bootstrap/form/floatinglabel/textarea.js";
+import { textarea as ITextarea } from "../../../interface/bootstrap/textarea.js";
 
-export interface Textarea extends Omit<ITextarea, "container"> {
-	description?: string;
-	container?: IAttr;
-
-	before?: IElem;
-	after?: IElem;
-
-	invalidFeedback?: string;
-	validFeedback?: string;
-	invalidTooltip?: string;
-	validTooltip?: string;
-}
-
-export const Textarea = (attr: Textarea) => {
+export const Textarea = (attr: BTextarea) => {
 	let container = attr.container;
 
 	attr.id ??= UUID();
@@ -66,7 +54,7 @@ export const Textarea = (attr: Textarea) => {
 	let tElemGroupAfter = genGroupItem(attr.id, attr.after);
 
 	//setup main control
-	let tAttr: ITextarea | Textarea = Object.assign({}, attr);
+	let tAttr: ITextarea | BTextarea = Object.assign({}, attr);
 	delete tAttr.label;
 	delete tAttr.description;
 	delete tAttr.container;

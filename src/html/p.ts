@@ -1,9 +1,7 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, tag } from "../core/tag.js";
+import { elem } from "../interface/core/elem.js";
 import { mergeClass } from "../core/mergeClass.js";
-
-export interface P extends IAttr {
-	lead?: boolean;
-}
+import { p as P } from "../interface/html/p.js";
 
 const convert = (attr: P) => {
 	attr.class = mergeClass(attr.class, attr.lead ? "lead" : undefined);
@@ -13,9 +11,9 @@ const convert = (attr: P) => {
 
 export class p extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: P);
-	constructor(attr: P, elem: IElem);
+	constructor(attr: P, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("p", convert(tagConsArg<P>("elem", arg)));
 	}

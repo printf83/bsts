@@ -1,21 +1,13 @@
-import { bootstrapType, bsConstArg } from "../core/bootstrap.js";
-import { IElem, isAttr, tag } from "../core/tag.js";
+import { bsConstArg } from "../core/bootstrap.js";
+import { isAttr, tag } from "../core/tag.js";
 import { mergeClass } from "../core/mergeClass.js";
-import { Label as ILabel, label as TLabel } from "../html/label.js";
-import { span } from "../html/span.js";
-import { Icon, icon } from "./icon.js";
-import { Button } from "./button.js";
 import { mergeObject } from "../core/mergeObject.js";
-
-export type LabelDisplay = bootstrapType.display | bootstrapType.display[];
-
-export interface Label extends ILabel, Omit<Button, "role"> {
-	icon?: string | Icon | icon;
-	iconPosition?: "start" | "end" | "top" | "bottom";
-	iconDisplay?: LabelDisplay;
-	labelDisplay?: LabelDisplay;
-	stretched?: boolean;
-}
+import { label as HLabel } from "../html/label.js";
+import { span } from "../html/span.js";
+import { icon } from "./icon.js";
+import { icon as Icon } from "../interface/bootstrap/icon.js";
+import { label as Label, labelDisplay as LabelDisplay } from "../interface/bootstrap/label.js";
+import { elem } from "../interface/core/elem.js";
 
 const fnIcon = (display: LabelDisplay | undefined, attr: string | Icon | icon) => {
 	if (typeof attr === "string") {
@@ -27,7 +19,7 @@ const fnIcon = (display: LabelDisplay | undefined, attr: string | Icon | icon) =
 	}
 };
 
-const fnElem = (display: LabelDisplay | undefined, elem: IElem) => {
+const fnElem = (display: LabelDisplay | undefined, elem: elem | elem[]) => {
 	if (display) {
 		return new span({ display: display }, elem);
 	} else {
@@ -107,7 +99,7 @@ const convert = (attr: Label) => {
 	return attr;
 };
 
-export class label extends TLabel {
+export class label extends HLabel {
 	constructor();
 	constructor(text: string);
 	constructor(attr: Label);

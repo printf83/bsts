@@ -1,12 +1,9 @@
-import { IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
-import { a, A } from "../../html/a.js";
-import { Li, li } from "../../html/li.js";
-
-export interface Item extends A {
-	active?: boolean;
-	href?: string;
-}
+import { a } from "../../html/a.js";
+import { li } from "../../html/li.js";
+import { li as Li } from "../../interface/html/li.js";
+import { item as Item } from "../../interface/bootstrap/breadcrumb/item.js";
 
 const convert = (attr: Item) => {
 	let active = attr.active;
@@ -28,8 +25,8 @@ const convert = (attr: Item) => {
 export class item extends li {
 	constructor();
 	constructor(attr: Item);
-	constructor(elem: IElem);
-	constructor(attr: Item, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Item, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Item>("elem", arg)));
 	}

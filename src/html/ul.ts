@@ -1,12 +1,8 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
+import { tagConsArg, tag } from "../core/tag.js";
+import { elem } from "../interface/core/elem.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { li } from "./li.js";
-
-export interface Ul extends IAttr {
-	unstyle?: boolean;
-	inline?: boolean;
-	item?: IElem;
-}
+import { ul as Ul } from "../interface/html/ul.js";
 
 const convert = (attr: Ul) => {
 	attr.class = mergeClass(attr.class, [
@@ -33,9 +29,9 @@ const convert = (attr: Ul) => {
 
 export class ul extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Ul);
-	constructor(attr: Ul, elem: IElem);
+	constructor(attr: Ul, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("ul", convert(tagConsArg<Ul>("elem", arg)));
 	}

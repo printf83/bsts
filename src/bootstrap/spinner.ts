@@ -1,15 +1,10 @@
-import { IAttr, IElem, tag } from "../core/tag.js";
-import { bootstrapType, bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
+import { tag } from "../core/tag.js";
+import { elem } from "../interface/core/elem.js";
+import { bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { visuallyhidden } from "./visuallyhidden.js";
 import { mergeObject } from "../core/mergeObject.js";
-
-export interface Spinner extends IAttr {
-	type?: "border" | "grow";
-	small?: true;
-	role?: "status";
-	color?: bootstrapType.textColor;
-}
+import { spinner as Spinner } from "../interface/bootstrap/spinner.js";
 
 const convert = (attr: Spinner) => {
 	attr.role ??= "status";
@@ -40,8 +35,8 @@ const convert = (attr: Spinner) => {
 export class spinner extends tag {
 	constructor();
 	constructor(attr: Spinner);
-	constructor(elem: IElem);
-	constructor(attr: Spinner, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Spinner, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(
 			bsConstArgTag<Spinner>("elem", "span", "div", (i) => (i.elem === "" ? false : i.elem ? false : true), arg),

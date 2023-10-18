@@ -1,10 +1,11 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { attr } from "../../interface/core/attr.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { UUID } from "../../core/uuid.js";
-import { h } from "../../html/h.js";
+import { h1 } from "../../html/h1.js";
 import { mergeObject } from "../../core/mergeObject.js";
 
-const convert = (attr: IAttr) => {
+const convert = (attr: attr) => {
 	attr = mergeObject(
 		{
 			id: attr.id || UUID(),
@@ -17,12 +18,12 @@ const convert = (attr: IAttr) => {
 	return attr;
 };
 
-export class title extends h {
+export class title extends h1 {
 	constructor();
-	constructor(attr: IAttr);
-	constructor(elem: IElem);
-	constructor(attr: IAttr, elem: IElem);
+	constructor(attr: attr);
+	constructor(elem: elem | elem[]);
+	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(1, convert(bsConstArg("elem", arg)));
+		super(convert(bsConstArg("elem", arg)));
 	}
 }

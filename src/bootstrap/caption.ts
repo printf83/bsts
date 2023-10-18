@@ -1,18 +1,12 @@
-import { bootstrapType, bsConstArg } from "../core/bootstrap.js";
+import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
-import { IAttr, IElem, isAttr, tag } from "../core/tag.js";
+import { isAttr, tag } from "../core/tag.js";
 import { div } from "../html/div.js";
 import { span } from "../html/span.js";
-import { Icon, icon } from "./icon.js";
-
-export type CaptionDisplay = bootstrapType.display | bootstrapType.display[];
-
-export interface Caption extends IAttr {
-	icon?: string | Icon | icon;
-	iconPosition?: "start" | "end" | "top" | "bottom";
-	iconDisplay?: CaptionDisplay;
-	labelDisplay?: CaptionDisplay;
-}
+import { icon } from "./icon.js";
+import { icon as Icon } from "../interface/bootstrap/icon.js";
+import { caption as Caption, captionDisplay as CaptionDisplay } from "../interface/bootstrap/caption.js";
+import { elem } from "../interface/core/elem.js";
 
 const fnIcon = (display: CaptionDisplay | undefined, attr: string | Icon | icon) => {
 	if (typeof attr === "string") {
@@ -24,7 +18,7 @@ const fnIcon = (display: CaptionDisplay | undefined, attr: string | Icon | icon)
 	}
 };
 
-const fnElem = (display: CaptionDisplay | undefined, elem: IElem) => {
+const fnElem = (display: CaptionDisplay | undefined, elem: elem | elem[]) => {
 	if (display) {
 		return new span({ display: display }, elem);
 	} else {

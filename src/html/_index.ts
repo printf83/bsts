@@ -36,7 +36,12 @@ import { figcaption } from "./figcaption.js";
 import { figure } from "./figure.js";
 import { footer } from "./footer.js";
 import { form } from "./form.js";
-import { h } from "./h.js";
+import { h1 } from "./h1.js";
+import { h2 } from "./h2.js";
+import { h3 } from "./h3.js";
+import { h4 } from "./h4.js";
+import { h5 } from "./h5.js";
+import { h6 } from "./h6.js";
 import { head } from "./head.js";
 import { header } from "./header.js";
 import { hr } from "./hr.js";
@@ -142,7 +147,12 @@ export {
 	figure,
 	footer,
 	form,
-	h,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
 	head,
 	header,
 	hr,

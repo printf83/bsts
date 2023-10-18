@@ -43,7 +43,7 @@ import * as toast from "./toast/_index.js";
 import { tooltip } from "./tooltip.js";
 import { verticalrule } from "./verticalrule.js";
 import { visuallyhidden } from "./visuallyhidden.js";
-import { timer } from "./timer.js";
+import { timer, initTimer } from "./timer.js";
 import { calendar } from "./calendar.js";
 
 export {
@@ -93,5 +93,6 @@ export {
 	verticalrule,
 	spinner,
 	timer,
+	initTimer,
 	calendar,
 };

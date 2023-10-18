@@ -1,13 +1,6 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Track extends IAttr {
-	default?: boolean;
-	kind?: "captions" | "chapters" | "descriptions" | "metadata" | "subtitles";
-	label?: string;
-	attrLabel?: string;
-	src?: string;
-	srclang?: string;
-}
+import { tagConsArg, tag } from "../core/tag.js";
+import { elem } from "../interface/core/elem.js";
+import { track as Track } from "../interface/html/track.js";
 
 const convert = (attr: Track) => {
 	if (attr.label) {
@@ -20,9 +13,9 @@ const convert = (attr: Track) => {
 
 export class track extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Track);
-	constructor(attr: Track, elem: IElem);
+	constructor(attr: Track, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("track", convert(tagConsArg<Track>("elem", arg)));
 	}

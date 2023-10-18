@@ -1,8 +1,7 @@
-import { IAttr } from "../core/tag.js";
 import { bsConsNoElemArg } from "../core/bootstrap.js";
 import { div } from "../html/div.js";
 import { replaceWith } from "../core/builder.js";
-import { Ul, ul } from "../html/ul.js";
+import { ul } from "../html/ul.js";
 import { li } from "../html/li.js";
 import * as modal from "../bootstrap/modal/_index.js";
 import * as inputgroup from "../bootstrap/inputgroup/_index.js";
@@ -13,21 +12,15 @@ import { option } from "../html/option.js";
 import { select } from "../bootstrap/select.js";
 import { input } from "../bootstrap/input.js";
 import { mergeObject } from "../core/mergeObject.js";
+import * as ICalendar from "../interface/bootstrap/calendar.js";
 
 const copyDate = (d: Date) => {
 	return new Date(d.getTime());
 };
 
 /* item */
-interface Item extends Ul {
-	multiple?: boolean;
-	view?: Date;
-	startDate?: Date;
-	endDate?: Date;
-	dayTitle?: string[];
-}
 
-const convertItem = (attr: Item) => {
+const convertItem = (attr: ICalendar.item) => {
 	attr.multiple ??= false;
 	attr.view ??= new Date();
 
@@ -222,7 +215,7 @@ const convertItem = (attr: Item) => {
 
 class item extends ul {
 	constructor();
-	constructor(attr: Item);
+	constructor(attr: ICalendar.item);
 	constructor(...arg: any[]) {
 		super(bsConsNoElemArg(convertItem, arg));
 	}
@@ -230,12 +223,7 @@ class item extends ul {
 
 /* header */
 
-interface Header extends IAttr {
-	view?: Date;
-	monthTitle?: string[];
-}
-
-const convertHeader = (attr: Header) => {
+const convertHeader = (attr: ICalendar.header) => {
 	attr.view ??= new Date();
 	attr.monthTitle ??= [
 		"January",
@@ -382,23 +370,15 @@ const convertHeader = (attr: Header) => {
 
 class header extends div {
 	constructor();
-	constructor(attr: Header);
+	constructor(attr: ICalendar.header);
 	constructor(...arg: any[]) {
 		super(bsConsNoElemArg(convertHeader, arg));
 	}
 }
 
 /* main */
-export interface Calendar extends IAttr {
-	multiple?: boolean;
-	view?: Date;
-	startDate?: Date;
-	endDate?: Date;
-	dayTitle?: string[];
-	monthTitle?: string[];
-}
 
-const convert = (attr: Calendar) => {
+const convert = (attr: ICalendar.container) => {
 	const data = {
 		multiple: attr.multiple,
 		view: attr.view ? copyDate(attr.view) : undefined,
@@ -510,7 +490,7 @@ const convert = (attr: Calendar) => {
 
 export class calendar extends div {
 	constructor();
-	constructor(attr: Calendar);
+	constructor(attr: ICalendar.container);
 	constructor(...arg: any[]) {
 		super(bsConsNoElemArg(convert, arg));
 	}

@@ -1,25 +1,11 @@
-import { bootstrapType, bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
-import { IElem, tag } from "../core/tag.js";
+import { bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
+import { tag } from "../core/tag.js";
+import { elem } from "../interface/core/elem.js";
 import { mergeObject } from "../core/mergeObject.js";
-import { Button as TButton } from "../html/button.js";
 import { addEvent } from "../core/eventManager.js";
 import { bstsConsole as console } from "../core/console.js";
 import { Button as BSButton } from "bootstrap";
-
-export interface Button extends Omit<TButton, "role"> {
-	color?: bootstrapType.btnColor;
-	outline?: boolean;
-	dismiss?: "modal" | "alert" | "offcanvas" | "toast";
-	weight?: "lg" | "sm";
-	toggle?: true | "button" | "tab" | "modal";
-	href?: string;
-	role?: "button" | "tab";
-	target?: string;
-	stretched?: boolean;
-
-	active?: boolean;
-	defColor?: boolean;
-}
+import { button as Button } from "../interface/bootstrap/button.js";
 
 const convert = (attr: Button) => {
 	if (attr.defColor !== false) {
@@ -83,8 +69,8 @@ const convert = (attr: Button) => {
 export class button extends tag {
 	constructor();
 	constructor(attr: Button);
-	constructor(elem: IElem);
-	constructor(attr: Button, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Button, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(
 			bsConstArgTag<Button>("elem", "button", "a", (i) => (i.href ? true : false), arg),

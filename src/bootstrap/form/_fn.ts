@@ -1,13 +1,15 @@
-import { IElem, tag, strHtml } from "../../core/tag.js";
-import { Datalist, datalist as TDatalist } from "../../html/datalist.js";
+import { tag, strHtml } from "../../core/tag.js";
+import { datalist as HDatalist } from "../../html/datalist.js";
+import { datalist as Datalist } from "../../interface/html/datalist.js";
 import { div } from "../../html/div.js";
 import { input } from "../input.js";
 import { label as TLabel } from "../label.js";
 import { text } from "../inputgroup/text.js";
-import { bootstrapType } from "../../core/bootstrap.js";
+import { elem } from "../../interface/core/elem.js";
+import { bsType } from "../../interface/core/bsType.js";
 
 export const genDatalist = (id: string, datalist?: Datalist["item"]) => {
-	return datalist ? new TDatalist({ id: `${id}-datalist`, item: datalist }) : "";
+	return datalist ? new HDatalist({ id: `${id}-datalist`, item: datalist }) : "";
 };
 
 export const genDescription = (id: string, description?: string) => {
@@ -30,7 +32,7 @@ export const genInvalidTooltip = (id: string, feedback?: string) => {
 	return feedback ? new div({ id: `${id}-invalid-tooltip`, class: "invalid-tooltip" }, feedback) : "";
 };
 
-export const genGroupItem = (id: string, item?: IElem) => {
+export const genGroupItem = (id: string, item?: elem | elem[]) => {
 	let result: (number | string | tag | strHtml)[] = [];
 
 	if (item) {
@@ -92,9 +94,9 @@ export const colSetup = (
 	validfeedback?: string,
 	invalidfeedback?: string,
 	description?: string,
-	col1?: bootstrapType.col,
-	col2?: bootstrapType.col,
-	col3?: false | bootstrapType.col
+	col1?: bsType.col,
+	col2?: bsType.col,
+	col3?: false | bsType.col
 ) => {
 	//setup col if provided
 	if (col1) {

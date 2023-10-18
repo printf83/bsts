@@ -1,11 +1,12 @@
-import { IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
-import { h } from "../../html/h.js";
+import { h2 } from "../../html/h2.js";
 import { UUID } from "../../core/uuid.js";
-import { Button, button } from "../collapse/button.js";
+import { button } from "../collapse/button.js";
+import { button as Header } from "../../interface/bootstrap/collapse/button.js";
 
-const convert = (attr: Button) => {
+const convert = (attr: Header) => {
 	attr.id ??= UUID();
 	attr.class = mergeClass(attr.class, "accordion-header");
 	attr.elem = new button(
@@ -28,12 +29,12 @@ const convert = (attr: Button) => {
 	return attr;
 };
 
-export class header extends h {
+export class header extends h2 {
 	constructor();
-	constructor(attr: Button);
-	constructor(elem: IElem);
-	constructor(attr: Button, elem: IElem);
+	constructor(attr: Header);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Header, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(2, convert(bsConstArg<Button>("elem", arg)));
+		super(convert(bsConstArg<Header>("elem", arg)));
 	}
 }

@@ -1,17 +1,18 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { attr } from "../../interface/core/attr.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
 import { nav } from "../../html/nav.js";
 
-const convert = (attr: IAttr) => {
+const convert = (attr: attr) => {
 	return attr;
 };
 
 export class innercontainer extends div {
 	constructor();
-	constructor(attr: IAttr);
-	constructor(elem: IElem);
-	constructor(attr: IAttr, elem: IElem);
+	constructor(attr: attr);
+	constructor(elem: elem | elem[]);
+	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}
@@ -19,9 +20,9 @@ export class innercontainer extends div {
 
 export class innercontainerNav extends nav {
 	constructor();
-	constructor(attr: IAttr);
-	constructor(elem: IElem);
-	constructor(attr: IAttr, elem: IElem);
+	constructor(attr: attr);
+	constructor(elem: elem | elem[]);
+	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}

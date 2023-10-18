@@ -1,11 +1,5 @@
-import { tagConsNoElemArg, IAttr, tag } from "../core/tag.js";
-
-export interface Meta extends IAttr {
-	charset?: string;
-	content?: string;
-	httpEquiv?: "content-security-policy" | "content-type" | "default-style" | "refresh";
-	name?: "application-name" | "author" | "description" | "generator" | "keywords" | "viewport";
-}
+import { tagConsNoElemArg, tag } from "../core/tag.js";
+import { meta as Meta } from "../interface/html/meta.js";
 
 export class meta extends tag {
 	constructor();

@@ -1,20 +1,12 @@
-import { IElem } from "../../../core/tag.js";
+import { elem } from "../../../interface/core/elem.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeObject } from "../../../core/mergeObject.js";
-import { Ul, ul } from "../../../html/ul.js";
-import { Item, item } from "./item.js";
-import { Link, link } from "./link.js";
-import { Button, button } from "./button.js";
-
-export interface Container extends Omit<Ul, "item"> {
-	type?: "tab" | "pill" | "underline";
-	itemWidth?: "fill" | "justified";
-	vertical?: true;
-	role?: "tablist";
-	item?: Item | Item[];
-	link?: Link | Link[];
-	button?: Button | Button[];
-}
+import { ul } from "../../../html/ul.js";
+import { item } from "./item.js";
+import { link } from "./link.js";
+import { button } from "./button.js";
+import { container as Container } from "../../../interface/bootstrap/nav/header/container.js";
+import { ul as Ul } from "../../../interface/html/ul.js";
 
 const convert = (attr: Container): Ul => {
 	attr = mergeObject(
@@ -71,8 +63,8 @@ const convert = (attr: Container): Ul => {
 export class container extends ul {
 	constructor();
 	constructor(attr: Container);
-	constructor(elem: IElem);
-	constructor(attr: Container, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Container, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Container>("elem", arg)));
 	}

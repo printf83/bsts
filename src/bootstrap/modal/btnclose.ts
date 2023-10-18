@@ -1,12 +1,7 @@
 import { bsConsNoElemArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-
-import { btnclose as TBtnclose, Btnclose as IBtnclose } from "../btnclose.js";
-
-export interface Btnclose extends IBtnclose {
-	dismiss?: "modal";
-	target?: string;
-}
+import { btnclose as BBtnclose } from "../btnclose.js";
+import { btnclose as Btnclose } from "../../interface/bootstrap/modal/btnclose.js";
 
 const convert = (attr: Btnclose) => {
 	attr.dismiss ??= "modal";
@@ -24,7 +19,7 @@ const convert = (attr: Btnclose) => {
 	return attr;
 };
 
-export class btnclose extends TBtnclose {
+export class btnclose extends BBtnclose {
 	constructor();
 	constructor(attr: Btnclose);
 	constructor(...arg: any[]) {

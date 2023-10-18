@@ -1,16 +1,8 @@
-import { bootstrapType } from "../../core/bootstrap.js";
-import { IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { A, a } from "../../html/a.js";
-
-export interface ItemLink extends A {
-	active?: boolean;
-	disabled?: boolean;
-	action?: boolean;
-	color?: bootstrapType.color;
-	handleActive?: boolean;
-}
+import { a } from "../../html/a.js";
+import { itemLink as ItemLink } from "../../interface/bootstrap/list/itemLink.js";
 
 const handleActive = (event: Event) => {
 	const target = (event.target as Element).closest(".list-group-item") as Element;
@@ -84,8 +76,8 @@ const convert = (attr: ItemLink) => {
 export class itemLink extends a {
 	constructor();
 	constructor(attr: ItemLink);
-	constructor(elem: IElem);
-	constructor(attr: ItemLink, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: ItemLink, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<ItemLink>("elem", arg)));
 	}

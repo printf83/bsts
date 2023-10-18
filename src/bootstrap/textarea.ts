@@ -1,13 +1,8 @@
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
-
 import { UUID } from "../core/uuid.js";
-import { Textarea as ITextarea, textarea as TTextarea } from "../html/textarea.js";
-
-export interface Textarea extends ITextarea {
-	weight?: "sm" | "lg";
-	isvalid?: boolean;
-}
+import { textarea as TTextarea } from "../html/textarea.js";
+import { textarea as Textarea } from "../interface/bootstrap/textarea.js";
 
 const convert = (attr: Textarea) => {
 	attr = mergeObject(
