@@ -19,8 +19,8 @@ const convert = (attr: Itemcontainer) => {
 export class itemcontainer extends ul {
 	constructor();
 	constructor(attr: Itemcontainer);
-	constructor(elem: elem);
-	constructor(attr: Itemcontainer, elem: elem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Itemcontainer, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Itemcontainer>("elem", arg)));
 	}

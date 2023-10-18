@@ -6,8 +6,8 @@ export interface select extends Omit<ISelect, "container"> {
 	description?: string;
 	container?: attr;
 
-	before?: elem;
-	after?: elem;
+	before?: elem | elem[];
+	after?: elem | elem[];
 
 	invalidFeedback?: string;
 	validFeedback?: string;

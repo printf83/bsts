@@ -9,8 +9,8 @@ export interface select extends Omit<ISelect, "container"> {
 
 	hideLabel?: true;
 
-	before?: elem;
-	after?: elem;
+	before?: elem | elem[];
+	after?: elem | elem[];
 
 	col1?: bsType.col;
 	col2?: bsType.col;

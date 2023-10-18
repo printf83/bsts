@@ -29,8 +29,8 @@ export interface input extends Omit<IInput, "container"> {
 	datalist?: datalist["item"];
 	container?: attr;
 
-	before?: elem;
-	after?: elem;
+	before?: elem | elem[];
+	after?: elem | elem[];
 
 	invalidFeedback?: string;
 	validFeedback?: string;

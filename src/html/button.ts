@@ -4,9 +4,9 @@ import { button as Button } from "../interface/html/button.js";
 
 export class button extends tag {
 	constructor();
-	constructor(elem: elem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Button);
-	constructor(attr: Button, elem: elem);
+	constructor(attr: Button, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("button", tagConsArg<Button>("elem", arg));
 	}

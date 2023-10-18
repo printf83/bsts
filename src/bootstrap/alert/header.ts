@@ -12,9 +12,9 @@ const convert = (attr: attr) => {
 
 export class header extends h4 {
 	constructor();
-	constructor(elem: elem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: attr);
-	constructor(attr: attr, elem: elem);
+	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(tagConsArg("elem", arg)));
 	}

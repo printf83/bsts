@@ -13,9 +13,9 @@ const convert = (attr: Track) => {
 
 export class track extends tag {
 	constructor();
-	constructor(elem: elem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Track);
-	constructor(attr: Track, elem: elem);
+	constructor(attr: Track, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("track", convert(tagConsArg<Track>("elem", arg)));
 	}

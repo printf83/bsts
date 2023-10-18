@@ -32,8 +32,8 @@ const convert = (attr: Header) => {
 export class header extends h2 {
 	constructor();
 	constructor(attr: Header);
-	constructor(elem: elem);
-	constructor(attr: Header, elem: elem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Header, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Header>("elem", arg)));
 	}

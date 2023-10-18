@@ -13,5 +13,5 @@ export interface attr extends global, bsts, bsAttr, bsClass {
 	aria?: aria;
 	on?: event;
 	style?: style;
-	elem?: elem;
+	elem?: elem | elem[];
 }

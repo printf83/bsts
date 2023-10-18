@@ -26,8 +26,8 @@ const convert = (attr: ContainerDiv) => {
 export class containerDiv extends div {
 	constructor();
 	constructor(attr: ContainerDiv);
-	constructor(elem: elem);
-	constructor(attr: ContainerDiv, elem: elem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: ContainerDiv, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<ContainerDiv>("elem", arg)));
 	}

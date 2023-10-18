@@ -11,8 +11,8 @@ export interface container extends HUl {
 	maxBtnCount?: number;
 	firstLast?: boolean;
 	nextPrev?: boolean;
-	nextLable?: elem;
-	prevLabel?: elem;
-	firstLabel?: elem;
-	lastLabel?: elem;
+	nextLable?: elem | elem[];
+	prevLabel?: elem | elem[];
+	firstLabel?: elem | elem[];
+	lastLabel?: elem | elem[];
 }

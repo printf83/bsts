@@ -26,9 +26,9 @@ const convert = (attr: Optgroup) => {
 
 export class optgroup extends tag {
 	constructor();
-	constructor(elem: elem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Optgroup);
-	constructor(attr: Optgroup, elem: elem);
+	constructor(attr: Optgroup, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("optgroup", convert(tagConsArg<Optgroup>("elem", arg)));
 	}

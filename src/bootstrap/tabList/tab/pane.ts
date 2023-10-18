@@ -24,8 +24,8 @@ const convert = (attr: Pane) => {
 export class pane extends div {
 	constructor();
 	constructor(attr: Pane);
-	constructor(elem: elem);
-	constructor(attr: Pane, elem: elem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Pane, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Pane>("elem", arg)));
 	}

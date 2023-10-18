@@ -28,8 +28,8 @@ const convert = (attr: Btngroup): attr => {
 export class btngroup extends div {
 	constructor();
 	constructor(attr: Btngroup);
-	constructor(elem: elem);
-	constructor(attr: Btngroup, elem: elem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Btngroup, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Btngroup>("elem", arg)));
 	}

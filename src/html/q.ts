@@ -4,9 +4,9 @@ import { q as Q } from "../interface/html/q.js";
 
 export class q extends tag {
 	constructor();
-	constructor(elem: elem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Q);
-	constructor(attr: Q, elem: elem);
+	constructor(attr: Q, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("q", tagConsArg<Q>("elem", arg));
 	}

@@ -12,8 +12,8 @@ const convert = (attr: A) => {
 export class link extends a {
 	constructor();
 	constructor(attr: A);
-	constructor(elem: elem);
-	constructor(attr: A, elem: elem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: A, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<A>("elem", arg)));
 	}

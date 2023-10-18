@@ -3,6 +3,6 @@ import { elem } from "./elem.js";
 
 export interface tag {
 	tag: string;
-	elem?: elem;
+	elem?: elem | elem[];
 	attr?: attr;
 }

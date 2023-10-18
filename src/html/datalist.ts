@@ -21,9 +21,9 @@ const convert = (attr: Datalist) => {
 
 export class datalist extends tag {
 	constructor();
-	constructor(elem: elem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Datalist);
-	constructor(attr: Datalist, elem: elem);
+	constructor(attr: Datalist, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("datalist", convert(tagConsArg<Datalist>("elem", arg)));
 	}

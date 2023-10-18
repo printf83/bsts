@@ -75,8 +75,8 @@ const genStaticIcon = (t: iconType, i: string, a?: Icon) => {
 export class icon extends i {
 	constructor();
 	constructor(attr: Icon);
-	constructor(elem: elem);
-	constructor(attr: Icon, elem: elem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Icon, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}

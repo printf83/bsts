@@ -4,9 +4,9 @@ import { time as Time } from "../interface/html/time.js";
 
 export class time extends tag {
 	constructor();
-	constructor(elem: elem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Time);
-	constructor(attr: Time, elem: elem);
+	constructor(attr: Time, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("time", tagConsArg<Time>("elem", arg));
 	}

@@ -4,9 +4,9 @@ import { td as Td } from "../interface/html/td.js";
 
 export class td extends tag {
 	constructor();
-	constructor(elem: elem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Td);
-	constructor(attr: Td, elem: elem);
+	constructor(attr: Td, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("td", tagConsArg<Td>("elem", arg));
 	}

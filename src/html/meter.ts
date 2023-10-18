@@ -4,9 +4,9 @@ import { meter as Meter } from "../interface/html/meter.js";
 
 export class meter extends tag {
 	constructor();
-	constructor(elem: elem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Meter);
-	constructor(attr: Meter, elem: elem);
+	constructor(attr: Meter, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("meter", tagConsArg<Meter>("elem", arg));
 	}

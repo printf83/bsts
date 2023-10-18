@@ -32,7 +32,7 @@ export const genInvalidTooltip = (id: string, feedback?: string) => {
 	return feedback ? new div({ id: `${id}-invalid-tooltip`, class: "invalid-tooltip" }, feedback) : "";
 };
 
-export const genGroupItem = (id: string, item?: elem) => {
+export const genGroupItem = (id: string, item?: elem | elem[]) => {
 	let result: (number | string | tag | strHtml)[] = [];
 
 	if (item) {

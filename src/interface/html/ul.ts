@@ -4,5 +4,5 @@ import { elem } from "../core/elem.js";
 export interface ul extends attr {
 	unstyle?: boolean;
 	inline?: boolean;
-	item?: elem;
+	item?: elem | elem[];
 }

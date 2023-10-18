@@ -336,7 +336,7 @@ export class tag implements ITag {
 	public isbsts = true;
 
 	public tag: string = "div";
-	public elem?: elem;
+	public elem?: elem | elem[];
 	public attr?: attr;
 
 	constructor();

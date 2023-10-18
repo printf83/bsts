@@ -4,9 +4,9 @@ import { label as Label } from "../interface/html/label.js";
 
 export class label extends tag {
 	constructor();
-	constructor(elem: elem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Label);
-	constructor(attr: Label, elem: elem);
+	constructor(attr: Label, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("label", tagConsArg<Label>("elem", arg));
 	}

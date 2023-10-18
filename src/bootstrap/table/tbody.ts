@@ -15,8 +15,8 @@ const convert = (attr: Tbody) => {
 export class tbody extends HTbody {
 	constructor();
 	constructor(attr: Tbody);
-	constructor(elem: elem);
-	constructor(attr: Tbody, elem: elem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Tbody, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Tbody>("elem", arg)));
 	}

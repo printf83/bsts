@@ -4,9 +4,9 @@ import { elem } from "../interface/core/elem.js";
 
 export class small extends tag {
 	constructor();
-	constructor(elem: elem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: attr);
-	constructor(attr: attr, elem: elem);
+	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("small", tagConsArg("elem", arg));
 	}
