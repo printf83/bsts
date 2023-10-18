@@ -1,26 +1,9 @@
-import { bootstrapType } from "../../core/bootstrap.js";
-import { IAttr, IElem } from "../../core/tag.js";
+import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
-
-export interface Container extends IAttr {
-	backdrop?: boolean | "static";
-	focus?: boolean;
-	keyboard?: boolean;
-
-	weight?: "sm" | "lg" | "xl";
-	fullscreen?: true | bootstrapType.viewport;
-	view?: "center" | "end";
-	scrollable?: boolean;
-	animation?: boolean;
-
-	dialogAttr?: IAttr;
-	contentAttr?: IAttr;
-
-	debug?: boolean;
-}
+import { container as Container } from "../../interface/bootstrap/modal/container.js";
 
 const convert = (attr: Container) => {
 	attr.animation ??= true;

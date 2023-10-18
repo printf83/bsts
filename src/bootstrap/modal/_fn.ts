@@ -3,17 +3,19 @@ import { addEvent, ElementWithAbortController } from "../../core/eventManager.js
 import { mergeAttr } from "../../core/mergeAttr.js";
 import { IAttr, IElem, isTag } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
-import { button, Button } from "../button.js";
+import { button } from "../button.js";
 import { body } from "./body.js";
-import { container, Container } from "./container.js";
+import { container } from "./container.js";
 import { footer } from "./footer.js";
-import { header, Header } from "./header.js";
+import { header } from "./header.js";
 import { title } from "./title.js";
 import { bootstrapType } from "../../core/bootstrap.js";
 import { btnclose } from "./btnclose.js";
 import { bstsConsole as console } from "../../core/console.js";
 import { Modal as BSModal } from "bootstrap";
-// import { disconnectResizeObserver, observeResizeObserver } from "../../core/resizeObserverManager.js";
+import { btnItem, customStyleButton, btnType, btnItemDB } from "../../interface/bootstrap/modal/_fn.js";
+import { header as Header } from "../../interface/bootstrap/modal/header.js";
+import { container as Container } from "../../interface/bootstrap/modal/container.js";
 
 export const init = (elem: string | Element, options?: Partial<BSModal.Options>) => {
 	return getOrCreateInstance(elem, options);
@@ -84,14 +86,6 @@ export const show = (elem: string | Element | container, relatedTarget?: HTMLEle
 		getOrCreateInstance(elem)?.show(relatedTarget);
 	}
 };
-
-type customStyleButton = 1 | 2;
-
-interface btnItem {
-	color?: Button["color"];
-	elem: IElem;
-	click?: EventListener;
-}
 
 const genBtnItem = (customStyle?: customStyleButton, btn?: btnItem | btnItem[]) => {
 	if (btn) {
@@ -190,31 +184,6 @@ const genBtnItem = (customStyle?: customStyleButton, btn?: btnItem | btnItem[]) 
 		return [];
 	}
 };
-
-type btnType =
-	| "ok"
-	| "cancel"
-	| "yes"
-	| "no"
-	| "retry"
-	| "continue"
-	| "delete"
-	| "save"
-	| "savechanges"
-	| "agree"
-	| "disagree"
-	| "reject"
-	| "close"
-	| "yesdelete"
-	| "yessave"
-	| "yescontinue"
-	| "yesenable"
-	| "nothanks";
-
-interface btnItemDB {
-	color?: Button["color"];
-	elem: IElem;
-}
 
 const btnTypeDB = (btnType?: btnType): btnItemDB => {
 	switch (btnType) {

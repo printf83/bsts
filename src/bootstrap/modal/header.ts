@@ -1,12 +1,9 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { div } from "../../html/div.js";
 import { btnclose } from "./btnclose.js";
-
-export interface Header extends IAttr {
-	close?: boolean;
-}
+import { header as Header } from "../../interface/bootstrap/modal/header.js";
 
 const convert = (attr: Header) => {
 	attr.class = mergeClass(attr.class, "modal-header");
