@@ -1,12 +1,8 @@
 import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { Ul, ul } from "../../html/ul.js";
-
-export interface Itemcontainer extends Ul {
-	scroll?: boolean;
-	scrollHeight?: string;
-}
+import { ul } from "../../html/ul.js";
+import { itemcontainer as Itemcontainer } from "../../interface/bootstrap/navbar/itemcontainer.js";
 
 const convert = (attr: Itemcontainer) => {
 	attr = mergeObject(

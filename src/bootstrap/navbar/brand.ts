@@ -1,10 +1,7 @@
 import { bsConstArg, bsConstArgTag } from "../../core/bootstrap.js";
-import { IAttr, IElem, tag } from "../../core/tag.js";
+import { IElem, tag } from "../../core/tag.js";
 import { mergeClass } from "../../core/mergeClass.js";
-
-export interface Brand extends IAttr {
-	href?: string;
-}
+import { brand as Brand } from "../../interface/bootstrap/navbar/brand.js";
 
 const convert = (attr: Brand) => {
 	attr.class = mergeClass(attr.class, ["navbar-brand"]);

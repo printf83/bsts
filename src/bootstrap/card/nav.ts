@@ -1,7 +1,8 @@
 import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
-import { container as BSNavHeaderContainer, Container } from "../nav/header/container.js";
+import { container as BSNavHeaderContainer } from "../nav/header/container.js";
+import { container as Container } from "../../interface/bootstrap/nav/header/container.js";
 
 const convert = (attr: Container) => {
 	attr.type ??= "tab";

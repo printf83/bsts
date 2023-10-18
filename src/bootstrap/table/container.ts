@@ -1,5 +1,5 @@
-import { IAttr, IElem, tag, strHtml } from "../../core/tag.js";
-import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
+import { IElem } from "../../core/tag.js";
+import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { table } from "../../html/table.js";
 import { tbody } from "./tbody.js";
@@ -9,22 +9,7 @@ import { div } from "../../html/div.js";
 import { th } from "../../html/th.js";
 import { thead } from "./thead.js";
 import { mergeObject } from "../../core/mergeObject.js";
-
-export interface Container extends IAttr {
-	color?: bootstrapType.color;
-	striped?: "row" | "col";
-	hoverable?: boolean;
-	bordered?: boolean;
-	small?: true;
-	captionLocation?: "top" | "bottom";
-
-	responsiveHeader?: string[];
-	responsiveAttr?: string;
-	responsiveCol?: string;
-	responsiveColXs?: string;
-
-	item?: (string | tag | strHtml | (string | tag | strHtml)[])[][];
-}
+import { container as Container } from "../../interface/bootstrap/table/container.js";
 
 const convert = (attr: Container) => {
 	if (attr.item && !attr.elem) {

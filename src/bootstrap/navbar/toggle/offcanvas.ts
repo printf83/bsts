@@ -1,8 +1,9 @@
 import { IElem } from "../../../core/tag.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { span } from "../../../html/span.js";
-import { Button as IToggle, button as TToggle } from "../../offcanvas/button.js";
+import { button as BToggle } from "../../offcanvas/button.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
+import { button as IToggle } from "../../../interface/bootstrap/offcanvas/button.js";
 
 const convert = (attr: IToggle) => {
 	attr = mergeObject(
@@ -20,7 +21,7 @@ const convert = (attr: IToggle) => {
 	return attr;
 };
 
-export class offcanvas extends TToggle {
+export class offcanvas extends BToggle {
 	constructor();
 	constructor(attr: IToggle);
 	constructor(elem: IElem);

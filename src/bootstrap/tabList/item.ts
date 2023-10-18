@@ -1,17 +1,8 @@
-import { bootstrapType } from "../../core/bootstrap.js";
 import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { a } from "../../html/a.js";
-import { a as A } from "../../interface/html/a.js";
-
-export interface Item extends A {
-	active?: boolean;
-	action?: boolean;
-	color?: bootstrapType.color;
-	role?: "tab";
-	autoInit?: boolean;
-}
+import { item as Item } from "../../interface/bootstrap/tabList/item.js";
 
 const convert = (attr: Item) => {
 	if (attr.disabled && attr.href) {

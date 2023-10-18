@@ -1,12 +1,8 @@
 import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { button as Tbutton, Button as TButton } from "../button.js";
-
-export interface Button extends TButton {
-	link?: true;
-	target?: string;
-}
+import { button as BButton } from "../button.js";
+import { button as Button } from "../../interface/bootstrap/offcanvas/button.js";
 
 const convert = (attr: Button) => {
 	attr = mergeObject(
@@ -28,7 +24,7 @@ const convert = (attr: Button) => {
 	return attr;
 };
 
-export class button extends Tbutton {
+export class button extends BButton {
 	constructor();
 	constructor(attr: Button);
 	constructor(elem: IElem);

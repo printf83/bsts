@@ -1,11 +1,8 @@
-import { IAttr, IElem } from "../../core/tag.js";
-import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
+import { IElem } from "../../core/tag.js";
+import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
-import { thead as TThead } from "../../html/thead.js";
-
-export interface Thead extends IAttr {
-	color?: bootstrapType.color;
-}
+import { thead as HThead } from "../../html/thead.js";
+import { thead as Thead } from "../../interface/bootstrap/table/thead.js";
 
 const convert = (attr: Thead) => {
 	attr.class = mergeClass(attr.class, [attr.color ? `table-${attr.color}` : undefined]);
@@ -15,7 +12,7 @@ const convert = (attr: Thead) => {
 	return attr;
 };
 
-export class thead extends TThead {
+export class thead extends HThead {
 	constructor();
 	constructor(attr: Thead);
 	constructor(elem: IElem);

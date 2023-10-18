@@ -2,34 +2,7 @@ import { IAttr, IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
-
-export const ContainerPlacementA = [
-	"top-start",
-	"top-center",
-	"top-end",
-	"middle-start",
-	"middle-center",
-	"middle-end",
-	"bottom-start",
-	"bottom-center",
-	"bottom-end",
-];
-
-export type ContainerPlacement =
-	| "top-start"
-	| "top-center"
-	| "top-end"
-	| "middle-start"
-	| "middle-center"
-	| "middle-end"
-	| "bottom-start"
-	| "bottom-center"
-	| "bottom-end";
-
-export interface Container extends IAttr {
-	debug?: boolean;
-	placement?: ContainerPlacement;
-}
+import { container as Container } from "../../interface/bootstrap/toast/container.js";
 
 const convert = (attr: Container) => {
 	let placementAttr: IAttr = {};

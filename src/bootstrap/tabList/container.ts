@@ -1,14 +1,8 @@
-import { bootstrapType } from "../../core/bootstrap.js";
-import { IAttr, IElem } from "../../core/tag.js";
+import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { div } from "../../html/div.js";
-
-export interface Container extends IAttr {
-	flush?: boolean;
-	numbered?: boolean;
-	horizontal?: boolean | bootstrapType.viewport;
-}
+import { container as Container } from "../../interface/bootstrap/tabList/container.js";
 
 const convert = (attr: Container) => {
 	attr.class = mergeClass(attr.class, [

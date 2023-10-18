@@ -1,20 +1,9 @@
-import { bootstrapType } from "../../core/bootstrap.js";
-import { IAttr, IElem } from "../../core/tag.js";
+import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
-
-export interface Container extends IAttr {
-	placement?: "start" | "end" | "top" | "bottom";
-	show?: boolean | bootstrapType.viewport;
-	dark?: boolean;
-	backdrop?: boolean | "static";
-	scroll?: boolean;
-	labelledby?: string;
-
-	debug?: boolean;
-}
+import { container as Container } from "../../interface/bootstrap/offcanvas/container.js";
 
 const convert = (attr: Container) => {
 	attr.placement ??= "start";

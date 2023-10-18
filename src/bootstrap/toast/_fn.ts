@@ -5,14 +5,16 @@ import { btnclose } from "./btnclose.js";
 import { body } from "./body.js";
 import { header } from "./header.js";
 import { timer } from "../timer.js";
-import { container, ContainerPlacement } from "./container.js";
-import { Item, item } from "./item.js";
+import { container } from "./container.js";
+import { item } from "./item.js";
 import { bootstrapType } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
 import { strong } from "../../html/strong.js";
 import { IElem, isTag } from "../../core/tag.js";
 import { bstsConsole as console } from "../../core/console.js";
 import { Toast as BSToast } from "bootstrap";
+import { containerPlacement as ContainerPlacement } from "../../interface/bootstrap/toast/container.js";
+import { item as Item } from "../../interface/bootstrap/toast/item.js";
 
 export const init = (elem: string | Element, options?: Partial<BSToast.Options>) => {
 	return getOrCreateInstance(elem, options);

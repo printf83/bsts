@@ -1,8 +1,9 @@
 import { IElem } from "../../../core/tag.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { span } from "../../../html/span.js";
-import { Button, button } from "../../collapse/button.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
+import { button } from "../../collapse/button.js";
+import { button as Button } from "../../../interface/bootstrap/collapse/button.js";
 
 const convert = (attr: Button) => {
 	attr = mergeObject(

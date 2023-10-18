@@ -2,7 +2,8 @@ import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { UUID } from "../../core/uuid.js";
-import { container as TCollapseContainer, Container } from "../collapse/container.js";
+import { container as BContainer } from "../collapse/container.js";
+import { container as Container } from "../../interface/bootstrap/collapse/container.js";
 
 const convert = (attr: Container) => {
 	attr.id ??= UUID();
@@ -13,7 +14,7 @@ const convert = (attr: Container) => {
 	return attr;
 };
 
-export class collapse extends TCollapseContainer {
+export class collapse extends BContainer {
 	constructor();
 	constructor(attr: Container);
 	constructor(elem: IElem);

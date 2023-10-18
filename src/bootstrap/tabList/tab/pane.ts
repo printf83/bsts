@@ -1,13 +1,8 @@
-import { IAttr, IElem } from "../../../core/tag.js";
+import { IElem } from "../../../core/tag.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeClass } from "../../../core/mergeClass.js";
 import { div } from "../../../html/div.js";
-
-export interface Pane extends IAttr {
-	animation?: boolean;
-	active?: boolean;
-	role?: "tabpanel";
-}
+import { pane as Pane } from "../../../interface/bootstrap/tabList/tab/pane.js";
 
 const convert = (attr: Pane) => {
 	attr.animation ??= true;
