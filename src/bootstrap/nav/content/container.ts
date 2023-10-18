@@ -1,12 +1,9 @@
-import { IAttr, IElem } from "../../../core/tag.js";
+import { IElem } from "../../../core/tag.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeClass } from "../../../core/mergeClass.js";
 import { div } from "../../../html/div.js";
-import { Item, item } from "./item.js";
-
-export interface Container extends IAttr {
-	item?: Item | Item[];
-}
+import { item } from "./item.js";
+import { container as Container } from "../../../interface/bootstrap/nav/content/container.js";
 
 const convert = (attr: Container) => {
 	attr.class = mergeClass(attr.class, "tab-content");

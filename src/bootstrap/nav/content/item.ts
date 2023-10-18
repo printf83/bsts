@@ -1,15 +1,8 @@
-import { IAttr, IElem } from "../../../core/tag.js";
+import { IElem } from "../../../core/tag.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeClass } from "../../../core/mergeClass.js";
 import { div } from "../../../html/div.js";
-
-export interface Item extends IAttr {
-	active?: boolean;
-	role?: "tabpanel";
-	labelledby?: string;
-	tabindex?: string | number;
-	animation?: boolean;
-}
+import { item as Item } from "../../../interface/bootstrap/nav/content/item.js";
 
 const convert = (attr: Item) => {
 	attr.role ??= "tabpanel";

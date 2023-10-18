@@ -1,15 +1,8 @@
 import { IElem } from "../../../core/tag.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeObject } from "../../../core/mergeObject.js";
-import { a, A } from "../../../html/a.js";
-
-export interface Link extends A {
-	role?: "tab" | "button";
-	toggle?: "dropdown" | "pill" | "tab";
-	active?: boolean;
-	current?: true | "page";
-	handleActive?: boolean;
-}
+import { a } from "../../../html/a.js";
+import { link as Link } from "../../../interface/bootstrap/nav/header/link.js";
 
 const handleActive = (event: Event) => {
 	const target = (event.target as Element).closest(".nav-link") as Element;

@@ -1,17 +1,10 @@
 import { IElem } from "../../../core/tag.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeClass } from "../../../core/mergeClass.js";
-import { Li, li } from "../../../html/li.js";
-import { Button, button } from "./button.js";
-import { Link, link } from "./link.js";
-
-export interface Item extends Li {
-	role?: "presentation";
-	dropdown?: boolean;
-
-	link?: Link;
-	button?: Button;
-}
+import { li } from "../../../html/li.js";
+import { button } from "./button.js";
+import { link } from "./link.js";
+import { item as Item } from "../../../interface/bootstrap/nav/header/item.js";
 
 const convert = (attr: Item) => {
 	attr.class = mergeClass(attr.class, ["nav-item", attr.dropdown ? "dropdown" : undefined]);

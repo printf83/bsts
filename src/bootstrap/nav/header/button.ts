@@ -2,15 +2,8 @@ import { IElem } from "../../../core/tag.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { UUID } from "../../../core/uuid.js";
-import { button as TButton, Button as IButton } from "../../../html/button.js";
-
-export interface Button extends IButton {
-	role?: "tab" | "button";
-	toggle?: "dropdown" | "pill" | "tab";
-	target?: string;
-	active?: boolean;
-	handleActive?: boolean;
-}
+import { button as TButton } from "../../../html/button.js";
+import { button as Button } from "../../../interface/bootstrap/nav/header/button.js";
 
 const handleActive = (event: Event) => {
 	const target = (event.target as Element).closest(".nav-link") as Element;
