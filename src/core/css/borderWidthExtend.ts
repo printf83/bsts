@@ -1,4 +1,4 @@
-import { bootstrapTypeA } from "../bootstrap.js";
+import { bsTypeA } from "../../interface/core/bsTypeA.js";
 
 let borderWidthExtendDB: string | undefined = undefined;
 export const borderWidthExtend = () => {
@@ -22,7 +22,7 @@ export const borderWidthExtend = () => {
         }
         `;
 
-		let borderWidth = bootstrapTypeA.borderWidth.map((i) => {
+		let borderWidth = bsTypeA.borderWidth.map((i) => {
 			return { name: i, var: `var(--bs-border-${i})`, varMargin: `var(--bs-border-${i}-margin)` };
 		});
 

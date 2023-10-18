@@ -1,11 +1,11 @@
-import { bootstrapTypeA } from "../bootstrap.js";
+import { bsTypeA } from "../../interface/core/bsTypeA.js";
 
 let colorExtendDB: string | undefined = undefined;
 export const colorExtend = () => {
 	if (colorExtendDB) {
 		return colorExtendDB;
 	} else {
-		let textColor = bootstrapTypeA.textColor.map((i) => {
+		let textColor = bsTypeA.textColor.map((i) => {
 			let ivar = i;
 			if (i.indexOf("-emphasis") > -1) {
 				ivar = `${i.replace("-emphasis", "")}-text-emphasis`;
@@ -20,7 +20,7 @@ export const colorExtend = () => {
 			return { name: i, var: `var(--bs-${ivar})` };
 		});
 
-		let bgColor = bootstrapTypeA.bgColor.map((i) => {
+		let bgColor = bsTypeA.bgColor.map((i) => {
 			let ivar = i;
 			if (i.indexOf("-subtle") > -1) {
 				ivar = `${i.replace("-subtle", "")}-bg-subtle`;
@@ -35,7 +35,7 @@ export const colorExtend = () => {
 			return { name: i, var: `var(--bs-${ivar})` };
 		});
 
-		let borderColor = bootstrapTypeA.borderColor.map((i) => {
+		let borderColor = bsTypeA.borderColor.map((i) => {
 			let ivar = i;
 			if (i.indexOf("-subtle") > -1) {
 				ivar = `${i.replace("-subtle", "")}-border-subtle`;

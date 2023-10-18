@@ -1,6 +1,5 @@
 import { manageClass, addClassIntoElement } from "./addClassIntoElement.js";
-import { bootstrapType, bootstrapTypeA, Attr, Class, bsConsNoElemArg, bsConstArg, bsConstArgTag } from "./bootstrap.js";
-import { bstsType, bstsTypeA, IBsts } from "./bsts.js";
+import { bsConsNoElemArg, bsConstArg, bsConstArgTag } from "./bootstrap.js";
 
 import {
 	build,
@@ -32,21 +31,7 @@ import { mergeClass } from "./mergeClass.js";
 import { mergeObject } from "./mergeObject.js";
 import { removeEmptyArray } from "./removeEmptyArray.js";
 import { rndBetween } from "./rndBetween.js";
-import {
-	tag,
-	IAria,
-	IAttr,
-	IData,
-	IElem,
-	IEvent,
-	IGlobal,
-	IStyle,
-	ITag,
-	isAttr,
-	isTag,
-	tagConsArg,
-	tagConsNoElemArg,
-} from "./tag.js";
+import { tag, isAttr, isTag, tagConsArg, tagConsNoElemArg } from "./tag.js";
 
 import { UUID } from "./uuid.js";
 import { uppercaseFirst } from "./uppercaseFirst.js";
@@ -110,16 +95,9 @@ export {
 	disconnectResizeObserver,
 	manageClass,
 	addClassIntoElement,
-	bootstrapType,
-	bootstrapTypeA,
-	Attr,
-	Class,
 	bsConsNoElemArg,
 	bsConstArg,
 	bsConstArgTag,
-	bstsType,
-	bstsTypeA,
-	IBsts,
 	build,
 	getNode,
 	getHtml,
@@ -146,14 +124,6 @@ export {
 	requestIdleCallback,
 	cancelIdleCallback,
 	tag,
-	IAria,
-	IAttr,
-	IData,
-	IElem,
-	IEvent,
-	IGlobal,
-	IStyle,
-	ITag,
 	isAttr,
 	isTag,
 	tagConsArg,
