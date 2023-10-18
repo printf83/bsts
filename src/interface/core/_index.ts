@@ -14,6 +14,7 @@ import { style } from "./style.js";
 import { event } from "./event.js";
 import { global } from "./global.js";
 import { html } from "./html.js";
+import { attr } from "./attr.js";
 
 export {
 	aria,
@@ -32,4 +33,5 @@ export {
 	global,
 	html,
 	style,
+	attr,
 };

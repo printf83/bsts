@@ -134,3 +134,11 @@ export {
 	placeholder,
 	elemInfo,
 };
+
+import { attr } from "../interface/core/attr.js";
+import { elem } from "../interface/core/elem.js";
+import { bsType } from "../interface/core/bsType.js";
+import { bstsType } from "../interface/core/bstsType.js";
+import { bsClass } from "../interface/core/bsClass.js";
+
+export { attr, elem, bsType, bstsType, bsClass };
