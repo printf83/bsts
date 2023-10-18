@@ -1,4 +1,4 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
 import { mergeObject } from "../../core/mergeObject.js";
@@ -6,27 +6,7 @@ import * as indicators from "./indicators/_index.js";
 import { UUID } from "../../core/uuid.js";
 import * as inner from "./inner/_index.js";
 import { init } from "./_fn.js";
-
-export interface CarouselItem extends IAttr {
-	interval?: number;
-	src?: string;
-	caption?: IElem;
-}
-export interface Carousel extends IAttr {
-	fade?: boolean;
-	ride?: boolean | "carousel";
-	touch?: boolean;
-
-	interval?: number;
-	keyboard?: boolean;
-	pause?: boolean | "hover";
-	wrap?: boolean;
-
-	innerAttr?: IAttr;
-	item?: CarouselItem[];
-	itemControl?: boolean;
-	itemIndicator?: boolean;
-}
+import { carousel as Carousel } from "../../interface/bootstrap/carousel/container.js";
 
 const convert = (attr: Carousel) => {
 	attr.ride ??= attr.itemControl === false ? "carousel" : true;
@@ -132,8 +112,8 @@ const convert = (attr: Carousel) => {
 export class container extends div {
 	constructor();
 	constructor(attr: Carousel);
-	constructor(elem: IElem);
-	constructor(attr: Carousel, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Carousel, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Carousel>("elem", arg)));
 	}

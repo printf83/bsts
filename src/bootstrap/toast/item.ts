@@ -1,19 +1,8 @@
-import { bootstrapType } from "../../core/bootstrap.js";
-import { IAttr, IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
-
-export interface Item extends IAttr {
-	role?: "alert" | "status";
-	live?: "assertive" | "polite";
-	atomic?: boolean;
-	autohide?: boolean;
-	delay?: number;
-	color?: bootstrapType.color;
-	animation?: boolean;
-	debug?: boolean;
-}
+import { item as Item } from "../../interface/bootstrap/toast/item.js";
 
 const convert = (attr: Item) => {
 	attr.animation ??= true;
@@ -57,8 +46,8 @@ const convert = (attr: Item) => {
 export class item extends div {
 	constructor();
 	constructor(attr: Item);
-	constructor(elem: IElem);
-	constructor(attr: Item, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Item, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Item>("elem", arg)));
 	}

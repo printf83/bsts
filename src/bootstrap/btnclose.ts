@@ -1,11 +1,8 @@
 import { bsConsNoElemArg } from "../core/bootstrap.js";
 import { mergeClass } from "../core/mergeClass.js";
 
-import { button, Button } from "../html/button.js";
-
-export interface Btnclose extends Button {
-	white?: boolean;
-}
+import { button } from "../html/button.js";
+import { btnclose as Btnclose } from "../interface/bootstrap/btnclose.js";
 
 const convert = (attr: Btnclose) => {
 	//default value

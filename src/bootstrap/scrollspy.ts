@@ -1,4 +1,3 @@
-import { IAttr, IElem } from "../core/tag.js";
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { div } from "../html/div.js";
@@ -6,14 +5,9 @@ import { addEvent } from "../core/eventManager.js";
 import { bstsConsole as console } from "../core/console.js";
 import { UUID } from "../core/uuid.js";
 import { ScrollSpy as BSScrollSpy } from "bootstrap";
-// import { disconnectResizeObserver, observeResizeObserver } from "../core/resizeObserverManager.js";
+import { scrollspy as Scrollspy } from "../interface/bootstrap/scrollspy.js";
+import { elem } from "../interface/core/elem.js";
 
-export interface Scrollspy extends IAttr {
-	target?: string;
-	smooth?: boolean;
-	rootMargin?: string;
-	initDelay?: number;
-}
 const convert = (attr: Scrollspy) => {
 	attr.initDelay ??= 1000;
 	attr.id ??= UUID();
@@ -65,8 +59,8 @@ const convert = (attr: Scrollspy) => {
 export class scrollspy extends div {
 	constructor();
 	constructor(attr: Scrollspy);
-	constructor(elem: IElem);
-	constructor(attr: Scrollspy, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Scrollspy, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Scrollspy>("elem", arg)));
 	}

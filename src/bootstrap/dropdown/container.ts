@@ -1,12 +1,8 @@
-import { IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
-import { Btngroup, btngroup } from "../btngroup.js";
-
-export type Drop = "down" | "down-center" | "up" | "up-center" | "start" | "end";
-export interface Container extends Btngroup {
-	drop?: Drop;
-}
+import { btngroup } from "../btngroup.js";
+import { container as Container } from "../../interface/bootstrap/dropdown/container.js";
 
 const convert = (attr: Container) => {
 	attr.class = mergeClass(attr.class, [attr.drop ? `drop${attr.drop}` : undefined]);
@@ -19,8 +15,8 @@ const convert = (attr: Container) => {
 export class container extends btngroup {
 	constructor();
 	constructor(attr: Container);
-	constructor(elem: IElem);
-	constructor(attr: Container, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Container, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Container>("elem", arg)));
 	}

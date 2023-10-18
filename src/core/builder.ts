@@ -1,8 +1,8 @@
 import { attachAttr } from "./attach/_index.js";
-import { IAttr, isTag, tag, strHtml, isHtml } from "./tag.js";
+import { isTag, tag, strHtml, isHtml } from "./tag.js";
 import { markup } from "./markup.js";
-
-export type buildArg = tag | number | string | strHtml | (tag | string | number | strHtml)[];
+import { attr } from "../interface/core/attr.js";
+import { elem } from "../interface/core/elem.js";
 
 const htmlToElement = (strHTML: string) => {
 	var template = document.createElement("div");
@@ -11,9 +11,9 @@ const htmlToElement = (strHTML: string) => {
 	return template.firstChild;
 };
 
-const processElem = (i: number | string | tag | strHtml, e: tag, element: Element) => {
+const processElem = (i: elem, e: tag, element: Element) => {
 	if (i !== null) {
-		if (isTag<IAttr>(i)) {
+		if (isTag<attr>(i)) {
 			let t = build(element, i as tag);
 			element = t ? t : element;
 		} else if (isHtml(i)) {
@@ -51,7 +51,7 @@ const processElem = (i: number | string | tag | strHtml, e: tag, element: Elemen
 
 export const build = (
 	container: Element,
-	arg: buildArg,
+	arg: elem | elem[],
 	append: boolean = true,
 	beforeElem: Element | ChildNode | null = null
 ): Element => {
@@ -61,7 +61,7 @@ export const build = (
 		if (arg.length > 0) {
 			arg.forEach((h) => {
 				if (h !== null) {
-					if (isTag<IAttr>(h)) {
+					if (isTag<attr>(h)) {
 						let e = h as tag;
 						let element = e.attr
 							? attachAttr(document.createElement(e.tag), e.attr!)
@@ -124,7 +124,7 @@ export const build = (
 	return container;
 };
 
-export const getNode = (arg: buildArg): Element | Element[] | null => {
+export const getNode = (arg: elem | elem[]): Element | Element[] | null => {
 	let container = build(document.createElement("div"), arg);
 	let childCount = container.childElementCount;
 	if (childCount === 0) return null;
@@ -132,19 +132,19 @@ export const getNode = (arg: buildArg): Element | Element[] | null => {
 	return Array.from(container.childNodes).map((i) => i as Element);
 };
 
-export const getHtml = (arg: buildArg): string => {
+export const getHtml = (arg: elem | elem[]): string => {
 	let container = build(document.createElement("div"), arg);
 	let result = container.innerHTML;
 	removeElement(container);
 	return result;
 };
 
-export const appendChild = (container: Element, arg: buildArg): Element => {
+export const appendChild = (container: Element, arg: elem | elem[]): Element => {
 	container = build(container, arg);
 	return container;
 };
 
-export const prependChild = (container: Element, arg: buildArg): Element => {
+export const prependChild = (container: Element, arg: elem | elem[]): Element => {
 	container = build(container, arg, false);
 	return container;
 };
@@ -162,7 +162,7 @@ export const removeElement = (elem: Element) => {
 	elem.remove();
 };
 
-export const replaceWith = (elem: Element, arg: buildArg): Element | undefined => {
+export const replaceWith = (elem: Element, arg: elem | elem[]): Element | undefined => {
 	let parent = elem.parentNode as Element;
 	if (parent) {
 		parent = build(parent, arg, true, elem);
@@ -171,7 +171,7 @@ export const replaceWith = (elem: Element, arg: buildArg): Element | undefined =
 	}
 };
 
-export const replaceChild = (container: Element, arg: buildArg): Element => {
+export const replaceChild = (container: Element, arg: elem | elem[]): Element => {
 	while (container.firstChild) {
 		removeElement(container.firstChild as Element);
 	}

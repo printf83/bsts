@@ -1,5 +1,5 @@
+import { attr } from "../../interface/core/attr.js";
 import { addEvent, ElementWithAbortController } from "../eventManager.js";
-import { IAttr } from "../tag.js";
 import { IAttachFn } from "./_index.js";
 
 export const attachEvent: IAttachFn = (key, elem, attr) => {
@@ -22,7 +22,7 @@ export const attachEvent: IAttachFn = (key, elem, attr) => {
 	return { attr, elem, changed };
 };
 
-export const hasBuildAndDestroyEvent = (attr: IAttr) => {
+export const hasBuildAndDestroyEvent = (attr: attr) => {
 	let hasBuild = false;
 	let hasDestroy = false;
 

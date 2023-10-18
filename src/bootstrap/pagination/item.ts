@@ -1,15 +1,11 @@
-import { IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
-import { Li, li } from "../../html/li.js";
+import { li } from "../../html/li.js";
 import { button } from "../../html/button.js";
 import { a } from "../../html/a.js";
 import { mergeClass } from "../../core/mergeClass.js";
-
-export interface Item extends Li {
-	active?: boolean;
-	disabled?: boolean;
-	href?: string;
-}
+import { li as Li } from "../../interface/html/li.js";
+import { item as Item } from "../../interface/bootstrap/pagination/item.js";
 
 const convert = (attr: Item) => {
 	let liAttr: Li = {
@@ -37,8 +33,8 @@ const convert = (attr: Item) => {
 export class item extends li {
 	constructor();
 	constructor(attr: Item);
-	constructor(elem: IElem);
-	constructor(attr: Item, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Item, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Item>("elem", arg)));
 	}

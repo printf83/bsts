@@ -1,10 +1,7 @@
 import { mergeClass } from "../../core/mergeClass.js";
-import { Img as IImg, img as TImg } from "../../bootstrap/img.js";
+import { img as TImg } from "../../bootstrap/img.js";
 import { bsConstArg } from "../../core/bootstrap.js";
-
-export interface Img extends IImg {
-	location?: "top" | "bottom";
-}
+import { img as Img } from "../../interface/bootstrap/card/img.js";
 
 const convert = (attr: Img) => {
 	if (attr.location) {

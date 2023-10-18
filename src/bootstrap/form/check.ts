@@ -1,7 +1,7 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../../interface/core/attr.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
-import { Input, input as TInput } from "../input.js";
+import { input as TInput } from "../input.js";
 import { label } from "../label.js";
 import {
 	genDescription,
@@ -12,21 +12,10 @@ import {
 	genValidTooltip,
 } from "./_fn.js";
 
-export interface Check extends Omit<Input, "container"> {
-	type?: "checkbox" | "radio";
-	container?: IAttr;
-	hideLabel?: true;
-	inline?: true;
-	reverse?: true;
-	description?: string;
+import { input as BInput } from "../../interface/bootstrap/input.js";
+import { check as ICheck } from "../../interface/bootstrap/form/check.js";
 
-	invalidFeedback?: string;
-	validFeedback?: string;
-	invalidTooltip?: string;
-	validTooltip?: string;
-}
-
-export const Check = (attr: Check) => {
+export const Check = (attr: ICheck) => {
 	attr.type ??= "checkbox";
 	attr.id ??= UUID();
 	attr.label ??= attr.id;
@@ -40,7 +29,7 @@ export const Check = (attr: Check) => {
 		attr.invalidTooltip
 	);
 
-	let tContainer: IAttr = {
+	let tContainer: attr = {
 		class: [
 			attr.hideLabel ? undefined : "form-check",
 			attr.switch ? "form-switch" : undefined,
@@ -84,7 +73,7 @@ export const Check = (attr: Check) => {
 	delete tAttr.validFeedback;
 	delete tAttr.validTooltip;
 	delete tAttr.invalidTooltip;
-	let tElem = new TInput(tAttr as Input);
+	let tElem = new TInput(tAttr as BInput);
 
 	//put in container
 	if (attr.container) {

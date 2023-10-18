@@ -1,12 +1,8 @@
-import { IAttr, IElem } from "../../core/tag.js";
-import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
+import { elem } from "../../interface/core/elem.js";
+import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
-import { tr as TTr } from "../../html/tr.js";
-
-export interface Tr extends IAttr {
-	color?: bootstrapType.color;
-	active?: boolean;
-}
+import { tr as HTr } from "../../html/tr.js";
+import { tr as Tr } from "../../interface/bootstrap/table/tr.js";
 
 const convert = (attr: Tr) => {
 	attr.class = mergeClass(attr.class, [
@@ -20,11 +16,11 @@ const convert = (attr: Tr) => {
 	return attr;
 };
 
-export class tr extends TTr {
+export class tr extends HTr {
 	constructor();
 	constructor(attr: Tr);
-	constructor(elem: IElem);
-	constructor(attr: Tr, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Tr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Tr>("elem", arg)));
 	}

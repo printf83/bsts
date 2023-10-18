@@ -1,16 +1,9 @@
-import { bootstrapType } from "../../core/bootstrap.js";
-import { IAttr, IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
 
-export interface ItemDiv extends IAttr {
-	active?: boolean;
-	disabled?: boolean;
-	action?: boolean;
-	color?: bootstrapType.color;
-	handleActive?: boolean;
-}
+import { itemDiv as ItemDiv } from "../../interface/bootstrap/list/itemDiv.js";
 
 const handleActive = (event: Event) => {
 	const target = (event.target as Element).closest(".list-group-item") as Element;
@@ -84,8 +77,8 @@ const convert = (attr: ItemDiv) => {
 export class itemDiv extends div {
 	constructor();
 	constructor(attr: ItemDiv);
-	constructor(elem: IElem);
-	constructor(attr: ItemDiv, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: ItemDiv, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<ItemDiv>("elem", arg)));
 	}

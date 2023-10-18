@@ -1,15 +1,9 @@
-import { IAttr, IElem } from "../../core/tag.js";
-import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
+import { elem } from "../../interface/core/elem.js";
+import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
 import { btnclose } from "../btnclose.js";
-
-export interface Container extends IAttr {
-	callout?: boolean;
-	animation?: boolean;
-	color?: bootstrapType.alertColor;
-	dismissible?: bootstrapType.alertDismissible;
-}
+import { container as Container } from "../../interface/bootstrap/alert/container.js";
 
 const convert = (attr: Container) => {
 	//add default value
@@ -54,8 +48,8 @@ const convert = (attr: Container) => {
 export class container extends div {
 	constructor();
 	constructor(attr: Container);
-	constructor(elem: IElem);
-	constructor(attr: Container, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Container, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Container>("elem", arg)));
 	}

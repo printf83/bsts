@@ -1,14 +1,8 @@
-import { bootstrapType } from "../../core/bootstrap.js";
-import { IAttr, IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
-
-export interface Bar extends IAttr {
-	color?: bootstrapType.color;
-	striped?: boolean;
-	animated?: boolean;
-}
+import { bar as Bar } from "../../interface/bootstrap/progress/bar.js";
 
 const convert = (attr: Bar) => {
 	attr = mergeObject(
@@ -33,8 +27,8 @@ const convert = (attr: Bar) => {
 export class bar extends div {
 	constructor();
 	constructor(attr: Bar);
-	constructor(elem: IElem);
-	constructor(attr: Bar, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Bar, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Bar>("elem", arg)));
 	}

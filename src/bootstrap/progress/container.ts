@@ -1,21 +1,9 @@
-import { IAttr, IElem } from "../../core/tag.js";
-import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
+import { elem } from "../../interface/core/elem.js";
+import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
 import { bar } from "./bar.js";
-
-export interface Container extends IAttr {
-	role?: "progressbar";
-	value?: number;
-	min?: number;
-	max?: number;
-
-	stacked?: boolean;
-	color?: bootstrapType.textBgColor;
-	striped?: boolean;
-	animated?: boolean;
-	text?: "none" | "percent" | "progress" | string;
-}
+import { container as Container } from "../../interface/bootstrap/progress/container.js";
 
 const convert = (attr: Container) => {
 	attr.max ??= 100;
@@ -93,8 +81,8 @@ const convert = (attr: Container) => {
 export class container extends div {
 	constructor();
 	constructor(attr: Container);
-	constructor(elem: IElem);
-	constructor(attr: Container, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Container, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Container>("elem", arg)));
 	}

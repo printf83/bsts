@@ -1,4 +1,4 @@
-import { bootstrapTypeA } from "../bootstrap.js";
+import { bsTypeA } from "../../interface/core/bsTypeA.js";
 
 let fontWeightExtendDB: string | undefined = undefined;
 export const fontWeightExtend = () => {
@@ -19,7 +19,7 @@ export const fontWeightExtend = () => {
         }
         `;
 
-		let fontWeight = bootstrapTypeA.fontWeight.map((i) => {
+		let fontWeight = bsTypeA.fontWeight.map((i) => {
 			return { name: i, var: `var(--bs-fw-${i})` };
 		});
 

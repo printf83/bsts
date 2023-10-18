@@ -1,16 +1,9 @@
-import { IElem } from "../../core/tag.js";
-import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
+import { elem } from "../../interface/core/elem.js";
+import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
-import { Td as ITd, td as TTd } from "../../html/td.js";
+import { td as HTd } from "../../html/td.js";
 import { mergeObject } from "../../core/mergeObject.js";
-
-export interface Td extends ITd {
-	color?: bootstrapType.color;
-	active?: boolean;
-
-	responsiveAttr?: string;
-	responsiveTitle?: string;
-}
+import { td as Td } from "../../interface/bootstrap/table/td.js";
 
 const convert = (attr: Td) => {
 	attr.class = mergeClass(attr.class, [
@@ -37,11 +30,11 @@ const convert = (attr: Td) => {
 	return attr;
 };
 
-export class td extends TTd {
+export class td extends HTd {
 	constructor();
 	constructor(attr: Td);
-	constructor(elem: IElem);
-	constructor(attr: Td, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Td, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Td>("elem", arg)));
 	}

@@ -1,12 +1,7 @@
 import { bsConstArg } from "../core/bootstrap.js";
 import { mergeObject } from "../core/mergeObject.js";
-
-import { Img as IImg, img as TImg } from "../html/img.js";
-
-export interface Img extends IImg {
-	fluid?: true;
-	thumbnail?: true;
-}
+import { img as HImg } from "../html/img.js";
+import { img as Img } from "../interface/bootstrap/img.js";
 
 const convert = (attr: Img) => {
 	attr = mergeObject(
@@ -22,7 +17,7 @@ const convert = (attr: Img) => {
 	return attr;
 };
 
-export class img extends TImg {
+export class img extends HImg {
 	constructor();
 	constructor(src: string);
 	constructor(attr: Img);

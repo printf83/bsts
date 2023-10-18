@@ -1,11 +1,8 @@
-import { IAttr, IElem } from "../../core/tag.js";
-import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
+import { elem } from "../../interface/core/elem.js";
+import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { div } from "../../html/div.js";
-
-export interface Responsive extends IAttr {
-	responsive?: bootstrapType.viewport;
-}
+import { responsive as Responsive } from "../../interface/bootstrap/table/responsive.js";
 
 const convert = (attr: Responsive) => {
 	attr.class = mergeClass(attr.class, [attr.responsive ? `table-responsive-${attr.responsive}` : "table-responsive"]);
@@ -18,8 +15,8 @@ const convert = (attr: Responsive) => {
 export class responsive extends div {
 	constructor();
 	constructor(attr: Responsive);
-	constructor(elem: IElem);
-	constructor(attr: Responsive, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Responsive, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Responsive>("elem", arg)));
 	}

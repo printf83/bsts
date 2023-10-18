@@ -1,16 +1,9 @@
-import { IElem } from "../../core/tag.js";
-import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
+import { elem } from "../../interface/core/elem.js";
+import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
-import { Th as ITh, th as TTh } from "../../html/th.js";
+import { th as HTh } from "../../html/th.js";
 import { mergeObject } from "../../core/mergeObject.js";
-
-export interface Th extends ITh {
-	color?: bootstrapType.color;
-	active?: boolean;
-
-	responsiveAttr?: string;
-	responsiveTitle?: string;
-}
+import { th as Th } from "../../interface/bootstrap/table/th.js";
 
 const convert = (attr: Th) => {
 	attr.class = mergeClass(attr.class, [
@@ -37,11 +30,11 @@ const convert = (attr: Th) => {
 	return attr;
 };
 
-export class th extends TTh {
+export class th extends HTh {
 	constructor();
 	constructor(attr: Th);
-	constructor(elem: IElem);
-	constructor(attr: Th, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Th, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Th>("elem", arg)));
 	}

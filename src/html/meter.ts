@@ -1,20 +1,12 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Meter extends IAttr {
-	form?: string;
-	high?: number;
-	low?: number;
-	max?: number;
-	min?: number;
-	optimum?: number;
-	value?: number;
-}
+import { tagConsArg, tag } from "../core/tag.js";
+import { elem } from "../interface/core/elem.js";
+import { meter as Meter } from "../interface/html/meter.js";
 
 export class meter extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Meter);
-	constructor(attr: Meter, elem: IElem);
+	constructor(attr: Meter, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("meter", tagConsArg<Meter>("elem", arg));
 	}

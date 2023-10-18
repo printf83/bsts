@@ -1,27 +1,8 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-import { optgroup, Optgroup } from "./optgroup.js";
-import { option, Option } from "./option.js";
-
-export interface SelectItem extends Option, Optgroup {
-	value?: string;
-	label?: string;
-	elem?: IElem;
-	selected?: boolean;
-
-	item?: SelectItem | SelectItem[];
-}
-
-export interface Select extends IAttr {
-	autofocus?: boolean;
-	disabled?: boolean;
-	form?: string;
-	multiple?: boolean;
-	name?: string;
-	required?: boolean;
-	size?: number;
-
-	item?: SelectItem | SelectItem[];
-}
+import { tagConsArg, tag } from "../core/tag.js";
+import { elem } from "../interface/core/elem.js";
+import { optgroup } from "./optgroup.js";
+import { option } from "./option.js";
+import { select as Select } from "../interface/html/select.js";
 
 const convert = (attr: Select) => {
 	if (attr.item && !attr.elem) {
@@ -56,9 +37,9 @@ const convert = (attr: Select) => {
 
 export class select extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Select);
-	constructor(attr: Select, elem: IElem);
+	constructor(attr: Select, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("select", convert(tagConsArg<Select>("elem", arg)));
 	}

@@ -1,19 +1,11 @@
-import { IAttr, IElem } from "../../../core/tag.js";
+import { elem } from "../../../interface/core/elem.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { nav } from "../../../html/nav.js";
 import { div } from "../../../html/div.js";
-import { Button, button } from "./button.js";
-import { Link, link } from "./link.js";
-
-export interface ContainerNav extends IAttr {
-	type?: "tab" | "pill" | "underline";
-	itemWidth?: "fill" | "justified";
-	vertical?: true;
-	role?: "tablist";
-	item?: Button | Button[];
-	link?: Link | Link[];
-}
+import { button } from "./button.js";
+import { link } from "./link.js";
+import { containerNav as ContainerNav } from "../../../interface/bootstrap/nav/header/containerNav.js";
 
 const convert = (attr: ContainerNav) => {
 	attr = mergeObject(
@@ -61,8 +53,8 @@ const convert = (attr: ContainerNav) => {
 export class containerNav extends nav {
 	constructor();
 	constructor(attr: ContainerNav);
-	constructor(elem: IElem);
-	constructor(attr: ContainerNav, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: ContainerNav, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<ContainerNav>("elem", arg)));
 	}

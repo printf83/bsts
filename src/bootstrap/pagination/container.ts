@@ -1,27 +1,13 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { attr } from "../../interface/core/attr.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
-import { Ul, ul } from "../../html/ul.js";
+import { ul } from "../../html/ul.js";
 import { nav } from "../../html/nav.js";
 import { item } from "./item.js";
 import { icon } from "../icon.js";
 import { replaceWith } from "../../core/builder.js";
-
-export interface Container extends Ul {
-	weight?: "sm" | "lg";
-
-	total?: number;
-	skip?: number;
-	limit?: number;
-
-	maxBtnCount?: number;
-	firstLast?: boolean;
-	nextPrev?: boolean;
-	nextLable?: IElem;
-	prevLabel?: IElem;
-	firstLabel?: IElem;
-	lastLabel?: IElem;
-}
+import { container as Container } from "../../interface/bootstrap/pagination/container.js";
 
 function pagingOnChange(attr: Container, sender: Element) {
 	let data = sender.getAttribute("data-bs-skip");
@@ -236,7 +222,7 @@ const genElem = (attr: Container) => {
 
 const convert = (attr: Container) => {
 	//nav only prop is label
-	let navAttr: IAttr = {
+	let navAttr: attr = {
 		label: attr.label,
 	};
 
@@ -272,8 +258,8 @@ const convert = (attr: Container) => {
 export class container extends nav {
 	constructor();
 	constructor(attr: Container);
-	constructor(elem: IElem);
-	constructor(attr: Container, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Container, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Container>("elem", arg)));
 	}

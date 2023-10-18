@@ -1,15 +1,12 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-
-export interface Ins extends IAttr {
-	cite?: string;
-	datetime?: string | Date;
-}
+import { tagConsArg, tag } from "../core/tag.js";
+import { elem } from "../interface/core/elem.js";
+import { ins as Ins } from "../interface/html/ins.js";
 
 export class ins extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Ins);
-	constructor(attr: Ins, elem: IElem);
+	constructor(attr: Ins, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("ins", tagConsArg<Ins>("elem", arg));
 	}

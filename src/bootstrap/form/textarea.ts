@@ -1,10 +1,9 @@
-import { bootstrapType } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { IAttr, IElem, isTag } from "../../core/tag.js";
+import { isTag } from "../../core/tag.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
 import { label } from "../label.js";
-import { Textarea as ITextarea, textarea as TTextarea } from "../textarea.js";
+import { textarea as TTextarea } from "../textarea.js";
 import { container as TInputGroupContainer } from "../inputgroup/container.js";
 import {
 	genLabel,
@@ -18,26 +17,10 @@ import {
 	genValidTooltip,
 } from "./_fn.js";
 
-export interface Textarea extends Omit<ITextarea, "container"> {
-	description?: string;
-	container?: IAttr;
+import { textarea as BTextarea } from "../../interface/bootstrap/textarea.js";
+import { textarea as ITextarea } from "../../interface/bootstrap/form/textarea.js";
 
-	hideLabel?: true;
-
-	before?: IElem;
-	after?: IElem;
-
-	col1?: bootstrapType.col;
-	col2?: bootstrapType.col;
-	col3?: false | bootstrapType.col;
-
-	invalidFeedback?: string;
-	validFeedback?: string;
-	invalidTooltip?: string;
-	validTooltip?: string;
-}
-
-export const Textarea = (attr: Textarea) => {
+export const Textarea = (attr: ITextarea) => {
 	let container = attr.container;
 
 	attr.id ??= UUID();
@@ -90,7 +73,7 @@ export const Textarea = (attr: Textarea) => {
 	delete tAttr.validTooltip;
 	delete tAttr.invalidTooltip;
 
-	let tElem = new TTextarea(tAttr as ITextarea);
+	let tElem = new TTextarea(tAttr as BTextarea);
 
 	//setup container if col provided
 	if (attr.col1) {

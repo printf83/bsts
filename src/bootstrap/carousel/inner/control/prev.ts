@@ -1,13 +1,10 @@
-import { IElem } from "../../../../core/tag.js";
+import { elem } from "../../../../interface/core/elem.js";
 import { bsConstArg } from "../../../../core/bootstrap.js";
-import { button as TButton, Button } from "../../../../html/button.js";
+import { button as HButton } from "../../../../html/button.js";
 import { mergeObject } from "../../../../core/mergeObject.js";
 import { span } from "../../../../html/span.js";
 import { visuallyhidden } from "../../../visuallyhidden.js";
-
-export interface Prev extends Button {
-	target?: string;
-}
+import { prev as Prev } from "../../../../interface/bootstrap/carousel/inner/control/prev.js";
 
 const convert = (attr: Prev) => {
 	attr = mergeObject(
@@ -33,11 +30,11 @@ const convert = (attr: Prev) => {
 	return attr;
 };
 
-export class prev extends TButton {
+export class prev extends HButton {
 	constructor();
 	constructor(attr: Prev);
-	constructor(elem: IElem);
-	constructor(attr: Prev, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Prev, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Prev>("elem", arg)));
 	}

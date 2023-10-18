@@ -1,14 +1,5 @@
-import { tagConsNoElemArg, IAttr, tag } from "../core/tag.js";
-
-export interface Source extends IAttr {
-	media?: string;
-	sizes?: string;
-	src?: string;
-	srcset?: string;
-	type?: string;
-
-	elem?: undefined;
-}
+import { tagConsNoElemArg, tag } from "../core/tag.js";
+import { source as Source } from "../interface/html/source.js";
 
 export class source extends tag {
 	constructor();

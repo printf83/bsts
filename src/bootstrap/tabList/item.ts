@@ -1,16 +1,8 @@
-import { bootstrapType } from "../../core/bootstrap.js";
-import { IElem } from "../../core/tag.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { a, A } from "../../html/a.js";
-
-export interface Item extends A {
-	active?: boolean;
-	action?: boolean;
-	color?: bootstrapType.color;
-	role?: "tab";
-	autoInit?: boolean;
-}
+import { a } from "../../html/a.js";
+import { item as Item } from "../../interface/bootstrap/tabList/item.js";
 
 const convert = (attr: Item) => {
 	if (attr.disabled && attr.href) {
@@ -47,8 +39,8 @@ const convert = (attr: Item) => {
 export class item extends a {
 	constructor();
 	constructor(attr: Item);
-	constructor(elem: IElem);
-	constructor(attr: Item, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Item, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Item>("elem", arg)));
 	}

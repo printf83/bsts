@@ -1,8 +1,8 @@
-import { IAttr } from "./tag.js";
+import { attr } from "../interface/core/attr.js";
 import { mergeAttr } from "./mergeAttr.js";
 import { mergeClass } from "./mergeClass.js";
 
-export const mergeObject = <T extends IAttr>(target?: T, source?: T): T | never => {
+export const mergeObject = <T extends attr>(target?: T, source?: T): T | never => {
 	if (target) {
 		if (source) {
 			let a_class = target.class;

@@ -1,16 +1,9 @@
-import { IElem } from "../../../core/tag.js";
+import { elem } from "../../../interface/core/elem.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { mergeObject } from "../../../core/mergeObject.js";
 import { UUID } from "../../../core/uuid.js";
-import { button as TButton, Button as IButton } from "../../../html/button.js";
-
-export interface Button extends IButton {
-	role?: "tab" | "button";
-	toggle?: "dropdown" | "pill" | "tab";
-	target?: string;
-	active?: boolean;
-	handleActive?: boolean;
-}
+import { button as TButton } from "../../../html/button.js";
+import { button as Button } from "../../../interface/bootstrap/nav/header/button.js";
 
 const handleActive = (event: Event) => {
 	const target = (event.target as Element).closest(".nav-link") as Element;
@@ -104,8 +97,8 @@ const convert = (attr: Button) => {
 export class button extends TButton {
 	constructor();
 	constructor(attr: Button);
-	constructor(elem: IElem);
-	constructor(attr: Button, elem: IElem);
+	constructor(elem: elem | elem[]);
+	constructor(attr: Button, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Button>("elem", arg)));
 	}

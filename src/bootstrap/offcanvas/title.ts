@@ -1,21 +1,22 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { attr } from "../../interface/core/attr.js";
+import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { UUID } from "../../core/uuid.js";
-import { h } from "../../html/h.js";
+import { h5 } from "../../html/h5.js";
 
-const convert = (attr: IAttr) => {
+const convert = (attr: attr) => {
 	attr.id ??= UUID();
 	attr.class = mergeClass(attr.class, "offcanvas-title");
 	return attr;
 };
 
-export class title extends h {
+export class title extends h5 {
 	constructor();
-	constructor(attr: IAttr);
-	constructor(elem: IElem);
-	constructor(attr: IAttr, elem: IElem);
+	constructor(attr: attr);
+	constructor(elem: elem | elem[]);
+	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(5, convert(bsConstArg("elem", arg)));
+		super(convert(bsConstArg("elem", arg)));
 	}
 }

@@ -1,27 +1,23 @@
-import { bootstrapType, bsConstArg } from "../core/bootstrap.js";
-import { IAttr, IElem, isAttr } from "../core/tag.js";
+import { bsConstArg } from "../core/bootstrap.js";
+import { isAttr } from "../core/tag.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { div } from "../html/div.js";
 import { small } from "../html/small.js";
 import { span } from "../html/span.js";
-import { Icon, icon } from "./icon.js";
+import { icon } from "./icon.js";
+import { icon as Icon } from "../interface/bootstrap/icon.js";
+import { pill as Pill } from "../interface/bootstrap/pill.js";
+import { elem } from "../interface/core/elem.js";
+import { bsType } from "../interface/core/bsType.js";
 
-export interface Pill extends IAttr {
-	icon?: string | Icon | icon;
-	iconPosition?: "start" | "end" | "top" | "bottom";
-	color?: bootstrapType.color;
-	weight?: "md" | "lg";
-	type?: 1 | 2;
-}
-
-const fnRow = (elem: IElem) => {
+const fnRow = (elem: elem) => {
 	return new div({ row: true }, new div({ col: true, textAlign: "center" }, elem));
 };
 
 const fnIcon = (
-	color: bootstrapType.color | undefined,
+	color: bsType.color | undefined,
 	iconPosition: "start" | "end" | "top" | "bottom" | undefined,
-	rounded: bootstrapType.rounded | undefined,
+	rounded: bsType.rounded | undefined,
 	type: 1 | 2 | undefined,
 	attr: string | Icon | icon
 ) => {
@@ -36,26 +32,26 @@ const fnIcon = (
 		a = attr.attr as Icon;
 	}
 
-	let r: bootstrapType.rounded;
+	let r: bsType.rounded;
 	let n: number = typeof rounded === "number" ? rounded : 1;
 
 	switch (iconPosition) {
 		case "end":
-			r = `end-${n}` as bootstrapType.rounded;
+			r = `end-${n}` as bsType.rounded;
 			break;
 		case "start":
-			r = `start-${n}` as bootstrapType.rounded;
+			r = `start-${n}` as bsType.rounded;
 			break;
 		case "top":
-			r = `top-${n}` as bootstrapType.rounded;
+			r = `top-${n}` as bsType.rounded;
 			a.fontSize = 2;
 			break;
 		case "bottom":
-			r = `bottom-${n}` as bootstrapType.rounded;
+			r = `bottom-${n}` as bsType.rounded;
 			a.fontSize = 2;
 			break;
 		default:
-			r = `start-${n}` as bootstrapType.rounded;
+			r = `start-${n}` as bsType.rounded;
 	}
 
 	if (rounded === false) {
@@ -70,7 +66,7 @@ const fnIcon = (
 		{
 			bgOpacity: type === 2 ? 25 : 75,
 			bgColor: color,
-			textBgColor: type === 2 ? undefined : (color as bootstrapType.textBgColor),
+			textBgColor: type === 2 ? undefined : (color as bsType.textBgColor),
 			rounded: r,
 			paddingX: 2,
 			paddingY: iconPosition === "top" || iconPosition === "bottom" ? 3 : 1,
@@ -81,29 +77,29 @@ const fnIcon = (
 };
 
 const fnElem = (
-	color: bootstrapType.color | undefined,
+	color: bsType.color | undefined,
 	iconPosition: "start" | "end" | "top" | "bottom" | undefined,
-	rounded: bootstrapType.rounded | undefined,
-	elem: IElem
+	rounded: bsType.rounded | undefined,
+	elem: elem | elem[]
 ) => {
-	let r: bootstrapType.rounded;
+	let r: bsType.rounded;
 	let n: number = typeof rounded === "number" ? rounded : 1;
 
 	switch (iconPosition) {
 		case "end":
-			r = `start-${n}` as bootstrapType.rounded;
+			r = `start-${n}` as bsType.rounded;
 			break;
 		case "start":
-			r = `end-${n}` as bootstrapType.rounded;
+			r = `end-${n}` as bsType.rounded;
 			break;
 		case "top":
-			r = `bottom-${n}` as bootstrapType.rounded;
+			r = `bottom-${n}` as bsType.rounded;
 			break;
 		case "bottom":
-			r = `top-${n}` as bootstrapType.rounded;
+			r = `top-${n}` as bsType.rounded;
 			break;
 		default:
-			r = `end-${n}` as bootstrapType.rounded;
+			r = `end-${n}` as bsType.rounded;
 	}
 
 	if (rounded === false) {
@@ -113,7 +109,7 @@ const fnElem = (
 	return new span(
 		{
 			bgColor: color,
-			textBgColor: color as bootstrapType.textBgColor,
+			textBgColor: color as bsType.textBgColor,
 			rounded: r,
 			paddingX: 2,
 			paddingY: 1,
@@ -124,7 +120,7 @@ const fnElem = (
 };
 
 const convert = (attr: Pill) => {
-	let tElem: IElem;
+	let tElem: elem | elem[];
 	let tAttr: Pill = attr;
 
 	if (attr && typeof attr.icon !== "undefined") {

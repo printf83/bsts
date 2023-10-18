@@ -1,13 +1,7 @@
-import { tagConsArg, IAttr, IElem, tag } from "../core/tag.js";
-import { option, Option } from "./option.js";
-
-export interface Optgroup extends IAttr {
-	disabled?: boolean;
-	label?: string;
-	attrLabel?: string;
-
-	item?: Option | Option[];
-}
+import { tagConsArg, tag } from "../core/tag.js";
+import { elem } from "../interface/core/elem.js";
+import { option } from "./option.js";
+import { optgroup as Optgroup } from "../interface/html/optgroup.js";
 
 const convert = (attr: Optgroup) => {
 	if (attr.label) {
@@ -32,9 +26,9 @@ const convert = (attr: Optgroup) => {
 
 export class optgroup extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: elem | elem[]);
 	constructor(attr: Optgroup);
-	constructor(attr: Optgroup, elem: IElem);
+	constructor(attr: Optgroup, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super("optgroup", convert(tagConsArg<Optgroup>("elem", arg)));
 	}
