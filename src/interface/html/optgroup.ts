@@ -1,7 +1,7 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 import { option } from "./option.js";
 
-export interface optgroup extends IAttr {
+export interface optgroup extends attr {
 	disabled?: boolean;
 	label?: string;
 	attrLabel?: string;

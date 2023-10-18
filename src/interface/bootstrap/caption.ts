@@ -1,11 +1,11 @@
-import { bootstrapType } from "../../core/bootstrap.js";
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 import { icon as IIcon } from "./icon.js";
 import { icon as BIcon } from "../../bootstrap/icon.js";
+import { bsType } from "../core/bsType.js";
 
-export type captionDisplay = bootstrapType.display | bootstrapType.display[];
+export type captionDisplay = bsType.display | bsType.display[];
 
-export interface caption extends IAttr {
+export interface caption extends attr {
 	icon?: string | IIcon | BIcon;
 	iconPosition?: "start" | "end" | "top" | "bottom";
 	iconDisplay?: captionDisplay;

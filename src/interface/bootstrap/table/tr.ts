@@ -1,7 +1,7 @@
-import { IAttr } from "../../../core/tag.js";
-import { bootstrapType } from "../../../core/bootstrap.js";
+import { attr } from "../../core/attr.js";
+import { bsType } from "../../core/bsType.js";
 
-export interface tr extends IAttr {
-	color?: bootstrapType.color;
+export interface tr extends attr {
+	color?: bsType.color;
 	active?: boolean;
 }

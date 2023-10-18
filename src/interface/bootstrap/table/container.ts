@@ -1,8 +1,9 @@
-import { IAttr, tag, strHtml } from "../../../core/tag.js";
-import { bootstrapType } from "../../../core/bootstrap.js";
+import { tag, strHtml } from "../../../core/tag.js";
+import { attr } from "../../core/attr.js";
+import { bsType } from "../../core/bsType.js";
 
-export interface container extends IAttr {
-	color?: bootstrapType.color;
+export interface container extends attr {
+	color?: bsType.color;
 	striped?: "row" | "col";
 	hoverable?: boolean;
 	bordered?: boolean;

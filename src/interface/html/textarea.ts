@@ -1,6 +1,6 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
-export interface textarea extends IAttr {
+export interface textarea extends attr {
 	autofocus?: boolean;
 	cols?: number;
 	dirname?: string;

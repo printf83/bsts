@@ -1,5 +1,5 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
-export interface dialog extends IAttr {
+export interface dialog extends attr {
 	open?: boolean;
 }

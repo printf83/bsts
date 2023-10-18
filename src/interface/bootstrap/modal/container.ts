@@ -1,19 +1,19 @@
-import { bootstrapType } from "../../../core/bootstrap.js";
-import { IAttr } from "../../../core/tag.js";
+import { bsType } from "../../core/bsType.js";
+import { attr } from "../../core/attr.js";
 
-export interface container extends IAttr {
+export interface container extends attr {
 	backdrop?: boolean | "static";
 	focus?: boolean;
 	keyboard?: boolean;
 
 	weight?: "sm" | "lg" | "xl";
-	fullscreen?: true | bootstrapType.viewport;
+	fullscreen?: true | bsType.viewport;
 	view?: "center" | "end";
 	scrollable?: boolean;
 	animation?: boolean;
 
-	dialogAttr?: IAttr;
-	contentAttr?: IAttr;
+	dialogAttr?: attr;
+	contentAttr?: attr;
 
 	debug?: boolean;
 }

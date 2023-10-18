@@ -1,12 +1,13 @@
-import { IAttr, IElem } from "../../../core/tag.js";
+import { attr } from "../../core/attr.js";
+import { elem } from "../../core/elem.js";
 
 export interface containerItem {
-	title: IElem;
-	elem: IElem;
+	title: elem;
+	elem: elem;
 	show?: boolean;
 }
 
-export interface container extends IAttr {
+export interface container extends attr {
 	flush?: boolean;
 	alwaysOpen?: boolean;
 	item?: containerItem | containerItem[];

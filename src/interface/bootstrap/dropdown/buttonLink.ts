@@ -1,4 +1,4 @@
-import { bootstrapType } from "../../../core/bootstrap.js";
+import { bsType } from "../../core/bsType.js";
 import { a as HA } from "../../html/a.js";
 
 export interface buttonLink extends HA {
@@ -12,5 +12,5 @@ export interface buttonLink extends HA {
 
 	split?: boolean;
 	navItem?: boolean;
-	color?: bootstrapType.linkColor;
+	color?: bsType.linkColor;
 }

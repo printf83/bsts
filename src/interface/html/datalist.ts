@@ -1,5 +1,5 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
-export interface datalist extends IAttr {
+export interface datalist extends attr {
 	item?: string | string[];
 }

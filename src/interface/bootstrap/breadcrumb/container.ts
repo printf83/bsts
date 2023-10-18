@@ -1,7 +1,7 @@
-import { IAttr } from "../../../core/tag.js";
+import { attr } from "../../core/attr.js";
 import { item } from "./item.js";
 
-export interface container extends IAttr {
+export interface container extends attr {
 	divider?: string;
 	item?: item | item[];
 }

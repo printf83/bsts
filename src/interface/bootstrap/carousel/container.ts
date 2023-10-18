@@ -1,11 +1,12 @@
-import { IAttr, IElem } from "../../../core/tag.js";
+import { attr } from "../../core/attr.js";
+import { elem } from "../../core/elem.js";
 
-export interface carouselItem extends IAttr {
+export interface carouselItem extends attr {
 	interval?: number;
 	src?: string;
-	caption?: IElem;
+	caption?: elem;
 }
-export interface carousel extends IAttr {
+export interface carousel extends attr {
 	fade?: boolean;
 	ride?: boolean | "carousel";
 	touch?: boolean;
@@ -15,7 +16,7 @@ export interface carousel extends IAttr {
 	pause?: boolean | "hover";
 	wrap?: boolean;
 
-	innerAttr?: IAttr;
+	innerAttr?: attr;
 	item?: carouselItem[];
 	itemControl?: boolean;
 	itemIndicator?: boolean;

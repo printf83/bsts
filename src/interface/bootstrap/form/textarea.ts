@@ -1,19 +1,20 @@
-import { bootstrapType } from "../../../core/bootstrap.js";
-import { IAttr, IElem } from "../../../core/tag.js";
+import { attr } from "../../core/attr.js";
+import { bsType } from "../../core/bsType.js";
+import { elem } from "../../core/elem.js";
 import { textarea as ITextarea } from "../textarea.js";
 
 export interface textarea extends Omit<ITextarea, "container"> {
 	description?: string;
-	container?: IAttr;
+	container?: attr;
 
 	hideLabel?: true;
 
-	before?: IElem;
-	after?: IElem;
+	before?: elem;
+	after?: elem;
 
-	col1?: bootstrapType.col;
-	col2?: bootstrapType.col;
-	col3?: false | bootstrapType.col;
+	col1?: bsType.col;
+	col2?: bsType.col;
+	col3?: false | bsType.col;
 
 	invalidFeedback?: string;
 	validFeedback?: string;

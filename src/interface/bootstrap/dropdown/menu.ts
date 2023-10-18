@@ -1,7 +1,7 @@
-import { IAttr } from "../../../core/tag.js";
-import { bootstrapType } from "../../../core/bootstrap.js";
+import { attr } from "../../core/attr.js";
+import { bsType } from "../../core/bsType.js";
 
-export interface menu extends IAttr {
+export interface menu extends attr {
 	viewOffset?: string | number[];
 	reference?: "toggle" | "parent";
 	autoClose?: "true" | "false" | "auto" | "manual" | "inside" | "outside";
@@ -10,8 +10,8 @@ export interface menu extends IAttr {
 	positioning?: "dynamic" | "static";
 	popperConfig?: object;
 
-	positionView?: bootstrapType.dropdownMenuPositionView | bootstrapType.dropdownMenuPositionView[];
-	dropdownMenuPositionView?: bootstrapType.dropdownMenuPositionView | bootstrapType.dropdownMenuPositionView[];
+	positionView?: bsType.dropdownMenuPositionView | bsType.dropdownMenuPositionView[];
+	dropdownMenuPositionView?: bsType.dropdownMenuPositionView | bsType.dropdownMenuPositionView[];
 
 	customStyle?: 1;
 

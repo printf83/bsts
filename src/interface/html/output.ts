@@ -1,6 +1,6 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
-export interface output extends IAttr {
+export interface output extends attr {
 	for?: string;
 	from?: string;
 	name?: string;

@@ -1,9 +1,9 @@
-import { IAttr } from "../../../core/tag.js";
+import { attr } from "../../core/attr.js";
 import { input as IInput } from "../input.js";
 
 export interface check extends Omit<IInput, "container"> {
 	type?: "checkbox" | "radio";
-	container?: IAttr;
+	container?: attr;
 	hideLabel?: true;
 	inline?: true;
 	reverse?: true;

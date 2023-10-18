@@ -1,7 +1,8 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
+import { elem } from "../core/elem.js";
 
-export interface ul extends IAttr {
+export interface ul extends attr {
 	unstyle?: boolean;
 	inline?: boolean;
-	item?: IElem;
+	item?: elem;
 }

@@ -1,6 +1,6 @@
-import { IAttr } from "../../../core/tag.js";
+import { attr } from "../../core/attr.js";
 
-export interface container extends IAttr {
+export interface container extends attr {
 	horizontal?: true;
 	autoInit?: boolean;
 	parent?: string;

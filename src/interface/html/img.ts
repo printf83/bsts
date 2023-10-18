@@ -1,6 +1,6 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
-export interface img extends IAttr {
+export interface img extends attr {
 	alt?: string;
 	crossorigin?: "anonymous" | "use-credentials";
 	ismap?: boolean;

@@ -1,9 +1,9 @@
-import { bootstrapType } from "../../../core/bootstrap.js";
-import { IAttr } from "../../../core/tag.js";
+import { bsType } from "../../core/bsType.js";
+import { attr } from "../../core/attr.js";
 
-export interface container extends IAttr {
+export interface container extends attr {
 	placement?: "start" | "end" | "top" | "bottom";
-	show?: boolean | bootstrapType.viewport;
+	show?: boolean | bsType.viewport;
 	dark?: boolean;
 	backdrop?: boolean | "static";
 	scroll?: boolean;

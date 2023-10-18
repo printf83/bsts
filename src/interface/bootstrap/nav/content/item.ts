@@ -1,6 +1,6 @@
-import { IAttr } from "../../../../core/tag.js";
+import { attr } from "../../../core/attr.js";
 
-export interface item extends IAttr {
+export interface item extends attr {
 	active?: boolean;
 	role?: "tabpanel";
 	labelledby?: string;

@@ -1,8 +1,8 @@
-import { IAttr } from "../../../../core/tag.js";
+import { attr } from "../../../core/attr.js";
 import { button } from "./button.js";
 import { link } from "./link.js";
 
-export interface containerNav extends IAttr {
+export interface containerNav extends attr {
 	type?: "tab" | "pill" | "underline";
 	itemWidth?: "fill" | "justified";
 	vertical?: true;

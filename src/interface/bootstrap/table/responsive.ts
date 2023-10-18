@@ -1,6 +1,6 @@
-import { IAttr } from "../../../core/tag.js";
-import { bootstrapType } from "../../../core/bootstrap.js";
+import { attr } from "../../core/attr.js";
+import { bsType } from "../../core/bsType.js";
 
-export interface responsive extends IAttr {
-	responsive?: bootstrapType.viewport;
+export interface responsive extends attr {
+	responsive?: bsType.viewport;
 }

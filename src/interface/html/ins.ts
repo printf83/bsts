@@ -1,6 +1,6 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
-export interface ins extends IAttr {
+export interface ins extends attr {
 	cite?: string;
 	datetime?: string | Date;
 }

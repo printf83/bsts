@@ -1,6 +1,6 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
-export interface meter extends IAttr {
+export interface meter extends attr {
 	form?: string;
 	high?: number;
 	low?: number;

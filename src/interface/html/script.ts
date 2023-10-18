@@ -1,6 +1,6 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
-export interface script extends IAttr {
+export interface script extends attr {
 	async?: boolean;
 	crossorigin?: "anonymous" | "use-credentials";
 	defer?: boolean;

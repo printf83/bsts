@@ -1,5 +1,5 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
-export interface time extends IAttr {
+export interface time extends attr {
 	datetime?: Date;
 }

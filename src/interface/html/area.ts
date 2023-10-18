@@ -1,6 +1,6 @@
-import { IAttr } from "../../core/tag.js";
+import { attr } from "../core/attr.js";
 
-export interface area extends IAttr {
+export interface area extends attr {
 	alt?: string;
 	coords?: string;
 	download?: string;

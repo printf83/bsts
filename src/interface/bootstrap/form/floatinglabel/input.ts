@@ -1,4 +1,5 @@
-import { IAttr, IElem } from "../../../../core/tag.js";
+import { attr } from "../../../core/attr.js";
+import { elem } from "../../../core/elem.js";
 import { datalist } from "../../../html/datalist.js";
 import { input as IInput } from "../../input.js";
 
@@ -26,10 +27,10 @@ export interface input extends Omit<IInput, "container"> {
 		| "week";
 	description?: string;
 	datalist?: datalist["item"];
-	container?: IAttr;
+	container?: attr;
 
-	before?: IElem;
-	after?: IElem;
+	before?: elem;
+	after?: elem;
 
 	invalidFeedback?: string;
 	validFeedback?: string;

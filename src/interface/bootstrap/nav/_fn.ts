@@ -1,10 +1,10 @@
-import { IElem } from "../../../core/tag.js";
+import { elem } from "../../core/elem.js";
 import { container as IContainer } from "./content/container.js";
 import { containerNav } from "./header/containerNav.js";
 
 export interface item {
-	label?: IElem;
-	elem?: IElem;
+	label?: elem;
+	elem?: elem;
 	active?: boolean;
 	disabled?: boolean;
 }
