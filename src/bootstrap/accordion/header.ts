@@ -3,9 +3,10 @@ import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { h2 } from "../../html/h2.js";
 import { UUID } from "../../core/uuid.js";
-import { Button, button } from "../collapse/button.js";
+import { button } from "../collapse/button.js";
+import { button as Header } from "../../interface/bootstrap/collapse/button.js";
 
-const convert = (attr: Button) => {
+const convert = (attr: Header) => {
 	attr.id ??= UUID();
 	attr.class = mergeClass(attr.class, "accordion-header");
 	attr.elem = new button(
@@ -30,10 +31,10 @@ const convert = (attr: Button) => {
 
 export class header extends h2 {
 	constructor();
-	constructor(attr: Button);
+	constructor(attr: Header);
 	constructor(elem: IElem);
-	constructor(attr: Button, elem: IElem);
+	constructor(attr: Header, elem: IElem);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Button>("elem", arg)));
+		super(convert(bsConstArg<Header>("elem", arg)));
 	}
 }

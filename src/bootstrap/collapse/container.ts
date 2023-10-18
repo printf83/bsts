@@ -1,15 +1,9 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { UUID } from "../../core/uuid.js";
 import { div } from "../../html/div.js";
 import { mergeObject } from "../../core/mergeObject.js";
-
-export interface Container extends IAttr {
-	horizontal?: true;
-	autoInit?: boolean;
-	parent?: string;
-	show?: boolean;
-}
+import { container as Container } from "../../interface/bootstrap/collapse/container.js";
 
 const convert = (attr: Container) => {
 	attr.id ??= UUID();

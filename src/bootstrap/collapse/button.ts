@@ -1,16 +1,10 @@
 import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
-import { button as Tbutton, Button as TButton } from "../button.js";
+import { button as BButton } from "../button.js";
+import { button as IButton } from "../../interface/bootstrap/collapse/button.js";
 
-export interface Button extends TButton {
-	link?: true;
-	target?: string;
-	expanded?: boolean;
-	icon?: boolean;
-}
-
-const convert = (attr: Button) => {
+const convert = (attr: IButton) => {
 	attr = mergeObject(
 		{
 			class: [attr.expanded ? undefined : "collapsed", attr.icon ? "btn-toggle" : undefined],
@@ -32,12 +26,12 @@ const convert = (attr: Button) => {
 	return attr;
 };
 
-export class button extends Tbutton {
+export class button extends BButton {
 	constructor();
-	constructor(attr: Button);
+	constructor(attr: IButton);
 	constructor(elem: IElem);
-	constructor(attr: Button, elem: IElem);
+	constructor(attr: IButton, elem: IElem);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Button>("elem", arg)));
+		super(convert(bsConstArg<IButton>("elem", arg)));
 	}
 }

@@ -1,15 +1,10 @@
 import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { UUID } from "../../core/uuid.js";
-import { Container, container } from "../collapse/container.js";
+import { container } from "../collapse/container.js";
 import { div } from "../../html/div.js";
 import { mergeObject } from "../../core/mergeObject.js";
-
-export interface Body extends Container {
-	labelledby?: string;
-	parent?: string;
-	show?: boolean;
-}
+import { body as Body } from "../../interface/bootstrap/accordion/body.js";
 
 const convert = (attr: Body) => {
 	attr = mergeObject(

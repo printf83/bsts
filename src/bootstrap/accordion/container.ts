@@ -1,4 +1,4 @@
-import { IAttr, IElem } from "../../core/tag.js";
+import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
 import { UUID } from "../../core/uuid.js";
@@ -6,18 +6,7 @@ import { div } from "../../html/div.js";
 import { item } from "./item.js";
 import { header } from "./header.js";
 import { body } from "./body.js";
-
-export interface ContainerItem {
-	title: IElem;
-	elem: IElem;
-	show?: boolean;
-}
-
-export interface Container extends IAttr {
-	flush?: boolean;
-	alwaysOpen?: boolean;
-	item?: ContainerItem | ContainerItem[];
-}
+import { container as Container } from "../../interface/bootstrap/accordion/container.js";
 
 const convert = (attr: Container) => {
 	attr.id ??= UUID();
