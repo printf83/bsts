@@ -1,13 +1,10 @@
 import { IElem } from "../../../../core/tag.js";
 import { bsConstArg } from "../../../../core/bootstrap.js";
-import { button as TButton, Button } from "../../../../html/button.js";
+import { button as HButton } from "../../../../html/button.js";
 import { mergeObject } from "../../../../core/mergeObject.js";
 import { span } from "../../../../html/span.js";
 import { visuallyhidden } from "../../../visuallyhidden.js";
-
-export interface Next extends Button {
-	target?: string;
-}
+import { next as Next } from "../../../../interface/bootstrap/carousel/inner/control/next.js";
 
 const convert = (attr: Next) => {
 	attr = mergeObject(
@@ -33,7 +30,7 @@ const convert = (attr: Next) => {
 	return attr;
 };
 
-export class next extends TButton {
+export class next extends HButton {
 	constructor();
 	constructor(attr: Next);
 	constructor(elem: IElem);

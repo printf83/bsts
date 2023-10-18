@@ -1,15 +1,9 @@
-import { IAttr, IElem } from "../../core/tag.js";
-import { bootstrapType, bsConstArg } from "../../core/bootstrap.js";
+import { IElem } from "../../core/tag.js";
+import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/mergeObject.js";
 import { div } from "../../html/div.js";
 import { btnclose } from "../btnclose.js";
-
-export interface Container extends IAttr {
-	callout?: boolean;
-	animation?: boolean;
-	color?: bootstrapType.alertColor;
-	dismissible?: bootstrapType.alertDismissible;
-}
+import { container as Container } from "../../interface/bootstrap/alert/container.js";
 
 const convert = (attr: Container) => {
 	//add default value

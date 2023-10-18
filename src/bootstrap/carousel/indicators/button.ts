@@ -1,13 +1,8 @@
 import { IElem } from "../../../core/tag.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
-import { button as TButton, Button as IButton } from "../../../html/button.js";
+import { button as HButton } from "../../../html/button.js";
 import { mergeObject } from "../../../core/mergeObject.js";
-
-export interface Button extends IButton {
-	active?: boolean;
-	slide?: number;
-	target?: string;
-}
+import { button as Button } from "../../../interface/bootstrap/carousel/indicators/button.js";
 
 const convert = (attr: Button) => {
 	attr = mergeObject(
@@ -31,7 +26,7 @@ const convert = (attr: Button) => {
 	return attr;
 };
 
-export class button extends TButton {
+export class button extends HButton {
 	constructor();
 	constructor(attr: Button);
 	constructor(elem: IElem);

@@ -1,5 +1,6 @@
 import { bsConstArg } from "../../../../core/bootstrap.js";
-import { img as TImg, Img as IImg } from "../../../img.js";
+import { img as BImg } from "../../../img.js";
+import { img as IImg } from "../../../../interface/bootstrap/img";
 
 const convert = (attr: IImg) => {
 	attr.display = "block";
@@ -8,7 +9,7 @@ const convert = (attr: IImg) => {
 	return attr;
 };
 
-export class img extends TImg {
+export class img extends BImg {
 	constructor();
 	constructor(src: string);
 	constructor(attr: IImg);

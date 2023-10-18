@@ -1,7 +1,8 @@
 import { IElem } from "../../core/tag.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/mergeClass.js";
-import { a, A } from "../../html/a.js";
+import { a } from "../../html/a.js";
+import { a as A } from "../../interface/html/a.js";
 
 const convert = (attr: A) => {
 	attr.class = mergeClass(attr.class, "card-link");

@@ -1,14 +1,11 @@
 import { IAttr, IElem } from "../../core/tag.js";
+import { mergeClass } from "../../core/mergeClass.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { nav } from "../../html/nav.js";
 import { ol } from "../../html/ol.js";
-import { Item, item } from "./item.js";
-import { mergeClass } from "../../core/mergeClass.js";
-
-export interface Container extends IAttr {
-	divider?: string;
-	item?: Item | Item[];
-}
+import { item } from "./item.js";
+import { item as Item } from "../../interface/bootstrap/breadcrumb/item.js";
+import { container as Container } from "../../interface/bootstrap/breadcrumb/container.js";
 
 const convert = (attr: Container) => {
 	attr.class = mergeClass(attr.class, "breadcrumb");
