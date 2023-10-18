@@ -1,11 +1,12 @@
-import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { tagConsArg, tag } from "../core/tag.js";
+import { elem } from "../interface/core/elem.js";
 import { option as Option } from "../interface/html/option.js";
 
 export class option extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: elem);
 	constructor(attr: Option);
-	constructor(attr: Option, elem: IElem);
+	constructor(attr: Option, elem: elem);
 	constructor(...arg: any[]) {
 		super("option", tagConsArg<Option>("elem", arg));
 	}

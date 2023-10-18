@@ -1,11 +1,12 @@
-import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { tagConsArg, tag } from "../core/tag.js";
+import { elem } from "../interface/core/elem.js";
 import { video as Video } from "../interface/html/video.js";
 
 export class video extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: elem);
 	constructor(attr: Video);
-	constructor(attr: Video, elem: IElem);
+	constructor(attr: Video, elem: elem);
 	constructor(...arg: any[]) {
 		super("video", tagConsArg<Video>("elem", arg));
 	}

@@ -1,4 +1,5 @@
-import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { tagConsArg, tag } from "../core/tag.js";
+import { elem } from "../interface/core/elem.js";
 import { option } from "./option.js";
 import { datalist as Datalist } from "../interface/html/datalist.js";
 
@@ -20,9 +21,9 @@ const convert = (attr: Datalist) => {
 
 export class datalist extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: elem);
 	constructor(attr: Datalist);
-	constructor(attr: Datalist, elem: IElem);
+	constructor(attr: Datalist, elem: elem);
 	constructor(...arg: any[]) {
 		super("datalist", convert(tagConsArg<Datalist>("elem", arg)));
 	}

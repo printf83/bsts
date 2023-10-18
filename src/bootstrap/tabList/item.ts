@@ -39,8 +39,8 @@ const convert = (attr: Item) => {
 export class item extends a {
 	constructor();
 	constructor(attr: Item);
-	constructor(elem: IElem);
-	constructor(attr: Item, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Item, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Item>("elem", arg)));
 	}

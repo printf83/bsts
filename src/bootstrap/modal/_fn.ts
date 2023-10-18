@@ -326,8 +326,8 @@ export interface Create extends Omit<Container, "title"> {
 	customStyle?: customStyleButton;
 	btn?: btnType | btnType[];
 	btnFn?: EventListener | EventListener[];
-	title?: IElem;
-	elem?: IElem;
+	title?: elem;
+	elem?: elem;
 
 	attrHeader?: Header;
 	attrBody?: IAttr;

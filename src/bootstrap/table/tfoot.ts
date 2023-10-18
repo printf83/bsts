@@ -15,8 +15,8 @@ const convert = (attr: Tfoot) => {
 export class tfoot extends HTfoot {
 	constructor();
 	constructor(attr: Tfoot);
-	constructor(elem: IElem);
-	constructor(attr: Tfoot, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Tfoot, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Tfoot>("elem", arg)));
 	}

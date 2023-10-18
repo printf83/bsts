@@ -51,8 +51,8 @@ const convert = (attr: Menu) => {
 export class menu extends div {
 	constructor();
 	constructor(attr: Menu);
-	constructor(elem: IElem);
-	constructor(attr: Menu, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Menu, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Menu>("elem", arg)));
 	}

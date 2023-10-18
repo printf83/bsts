@@ -1,7 +1,8 @@
-import { IElem, tag, tagConsArg } from "../core/tag.js";
+import { tag, tagConsArg } from "../core/tag.js";
 import { mergeClass } from "../core/mergeClass.js";
 import { mergeObject } from "../core/mergeObject.js";
 import { a as A } from "../interface/html/a.js";
+import { elem } from "../interface/core/elem.js";
 
 const convert = (attr: A) => {
 	attr.class = mergeClass(attr.class, [
@@ -31,9 +32,9 @@ const convert = (attr: A) => {
 
 export class a extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: elem);
 	constructor(attr: A);
-	constructor(attr: A, elem: IElem);
+	constructor(attr: A, elem: elem);
 	constructor(...arg: any[]) {
 		super("a", convert(tagConsArg<A>("elem", arg)));
 	}

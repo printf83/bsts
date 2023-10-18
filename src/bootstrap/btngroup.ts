@@ -27,8 +27,8 @@ const convert = (attr: Btngroup): IAttr => {
 export class btngroup extends div {
 	constructor();
 	constructor(attr: Btngroup);
-	constructor(elem: IElem);
-	constructor(attr: Btngroup, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Btngroup, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Btngroup>("elem", arg)));
 	}

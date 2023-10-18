@@ -95,8 +95,8 @@ const convert = (attr: Popover) => {
 export class popover extends span {
 	constructor();
 	constructor(attr: Popover);
-	constructor(elem: IElem);
-	constructor(attr: Popover, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Popover, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Popover>("elem", arg)));
 	}

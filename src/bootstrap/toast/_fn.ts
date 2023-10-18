@@ -120,14 +120,14 @@ export const show = (itemOrElem: item | Element | string, placement?: ContainerP
 };
 
 export interface Create {
-	elem: IElem;
+	elem: elem;
 	animation?: boolean;
 	color?: bootstrapType.textBgColor;
 	btnclosewhite?: boolean;
 	delay?: number;
 	atomic?: boolean;
 	live?: Item["live"];
-	title?: IElem;
+	title?: elem;
 }
 
 export const Create = (attr: Create) => {

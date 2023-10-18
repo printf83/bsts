@@ -1,11 +1,12 @@
-import { tagConsArg, IElem, tag } from "../core/tag.js";
+import { tagConsArg, tag } from "../core/tag.js";
+import { elem } from "../interface/core/elem.js";
 import { meter as Meter } from "../interface/html/meter.js";
 
 export class meter extends tag {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: elem);
 	constructor(attr: Meter);
-	constructor(attr: Meter, elem: IElem);
+	constructor(attr: Meter, elem: elem);
 	constructor(...arg: any[]) {
 		super("meter", tagConsArg<Meter>("elem", arg));
 	}

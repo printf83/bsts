@@ -76,8 +76,8 @@ const convert = (attr: ItemLabel) => {
 export class itemLabel extends label {
 	constructor();
 	constructor(attr: ItemLabel);
-	constructor(elem: IElem);
-	constructor(attr: ItemLabel, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: ItemLabel, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<ItemLabel>("elem", arg)));
 	}

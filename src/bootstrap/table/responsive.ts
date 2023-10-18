@@ -15,8 +15,8 @@ const convert = (attr: Responsive) => {
 export class responsive extends div {
 	constructor();
 	constructor(attr: Responsive);
-	constructor(elem: IElem);
-	constructor(attr: Responsive, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Responsive, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Responsive>("elem", arg)));
 	}

@@ -33,8 +33,8 @@ const convert = (attr: Next) => {
 export class next extends HButton {
 	constructor();
 	constructor(attr: Next);
-	constructor(elem: IElem);
-	constructor(attr: Next, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Next, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Next>("elem", arg)));
 	}

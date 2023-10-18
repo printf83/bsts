@@ -53,8 +53,8 @@ const convert = (attr: ContainerNav) => {
 export class containerNav extends nav {
 	constructor();
 	constructor(attr: ContainerNav);
-	constructor(elem: IElem);
-	constructor(attr: ContainerNav, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: ContainerNav, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<ContainerNav>("elem", arg)));
 	}

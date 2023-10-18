@@ -11,8 +11,8 @@ const convert = (attr: IAttr) => {
 export class container extends figure {
 	constructor();
 	constructor(attr: IAttr);
-	constructor(elem: IElem);
-	constructor(attr: IAttr, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: IAttr, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg("elem", arg)));
 	}

@@ -10,9 +10,9 @@ const convert = (attr: IAttr) => {
 
 export class header extends h4 {
 	constructor();
-	constructor(elem: IElem);
+	constructor(elem: elem);
 	constructor(attr: IAttr);
-	constructor(attr: IAttr, elem: IElem);
+	constructor(attr: IAttr, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(tagConsArg("elem", arg)));
 	}

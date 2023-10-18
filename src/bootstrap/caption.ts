@@ -17,7 +17,7 @@ const fnIcon = (display: CaptionDisplay | undefined, attr: string | Icon | icon)
 	}
 };
 
-const fnElem = (display: CaptionDisplay | undefined, elem: IElem) => {
+const fnElem = (display: CaptionDisplay | undefined, elem: elem) => {
 	if (display) {
 		return new span({ display: display }, elem);
 	} else {

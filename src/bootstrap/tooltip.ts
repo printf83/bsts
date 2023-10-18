@@ -94,8 +94,8 @@ const convert = (attr: Tooltip) => {
 export class tooltip extends span {
 	constructor();
 	constructor(attr: Tooltip);
-	constructor(elem: IElem);
-	constructor(attr: Tooltip, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Tooltip, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Tooltip>("elem", arg)));
 	}

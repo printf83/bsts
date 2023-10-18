@@ -24,8 +24,8 @@ const convert = (attr: IToggle) => {
 export class offcanvas extends BToggle {
 	constructor();
 	constructor(attr: IToggle);
-	constructor(elem: IElem);
-	constructor(attr: IToggle, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: IToggle, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<IToggle>("elem", arg)));
 	}

@@ -28,8 +28,8 @@ const convert = (attr: Header) => {
 export class header extends div {
 	constructor();
 	constructor(attr: Header);
-	constructor(elem: IElem);
-	constructor(attr: Header, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Header, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Header>("elem", arg)));
 	}

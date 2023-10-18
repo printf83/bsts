@@ -33,8 +33,8 @@ const convert = (attr: Th) => {
 export class th extends HTh {
 	constructor();
 	constructor(attr: Th);
-	constructor(elem: IElem);
-	constructor(attr: Th, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Th, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Th>("elem", arg)));
 	}

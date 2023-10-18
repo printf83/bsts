@@ -8,7 +8,7 @@ import { icon } from "./icon.js";
 import { icon as Icon } from "../interface/bootstrap/icon.js";
 import { pill as Pill } from "../interface/bootstrap/pill.js";
 
-const fnRow = (elem: IElem) => {
+const fnRow = (elem: elem) => {
 	return new div({ row: true }, new div({ col: true, textAlign: "center" }, elem));
 };
 
@@ -78,7 +78,7 @@ const fnElem = (
 	color: bootstrapType.color | undefined,
 	iconPosition: "start" | "end" | "top" | "bottom" | undefined,
 	rounded: bootstrapType.rounded | undefined,
-	elem: IElem
+	elem: elem
 ) => {
 	let r: bootstrapType.rounded;
 	let n: number = typeof rounded === "number" ? rounded : 1;
@@ -118,7 +118,7 @@ const fnElem = (
 };
 
 const convert = (attr: Pill) => {
-	let tElem: IElem;
+	let tElem: elem;
 	let tAttr: Pill = attr;
 
 	if (attr && typeof attr.icon !== "undefined") {

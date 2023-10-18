@@ -59,8 +59,8 @@ const convert = (attr: Scrollspy) => {
 export class scrollspy extends div {
 	constructor();
 	constructor(attr: Scrollspy);
-	constructor(elem: IElem);
-	constructor(attr: Scrollspy, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: Scrollspy, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<Scrollspy>("elem", arg)));
 	}

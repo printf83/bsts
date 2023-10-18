@@ -61,8 +61,8 @@ const convert = (attr: ButtonLink) => {
 export class buttonLink extends a {
 	constructor();
 	constructor(attr: ButtonLink);
-	constructor(elem: IElem);
-	constructor(attr: ButtonLink, elem: IElem);
+	constructor(elem: elem);
+	constructor(attr: ButtonLink, elem: elem);
 	constructor(...arg: any[]) {
 		super(convert(bsConstArg<ButtonLink>("elem", arg)));
 	}
