@@ -1,7 +1,7 @@
 import { bsConstArg, bsConstArgTag } from "../../core/bootstrap.js";
 import { tag } from "../../core/tag.js";
 import { elem } from "../../interface/core/elem.js";
-import { mergeClass } from "../../core/mergeClass.js";
+import { mergeClass } from "../../core/util/mergeClass.js";
 import { brand as Brand } from "../../interface/bootstrap/navbar/brand.js";
 
 const convert = (attr: Brand) => {

@@ -1,9 +1,9 @@
 import { bsConstArg } from "../core/bootstrap.js";
 import { span } from "../html/span.js";
-import { mergeObject } from "../core/mergeObject.js";
-import { calcTimer } from "../core/calcTimer.js";
-import { UUID } from "../core/uuid.js";
-import { bstsConsole as console } from "../core/console.js";
+import { mergeObject } from "../core/util/mergeObject.js";
+import { calcTimer } from "../core/util/calcTimer.js";
+import { UUID } from "../core/util/uuid.js";
+import { bstsConsole as console } from "../core/util/console.js";
 import { timer as Timer } from "../interface/bootstrap/timer.js";
 
 const runTimer = (elem: Element, delay: number, callback?: Function) => {

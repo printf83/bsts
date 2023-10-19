@@ -1,9 +1,9 @@
 import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
-import { mergeObject } from "../../core/mergeObject.js";
+import { mergeObject } from "../../core/util/mergeObject.js";
 import * as indicators from "./indicators/_index.js";
-import { UUID } from "../../core/uuid.js";
+import { UUID } from "../../core/util/uuid.js";
 import * as inner from "./inner/_index.js";
 import { init } from "./_fn.js";
 import { carousel as Carousel } from "../../interface/bootstrap/carousel/container.js";

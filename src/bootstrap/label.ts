@@ -1,7 +1,8 @@
 import { bsConstArg } from "../core/bootstrap.js";
 import { isAttr, tag } from "../core/tag.js";
-import { mergeClass } from "../core/mergeClass.js";
-import { mergeObject } from "../core/mergeObject.js";
+import { mergeClass } from "../core/util/mergeClass.js";
+
+import { mergeObject } from "../core/util/mergeObject.js";
 import { label as HLabel } from "../html/label.js";
 import { span } from "../html/span.js";
 import { icon } from "./icon.js";

@@ -1,5 +1,5 @@
-import { mergeObject } from "../../core/mergeObject.js";
-import { UUID } from "../../core/uuid.js";
+import { mergeObject } from "../../core/util/mergeObject.js";
+import { UUID } from "../../core/util/uuid.js";
 import { input as BInput } from "../input.js";
 import { label } from "../label.js";
 import { input as IInput } from "../../interface/bootstrap/input.js";

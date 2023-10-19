@@ -1,5 +1,5 @@
 import { elem } from "../../../interface/core/elem.js";
-import { mergeObject } from "../../../core/mergeObject.js";
+import { mergeObject } from "../../../core/util/mergeObject.js";
 import { span } from "../../../html/span.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
 import { button } from "../../collapse/button.js";

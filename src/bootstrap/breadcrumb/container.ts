@@ -1,6 +1,6 @@
 import { attr } from "../../interface/core/attr.js";
 import { elem } from "../../interface/core/elem.js";
-import { mergeClass } from "../../core/mergeClass.js";
+import { mergeClass } from "../../core/util/mergeClass.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { nav } from "../../html/nav.js";
 import { ol } from "../../html/ol.js";

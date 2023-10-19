@@ -1,16 +1,16 @@
-import { a } from "../html/a.js";
-import { strong } from "../html/strong.js";
-import { b } from "../html/b.js";
-import { code } from "../html/code.js";
-import { br } from "../html/br.js";
-import { hr } from "../html/hr.js";
-import { i } from "../html/i.js";
-import { kbd } from "../html/kbd.js";
-import { span } from "../html/span.js";
-import { u } from "../html/u.js";
-import { del } from "../html/del.js";
-import { mark } from "../html/mark.js";
-import { tag } from "./tag.js";
+import { a } from "../../html/a.js";
+import { strong } from "../../html/strong.js";
+import { b } from "../../html/b.js";
+import { code } from "../../html/code.js";
+import { br } from "../../html/br.js";
+import { hr } from "../../html/hr.js";
+import { i } from "../../html/i.js";
+import { kbd } from "../../html/kbd.js";
+import { span } from "../../html/span.js";
+import { u } from "../../html/u.js";
+import { del } from "../../html/del.js";
+import { mark } from "../../html/mark.js";
+import { tag } from "../tag.js";
 
 const markupCode = (k: string, str: string) => {
 	if (k.match(/^[buickdms]*$/gm)) {

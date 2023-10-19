@@ -1,6 +1,6 @@
 import { bsConstArg } from "../core/bootstrap.js";
-import { mergeObject } from "../core/mergeObject.js";
-import { UUID } from "../core/uuid.js";
+import { mergeObject } from "../core/util/mergeObject.js";
+import { UUID } from "../core/util/uuid.js";
 import { select as TSelect } from "../html/select.js";
 import { select as Select } from "../interface/bootstrap/select.js";
 import { elem } from "../interface/core/elem.js";

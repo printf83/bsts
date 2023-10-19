@@ -1,7 +1,7 @@
 import { elem } from "../../../../interface/core/elem.js";
 import { bsConstArg } from "../../../../core/bootstrap.js";
 import { button as HButton } from "../../../../html/button.js";
-import { mergeObject } from "../../../../core/mergeObject.js";
+import { mergeObject } from "../../../../core/util/mergeObject.js";
 import { span } from "../../../../html/span.js";
 import { visuallyhidden } from "../../../visuallyhidden.js";
 import { next as Next } from "../../../../interface/bootstrap/carousel/inner/control/next.js";

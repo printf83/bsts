@@ -1,6 +1,7 @@
 import { bsConsNoElemArg } from "../core/bootstrap.js";
 import { div } from "../html/div.js";
-import { mergeClass } from "../core/mergeClass.js";
+import { mergeClass } from "../core/util/mergeClass.js";
+
 import { attr } from "../interface/core/attr.js";
 
 const convert = (attr: attr) => {

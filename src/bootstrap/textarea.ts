@@ -1,6 +1,6 @@
 import { bsConstArg } from "../core/bootstrap.js";
-import { mergeObject } from "../core/mergeObject.js";
-import { UUID } from "../core/uuid.js";
+import { mergeObject } from "../core/util/mergeObject.js";
+import { UUID } from "../core/util/uuid.js";
 import { textarea as TTextarea } from "../html/textarea.js";
 import { textarea as Textarea } from "../interface/bootstrap/textarea.js";
 

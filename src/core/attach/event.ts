@@ -1,5 +1,5 @@
 import { attr } from "../../interface/core/attr.js";
-import { addEvent, ElementWithAbortController } from "../eventManager.js";
+import { addEvent, ElementWithAbortController } from "../util/eventManager.js";
 import { IAttachFn } from "./_index.js";
 
 export const attach: IAttachFn = (key, elem, attr) => {

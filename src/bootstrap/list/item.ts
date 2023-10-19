@@ -1,6 +1,6 @@
 import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
-import { mergeObject } from "../../core/mergeObject.js";
+import { mergeObject } from "../../core/util/mergeObject.js";
 import { li } from "../../html/li.js";
 import { item as Item } from "../../interface/bootstrap/list/item.js";
 

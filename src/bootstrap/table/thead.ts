@@ -1,6 +1,6 @@
 import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
-import { mergeClass } from "../../core/mergeClass.js";
+import { mergeClass } from "../../core/util/mergeClass.js";
 import { thead as HThead } from "../../html/thead.js";
 import { thead as Thead } from "../../interface/bootstrap/table/thead.js";
 

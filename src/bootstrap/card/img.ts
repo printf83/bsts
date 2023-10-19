@@ -1,4 +1,4 @@
-import { mergeClass } from "../../core/mergeClass.js";
+import { mergeClass } from "../../core/util/mergeClass.js";
 import { img as TImg } from "../../bootstrap/img.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { img as Img } from "../../interface/bootstrap/card/img.js";

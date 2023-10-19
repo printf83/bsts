@@ -1,6 +1,6 @@
-import { addClassIntoElement } from "../addClassIntoElement.js";
+import { addClassIntoElement } from "../util/addClassIntoElement.js";
 import { IAttachFn } from "./_index.js";
-import { keyOfType } from "../keyOfType.js";
+import { keyOfType } from "../util/keyOfType.js";
 import { bstsTypeA } from "../../interface/core/bstsTypeA.js";
 import { bsClassFormatter } from "../../interface/core/bsClassFormatter.js";
 

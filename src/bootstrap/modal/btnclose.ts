@@ -1,5 +1,5 @@
 import { bsConsNoElemArg } from "../../core/bootstrap.js";
-import { mergeObject } from "../../core/mergeObject.js";
+import { mergeObject } from "../../core/util/mergeObject.js";
 import { btnclose as BBtnclose } from "../btnclose.js";
 import { btnclose as Btnclose } from "../../interface/bootstrap/modal/btnclose.js";
 

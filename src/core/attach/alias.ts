@@ -1,4 +1,4 @@
-import { keyOfType } from "../keyOfType.js";
+import { keyOfType } from "../util/keyOfType.js";
 import { IAttachFn } from "./_index.js";
 
 const formatDB: { [key: string]: string } = {

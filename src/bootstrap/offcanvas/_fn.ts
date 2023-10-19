@@ -1,5 +1,5 @@
-import { addEvent } from "../../core/eventManager.js";
-import { bstsConsole as console } from "../../core/console.js";
+import { addEvent } from "../../core/util/eventManager.js";
+import { bstsConsole as console } from "../../core/util/console.js";
 import { Offcanvas as BSOffcanvas } from "bootstrap";
 
 export const init = (elem: string | Element, options?: Partial<BSOffcanvas.Options>) => {

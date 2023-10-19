@@ -1,6 +1,6 @@
 import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
-import { mergeClass } from "../../core/mergeClass.js";
+import { mergeClass } from "../../core/util/mergeClass.js";
 import { btngroup } from "../btngroup.js";
 import { container as Container } from "../../interface/bootstrap/dropdown/container.js";
 

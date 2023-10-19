@@ -1,6 +1,6 @@
 import { appendChild, removeElement } from "../../core/builder.js";
-import { addEvent, ElementWithAbortController } from "../../core/eventManager.js";
-import { UUID } from "../../core/uuid.js";
+import { addEvent, ElementWithAbortController } from "../../core/util/eventManager.js";
+import { UUID } from "../../core/util/uuid.js";
 import { btnclose } from "./btnclose.js";
 import { body } from "./body.js";
 import { header } from "./header.js";
@@ -10,7 +10,7 @@ import { item } from "./item.js";
 import { div } from "../../html/div.js";
 import { strong } from "../../html/strong.js";
 import { isTag } from "../../core/tag.js";
-import { bstsConsole as console } from "../../core/console.js";
+import { bstsConsole as console } from "../../core/util/console.js";
 import { Toast as BSToast } from "bootstrap";
 import { containerPlacement as ContainerPlacement } from "../../interface/bootstrap/toast/container.js";
 import { item as Item } from "../../interface/bootstrap/toast/item.js";

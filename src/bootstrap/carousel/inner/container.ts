@@ -1,9 +1,9 @@
 import { attr } from "../../../interface/core/attr.js";
 import { elem } from "../../../interface/core/elem.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
-import { mergeClass } from "../../../core/mergeClass.js";
+import { mergeClass } from "../../../core/util/mergeClass.js";
 import { div } from "../../../html/div.js";
-import { mergeObject } from "../../../core/mergeObject.js";
+import { mergeObject } from "../../../core/util/mergeObject.js";
 
 const convert = (attr: attr) => {
 	attr.class = mergeClass(attr.class, "carousel-inner");

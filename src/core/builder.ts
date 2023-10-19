@@ -1,6 +1,6 @@
 import { attachAttr } from "./attach/_index.js";
 import { isTag, tag, strHtml, isHtml } from "./tag.js";
-import { markup } from "./markup.js";
+import { markup } from "./util/markup.js";
 import { attr } from "../interface/core/attr.js";
 import { elem } from "../interface/core/elem.js";
 

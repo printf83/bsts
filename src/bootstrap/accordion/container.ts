@@ -1,7 +1,7 @@
 import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
-import { mergeClass } from "../../core/mergeClass.js";
-import { UUID } from "../../core/uuid.js";
+import { mergeClass } from "../../core/util/mergeClass.js";
+import { UUID } from "../../core/util/uuid.js";
 import { div } from "../../html/div.js";
 import { item } from "./item.js";
 import { header } from "./header.js";

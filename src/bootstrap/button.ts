@@ -1,9 +1,9 @@
 import { bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
 import { tag } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
-import { mergeObject } from "../core/mergeObject.js";
-import { addEvent } from "../core/eventManager.js";
-import { bstsConsole as console } from "../core/console.js";
+import { mergeObject } from "../core/util/mergeObject.js";
+import { addEvent } from "../core/util/eventManager.js";
+import { bstsConsole as console } from "../core/util/console.js";
 import { Button as BSButton } from "bootstrap";
 import { button as Button } from "../interface/bootstrap/button.js";
 

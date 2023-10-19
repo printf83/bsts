@@ -1,9 +1,9 @@
 import { bsConstArg } from "../core/bootstrap.js";
-import { mergeObject } from "../core/mergeObject.js";
+import { mergeObject } from "../core/util/mergeObject.js";
 import { div } from "../html/div.js";
-import { addEvent } from "../core/eventManager.js";
-import { bstsConsole as console } from "../core/console.js";
-import { UUID } from "../core/uuid.js";
+import { addEvent } from "../core/util/eventManager.js";
+import { bstsConsole as console } from "../core/util/console.js";
+import { UUID } from "../core/util/uuid.js";
 import { ScrollSpy as BSScrollSpy } from "bootstrap";
 import { scrollspy as Scrollspy } from "../interface/bootstrap/scrollspy.js";
 import { elem } from "../interface/core/elem.js";

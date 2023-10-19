@@ -1,4 +1,4 @@
-import { UUID } from "../../../core/uuid.js";
+import { UUID } from "../../../core/util/uuid.js";
 import { div } from "../../../html/div.js";
 import { input as TInput } from "../../input.js";
 import { container as TInputGroupContainer } from "../../inputgroup/container.js";
@@ -15,7 +15,7 @@ import {
 	genInvalidTooltip,
 	labelFloatingFeedbackManager,
 } from "../_fn.js";
-import { mergeObject } from "../../../core/mergeObject.js";
+import { mergeObject } from "../../../core/util/mergeObject.js";
 
 import { input as BInput } from "../../../interface/bootstrap/form/floatinglabel/input.js";
 import { input as IInput } from "../../../interface/bootstrap/input.js";

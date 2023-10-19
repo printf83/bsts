@@ -11,7 +11,7 @@ import { a } from "../html/a.js";
 import { option } from "../html/option.js";
 import { select } from "../bootstrap/select.js";
 import { input } from "../bootstrap/input.js";
-import { mergeObject } from "../core/mergeObject.js";
+import { mergeObject } from "../core/util/mergeObject.js";
 import * as ICalendar from "../interface/bootstrap/calendar.js";
 
 const copyDate = (d: Date) => {

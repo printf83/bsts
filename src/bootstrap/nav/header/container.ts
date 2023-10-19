@@ -1,6 +1,6 @@
 import { elem } from "../../../interface/core/elem.js";
 import { bsConstArg } from "../../../core/bootstrap.js";
-import { mergeObject } from "../../../core/mergeObject.js";
+import { mergeObject } from "../../../core/util/mergeObject.js";
 import { ul } from "../../../html/ul.js";
 import { item } from "./item.js";
 import { link } from "./link.js";

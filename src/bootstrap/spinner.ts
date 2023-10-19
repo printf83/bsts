@@ -1,9 +1,10 @@
 import { tag } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
 import { bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
-import { mergeClass } from "../core/mergeClass.js";
+import { mergeClass } from "../core/util/mergeClass.js";
+
 import { visuallyhidden } from "./visuallyhidden.js";
-import { mergeObject } from "../core/mergeObject.js";
+import { mergeObject } from "../core/util/mergeObject.js";
 import { spinner as Spinner } from "../interface/bootstrap/spinner.js";
 
 const convert = (attr: Spinner) => {

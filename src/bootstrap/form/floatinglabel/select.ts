@@ -1,4 +1,4 @@
-import { UUID } from "../../../core/uuid.js";
+import { UUID } from "../../../core/util/uuid.js";
 import { div } from "../../../html/div.js";
 import { label } from "../../label.js";
 import { select as TSelect } from "../../select.js";
@@ -14,7 +14,7 @@ import {
 	genInvalidTooltip,
 	labelFloatingFeedbackManager,
 } from "../_fn.js";
-import { mergeObject } from "../../../core/mergeObject.js";
+import { mergeObject } from "../../../core/util/mergeObject.js";
 import { select as BSelect } from "../../../interface/bootstrap/form/floatinglabel/select.js";
 import { select as ISelect } from "../../../interface/bootstrap/select.js";
 

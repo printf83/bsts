@@ -1,4 +1,4 @@
-import { addClassIntoElement } from "../addClassIntoElement.js";
+import { addClassIntoElement } from "../util/addClassIntoElement.js";
 import { IAttachFn } from "./_index.js";
 
 export const attach: IAttachFn = (key, elem, attr) => {

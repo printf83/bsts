@@ -1,4 +1,4 @@
-import { manageClass, addClassIntoElement } from "./addClassIntoElement.js";
+import { manageClass, addClassIntoElement } from "./util/addClassIntoElement.js";
 import { bsConsNoElemArg, bsConstArg, bsConstArgTag } from "./bootstrap.js";
 
 import {
@@ -18,35 +18,35 @@ import {
 	removeActivePopover,
 	removeActiveToast,
 	removeActiveTooltip,
-} from "./removePopoup.js";
+} from "./util/removePopoup.js";
 
-import { camel2Dash } from "./camel2Dash.js";
+import { camel2Dash } from "./util/camel2Dash.js";
 import { documentReady } from "./documentReady.js";
-import { elemInfo } from "./elemInfo.js";
-import { ElementWithAbortController, addEvent, removeEvent } from "./eventManager.js";
+import { elemInfo } from "./util/elemInfo.js";
+import { ElementWithAbortController, addEvent, removeEvent } from "./util/eventManager.js";
 import { placeholder } from "./placeholder.js";
-import { keyOfType } from "./keyOfType.js";
-import { mergeAttr } from "./mergeAttr.js";
-import { mergeClass } from "./mergeClass.js";
-import { mergeObject } from "./mergeObject.js";
-import { removeEmptyArray } from "./removeEmptyArray.js";
-import { rndBetween } from "./rndBetween.js";
+import { keyOfType } from "./util/keyOfType.js";
+import { mergeAttr } from "./util/mergeAttr.js";
+import { mergeClass } from "./util/mergeClass.js";
+import { mergeObject } from "./util/mergeObject.js";
+import { removeEmptyArray } from "./util/removeEmptyArray.js";
+import { rndBetween } from "./util/rndBetween.js";
 import { tag, isAttr, isTag, tagConsArg, tagConsNoElemArg } from "./tag.js";
 
-import { UUID } from "./uuid.js";
-import { uppercaseFirst } from "./uppercaseFirst.js";
-import { cancelIdleCallback, requestIdleCallback } from "./requestIdleCallback.js";
+import { UUID } from "./util/uuid.js";
+import { uppercaseFirst } from "./util/uppercaseFirst.js";
+import { cancelIdleCallback, requestIdleCallback } from "./util/requestIdleCallback.js";
 import {
 	ElementWithMutationObserver,
 	observeMutationObserver,
 	disconnectMutationObserver,
-} from "./mutationObserverManager.js";
+} from "./util/mutationObserverManager.js";
 import {
 	ElementWithResizeObserver,
 	observeResizeObserver,
 	unobserveResizeObserver,
 	disconnectResizeObserver,
-} from "./resizeObserverManager.js";
+} from "./util/resizeObserverManager.js";
 
 import {
 	setCSSVar,
@@ -67,7 +67,7 @@ import {
 
 import * as accentColor from "./accentColor.js";
 
-import * as dataManager from "./dataManager.js";
+import * as dataManager from "./util/dataManager.js";
 
 export {
 	accentColor,

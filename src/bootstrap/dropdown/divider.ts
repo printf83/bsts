@@ -1,5 +1,5 @@
 import { attr } from "../../interface/core/attr.js";
-import { mergeClass } from "../../core/mergeClass.js";
+import { mergeClass } from "../../core/util/mergeClass.js";
 import { hr } from "../../html/hr.js";
 import { bsConsNoElemArg } from "../../core/bootstrap.js";
 

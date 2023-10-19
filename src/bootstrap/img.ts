@@ -1,5 +1,5 @@
 import { bsConstArg } from "../core/bootstrap.js";
-import { mergeObject } from "../core/mergeObject.js";
+import { mergeObject } from "../core/util/mergeObject.js";
 import { img as HImg } from "../html/img.js";
 import { img as Img } from "../interface/bootstrap/img.js";
 

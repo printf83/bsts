@@ -1,8 +1,8 @@
 import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
-import { mergeClass } from "../../core/mergeClass.js";
+import { mergeClass } from "../../core/util/mergeClass.js";
 import { h2 } from "../../html/h2.js";
-import { UUID } from "../../core/uuid.js";
+import { UUID } from "../../core/util/uuid.js";
 import { button } from "../collapse/button.js";
 import { button as Header } from "../../interface/bootstrap/collapse/button.js";
 

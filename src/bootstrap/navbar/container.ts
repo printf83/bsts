@@ -2,8 +2,8 @@ import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { nav } from "../../html/nav.js";
 import { header } from "../../html/header.js";
-import { mergeClass } from "../../core/mergeClass.js";
-import { mergeObject } from "../../core/mergeObject.js";
+import { mergeClass } from "../../core/util/mergeClass.js";
+import { mergeObject } from "../../core/util/mergeObject.js";
 import { container as Container } from "../../interface/bootstrap/navbar/container.js";
 
 const convert = (attr: Container) => {

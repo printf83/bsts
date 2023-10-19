@@ -1,6 +1,7 @@
 import { tagConsArg, tag } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
-import { mergeClass } from "../core/mergeClass.js";
+import { mergeClass } from "../core/util/mergeClass.js";
+
 import { li } from "./li.js";
 import { ol as Ol } from "../interface/html/ol.js";
 

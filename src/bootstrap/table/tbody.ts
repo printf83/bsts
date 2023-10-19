@@ -1,6 +1,6 @@
 import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
-import { mergeClass } from "../../core/mergeClass.js";
+import { mergeClass } from "../../core/util/mergeClass.js";
 import { tbody as HTbody } from "../../html/tbody.js";
 import { tbody as Tbody } from "../../interface/bootstrap/table/tbody.js";
 

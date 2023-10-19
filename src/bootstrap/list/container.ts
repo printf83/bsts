@@ -1,7 +1,7 @@
 import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
 import { ul } from "../../html/ul.js";
-import { mergeClass } from "../../core/mergeClass.js";
+import { mergeClass } from "../../core/util/mergeClass.js";
 import { container as Container } from "../../interface/bootstrap/list/container.js";
 
 const convert = (attr: Container) => {

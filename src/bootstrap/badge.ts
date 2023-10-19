@@ -1,5 +1,6 @@
 import { bsConstArg } from "../core/bootstrap.js";
-import { mergeClass } from "../core/mergeClass.js";
+import { mergeClass } from "../core/util/mergeClass.js";
+
 import { span } from "../html/span.js";
 import { attr } from "../interface/core/attr.js";
 import { elem } from "../interface/core/elem.js";

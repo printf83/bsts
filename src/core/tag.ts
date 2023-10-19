@@ -1,4 +1,4 @@
-import { mergeObject } from "./mergeObject.js";
+import { mergeObject } from "./util/mergeObject.js";
 import { tag as ITag } from "../interface/core/tag.js";
 import { html as IHtml } from "../interface/core/html.js";
 import { elem } from "../interface/core/elem.js";

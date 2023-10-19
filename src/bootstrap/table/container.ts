@@ -1,6 +1,6 @@
 import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
-import { mergeClass } from "../../core/mergeClass.js";
+import { mergeClass } from "../../core/util/mergeClass.js";
 import { table } from "../../html/table.js";
 import { tbody } from "./tbody.js";
 import { tr } from "./tr.js";
@@ -8,7 +8,7 @@ import { td } from "./td.js";
 import { div } from "../../html/div.js";
 import { th } from "../../html/th.js";
 import { thead } from "./thead.js";
-import { mergeObject } from "../../core/mergeObject.js";
+import { mergeObject } from "../../core/util/mergeObject.js";
 import { container as Container } from "../../interface/bootstrap/table/container.js";
 
 const convert = (attr: Container) => {

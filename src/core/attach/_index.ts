@@ -1,4 +1,5 @@
-import { keyOfType } from "./../keyOfType.js";
+import { keyOfType } from "./../util/keyOfType.js";
+
 import { attr } from "../../interface/core/attr.js";
 import { attach as attachOther } from "./other.js";
 import { attach as attachHref } from "./href.js";

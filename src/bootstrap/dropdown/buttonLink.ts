@@ -1,6 +1,6 @@
 import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
-import { mergeObject } from "../../core/mergeObject.js";
+import { mergeObject } from "../../core/util/mergeObject.js";
 import { a } from "../../html/a.js";
 import { visuallyhidden } from "../visuallyhidden.js";
 import { buttonLink as ButtonLink } from "../../interface/bootstrap/dropdown/buttonLink.js";

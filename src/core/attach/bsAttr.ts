@@ -1,4 +1,4 @@
-import { keyOfType } from "../keyOfType.js";
+import { keyOfType } from "../util/keyOfType.js";
 import { IAttachFn } from "./_index.js";
 
 export type IFormat = (elem: Element, data: string | number | boolean) => Element;

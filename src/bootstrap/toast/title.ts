@@ -1,7 +1,7 @@
 import { attr } from "../../interface/core/attr.js";
 import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
-import { mergeObject } from "../../core/mergeObject.js";
+import { mergeObject } from "../../core/util/mergeObject.js";
 import { strong } from "../../html/strong.js";
 
 const convert = (attr: attr) => {

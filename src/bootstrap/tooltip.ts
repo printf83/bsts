@@ -1,8 +1,8 @@
 import { bsConstArg } from "../core/bootstrap.js";
-import { mergeObject } from "../core/mergeObject.js";
+import { mergeObject } from "../core/util/mergeObject.js";
 import { span } from "../html/span.js";
-import { addEvent } from "../core/eventManager.js";
-import { bstsConsole as console } from "../core/console.js";
+import { addEvent } from "../core/util/eventManager.js";
+import { bstsConsole as console } from "../core/util/console.js";
 import { Tooltip as BSTooltip } from "bootstrap";
 import { tooltip as Tooltip } from "../interface/bootstrap/tooltip.js";
 import { elem } from "../interface/core/elem.js";

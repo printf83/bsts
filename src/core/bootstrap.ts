@@ -1,4 +1,4 @@
-import { mergeObject } from "./mergeObject.js";
+import { mergeObject } from "./util/mergeObject.js";
 import { isAttr } from "./tag.js";
 import { attr } from "../interface/core/attr.js";
 

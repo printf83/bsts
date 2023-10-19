@@ -1,5 +1,5 @@
-import * as modalFn from "../bootstrap/modal/_fn.js";
-import * as toastFn from "../bootstrap/toast/_fn.js";
+import * as modalFn from "../../bootstrap/modal/_fn.js";
+import * as toastFn from "../../bootstrap/toast/_fn.js";
 
 export const removeAllActivePopup = () => {
 	removeActiveTooltip();

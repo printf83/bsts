@@ -1,6 +1,6 @@
 import { tagConsArg, tag } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
-import { mergeClass } from "../core/mergeClass.js";
+import { mergeClass } from "../core/util/mergeClass.js";
 import { abbr as Abbr } from "../interface/html/abbr.js";
 
 const convert = (attr: Abbr) => {

@@ -1,6 +1,6 @@
 import { bsConstArg } from "../core/bootstrap.js";
 import { elem } from "../interface/core/elem.js";
-import { mergeObject } from "../core/mergeObject.js";
+import { mergeObject } from "../core/util/mergeObject.js";
 import { i } from "../html/i.js";
 import { icon as Icon, iconType } from "../interface/bootstrap/icon.js";
 

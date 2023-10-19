@@ -1,7 +1,7 @@
 import { bsClassFormatter } from "../../interface/core/bsClassFormatter.js";
 import { bsTypeA } from "../../interface/core/bsTypeA.js";
-import { addClassIntoElement } from "../addClassIntoElement.js";
-import { keyOfType } from "../keyOfType.js";
+import { addClassIntoElement } from "../util/addClassIntoElement.js";
+import { keyOfType } from "../util/keyOfType.js";
 import { IAttachFn } from "./_index.js";
 
 class formatter implements bsClassFormatter {
