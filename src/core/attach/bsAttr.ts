@@ -106,7 +106,7 @@ const addAttr = (rule: IFormat | undefined, data: string | number | boolean, ele
 	return elem;
 };
 
-export const attachBSAttr: IAttachFn = (key, elem, attr) => {
+export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
 	let allowKey = allowProp(key);
 	if (allowKey) {

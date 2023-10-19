@@ -1,7 +1,7 @@
 import { keyOfType } from "./../keyOfType.js";
 import { IAttachFn } from "./_index.js";
 
-const dbBoolean = [
+const formatDB = [
 	"allowfullscreen",
 	"allowpaymentrequest",
 	"async",
@@ -34,11 +34,11 @@ const dbBoolean = [
 	"truespeed",
 ];
 
-export const attachBoolean: IAttachFn = (key, elem, attr) => {
+export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
 
 	if (key) {
-		if (dbBoolean.indexOf(key) > -1) {
+		if (formatDB.indexOf(key) > -1) {
 			let k = keyOfType(key, attr);
 
 			if (attr && typeof attr[k] !== "undefined") {

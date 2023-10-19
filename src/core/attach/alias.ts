@@ -1,7 +1,7 @@
 import { keyOfType } from "../keyOfType.js";
 import { IAttachFn } from "./_index.js";
 
-const dbAlias: { [key: string]: string } = {
+const formatDB: { [key: string]: string } = {
 	loadingStyle: "loading",
 	dataText: "data",
 	startValue: "start",
@@ -10,14 +10,14 @@ const dbAlias: { [key: string]: string } = {
 	attrHeight: "height",
 };
 
-export const attachAlias: IAttachFn = (key, elem, attr) => {
+export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
 	if (key && attr && typeof attr !== "undefined") {
-		if (key in dbAlias) {
+		if (key in formatDB) {
 			let a = keyOfType(key, attr);
-			let b = keyOfType(key, dbAlias);
+			let b = keyOfType(key, formatDB);
 			if (typeof attr[a] !== "undefined") {
-				elem.setAttribute(dbAlias[b]!, attr[a]!.toString());
+				elem.setAttribute(formatDB[b]!, attr[a]!.toString());
 				changed = true;
 			}
 

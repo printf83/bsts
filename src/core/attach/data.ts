@@ -1,6 +1,6 @@
 import { IAttachFn } from "./_index.js";
 
-export const attachData: IAttachFn = (key, elem, attr) => {
+export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
 	if (key === "data") {
 		if (attr && typeof attr.data !== "undefined") {

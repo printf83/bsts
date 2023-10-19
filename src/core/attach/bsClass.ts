@@ -629,7 +629,7 @@ const addClass = (rule: bsClassFormatter | undefined, data: string | number | bo
 	return elem;
 };
 
-export const attachBSClass: IAttachFn = (key, elem, attr) => {
+export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
 	let allowKey = allowProp(key);
 	if (allowKey) {

@@ -1,7 +1,7 @@
 import { keyOfType } from "./../keyOfType.js";
 import { IAttachFn } from "./_index.js";
 
-export const attachOther: IAttachFn = (key, elem, attr) => {
+export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
 
 	if (key && attr && typeof attr !== "undefined") {
