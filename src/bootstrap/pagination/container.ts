@@ -1,13 +1,13 @@
+import { bsConstArg } from "../../core/bootstrap.js";
+import { replaceWith } from "../../core/builder.js";
+import { mergeClass } from "../../core/util/mergeClass.js";
+import { nav } from "../../html/nav.js";
+import { ul } from "../../html/ul.js";
+import { container as Container } from "../../interface/bootstrap/pagination/container.js";
 import { attr } from "../../interface/core/attr.js";
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
-import { mergeClass } from "../../core/util/mergeClass.js";
-import { ul } from "../../html/ul.js";
-import { nav } from "../../html/nav.js";
-import { item } from "./item.js";
 import { icon } from "../icon.js";
-import { replaceWith } from "../../core/builder.js";
-import { container as Container } from "../../interface/bootstrap/pagination/container.js";
+import { item } from "./item.js";
 
 function pagingOnChange(attr: Container, sender: Element) {
 	let data = sender.getAttribute("data-bs-skip");

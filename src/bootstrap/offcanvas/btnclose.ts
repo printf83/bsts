@@ -1,7 +1,7 @@
 import { bsConsNoElemArg } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/util/mergeObject.js";
-import { btnclose as TBtnclose } from "../btnclose.js";
 import { btnclose as Btnclose } from "../../interface/bootstrap/offcanvas/btnclose.js";
+import { btnclose as BBtnclose } from "../btnclose.js";
 
 const convert = (attr: Btnclose) => {
 	attr.dismiss ??= "offcanvas";
@@ -19,7 +19,7 @@ const convert = (attr: Btnclose) => {
 	return attr;
 };
 
-export class btnclose extends TBtnclose {
+export class btnclose extends BBtnclose {
 	constructor();
 	constructor(attr: Btnclose);
 	constructor(...arg: any[]) {

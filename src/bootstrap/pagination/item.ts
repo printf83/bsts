@@ -1,11 +1,11 @@
-import { elem } from "../../interface/core/elem.js";
 import { bsConstArg } from "../../core/bootstrap.js";
-import { li } from "../../html/li.js";
-import { button } from "../../html/button.js";
-import { a } from "../../html/a.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
-import { li as Li } from "../../interface/html/li.js";
+import { a } from "../../html/a.js";
+import { button } from "../../html/button.js";
+import { li } from "../../html/li.js";
 import { item as Item } from "../../interface/bootstrap/pagination/item.js";
+import { elem } from "../../interface/core/elem.js";
+import { li as Li } from "../../interface/html/li.js";
 
 const convert = (attr: Item) => {
 	let liAttr: Li = {
