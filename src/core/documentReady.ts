@@ -38,7 +38,6 @@ const setCSS = () => {
 	if (!document.getElementById("bsts-css-container")) {
 		appendChild(
 			document.head,
-			// new style({ id: "bsts-css-container" }, css.replaceAll("\n", "").replaceAll("\t", ""))
 			new style({ id: "bsts-css-container" }, css.replace(/(\r\n|\n|\r)/gm, "").replace(/^\t+/gm, ""))
 		);
 	}
