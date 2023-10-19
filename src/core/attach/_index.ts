@@ -4,13 +4,14 @@ import { attachHref } from "./attachHref.js";
 import { attachAria } from "./attachAria.js";
 import { attachData } from "./attachData.js";
 import { attachBoolean } from "./attachBoolean.js";
-import { attachBSAttr, attachBSClass } from "../bootstrap.js";
-import { attachBSTSClass } from "../bsts.js";
+import { attachBSTS } from "./attachBSTS.js";
 import { attachEvent, hasBuildAndDestroyEvent } from "./attachEvent.js";
 import { attachStyle } from "./attachStyle.js";
 import { attachClass } from "./attachClass.js";
 import { attachAlias } from "./attachAlias.js";
 import { attr } from "../../interface/core/attr.js";
+import { attachBSAttr } from "./attachBSAttr.js";
+import { attachBSClass } from "./attachBSClass.js";
 
 export type IAttachFn = (
 	key: string | undefined,
@@ -39,9 +40,9 @@ const attrFn: IAttachFn[] = [
 	attachBoolean,
 	attachData,
 	attachAria,
-	attachBSClass.attach,
-	attachBSAttr.attach,
-	attachBSTSClass.attach,
+	attachBSClass,
+	attachBSAttr,
+	attachBSTS,
 	attachEvent,
 	attachStyle,
 	attachClass,
