@@ -1,144 +1,147 @@
-import { manageClass, addClassIntoElement } from "./util/addClassIntoElement.js";
 import { bsConsNoElemArg, bsConstArg, bsConstArgTag } from "./bootstrap.js";
+import { addClassIntoElement, manageClass } from "./util/addClassIntoElement.js";
 
 import {
-	build,
-	getNode,
-	getHtml,
 	appendChild,
+	build,
+	getHtml,
+	getNode,
 	prependChild,
+	removeElement,
 	replaceChild,
 	replaceWith,
-	removeElement,
 } from "./builder.js";
 
 import {
-	removeAllActivePopup,
 	removeActiveModal,
 	removeActivePopover,
 	removeActiveToast,
 	removeActiveTooltip,
+	removeAllActivePopup,
 } from "./util/removePopoup.js";
 
-import { camel2Dash } from "./util/camel2Dash.js";
 import { documentReady } from "./documentReady.js";
+import { placeholder } from "./placeholder.js";
+import { isAttr, isTag, tag, tagConsArg, tagConsNoElemArg } from "./tag.js";
+import { camel2Dash } from "./util/camel2Dash.js";
 import { elemInfo } from "./util/elemInfo.js";
 import { ElementWithAbortController, addEvent, removeEvent } from "./util/eventManager.js";
-import { placeholder } from "./placeholder.js";
 import { keyOfType } from "./util/keyOfType.js";
 import { mergeAttr } from "./util/mergeAttr.js";
 import { mergeClass } from "./util/mergeClass.js";
 import { mergeObject } from "./util/mergeObject.js";
 import { removeEmptyArray } from "./util/removeEmptyArray.js";
 import { rndBetween } from "./util/rndBetween.js";
-import { tag, isAttr, isTag, tagConsArg, tagConsNoElemArg } from "./tag.js";
 
-import { UUID } from "./util/uuid.js";
-import { uppercaseFirst } from "./util/uppercaseFirst.js";
-import { cancelIdleCallback, requestIdleCallback } from "./util/requestIdleCallback.js";
 import {
 	ElementWithMutationObserver,
-	observeMutationObserver,
 	disconnectMutationObserver,
+	observeMutationObserver,
 } from "./util/mutationObserverManager.js";
+import { cancelIdleCallback, requestIdleCallback } from "./util/requestIdleCallback.js";
 import {
 	ElementWithResizeObserver,
+	disconnectResizeObserver,
 	observeResizeObserver,
 	unobserveResizeObserver,
-	disconnectResizeObserver,
 } from "./util/resizeObserverManager.js";
+import { uppercaseFirst } from "./util/uppercaseFirst.js";
+import { UUID } from "./util/uuid.js";
 
 import {
-	setCSSVar,
+	RGBToHex,
 	getCSSVar,
 	getCSSVarHexColor,
-	getCSSVarRgbColor,
 	getCSSVarRgb,
+	getCSSVarRgbColor,
 	hexIsDark,
 	hexToHSL,
-	hslToRGB,
-	hslToHex,
-	RGBToHex,
 	hexToRGB,
+	hslToHex,
+	hslToRGB,
+	setCSSVar,
 	varToHexColor,
 	varToRgb,
 	varToRgbColor,
-} from "./CSSVar.js";
+} from "./color/CSSVar.js";
 
-import * as accentColor from "./accentColor.js";
+import * as accentColor from "./color/accentColor.js";
 
 import * as dataManager from "./util/dataManager.js";
 
 export {
-	accentColor,
-	setCSSVar,
-	getCSSVar,
-	getCSSVarHexColor,
-	getCSSVarRgbColor,
-	getCSSVarRgb,
-	hexIsDark,
-	hexToHSL,
-	hslToRGB,
-	hslToHex,
-	RGBToHex,
-	hexToRGB,
-	varToHexColor,
-	varToRgb,
-	varToRgbColor,
-	dataManager,
+	ElementWithAbortController,
 	ElementWithMutationObserver,
-	observeMutationObserver,
-	disconnectMutationObserver,
 	ElementWithResizeObserver,
-	observeResizeObserver,
-	unobserveResizeObserver,
-	disconnectResizeObserver,
-	manageClass,
+	RGBToHex,
+	UUID,
+	accentColor,
 	addClassIntoElement,
+	addEvent,
+	appendChild,
 	bsConsNoElemArg,
 	bsConstArg,
 	bsConstArgTag,
 	build,
-	getNode,
+	camel2Dash,
+	cancelIdleCallback,
+	dataManager,
+	disconnectMutationObserver,
+	disconnectResizeObserver,
+	documentReady,
+	elemInfo,
+	getCSSVar,
+	getCSSVarHexColor,
+	getCSSVarRgb,
+	getCSSVarRgbColor,
 	getHtml,
-	appendChild,
+	getNode,
+	hexIsDark,
+	hexToHSL,
+	hexToRGB,
+	hslToHex,
+	hslToRGB,
+	isAttr,
+	isHtml,
+	isTag,
+	keyOfType,
+	manageClass,
+	mergeAttr,
+	mergeClass,
+	mergeObject,
+	observeMutationObserver,
+	observeResizeObserver,
+	placeholder,
 	prependChild,
-	replaceChild,
-	replaceWith,
-	removeElement,
-	removeAllActivePopup,
 	removeActiveModal,
 	removeActivePopover,
 	removeActiveToast,
 	removeActiveTooltip,
-	camel2Dash,
-	documentReady,
-	ElementWithAbortController,
-	addEvent,
-	removeEvent,
-	keyOfType,
-	mergeAttr,
-	mergeClass,
-	mergeObject,
+	removeAllActivePopup,
+	removeElement,
 	removeEmptyArray,
+	removeEvent,
+	replaceChild,
+	replaceWith,
 	requestIdleCallback,
-	cancelIdleCallback,
+	rndBetween,
+	setCSSVar,
 	tag,
-	isAttr,
-	isTag,
+	html,
 	tagConsArg,
 	tagConsNoElemArg,
-	UUID,
+	unobserveResizeObserver,
 	uppercaseFirst,
-	rndBetween,
-	placeholder,
-	elemInfo,
+	varToHexColor,
+	varToRgb,
+	varToRgbColor,
 };
 
 import { attr } from "../interface/core/attr.js";
-import { elem } from "../interface/core/elem.js";
+import { bsClass } from "../interface/core/bsClass.js";
 import { bsType } from "../interface/core/bsType.js";
 import { bstsType } from "../interface/core/bstsType.js";
-import { bsClass } from "../interface/core/bsClass.js";
+import { elem } from "../interface/core/elem.js";
+import { html, isHtml } from "./html.js";
 
-export { attr, elem, bsType, bstsType, bsClass };
+export { attr, bsClass, bsType, bstsType, elem };

@@ -1,4 +1,3 @@
-import { tag, strHtml } from "../../core/tag.js";
 import { datalist as HDatalist } from "../../html/datalist.js";
 import { datalist as Datalist } from "../../interface/html/datalist.js";
 import { div } from "../../html/div.js";
@@ -33,7 +32,7 @@ export const genInvalidTooltip = (id: string, feedback?: string) => {
 };
 
 export const genGroupItem = (id: string, item?: elem | elem[]) => {
-	let result: (number | string | tag | strHtml)[] = [];
+	let result: elem[] = [];
 
 	if (item) {
 		if (!Array.isArray(item)) {

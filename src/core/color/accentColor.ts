@@ -1,6 +1,6 @@
-import { style } from "../html/style.js";
+import { style } from "../../html/style.js";
 import { hexIsDark, hexToHSL, hexToRGB, hslToHex } from "./CSSVar.js";
-import { appendChild, replaceWith } from "./builder.js";
+import { appendChild, replaceWith } from "../builder.js";
 
 const getHSLDistance = (fromHex: string, toHex: string) => {
 	const fromHSL = hexToHSL(fromHex);

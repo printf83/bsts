@@ -1,6 +1,5 @@
 import { mergeObject } from "./util/mergeObject.js";
 import { tag as ITag } from "../interface/core/tag.js";
-import { html as IHtml } from "../interface/core/html.js";
 import { elem } from "../interface/core/elem.js";
 import { attr } from "../interface/core/attr.js";
 
@@ -35,27 +34,8 @@ export class tag implements ITag {
 	}
 }
 
-export class strHtml implements IHtml {
-	public ishtml = true;
-	public elem?: string;
-
-	constructor();
-	constructor(elem: string);
-	constructor(...arg: any[]) {
-		if (arg) {
-			this.elem = arg[0];
-		} else {
-			this.elem = "";
-		}
-	}
-}
-
 export const isTag = <T>(obj: any): obj is T => {
 	return typeof obj === "object" && !Array.isArray(obj) && "isbsts" in obj && obj["isbsts"] === true;
-};
-
-export const isHtml = <T extends strHtml>(obj: any): obj is T => {
-	return typeof obj === "object" && !Array.isArray(obj) && "ishtml" in obj && obj["ishtml"] === true;
 };
 
 export const isAttr = <T>(obj: any): obj is T => {

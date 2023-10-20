@@ -1,6 +1,6 @@
-import { tag, strHtml } from "../../../core/tag.js";
 import { attr } from "../../core/attr.js";
 import { bsType } from "../../core/bsType.js";
+import { elem } from "../../core/elem.js";
 
 export interface container extends attr {
 	color?: bsType.color;
@@ -15,5 +15,5 @@ export interface container extends attr {
 	responsiveCol?: string;
 	responsiveColXs?: string;
 
-	item?: (string | tag | strHtml | (string | tag | strHtml)[])[][];
+	item?: (elem | elem[])[][];
 }

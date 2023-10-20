@@ -1,4 +1,4 @@
-import { bstsConsole as console } from "./util/console.js";
+import { bstsConsole as console } from "../util/console.js";
 
 export const hexToHSL = (hex?: string, alpha?: number) => {
 	const val = hexToRGB(hex, alpha);
