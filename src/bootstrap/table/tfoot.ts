@@ -1,16 +1,8 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
-import { mergeClass } from "../../core/mergeClass.js";
+import { bsConstructor } from "../../core/bootstrap.js";
+import { mergeClass } from "../../core/util/mergeClass.js";
 import { tfoot as HTfoot } from "../../html/tfoot.js";
 import { tfoot as Tfoot } from "../../interface/bootstrap/table/tfoot.js";
-
-const convert = (attr: Tfoot) => {
-	attr.class = mergeClass(attr.class, [attr.color ? `table-${attr.color}` : undefined]);
-
-	delete attr.color;
-
-	return attr;
-};
 
 export class tfoot extends HTfoot {
 	constructor();
@@ -18,6 +10,13 @@ export class tfoot extends HTfoot {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Tfoot, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Tfoot>("elem", arg)));
+		super(bsConstructor<Tfoot>("elem", arg));
+	}
+
+	convert(attr: Tfoot) {
+		attr.class = mergeClass(attr.class, [attr.color ? `table-${attr.color}` : undefined]);
+
+		delete attr.color;
+		return super.convert(attr);
 	}
 }

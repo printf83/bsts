@@ -1,13 +1,9 @@
 import { attr } from "../interface/core/attr.js";
 import { elem } from "../interface/core/elem.js";
-import { bsConstArg } from "../core/bootstrap.js";
-import { mergeClass } from "../core/mergeClass.js";
-import { div } from "../html/div.js";
+import { bsConstructor } from "../core/bootstrap.js";
+import { mergeClass } from "../core/util/mergeClass.js";
 
-const convert = (attr: attr) => {
-	attr.class = mergeClass(attr.class, "form-floating");
-	return attr;
-};
+import { div } from "../html/div.js";
 
 export class formfloating extends div {
 	constructor();
@@ -15,6 +11,12 @@ export class formfloating extends div {
 	constructor(elem: elem | elem[]);
 	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg("elem", arg)));
+		super(bsConstructor("elem", arg));
+	}
+
+	convert(attr: attr) {
+		attr.class = mergeClass(attr.class, "form-floating");
+
+		return super.convert(attr);
 	}
 }

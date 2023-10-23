@@ -1,4 +1,4 @@
-import { tagConsArg, tag } from "../core/tag.js";
+import { tagConstructor, tag } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
 import { area as Area } from "../interface/html/area.js";
 
@@ -8,6 +8,6 @@ export class area extends tag {
 	constructor(attr: Area);
 	constructor(attr: Area, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super("area", tagConsArg<Area>("elem", arg));
+		super("area", tagConstructor<Area>("elem", arg));
 	}
 }

@@ -1,13 +1,13 @@
+import { bsConstructor } from "../../core/bootstrap.js";
+import { replaceWith } from "../../core/builder.js";
+import { mergeClass } from "../../core/util/mergeClass.js";
+import { nav } from "../../html/nav.js";
+import { ul } from "../../html/ul.js";
+import { container as Container } from "../../interface/bootstrap/pagination/container.js";
 import { attr } from "../../interface/core/attr.js";
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
-import { mergeClass } from "../../core/mergeClass.js";
-import { ul } from "../../html/ul.js";
-import { nav } from "../../html/nav.js";
-import { item } from "./item.js";
 import { icon } from "../icon.js";
-import { replaceWith } from "../../core/builder.js";
-import { container as Container } from "../../interface/bootstrap/pagination/container.js";
+import { item } from "./item.js";
 
 function pagingOnChange(attr: Container, sender: Element) {
 	let data = sender.getAttribute("data-bs-skip");
@@ -220,47 +220,46 @@ const genElem = (attr: Container) => {
 	return attr;
 };
 
-const convert = (attr: Container) => {
-	//nav only prop is label
-	let navAttr: attr = {
-		label: attr.label,
-	};
-
-	//remove label for ul
-	delete attr.label;
-
-	//convert attr for ul
-	attr.class = mergeClass(attr.class, ["pagination", attr.weight ? `pagination-${attr.weight}` : undefined]);
-
-	delete attr.weight;
-
-	//add ul to nav
-	if (attr.elem) {
-		delete attr.total;
-		delete attr.skip;
-		delete attr.limit;
-		delete attr.maxBtnCount;
-		delete attr.firstLast;
-		delete attr.nextPrev;
-		delete attr.nextLable;
-		delete attr.prevLabel;
-		delete attr.firstLabel;
-		delete attr.lastLabel;
-
-		navAttr.elem = new ul(attr);
-	} else {
-		navAttr.elem = new ul(genElem(attr));
-	}
-
-	return navAttr;
-};
-
 export class container extends nav {
 	constructor();
 	constructor(attr: Container);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Container, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Container>("elem", arg)));
+		super(bsConstructor<Container>("elem", arg));
+	}
+
+	convert(attr: Container) {
+		//nav only prop is label
+		let navAttr: attr = {
+			label: attr.label,
+		};
+
+		//remove label for ul
+		delete attr.label;
+
+		//convert attr for ul
+		attr.class = mergeClass(attr.class, ["pagination", attr.weight ? `pagination-${attr.weight}` : undefined]);
+
+		delete attr.weight;
+
+		//add ul to nav
+		if (attr.elem) {
+			delete attr.total;
+			delete attr.skip;
+			delete attr.limit;
+			delete attr.maxBtnCount;
+			delete attr.firstLast;
+			delete attr.nextPrev;
+			delete attr.nextLable;
+			delete attr.prevLabel;
+			delete attr.firstLabel;
+			delete attr.lastLabel;
+
+			navAttr.elem = new ul(attr);
+		} else {
+			navAttr.elem = new ul(genElem(attr));
+		}
+		return super.convert(navAttr);
 	}
 }

@@ -1,6 +1,6 @@
-import { span } from "../html/span.js";
-import { bsType } from "../interface/core/bsType.js";
-import { rndBetween } from "./rndBetween.js";
+import { span } from "../../html/span.js";
+import { bsType } from "../../interface/core/bsType.js";
+import { rndBetween } from "../util/rndBetween.js";
 
 export const placeholder = (
 	min: number,

@@ -1,6 +1,6 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
-import { mergeObject } from "../../core/mergeObject.js";
+import { bsConstructor } from "../../core/bootstrap.js";
+import { mergeObject } from "../../core/util/mergeObject.js";
 import { a } from "../../html/a.js";
 import { item as Item } from "../../interface/bootstrap/dropdown/item.js";
 
@@ -40,41 +40,40 @@ const handleActive = (event: Event) => {
 	}
 };
 
-const convert = (attr: Item) => {
-	//handle item active
-	if (attr.handleActive) {
-		if (attr.on) {
-			if (!attr.on.click) {
-				attr.on["click"] = handleActive;
-			}
-		} else {
-			attr.on = {
-				click: handleActive,
-			};
-		}
-	}
-
-	attr = mergeObject(
-		{
-			class: ["dropdown-item", attr.active ? "active" : undefined],
-			aria: { current: attr.active ? (attr.current ? attr.current : "true") : undefined },
-		},
-		attr
-	);
-
-	delete attr.handleActive;
-	delete attr.active;
-	delete attr.current;
-
-	return attr;
-};
-
 export class item extends a {
 	constructor();
 	constructor(attr: Item);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Item, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Item>("elem", arg)));
+		super(bsConstructor<Item>("elem", arg));
+	}
+
+	convert(attr: Item) {
+		//handle item active
+		if (attr.handleActive) {
+			if (attr.on) {
+				if (!attr.on.click) {
+					attr.on["click"] = handleActive;
+				}
+			} else {
+				attr.on = {
+					click: handleActive,
+				};
+			}
+		}
+
+		attr = mergeObject(
+			{
+				class: ["dropdown-item", attr.active ? "active" : undefined],
+				aria: { current: attr.active ? (attr.current ? attr.current : "true") : undefined },
+			},
+			attr
+		);
+
+		delete attr.handleActive;
+		delete attr.active;
+		delete attr.current;
+		return super.convert(attr);
 	}
 }

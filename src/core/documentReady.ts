@@ -6,9 +6,9 @@ import { calendar } from "./css/calendar.js";
 import { dropdownMenuStyle } from "./css/dropdownMenuStyle.js";
 import { svgInLinkAndButton } from "./css/svgInLinkAndButton.js";
 import { tableResponsive } from "./css/tableResponsive.js";
-import { bstsConsole as console } from "./console.js";
-import { ElementWithAbortController, removeEvent } from "./eventManager.js";
-import { observeMutationObserver } from "./mutationObserverManager.js";
+import { bstsConsole as console } from "./util/console.js";
+import { ElementWithAbortController, removeEvent } from "./util/eventManager.js";
+import { observeMutationObserver } from "./util/mutationObserverManager.js";
 import { animation } from "./css/animation.js";
 import { transform } from "./css/transform.js";
 import { colorExtend } from "./css/colorExtend.js";
@@ -38,7 +38,6 @@ const setCSS = () => {
 	if (!document.getElementById("bsts-css-container")) {
 		appendChild(
 			document.head,
-			// new style({ id: "bsts-css-container" }, css.replaceAll("\n", "").replaceAll("\t", ""))
 			new style({ id: "bsts-css-container" }, css.replace(/(\r\n|\n|\r)/gm, "").replace(/^\t+/gm, ""))
 		);
 	}

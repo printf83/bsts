@@ -1,6 +1,6 @@
-import { mergeObject } from "../../core/mergeObject.js";
+import { mergeObject } from "../../core/util/mergeObject.js";
 import { isTag } from "../../core/tag.js";
-import { UUID } from "../../core/uuid.js";
+import { UUID } from "../../core/util/uuid.js";
 import { div } from "../../html/div.js";
 import { label } from "../label.js";
 import { textarea as TTextarea } from "../textarea.js";

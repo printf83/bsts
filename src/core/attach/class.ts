@@ -1,7 +1,7 @@
-import { addClassIntoElement } from "../addClassIntoElement.js";
+import { addClassIntoElement } from "../util/addClassIntoElement.js";
 import { IAttachFn } from "./_index.js";
 
-export const attachClass: IAttachFn = (key, elem, attr) => {
+export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
 	if (key === "class") {
 		if (attr && typeof attr.class !== "undefined") {

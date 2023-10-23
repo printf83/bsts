@@ -1,16 +1,8 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
-import { mergeClass } from "../../core/mergeClass.js";
+import { bsConstructor } from "../../core/bootstrap.js";
+import { mergeClass } from "../../core/util/mergeClass.js";
 import { thead as HThead } from "../../html/thead.js";
 import { thead as Thead } from "../../interface/bootstrap/table/thead.js";
-
-const convert = (attr: Thead) => {
-	attr.class = mergeClass(attr.class, [attr.color ? `table-${attr.color}` : undefined]);
-
-	delete attr.color;
-
-	return attr;
-};
 
 export class thead extends HThead {
 	constructor();
@@ -18,6 +10,13 @@ export class thead extends HThead {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Thead, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Thead>("elem", arg)));
+		super(bsConstructor<Thead>("elem", arg));
+	}
+
+	convert(attr: Thead) {
+		attr.class = mergeClass(attr.class, [attr.color ? `table-${attr.color}` : undefined]);
+
+		delete attr.color;
+		return super.convert(attr);
 	}
 }

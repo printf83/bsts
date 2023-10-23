@@ -1,6 +1,7 @@
 import { attachAttr } from "./attach/_index.js";
-import { isTag, tag, strHtml, isHtml } from "./tag.js";
-import { markup } from "./markup.js";
+import { isTag, tag } from "./tag.js";
+import { html, isHtml } from "./html.js";
+import { markup } from "./util/markup.js";
 import { attr } from "../interface/core/attr.js";
 import { elem } from "../interface/core/elem.js";
 
@@ -17,7 +18,7 @@ const processElem = (i: elem, e: tag, element: Element) => {
 			let t = build(element, i as tag);
 			element = t ? t : element;
 		} else if (isHtml(i)) {
-			let t = build(element, i as strHtml);
+			let t = build(element, i as html);
 			element = t ? t : element;
 		} else {
 			//only pre is html
