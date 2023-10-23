@@ -36,53 +36,48 @@ const handleActive = (event: Event) => {
 	}
 };
 
-const convert = (attr: ItemLabel) => {
-	//handle item active
-	if (attr.handleActive) {
-		if (attr.on) {
-			if (!attr.on.click) {
-				attr.on["click"] = handleActive;
-			}
-		} else {
-			attr.on = {
-				click: handleActive,
-			};
-		}
-	}
-
-	attr = mergeObject(
-		{
-			class: [
-				"list-group-item",
-				attr.action ? "list-group-item-action" : undefined,
-				attr.color ? `list-group-item-${attr.color}` : undefined,
-				attr.active ? "active" : undefined,
-				attr.disabled ? "disabled" : undefined,
-			],
-			aria: { disabled: attr.disabled ? "true" : undefined },
-		},
-		attr
-	);
-
-	delete attr.handleActive;
-	delete attr.active;
-	delete attr.disabled;
-	delete attr.action;
-	delete attr.color;
-
-	return attr;
-};
-
 export class itemLabel extends label {
 	constructor();
 	constructor(attr: ItemLabel);
 	constructor(elem: elem | elem[]);
 	constructor(attr: ItemLabel, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstructor<ItemLabel>("elem", arg)));
+		super(bsConstructor<ItemLabel>("elem", arg));
 	}
 
 	convert(attr: ItemLabel) {
+		//handle item active
+		if (attr.handleActive) {
+			if (attr.on) {
+				if (!attr.on.click) {
+					attr.on["click"] = handleActive;
+				}
+			} else {
+				attr.on = {
+					click: handleActive,
+				};
+			}
+		}
+
+		attr = mergeObject(
+			{
+				class: [
+					"list-group-item",
+					attr.action ? "list-group-item-action" : undefined,
+					attr.color ? `list-group-item-${attr.color}` : undefined,
+					attr.active ? "active" : undefined,
+					attr.disabled ? "disabled" : undefined,
+				],
+				aria: { disabled: attr.disabled ? "true" : undefined },
+			},
+			attr
+		);
+
+		delete attr.handleActive;
+		delete attr.active;
+		delete attr.disabled;
+		delete attr.action;
+		delete attr.color;
 		return super.convert(attr);
 	}
 }
