@@ -1,13 +1,13 @@
 import { elem } from "../../../interface/core/elem.js";
 import { bsConstructor } from "../../../core/bootstrap.js";
 import { mergeObject } from "../../../core/util/mergeObject.js";
-import { ul as HUl } from "../../../html/ul.js";
+import { ul as BUl } from "../../../bootstrap/ul.js";
 import { item } from "./item.js";
 import { link } from "./link.js";
 import { button } from "./button.js";
 import { container as Container } from "../../../interface/bootstrap/nav/header/container.js";
 
-export class container extends HUl {
+export class container extends BUl {
 	constructor();
 	constructor(attr: Container);
 	constructor(elem: elem | elem[]);
