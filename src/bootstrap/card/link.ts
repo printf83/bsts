@@ -17,4 +17,8 @@ export class link extends a {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<A>("elem", arg)));
 	}
+
+	convert(attr: A) {
+		return super.convert(attr);
+	}
 }

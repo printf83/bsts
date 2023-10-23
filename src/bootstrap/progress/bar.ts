@@ -32,4 +32,8 @@ export class bar extends div {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Bar>("elem", arg)));
 	}
+
+	convert(attr: Bar) {
+		return super.convert(attr);
+	}
 }

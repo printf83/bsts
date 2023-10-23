@@ -20,4 +20,8 @@ export class responsive extends div {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Responsive>("elem", arg)));
 	}
+
+	convert(attr: Responsive) {
+		return super.convert(attr);
+	}
 }

@@ -94,4 +94,8 @@ export class caption extends div {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor("elem", arg)));
 	}
+
+	convert(attr: Caption) {
+		return super.convert(attr);
+	}
 }

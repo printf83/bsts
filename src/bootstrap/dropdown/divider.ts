@@ -14,4 +14,8 @@ export class divider extends hr {
 	constructor(...arg: any[]) {
 		super(bsConstructorNoElement(convert, arg));
 	}
+
+	convert(attr: attr) {
+		return super.convert(attr);
+	}
 }

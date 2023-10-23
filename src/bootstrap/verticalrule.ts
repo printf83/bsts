@@ -16,4 +16,8 @@ export class verticalrule extends div {
 	constructor(...arg: any[]) {
 		super(bsConstructorNoElement(convert, arg));
 	}
+
+	convert(attr: attr) {
+		return super.convert(attr);
+	}
 }

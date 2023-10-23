@@ -37,4 +37,8 @@ export class header extends h2 {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Header>("elem", arg)));
 	}
+
+	convert(attr: Header) {
+		return super.convert(attr);
+	}
 }

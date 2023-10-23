@@ -81,5 +81,9 @@ export class icon extends i {
 		super(convert(bsConstructor("elem", arg)));
 	}
 
+	convert(attr: Icon) {
+		return super.convert(attr);
+	}
+
 	static bi = (i: string, attr?: Icon) => genStaticIcon("bi", i, attr);
 }

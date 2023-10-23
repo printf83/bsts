@@ -32,4 +32,8 @@ export class button extends BButton {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Button>("elem", arg)));
 	}
+
+	convert(attr: Button) {
+		return super.convert(attr);
+	}
 }

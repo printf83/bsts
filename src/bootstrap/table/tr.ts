@@ -24,4 +24,8 @@ export class tr extends HTr {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Tr>("elem", arg)));
 	}
+
+	convert(attr: Tr) {
+		return super.convert(attr);
+	}
 }

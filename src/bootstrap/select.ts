@@ -32,4 +32,8 @@ export class select extends TSelect {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Select>("elem", arg)));
 	}
+
+	convert(attr: Select) {
+		return super.convert(attr);
+	}
 }

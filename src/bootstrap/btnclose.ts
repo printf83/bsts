@@ -24,4 +24,8 @@ export class btnclose extends button {
 	constructor(...arg: any[]) {
 		super(bsConstructorNoElement(convert, arg));
 	}
+
+	convert(attr: Btnclose) {
+		return super.convert(attr);
+	}
 }

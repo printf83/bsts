@@ -1,8 +1,8 @@
 import { bsConstructor } from "../../../../core/bootstrap.js";
 import { img as BImg } from "../../../img.js";
-import { img as IImg } from "../../../../interface/bootstrap/img";
+import { img as Img } from "../../../../interface/bootstrap/img";
 
-const convert = (attr: IImg) => {
+const convert = (attr: Img) => {
 	attr.display = "block";
 	attr.width = 100;
 
@@ -12,9 +12,13 @@ const convert = (attr: IImg) => {
 export class img extends BImg {
 	constructor();
 	constructor(src: string);
-	constructor(attr: IImg);
-	constructor(attr: IImg, src: string);
+	constructor(attr: Img);
+	constructor(attr: Img, src: string);
 	constructor(...arg: any[]) {
-		super(convert(bsConstructor<IImg>("src", arg)));
+		super(convert(bsConstructor<Img>("src", arg)));
+	}
+
+	convert(attr: Img) {
+		return super.convert(attr);
 	}
 }

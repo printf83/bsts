@@ -38,4 +38,8 @@ export class next extends HButton {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Next>("elem", arg)));
 	}
+
+	convert(attr: Next) {
+		return super.convert(attr);
+	}
 }

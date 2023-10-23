@@ -20,4 +20,8 @@ export class thead extends HThead {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Thead>("elem", arg)));
 	}
+
+	convert(attr: Thead) {
+		return super.convert(attr);
+	}
 }

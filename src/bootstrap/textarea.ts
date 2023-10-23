@@ -32,4 +32,8 @@ export class textarea extends TTextarea {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Textarea>("value", arg)));
 	}
+
+	convert(attr: Textarea) {
+		return super.convert(attr);
+	}
 }

@@ -38,4 +38,8 @@ export class th extends HTh {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Th>("elem", arg)));
 	}
+
+	convert(attr: Th) {
+		return super.convert(attr);
+	}
 }

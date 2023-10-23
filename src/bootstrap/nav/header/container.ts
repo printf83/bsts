@@ -1,7 +1,7 @@
 import { elem } from "../../../interface/core/elem.js";
 import { bsConstructor } from "../../../core/bootstrap.js";
 import { mergeObject } from "../../../core/util/mergeObject.js";
-import { ul } from "../../../html/ul.js";
+import { ul as HUl } from "../../../html/ul.js";
 import { item } from "./item.js";
 import { link } from "./link.js";
 import { button } from "./button.js";
@@ -60,12 +60,17 @@ const convert = (attr: Container): Ul => {
 	return attr as Ul;
 };
 
-export class container extends ul {
+export class container extends HUl {
 	constructor();
 	constructor(attr: Container);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Container, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Container>("elem", arg)));
+	}
+
+	convert(attr: Ul) {
+		//WARNING! attr should be Container
+		return super.convert(attr);
 	}
 }

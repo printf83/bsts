@@ -61,4 +61,8 @@ export class container extends div {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Container>("elem", arg)));
 	}
+
+	convert(attr: Container) {
+		return super.convert(attr);
+	}
 }

@@ -93,4 +93,8 @@ export class msg extends div {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor("elem", arg)));
 	}
+
+	convert(attr: Msg) {
+		return super.convert(attr);
+	}
 }

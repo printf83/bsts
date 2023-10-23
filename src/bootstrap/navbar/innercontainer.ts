@@ -16,6 +16,10 @@ export class innercontainer extends div {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor("elem", arg)));
 	}
+
+	convert(attr: attr) {
+		return super.convert(attr);
+	}
 }
 
 export class innercontainerNav extends nav {
@@ -25,5 +29,9 @@ export class innercontainerNav extends nav {
 	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor("elem", arg)));
+	}
+
+	convert(attr: attr) {
+		return super.convert(attr);
 	}
 }

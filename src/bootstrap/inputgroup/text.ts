@@ -17,4 +17,8 @@ export class text extends span {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor("elem", arg)));
 	}
+
+	convert(attr: attr) {
+		return super.convert(attr);
+	}
 }

@@ -18,4 +18,8 @@ export class header extends h4 {
 	constructor(...arg: any[]) {
 		super(convert(tagConstructor("elem", arg)));
 	}
+
+	convert(attr: attr) {
+		return super.convert(attr);
+	}
 }

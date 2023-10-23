@@ -117,4 +117,8 @@ export class container extends div {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Carousel>("elem", arg)));
 	}
+
+	convert(attr: Carousel) {
+		return super.convert(attr);
+	}
 }

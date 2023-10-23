@@ -24,4 +24,8 @@ export class itemcontainer extends ul {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Itemcontainer>("elem", arg)));
 	}
+
+	convert(attr: Itemcontainer) {
+		return super.convert(attr);
+	}
 }

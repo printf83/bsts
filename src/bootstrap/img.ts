@@ -25,4 +25,8 @@ export class img extends HImg {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Img>("src", arg)));
 	}
+
+	convert(attr: Img) {
+		return super.convert(attr);
+	}
 }

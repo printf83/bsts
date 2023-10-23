@@ -20,4 +20,8 @@ export class brand extends tag {
 			convert(bsConstructor<Brand>("elem", arg))
 		);
 	}
+
+	convert(attr: Brand) {
+		return super.convert(attr);
+	}
 }

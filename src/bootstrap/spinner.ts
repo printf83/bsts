@@ -50,4 +50,8 @@ export class spinner extends tag {
 			convert(bsConstructor<Spinner>("elem", arg))
 		);
 	}
+
+	convert(attr: Spinner) {
+		return super.convert(attr);
+	}
 }

@@ -29,4 +29,8 @@ export class pane extends div {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Pane>("elem", arg)));
 	}
+
+	convert(attr: Pane) {
+		return super.convert(attr);
+	}
 }

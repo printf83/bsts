@@ -62,4 +62,8 @@ export class input extends HInput {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Input>("value", arg)));
 	}
+
+	convert(attr: Input) {
+		return super.convert(attr);
+	}
 }

@@ -29,4 +29,8 @@ export class collapse extends button {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Button>("elem", arg)));
 	}
+
+	convert(attr: Button) {
+		return super.convert(attr);
+	}
 }

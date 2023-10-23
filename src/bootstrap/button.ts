@@ -78,6 +78,10 @@ export class button extends tag {
 		);
 	}
 
+	convert(attr: Button) {
+		return super.convert(attr);
+	}
+
 	static init = (elem: Element | string) => {
 		return button.getOrCreateInstance(elem);
 	};

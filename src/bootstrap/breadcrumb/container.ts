@@ -48,4 +48,8 @@ export class container extends nav {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Container>("elem", arg)));
 	}
+
+	convert(attr: Container) {
+		return super.convert(attr);
+	}
 }

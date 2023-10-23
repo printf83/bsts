@@ -81,4 +81,8 @@ export class item extends li {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Item>("elem", arg)));
 	}
+
+	convert(attr: Item) {
+		return super.convert(attr);
+	}
 }

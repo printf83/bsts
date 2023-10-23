@@ -65,6 +65,10 @@ export class scrollspy extends div {
 		super(convert(bsConstructor<Scrollspy>("elem", arg)));
 	}
 
+	convert(attr: Scrollspy) {
+		return super.convert(attr);
+	}
+
 	static init = (elem: Element | string, options?: Partial<BSScrollSpy.Options>) => {
 		return scrollspy.getOrCreateInstance(elem, options);
 	};

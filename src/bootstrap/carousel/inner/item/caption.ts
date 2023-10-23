@@ -19,4 +19,8 @@ export class caption extends div {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor("elem", arg)));
 	}
+
+	convert(attr: attr) {
+		return super.convert(attr);
+	}
 }

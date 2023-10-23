@@ -210,4 +210,8 @@ export class pill extends small {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor("elem", arg)));
 	}
+
+	convert(attr: Pill) {
+		return super.convert(attr);
+	}
 }

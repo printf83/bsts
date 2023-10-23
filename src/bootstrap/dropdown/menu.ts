@@ -56,4 +56,8 @@ export class menu extends div {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Menu>("elem", arg)));
 	}
+
+	convert(attr: Menu) {
+		return super.convert(attr);
+	}
 }

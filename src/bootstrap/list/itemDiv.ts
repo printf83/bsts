@@ -82,4 +82,8 @@ export class itemDiv extends div {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<ItemDiv>("elem", arg)));
 	}
+
+	convert(attr: ItemDiv) {
+		return super.convert(attr);
+	}
 }

@@ -33,4 +33,8 @@ export class btngroup extends div {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Btngroup>("elem", arg)));
 	}
+
+	convert(attr: Btngroup) {
+		return super.convert(attr);
+	}
 }

@@ -20,4 +20,8 @@ export class tfoot extends HTfoot {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Tfoot>("elem", arg)));
 	}
+
+	convert(attr: Tfoot) {
+		return super.convert(attr);
+	}
 }

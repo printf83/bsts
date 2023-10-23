@@ -26,4 +26,8 @@ export class visuallyhidden extends tag {
 			convert(bsConstructor<Visuallyhidden>("elem", arg))
 		);
 	}
+
+	convert(attr: Visuallyhidden) {
+		return super.convert(attr);
+	}
 }

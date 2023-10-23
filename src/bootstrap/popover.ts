@@ -101,6 +101,10 @@ export class popover extends span {
 		super(convert(bsConstructor<Popover>("elem", arg)));
 	}
 
+	convert(attr: Popover) {
+		return super.convert(attr);
+	}
+
 	static init = (elem: Element | string, options?: Partial<BSPopover.Options>) => {
 		return popover.getOrCreateInstance(elem, options);
 	};

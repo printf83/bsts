@@ -1,9 +1,9 @@
 import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { img as BImg } from "../img.js";
-import { img as IImg } from "../../interface/bootstrap/img.js";
+import { img as Img } from "../../interface/bootstrap/img.js";
 
-const convert = (attr: IImg) => {
+const convert = (attr: Img) => {
 	attr.class = mergeClass(attr.class, "figure-img");
 	return attr;
 };
@@ -11,9 +11,13 @@ const convert = (attr: IImg) => {
 export class img extends BImg {
 	constructor();
 	constructor(src: string);
-	constructor(attr: IImg);
-	constructor(attr: IImg, src: string);
+	constructor(attr: Img);
+	constructor(attr: Img, src: string);
 	constructor(...arg: any[]) {
-		super(convert(bsConstructor<IImg>("src", arg)));
+		super(convert(bsConstructor<Img>("src", arg)));
+	}
+
+	convert(attr: Img) {
+		return super.convert(attr);
 	}
 }

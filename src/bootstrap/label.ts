@@ -108,4 +108,8 @@ export class label extends HLabel {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor("elem", arg)));
 	}
+
+	convert(attr: Label) {
+		return super.convert(attr);
+	}
 }

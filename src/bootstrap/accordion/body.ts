@@ -34,4 +34,8 @@ export class body extends container {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Body>("elem", arg)));
 	}
+
+	convert(attr: Body) {
+		return super.convert(attr);
+	}
 }

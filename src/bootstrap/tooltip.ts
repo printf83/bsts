@@ -100,6 +100,10 @@ export class tooltip extends span {
 		super(convert(bsConstructor<Tooltip>("elem", arg)));
 	}
 
+	convert(attr: Tooltip) {
+		return super.convert(attr);
+	}
+
 	static init = (elem: Element | string, options?: Partial<BSTooltip.Options>) => {
 		return tooltip.getOrCreateInstance(elem, options);
 	};

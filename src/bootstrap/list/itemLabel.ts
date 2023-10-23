@@ -81,4 +81,8 @@ export class itemLabel extends label {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<ItemLabel>("elem", arg)));
 	}
+
+	convert(attr: ItemLabel) {
+		return super.convert(attr);
+	}
 }

@@ -21,4 +21,8 @@ export class img extends TImg {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Img>("src", arg)));
 	}
+
+	convert(attr: Img) {
+		return super.convert(attr);
+	}
 }

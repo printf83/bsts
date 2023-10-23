@@ -20,4 +20,8 @@ export class tbody extends HTbody {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Tbody>("elem", arg)));
 	}
+
+	convert(attr: Tbody) {
+		return super.convert(attr);
+	}
 }

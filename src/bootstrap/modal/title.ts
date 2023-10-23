@@ -26,4 +26,8 @@ export class title extends h1 {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor("elem", arg)));
 	}
+
+	convert(attr: attr) {
+		return super.convert(attr);
+	}
 }

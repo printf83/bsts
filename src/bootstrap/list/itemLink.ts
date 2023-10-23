@@ -81,4 +81,8 @@ export class itemLink extends a {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<ItemLink>("elem", arg)));
 	}
+
+	convert(attr: ItemLink) {
+		return super.convert(attr);
+	}
 }

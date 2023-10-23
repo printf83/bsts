@@ -38,4 +38,8 @@ export class td extends HTd {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Td>("elem", arg)));
 	}
+
+	convert(attr: Td) {
+		return super.convert(attr);
+	}
 }

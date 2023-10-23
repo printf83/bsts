@@ -494,4 +494,8 @@ export class calendar extends div {
 	constructor(...arg: any[]) {
 		super(bsConstructorNoElement(convert, arg));
 	}
+
+	convert(attr: ICalendar.container) {
+		return super.convert(attr);
+	}
 }

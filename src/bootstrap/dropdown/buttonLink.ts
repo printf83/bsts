@@ -66,4 +66,8 @@ export class buttonLink extends a {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<ButtonLink>("elem", arg)));
 	}
+
+	convert(attr: ButtonLink) {
+		return super.convert(attr);
+	}
 }

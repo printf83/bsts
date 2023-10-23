@@ -3,6 +3,8 @@ import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { container as BSNavHeaderContainer } from "../nav/header/container.js";
 import { container as Container } from "../../interface/bootstrap/nav/header/container.js";
+import { attr } from "../../core/_index.js";
+import { ul } from "../../interface/html/ul.js";
 
 const convert = (attr: Container) => {
 	attr.type ??= "tab";
@@ -19,5 +21,10 @@ export class nav extends BSNavHeaderContainer {
 	constructor(attr: Container, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Container>("elem", arg)));
+	}
+
+	convert(attr: ul): attr {
+		//WARNING: attr should be Container
+		return super.convert(attr);
 	}
 }

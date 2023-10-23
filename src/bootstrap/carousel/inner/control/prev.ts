@@ -38,4 +38,8 @@ export class prev extends HButton {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Prev>("elem", arg)));
 	}
+
+	convert(attr: Prev) {
+		return super.convert(attr);
+	}
 }

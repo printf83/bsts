@@ -33,4 +33,8 @@ export class header extends div {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Header>("elem", arg)));
 	}
+
+	convert(attr: Header) {
+		return super.convert(attr);
+	}
 }

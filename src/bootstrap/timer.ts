@@ -107,4 +107,8 @@ export class timer extends span {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Timer>("time", arg)));
 	}
+
+	convert(attr: Timer) {
+		return super.convert(attr);
+	}
 }

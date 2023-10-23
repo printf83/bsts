@@ -102,4 +102,8 @@ export class button extends TButton {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<Button>("elem", arg)));
 	}
+
+	convert(attr: Button) {
+		return super.convert(attr);
+	}
 }

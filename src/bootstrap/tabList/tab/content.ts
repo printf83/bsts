@@ -17,4 +17,8 @@ export class content extends div {
 	constructor(...arg: any[]) {
 		super(convert(bsConstructor<attr>("elem", arg)));
 	}
+
+	convert(attr: attr) {
+		return super.convert(attr);
+	}
 }
