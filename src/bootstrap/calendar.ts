@@ -1,4 +1,4 @@
-import { bsConsNoElemArg } from "../core/bootstrap.js";
+import { bsConstructorNoElement } from "../core/bootstrap.js";
 import { div } from "../html/div.js";
 import { replaceWith } from "../core/builder.js";
 import { ul } from "../html/ul.js";
@@ -217,7 +217,7 @@ class item extends ul {
 	constructor();
 	constructor(attr: ICalendar.item);
 	constructor(...arg: any[]) {
-		super(bsConsNoElemArg(convertItem, arg));
+		super(bsConstructorNoElement(convertItem, arg));
 	}
 }
 
@@ -372,7 +372,7 @@ class header extends div {
 	constructor();
 	constructor(attr: ICalendar.header);
 	constructor(...arg: any[]) {
-		super(bsConsNoElemArg(convertHeader, arg));
+		super(bsConstructorNoElement(convertHeader, arg));
 	}
 }
 
@@ -492,6 +492,6 @@ export class calendar extends div {
 	constructor();
 	constructor(attr: ICalendar.container);
 	constructor(...arg: any[]) {
-		super(bsConsNoElemArg(convert, arg));
+		super(bsConstructorNoElement(convert, arg));
 	}
 }

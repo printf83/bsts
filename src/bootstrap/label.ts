@@ -1,4 +1,4 @@
-import { bsConstArg } from "../core/bootstrap.js";
+import { bsConstructor } from "../core/bootstrap.js";
 import { isAttr, tag } from "../core/tag.js";
 import { mergeClass } from "../core/util/mergeClass.js";
 
@@ -106,6 +106,6 @@ export class label extends HLabel {
 	constructor(attr: Label);
 	constructor(attr: Label, text: string);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg("elem", arg)));
+		super(convert(bsConstructor("elem", arg)));
 	}
 }

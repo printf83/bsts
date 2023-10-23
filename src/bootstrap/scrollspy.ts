@@ -1,4 +1,4 @@
-import { bsConstArg } from "../core/bootstrap.js";
+import { bsConstructor } from "../core/bootstrap.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { div } from "../html/div.js";
 import { addEvent } from "../core/util/eventManager.js";
@@ -62,7 +62,7 @@ export class scrollspy extends div {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Scrollspy, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Scrollspy>("elem", arg)));
+		super(convert(bsConstructor<Scrollspy>("elem", arg)));
 	}
 
 	static init = (elem: Element | string, options?: Partial<BSScrollSpy.Options>) => {

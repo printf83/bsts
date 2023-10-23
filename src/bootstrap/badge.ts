@@ -1,4 +1,4 @@
-import { bsConstArg } from "../core/bootstrap.js";
+import { bsConstructor } from "../core/bootstrap.js";
 import { mergeClass } from "../core/util/mergeClass.js";
 
 import { span } from "../html/span.js";
@@ -16,6 +16,6 @@ export class badge extends span {
 	constructor(elem: elem | elem[]);
 	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg("elem", arg)));
+		super(convert(bsConstructor("elem", arg)));
 	}
 }

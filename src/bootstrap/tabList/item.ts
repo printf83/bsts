@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/util/mergeObject.js";
 import { a } from "../../html/a.js";
 import { item as Item } from "../../interface/bootstrap/tabList/item.js";
@@ -42,6 +42,6 @@ export class item extends a {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Item, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Item>("elem", arg)));
+		super(convert(bsConstructor<Item>("elem", arg)));
 	}
 }

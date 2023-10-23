@@ -1,4 +1,4 @@
-import { bsConsNoElemArg } from "../core/bootstrap.js";
+import { bsConstructorNoElement } from "../core/bootstrap.js";
 import { div } from "../html/div.js";
 import { mergeClass } from "../core/util/mergeClass.js";
 
@@ -14,6 +14,6 @@ export class verticalrule extends div {
 	constructor();
 	constructor(attr: attr);
 	constructor(...arg: any[]) {
-		super(bsConsNoElemArg(convert, arg));
+		super(bsConstructorNoElement(convert, arg));
 	}
 }

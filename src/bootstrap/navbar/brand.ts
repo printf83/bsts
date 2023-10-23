@@ -1,4 +1,4 @@
-import { bsConstArg, bsConstArgTag } from "../../core/bootstrap.js";
+import { bsConstructor, bsConstructorMultiTag } from "../../core/bootstrap.js";
 import { tag } from "../../core/tag.js";
 import { elem } from "../../interface/core/elem.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
@@ -16,8 +16,8 @@ export class brand extends tag {
 	constructor(attr: Brand, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(
-			bsConstArgTag<Brand>("elem", "span", "a", (i) => (i.href ? true : false), arg),
-			convert(bsConstArg<Brand>("elem", arg))
+			bsConstructorMultiTag<Brand>("elem", "span", "a", (i) => (i.href ? true : false), arg),
+			convert(bsConstructor<Brand>("elem", arg))
 		);
 	}
 }

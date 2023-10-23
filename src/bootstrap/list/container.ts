@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { ul } from "../../html/ul.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { container as Container } from "../../interface/bootstrap/list/container.js";
@@ -29,6 +29,6 @@ export class container extends ul {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Container, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Container>("elem", arg)));
+		super(convert(bsConstructor<Container>("elem", arg)));
 	}
 }

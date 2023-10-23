@@ -1,4 +1,4 @@
-import { bsConstArg } from "../core/bootstrap.js";
+import { bsConstructor } from "../core/bootstrap.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { span } from "../html/span.js";
 import { addEvent } from "../core/util/eventManager.js";
@@ -97,7 +97,7 @@ export class tooltip extends span {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Tooltip, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Tooltip>("elem", arg)));
+		super(convert(bsConstructor<Tooltip>("elem", arg)));
 	}
 
 	static init = (elem: Element | string, options?: Partial<BSTooltip.Options>) => {

@@ -1,7 +1,7 @@
 import { elem } from "../../../interface/core/elem.js";
 import { mergeObject } from "../../../core/util/mergeObject.js";
 import { span } from "../../../html/span.js";
-import { bsConstArg } from "../../../core/bootstrap.js";
+import { bsConstructor } from "../../../core/bootstrap.js";
 import { button } from "../../collapse/button.js";
 import { button as Button } from "../../../interface/bootstrap/collapse/button.js";
 
@@ -27,6 +27,6 @@ export class collapse extends button {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Button, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Button>("elem", arg)));
+		super(convert(bsConstructor<Button>("elem", arg)));
 	}
 }

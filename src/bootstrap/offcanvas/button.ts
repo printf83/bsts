@@ -1,4 +1,4 @@
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/util/mergeObject.js";
 import { button as Button } from "../../interface/bootstrap/offcanvas/button.js";
 import { elem } from "../../interface/core/elem.js";
@@ -30,6 +30,6 @@ export class button extends BButton {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Button, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Button>("elem", arg)));
+		super(convert(bsConstructor<Button>("elem", arg)));
 	}
 }

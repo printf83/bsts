@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { td as HTd } from "../../html/td.js";
 import { mergeObject } from "../../core/util/mergeObject.js";
@@ -36,6 +36,6 @@ export class td extends HTd {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Td, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Td>("elem", arg)));
+		super(convert(bsConstructor<Td>("elem", arg)));
 	}
 }

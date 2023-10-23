@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { h2 } from "../../html/h2.js";
 import { UUID } from "../../core/util/uuid.js";
@@ -35,6 +35,6 @@ export class header extends h2 {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Header, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Header>("elem", arg)));
+		super(convert(bsConstructor<Header>("elem", arg)));
 	}
 }

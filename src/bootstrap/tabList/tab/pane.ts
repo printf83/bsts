@@ -1,5 +1,5 @@
 import { elem } from "../../../interface/core/elem.js";
-import { bsConstArg } from "../../../core/bootstrap.js";
+import { bsConstructor } from "../../../core/bootstrap.js";
 import { mergeClass } from "../../../core/util/mergeClass.js";
 import { div } from "../../../html/div.js";
 import { pane as Pane } from "../../../interface/bootstrap/tabList/tab/pane.js";
@@ -27,6 +27,6 @@ export class pane extends div {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Pane, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Pane>("elem", arg)));
+		super(convert(bsConstructor<Pane>("elem", arg)));
 	}
 }

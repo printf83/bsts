@@ -1,4 +1,4 @@
-import { bsConstArg } from "../core/bootstrap.js";
+import { bsConstructor } from "../core/bootstrap.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { UUID } from "../core/util/uuid.js";
 import { select as TSelect } from "../html/select.js";
@@ -30,6 +30,6 @@ export class select extends TSelect {
 	constructor(attr: Select);
 	constructor(attr: Select, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Select>("elem", arg)));
+		super(convert(bsConstructor<Select>("elem", arg)));
 	}
 }

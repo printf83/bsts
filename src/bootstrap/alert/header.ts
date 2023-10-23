@@ -1,4 +1,4 @@
-import { tagConsArg } from "../../core/tag.js";
+import { tagConstructor } from "../../core/tag.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { h4 } from "../../html/h4.js";
 import { elem } from "../../interface/core/elem.js";
@@ -16,6 +16,6 @@ export class header extends h4 {
 	constructor(attr: attr);
 	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(tagConsArg("elem", arg)));
+		super(convert(tagConstructor("elem", arg)));
 	}
 }

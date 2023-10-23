@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/util/mergeObject.js";
 import { ul } from "../../html/ul.js";
 import { itemcontainer as Itemcontainer } from "../../interface/bootstrap/navbar/itemcontainer.js";
@@ -22,6 +22,6 @@ export class itemcontainer extends ul {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Itemcontainer, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Itemcontainer>("elem", arg)));
+		super(convert(bsConstructor<Itemcontainer>("elem", arg)));
 	}
 }

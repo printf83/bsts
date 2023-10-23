@@ -1,4 +1,4 @@
-import { bsConstArg } from "../core/bootstrap.js";
+import { bsConstructor } from "../core/bootstrap.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { UUID } from "../core/util/uuid.js";
 import { input as HInput } from "../html/input.js";
@@ -60,6 +60,6 @@ export class input extends HInput {
 	constructor(attr: Input);
 	constructor(attr: Input, value: string);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Input>("value", arg)));
+		super(convert(bsConstructor<Input>("value", arg)));
 	}
 }

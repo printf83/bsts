@@ -1,5 +1,5 @@
 import { elem } from "../../../interface/core/elem.js";
-import { bsConstArg } from "../../../core/bootstrap.js";
+import { bsConstructor } from "../../../core/bootstrap.js";
 import { mergeObject } from "../../../core/util/mergeObject.js";
 import { a } from "../../../html/a.js";
 import { link as Link } from "../../../interface/bootstrap/nav/header/link.js";
@@ -98,6 +98,6 @@ export class link extends a {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Link, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Link>("elem", arg)));
+		super(convert(bsConstructor<Link>("elem", arg)));
 	}
 }

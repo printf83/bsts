@@ -1,5 +1,5 @@
 import { elem } from "../../../../interface/core/elem.js";
-import { bsConstArg } from "../../../../core/bootstrap.js";
+import { bsConstructor } from "../../../../core/bootstrap.js";
 import { button as HButton } from "../../../../html/button.js";
 import { mergeObject } from "../../../../core/util/mergeObject.js";
 import { span } from "../../../../html/span.js";
@@ -36,6 +36,6 @@ export class next extends HButton {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Next, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Next>("elem", arg)));
+		super(convert(bsConstructor<Next>("elem", arg)));
 	}
 }

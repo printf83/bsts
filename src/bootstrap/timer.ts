@@ -1,4 +1,4 @@
-import { bsConstArg } from "../core/bootstrap.js";
+import { bsConstructor } from "../core/bootstrap.js";
 import { span } from "../html/span.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { calcTimer } from "../core/util/calcTimer.js";
@@ -105,6 +105,6 @@ export class timer extends span {
 	constructor(time: number);
 	constructor(attr: Timer, time: number);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Timer>("time", arg)));
+		super(convert(bsConstructor<Timer>("time", arg)));
 	}
 }

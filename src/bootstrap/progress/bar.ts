@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/util/mergeObject.js";
 import { div } from "../../html/div.js";
 import { bar as Bar } from "../../interface/bootstrap/progress/bar.js";
@@ -30,6 +30,6 @@ export class bar extends div {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Bar, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Bar>("elem", arg)));
+		super(convert(bsConstructor<Bar>("elem", arg)));
 	}
 }

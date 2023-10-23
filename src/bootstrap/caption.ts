@@ -1,4 +1,4 @@
-import { bsConstArg } from "../core/bootstrap.js";
+import { bsConstructor } from "../core/bootstrap.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { isAttr, tag } from "../core/tag.js";
 import { div } from "../html/div.js";
@@ -92,6 +92,6 @@ export class caption extends div {
 	constructor(attr: Caption);
 	constructor(attr: Caption, text: string);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg("elem", arg)));
+		super(convert(bsConstructor("elem", arg)));
 	}
 }

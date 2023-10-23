@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/util/mergeObject.js";
 import { div } from "../../html/div.js";
 
@@ -80,6 +80,6 @@ export class itemDiv extends div {
 	constructor(elem: elem | elem[]);
 	constructor(attr: ItemDiv, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<ItemDiv>("elem", arg)));
+		super(convert(bsConstructor<ItemDiv>("elem", arg)));
 	}
 }

@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { UUID } from "../../core/util/uuid.js";
 import { container } from "../collapse/container.js";
 import { div } from "../../html/div.js";
@@ -32,6 +32,6 @@ export class body extends container {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Body, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Body>("elem", arg)));
+		super(convert(bsConstructor<Body>("elem", arg)));
 	}
 }

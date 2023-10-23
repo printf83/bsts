@@ -1,4 +1,4 @@
-import { tagConsArg, tag } from "../core/tag.js";
+import { tagConstructor, tag } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
 import { mergeClass } from "../core/util/mergeClass.js";
 
@@ -34,6 +34,6 @@ export class ul extends tag {
 	constructor(attr: Ul);
 	constructor(attr: Ul, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super("ul", convert(tagConsArg<Ul>("elem", arg)));
+		super("ul", convert(tagConstructor<Ul>("elem", arg)));
 	}
 }

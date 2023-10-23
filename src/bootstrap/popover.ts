@@ -1,4 +1,4 @@
-import { bsConstArg } from "../core/bootstrap.js";
+import { bsConstructor } from "../core/bootstrap.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { span } from "../html/span.js";
 import { addEvent } from "../core/util/eventManager.js";
@@ -98,7 +98,7 @@ export class popover extends span {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Popover, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Popover>("elem", arg)));
+		super(convert(bsConstructor<Popover>("elem", arg)));
 	}
 
 	static init = (elem: Element | string, options?: Partial<BSPopover.Options>) => {

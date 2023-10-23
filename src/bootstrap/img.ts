@@ -1,4 +1,4 @@
-import { bsConstArg } from "../core/bootstrap.js";
+import { bsConstructor } from "../core/bootstrap.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { img as HImg } from "../html/img.js";
 import { img as Img } from "../interface/bootstrap/img.js";
@@ -23,6 +23,6 @@ export class img extends HImg {
 	constructor(attr: Img);
 	constructor(attr: Img, src: string);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Img>("src", arg)));
+		super(convert(bsConstructor<Img>("src", arg)));
 	}
 }

@@ -1,6 +1,6 @@
 import { attr } from "../../interface/core/attr.js";
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { UUID } from "../../core/util/uuid.js";
 import { h1 } from "../../html/h1.js";
 import { mergeObject } from "../../core/util/mergeObject.js";
@@ -24,6 +24,6 @@ export class title extends h1 {
 	constructor(elem: elem | elem[]);
 	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg("elem", arg)));
+		super(convert(bsConstructor("elem", arg)));
 	}
 }

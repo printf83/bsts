@@ -1,4 +1,4 @@
-import { tagConsNoElemArg, tag } from "../core/tag.js";
+import { tagConstructorNoElement, tag } from "../core/tag.js";
 import { textarea as Textarea } from "../interface/html/textarea.js";
 
 const convert = (attr: Textarea) => {
@@ -24,6 +24,6 @@ export class textarea extends tag {
 	constructor();
 	constructor(attr: Textarea);
 	constructor(...arg: any[]) {
-		super("textarea", convert(tagConsNoElemArg<Textarea>(arg)));
+		super("textarea", convert(tagConstructorNoElement<Textarea>(arg)));
 	}
 }

@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { nav } from "../../html/nav.js";
 import { header } from "../../html/header.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
@@ -38,7 +38,7 @@ export class container extends nav {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Container, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Container>("elem", arg)));
+		super(convert(bsConstructor<Container>("elem", arg)));
 	}
 }
 
@@ -48,6 +48,6 @@ export class containerHeader extends header {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Container, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Container>("elem", arg)));
+		super(convert(bsConstructor<Container>("elem", arg)));
 	}
 }

@@ -1,6 +1,6 @@
 import { attr } from "../../interface/core/attr.js";
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
 import { nav } from "../../html/nav.js";
 
@@ -14,7 +14,7 @@ export class innercontainer extends div {
 	constructor(elem: elem | elem[]);
 	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg("elem", arg)));
+		super(convert(bsConstructor("elem", arg)));
 	}
 }
 
@@ -24,6 +24,6 @@ export class innercontainerNav extends nav {
 	constructor(elem: elem | elem[]);
 	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg("elem", arg)));
+		super(convert(bsConstructor("elem", arg)));
 	}
 }

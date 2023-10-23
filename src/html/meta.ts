@@ -1,10 +1,10 @@
-import { tagConsNoElemArg, tag } from "../core/tag.js";
+import { tagConstructorNoElement, tag } from "../core/tag.js";
 import { meta as Meta } from "../interface/html/meta.js";
 
 export class meta extends tag {
 	constructor();
 	constructor(attr: Meta);
 	constructor(...arg: any[]) {
-		super("meta", tagConsNoElemArg<Meta>(arg));
+		super("meta", tagConstructorNoElement<Meta>(arg));
 	}
 }

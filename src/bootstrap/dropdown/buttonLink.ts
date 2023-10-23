@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/util/mergeObject.js";
 import { a } from "../../html/a.js";
 import { visuallyhidden } from "../visuallyhidden.js";
@@ -64,6 +64,6 @@ export class buttonLink extends a {
 	constructor(elem: elem | elem[]);
 	constructor(attr: ButtonLink, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<ButtonLink>("elem", arg)));
+		super(convert(bsConstructor<ButtonLink>("elem", arg)));
 	}
 }

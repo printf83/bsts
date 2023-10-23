@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/util/mergeObject.js";
 import { a } from "../../html/a.js";
 import { itemLink as ItemLink } from "../../interface/bootstrap/list/itemLink.js";
@@ -79,6 +79,6 @@ export class itemLink extends a {
 	constructor(elem: elem | elem[]);
 	constructor(attr: ItemLink, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<ItemLink>("elem", arg)));
+		super(convert(bsConstructor<ItemLink>("elem", arg)));
 	}
 }

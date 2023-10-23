@@ -1,4 +1,4 @@
-import { tagConsArg, tag } from "../core/tag.js";
+import { tagConstructor, tag } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
 import { track as Track } from "../interface/html/track.js";
 
@@ -17,6 +17,6 @@ export class track extends tag {
 	constructor(attr: Track);
 	constructor(attr: Track, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super("track", convert(tagConsArg<Track>("elem", arg)));
+		super("track", convert(tagConstructor<Track>("elem", arg)));
 	}
 }

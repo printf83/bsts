@@ -1,6 +1,6 @@
 import { elem } from "../../interface/core/elem.js";
 import { div } from "../../html/div.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/util/mergeObject.js";
 import { menu as Menu } from "../../interface/bootstrap/dropdown/menu.js";
 
@@ -54,6 +54,6 @@ export class menu extends div {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Menu, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Menu>("elem", arg)));
+		super(convert(bsConstructor<Menu>("elem", arg)));
 	}
 }

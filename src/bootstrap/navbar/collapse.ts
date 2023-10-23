@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { UUID } from "../../core/util/uuid.js";
 import { container as BContainer } from "../collapse/container.js";
@@ -20,6 +20,6 @@ export class collapse extends BContainer {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Container, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Container>("elem", arg)));
+		super(convert(bsConstructor<Container>("elem", arg)));
 	}
 }

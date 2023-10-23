@@ -2,7 +2,7 @@ import { mergeObject } from "./util/mergeObject.js";
 import { isAttr } from "./tag.js";
 import { attr } from "../interface/core/attr.js";
 
-export const bsConsNoElemArg = <T extends attr>(fn: <T extends attr>(attr: T) => attr, arg?: any[]) => {
+export const bsConstructorNoElement = <T extends attr>(fn: <T extends attr>(attr: T) => attr, arg?: any[]) => {
 	if (arg) {
 		if (arg.length === 1) {
 			return fn(arg[0] as T);
@@ -14,7 +14,7 @@ export const bsConsNoElemArg = <T extends attr>(fn: <T extends attr>(attr: T) =>
 	}
 };
 
-export const bsConstArg = <T extends attr>(prop: string, arg?: any[]) => {
+export const bsConstructor = <T extends attr>(prop: string, arg?: any[]) => {
 	if (arg) {
 		if (arg.length === 1) {
 			if (isAttr<T>(arg[0])) {
@@ -32,7 +32,7 @@ export const bsConstArg = <T extends attr>(prop: string, arg?: any[]) => {
 	}
 };
 
-export const bsConstArgTag = <T extends attr>(
+export const bsConstructorMultiTag = <T extends attr>(
 	prop: string,
 	t1: string,
 	t2: string,

@@ -2,7 +2,7 @@ import { elem } from "../../../interface/core/elem.js";
 import { mergeObject } from "../../../core/util/mergeObject.js";
 import { span } from "../../../html/span.js";
 import { button as BToggle } from "../../offcanvas/button.js";
-import { bsConstArg } from "../../../core/bootstrap.js";
+import { bsConstructor } from "../../../core/bootstrap.js";
 import { button as IToggle } from "../../../interface/bootstrap/offcanvas/button.js";
 
 const convert = (attr: IToggle) => {
@@ -27,6 +27,6 @@ export class offcanvas extends BToggle {
 	constructor(elem: elem | elem[]);
 	constructor(attr: IToggle, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<IToggle>("elem", arg)));
+		super(convert(bsConstructor<IToggle>("elem", arg)));
 	}
 }

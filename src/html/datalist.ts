@@ -1,4 +1,4 @@
-import { tagConsArg, tag } from "../core/tag.js";
+import { tagConstructor, tag } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
 import { option } from "./option.js";
 import { datalist as Datalist } from "../interface/html/datalist.js";
@@ -25,6 +25,6 @@ export class datalist extends tag {
 	constructor(attr: Datalist);
 	constructor(attr: Datalist, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super("datalist", convert(tagConsArg<Datalist>("elem", arg)));
+		super("datalist", convert(tagConstructor<Datalist>("elem", arg)));
 	}
 }

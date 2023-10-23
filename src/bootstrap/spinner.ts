@@ -1,6 +1,6 @@
 import { tag } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
-import { bsConstArg, bsConstArgTag } from "../core/bootstrap.js";
+import { bsConstructor, bsConstructorMultiTag } from "../core/bootstrap.js";
 import { mergeClass } from "../core/util/mergeClass.js";
 
 import { visuallyhidden } from "./visuallyhidden.js";
@@ -40,8 +40,14 @@ export class spinner extends tag {
 	constructor(attr: Spinner, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		super(
-			bsConstArgTag<Spinner>("elem", "span", "div", (i) => (i.elem === "" ? false : i.elem ? false : true), arg),
-			convert(bsConstArg<Spinner>("elem", arg))
+			bsConstructorMultiTag<Spinner>(
+				"elem",
+				"span",
+				"div",
+				(i) => (i.elem === "" ? false : i.elem ? false : true),
+				arg
+			),
+			convert(bsConstructor<Spinner>("elem", arg))
 		);
 	}
 }

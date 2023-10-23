@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { containerDiv as ContainerDiv } from "../../interface/bootstrap/list/containerDiv.js";
@@ -29,6 +29,6 @@ export class containerDiv extends div {
 	constructor(elem: elem | elem[]);
 	constructor(attr: ContainerDiv, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<ContainerDiv>("elem", arg)));
+		super(convert(bsConstructor<ContainerDiv>("elem", arg)));
 	}
 }

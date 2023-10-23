@@ -1,4 +1,4 @@
-import { tagConsArg, tag } from "../core/tag.js";
+import { tagConstructor, tag } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
 import { mergeClass } from "../core/util/mergeClass.js";
 import { abbr as Abbr } from "../interface/html/abbr.js";
@@ -15,6 +15,6 @@ export class abbr extends tag {
 	constructor(attr: Abbr);
 	constructor(attr: Abbr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super("abbr", convert(tagConsArg<Abbr>("elem", arg)));
+		super("abbr", convert(tagConstructor<Abbr>("elem", arg)));
 	}
 }

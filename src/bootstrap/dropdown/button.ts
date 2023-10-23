@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/util/mergeObject.js";
 import { button as Tbutton } from "../button.js";
 import { visuallyhidden } from "../visuallyhidden.js";
@@ -61,6 +61,6 @@ export class button extends Tbutton {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Button, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Button>("elem", arg)));
+		super(convert(bsConstructor<Button>("elem", arg)));
 	}
 }

@@ -1,4 +1,4 @@
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { replaceWith } from "../../core/builder.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { nav } from "../../html/nav.js";
@@ -261,6 +261,6 @@ export class container extends nav {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Container, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Container>("elem", arg)));
+		super(convert(bsConstructor<Container>("elem", arg)));
 	}
 }

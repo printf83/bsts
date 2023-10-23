@@ -1,4 +1,4 @@
-import { bsConsNoElemArg, bsConstArg, bsConstArgTag } from "./bootstrap.js";
+import { bsConstructorNoElement, bsConstructor, bsConstructorMultiTag } from "./bootstrap.js";
 import { addClassIntoElement, manageClass } from "./util/addClassIntoElement.js";
 
 import {
@@ -22,7 +22,7 @@ import {
 
 import { documentReady } from "./documentReady.js";
 import { placeholder } from "./util/placeholder.js";
-import { isAttr, isTag, tag, tagConsArg, tagConsNoElemArg } from "./tag.js";
+import { isAttr, isTag, tag, tagConstructor, tagConstructorNoElement } from "./tag.js";
 import { camel2Dash } from "./util/camel2Dash.js";
 import { elemInfo } from "./util/elemInfo.js";
 import { ElementWithAbortController, addEvent, removeEvent } from "./util/eventManager.js";
@@ -79,9 +79,9 @@ export {
 	addClassIntoElement,
 	addEvent,
 	appendChild,
-	bsConsNoElemArg,
-	bsConstArg,
-	bsConstArgTag,
+	bsConstructorNoElement,
+	bsConstructor,
+	bsConstructorMultiTag,
 	build,
 	camel2Dash,
 	cancelIdleCallback,
@@ -128,8 +128,8 @@ export {
 	setCSSVar,
 	tag,
 	html,
-	tagConsArg,
-	tagConsNoElemArg,
+	tagConstructor,
+	tagConstructorNoElement,
 	unobserveResizeObserver,
 	uppercaseFirst,
 	varToHexColor,

@@ -1,4 +1,4 @@
-import { tagConsArg, tag } from "../core/tag.js";
+import { tagConstructor, tag } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
 import { optgroup } from "./optgroup.js";
 import { option } from "./option.js";
@@ -41,6 +41,6 @@ export class select extends tag {
 	constructor(attr: Select);
 	constructor(attr: Select, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super("select", convert(tagConsArg<Select>("elem", arg)));
+		super("select", convert(tagConstructor<Select>("elem", arg)));
 	}
 }

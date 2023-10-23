@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/util/mergeObject.js";
 import { label } from "../../html/label.js";
 import { itemLabel as ItemLabel } from "../../interface/bootstrap/list/itemLabel.js";
@@ -79,6 +79,6 @@ export class itemLabel extends label {
 	constructor(elem: elem | elem[]);
 	constructor(attr: ItemLabel, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<ItemLabel>("elem", arg)));
+		super(convert(bsConstructor<ItemLabel>("elem", arg)));
 	}
 }

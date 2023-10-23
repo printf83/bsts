@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { div } from "../../html/div.js";
 import { btnclose } from "./btnclose.js";
@@ -31,6 +31,6 @@ export class header extends div {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Header, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Header>("elem", arg)));
+		super(convert(bsConstructor<Header>("elem", arg)));
 	}
 }

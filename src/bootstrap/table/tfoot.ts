@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { tfoot as HTfoot } from "../../html/tfoot.js";
 import { tfoot as Tfoot } from "../../interface/bootstrap/table/tfoot.js";
@@ -18,6 +18,6 @@ export class tfoot extends HTfoot {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Tfoot, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Tfoot>("elem", arg)));
+		super(convert(bsConstructor<Tfoot>("elem", arg)));
 	}
 }

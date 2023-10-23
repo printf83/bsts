@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { a } from "../../html/a.js";
 import { li } from "../../html/li.js";
 import { li as Li } from "../../interface/html/li.js";
@@ -28,6 +28,6 @@ export class item extends li {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Item, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Item>("elem", arg)));
+		super(convert(bsConstructor<Item>("elem", arg)));
 	}
 }

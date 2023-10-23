@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { div } from "../../html/div.js";
 import { responsive as Responsive } from "../../interface/bootstrap/table/responsive.js";
@@ -18,6 +18,6 @@ export class responsive extends div {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Responsive, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Responsive>("elem", arg)));
+		super(convert(bsConstructor<Responsive>("elem", arg)));
 	}
 }

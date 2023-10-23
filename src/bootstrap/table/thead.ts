@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { thead as HThead } from "../../html/thead.js";
 import { thead as Thead } from "../../interface/bootstrap/table/thead.js";
@@ -18,6 +18,6 @@ export class thead extends HThead {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Thead, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Thead>("elem", arg)));
+		super(convert(bsConstructor<Thead>("elem", arg)));
 	}
 }

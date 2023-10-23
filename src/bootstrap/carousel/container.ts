@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
+import { bsConstructor } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
 import { mergeObject } from "../../core/util/mergeObject.js";
 import * as indicators from "./indicators/_index.js";
@@ -115,6 +115,6 @@ export class container extends div {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Carousel, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Carousel>("elem", arg)));
+		super(convert(bsConstructor<Carousel>("elem", arg)));
 	}
 }
