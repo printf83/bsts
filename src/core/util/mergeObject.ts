@@ -1,4 +1,4 @@
-import { attr } from "../interface/core/attr.js";
+import { attr } from "../../interface/core/attr.js";
 import { mergeAttr } from "./mergeAttr.js";
 import { mergeClass } from "./mergeClass.js";
 

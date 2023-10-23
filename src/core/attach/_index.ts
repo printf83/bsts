@@ -1,16 +1,18 @@
-import { keyOfType } from "./../keyOfType.js";
-import { attachOther } from "./attachOther.js";
-import { attachHref } from "./attachHref.js";
-import { attachAria } from "./attachAria.js";
-import { attachData } from "./attachData.js";
-import { attachBoolean } from "./attachBoolean.js";
-import { attachBSAttr, attachBSClass } from "../bootstrap.js";
-import { attachBSTSClass } from "../bsts.js";
-import { attachEvent, hasBuildAndDestroyEvent } from "./attachEvent.js";
-import { attachStyle } from "./attachStyle.js";
-import { attachClass } from "./attachClass.js";
-import { attachAlias } from "./attachAlias.js";
+import { keyOfType } from "./../util/keyOfType.js";
+
 import { attr } from "../../interface/core/attr.js";
+import { attach as attachOther } from "./other.js";
+import { attach as attachHref } from "./href.js";
+import { attach as attachAria } from "./aria.js";
+import { attach as attachData } from "./data.js";
+import { attach as attachBoolean } from "./boolean.js";
+import { attach as attachBSTS } from "./bsts.js";
+import { attach as attachEvent, hasBuildAndDestroyEvent } from "./event.js";
+import { attach as attachStyle } from "./style.js";
+import { attach as attachClass } from "./class.js";
+import { attach as attachAlias } from "./alias.js";
+import { attach as attachBSAttr } from "./bsAttr.js";
+import { attach as attachBSClass } from "./bsClass.js";
 
 export type IAttachFn = (
 	key: string | undefined,
@@ -39,9 +41,9 @@ const attrFn: IAttachFn[] = [
 	attachBoolean,
 	attachData,
 	attachAria,
-	attachBSClass.attach,
-	attachBSAttr.attach,
-	attachBSTSClass.attach,
+	attachBSClass,
+	attachBSAttr,
+	attachBSTS,
 	attachEvent,
 	attachStyle,
 	attachClass,

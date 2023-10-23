@@ -1,5 +1,5 @@
-import { addEvent } from "../../core/eventManager.js";
-import { bstsConsole as console } from "../../core/console.js";
+import { addEvent } from "../../core/util/eventManager.js";
+import { bstsConsole as console } from "../../core/util/console.js";
 import { Tab as BSTab } from "bootstrap";
 
 export const init = (elem: string | Element) => {

@@ -1,9 +1,9 @@
-import { bsConstArg } from "../core/bootstrap.js";
+import { bsConstructor } from "../core/bootstrap.js";
 import { span } from "../html/span.js";
-import { mergeObject } from "../core/mergeObject.js";
-import { calcTimer } from "../core/calcTimer.js";
-import { UUID } from "../core/uuid.js";
-import { bstsConsole as console } from "../core/console.js";
+import { mergeObject } from "../core/util/mergeObject.js";
+import { calcTimer } from "../core/util/calcTimer.js";
+import { UUID } from "../core/util/uuid.js";
+import { bstsConsole as console } from "../core/util/console.js";
 import { timer as Timer } from "../interface/bootstrap/timer.js";
 
 const runTimer = (elem: Element, delay: number, callback?: Function) => {
@@ -49,62 +49,61 @@ export const initTimer = (elem: Element, callback?: Function) => {
 	runTimer(elem, 0, callback);
 };
 
-const convert = (attr: Timer) => {
-	const currentTime = new Date().getTime();
-
-	attr.time ??= currentTime;
-
-	if (attr.time <= currentTime) {
-		attr.callback = undefined;
-		delete attr.callback;
-	}
-
-	const callback = attr.callback;
-
-	if (attr.time) {
-		if (!isNaN(attr.time)) {
-			if (callback) {
-				attr = mergeObject(
-					{
-						data: { "bs-timer": attr.time },
-						on: {
-							build: (e) => {
-								const target = e.target as Element;
-								initTimer(target, callback);
-							},
-						},
-					},
-					attr
-				);
-			} else {
-				attr = mergeObject(
-					{
-						data: { "bs-timer": attr.time },
-						on: {
-							build: (e) => {
-								const target = e.target as Element;
-								initTimer(target);
-							},
-						},
-					},
-					attr
-				);
-			}
-		}
-	}
-
-	delete attr.callback;
-	delete attr.time;
-
-	return attr;
-};
-
 export class timer extends span {
 	constructor();
 	constructor(attr: Timer);
 	constructor(time: number);
 	constructor(attr: Timer, time: number);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Timer>("time", arg)));
+		super(bsConstructor<Timer>("time", arg));
+	}
+
+	convert(attr: Timer) {
+		const currentTime = new Date().getTime();
+
+		attr.time ??= currentTime;
+
+		if (attr.time <= currentTime) {
+			attr.callback = undefined;
+			delete attr.callback;
+		}
+
+		const callback = attr.callback;
+
+		if (attr.time) {
+			if (!isNaN(attr.time)) {
+				if (callback) {
+					attr = mergeObject(
+						{
+							data: { "bs-timer": attr.time },
+							on: {
+								build: (e) => {
+									const target = e.target as Element;
+									initTimer(target, callback);
+								},
+							},
+						},
+						attr
+					);
+				} else {
+					attr = mergeObject(
+						{
+							data: { "bs-timer": attr.time },
+							on: {
+								build: (e) => {
+									const target = e.target as Element;
+									initTimer(target);
+								},
+							},
+						},
+						attr
+					);
+				}
+			}
+		}
+
+		delete attr.callback;
+		delete attr.time;
+		return super.convert(attr);
 	}
 }

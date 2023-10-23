@@ -1,8 +1,8 @@
-import { camel2Dash } from "../camel2Dash.js";
-import { keyOfType } from "./../keyOfType.js";
+import { camel2Dash } from "../util/camel2Dash.js";
+import { keyOfType } from "../util/keyOfType.js";
 import { IAttachFn } from "./_index.js";
 
-export const attachStyle: IAttachFn = (key, elem, attr) => {
+export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
 	if (key === "style") {
 		if (attr && typeof attr.style !== "undefined") {

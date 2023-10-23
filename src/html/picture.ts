@@ -1,4 +1,4 @@
-import { tagConsArg, tag } from "../core/tag.js";
+import { tagConstructor, tag } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
 import { picture as Picture } from "../interface/html/picture.js";
 
@@ -8,6 +8,6 @@ export class picture extends tag {
 	constructor(attr: Picture);
 	constructor(attr: Picture, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super("picture", tagConsArg<Picture>("elem", arg));
+		super("picture", tagConstructor<Picture>("elem", arg));
 	}
 }

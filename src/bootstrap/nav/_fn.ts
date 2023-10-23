@@ -1,10 +1,10 @@
-import { mergeObject } from "../../core/mergeObject.js";
-import { UUID } from "../../core/uuid.js";
+import { mergeObject } from "../../core/util/mergeObject.js";
+import { UUID } from "../../core/util/uuid.js";
 import { container as contentContainer } from "./content/container.js";
 import { header } from "../card/header.js";
 import { containerNav } from "./header/containerNav.js";
 import { container as headerContainer } from "./header/container.js";
-import { mergeClass } from "../../core/mergeClass.js";
+import { mergeClass } from "../../core/util/mergeClass.js";
 import { container as TabContainer } from "../../interface/bootstrap/nav/_fn.js";
 import { container as ContentContainer } from "../../interface/bootstrap/nav/content/container.js";
 import { containerNav as ContainerNav } from "../../interface/bootstrap/nav/header/containerNav.js";

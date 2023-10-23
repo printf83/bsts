@@ -1,13 +1,8 @@
 import { attr } from "../../../interface/core/attr.js";
 import { elem } from "../../../interface/core/elem.js";
-import { bsConstArg } from "../../../core/bootstrap.js";
-import { mergeClass } from "../../../core/mergeClass.js";
+import { bsConstructor } from "../../../core/bootstrap.js";
+import { mergeClass } from "../../../core/util/mergeClass.js";
 import { div } from "../../../html/div.js";
-
-const convert = (attr: attr) => {
-	attr.class = mergeClass(attr.class, "carousel-indicators");
-	return attr;
-};
 
 export class container extends div {
 	constructor();
@@ -15,6 +10,12 @@ export class container extends div {
 	constructor(elem: elem | elem[]);
 	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg("elem", arg)));
+		super(bsConstructor("elem", arg));
+	}
+
+	convert(attr: attr) {
+		attr.class = mergeClass(attr.class, "carousel-indicators");
+
+		return super.convert(attr);
 	}
 }

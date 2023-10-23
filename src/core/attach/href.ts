@@ -7,7 +7,7 @@ interface IAttrHref extends attr {
 	href?: string;
 }
 
-export const attachHref: IAttachFn = (key, elem, attr: IAttrHref) => {
+export const attach: IAttachFn = (key, elem, attr: IAttrHref) => {
 	let changed = false;
 	if (key === "href") {
 		if (attr && typeof attr.href !== "undefined") {

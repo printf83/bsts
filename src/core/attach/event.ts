@@ -1,8 +1,8 @@
 import { attr } from "../../interface/core/attr.js";
-import { addEvent, ElementWithAbortController } from "../eventManager.js";
+import { addEvent, ElementWithAbortController } from "../util/eventManager.js";
 import { IAttachFn } from "./_index.js";
 
-export const attachEvent: IAttachFn = (key, elem, attr) => {
+export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
 	if (key === "on") {
 		if (attr && typeof attr.on !== "undefined") {

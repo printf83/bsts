@@ -1,20 +1,8 @@
 import { elem } from "../../interface/core/elem.js";
-import { bsConstArg } from "../../core/bootstrap.js";
-import { mergeClass } from "../../core/mergeClass.js";
+import { bsConstructor } from "../../core/bootstrap.js";
+import { mergeClass } from "../../core/util/mergeClass.js";
 import { tr as HTr } from "../../html/tr.js";
 import { tr as Tr } from "../../interface/bootstrap/table/tr.js";
-
-const convert = (attr: Tr) => {
-	attr.class = mergeClass(attr.class, [
-		attr.color ? `table-${attr.color}` : undefined,
-		attr.active ? "table-active" : undefined,
-	]);
-
-	delete attr.color;
-	delete attr.active;
-
-	return attr;
-};
 
 export class tr extends HTr {
 	constructor();
@@ -22,6 +10,17 @@ export class tr extends HTr {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Tr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstArg<Tr>("elem", arg)));
+		super(bsConstructor<Tr>("elem", arg));
+	}
+
+	convert(attr: Tr) {
+		attr.class = mergeClass(attr.class, [
+			attr.color ? `table-${attr.color}` : undefined,
+			attr.active ? "table-active" : undefined,
+		]);
+
+		delete attr.color;
+		delete attr.active;
+		return super.convert(attr);
 	}
 }

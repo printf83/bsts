@@ -1,5 +1,5 @@
 import { attr } from "../../interface/core/attr.js";
-import { UUID } from "../../core/uuid.js";
+import { UUID } from "../../core/util/uuid.js";
 import { div } from "../../html/div.js";
 import { input as TInput } from "../input.js";
 import { label } from "../label.js";

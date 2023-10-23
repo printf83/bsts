@@ -1,4 +1,4 @@
-import { tagConsArg, tag } from "../core/tag.js";
+import { tagConstructor, tag } from "../core/tag.js";
 import { attr } from "../interface/core/attr.js";
 import { elem } from "../interface/core/elem.js";
 
@@ -8,6 +8,6 @@ export class wbr extends tag {
 	constructor(attr: attr);
 	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super("wbr", tagConsArg("elem", arg));
+		super("wbr", tagConstructor("elem", arg));
 	}
 }

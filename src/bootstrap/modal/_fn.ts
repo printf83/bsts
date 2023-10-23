@@ -1,23 +1,21 @@
+import { Modal as BSModal } from "bootstrap";
 import { appendChild, removeElement } from "../../core/builder.js";
-import { addEvent, ElementWithAbortController } from "../../core/eventManager.js";
-import { mergeAttr } from "../../core/mergeAttr.js";
 import { isTag } from "../../core/tag.js";
-import { UUID } from "../../core/uuid.js";
+import { bstsConsole as console } from "../../core/util/console.js";
+import { ElementWithAbortController, addEvent } from "../../core/util/eventManager.js";
+import { mergeAttr } from "../../core/util/mergeAttr.js";
+import { UUID } from "../../core/util/uuid.js";
+import { btnItem, btnItemDB, btnType, customStyleButton } from "../../interface/bootstrap/modal/_fn.js";
+import { container as Container } from "../../interface/bootstrap/modal/container.js";
+import { bsType } from "../../interface/core/bsType.js";
+import { create as ICreate } from "../../interface/bootstrap/modal/_fn.js";
 import { button } from "../button.js";
 import { body } from "./body.js";
+import { btnclose } from "./btnclose.js";
 import { container } from "./container.js";
 import { footer } from "./footer.js";
 import { header } from "./header.js";
 import { title } from "./title.js";
-import { btnclose } from "./btnclose.js";
-import { bstsConsole as console } from "../../core/console.js";
-import { Modal as BSModal } from "bootstrap";
-import { btnItem, customStyleButton, btnType, btnItemDB } from "../../interface/bootstrap/modal/_fn.js";
-import { header as Header } from "../../interface/bootstrap/modal/header.js";
-import { container as Container } from "../../interface/bootstrap/modal/container.js";
-import { elem } from "../../interface/core/elem.js";
-import { attr } from "../../interface/core/attr.js";
-import { bsType } from "../../interface/core/bsType.js";
 
 export const init = (elem: string | Element, options?: Partial<BSModal.Options>) => {
 	return getOrCreateInstance(elem, options);
@@ -324,19 +322,7 @@ const genBtn = (customStyle?: customStyleButton, btn?: btnType | btnType[], fn?:
 	}
 };
 
-export interface Create extends Omit<Container, "title"> {
-	customStyle?: customStyleButton;
-	btn?: btnType | btnType[];
-	btnFn?: EventListener | EventListener[];
-	title?: elem | elem[];
-	elem?: elem | elem[];
-
-	attrHeader?: Header;
-	attrBody?: attr;
-	attrFooter?: attr;
-}
-
-export const Create = (attr: Create) => {
+export const Create = (attr: ICreate) => {
 	let contAttr = Object.assign({}, attr);
 
 	delete contAttr.customStyle;

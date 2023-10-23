@@ -1,4 +1,4 @@
-import { UUID } from "../../../core/uuid.js";
+import { UUID } from "../../../core/util/uuid.js";
 import { div } from "../../../html/div.js";
 import { label } from "../../label.js";
 import { textarea as TTextarea } from "../../textarea.js";
@@ -14,7 +14,7 @@ import {
 	genInvalidTooltip,
 	labelFloatingFeedbackManager,
 } from "../_fn.js";
-import { mergeObject } from "../../../core/mergeObject.js";
+import { mergeObject } from "../../../core/util/mergeObject.js";
 import { textarea as BTextarea } from "../../../interface/bootstrap/form/floatinglabel/textarea.js";
 import { textarea as ITextarea } from "../../../interface/bootstrap/textarea.js";
 

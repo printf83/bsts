@@ -1,6 +1,6 @@
 import { appendChild, removeElement } from "../../core/builder.js";
-import { addEvent, ElementWithAbortController } from "../../core/eventManager.js";
-import { UUID } from "../../core/uuid.js";
+import { addEvent, ElementWithAbortController } from "../../core/util/eventManager.js";
+import { UUID } from "../../core/util/uuid.js";
 import { btnclose } from "./btnclose.js";
 import { body } from "./body.js";
 import { header } from "./header.js";
@@ -10,12 +10,10 @@ import { item } from "./item.js";
 import { div } from "../../html/div.js";
 import { strong } from "../../html/strong.js";
 import { isTag } from "../../core/tag.js";
-import { bstsConsole as console } from "../../core/console.js";
+import { bstsConsole as console } from "../../core/util/console.js";
 import { Toast as BSToast } from "bootstrap";
 import { containerPlacement as ContainerPlacement } from "../../interface/bootstrap/toast/container.js";
-import { item as Item } from "../../interface/bootstrap/toast/item.js";
-import { elem } from "../../interface/core/elem.js";
-import { bsType } from "../../interface/core/bsType.js";
+import { create as ICreate } from "../../interface/bootstrap/toast/_fn.js";
 
 export const init = (elem: string | Element, options?: Partial<BSToast.Options>) => {
 	return getOrCreateInstance(elem, options);
@@ -120,18 +118,7 @@ export const show = (itemOrElem: item | Element | string, placement?: ContainerP
 	}
 };
 
-export interface Create {
-	elem: elem | elem[];
-	animation?: boolean;
-	color?: bsType.textBgColor;
-	btnclosewhite?: boolean;
-	delay?: number;
-	atomic?: boolean;
-	live?: Item["live"];
-	title?: elem | elem[];
-}
-
-export const Create = (attr: Create) => {
+export const Create = (attr: ICreate) => {
 	let defaultBtnCloseWhite = false;
 	switch (attr.color) {
 		case "dark":

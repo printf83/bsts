@@ -1,18 +1,19 @@
-import { bsConsNoElemArg } from "../core/bootstrap.js";
+import { bsConstructorNoElement } from "../core/bootstrap.js";
 import { div } from "../html/div.js";
-import { mergeClass } from "../core/mergeClass.js";
-import { attr } from "../interface/core/attr.js";
+import { mergeClass } from "../core/util/mergeClass.js";
 
-const convert = (attr: attr) => {
-	attr.class = mergeClass(attr.class, ["vr"]);
-	attr.elem = ` `; //" ";
-	return attr;
-};
+import { attr } from "../interface/core/attr.js";
 
 export class verticalrule extends div {
 	constructor();
 	constructor(attr: attr);
 	constructor(...arg: any[]) {
-		super(bsConsNoElemArg(convert, arg));
+		super(bsConstructorNoElement(arg));
+	}
+
+	convert(attr: attr) {
+		attr.class = mergeClass(attr.class, ["vr"]);
+		attr.elem = ` `; //" ";
+		return super.convert(attr);
 	}
 }
