@@ -1,4 +1,4 @@
-import { tag } from "../../core/tag.js";
-import { html } from "../../core/html.js";
+import { tag } from "./tag.js";
+import { html } from "./html.js";
 
 export type elem = number | string | tag | html;
