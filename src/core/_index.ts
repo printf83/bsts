@@ -21,7 +21,7 @@ import {
 } from "./util/removePopoup.js";
 
 import { documentReady } from "./documentReady.js";
-import { placeholder } from "./placeholder.js";
+import { placeholder } from "./util/placeholder.js";
 import { isAttr, isTag, tag, tagConsArg, tagConsNoElemArg } from "./tag.js";
 import { camel2Dash } from "./util/camel2Dash.js";
 import { elemInfo } from "./util/elemInfo.js";
