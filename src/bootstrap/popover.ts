@@ -7,101 +7,96 @@ import { Popover as BSPopover } from "bootstrap";
 import { popover as Popover } from "../interface/bootstrap/popover.js";
 import { elem } from "../interface/core/elem.js";
 
-const convert = (attr: Popover) => {
-	attr.inline ??= true;
-	attr.autoInit ??= true;
-
-	let JDelay: string | undefined = undefined;
-	if (attr.showDelay && attr.hideDelay) {
-		JDelay = JSON.stringify({ show: attr.showDelay, hide: attr.hideDelay });
-	} else if (attr.showDelay && !attr.hideDelay) {
-		JDelay = JSON.stringify({ show: attr.showDelay });
-	} else if (!attr.showDelay && attr.hideDelay) {
-		JDelay = JSON.stringify({ hide: attr.hideDelay });
-	}
-	attr = mergeObject(
-		{
-			display: attr.inline ? "inline-block" : attr.display,
-			tabindex: "0",
-			data: {
-				"bs-toggle": attr.autoInit ? "popover" : undefined,
-				"bs-custom-class": attr.customClass,
-				"bs-title": attr.title,
-				"bs-content": attr.content,
-				"bs-container": attr.parent,
-				"bs-placement": attr.placement,
-				"bs-trigger": attr.trigger
-					? Array.isArray(attr.trigger)
-						? attr.trigger.join(" ")
-						: attr.trigger
-					: undefined,
-				"bs-html": attr.allowHtml === true ? "true" : undefined,
-				"bs-animation": attr.animation === false ? "false" : undefined,
-				"bs-allow-list": JSON.stringify(attr.allowList),
-				"bs-boundary": attr.boundary,
-				"bs-delay": attr.delay ? attr.delay.toString() : JDelay,
-				"bs-fallback-placement": attr.fallbackPlacement
-					? Array.isArray(attr.fallbackPlacement)
-						? attr.fallbackPlacement.join(" ")
-						: attr.fallbackPlacement
-					: undefined,
-				"bs-offset": attr.viewOffset
-					? Array.isArray(attr.viewOffset)
-						? attr.viewOffset.join(",")
-						: attr.viewOffset
-					: undefined,
-				"bs-popper-config": attr.popperConfig ? JSON.stringify(attr.popperConfig) : undefined,
-				"bs-sanitize": attr.sanitize ? (attr.sanitize === true ? "true" : "false") : undefined,
-				"bs-sanitize-fn": attr.sanitizeFn,
-				"bs-selector": attr.selector ? attr.selector : undefined,
-				"bs-template": attr.template,
-			},
-			on: {
-				build: (e) => {
-					const target = e.target as Element;
-					popover.init(target);
-				},
-			},
-		},
-		attr
-	);
-
-	delete attr.inline;
-	delete attr.trigger;
-	delete attr.title;
-	delete attr.content;
-	delete attr.placement;
-	delete attr.customClass;
-	delete attr.parent;
-	delete attr.allowHtml;
-	delete attr.autoInit;
-	delete attr.allowList;
-	delete attr.animation;
-	delete attr.boundary;
-	delete attr.showDelay;
-	delete attr.hideDelay;
-	delete attr.delay;
-	delete attr.fallbackPlacement;
-	delete attr.viewOffset;
-	delete attr.popperConfig;
-	delete attr.sanitize;
-	delete attr.sanitizeFn;
-	delete attr.selector;
-	delete attr.template;
-
-	return attr;
-};
-
 export class popover extends span {
 	constructor();
 	constructor(attr: Popover);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Popover, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstructor<Popover>("elem", arg)));
+		super(bsConstructor<Popover>("elem", arg));
 	}
 
 	convert(attr: Popover) {
+		attr.inline ??= true;
+		attr.autoInit ??= true;
+
+		let JDelay: string | undefined = undefined;
+		if (attr.showDelay && attr.hideDelay) {
+			JDelay = JSON.stringify({ show: attr.showDelay, hide: attr.hideDelay });
+		} else if (attr.showDelay && !attr.hideDelay) {
+			JDelay = JSON.stringify({ show: attr.showDelay });
+		} else if (!attr.showDelay && attr.hideDelay) {
+			JDelay = JSON.stringify({ hide: attr.hideDelay });
+		}
+		attr = mergeObject(
+			{
+				display: attr.inline ? "inline-block" : attr.display,
+				tabindex: "0",
+				data: {
+					"bs-toggle": attr.autoInit ? "popover" : undefined,
+					"bs-custom-class": attr.customClass,
+					"bs-title": attr.title,
+					"bs-content": attr.content,
+					"bs-container": attr.parent,
+					"bs-placement": attr.placement,
+					"bs-trigger": attr.trigger
+						? Array.isArray(attr.trigger)
+							? attr.trigger.join(" ")
+							: attr.trigger
+						: undefined,
+					"bs-html": attr.allowHtml === true ? "true" : undefined,
+					"bs-animation": attr.animation === false ? "false" : undefined,
+					"bs-allow-list": JSON.stringify(attr.allowList),
+					"bs-boundary": attr.boundary,
+					"bs-delay": attr.delay ? attr.delay.toString() : JDelay,
+					"bs-fallback-placement": attr.fallbackPlacement
+						? Array.isArray(attr.fallbackPlacement)
+							? attr.fallbackPlacement.join(" ")
+							: attr.fallbackPlacement
+						: undefined,
+					"bs-offset": attr.viewOffset
+						? Array.isArray(attr.viewOffset)
+							? attr.viewOffset.join(",")
+							: attr.viewOffset
+						: undefined,
+					"bs-popper-config": attr.popperConfig ? JSON.stringify(attr.popperConfig) : undefined,
+					"bs-sanitize": attr.sanitize ? (attr.sanitize === true ? "true" : "false") : undefined,
+					"bs-sanitize-fn": attr.sanitizeFn,
+					"bs-selector": attr.selector ? attr.selector : undefined,
+					"bs-template": attr.template,
+				},
+				on: {
+					build: (e) => {
+						const target = e.target as Element;
+						popover.init(target);
+					},
+				},
+			},
+			attr
+		);
+
+		delete attr.inline;
+		delete attr.trigger;
+		delete attr.title;
+		delete attr.content;
+		delete attr.placement;
+		delete attr.customClass;
+		delete attr.parent;
+		delete attr.allowHtml;
+		delete attr.autoInit;
+		delete attr.allowList;
+		delete attr.animation;
+		delete attr.boundary;
+		delete attr.showDelay;
+		delete attr.hideDelay;
+		delete attr.delay;
+		delete attr.fallbackPlacement;
+		delete attr.viewOffset;
+		delete attr.popperConfig;
+		delete attr.sanitize;
+		delete attr.sanitizeFn;
+		delete attr.selector;
+		delete attr.template;
 		return super.convert(attr);
 	}
 

@@ -119,99 +119,94 @@ const fnElem = (
 	);
 };
 
-const convert = (attr: Pill) => {
-	let tElem: elem | elem[];
-	let tAttr: Pill = attr;
-
-	if (attr && typeof attr.icon !== "undefined") {
-		if (attr.elem) {
-			//default position
-			attr.iconPosition ??= "start";
-
-			//append icon base on position
-			switch (attr.iconPosition) {
-				case "start":
-					tElem = new small({ display: "flex", alignItem: "center" }, [
-						fnIcon(attr.color, attr.iconPosition, attr.rounded, attr.type, attr.icon),
-						fnElem(attr.color, attr.iconPosition, attr.rounded, attr.elem),
-					]);
-					break;
-				case "end":
-					tElem = new small({ display: "flex", alignItem: "center" }, [
-						fnElem(attr.color, attr.iconPosition, attr.rounded, attr.elem),
-						fnIcon(attr.color, attr.iconPosition, attr.rounded, attr.type, attr.icon),
-					]);
-					break;
-				case "top":
-					tElem = new div({ display: "inline-block" }, [
-						fnRow(fnIcon(attr.color, attr.iconPosition, attr.rounded, attr.type, attr.icon)),
-						fnRow(fnElem(attr.color, attr.iconPosition, attr.rounded, attr.elem)),
-					]);
-					break;
-				case "bottom":
-					tElem = new div({ display: "inline-block" }, [
-						fnRow(fnElem(attr.color, attr.iconPosition, attr.rounded, attr.elem)),
-						fnRow(fnIcon(attr.color, attr.iconPosition, attr.rounded, attr.type, attr.icon)),
-					]);
-					break;
-				default:
-					throw new Error("Unknow iconPosition");
-			}
-		} else {
-			if (attr.icon) {
-				if (typeof attr.icon === "string") {
-					attr.icon = { id: attr.icon } as Icon;
-				}
-
-				if (isAttr<Icon>(attr.icon)) {
-					tElem = new icon(attr.icon);
-				} else {
-					tElem = attr.icon;
-				}
-			} else {
-				tElem = "";
-			}
-		}
-	} else {
-		if (attr.elem) {
-			tElem = attr.elem;
-		} else {
-			tElem = "Label";
-		}
-	}
-
-	delete tAttr.icon;
-	delete tAttr.iconPosition;
-	delete tAttr.color;
-	delete tAttr.rounded;
-
-	delete attr.elem;
-
-	attr.elem = tElem;
-
-	attr = mergeObject(
-		{
-			display: "inline-block",
-			fontSize: attr.weight ? (attr.weight === "md" ? 5 : 4) : 6,
-		},
-		attr
-	);
-
-	delete attr.weight;
-
-	return attr;
-};
-
 export class pill extends small {
 	constructor();
 	constructor(text: string);
 	constructor(attr: Pill);
 	constructor(attr: Pill, text: string);
 	constructor(...arg: any[]) {
-		super(convert(bsConstructor("elem", arg)));
+		super(bsConstructor("elem", arg));
 	}
 
 	convert(attr: Pill) {
+		let tElem: elem | elem[];
+		let tAttr: Pill = attr;
+
+		if (attr && typeof attr.icon !== "undefined") {
+			if (attr.elem) {
+				//default position
+				attr.iconPosition ??= "start";
+
+				//append icon base on position
+				switch (attr.iconPosition) {
+					case "start":
+						tElem = new small({ display: "flex", alignItem: "center" }, [
+							fnIcon(attr.color, attr.iconPosition, attr.rounded, attr.type, attr.icon),
+							fnElem(attr.color, attr.iconPosition, attr.rounded, attr.elem),
+						]);
+						break;
+					case "end":
+						tElem = new small({ display: "flex", alignItem: "center" }, [
+							fnElem(attr.color, attr.iconPosition, attr.rounded, attr.elem),
+							fnIcon(attr.color, attr.iconPosition, attr.rounded, attr.type, attr.icon),
+						]);
+						break;
+					case "top":
+						tElem = new div({ display: "inline-block" }, [
+							fnRow(fnIcon(attr.color, attr.iconPosition, attr.rounded, attr.type, attr.icon)),
+							fnRow(fnElem(attr.color, attr.iconPosition, attr.rounded, attr.elem)),
+						]);
+						break;
+					case "bottom":
+						tElem = new div({ display: "inline-block" }, [
+							fnRow(fnElem(attr.color, attr.iconPosition, attr.rounded, attr.elem)),
+							fnRow(fnIcon(attr.color, attr.iconPosition, attr.rounded, attr.type, attr.icon)),
+						]);
+						break;
+					default:
+						throw new Error("Unknow iconPosition");
+				}
+			} else {
+				if (attr.icon) {
+					if (typeof attr.icon === "string") {
+						attr.icon = { id: attr.icon } as Icon;
+					}
+
+					if (isAttr<Icon>(attr.icon)) {
+						tElem = new icon(attr.icon);
+					} else {
+						tElem = attr.icon;
+					}
+				} else {
+					tElem = "";
+				}
+			}
+		} else {
+			if (attr.elem) {
+				tElem = attr.elem;
+			} else {
+				tElem = "Label";
+			}
+		}
+
+		delete tAttr.icon;
+		delete tAttr.iconPosition;
+		delete tAttr.color;
+		delete tAttr.rounded;
+
+		delete attr.elem;
+
+		attr.elem = tElem;
+
+		attr = mergeObject(
+			{
+				display: "inline-block",
+				fontSize: attr.weight ? (attr.weight === "md" ? 5 : 4) : 6,
+			},
+			attr
+		);
+
+		delete attr.weight;
 		return super.convert(attr);
 	}
 }

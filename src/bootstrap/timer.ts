@@ -49,66 +49,61 @@ export const initTimer = (elem: Element, callback?: Function) => {
 	runTimer(elem, 0, callback);
 };
 
-const convert = (attr: Timer) => {
-	const currentTime = new Date().getTime();
-
-	attr.time ??= currentTime;
-
-	if (attr.time <= currentTime) {
-		attr.callback = undefined;
-		delete attr.callback;
-	}
-
-	const callback = attr.callback;
-
-	if (attr.time) {
-		if (!isNaN(attr.time)) {
-			if (callback) {
-				attr = mergeObject(
-					{
-						data: { "bs-timer": attr.time },
-						on: {
-							build: (e) => {
-								const target = e.target as Element;
-								initTimer(target, callback);
-							},
-						},
-					},
-					attr
-				);
-			} else {
-				attr = mergeObject(
-					{
-						data: { "bs-timer": attr.time },
-						on: {
-							build: (e) => {
-								const target = e.target as Element;
-								initTimer(target);
-							},
-						},
-					},
-					attr
-				);
-			}
-		}
-	}
-
-	delete attr.callback;
-	delete attr.time;
-
-	return attr;
-};
-
 export class timer extends span {
 	constructor();
 	constructor(attr: Timer);
 	constructor(time: number);
 	constructor(attr: Timer, time: number);
 	constructor(...arg: any[]) {
-		super(convert(bsConstructor<Timer>("time", arg)));
+		super(bsConstructor<Timer>("time", arg));
 	}
 
 	convert(attr: Timer) {
+		const currentTime = new Date().getTime();
+
+		attr.time ??= currentTime;
+
+		if (attr.time <= currentTime) {
+			attr.callback = undefined;
+			delete attr.callback;
+		}
+
+		const callback = attr.callback;
+
+		if (attr.time) {
+			if (!isNaN(attr.time)) {
+				if (callback) {
+					attr = mergeObject(
+						{
+							data: { "bs-timer": attr.time },
+							on: {
+								build: (e) => {
+									const target = e.target as Element;
+									initTimer(target, callback);
+								},
+							},
+						},
+						attr
+					);
+				} else {
+					attr = mergeObject(
+						{
+							data: { "bs-timer": attr.time },
+							on: {
+								build: (e) => {
+									const target = e.target as Element;
+									initTimer(target);
+								},
+							},
+						},
+						attr
+					);
+				}
+			}
+		}
+
+		delete attr.callback;
+		delete attr.time;
 		return super.convert(attr);
 	}
 }
