@@ -2,15 +2,15 @@ import { mergeObject } from "./util/mergeObject.js";
 import { isAttr } from "./tag.js";
 import { attr } from "../interface/core/attr.js";
 
-export const bsConstructorNoElement = <T extends attr>(fn: <T extends attr>(attr: T) => attr, arg?: any[]) => {
+export const bsConstructorNoElement = <T extends attr>(arg?: any[]) => {
 	if (arg) {
 		if (arg.length === 1) {
-			return fn(arg[0] as T);
+			return arg[0] as T;
 		} else {
-			return fn({});
+			return {};
 		}
 	} else {
-		return fn({});
+		return {};
 	}
 };
 

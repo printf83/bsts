@@ -8,61 +8,60 @@ import { ScrollSpy as BSScrollSpy } from "bootstrap";
 import { scrollspy as Scrollspy } from "../interface/bootstrap/scrollspy.js";
 import { elem } from "../interface/core/elem.js";
 
-const convert = (attr: Scrollspy) => {
-	attr.initDelay ??= 1000;
-	attr.id ??= UUID();
-
-	const initDelay = attr.initDelay;
-
-	attr = mergeObject(
-		{
-			data: {
-				// "bs-spy": "scroll", //manually init the scrollspy by bsts
-				"bs-target": attr.target,
-				"bs-smooth-scroll": attr.smooth ? "true" : undefined,
-				"bs-root-margin": attr.rootMargin,
-			},
-			on: {
-				build: (e) => {
-					const target = e.target as Element;
-					const id = target.id;
-
-					if (initDelay) {
-						setTimeout(
-							(id: string) => {
-								const target = document.getElementById(id);
-								if (target) {
-									scrollspy.init(target as Element);
-								}
-							},
-							initDelay,
-							id
-						);
-					} else {
-						scrollspy.init(document.getElementById(id) as Element);
-					}
-				},
-			},
-			tabindex: attr.tabindex || "0",
-		},
-		attr
-	);
-
-	delete attr.initDelay;
-	delete attr.target;
-	delete attr.smooth;
-	delete attr.rootMargin;
-
-	return attr;
-};
-
 export class scrollspy extends div {
 	constructor();
 	constructor(attr: Scrollspy);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Scrollspy, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstructor<Scrollspy>("elem", arg)));
+		super(bsConstructor<Scrollspy>("elem", arg));
+	}
+
+	convert(attr: Scrollspy) {
+		attr.initDelay ??= 1000;
+		attr.id ??= UUID();
+
+		const initDelay = attr.initDelay;
+
+		attr = mergeObject(
+			{
+				data: {
+					// "bs-spy": "scroll", //manually init the scrollspy by bsts
+					"bs-target": attr.target,
+					"bs-smooth-scroll": attr.smooth ? "true" : undefined,
+					"bs-root-margin": attr.rootMargin,
+				},
+				on: {
+					build: (e) => {
+						const target = e.target as Element;
+						const id = target.id;
+
+						if (initDelay) {
+							setTimeout(
+								(id: string) => {
+									const target = document.getElementById(id);
+									if (target) {
+										scrollspy.init(target as Element);
+									}
+								},
+								initDelay,
+								id
+							);
+						} else {
+							scrollspy.init(document.getElementById(id) as Element);
+						}
+					},
+				},
+				tabindex: attr.tabindex || "0",
+			},
+			attr
+		);
+
+		delete attr.initDelay;
+		delete attr.target;
+		delete attr.smooth;
+		delete attr.rootMargin;
+		return super.convert(attr);
 	}
 
 	static init = (elem: Element | string, options?: Partial<BSScrollSpy.Options>) => {

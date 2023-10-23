@@ -36,6 +36,7 @@ import { tooltip } from "./tooltip.js";
 import { visuallyhidden } from "./visuallyhidden.js";
 import { timer } from "./timer.js";
 import * as calendar from "./calendar.js";
+import { ul } from "./ul.js";
 
 export {
 	form,
@@ -72,6 +73,7 @@ export {
 	pagination,
 	pill,
 	table,
+	ul,
 	scrollspy,
 	spinner,
 	timer,

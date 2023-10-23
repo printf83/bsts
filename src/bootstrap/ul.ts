@@ -1,8 +1,7 @@
 import { tagConstructor, tag } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
 import { mergeClass } from "../core/util/mergeClass.js";
-import { li } from "./li.js";
-import { ul as Ul } from "../interface/html/ul.js";
+import { ul as Ul } from "../interface/bootstrap/ul.js";
 
 export class ul extends tag {
 	constructor();
@@ -19,19 +18,8 @@ export class ul extends tag {
 			attr.inline ? "list-inline" : undefined,
 		]);
 
-		if (attr.item && !attr.elem) {
-			if (!Array.isArray(attr.item)) {
-				attr.item = [attr.item];
-			}
-
-			attr.elem = attr.item.map((i) => {
-				return new li(i);
-			});
-		}
-
 		delete attr.unstyle;
 		delete attr.inline;
-		delete attr.item;
 
 		return super.convert(attr);
 	}

@@ -4,17 +4,18 @@ import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { h6 } from "../../html/h6.js";
 
-const convert = (attr: attr) => {
-	attr.class = mergeClass(attr.class, "card-subtitle");
-	return attr;
-};
-
 export class subtitle extends h6 {
 	constructor();
 	constructor(attr: attr);
 	constructor(elem: elem | elem[]);
 	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstructor("elem", arg)));
+		super(bsConstructor("elem", arg));
+	}
+
+	convert(attr: attr) {
+		attr.class = mergeClass(attr.class, "card-subtitle");
+
+		return super.convert(attr);
 	}
 }

@@ -5,17 +5,18 @@ import { mergeClass } from "../core/util/mergeClass.js";
 
 import { div } from "../html/div.js";
 
-const convert = (attr: attr) => {
-	attr.class = mergeClass(attr.class, "form-floating");
-	return attr;
-};
-
 export class formfloating extends div {
 	constructor();
 	constructor(attr: attr);
 	constructor(elem: elem | elem[]);
 	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstructor("elem", arg)));
+		super(bsConstructor("elem", arg));
+	}
+
+	convert(attr: attr) {
+		attr.class = mergeClass(attr.class, "form-floating");
+
+		return super.convert(attr);
 	}
 }

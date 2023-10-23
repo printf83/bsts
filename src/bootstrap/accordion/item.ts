@@ -4,17 +4,18 @@ import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { div } from "../../html/div.js";
 
-const convert = (attr: attr) => {
-	attr.class = mergeClass(attr.class, "accordion-item");
-	return attr;
-};
-
 export class item extends div {
 	constructor();
 	constructor(attr: attr);
 	constructor(elem: elem | elem[]);
 	constructor(attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstructor("elem", arg)));
+		super(bsConstructor("elem", arg));
+	}
+
+	convert(attr: attr) {
+		attr.class = mergeClass(attr.class, "accordion-item");
+
+		return super.convert(attr);
 	}
 }

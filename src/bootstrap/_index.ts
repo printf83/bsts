@@ -45,6 +45,7 @@ import { verticalrule } from "./verticalrule.js";
 import { visuallyhidden } from "./visuallyhidden.js";
 import { timer, initTimer } from "./timer.js";
 import { calendar } from "./calendar.js";
+import { ul } from "./ul.js";
 
 export {
 	blockquote,
@@ -93,6 +94,7 @@ export {
 	verticalrule,
 	spinner,
 	timer,
+	ul,
 	initTimer,
 	calendar,
 };

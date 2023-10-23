@@ -3,30 +3,29 @@ import { mergeObject } from "../../../core/util/mergeObject.js";
 import { span } from "../../../html/span.js";
 import { button as BToggle } from "../../offcanvas/button.js";
 import { bsConstructor } from "../../../core/bootstrap.js";
-import { button as IToggle } from "../../../interface/bootstrap/offcanvas/button.js";
-
-const convert = (attr: IToggle) => {
-	attr = mergeObject(
-		{
-			defColor: false,
-			class: "navbar-toggler",
-			padding: 2,
-			border: false,
-			elem: attr.elem ? attr.elem : new span({ class: "navbar-toggler-icon" }),
-			aria: { expanded: "false", label: "Toggle navigation" },
-		},
-		attr
-	);
-
-	return attr;
-};
+import { button as Offcanvas } from "../../../interface/bootstrap/offcanvas/button.js";
 
 export class offcanvas extends BToggle {
 	constructor();
-	constructor(attr: IToggle);
+	constructor(attr: Offcanvas);
 	constructor(elem: elem | elem[]);
-	constructor(attr: IToggle, elem: elem | elem[]);
+	constructor(attr: Offcanvas, elem: elem | elem[]);
 	constructor(...arg: any[]) {
-		super(convert(bsConstructor<IToggle>("elem", arg)));
+		super(bsConstructor<Offcanvas>("elem", arg));
+	}
+
+	convert(attr: Offcanvas) {
+		attr = mergeObject(
+			{
+				defColor: false,
+				class: "navbar-toggler",
+				padding: 2,
+				border: false,
+				elem: attr.elem ? attr.elem : new span({ class: "navbar-toggler-icon" }),
+				aria: { expanded: "false", label: "Toggle navigation" },
+			},
+			attr
+		);
+		return super.convert(attr);
 	}
 }
