@@ -4,7 +4,7 @@ import { elem } from "../interface/core/elem.js";
 import { attr } from "../interface/core/attr.js";
 
 export class tag implements ITag {
-	public istag = true;
+	public isbsts = true;
 
 	public tag: string = "div";
 	public elem?: elem | elem[];
@@ -13,8 +13,6 @@ export class tag implements ITag {
 	constructor();
 	constructor(tag: string);
 	constructor(tag: string, attr: attr);
-	constructor(tag: string, elem: elem | elem[]);
-	constructor(tag: string, attr: attr, elem: elem | elem[]);
 	constructor(...arg: any[]) {
 		if (arg) {
 			if (arg.length === 1) {
@@ -22,32 +20,11 @@ export class tag implements ITag {
 			} else if (arg.length === 2) {
 				this.tag = arg[0];
 
-				if (isAttr<attr>(arg[1])) {
-					this.elem = arg[1].elem;
-
-					delete arg[1].elem;
-					this.attr = this.convert(arg[1]);
-
-					if (this.attr.elem) {
-						this.elem = this.attr.elem;
-						delete this.attr.elem;
-					} else {
-						this.elem = arg[2];
-					}
-				} else {
-					this.elem = arg[1];
-				}
-			} else if (arg.length === 3) {
-				delete arg[1].elem;
-
-				this.tag = arg[0];
 				this.attr = this.convert(arg[1]);
 
-				if (this.attr.elem) {
+				if (this.attr && this.attr.elem) {
 					this.elem = this.attr.elem;
 					delete this.attr.elem;
-				} else {
-					this.elem = arg[2];
 				}
 			} else {
 				this.tag = "div";
