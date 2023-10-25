@@ -35,6 +35,6 @@ export class item extends li {
 		} else {
 			liAttr.elem = new button(attr);
 		}
-		return super.convert(attr);
+		return super.convert(liAttr);
 	}
 }

@@ -39,37 +39,6 @@ export class tag implements ITag {
 	}
 }
 
-// export class tag implements ITag {
-// 	public isbsts = true;
-
-// 	public tag: string = "div";
-// 	public elem?: elem | elem[];
-// 	public attr?: attr;
-
-// 	constructor();
-// 	constructor(tag: string);
-// 	constructor(tag: string, attr?: attr);
-// 	constructor(...arg: any[]) {
-// 		if (arg) {
-// 			if (arg.length === 1) {
-// 				this.tag = arg[0];
-// 			} else if (arg.length === 2) {
-// 				this.tag = arg[0];
-
-// 				if (arg[1]) {
-// 					this.elem = arg[1].elem;
-// 					delete arg[1].elem;
-// 					this.attr = arg[1];
-// 				}
-// 			} else {
-// 				this.tag = "div";
-// 			}
-// 		} else {
-// 			this.tag = "div";
-// 		}
-// 	}
-// }
-
 export const isTag = <T>(obj: any): obj is T => {
 	return typeof obj === "object" && !Array.isArray(obj) && "isbsts" in obj && obj["isbsts"] === true;
 };
