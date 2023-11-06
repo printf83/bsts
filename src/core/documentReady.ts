@@ -1,45 +1,14 @@
 import { style } from "../html/style.js";
 import { appendChild } from "./builder.js";
-import { main } from "./css/main.js";
-import { btnToggle } from "./css/btnToggle.js";
-import { calendar } from "./css/calendar.js";
-import { dropdownMenuStyle } from "./css/dropdownMenuStyle.js";
-import { svgInLinkAndButton } from "./css/svgInLinkAndButton.js";
-import { tableResponsive } from "./css/tableResponsive.js";
 import { bstsConsole as console } from "./util/console.js";
 import { ElementWithAbortController, removeEvent } from "./util/eventManager.js";
 import { observeMutationObserver } from "./util/mutationObserverManager.js";
-import { animation } from "./css/animation.js";
-import { transform } from "./css/transform.js";
-import { colorExtend } from "./css/colorExtend.js";
-import { borderWidthExtend } from "./css/borderWidthExtend.js";
-import { fontItalicExtend } from "./css/fontItalicExtend.js";
-import { textDecorationExtend } from "./css/textDecorationExtend.js";
-import { fontWeightExtend } from "./css/fontWeightExtend.js";
+import { extendedBootstrapCSS } from "./css/_index.js";
 
 //set css on document ready
 const setCSS = () => {
-	const css = [
-		btnToggle,
-		dropdownMenuStyle,
-		svgInLinkAndButton,
-		tableResponsive("bs-title-name"),
-		main,
-		colorExtend(),
-		borderWidthExtend(),
-		fontItalicExtend(),
-		textDecorationExtend(),
-		fontWeightExtend(),
-		calendar,
-		animation(),
-		transform(),
-	].join("\n");
-
 	if (!document.getElementById("bsts-css-container")) {
-		appendChild(
-			document.head,
-			new style({ id: "bsts-css-container" }, css.replace(/(\r\n|\n|\r)/gm, "").replace(/^\t+/gm, ""))
-		);
+		appendChild(document.head, new style({ id: "bsts-css-container" }, extendedBootstrapCSS()));
 	}
 };
 
