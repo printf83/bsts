@@ -382,6 +382,7 @@ export const Create = (attr: ICreate) => {
 								gap: 2,
 								paddingBottom: 3,
 								borderNone: "top",
+								rounded: "bottom-4",
 							},
 							attr.attrFooter
 						),
