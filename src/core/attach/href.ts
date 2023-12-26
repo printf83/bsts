@@ -7,6 +7,11 @@ interface IAttrHref extends attr {
 	href?: string;
 }
 
+/**
+ * Attaches a handler for the 'href' attribute.
+ * Checks if href is present on attr and handles converting '#' to void link.
+ * Returns object with updated attr, elem and changed flag.
+ */
 export const attach: IAttachFn = (key, elem, attr: IAttrHref) => {
 	let changed = false;
 	if (key === "href") {

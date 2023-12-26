@@ -178,17 +178,26 @@ const formatDB: {
 
 let allowPropDB: (string | undefined)[] = [];
 
-const allowValue = <T extends string | number | boolean>(
+/**
+ * Checks if a value is included in the provided array of allowed values.
+ * Used to validate if a value is allowed for a property.
+ */
+function allowValue<T extends string | number | boolean>(
 	valueToCheck: string | number | boolean,
 	listOfPossible: (string | number | boolean)[]
-): valueToCheck is T => {
+): valueToCheck is T {
 	if (listOfPossible && listOfPossible.length > 0) {
 		return listOfPossible.indexOf(valueToCheck) > -1;
 	}
 	return false;
-};
+}
 
-const allowProp = (key?: string) => {
+/**
+ * Checks if the given key is allowed as a property.
+ * Populates the allowPropDB array with valid property names if it is empty.
+ * Returns the key if it is valid, null otherwise.
+ */
+function allowProp(key?: string) {
 	if (key) {
 		if (allowPropDB.length === 0) {
 			allowPropDB = Object.keys(formatDB);
@@ -200,9 +209,14 @@ const allowProp = (key?: string) => {
 	}
 
 	return null;
-};
+}
 
-const addClass = (rule: bsClassFormatter | undefined, data: string | number | boolean, elem: Element) => {
+/**
+ * Adds a class to the given element by following the provided formatting rule.
+ * Checks if the data value is allowed by the rule's allowed values.
+ * Applies the rule's format strings to add the appropriate class.
+ */
+function addClass(rule: bsClassFormatter | undefined, data: string | number | boolean, elem: Element) {
 	if (rule && rule.value && allowValue(data, rule.value)) {
 		if (rule.formatValue) {
 			elem = addClassIntoElement(elem, rule.formatValue!);
@@ -218,8 +232,14 @@ const addClass = (rule: bsClassFormatter | undefined, data: string | number | bo
 	}
 
 	return elem;
-};
+}
 
+/**
+ * Attaches formatting rules to the given element based on the provided
+ * attribute key and value. Checks that the key is valid, gets the
+ * corresponding formatting rule, checks that the value is allowed, and
+ * adds classes to the element according to the rule's format strings.
+ */
 export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
 
