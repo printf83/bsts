@@ -1,4 +1,22 @@
 let tableResponsiveDB: string | undefined = undefined;
+/**
+ * Generates responsive CSS for tables to show on small screens.
+ *
+ * On small screens:
+ * - Hides table header.
+ * - Converts rows to vertical layout.
+ * - Converts cells to grid layout.
+ * - Shows cell label before cell content.
+ *
+ * Customizations:
+ * - title: Table title for selector. Default: "bs-title-name".
+ * - --bs-responsive-columns: Grid columns for cells. Default: auto-fit.
+ * - --bs-responsive-columns-xs: Grid columns for cells on xs screens. Default: 1.
+ *
+ * Usage:
+ * - Add attribute data-bs-responsive-title="myTable" to table.
+ * - Add data-myTable="labelText" to cells.
+ */
 export const tableResponsive = (title?: string) => {
 	if (tableResponsiveDB) {
 		return tableResponsiveDB;

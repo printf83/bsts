@@ -1,3 +1,6 @@
+/**
+ * Defines CSS animations.
+ */
 export const animation = () => {
 	/*  Animation
     ------------------------*/

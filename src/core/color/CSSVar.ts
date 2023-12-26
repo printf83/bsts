@@ -1,5 +1,10 @@
 import { bstsConsole as console } from "../util/console.js";
 
+/**
+ * Converts a hex color value to HSL (hue, saturation, lightness).
+ * Handles conversion from 3 or 6 digit hex colors, with optional alpha channel.
+ * Returns HSL object with h,s,l properties on scale of 0-1.
+ */
 export const hexToHSL = (hex?: string, alpha?: number) => {
 	const val = hexToRGB(hex, alpha);
 	if (val) {
@@ -36,6 +41,11 @@ export const hexToHSL = (hex?: string, alpha?: number) => {
 	}
 };
 
+/**
+ * Converts an HSL color value to RGB.
+ * Handles converting HSL values on scales of 0-100 to RGB values on scale of 0-255.
+ * Returns RGB object with r, g, b properties for the RGB values, plus optional alpha.
+ */
 export const hslToRGB = (hsl: { h: number; s: number; l: number }, alpha?: number) => {
 	hsl.s /= 100;
 	hsl.l /= 100;
@@ -50,6 +60,10 @@ export const hslToRGB = (hsl: { h: number; s: number; l: number }, alpha?: numbe
 	};
 };
 
+/**
+ * Converts an HSL color value to a hex RGB string.
+ * Handles optional alpha channel.
+ */
 export const hslToHex = (hsl: { h: number; s: number; l: number }, alpha?: number) => {
 	const rgb = hslToRGB(hsl, alpha);
 
@@ -60,6 +74,11 @@ export const hslToHex = (hsl: { h: number; s: number; l: number }, alpha?: numbe
 	}
 };
 
+/**
+ * Checks if a hex color value is considered "dark" based on its relative luminance.
+ * Converts the hex value to RGB, calculates the relative luminance, and compares it to a threshold.
+ * Returns true if the relative luminance is below the threshold, indicating a "dark" color.
+ */
 export const hexIsDark = (hex?: string, luma?: number) => {
 	luma ??= 135; //155
 
@@ -72,6 +91,11 @@ export const hexIsDark = (hex?: string, luma?: number) => {
 	}
 };
 
+/**
+ * Converts a hex color value to an RGB object.
+ * Handles shorthand hex values and converts hex channel values to decimal 0-255 range.
+ * Returns an object with r, g, b properties for the RGB values. Handles optional alpha channel.
+ */
 export const hexToRGB = (hex?: string, alpha?: number) => {
 	if (hex) {
 		var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
@@ -98,6 +122,13 @@ export const hexToRGB = (hex?: string, alpha?: number) => {
 	}
 };
 
+/**
+ * Converts an RGB color value to a hex color code.
+ * Handles RGB strings with 1 to 3 comma-separated values,
+ * converting each value to 0-255 range.
+ * Returns the hex code string, including leading '#' character.
+ * If invalid RGB value, returns default "#000000".
+ */
 export const RGBToHex = (rgb?: string) => {
 	if (rgb) {
 		let v = rgb.replace(/^rgba?\(|\s+|\)$/g, "").split(",");
@@ -122,6 +153,12 @@ export const RGBToHex = (rgb?: string) => {
 	}
 };
 
+/**
+ * Sets the value of a CSS custom property (variable) on the specified selector (default is :root).
+ * @param variableName - The name of the CSS custom property to set
+ * @param value - The value to set for the custom property
+ * @param selector - Optional - The selector to set the custom property on (default is :root)
+ */
 export const setCSSVar = (variableName: string, value: string, selector?: string) => {
 	let root = document.querySelector(selector ? selector : ":root") as HTMLStyleElement;
 	if (root) {
@@ -132,6 +169,12 @@ export const setCSSVar = (variableName: string, value: string, selector?: string
 	}
 };
 
+/**
+ * Gets the value of a CSS custom property (variable) from the specified selector (default is :root).
+ * Searches for the selector and returns the computed value for the given variable name.
+ * If selector is not found, falls back to :root selector.
+ * Returns undefined if variable or selector cannot be found.
+ */
 export const getCSSVar = (variableName: string, selector?: string) => {
 	let root = document.querySelector(selector ? selector : ":root") as HTMLStyleElement;
 	if (root) {
@@ -148,6 +191,12 @@ export const getCSSVar = (variableName: string, selector?: string) => {
 	}
 };
 
+/**
+ * Gets the hex color value of a CSS custom property (variable).
+ * Searches for the variable value on the specified selector (default is :root)
+ * and converts it to a hex color string.
+ * Returns undefined if variable or selector cannot be found.
+ */
 export const getCSSVarHexColor = (variableName: string, selector?: string) => {
 	const value = getCSSVar(variableName, selector);
 	if (value) {
@@ -157,6 +206,12 @@ export const getCSSVarHexColor = (variableName: string, selector?: string) => {
 	}
 };
 
+/**
+ * Gets the RGB color value of a CSS custom property (variable).
+ * Searches for the variable value on the specified selector (default is :root)
+ * and converts it to an RGB color object.
+ * Returns undefined if variable or selector cannot be found.
+ */
 export const getCSSVarRgbColor = (variableName: string, alpha?: number, selector?: string) => {
 	const value = getCSSVar(variableName, selector);
 	if (value) {
@@ -166,6 +221,12 @@ export const getCSSVarRgbColor = (variableName: string, alpha?: number, selector
 	}
 };
 
+/**
+ * Gets the RGB color value of a CSS custom property (variable).
+ * Searches for the variable value on the specified selector (default is :root)
+ * and converts it to an RGB color object.
+ * Returns undefined if variable or selector cannot be found.
+ */
 export const getCSSVarRgb = (variableName: string, alpha?: number, selector?: string) => {
 	const value = getCSSVar(variableName, selector);
 	if (value) {
@@ -175,6 +236,11 @@ export const getCSSVarRgb = (variableName: string, alpha?: number, selector?: st
 	}
 };
 
+/**
+ * Converts a CSS custom property value to a hex color string.
+ * Handles values that are already hex colors or rgb/rgba strings.
+ * Returns undefined if the input value cannot be converted.
+ */
 export const varToHexColor = (value?: string) => {
 	if (value) {
 		if (value.startsWith("#")) {
@@ -187,6 +253,11 @@ export const varToHexColor = (value?: string) => {
 	}
 };
 
+/**
+ * Converts a CSS custom property value to an RGB color object.
+ * Handles values that are hex colors, rgb/rgba strings, or undefined.
+ * Returns an RGB color object or undefined if the input cannot be converted.
+ */
 export const varToRgb = (value?: string, alpha?: number) => {
 	if (value) {
 		if (value.startsWith("#")) {
@@ -205,10 +276,20 @@ export const varToRgb = (value?: string, alpha?: number) => {
 	}
 };
 
+/**
+ * Converts a CSS custom property value to an RGB color object,
+ * then converts the RGB color object to a CSS rgb()/rgba() string.
+ * Useful for using a CSS variable value as a dynamic CSS color.
+ */
 export const varToRgbColor = (value: string, alpha?: number) => {
 	return rgbToColor(varToRgb(value, alpha));
 };
 
+/**
+ * Converts an RGBA color object to a CSS rgb() or rgba() string
+ * based on whether the alpha value is defined.
+ * Handles converting the RGBA values to strings with correct commas and parentheses.
+ */
 export const rgbToColor = (rgba?: { r: number; g: number; b: number; a?: number }) => {
 	if (rgba) {
 		if (rgba.a) {

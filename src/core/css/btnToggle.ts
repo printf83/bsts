@@ -1,3 +1,18 @@
+/*
+btnToggle.ts defines CSS styles for toggle buttons.
+
+It includes styles for:
+
+- .btn-toggle - Base toggle button styles like padding, font styling, etc.
+
+- .btn-toggle:hover - Hover styles to change background color.
+
+- .btn-toggle::before - SVG icon before toggle button to show its state.
+
+- [data-bs-theme="dark"] - Dark mode icon color. 
+
+- .btn-toggle[aria-expanded="true"] - Rotate icon when expanded.
+*/
 export const btnToggle = `
 /* 
 src/core/css/btnToggle.ts 

@@ -1,3 +1,8 @@
+/*
+Sets the cursor to be a pointer when hovering over SVG icons 
+inside links and buttons. This allows users to distinguish that 
+the SVG is clickable.
+*/
 export const svgInLinkAndButton = `
 /* 
 src/core/css/svgInLinkAndButton.ts 

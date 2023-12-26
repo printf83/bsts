@@ -587,17 +587,30 @@ const formatDB: {
 
 let allowPropDB: (string | undefined)[] = [];
 
-const allowValue = <T extends string | number | boolean>(
+/**
+ * Checks if a given value matches one of the allowed values.
+ *
+ * @param valueToCheck - The value to check.
+ * @param listOfPossible - The list of allowed values.
+ * @returns True if the value matches one of the allowed values, false otherwise.
+ */
+function allowValue<T extends string | number | boolean>(
 	valueToCheck: string | number | boolean,
 	listOfPossible: (string | number | boolean)[]
-): valueToCheck is T => {
+): valueToCheck is T {
 	if (listOfPossible && listOfPossible.length > 0) {
 		return listOfPossible.indexOf(valueToCheck) > -1;
 	}
 	return false;
-};
+}
 
-const allowProp = (key?: string) => {
+/**
+ * Checks if the given key is allowed to be used for formatting.
+ *
+ * @param key - The key to check.
+ * @returns The key if it is allowed, null otherwise.
+ */
+function allowProp(key?: string) {
 	if (key) {
 		if (allowPropDB.length === 0) {
 			allowPropDB = Object.keys(formatDB);
@@ -609,9 +622,16 @@ const allowProp = (key?: string) => {
 	}
 
 	return null;
-};
+}
 
-const addClass = (rule: bsClassFormatter | undefined, data: string | number | boolean, elem: Element) => {
+/**
+ * Adds a class to the provided element based on the given rule and data value.
+ *
+ * @param rule - The formatting rule to use.
+ * @param data - The data value to check.
+ * @param elem - The element to add the class to.
+ */
+function addClass(rule: bsClassFormatter | undefined, data: string | number | boolean, elem: Element) {
 	if (rule && rule.value && allowValue(data, rule.value)) {
 		if (rule.formatValue) {
 			elem = addClassIntoElement(elem, rule.formatValue!);
@@ -627,8 +647,14 @@ const addClass = (rule: bsClassFormatter | undefined, data: string | number | bo
 	}
 
 	return elem;
-};
+}
 
+/**
+ * Attaches formatting classes to the provided element based on the given attribute key and value(s).
+ * Checks that the key is allowed, gets the matching formatter, checks if value matches formatter rules,
+ * and adds appropriate classes to the element. Removes handled attributes from the attr object.
+ * Returns object with updated attr, elem, and changed flag.
+ */
 export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
 	let allowKey = allowProp(key);
