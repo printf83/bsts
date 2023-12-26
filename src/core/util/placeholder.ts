@@ -2,6 +2,11 @@ import { span } from "../../html/span.js";
 import { bsType } from "../../interface/core/bsType.js";
 import { rndBetween } from "../util/rndBetween.js";
 
+/**
+ * Generates placeholder content of random length between min and max,
+ * with random bootstrap column classes between minCol and maxCol.
+ * Returns array of Span elements containing the placeholder content.
+ */
 export const placeholder = (
 	min: number,
 	max: number,

@@ -2,6 +2,14 @@ import { attr } from "../../interface/core/attr.js";
 import { mergeAttr } from "./mergeAttr.js";
 import { mergeClass } from "./mergeClass.js";
 
+/**
+ * Merges two attr objects together deeply, giving priority to properties in
+ * source. Handles merging class, style, aria, data, and on specially.
+ *
+ * @param target - The target attr object to merge into
+ * @param source - The source attr object to merge from
+ * @returns The merged attr object
+ */
 export const mergeObject = <T extends attr>(target?: T, source?: T): T | never => {
 	if (target) {
 		if (source) {
