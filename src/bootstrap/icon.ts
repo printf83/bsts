@@ -2,7 +2,7 @@ import { bsConstructor } from "../core/bootstrap.js";
 import { elem } from "../interface/core/elem.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { i } from "../html/i.js";
-import { icon as Icon, iconType } from "../interface/bootstrap/icon.js";
+import { icon as Icon } from "../interface/bootstrap/icon.js";
 
 const bubbleEvent = (event: Event) => {
 	event.preventDefault();
@@ -20,7 +20,7 @@ const bubbleEvent = (event: Event) => {
 	}
 };
 
-const genStaticIcon = (t: iconType, i: string, a?: Icon) => {
+const genStaticIcon = (t: Icon["type"], i: string, a?: Icon) => {
 	if (a) {
 		delete a.type;
 		delete a.id;
