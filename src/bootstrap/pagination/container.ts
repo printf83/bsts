@@ -2,7 +2,7 @@ import { bsConstructor } from "../../core/bootstrap.js";
 import { replaceWith } from "../../core/builder.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { nav } from "../../html/nav.js";
-import { ul } from "../../html/ul.js";
+import { ul } from "../../bootstrap/ul.js";
 import { container as Container } from "../../interface/bootstrap/pagination/container.js";
 import { attr } from "../../interface/core/attr.js";
 import { elem } from "../../interface/core/elem.js";
@@ -29,7 +29,7 @@ function pagingOnChange(attr: Container, sender: Element) {
 	}
 }
 
-const genElem = (attr: Container) => {
+const genElem = (attr: Container): attr => {
 	if (attr.total && !attr.elem) {
 		attr.firstLast ??= true;
 		attr.nextPrev ??= true;
@@ -217,7 +217,7 @@ const genElem = (attr: Container) => {
 	delete attr.firstLabel;
 	delete attr.lastLabel;
 
-	return attr;
+	return attr as attr;
 };
 
 export class container extends nav {
@@ -256,10 +256,11 @@ export class container extends nav {
 			delete attr.firstLabel;
 			delete attr.lastLabel;
 
-			navAttr.elem = new ul(attr);
+			navAttr.elem = new ul(attr as attr);
 		} else {
 			navAttr.elem = new ul(genElem(attr));
 		}
+
 		return super.convert(navAttr);
 	}
 }
