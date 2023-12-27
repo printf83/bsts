@@ -12,7 +12,14 @@ import { del } from "../../html/del.js";
 import { mark } from "../../html/mark.js";
 import { tag } from "../tag.js";
 
-const markupCode = (k: string, str: string) => {
+/**
+ * Parses a markup string containing formatting tags and returns the corresponding HTML elements.
+ * Accepts a string of formatting tags (b, u, i, etc) and a content string.
+ * Loops through the tags, creating the appropriate HTML elements for each.
+ * Escapes the content string for security.
+ * Returns null if the tag string is invalid.
+ */
+function markupCode(k: string, str: string) {
 	if (k.match(/^[buickdms]*$/gm)) {
 		let res: tag | null = null;
 		let ks = k.split("");
@@ -90,12 +97,40 @@ const markupCode = (k: string, str: string) => {
 	}
 
 	return null;
-};
+}
 
-const escapeMarkup = (str: string) => {
+/**
+ * Escapes special markup characters in a string to prevent them from being interpreted.
+ *
+ * Replaces:
+ * - `{` with `/{\`
+ * - `}` with `}/`
+ * - `:` with `/:`
+ *
+ * This allows using `{{}}` markup without it being parsed.
+ *
+ * @param str - The string to escape.
+ * @returns The escaped string.
+ */
+function escapeMarkup(str: string) {
 	return str.replace(/\/{\//g, "{").replace(/\/}\//g, "}").replace(/\/:\//g, ":");
-};
+}
 
+/**
+ * Parses a string for custom markup syntax and converts it into DOM elements.
+ *
+ * Looks for `{{}}` tags in the string and parses them into different DOM elements based on the syntax:
+ *
+ * - `{{br}}` converts to a <br> element.
+ * - `{{hr}}` converts to a <hr> element.
+ * - `{{nav:path}}` converts to an <a> element for internal navigation.
+ * - `{{url::text}}` converts to an <a> element linking to the url.
+ * - Otherwise, converts to a <code> element with the inner text.
+ *
+ * Escapes any `{` `}` `:` characters to prevent them being parsed as markup.
+ *
+ * Returns an array of DOM elements and plain text strings.
+ */
 export const markup = (str: string) => {
 	let reg = /\{\{(.*?)}\}/gm;
 	if (str.match(reg)) {

@@ -1,7 +1,17 @@
 import { bsTypeA } from "../../interface/core/bsTypeA.js";
 
 let fontItalicExtendDB: string | undefined = undefined;
-export const fontItalicExtend = () => {
+/**
+ * Generates CSS rules to apply font-style: italic/normal
+ * based on values in bsTypeA.fontItalic config.
+ *
+ * Defines CSS custom properties for italic/normal.
+ * Loops through bsTypeA.fontItalic config array
+ * and generates CSS rules for .fst-{active/hover/focus}-{italic/normal}
+ * selectors to apply the respective font-style property.
+ *
+ * Returns generated CSS as a string.
+ */ export const fontItalicExtend = () => {
 	if (fontItalicExtendDB) {
 		return fontItalicExtendDB;
 	} else {

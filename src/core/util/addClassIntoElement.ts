@@ -1,6 +1,14 @@
 import { removeEmptyArray } from "./removeEmptyArray.js";
 import { bstsConsole as console } from "./console.js";
 
+/**
+ * Manages the provided class value, handling cases like:
+ * - Value is a string vs array
+ * - Removing empty/undefined values
+ * - Splitting space-separated class strings into array
+ *
+ * Returns a cleaned array of class name strings.
+ */
 export const manageClass = (value: string | undefined | (string | undefined)[]): string[] => {
 	let result: string[] = [];
 	let t: (string | undefined)[];
@@ -43,6 +51,12 @@ export const manageClass = (value: string | undefined | (string | undefined)[]):
 	return result && result.length > 0 ? result : [];
 };
 
+/**
+ * Adds the provided class(es) to the given element.
+ * Handles input as string or array, removes empty values,
+ * and splits space-separated class strings into array.
+ * Returns the updated element.
+ */
 export const addClassIntoElement = (elem: Element, value: string | undefined | (string | undefined)[]): Element => {
 	try {
 		let i = manageClass(value);

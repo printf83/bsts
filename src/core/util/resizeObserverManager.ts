@@ -1,12 +1,21 @@
 import { bstsConsole as console } from "./console.js";
 import { UUID } from "./uuid.js";
 
+/**
+ * Extends HTMLElement to add a ResizeObserver property.
+ * Allows associating a ResizeObserver instance with an element.
+ */
 export class ElementWithResizeObserver extends HTMLElement {
 	constructor(public ResizeObserver?: ResizeObserver) {
 		super();
 	}
 }
 
+/**
+ * Disconnects the ResizeObserver instance associated with the given element,
+ * if one exists. For string selectors, disconnects the ResizeObserver from all
+ * matching elements.
+ */
 export const disconnectResizeObserver = (elem: string | Element | ElementWithResizeObserver) => {
 	if (typeof elem === "string") {
 		let e = document.querySelectorAll(elem);
@@ -29,6 +38,11 @@ export const disconnectResizeObserver = (elem: string | Element | ElementWithRes
 	}
 };
 
+/**
+ * Disconnects the ResizeObserver instance associated with the given element,
+ * if one exists. For string selectors, disconnects the ResizeObserver from all
+ * matching elements.
+ */
 export const unobserveResizeObserver = (elem: string | Element | ElementWithResizeObserver) => {
 	if (typeof elem === "string") {
 		let e = document.querySelectorAll(elem);
@@ -48,6 +62,17 @@ export const unobserveResizeObserver = (elem: string | Element | ElementWithResi
 	}
 };
 
+/**
+ * Observes the given element with a ResizeObserver, invoking the callback
+ * function when the element's size changes.
+ *
+ * For string selectors, observes all matching elements.
+ *
+ * @param elem The element or selector to observe
+ * @param callback The callback function to invoke on size changes
+ * @param options Optional ResizeObserver options
+ * @param arg Optional extra arguments to pass to the callback
+ */
 export const observeResizeObserver = (
 	elem: string | Element | ElementWithResizeObserver,
 	callback: (entry: ResizeObserverEntry[], observer: ResizeObserver, arg?: any[]) => void,

@@ -1,6 +1,13 @@
 import { bsTypeA } from "../../interface/core/bsTypeA.js";
 
 let borderWidthExtendDB: string | undefined = undefined;
+/**
+ * Extends Bootstrap's border width variables and classes for active, hover and focus states.
+ *
+ * Defines CSS custom properties for border widths from 1-5px.
+ * Generates utility classes like `.border-active-3` for applying a 3px border on active state.
+ * Allows control of border width on interaction states independently of static border width.
+ */
 export const borderWidthExtend = () => {
 	if (borderWidthExtendDB) {
 		return borderWidthExtendDB;

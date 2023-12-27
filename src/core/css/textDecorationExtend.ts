@@ -1,6 +1,15 @@
 import { bsTypeA } from "../../interface/core/bsTypeA.js";
 
 let textDecorationExtendDB: string | undefined = undefined;
+/**
+ * Generates CSS custom properties and classes for text decoration styles.
+ *
+ * Creates CSS custom properties for Bootstrap's supported text decoration
+ * values (underline, line-through, none).
+ *
+ * Also generates modifier classes for applying text decorations on
+ * active, hover and focus states.
+ */
 export const textDecorationExtend = () => {
 	if (textDecorationExtendDB) {
 		return textDecorationExtendDB;

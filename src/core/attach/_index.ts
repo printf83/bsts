@@ -51,6 +51,17 @@ const attrFn: IAttachFn[] = [
 	attachOther,
 ];
 
+/**
+ * Attaches attributes to the given element based on the given attribute
+ * object. It handles various special cases like events, styles, classes etc.
+ *
+ * It loops through the keys in the attribute object, and passes each key/value
+ * pair through the attrFn array of handler functions. This allows each handler
+ * to transform the attribute as needed.
+ *
+ * The element and updated attribute object are returned after being mutated
+ * by the handler functions.
+ */
 export const attachAttr = (elem: Element, attr: attr): Element => {
 	if (attr) {
 		let d = Object.assign({}, attr);
