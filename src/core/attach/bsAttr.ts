@@ -84,7 +84,13 @@ const formatDB: {
 
 let allowPropDB: (string | undefined)[] = [];
 
-const allowProp = (key?: string) => {
+/**
+ * Checks if the given key is allowed as a property name.
+ * Returns the key if allowed, null otherwise.
+ *
+ * Checks against a global allow list of allowed property names.
+ */
+function allowProp(key?: string) {
 	if (key) {
 		if (allowPropDB.length === 0) {
 			allowPropDB = Object.keys(formatDB);
@@ -96,16 +102,36 @@ const allowProp = (key?: string) => {
 	}
 
 	return null;
-};
+}
 
-const addAttr = (rule: IFormat | undefined, data: string | number | boolean, elem: Element) => {
+/**
+ * Applies a formatting rule to an element.
+ *
+ * @param rule - The formatting rule to apply.
+ * @param data - The data to pass to the formatting rule.
+ * @param elem - The element to apply the rule to.
+ * @returns The updated element.
+ */
+function addAttr(rule: IFormat | undefined, data: string | number | boolean, elem: Element) {
 	if (rule) {
 		elem = rule(elem, data);
 	}
 
 	return elem;
-};
+}
 
+/**
+ * Applies formatting rules from the formatDB object to the given element,
+ * based on the provided attribute key-value pairs.
+ *
+ * Checks if the key is allowed, gets the corresponding format rule,
+ * extracts the data from the attributes, and applies the rule to the element.
+ *
+ * Removes handled attributes from the attribute object after applying the rule.
+ *
+ * Returns an object indicating the updated attribute object, element,
+ * and whether any changes were made.
+ */
 export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
 	let allowKey = allowProp(key);

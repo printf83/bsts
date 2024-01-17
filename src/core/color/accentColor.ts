@@ -2,7 +2,16 @@ import { style } from "../../html/style.js";
 import { hexIsDark, hexToHSL, hexToRGB, hslToHex } from "./CSSVar.js";
 import { appendChild, replaceWith } from "../builder.js";
 
-const getHSLDistance = (fromHex: string, toHex: string) => {
+/**
+ * Calculates the HSL distance between two hex color values.
+ *
+ * Takes two hex color strings, converts them to HSL, and returns the
+ * numeric difference between the H, S, and L values.
+ *
+ * Returns an object with `h`, `s`, and `l` properties representing the
+ * distance between the colors in the HSL color space.
+ */
+function getHSLDistance(fromHex: string, toHex: string) {
 	const fromHSL = hexToHSL(fromHex);
 	const toHSL = hexToHSL(toHex);
 
@@ -19,9 +28,14 @@ const getHSLDistance = (fromHex: string, toHex: string) => {
 			l: 0,
 		};
 	}
-};
+}
 
-const addDistanceHex = (hex: string, distanceHSL: { h: number; s: number; l: number }) => {
+/**
+ * Adjusts the provided hex color by the given HSL distance.
+ * Converts the hex color to HSL, adds the distance HSL values,
+ * and converts back to hex.
+ */
+function addDistanceHex(hex: string, distanceHSL: { h: number; s: number; l: number }) {
 	const HSL = hexToHSL(hex);
 
 	if (HSL) {
@@ -61,20 +75,32 @@ const addDistanceHex = (hex: string, distanceHSL: { h: number; s: number; l: num
 			l: 0,
 		};
 	}
-};
+}
 
+/**
+ * Adjusts the provided hex color by the HSL distance between two reference colors.
+ * Converts the main hex color to HSL, gets the HSL distance between it and the reference color,
+ * adds that distance to the provided hex color's HSL, and converts back to hex.
+ */
 export const calcHex = (mainHex: string, refHex: string, hex: string) => {
 	return hslToHex(addDistanceHex(hex, getHSLDistance(mainHex, refHex)));
 };
 
-const calcFontHex = (hex: string, light: string = "#fff", dark: string = "#000") => {
+/**
+ * Calculates the font color (either light or dark) to use for the given background color hex.
+ * Returns the light color if the background hex is dark, else returns the dark color.
+ */
+function calcFontHex(hex: string, light: string = "#fff", dark: string = "#000") {
 	return hexIsDark(hex) ? light : dark;
-};
+}
 
-const getRGBString = (hex: string) => {
+/**
+ * Converts a hex color string to an RGB color string.
+ */
+function getRGBString(hex: string) {
 	const rgb = hexToRGB(hex);
 	return `${rgb?.r},${rgb?.g},${rgb?.b}`;
-};
+}
 
 export const dark = (hex: string, light: string = "#fff", dark: string = "#000") => {
 	//:root, [data-bs-theme=light]
@@ -1267,6 +1293,11 @@ export const body = (hex: string) => {
 	`;
 };
 
+/**
+ * Calculates the body text color for light and dark themes based on the given accent color hex value.
+ * Uses a base body background color and default body text colors for light and dark themes.
+ * Returns an object with the calculated hex values for light and dark body text colors.
+ */
 export const getBodyColor = (hex: string) => {
 	const baseColor = "#ffffff"; //--bs-body-bg
 	const bsBodyColor = calcHex(baseColor, "#212529", hex); //--bs-body-color
@@ -1275,6 +1306,13 @@ export const getBodyColor = (hex: string) => {
 	return { light: bsBodyColor, dark: bsDarkBodyColor };
 };
 
+/**
+ * Applies CSS rules to the document by creating or updating a style element.
+ *
+ * Accepts the CSS string to apply and an optional ID of an existing element to update.
+ * If no ID is provided, it will create a new style element with a default ID.
+ * Checks if an element with the ID already exists, and either updates it or creates a new one.
+ */
 export const apply = (css: string, id?: string) => {
 	id ??= "bsts-custom-var-container";
 

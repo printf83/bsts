@@ -5,6 +5,17 @@ import { mergeObject } from "../core/util/mergeObject.js";
 import { a as A } from "../interface/html/a.js";
 import { elem } from "../interface/core/elem.js";
 
+/**
+ * The a class extends the tag class and is used to generate <a> elements.
+ *
+ * It accepts the same constructor arguments as the tag class, as well as an
+ * A interface for attributes. The convert() method handles converting the
+ * A interface into actual attributes, including handling class names based
+ * on the color, stretched, and disabled properties.
+ *
+ * Disabled links have the href removed and aria-disabled added. The color
+ * and stretched properties are also deleted before calling the tag convert().
+ */
 export class a extends tag {
 	constructor();
 	constructor(elem: elem | elem[]);

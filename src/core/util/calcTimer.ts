@@ -1,3 +1,21 @@
+/**
+ * Calculates a relative timer message and next timer interval
+ * based on the provided timestamp and the current time.
+ *
+ * Compares the provided timestamp to the current time to determine
+ * if the timestamp is in the past, present, or future.
+ *
+ * For past timestamps, calculates the time difference to determine
+ * the appropriate relative message (e.g. "5 minutes ago").
+ *
+ * For future timestamps, calculates the time difference to determine
+ * the appropriate relative message (e.g. "5 minutes").
+ *
+ * Also calculates the next interval for a timer based on the time
+ * difference.
+ *
+ * Returns an object with the relative message and next timer interval.
+ */
 export const calcTimer = (datevalue: number) => {
 	let t1 = new Date().getTime();
 	let t2 = datevalue;

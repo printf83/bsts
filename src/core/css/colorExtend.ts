@@ -1,6 +1,10 @@
 import { bsTypeA } from "../../interface/core/bsTypeA.js";
 
 let colorExtendDB: string | undefined = undefined;
+/**
+ * Generates CSS classes for applying Bootstrap theme colors on :hover, :focus, :active states.
+ * Includes background, text and border color utilities.
+ */
 export const colorExtend = () => {
 	if (colorExtendDB) {
 		return colorExtendDB;

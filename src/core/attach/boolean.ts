@@ -35,6 +35,11 @@ const formatDB = [
 	"truespeed",
 ];
 
+/**
+ * Attaches boolean attributes to the element if the key exists in the
+ * formatDB array. Checks if the attribute is truthy and sets the attribute
+ * to the key name if so. Handles special case for 'indeterminate' on checkbox.
+ */
 export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
 

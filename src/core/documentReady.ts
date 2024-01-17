@@ -5,13 +5,26 @@ import { ElementWithAbortController, removeEvent } from "./util/eventManager.js"
 import { observeMutationObserver } from "./util/mutationObserverManager.js";
 import { extendedBootstrapCSS } from "./css/_index.js";
 
-//set css on document ready
+/**
+ * Sets CSS styles on the document by concatenating an array of CSS snippets and appending them to the document head.
+ *
+ * Joins an array of CSS snippet functions, removes newlines, trims whitespace, and appends the resulting CSS string
+ * to a style element in the document head with the ID "bsts-css-container". If that element doesn't exist yet, it will be created.
+ *
+ * This allows modularization and lazy-loading of CSS while bundling it efficiently into a single style element.
+ */
 const setCSS = () => {
 	if (!document.getElementById("bsts-css-container")) {
 		appendChild(document.head, new style({ id: "bsts-css-container" }, extendedBootstrapCSS()));
 	}
 };
 
+/**
+ * Dispatches a 'destroy' event on the given element if it has the 'bs-destroy-event' class.
+ * Removes any event listeners added by this module from the element as well.
+ *
+ * @param elem - The element to dispatch the event on.
+ */
 const dispatchDestroyEvent = (elem: Element) => {
 	if (elem.nodeType !== 3) {
 		if (elem.classList.contains("bs-destroy-event")) {
@@ -21,6 +34,13 @@ const dispatchDestroyEvent = (elem: Element) => {
 	}
 };
 
+/**
+ * Dispatches a 'build' event on the given element if it has the 'bs-build-event' class.
+ * Removes the 'bs-build-event' class after dispatching the event.
+ * Dispatches the event on all child elements with the 'bs-build-event' class as well.
+ *
+ * @param elem - The element to dispatch the event on.
+ */
 const dispatchBuildEvent = (elem: Element) => {
 	if (elem.nodeType !== 3) {
 		const listOfElem = elem.getElementsByClassName("bs-build-event");
@@ -39,6 +59,10 @@ const dispatchBuildEvent = (elem: Element) => {
 };
 
 //setup DOMInserted
+/**
+ * Sets up a mutation observer on the document element to dispatch 'build' and
+ * 'destroy' events on elements as they are added/removed from the DOM.
+ */
 const setupDOMWatcher = () => {
 	observeMutationObserver(
 		document.documentElement,
@@ -66,6 +90,11 @@ const setupDOMWatcher = () => {
 };
 
 //documentReady
+/**
+ * Checks if the provided document is loaded and ready,
+ * and executes the callback function if so.
+ * If not ready, logs an error and still executes callback.
+ */
 const elemReady = (doc: Document, callback: Function) => {
 	if (doc.readyState != "loading") {
 		callback();
@@ -75,6 +104,12 @@ const elemReady = (doc: Document, callback: Function) => {
 	}
 };
 
+/**
+ * documentReady sets up various initialization tasks to run after
+ * the document has loaded. It takes a callback function to execute after
+ * initialization. This exported function ensures the callback is only
+ * executed once, even if called multiple times.
+ */
 let documentReadyTrigged = false;
 export const documentReady = (callback: Function) => {
 	if (!documentReadyTrigged) {

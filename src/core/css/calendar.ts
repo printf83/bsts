@@ -1,3 +1,10 @@
+/*
+Calendar styling CSS for the calendar component. 
+
+Styles day grid items, hover states, selected date ranges, and today's date. Uses Bootstrap utility classes and CSS custom properties.
+
+Exports the calendar CSS as a CSS template literal.
+*/
 export const calendar = `
 /* 
 src/core/css/calendar.ts 

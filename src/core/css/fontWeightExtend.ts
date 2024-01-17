@@ -1,6 +1,13 @@
 import { bsTypeA } from "../../interface/core/bsTypeA.js";
 
 let fontWeightExtendDB: string | undefined = undefined;
+/*
+Exports a function that generates CSS rules to extend Bootstrap's font weight variables.
+
+- Defines CSS custom properties for Bootstrap font weights.
+- Generates active, hover and focus state rules for each font weight.
+- Caches the generated CSS in a module variable to avoid re-generating on each call.
+*/
 export const fontWeightExtend = () => {
 	if (fontWeightExtendDB) {
 		return fontWeightExtendDB;

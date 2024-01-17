@@ -10,6 +10,15 @@ const formatDB: { [key: string]: string } = {
 	attrHeight: "height",
 };
 
+/**
+ * Attach a data attribute to the DOM element.
+ *
+ * This takes a key, DOM element, and data attributes object. It will look up the key in the formatDB
+ * object to find the corresponding data attribute name, and set that attribute on the element to the
+ * value from the data attributes object.
+ *
+ * Returns an object indicating if the attribute was changed, along with the updated element and attributes.
+ */
 export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
 	if (key && attr && typeof attr !== "undefined") {
