@@ -4,6 +4,11 @@ import { bsConstructor } from "../core/bootstrap.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { div } from "../html/div.js";
 
+/**
+ * The container class extends div and represents a container element.
+ * It has a constructor that accepts attr, elem, or both to create the element.
+ * The convert method merges passed in attributes with a container property set to true.
+ */
 export class container extends div {
 	constructor();
 	constructor(attr: attr);

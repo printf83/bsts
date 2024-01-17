@@ -4,6 +4,11 @@ import { mergeObject } from "../core/util/mergeObject.js";
 import { i } from "../html/i.js";
 import { icon as Icon } from "../interface/bootstrap/icon.js";
 
+/**
+ * Bubbles the event up to trigger the click handler on the closest parent anchor or button element.
+ * Stops event propagation and prevents default browser behavior.
+ * @param event - The event to bubble up.
+ */
 const bubbleEvent = (event: Event) => {
 	event.preventDefault();
 	event.stopPropagation();
@@ -20,6 +25,12 @@ const bubbleEvent = (event: Event) => {
 	}
 };
 
+/**
+ * Generates a static icon element with the given type, id and optional additional attributes.
+ * @param t - The icon type, e.g. "bi" for Bootstrap Icons.
+ * @param i - The specific icon id, e.g. "caret-down" for the caret down icon.
+ * @param a - Optional additional attributes to apply to the icon.
+ */
 const genStaticIcon = (t: Icon["type"], i: string, a?: Icon) => {
 	if (a) {
 		delete a.type;
@@ -30,6 +41,13 @@ const genStaticIcon = (t: Icon["type"], i: string, a?: Icon) => {
 	}
 };
 
+/**
+ * Icon component that extends the i component.
+ * Allows constructing Bootstrap Icons or other icon types.
+ * Handles conversion of icon type and id attributes.
+ * Adds appropriate CSS classes and click event bubbling.
+ * Includes static helper to generate Bootstrap Icons.
+ */
 export class icon extends i {
 	constructor();
 	constructor(attr: Icon);

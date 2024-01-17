@@ -47,6 +47,9 @@ import { timer, initTimer } from "./timer.js";
 import { calendar } from "./calendar.js";
 import { ul } from "./ul.js";
 
+/**
+ * Exports Bootstrap UI component modules
+ */
 export {
 	blockquote,
 	figure,

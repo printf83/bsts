@@ -3,6 +3,12 @@ import { elem } from "../interface/core/elem.js";
 import { mergeClass } from "../core/util/mergeClass.js";
 import { ul as Ul } from "../interface/bootstrap/ul.js";
 
+/**
+ * ul component class which extends the tag class.
+ * Allows creating a ul element with various constructors supporting elements and attributes.
+ * Handles merging in the unstyled and inline class names based on attributes.
+ * Converts attributes to bootstrap ul styles.
+ */
 export class ul extends tag {
 	constructor();
 	constructor(elem: elem | elem[]);

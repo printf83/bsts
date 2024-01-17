@@ -4,6 +4,12 @@ import { UUID } from "../core/util/uuid.js";
 import { input as HInput } from "../html/input.js";
 import { input as Input } from "../interface/bootstrap/input.js";
 
+/**
+ * Converts the Input attribute object by setting defaults
+ * and mapping properties to appropriate HTML attributes.
+ * Handles specifics around input types like checkbox, radio,
+ * plaintext, etc.
+ */
 export class input extends HInput {
 	constructor();
 	constructor(value: string);

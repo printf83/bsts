@@ -2,6 +2,9 @@ import { tagConstructor, tag } from "../core/tag.js";
 import { attr } from "../interface/core/attr.js";
 import { elem } from "../interface/core/elem.js";
 
+/**
+ * cite HTML element class, extends tag class
+ */
 export class cite extends tag {
 	constructor();
 	constructor(elem: elem | elem[]);

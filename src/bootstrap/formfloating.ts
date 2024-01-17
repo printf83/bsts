@@ -5,6 +5,11 @@ import { mergeClass } from "../core/util/mergeClass.js";
 
 import { div } from "../html/div.js";
 
+/**
+ * Form floating component that wraps an input and label to allow the label to
+ * "float" above the input when focused or filled. Adds the .form-floating class.
+ * Extends the div component.
+ */
 export class formfloating extends div {
 	constructor();
 	constructor(attr: attr);

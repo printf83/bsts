@@ -7,6 +7,13 @@ import { visuallyhidden } from "./visuallyhidden.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { spinner as Spinner } from "../interface/bootstrap/spinner.js";
 
+/**
+ * Spinner component class that extends Tag class.
+ * Allows creating spinner elements with different types, colors, sizes etc.
+ * Has various overloads to accept different constructor arguments like attributes or elements.
+ * Handles setting appropriate ARIA attributes, classes based on options.
+ * Renders textual content passed in elem property as visually hidden text.
+ */
 export class spinner extends tag {
 	constructor();
 	constructor(attr: Spinner);

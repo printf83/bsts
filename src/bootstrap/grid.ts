@@ -4,6 +4,11 @@ import { bsConstructor } from "../core/bootstrap.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { div } from "../html/div.js";
 
+/**
+ * Extends the div element to create a Bootstrap grid layout.
+ * Includes default values for the display and gap CSS properties.
+ * The convert() method merges passed attributes with the defaults.
+ */
 export class grid extends div {
 	constructor();
 	constructor(attr: attr);

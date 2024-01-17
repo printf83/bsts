@@ -5,6 +5,12 @@ import { select as TSelect } from "../html/select.js";
 import { select as Select } from "../interface/bootstrap/select.js";
 import { elem } from "../interface/core/elem.js";
 
+/**
+ * Extends the TSelect class to add Bootstrap styling and functionality.
+ * Constructor allows creating a select element from passed in attributes or element(s),
+ * with Bootstrap-specific options like weight and validity styling.
+ * Handles converting a Select config object into appropriate HTML attributes.
+ */
 export class select extends TSelect {
 	constructor();
 	constructor(elem: elem | elem[]);

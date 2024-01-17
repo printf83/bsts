@@ -6,6 +6,12 @@ import { UUID } from "../core/util/uuid.js";
 import { bstsConsole as console } from "../core/util/console.js";
 import { timer as Timer } from "../interface/bootstrap/timer.js";
 
+/**
+ * Runs a timer on the given element by calling itself recursively.
+ * @param elem The element to update with the timer text
+ * @param delay The delay in ms before running the timer again
+ * @param callback Optional callback when timer finishes
+ */
 const runTimer = (elem: Element, delay: number, callback?: Function) => {
 	const id = elem.getAttribute("id");
 	const time = parseInt(elem.getAttribute("data-bs-timer-run")!);
@@ -41,6 +47,12 @@ const runTimer = (elem: Element, delay: number, callback?: Function) => {
 	);
 };
 
+/**
+ * Initializes a timer on the given element by setting necessary attributes
+ * and starting the timer recursion.
+ * @param elem The element to initialize the timer on
+ * @param callback Optional callback when timer finishes
+ */
 export const initTimer = (elem: Element, callback?: Function) => {
 	elem.setAttribute("id", elem.getAttribute("id") || UUID());
 	elem.setAttribute("data-bs-timer-run", elem.getAttribute("data-bs-timer")!);
@@ -49,6 +61,12 @@ export const initTimer = (elem: Element, callback?: Function) => {
 	runTimer(elem, 0, callback);
 };
 
+/**
+ * Exports a Timer class that extends the span class to handle initializing
+ * Bootstrap timers. Takes in timer configuration and handles setting up the
+ * necessary data attributes, event handlers, and timer initialization to
+ * start the timer.
+ */
 export class timer extends span {
 	constructor();
 	constructor(attr: Timer);

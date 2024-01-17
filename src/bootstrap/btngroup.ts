@@ -4,6 +4,12 @@ import { div } from "../html/div.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { btngroup as Btngroup } from "../interface/bootstrap/btngroup.js";
 
+/**
+ * btngroup component extends div to render a button group.
+ * Has constructor with overloads to accept attributes, elements, or both.
+ * Has convert method to handle converting btngroup attributes into rendered attributes.
+ * Handles applying styles and role for vertical orientation and weight.
+ */
 export class btngroup extends div {
 	constructor();
 	constructor(attr: Btngroup);

@@ -26,6 +26,10 @@ const fnElem = (display: CaptionDisplay | undefined, elem: elem | elem[]) => {
 	}
 };
 
+/**
+ * Converts a Caption attribute into a caption element with icon and label formatting.
+ * Handles icon position and display styling.
+ */
 export class caption extends div {
 	constructor();
 	constructor(text: string);

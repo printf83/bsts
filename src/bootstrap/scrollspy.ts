@@ -8,6 +8,10 @@ import { ScrollSpy as BSScrollSpy } from "bootstrap";
 import { scrollspy as Scrollspy } from "../interface/bootstrap/scrollspy.js";
 import { elem } from "../interface/core/elem.js";
 
+/**
+ * Extends the div element to implement the Bootstrap scrollspy component.
+ * Allows scrolling spy behavior on the selected elements.
+ */
 export class scrollspy extends div {
 	constructor();
 	constructor(attr: Scrollspy);

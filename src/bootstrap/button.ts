@@ -7,6 +7,12 @@ import { bstsConsole as console } from "../core/util/console.js";
 import { Button as BSButton } from "bootstrap";
 import { button as Button } from "../interface/bootstrap/button.js";
 
+/**
+ * Button component that wraps the Bootstrap button plugin.
+ * Extends the base Tag class to handle button specific options and styling.
+ * Provides static methods to initialize, get instances, and toggle buttons.
+ * Handles converting button options to appropriate HTML attributes.
+ */
 export class button extends tag {
 	constructor();
 	constructor(attr: Button);

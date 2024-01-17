@@ -10,10 +10,17 @@ import { pill as Pill } from "../interface/bootstrap/pill.js";
 import { elem } from "../interface/core/elem.js";
 import { bsType } from "../interface/core/bsType.js";
 
+/**
+ * Creates a pill element wrapper with flex row layout
+ * @param elem The element to wrap in the pill layout
+ */
 const fnRow = (elem: elem) => {
 	return new div({ row: true }, new div({ col: true, textAlign: "center" }, elem));
 };
 
+/**
+ * Creates an icon element for use in a pill
+ */
 const fnIcon = (
 	color: bsType.color | undefined,
 	iconPosition: "start" | "end" | "top" | "bottom" | undefined,
@@ -76,6 +83,9 @@ const fnIcon = (
 	);
 };
 
+/**
+ * Function to create pill element
+ */
 const fnElem = (
 	color: bsType.color | undefined,
 	iconPosition: "start" | "end" | "top" | "bottom" | undefined,
@@ -119,6 +129,13 @@ const fnElem = (
 	);
 };
 
+/**
+ * pill class extends small component to create pill UI elements.
+ * Constructor accepts various arguments to initialize the pill.
+ * convert() method handles processing the input attribute to generate
+ * the appropriate pill element based on icon position and other properties.
+ * Handles icon rendering in different positions relative to main content.
+ */
 export class pill extends small {
 	constructor();
 	constructor(text: string);

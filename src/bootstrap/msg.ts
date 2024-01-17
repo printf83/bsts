@@ -7,6 +7,12 @@ import { icon as Icon } from "../interface/bootstrap/icon.js";
 import { msg as Msg, msgDisplay as MsgDisplay } from "../interface/bootstrap/msg.js";
 import { elem } from "../interface/core/elem.js";
 
+/**
+ * Renders the icon element for the message based on the given display and icon attribute.
+ * If the icon attribute is a string, renders a FontAwesome icon component.
+ * If it is an Icon interface, renders an icon component with those properties.
+ * Otherwise returns the attribute as-is.
+ */
 const fnIcon = (display: MsgDisplay | undefined, attr: string | Icon | icon) => {
 	if (typeof attr === "string") {
 		return new icon({ id: attr, display: display, fontSize: 3 });
@@ -17,6 +23,10 @@ const fnIcon = (display: MsgDisplay | undefined, attr: string | Icon | icon) => 
 	}
 };
 
+/**
+ * Renders the message element based on the given display attribute.
+ * If an array is passed, joins elements together.
+ */
 const fnElem = (display: MsgDisplay | undefined, elem: elem | elem[]) => {
 	if (display) {
 		return new div({ display: display }, elem);
@@ -25,6 +35,12 @@ const fnElem = (display: MsgDisplay | undefined, elem: elem | elem[]) => {
 	}
 };
 
+/**
+ * Renders a Bootstrap message component with icon and text.
+ * Accepts various configurations for icon position, display, etc.
+ * Handles string icons, Icon interfaces, and raw elements.
+ * Converts the input to the proper format before passing to the div.
+ */
 export class msg extends div {
 	constructor();
 	constructor(text: string);

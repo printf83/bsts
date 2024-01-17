@@ -4,6 +4,12 @@ import { elem } from "../interface/core/elem.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { div } from "../html/div.js";
 
+/**
+ * col extends the div element to represent a column layout element.
+ * It has a constructor that accepts attributes and child elements like other elements.
+ * The convert method merges in a col property to flag it as a column element
+ * before passing the attributes to the super call.
+ */
 export class col extends div {
 	constructor();
 	constructor(attr: attr);

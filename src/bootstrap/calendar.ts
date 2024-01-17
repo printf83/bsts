@@ -14,12 +14,15 @@ import { input } from "../bootstrap/input.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import * as ICalendar from "../interface/bootstrap/calendar.js";
 
-const copyDate = (d: Date) => {
+function copyDate(d: Date) {
 	return new Date(d.getTime());
-};
+}
 
 /* item */
 
+/**
+ * Extends the ul HTML element to represent a calendar item.
+ */
 class item extends ul {
 	constructor();
 	constructor(attr: ICalendar.item);
@@ -223,6 +226,10 @@ class item extends ul {
 
 /* header */
 
+/**
+ * Represents the header section of a calendar component, containing navigation buttons and the current month/year title.
+ * Extends the div component.
+ */
 class header extends div {
 	constructor();
 	constructor(attr: ICalendar.header);
@@ -381,6 +388,12 @@ class header extends div {
 
 /* main */
 
+/**
+ * Calendar component class.
+ * Renders a calendar with header and item components.
+ * Manages selected date range state.
+ * Dispatches change events on date range changes.
+ */
 export class calendar extends div {
 	constructor();
 	constructor(attr: ICalendar.container);

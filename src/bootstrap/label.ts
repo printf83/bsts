@@ -10,6 +10,12 @@ import { icon as Icon } from "../interface/bootstrap/icon.js";
 import { label as Label, labelDisplay as LabelDisplay } from "../interface/bootstrap/label.js";
 import { elem } from "../interface/core/elem.js";
 
+/**
+ * Converts the label icon attribute to the appropriate icon component based on the type.
+ * If attr is a string, returns a new icon component with that id.
+ * If attr is an Icon interface, returns a new icon component merged with the display.
+ * Otherwise returns the attr unchanged.
+ */
 const fnIcon = (display: LabelDisplay | undefined, attr: string | Icon | icon) => {
 	if (typeof attr === "string") {
 		return new icon({ id: attr, display: display });
@@ -20,6 +26,11 @@ const fnIcon = (display: LabelDisplay | undefined, attr: string | Icon | icon) =
 	}
 };
 
+/**
+ * Converts the label element attribute to the appropriate element based on the display.
+ * If display is defined, wraps elem in a span with that display.
+ * Otherwise, returns elem unchanged.
+ */
 const fnElem = (display: LabelDisplay | undefined, elem: elem | elem[]) => {
 	if (display) {
 		return new span({ display: display }, elem);
@@ -28,6 +39,13 @@ const fnElem = (display: LabelDisplay | undefined, elem: elem | elem[]) => {
 	}
 };
 
+/**
+ * Bootstrap label component.
+ * Extends the HTML label element with additional functionality:
+ * - Support for icons, colors, outlines, etc.
+ * - Automatic styling based on the iconPosition, labelDisplay, etc. props.
+ * - Helper methods like convert() to handle processing the label config.
+ */
 export class label extends HLabel {
 	constructor();
 	constructor(text: string);

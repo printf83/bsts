@@ -4,6 +4,10 @@ import { UUID } from "../core/util/uuid.js";
 import { textarea as TTextarea } from "../html/textarea.js";
 import { textarea as Textarea } from "../interface/bootstrap/textarea.js";
 
+/**
+ * Textarea component class. Extends the base Textarea component with
+ * additional functionality like default styling.
+ */
 export class textarea extends TTextarea {
 	constructor();
 	constructor(value: string);
