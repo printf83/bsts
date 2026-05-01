@@ -141,7 +141,7 @@ export class pill extends small {
 	constructor(text: string);
 	constructor(attr: Pill);
 	constructor(attr: Pill, text: string);
-	constructor(...arg: ConstructorArgs<bsType>) {
+	constructor(...arg: ConstructorArgs<Pill>) {
 		super(bsConstructor("elem", arg));
 	}
 

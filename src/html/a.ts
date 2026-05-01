@@ -21,7 +21,7 @@ export class a extends tag {
 	constructor(elem: elem | elem[]);
 	constructor(attr: A);
 	constructor(attr: A, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<elem>) {
+	constructor(...arg: ConstructorArgs<A>) {
 		super("a", tagConstructor<A>("elem", arg));
 	}
 

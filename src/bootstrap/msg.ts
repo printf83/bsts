@@ -46,7 +46,7 @@ export class msg extends div {
 	constructor(text: string);
 	constructor(attr: Msg);
 	constructor(attr: Msg, text: string);
-	constructor(...arg: ConstructorArgs<elem>) {
+	constructor(...arg: ConstructorArgs<Msg>) {
 		super(bsConstructor("elem", arg));
 	}
 

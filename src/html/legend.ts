@@ -7,7 +7,7 @@ export class legend extends tag {
 	constructor(elem: elem | elem[]);
 	constructor(attr: attr);
 	constructor(attr: attr, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<elem>) {
+	constructor(...arg: ConstructorArgs<attr>) {
 		super("legend", tagConstructor("elem", arg));
 	}
 }

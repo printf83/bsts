@@ -7,7 +7,7 @@ export class h3 extends tag {
 	constructor(elem: elem | elem[]);
 	constructor(attr: attr);
 	constructor(attr: attr, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<elem>) {
+	constructor(...arg: ConstructorArgs<attr>) {
 		super("h3", tagConstructor("elem", arg));
 	}
 }

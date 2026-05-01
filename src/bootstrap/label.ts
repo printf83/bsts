@@ -51,7 +51,7 @@ export class label extends HLabel {
 	constructor(text: string);
 	constructor(attr: Label);
 	constructor(attr: Label, text: string);
-	constructor(...arg: ConstructorArgs<elem>) {
+	constructor(...arg: ConstructorArgs<Label>) {
 		super(bsConstructor("elem", arg));
 	}
 

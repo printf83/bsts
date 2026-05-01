@@ -7,7 +7,7 @@ export class mark extends tag {
 	constructor(elem: elem | elem[]);
 	constructor(attr: attr);
 	constructor(attr: attr, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<elem>) {
+	constructor(...arg: ConstructorArgs<attr>) {
 		super("mark", tagConstructor("elem", arg));
 	}
 }

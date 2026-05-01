@@ -7,7 +7,7 @@ export class dt extends tag {
 	constructor(elem: elem | elem[]);
 	constructor(attr: attr);
 	constructor(attr: attr, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<elem>) {
+	constructor(...arg: ConstructorArgs<attr>) {
 		super("dt", tagConstructor("elem", arg));
 	}
 }

@@ -35,7 +35,7 @@ export class caption extends div {
 	constructor(text: string);
 	constructor(attr: Caption);
 	constructor(attr: Caption, text: string);
-	constructor(...arg: ConstructorArgs<elem>) {
+	constructor(...arg: ConstructorArgs<Caption>) {
 		super(bsConstructor("elem", arg));
 	}
 

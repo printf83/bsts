@@ -1,4 +1,4 @@
-import { tagConstructorNoElement, tag, ConstructorArgs } from "../core/tag.js";
+import { tagConstructorNoElement, tag, ConstructorArgsNoElement } from "../core/tag.js";
 import { base as Base } from "../interface/html/base.js";
 
 /**
@@ -8,7 +8,7 @@ import { base as Base } from "../interface/html/base.js";
 export class base extends tag {
 	constructor();
 	constructor(attr: Base);
-	constructor(...arg: ConstructorArgs<Base>) {
+	constructor(...arg: ConstructorArgsNoElement<Base>) {
 		super("base", tagConstructorNoElement<Base>(arg));
 	}
 }

@@ -5,7 +5,8 @@ import { attr } from "../interface/core/attr.js";
 
 export type TagConstructorArg = [] | [string] | [string, attr];
 export type TagElementConstructorArg = [] | [elem | elem[]] | [attr] | [attr, elem | elem[]];
-export type ConstructorArgs<T extends attr = attr> = [] | [elem | elem[]] | [T] | [T, elem | elem[]];
+export type ConstructorArgs<T = attr> = [] | [elem | elem[]] | [T] | [T, elem | elem[]];
+export type ConstructorArgsNoElement<T extends attr = attr> = [] | [T] | [elem | elem[]];
 
 /**
  * The tag class implements the ITag interface and represents a BSTS tag.
@@ -75,7 +76,7 @@ export const isAttr = <T>(obj: unknown): obj is T => {
  * Accepts a single attribute argument or no arguments.
  * If one argument is provided, returns it cast to T; otherwise returns an empty object.
  */
-export const tagConstructorNoElement = <T extends attr>(arg: [] | [T]): T => {
+export const tagConstructorNoElement = <T extends attr>(arg: ConstructorArgsNoElement<T>): T => {
 	if (arg.length === 1) {
 		return arg[0] as T;
 	} else {

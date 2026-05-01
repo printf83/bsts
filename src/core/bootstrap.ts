@@ -5,6 +5,8 @@ import { elem } from "../interface/core/elem.js";
 
 export type BsConstructorArg<T extends attr = attr> = [] | [T] | [elem | elem[]] | [T, elem | elem[]];
 
+export type BsConstructorNoElementArg<T extends attr = attr> = [] | [T] | [elem | elem[]];
+
 /**
  * Constructs a Bootstrap component without returning an element,
  * only the component properties.
@@ -12,7 +14,7 @@ export type BsConstructorArg<T extends attr = attr> = [] | [T] | [elem | elem[]]
  * @param arg - Optional constructor arguments, will return arg[0] if only one arg.
  * @returns The constructed component properties object.
  */
-export const bsConstructorNoElement = <T extends attr>(arg?: BsConstructorArg<T>) => {
+export const bsConstructorNoElement = <T extends attr>(arg?: BsConstructorNoElementArg<T>) => {
 	if (arg) {
 		if (arg.length === 1) {
 			return arg[0] as T;
