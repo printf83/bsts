@@ -71,6 +71,47 @@ core.documentReady(() => {
 });
 ```
 
+## Public API
+
+Import the public namespaces from `@printf83/bsts`:
+
+```ts
+import { core, c, t, s, h, b, I } from "@printf83/bsts";
+```
+
+- `core` / `c`
+  - runtime utilities: `documentReady`, `appendChild`, `prependChild`, `replaceChild`, `replaceWith`, `removeElement`, `getHtml`, `getNode`, `build`
+  - tag helpers: `tag`, `html`, `tagConstructor`, `tagConstructorNoElement`, `tagConstructorArgs`, `tagConstructorArgsNoElement`
+  - Bootstrap helpers: `bsConstructorNoElement`, `bsConstructor`, `bsConstructorMultiTag`, `BsConstructorArg`, `BsConstructorNoElementArg`, `BsConstructorMultiTagArg`
+  - utilities: `addEvent`, `removeEvent`, `placeholder`, `mergeObject`, `mergeAttr`, `mergeClass`, `addClassIntoElement`, `camel2Dash`, `elemInfo`, `UUID`, `requestIdleCallback`, `observeResizeObserver`, `disconnectResizeObserver`, `RGBToHex`, `getCSSVar`, `setCSSVar`, `accentColor`, `dataManager`, `isAttr`, `isTag`, `isHtml`
+
+- `h`
+  - HTML tag constructors: `a`, `abbr`, `address`, `area`, `article`, `aside`, `audio`, `b`, `base`, `bdi`, `bdo`, `blockquote`, `body`, `br`, `button`, `canvas`, `caption`, `cite`, `code`, `col`, `colgroup`, `data`, `datalist`, `dd`, `del`, `details`, `dfn`, `dialog`, `div`, `dl`, `dt`, `em`, `embed`, `fieldset`, `figcaption`, `figure`, `footer`, `form`, `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `head`, `header`, `hr`, `i`, `iframe`, `img`, `input`, `ins`, `kbd`, `label`, `legend`, `li`, `link`, `main`, `map`, `mark`, `menu`, `meta`, `meter`, `nav`, `noscript`, `obj`, `ol`, `optgroup`, `option`, `output`, `p`, `param`, `picture`, `pre`, `progress`, `q`, `rp`, `rt`, `ruby`, `s`, `samp`, `script`, `section`, `select`, `small`, `source`, `span`, `strong`, `style`, `sub`, `summary`, `sup`, `table`, `tbody`, `td`, `template`, `textarea`, `tfoot`, `th`, `thead`, `time`, `title`, `tr`, `track`, `u`, `ul`, `variable`, `video`, `wbr`
+
+- `b`
+  - Bootstrap component constructors: `blockquote`, `figure`, `form`, `icon`, `button`, `label`, `caption`, `msg`, `alert`, `img`, `row`, `col`, `grid`, `container`, `input`, `btnclose`, `select`, `textarea`, `dropdown`, `btngroup`, `inputgroup`, `formfloating`, `card`, `collapse`, `list`, `tabList`, `badge`, `visuallyhidden`, `nav`, `modal`, `toast`, `progress`, `popover`, `tooltip`, `offcanvas`, `navbar`, `breadcrumb`, `accordion`, `carousel`, `pagination`, `pill`, `table`, `scrollspy`, `verticalrule`, `spinner`, `timer`, `ul`, `initTimer`, `calendar`
+  - grouped subcomponents:
+    - `accordion`: `body`, `container`, `header`, `item`
+    - `alert`: `btnclose`, `container`, `header`, `link`
+    - `card`: `body`, `container`, `footer`, `group`, `header`, `img`, `imgoverlay`, `link`, `nav`, `subtitle`, `text`, `title`
+    - `carousel`: `container`, `indicators`, `inner`
+    - `collapse`: `button`, `container`
+    - `dropdown`: `button`, `buttonLink`, `container`, `divider`, `header`, `item`, `menu`, `text`
+    - `form`: `check`, `floatinglabel`, `input`, `select`, `textarea`, `toggle`
+    - `inputgroup`: `container`, `text`
+    - `list`: `container`, `containerDiv`, `item`, `itemDiv`, `itemLabel`, `itemLink`
+    - `modal`: `body`, `btnclose`, `container`, `footer`, `header`, `title`
+    - `navbar`: `brand`, `collapse`, `container`, `innercontainer`, `itemcontainer`, `text`, `toggle`
+    - `offcanvas`: `body`, `btnclose`, `button`, `container`, `header`, `title`
+    - `pagination`: `container`, `item`
+    - `progress`: `bar`, `container`, `stacked`
+    - `table`: `container`, `responsive`, `tbody`, `td`, `tfoot`, `th`, `thead`, `tr`
+    - `toast`: `body`, `btnclose`, `container`, `header`, `item`, `title`
+    - `tabList`: `container`, `item`, `tab`
+
+- `I`
+  - interface namespaces: `I.h`, `I.b`, `I.c`, and `I.core`
+
 ## How to build
 
 Compile the library and prepare the package metadata using:
