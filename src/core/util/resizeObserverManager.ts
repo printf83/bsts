@@ -11,30 +11,14 @@ export class ElementWithResizeObserver extends HTMLElement {
 	}
 }
 
-/**
- * Disconnects the ResizeObserver instance associated with the given element,
- * if one exists. For string selectors, disconnects the ResizeObserver from all
- * matching elements.
- */
-export const disconnectResizeObserver = (elem: string | Element | ElementWithResizeObserver) => {
-	if (typeof elem === "string") {
-		let e = document.querySelectorAll(elem);
-		if (e) {
-			e.forEach((i) => {
-				disconnectResizeObserver(i);
-			});
-		}
-	} else {
-		if ("ResizeObserver" in elem) {
-			const ob = (elem as ElementWithResizeObserver).ResizeObserver;
-			if (ob) {
-				console.info(`Disconnect ResizeObserver from $1`, elem);
-				ob.disconnect();
+const resizeObserverMap = new WeakMap<Element, ResizeObserver>();
+const resizeObserverTimeoutMap = new WeakMap<Element, number>();
 
-				elem.ResizeObserver = undefined;
-				delete elem.ResizeObserver;
-			}
-		}
+const clearResizeObserverTimeout = (elem: Element) => {
+	const timeoutId = resizeObserverTimeoutMap.get(elem);
+	if (timeoutId) {
+		window.clearTimeout(timeoutId);
+		resizeObserverTimeoutMap.delete(elem);
 	}
 };
 
@@ -43,22 +27,40 @@ export const disconnectResizeObserver = (elem: string | Element | ElementWithRes
  * if one exists. For string selectors, disconnects the ResizeObserver from all
  * matching elements.
  */
+export const disconnectResizeObserver = (elem: string | Element | ElementWithResizeObserver) => {
+	if (typeof elem === "string") {
+		const list = document.querySelectorAll(elem);
+		list.forEach((item) => disconnectResizeObserver(item));
+		return;
+	}
+
+	const target = elem as Element;
+	const observer = resizeObserverMap.get(target);
+	if (observer) {
+		console.info(`Disconnect ResizeObserver from $1`, target);
+		observer.disconnect();
+		resizeObserverMap.delete(target);
+		clearResizeObserverTimeout(target);
+	}
+};
+
+/**
+ * Stops observing the given element without disconnecting the underlying
+ * ResizeObserver instance from other elements.
+ */
 export const unobserveResizeObserver = (elem: string | Element | ElementWithResizeObserver) => {
 	if (typeof elem === "string") {
-		let e = document.querySelectorAll(elem);
-		if (e) {
-			e.forEach((i) => {
-				unobserveResizeObserver(i);
-			});
-		}
-	} else {
-		if ("ResizeObserver" in elem) {
-			const ob = (elem as ElementWithResizeObserver).ResizeObserver;
-			if (ob) {
-				console.info(`Unobserve resize from $1`, elem);
-				ob.unobserve(elem);
-			}
-		}
+		const list = document.querySelectorAll(elem);
+		list.forEach((item) => unobserveResizeObserver(item));
+		return;
+	}
+
+	const target = elem as Element;
+	const observer = resizeObserverMap.get(target);
+	if (observer) {
+		console.info(`Unobserve resize from $1`, target);
+		observer.unobserve(target);
+		clearResizeObserverTimeout(target);
 	}
 };
 
@@ -80,47 +82,33 @@ export const observeResizeObserver = (
 	arg?: any[]
 ) => {
 	if (typeof elem === "string") {
-		let e = document.querySelectorAll(elem);
-		if (e) {
-			e.forEach((i) => {
-				observeResizeObserver(i, callback, options, arg);
-			});
-		}
-	} else {
-		if (!("ResizeObserver" in elem)) {
-			console.info(`Setup ResizeObserver for $1`, elem);
-			(elem as ElementWithResizeObserver).ResizeObserver = new ResizeObserver((entry, observer) => {
-				if (entry && entry.length > 0) {
-					let resizeId = UUID();
-					elem.setAttribute("data-resize-id", resizeId);
-
-					setTimeout(
-						(
-							elem: Element | ElementWithResizeObserver,
-							resizeId: string,
-							entry: ResizeObserverEntry[],
-							observe: ResizeObserver,
-							arg: any[]
-						) => {
-							if (elem.getAttribute("data-resize-id") === resizeId) {
-								elem.removeAttribute("data-resize-id");
-								callback(entry, observe, arg);
-							}
-						},
-						300,
-						elem,
-						resizeId,
-						entry,
-						observer,
-						arg
-					);
-				}
-			});
-		}
-
-		const ob = (elem as ElementWithResizeObserver).ResizeObserver;
-		if (ob) {
-			ob.observe(elem, options);
-		}
+		const list = document.querySelectorAll(elem);
+		list.forEach((item) => observeResizeObserver(item, callback, options, arg));
+		return;
 	}
+
+	const target = elem as Element;
+	let observer = resizeObserverMap.get(target);
+	if (!observer) {
+		console.info(`Setup ResizeObserver for $1`, target);
+		observer = new ResizeObserver((entry, observerInstance) => {
+			if (entry && entry.length > 0) {
+				clearResizeObserverTimeout(target);
+				const resizeId = UUID();
+				target.setAttribute("data-resize-id", resizeId);
+
+				const timeoutId = window.setTimeout(() => {
+					if (target.getAttribute("data-resize-id") === resizeId) {
+						target.removeAttribute("data-resize-id");
+						callback(entry, observerInstance, arg);
+					}
+				}, 300);
+
+				resizeObserverTimeoutMap.set(target, timeoutId);
+			}
+		});
+		resizeObserverMap.set(target, observer);
+	}
+
+	observer.observe(target, options);
 };

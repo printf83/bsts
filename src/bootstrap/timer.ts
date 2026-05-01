@@ -4,6 +4,7 @@ import { mergeObject } from "../core/util/mergeObject.js";
 import { calcTimer } from "../core/util/calcTimer.js";
 import { UUID } from "../core/util/uuid.js";
 import { bstsConsole as console } from "../core/util/console.js";
+import { addEvent } from "../core/util/eventManager.js";
 import { timer as Timer } from "../interface/bootstrap/timer.js";
 
 /**
@@ -12,12 +13,26 @@ import { timer as Timer } from "../interface/bootstrap/timer.js";
  * @param delay The delay in ms before running the timer again
  * @param callback Optional callback when timer finishes
  */
+const timerMap = new WeakMap<Element, number>();
+
+const clearTimer = (elem: Element) => {
+	const timeoutId = timerMap.get(elem);
+	if (typeof timeoutId !== "undefined") {
+		window.clearTimeout(timeoutId);
+		timerMap.delete(elem);
+		console.info(`Clear timer for $1`, elem);
+	}
+};
+
 const runTimer = (elem: Element, delay: number, callback?: Function) => {
+	clearTimer(elem);
+
 	const id = elem.getAttribute("id");
 	const time = parseInt(elem.getAttribute("data-bs-timer-run")!);
 
-	setTimeout(
+	const timeoutId = window.setTimeout(
 		(id: string, time: number, callback?: Function) => {
+			timerMap.delete(elem);
 			let e = document.getElementById(id);
 			if (e) {
 				let res = calcTimer(time);
@@ -45,6 +60,8 @@ const runTimer = (elem: Element, delay: number, callback?: Function) => {
 		time,
 		callback
 	);
+
+	timerMap.set(elem, timeoutId);
 };
 
 /**
@@ -54,6 +71,13 @@ const runTimer = (elem: Element, delay: number, callback?: Function) => {
  * @param callback Optional callback when timer finishes
  */
 export const initTimer = (elem: Element, callback?: Function) => {
+	if (!elem.hasAttribute("data-bs-timer-destroy-registered")) {
+		addEvent("destroy", elem, () => {
+			clearTimer(elem);
+		});
+		elem.setAttribute("data-bs-timer-destroy-registered", "true");
+	}
+
 	elem.setAttribute("id", elem.getAttribute("id") || UUID());
 	elem.setAttribute("data-bs-timer-run", elem.getAttribute("data-bs-timer")!);
 	elem.removeAttribute("data-bs-timer");
