@@ -12,8 +12,8 @@ export class html implements IHtml {
 
 	constructor();
 	constructor(elem: string);
-	constructor(...arg: any[]) {
-		if (arg) {
+	constructor(...arg: [] | [string]) {
+		if (arg.length === 1) {
 			this.elem = arg[0];
 		} else {
 			this.elem = "";
@@ -27,6 +27,12 @@ export class html implements IHtml {
  * has an ishtml property set to true, and matches
  * the generic type T extending html.
  */
-export const isHtml = <T extends html>(obj: any): obj is T => {
-	return typeof obj === "object" && !Array.isArray(obj) && "ishtml" in obj && obj["ishtml"] === true;
+export const isHtml = <T extends html>(obj: unknown): obj is T => {
+	return (
+		typeof obj === "object" &&
+		obj !== null &&
+		!Array.isArray(obj) &&
+		"ishtml" in obj &&
+		(obj as Record<string, unknown>)["ishtml"] === true
+	);
 };

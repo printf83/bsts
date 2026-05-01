@@ -1,4 +1,4 @@
-import { tagConstructor, tag } from "../core/tag.js";
+import { tagConstructor, tag, ConstructorArgs } from "../core/tag.js";
 import { attr } from "../interface/core/attr.js";
 import { elem } from "../interface/core/elem.js";
 
@@ -7,7 +7,7 @@ export class samp extends tag {
 	constructor(elem: elem | elem[]);
 	constructor(attr: attr);
 	constructor(attr: attr, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<elem>) {
 		super("samp", tagConstructor("elem", arg));
 	}
 }

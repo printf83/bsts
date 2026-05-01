@@ -1,4 +1,5 @@
 import { mergeClass } from "../../core/util/mergeClass.js";
+import { ConstructorArgs } from "../../core/tag.js";
 import { img as TImg } from "../../bootstrap/img.js";
 import { bsConstructor } from "../../core/bootstrap.js";
 import { img as Img } from "../../interface/bootstrap/card/img.js";
@@ -8,7 +9,7 @@ export class img extends TImg {
 	constructor(src: string);
 	constructor(attr: Img);
 	constructor(attr: Img, src: string);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Img>) {
 		super(bsConstructor<Img>("src", arg));
 	}
 

@@ -1,4 +1,5 @@
 import { bsConstructor } from "../core/bootstrap.js";
+import { ConstructorArgs } from "../core/tag.js";
 import { attr } from "../interface/core/attr.js";
 import { elem } from "../interface/core/elem.js";
 import { mergeObject } from "../core/util/mergeObject.js";
@@ -15,7 +16,7 @@ export class col extends div {
 	constructor(attr: attr);
 	constructor(elem: elem | elem[]);
 	constructor(attr: attr, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<attr>) {
 		super(bsConstructor("elem", arg));
 	}
 

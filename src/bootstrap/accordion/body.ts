@@ -1,4 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
+import { ConstructorArgs } from "../../core/tag.js";
 import { bsConstructor } from "../../core/bootstrap.js";
 import { UUID } from "../../core/util/uuid.js";
 import { container } from "../collapse/container.js";
@@ -11,7 +12,7 @@ export class body extends container {
 	constructor(attr: Body);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Body, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Body>) {
 		super(bsConstructor<Body>("elem", arg));
 	}
 

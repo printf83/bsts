@@ -1,4 +1,4 @@
-import { tagConstructor, tag } from "../core/tag.js";
+import { tagConstructor, tag, ConstructorArgs } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
 import { details as Details } from "../interface/html/details.js";
 
@@ -12,7 +12,7 @@ export class details extends tag {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Details);
 	constructor(attr: Details, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Details>) {
 		super("details", tagConstructor<Details>("elem", arg));
 	}
 }

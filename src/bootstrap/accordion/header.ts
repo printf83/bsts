@@ -1,4 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
+import { ConstructorArgs } from "../../core/tag.js";
 import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { h2 } from "../../html/h2.js";
@@ -11,7 +12,7 @@ export class header extends h2 {
 	constructor(attr: Header);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Header, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Header>) {
 		super(bsConstructor<Header>("elem", arg));
 	}
 

@@ -1,4 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
+import { ConstructorArgs } from "../../core/tag.js";
 import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/util/mergeObject.js";
 import { div } from "../../html/div.js";
@@ -9,7 +10,7 @@ export class bar extends div {
 	constructor(attr: Bar);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Bar, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Bar>) {
 		super(bsConstructor<Bar>("elem", arg));
 	}
 

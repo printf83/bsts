@@ -1,4 +1,5 @@
 import { attr } from "../../interface/core/attr.js";
+import { ConstructorArgs } from "../../core/tag.js";
 import { elem } from "../../interface/core/elem.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { bsConstructor } from "../../core/bootstrap.js";
@@ -13,7 +14,7 @@ export class container extends nav {
 	constructor(attr: Container);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Container, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Container>) {
 		super(bsConstructor<Container>("elem", arg));
 	}
 

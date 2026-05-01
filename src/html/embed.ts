@@ -1,11 +1,11 @@
-import { tag } from "../core/tag.js";
+import { tag, ConstructorArgs } from "../core/tag.js";
 import { embed as Embed } from "../interface/html/embed.js";
 
 export class embed extends tag {
 	constructor();
 	constructor(type: string, src: string);
 	constructor(attr: Embed);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Embed>) {
 		if (arg.length === 0) {
 			super("embed");
 		} else if (arg.length === 2) {

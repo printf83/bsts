@@ -12,6 +12,7 @@ import { option } from "../html/option.js";
 import { select } from "../bootstrap/select.js";
 import { input } from "../bootstrap/input.js";
 import { mergeObject } from "../core/util/mergeObject.js";
+import { ConstructorArgs } from "../core/tag.js";
 import * as ICalendar from "../interface/bootstrap/calendar.js";
 
 function copyDate(d: Date) {
@@ -26,7 +27,7 @@ function copyDate(d: Date) {
 class item extends ul {
 	constructor();
 	constructor(attr: ICalendar.item);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<ICalendar.item>) {
 		super(bsConstructorNoElement(arg));
 	}
 
@@ -233,7 +234,7 @@ class item extends ul {
 class header extends div {
 	constructor();
 	constructor(attr: ICalendar.header);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<ICalendar.header>) {
 		super(bsConstructorNoElement(arg));
 	}
 
@@ -397,7 +398,7 @@ class header extends div {
 export class calendar extends div {
 	constructor();
 	constructor(attr: ICalendar.container);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<ICalendar.container>) {
 		super(bsConstructorNoElement(arg));
 	}
 

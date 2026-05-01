@@ -1,4 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
+import { ConstructorArgs } from "../../core/tag.js";
 import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/util/mergeObject.js";
 import { a } from "../../html/a.js";
@@ -10,7 +11,7 @@ export class buttonLink extends a {
 	constructor(attr: ButtonLink);
 	constructor(elem: elem | elem[]);
 	constructor(attr: ButtonLink, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<ButtonLink>) {
 		super(bsConstructor<ButtonLink>("elem", arg));
 	}
 

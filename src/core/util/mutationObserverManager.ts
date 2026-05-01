@@ -48,9 +48,9 @@ export const disconnectMutationObserver = (elem: string | Element | ElementWithM
  */
 export const observeMutationObserver = (
 	elem: string | Element | ElementWithMutationObserver,
-	callback: (mutation: MutationRecord[], observer: MutationObserver, arg?: any[]) => void,
+	callback: (mutation: MutationRecord[], observer: MutationObserver, arg?: unknown[]) => void,
 	options?: MutationObserverInit,
-	arg?: any[]
+	arg?: unknown[]
 ) => {
 	if (typeof elem === "string") {
 		let e = document.querySelectorAll(elem);

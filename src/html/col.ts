@@ -1,4 +1,4 @@
-import { tagConstructorNoElement, tag } from "../core/tag.js";
+import { tagConstructorNoElement, tag, ConstructorArgs } from "../core/tag.js";
 import { col as Col } from "../interface/html/col.js";
 
 /**
@@ -8,7 +8,7 @@ import { col as Col } from "../interface/html/col.js";
 export class col extends tag {
 	constructor();
 	constructor(attr: Col);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Col>) {
 		super("col", tagConstructorNoElement(arg));
 	}
 }

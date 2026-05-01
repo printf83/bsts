@@ -77,9 +77,9 @@ export const unobserveResizeObserver = (elem: string | Element | ElementWithResi
  */
 export const observeResizeObserver = (
 	elem: string | Element | ElementWithResizeObserver,
-	callback: (entry: ResizeObserverEntry[], observer: ResizeObserver, arg?: any[]) => void,
+	callback: (entry: ResizeObserverEntry[], observer: ResizeObserver, arg?: unknown[]) => void,
 	options?: ResizeObserverOptions,
-	arg?: any[]
+	arg?: unknown[]
 ) => {
 	if (typeof elem === "string") {
 		const list = document.querySelectorAll(elem);
