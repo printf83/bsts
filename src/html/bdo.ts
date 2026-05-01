@@ -1,4 +1,4 @@
-import { tagConstructor, tag, ConstructorArgs } from "../core/tag.js";
+import { tagConstructor, tag, tagConstructorArgs } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
 import { bdo as Bdo } from "../interface/html/bdo.js";
 
@@ -11,7 +11,7 @@ export class bdo extends tag {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Bdo);
 	constructor(attr: Bdo, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<Bdo>) {
+	constructor(...arg: tagConstructorArgs<Bdo>) {
 		super("bdo", tagConstructor<Bdo>("elem", arg));
 	}
 }

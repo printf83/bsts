@@ -1,4 +1,4 @@
-import { tagConstructor, tag, ConstructorArgs } from "../core/tag.js";
+import { tagConstructor, tag, tagConstructorArgs } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
 import { label as Label } from "../interface/html/label.js";
 
@@ -7,7 +7,7 @@ export class label extends tag {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Label);
 	constructor(attr: Label, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<Label>) {
+	constructor(...arg: tagConstructorArgs<Label>) {
 		super("label", tagConstructor<Label>("elem", arg));
 	}
 }

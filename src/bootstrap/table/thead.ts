@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { ConstructorArgs } from "../../core/tag.js";
+import { tagConstructorArgs } from "../../core/tag.js";
 import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { thead as HThead } from "../../html/thead.js";
@@ -10,7 +10,7 @@ export class thead extends HThead {
 	constructor(attr: Thead);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Thead, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<Thead>) {
+	constructor(...arg: tagConstructorArgs<Thead>) {
 		super(bsConstructor<Thead>("elem", arg));
 	}
 

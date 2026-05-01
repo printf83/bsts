@@ -1,4 +1,4 @@
-import { tagConstructor, tag, ConstructorArgs } from "../core/tag.js";
+import { tagConstructor, tag, tagConstructorArgs } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
 import { mergeClass } from "../core/util/mergeClass.js";
 import { li as Li } from "../interface/html/li.js";
@@ -8,7 +8,7 @@ export class li extends tag {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Li);
 	constructor(attr: Li, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<Li>) {
+	constructor(...arg: tagConstructorArgs<Li>) {
 		super("li", tagConstructor<Li>("elem", arg));
 	}
 

@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { ConstructorArgs } from "../../core/tag.js";
+import { tagConstructorArgs } from "../../core/tag.js";
 import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { tr as HTr } from "../../html/tr.js";
@@ -10,7 +10,7 @@ export class tr extends HTr {
 	constructor(attr: Tr);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Tr, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<Tr>) {
+	constructor(...arg: tagConstructorArgs<Tr>) {
 		super(bsConstructor<Tr>("elem", arg));
 	}
 

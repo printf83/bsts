@@ -1,5 +1,5 @@
 import { bsConstructor } from "../core/bootstrap.js";
-import { ConstructorArgs } from "../core/tag.js";
+import { tagConstructorArgs } from "../core/tag.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { span } from "../html/span.js";
 import { addEvent } from "../core/util/eventManager.js";
@@ -13,7 +13,7 @@ export class popover extends span {
 	constructor(attr: Popover);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Popover, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<Popover>) {
+	constructor(...arg: tagConstructorArgs<Popover>) {
 		super(bsConstructor<Popover>("elem", arg));
 	}
 

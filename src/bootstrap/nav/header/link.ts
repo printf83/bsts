@@ -1,5 +1,5 @@
 import { elem } from "../../../interface/core/elem.js";
-import { ConstructorArgs } from "../../../core/tag.js";
+import { tagConstructorArgs } from "../../../core/tag.js";
 import { bsConstructor } from "../../../core/bootstrap.js";
 import { mergeObject } from "../../../core/util/mergeObject.js";
 import { a } from "../../../html/a.js";
@@ -46,7 +46,7 @@ export class link extends a {
 	constructor(attr: Link);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Link, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<Link>) {
+	constructor(...arg: tagConstructorArgs<Link>) {
 		super(bsConstructor<Link>("elem", arg));
 	}
 

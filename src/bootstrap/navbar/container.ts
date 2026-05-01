@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { ConstructorArgs } from "../../core/tag.js";
+import { tagConstructorArgs } from "../../core/tag.js";
 import { bsConstructor } from "../../core/bootstrap.js";
 import { nav } from "../../html/nav.js";
 import { header } from "../../html/header.js";
@@ -12,7 +12,7 @@ export class container extends nav {
 	constructor(attr: Container);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Container, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<Container>) {
+	constructor(...arg: tagConstructorArgs<Container>) {
 		super(bsConstructor<Container>("elem", arg));
 	}
 
@@ -49,7 +49,7 @@ export class containerHeader extends header {
 	constructor(attr: Container);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Container, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<Container>) {
+	constructor(...arg: tagConstructorArgs<Container>) {
 		super(bsConstructor<Container>("elem", arg));
 	}
 

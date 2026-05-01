@@ -1,4 +1,4 @@
-import { tagConstructor, tag, ConstructorArgs } from "../core/tag.js";
+import { tagConstructor, tag, tagConstructorArgs } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
 import { video as Video } from "../interface/html/video.js";
 
@@ -7,7 +7,7 @@ export class video extends tag {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Video);
 	constructor(attr: Video, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<Video>) {
+	constructor(...arg: tagConstructorArgs<Video>) {
 		super("video", tagConstructor<Video>("elem", arg));
 	}
 }

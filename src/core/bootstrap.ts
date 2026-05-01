@@ -4,7 +4,7 @@ import { attr } from "../interface/core/attr.js";
 import { elem } from "../interface/core/elem.js";
 
 export type BsConstructorArg<T extends attr = attr> = [] | [T] | [elem | elem[]] | [T, elem | elem[]];
-
+export type BsConstructorMultiTagArg<T extends attr = attr> = BsConstructorArg<T>;
 export type BsConstructorNoElementArg<T extends attr = attr> = [] | [T] | [elem | elem[]];
 
 /**
@@ -66,7 +66,7 @@ export const bsConstructorMultiTag = <T extends attr>(
 	t1: string,
 	t2: string,
 	fn: (i: T) => boolean,
-	arg?: BsConstructorArg<T>
+	arg?: BsConstructorMultiTagArg<T>
 ) => {
 	if (arg) {
 		if (arg.length === 1) {

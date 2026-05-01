@@ -1,5 +1,5 @@
 import { bsConstructorNoElement } from "../../core/bootstrap.js";
-import { ConstructorArgsNoElement } from "../../core/tag.js";
+import { tagConstructorArgsNoElement } from "../../core/tag.js";
 import { mergeObject } from "../../core/util/mergeObject.js";
 
 import { btnclose as TBtnclose } from "../btnclose.js";
@@ -8,7 +8,7 @@ import { btnclose as Btnclose } from "../../interface/bootstrap/toast/btnclose.j
 export class btnclose extends TBtnclose {
 	constructor();
 	constructor(attr: Btnclose);
-	constructor(...arg: ConstructorArgsNoElement<Btnclose>) {
+	constructor(...arg: tagConstructorArgsNoElement<Btnclose>) {
 		super(bsConstructorNoElement(arg));
 	}
 

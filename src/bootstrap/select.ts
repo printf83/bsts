@@ -1,5 +1,5 @@
 import { bsConstructor } from "../core/bootstrap.js";
-import { ConstructorArgs } from "../core/tag.js";
+import { tagConstructorArgs } from "../core/tag.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { UUID } from "../core/util/uuid.js";
 import { select as TSelect } from "../html/select.js";
@@ -17,7 +17,7 @@ export class select extends TSelect {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Select);
 	constructor(attr: Select, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<Select>) {
+	constructor(...arg: tagConstructorArgs<Select>) {
 		super(bsConstructor<Select>("elem", arg));
 	}
 

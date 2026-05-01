@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { ConstructorArgs } from "../../core/tag.js";
+import { tagConstructorArgs } from "../../core/tag.js";
 import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { tfoot as HTfoot } from "../../html/tfoot.js";
@@ -10,7 +10,7 @@ export class tfoot extends HTfoot {
 	constructor(attr: Tfoot);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Tfoot, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<Tfoot>) {
+	constructor(...arg: tagConstructorArgs<Tfoot>) {
 		super(bsConstructor<Tfoot>("elem", arg));
 	}
 

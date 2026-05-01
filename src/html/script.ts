@@ -1,10 +1,10 @@
-import { tagConstructorNoElement, tag, ConstructorArgsNoElement } from "../core/tag.js";
+import { tagConstructorNoElement, tag, tagConstructorArgsNoElement } from "../core/tag.js";
 import { script as Script } from "../interface/html/script.js";
 
 export class script extends tag {
 	constructor();
 	constructor(attr: Script);
-	constructor(...arg: ConstructorArgsNoElement<Script>) {
+	constructor(...arg: tagConstructorArgsNoElement<Script>) {
 		super("script", tagConstructorNoElement<Script>(arg));
 	}
 }

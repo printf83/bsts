@@ -1,4 +1,4 @@
-import { tagConstructor, tag, ConstructorArgs } from "../core/tag.js";
+import { tagConstructor, tag, tagConstructorArgs } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
 import { mergeClass } from "../core/util/mergeClass.js";
 import { p as P } from "../interface/html/p.js";
@@ -8,7 +8,7 @@ export class p extends tag {
 	constructor(elem: elem | elem[]);
 	constructor(attr: P);
 	constructor(attr: P, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<P>) {
+	constructor(...arg: tagConstructorArgs<P>) {
 		super("p", tagConstructor<P>("elem", arg));
 	}
 

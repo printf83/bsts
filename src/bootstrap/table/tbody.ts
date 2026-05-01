@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { ConstructorArgs } from "../../core/tag.js";
+import { tagConstructorArgs } from "../../core/tag.js";
 import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { tbody as HTbody } from "../../html/tbody.js";
@@ -10,7 +10,7 @@ export class tbody extends HTbody {
 	constructor(attr: Tbody);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Tbody, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<Tbody>) {
+	constructor(...arg: tagConstructorArgs<Tbody>) {
 		super(bsConstructor<Tbody>("elem", arg));
 	}
 

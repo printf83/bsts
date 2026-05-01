@@ -1,5 +1,5 @@
 import { elem } from "../interface/core/elem.js";
-import { ConstructorArgs } from "../core/tag.js";
+import { tagConstructorArgs } from "../core/tag.js";
 import { bsConstructor } from "../core/bootstrap.js";
 import { div } from "../html/div.js";
 import { mergeObject } from "../core/util/mergeObject.js";
@@ -16,7 +16,7 @@ export class btngroup extends div {
 	constructor(attr: Btngroup);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Btngroup, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<Btngroup>) {
+	constructor(...arg: tagConstructorArgs<Btngroup>) {
 		super(bsConstructor<Btngroup>("elem", arg));
 	}
 

@@ -1,5 +1,5 @@
 import { bsConstructor } from "../core/bootstrap.js";
-import { ConstructorArgs } from "../core/tag.js";
+import { tagConstructorArgs } from "../core/tag.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { div } from "../html/div.js";
 import { addEvent } from "../core/util/eventManager.js";
@@ -18,7 +18,7 @@ export class scrollspy extends div {
 	constructor(attr: Scrollspy);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Scrollspy, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<Scrollspy>) {
+	constructor(...arg: tagConstructorArgs<Scrollspy>) {
 		super(bsConstructor<Scrollspy>("elem", arg));
 	}
 

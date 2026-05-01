@@ -1,5 +1,5 @@
 import { elem } from "../../../interface/core/elem.js";
-import { ConstructorArgs } from "../../../core/tag.js";
+import { tagConstructorArgs } from "../../../core/tag.js";
 import { bsConstructor } from "../../../core/bootstrap.js";
 import { mergeClass } from "../../../core/util/mergeClass.js";
 import { div } from "../../../html/div.js";
@@ -10,7 +10,7 @@ export class pane extends div {
 	constructor(attr: Pane);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Pane, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<Pane>) {
+	constructor(...arg: tagConstructorArgs<Pane>) {
 		super(bsConstructor<Pane>("elem", arg));
 	}
 

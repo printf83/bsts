@@ -5,8 +5,8 @@ import { attr } from "../interface/core/attr.js";
 
 export type TagConstructorArg = [] | [string] | [string, attr];
 export type TagElementConstructorArg = [] | [elem | elem[]] | [attr] | [attr, elem | elem[]];
-export type ConstructorArgs<T = attr> = [] | [elem | elem[]] | [T] | [T, elem | elem[]];
-export type ConstructorArgsNoElement<T extends attr = attr> = [] | [T] | [elem | elem[]];
+export type tagConstructorArgs<T = attr> = [] | [elem | elem[]] | [T] | [T, elem | elem[]];
+export type tagConstructorArgsNoElement<T extends attr = attr> = [] | [T] | [elem | elem[]];
 
 /**
  * The tag class implements the ITag interface and represents a BSTS tag.
@@ -76,7 +76,7 @@ export const isAttr = <T>(obj: unknown): obj is T => {
  * Accepts a single attribute argument or no arguments.
  * If one argument is provided, returns it cast to T; otherwise returns an empty object.
  */
-export const tagConstructorNoElement = <T extends attr>(arg: ConstructorArgsNoElement<T>): T => {
+export const tagConstructorNoElement = <T extends attr>(arg: tagConstructorArgsNoElement<T>): T => {
 	if (arg.length === 1) {
 		return arg[0] as T;
 	} else {
@@ -93,7 +93,7 @@ export const tagConstructorNoElement = <T extends attr>(arg: ConstructorArgsNoEl
  * If two arguments, merges element values into the attributes object.
  * Otherwise returns an empty object.
  */
-export const tagConstructor = <T extends attr>(prop: string, arg: ConstructorArgs<T>): T => {
+export const tagConstructor = <T extends attr>(prop: string, arg: tagConstructorArgs<T>): T => {
 	if (arg.length === 1) {
 		if (isAttr<T>(arg[0])) {
 			return arg[0] as T;

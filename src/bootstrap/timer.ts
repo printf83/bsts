@@ -1,5 +1,5 @@
 import { bsConstructor } from "../core/bootstrap.js";
-import { ConstructorArgs } from "../core/tag.js";
+import { tagConstructorArgs } from "../core/tag.js";
 import { span } from "../html/span.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { calcTimer } from "../core/util/calcTimer.js";
@@ -97,7 +97,7 @@ export class timer extends span {
 	constructor(attr: Timer);
 	constructor(time: number);
 	constructor(attr: Timer, time: number);
-	constructor(...arg: ConstructorArgs<Timer>) {
+	constructor(...arg: tagConstructorArgs<Timer>) {
 		super(bsConstructor<Timer>("time", arg));
 	}
 

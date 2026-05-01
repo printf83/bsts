@@ -1,5 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
-import { ConstructorArgs } from "../../core/tag.js";
+import { tagConstructorArgs } from "../../core/tag.js";
 import { div } from "../../html/div.js";
 import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/util/mergeObject.js";
@@ -10,7 +10,7 @@ export class menu extends div {
 	constructor(attr: Menu);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Menu, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<Menu>) {
+	constructor(...arg: tagConstructorArgs<Menu>) {
 		super(bsConstructor<Menu>("elem", arg));
 	}
 

@@ -1,5 +1,5 @@
 import { bsConstructor, bsConstructorMultiTag } from "../core/bootstrap.js";
-import { tag, ConstructorArgs } from "../core/tag.js";
+import { tag, tagConstructorArgs } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { addEvent } from "../core/util/eventManager.js";
@@ -18,7 +18,7 @@ export class button extends tag {
 	constructor(attr: Button);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Button, elem: elem | elem[]);
-	constructor(...arg: ConstructorArgs<Button>) {
+	constructor(...arg: tagConstructorArgs<Button>) {
 		super(
 			bsConstructorMultiTag<Button>("elem", "button", "a", (i) => (i.href ? true : false), arg),
 			bsConstructor<Button>("elem", arg)
