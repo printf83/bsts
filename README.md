@@ -93,6 +93,7 @@ pnpm run clean
 - `pnpm run compile` — compile TypeScript for CJS, ESM, and types
 - `pnpm run build` — compile and prepare the package manifest
 - `pnpm run rebuild` — clean + compile + prepare
+- `pnpm demo` — serve `demo.html` locally for browser testing
 
 ## Notes
 
