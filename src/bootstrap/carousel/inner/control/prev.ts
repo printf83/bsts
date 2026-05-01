@@ -1,4 +1,5 @@
 import { elem } from "../../../../interface/core/elem.js";
+import { ConstructorArgs } from "../../../../core/tag.js";
 import { bsConstructor } from "../../../../core/bootstrap.js";
 import { button as HButton } from "../../../../html/button.js";
 import { mergeObject } from "../../../../core/util/mergeObject.js";
@@ -11,7 +12,7 @@ export class prev extends HButton {
 	constructor(attr: Prev);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Prev, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Prev>) {
 		super(bsConstructor<Prev>("elem", arg));
 	}
 

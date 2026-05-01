@@ -1,4 +1,4 @@
-import { tagConstructor, tag } from "../core/tag.js";
+import { tagConstructor, tag, ConstructorArgs } from "../core/tag.js";
 import { style as Style } from "../interface/html/style.js";
 
 export class style extends tag {
@@ -6,7 +6,7 @@ export class style extends tag {
 	constructor(elem: string);
 	constructor(attr: Style);
 	constructor(attr: Style, elem: string);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Style>) {
 		super("style", tagConstructor<Style>("elem", arg));
 	}
 }

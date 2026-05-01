@@ -1,4 +1,5 @@
 import { bsConstructor } from "../core/bootstrap.js";
+import { ConstructorArgs } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { i } from "../html/i.js";
@@ -53,7 +54,7 @@ export class icon extends i {
 	constructor(attr: Icon);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Icon, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Icon>) {
 		super(bsConstructor("elem", arg));
 	}
 

@@ -1,4 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
+import { ConstructorArgs } from "../../core/tag.js";
 import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { div } from "../../html/div.js";
@@ -9,7 +10,7 @@ export class responsive extends div {
 	constructor(attr: Responsive);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Responsive, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Responsive>) {
 		super(bsConstructor<Responsive>("elem", arg));
 	}
 

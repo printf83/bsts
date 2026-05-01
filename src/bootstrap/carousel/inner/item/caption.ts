@@ -1,4 +1,5 @@
 import { elem } from "../../../../interface/core/elem.js";
+import { ConstructorArgs } from "../../../../core/tag.js";
 import { attr } from "../../../../interface/core/attr.js";
 import { bsConstructor } from "../../../../core/bootstrap.js";
 import { div } from "../../../../html/div.js";
@@ -9,7 +10,7 @@ export class caption extends div {
 	constructor(attr: attr);
 	constructor(elem: elem | elem[]);
 	constructor(attr: attr, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<attr>) {
 		super(bsConstructor("elem", arg));
 	}
 

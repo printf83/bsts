@@ -1,4 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
+import { ConstructorArgs } from "../../core/tag.js";
 import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/util/mergeObject.js";
 import { div } from "../../html/div.js";
@@ -9,7 +10,7 @@ export class item extends div {
 	constructor(attr: Item);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Item, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Item>) {
 		super(bsConstructor<Item>("elem", arg));
 	}
 
@@ -32,8 +33,8 @@ export class item extends div {
 							? "true"
 							: undefined
 						: attr.animation === false
-						? "false"
-						: undefined,
+							? "false"
+							: undefined,
 					"bs-autohide": attr.autohide === false ? "false" : undefined,
 					"bs-delay": attr.delay ? attr.delay.toString() : undefined,
 				},

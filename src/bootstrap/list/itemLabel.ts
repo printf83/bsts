@@ -1,4 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
+import { ConstructorArgs } from "../../core/tag.js";
 import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeObject } from "../../core/util/mergeObject.js";
 import { label } from "../../html/label.js";
@@ -41,7 +42,7 @@ export class itemLabel extends label {
 	constructor(attr: ItemLabel);
 	constructor(elem: elem | elem[]);
 	constructor(attr: ItemLabel, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<ItemLabel>) {
 		super(bsConstructor<ItemLabel>("elem", arg));
 	}
 

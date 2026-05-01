@@ -1,4 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
+import { ConstructorArgs } from "../../core/tag.js";
 import { bsConstructor } from "../../core/bootstrap.js";
 import { div } from "../../html/div.js";
 import { mergeObject } from "../../core/util/mergeObject.js";
@@ -13,7 +14,7 @@ export class container extends div {
 	constructor(attr: Carousel);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Carousel, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Carousel>) {
 		super(bsConstructor<Carousel>("elem", arg));
 	}
 
@@ -37,7 +38,7 @@ export class container extends div {
 							? (e) => {
 									const target = e.target as Element;
 									init(target);
-							  }
+								}
 							: undefined,
 				},
 			},

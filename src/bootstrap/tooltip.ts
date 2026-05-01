@@ -1,4 +1,5 @@
 import { bsConstructor } from "../core/bootstrap.js";
+import { ConstructorArgs } from "../core/tag.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { span } from "../html/span.js";
 import { addEvent } from "../core/util/eventManager.js";
@@ -12,7 +13,7 @@ export class tooltip extends span {
 	constructor(attr: Tooltip);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Tooltip, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Tooltip>) {
 		super(bsConstructor<Tooltip>("elem", arg));
 	}
 

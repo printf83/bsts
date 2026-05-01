@@ -1,5 +1,5 @@
 import { bsConstructor, bsConstructorMultiTag } from "../../core/bootstrap.js";
-import { tag } from "../../core/tag.js";
+import { tag, ConstructorArgs } from "../../core/tag.js";
 import { elem } from "../../interface/core/elem.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { brand as Brand } from "../../interface/bootstrap/navbar/brand.js";
@@ -9,7 +9,7 @@ export class brand extends tag {
 	constructor(attr: Brand);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Brand, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Brand>) {
 		super(
 			bsConstructorMultiTag<Brand>("elem", "span", "a", (i) => (i.href ? true : false), arg),
 			bsConstructor<Brand>("elem", arg)

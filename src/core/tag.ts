@@ -3,6 +3,11 @@ import { tag as ITag } from "../interface/core/tag.js";
 import { elem } from "../interface/core/elem.js";
 import { attr } from "../interface/core/attr.js";
 
+export type TagConstructorArg = [] | [string] | [string, attr];
+export type TagElementConstructorArg = [] | [elem | elem[]] | [attr] | [attr, elem | elem[]];
+export type ConstructorArgs<T = attr> = [] | [elem | elem[]] | [T] | [T, elem | elem[]];
+export type ConstructorArgsNoElement<T extends attr = attr> = [] | [T] | [elem | elem[]];
+
 /**
  * The tag class implements the ITag interface and represents a BSTS tag.
  * It contains properties for the tag name, attributes, and child elements.
@@ -19,21 +24,17 @@ export class tag implements ITag {
 	constructor();
 	constructor(tag: string);
 	constructor(tag: string, attr: attr);
-	constructor(...arg: any[]) {
-		if (arg) {
-			if (arg.length === 1) {
-				this.tag = arg[0];
-			} else if (arg.length === 2) {
-				this.tag = arg[0];
+	constructor(...arg: TagConstructorArg) {
+		if (arg.length === 1) {
+			this.tag = arg[0];
+		} else if (arg.length === 2) {
+			this.tag = arg[0];
 
-				this.attr = this.convert(arg[1]);
+			this.attr = this.convert(arg[1]);
 
-				if (this.attr && this.attr.elem) {
-					this.elem = this.attr.elem;
-					delete this.attr.elem;
-				}
-			} else {
-				this.tag = "div";
+			if (this.attr && this.attr.elem) {
+				this.elem = this.attr.elem;
+				delete this.attr.elem;
 			}
 		} else {
 			this.tag = "div";
@@ -50,8 +51,14 @@ export class tag implements ITag {
  * Returns true if obj is an object, not an array,
  * has an isbsts property set to true.
  */
-export const isTag = <T>(obj: any): obj is T => {
-	return typeof obj === "object" && !Array.isArray(obj) && "isbsts" in obj && obj["isbsts"] === true;
+export const isTag = <T>(obj: unknown): obj is T => {
+	return (
+		typeof obj === "object" &&
+		obj !== null &&
+		!Array.isArray(obj) &&
+		"isbsts" in obj &&
+		(obj as Record<string, unknown>)["isbsts"] === true
+	);
 };
 
 /**
@@ -59,17 +66,17 @@ export const isTag = <T>(obj: any): obj is T => {
  * Returns true if obj is an object, not an array,
  * and does not have isbsts or ishtml properties.
  */
-export const isAttr = <T>(obj: any): obj is T => {
-	return typeof obj === "object" && !Array.isArray(obj) && !("isbsts" in obj) && !("ishtml" in obj);
+export const isAttr = <T>(obj: unknown): obj is T => {
+	return typeof obj === "object" && obj !== null && !Array.isArray(obj) && !("isbsts" in obj) && !("ishtml" in obj);
 };
 
 /**
  * Constructs a tag attribute object from arguments, without adding any elements.
  *
- * Accepts a single argument array. If the array has one element, returns that element cast to T.
- * Otherwise returns an empty object cast to T.
+ * Accepts a single attribute argument or no arguments.
+ * If one argument is provided, returns it cast to T; otherwise returns an empty object.
  */
-export const tagConstructorNoElement = <T extends attr>(arg: any[]): T => {
+export const tagConstructorNoElement = <T extends attr>(arg: ConstructorArgsNoElement<T>): T => {
 	if (arg.length === 1) {
 		return arg[0] as T;
 	} else {
@@ -80,20 +87,21 @@ export const tagConstructorNoElement = <T extends attr>(arg: any[]): T => {
 /**
  * Constructs a tag attribute object from arguments.
  *
- * Accepts the tag name and an argument array.
- * If one argument, returns it cast to T.
- * If two arguments, merges them into a new object.
- * Otherwise returns empty object.
+ * Accepts attribute and/or element arguments.
+ * If one argument is an attributes object, returns it.
+ * If one argument is an element value, returns { [prop]: element }.
+ * If two arguments, merges element values into the attributes object.
+ * Otherwise returns an empty object.
  */
-export const tagConstructor = <T extends attr>(prop: string, arg: any[]): T => {
+export const tagConstructor = <T extends attr>(prop: string, arg: ConstructorArgs<T>): T => {
 	if (arg.length === 1) {
 		if (isAttr<T>(arg[0])) {
 			return arg[0] as T;
 		} else {
-			return { [prop]: arg[0] } as T;
+			return { [prop]: arg[0] } as unknown as T;
 		}
 	} else if (arg.length === 2) {
-		return mergeObject<T>({ [prop]: arg[1] } as T, arg[0]);
+		return mergeObject<T>({ [prop]: arg[1] } as unknown as T, arg[0] as T);
 	} else {
 		return {} as T;
 	}

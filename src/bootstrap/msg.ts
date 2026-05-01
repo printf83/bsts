@@ -1,6 +1,6 @@
 import { bsConstructor } from "../core/bootstrap.js";
 import { mergeObject } from "../core/util/mergeObject.js";
-import { isAttr } from "../core/tag.js";
+import { isAttr, ConstructorArgs } from "../core/tag.js";
 import { div } from "../html/div.js";
 import { icon } from "./icon.js";
 import { icon as Icon } from "../interface/bootstrap/icon.js";
@@ -46,7 +46,7 @@ export class msg extends div {
 	constructor(text: string);
 	constructor(attr: Msg);
 	constructor(attr: Msg, text: string);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Msg>) {
 		super(bsConstructor("elem", arg));
 	}
 

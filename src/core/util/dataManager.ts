@@ -1,4 +1,4 @@
-let DATAMANAGERDB: { [key: string]: any } = {};
+let DATAMANAGERDB: Record<string, unknown> = {};
 
 /**
  * Checks if a data item with the given ID exists in the data manager store.

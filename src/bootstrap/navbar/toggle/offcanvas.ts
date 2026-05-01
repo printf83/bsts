@@ -1,4 +1,5 @@
 import { elem } from "../../../interface/core/elem.js";
+import { ConstructorArgs } from "../../../core/tag.js";
 import { mergeObject } from "../../../core/util/mergeObject.js";
 import { span } from "../../../html/span.js";
 import { button as BToggle } from "../../offcanvas/button.js";
@@ -10,7 +11,7 @@ export class offcanvas extends BToggle {
 	constructor(attr: Offcanvas);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Offcanvas, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Offcanvas>) {
 		super(bsConstructor<Offcanvas>("elem", arg));
 	}
 

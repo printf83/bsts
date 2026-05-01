@@ -8,13 +8,13 @@ const DEBUG = false;
  * The info method logs contextual messages by replacing placeholders in the message template.
  */
 export const bstsConsole = {
-	log: (...data: any[]) => {
+	log: (...data: unknown[]) => {
 		if (DEBUG) console.log(...data);
 	},
-	warn: (...data: any[]) => {
+	warn: (...data: unknown[]) => {
 		console.warn(...data);
 	},
-	error: (...data: any[]) => {
+	error: (...data: unknown[]) => {
 		console.error(...data);
 	},
 	info: (action: string, elem?: Element | string) => {

@@ -1,4 +1,5 @@
 import { elem } from "../../interface/core/elem.js";
+import { ConstructorArgs } from "../../core/tag.js";
 import { bsConstructor } from "../../core/bootstrap.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { td as HTd } from "../../html/td.js";
@@ -10,7 +11,7 @@ export class td extends HTd {
 	constructor(attr: Td);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Td, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Td>) {
 		super(bsConstructor<Td>("elem", arg));
 	}
 

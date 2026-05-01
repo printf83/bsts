@@ -1,4 +1,4 @@
-import { tag } from "../core/tag.js";
+import { tag, ConstructorArgs } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
 import { bsConstructor, bsConstructorMultiTag } from "../core/bootstrap.js";
 import { mergeClass } from "../core/util/mergeClass.js";
@@ -19,7 +19,7 @@ export class spinner extends tag {
 	constructor(attr: Spinner);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Spinner, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Spinner>) {
 		super(
 			bsConstructorMultiTag<Spinner>(
 				"elem",

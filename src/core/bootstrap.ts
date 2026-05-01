@@ -1,6 +1,11 @@
 import { mergeObject } from "./util/mergeObject.js";
 import { isAttr } from "./tag.js";
 import { attr } from "../interface/core/attr.js";
+import { elem } from "../interface/core/elem.js";
+
+export type BsConstructorArg<T extends attr = attr> = [] | [T] | [elem | elem[]] | [T, elem | elem[]];
+
+export type BsConstructorNoElementArg<T extends attr = attr> = [] | [T] | [elem | elem[]];
 
 /**
  * Constructs a Bootstrap component without returning an element,
@@ -9,15 +14,15 @@ import { attr } from "../interface/core/attr.js";
  * @param arg - Optional constructor arguments, will return arg[0] if only one arg.
  * @returns The constructed component properties object.
  */
-export const bsConstructorNoElement = <T extends attr>(arg?: any[]) => {
+export const bsConstructorNoElement = <T extends attr>(arg?: BsConstructorNoElementArg<T>) => {
 	if (arg) {
 		if (arg.length === 1) {
 			return arg[0] as T;
 		} else {
-			return {};
+			return {} as T;
 		}
 	} else {
-		return {};
+		return {} as T;
 	}
 };
 
@@ -28,16 +33,16 @@ export const bsConstructorNoElement = <T extends attr>(arg?: any[]) => {
  * @param arg - Optional constructor arguments, where arg[0] is merged with {[prop]: arg[1]}
  * @returns The constructed component properties object
  */
-export const bsConstructor = <T extends attr>(prop: string, arg?: any[]) => {
+export const bsConstructor = <T extends attr>(prop: string, arg?: BsConstructorArg<T>) => {
 	if (arg) {
 		if (arg.length === 1) {
 			if (isAttr<T>(arg[0])) {
 				return arg[0] as T;
 			} else {
-				return { [prop]: arg[0] } as T;
+				return { [prop]: arg[0] } as unknown as T;
 			}
 		} else if (arg.length === 2) {
-			return mergeObject<T>({ [prop]: arg[1] } as T, arg[0] as T);
+			return mergeObject<T>({ [prop]: arg[1] } as unknown as T, arg[0] as T);
 		} else {
 			return {} as T;
 		}
@@ -61,7 +66,7 @@ export const bsConstructorMultiTag = <T extends attr>(
 	t1: string,
 	t2: string,
 	fn: (i: T) => boolean,
-	arg?: any[]
+	arg?: BsConstructorArg<T>
 ) => {
 	if (arg) {
 		if (arg.length === 1) {
@@ -71,7 +76,7 @@ export const bsConstructorMultiTag = <T extends attr>(
 				return t1;
 			}
 		} else if (arg.length === 2) {
-			return fn(mergeObject<T>({ [prop]: arg[1] } as T, arg[0] as T)) ? t2 : t1;
+			return fn(mergeObject<T>({ [prop]: arg[1] } as unknown as T, arg[0] as T)) ? t2 : t1;
 		} else {
 			return t1;
 		}

@@ -1,4 +1,5 @@
 import { bsConstructor } from "../core/bootstrap.js";
+import { ConstructorArgs } from "../core/tag.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { UUID } from "../core/util/uuid.js";
 import { textarea as TTextarea } from "../html/textarea.js";
@@ -13,7 +14,7 @@ export class textarea extends TTextarea {
 	constructor(value: string);
 	constructor(attr: Textarea);
 	constructor(attr: Textarea, value: string);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Textarea>) {
 		super(bsConstructor<Textarea>("value", arg));
 	}
 

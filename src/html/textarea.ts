@@ -1,10 +1,10 @@
-import { tagConstructorNoElement, tag } from "../core/tag.js";
+import { tagConstructorNoElement, tag, ConstructorArgsNoElement } from "../core/tag.js";
 import { textarea as Textarea } from "../interface/html/textarea.js";
 
 export class textarea extends tag {
 	constructor();
 	constructor(attr: Textarea);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgsNoElement<Textarea>) {
 		super("textarea", tagConstructorNoElement<Textarea>(arg));
 	}
 

@@ -1,4 +1,5 @@
 import { bsConstructor } from "../../core/bootstrap.js";
+import { ConstructorArgs } from "../../core/tag.js";
 import { mergeClass } from "../../core/util/mergeClass.js";
 import { a } from "../../html/a.js";
 import { button } from "../../html/button.js";
@@ -12,7 +13,7 @@ export class item extends li {
 	constructor(attr: Item);
 	constructor(elem: elem | elem[]);
 	constructor(attr: Item, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Item>) {
 		super(bsConstructor<Item>("elem", arg));
 	}
 

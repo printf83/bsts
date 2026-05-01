@@ -1,5 +1,5 @@
 import { bsConstructor } from "../core/bootstrap.js";
-import { isAttr } from "../core/tag.js";
+import { isAttr, ConstructorArgs } from "../core/tag.js";
 import { mergeObject } from "../core/util/mergeObject.js";
 import { div } from "../html/div.js";
 import { small } from "../html/small.js";
@@ -141,7 +141,7 @@ export class pill extends small {
 	constructor(text: string);
 	constructor(attr: Pill);
 	constructor(attr: Pill, text: string);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Pill>) {
 		super(bsConstructor("elem", arg));
 	}
 

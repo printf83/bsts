@@ -1,4 +1,4 @@
-import { tagConstructor, tag } from "../core/tag.js";
+import { tagConstructor, tag, ConstructorArgs } from "../core/tag.js";
 import { elem } from "../interface/core/elem.js";
 import { colgroup as Colgroup } from "../interface/html/colgroup.js";
 
@@ -15,7 +15,7 @@ export class colgroup extends tag {
 	constructor(elem: elem | elem[]);
 	constructor(attr: Colgroup);
 	constructor(attr: Colgroup, elem: elem | elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: ConstructorArgs<Colgroup>) {
 		super("colgroup", tagConstructor<Colgroup>("elem", arg));
 	}
 }
