@@ -7,7 +7,7 @@
  *
  * Useful for getting typed keys from objects like React props.
  */
-export const keyOfType = <T>(key: string | undefined, obj: T) => {
-	type result = keyof typeof obj;
-	return key as result;
+export const keyOfType = <T extends object>(key: string | undefined, obj: T) => {
+	void obj;
+	return key as keyof T;
 };
