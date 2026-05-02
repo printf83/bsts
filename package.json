@@ -52,7 +52,7 @@
 		"demo": "node -e \"const http=require('http'),fs=require('fs'),path=require('path');const root=process.cwd();const map={'.html':'text/html','.js':'application/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.ico':'image/x-icon'};http.createServer((req,res)=>{const url=req.url==='/'?'/demo.html':req.url.split('?')[0];const file=path.join(root,decodeURIComponent(url));fs.readFile(file,(err,data)=>{if(err){res.writeHead(404,{'Content-Type':'text/plain'});return res.end('Not found');}res.writeHead(200,{'Content-Type':map[path.extname(file)]||'text/plain'});res.end(data);});}).listen(8000,()=>console.log('http://localhost:8000'));\"",
 		"lint": "eslint . --ext .ts",
 		"rebuild": "pnpm run clean && pnpm run compile && pnpm run prepare",
-		"publish": "pnpm run rebuild && pnpm publish --access public",
+		"publish": "pnpm publish --access public",
 		"prepack": "pnpm run rebuild"
 	}
 }
