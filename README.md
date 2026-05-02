@@ -90,24 +90,6 @@ import { core, c, t, s, h, b, I } from "@printf83/bsts";
 
 - `b`
   - Bootstrap component constructors: `blockquote`, `figure`, `form`, `icon`, `button`, `label`, `caption`, `msg`, `alert`, `img`, `row`, `col`, `grid`, `container`, `input`, `btnclose`, `select`, `textarea`, `dropdown`, `btngroup`, `inputgroup`, `formfloating`, `card`, `collapse`, `list`, `tabList`, `badge`, `visuallyhidden`, `nav`, `modal`, `toast`, `progress`, `popover`, `tooltip`, `offcanvas`, `navbar`, `breadcrumb`, `accordion`, `carousel`, `pagination`, `pill`, `table`, `scrollspy`, `verticalrule`, `spinner`, `timer`, `ul`, `initTimer`, `calendar`
-  - grouped subcomponents:
-    - `accordion`: `body`, `container`, `header`, `item`
-    - `alert`: `btnclose`, `container`, `header`, `link`
-    - `card`: `body`, `container`, `footer`, `group`, `header`, `img`, `imgoverlay`, `link`, `nav`, `subtitle`, `text`, `title`
-    - `carousel`: `container`, `indicators`, `inner`
-    - `collapse`: `button`, `container`
-    - `dropdown`: `button`, `buttonLink`, `container`, `divider`, `header`, `item`, `menu`, `text`
-    - `form`: `check`, `floatinglabel`, `input`, `select`, `textarea`, `toggle`
-    - `inputgroup`: `container`, `text`
-    - `list`: `container`, `containerDiv`, `item`, `itemDiv`, `itemLabel`, `itemLink`
-    - `modal`: `body`, `btnclose`, `container`, `footer`, `header`, `title`
-    - `navbar`: `brand`, `collapse`, `container`, `innercontainer`, `itemcontainer`, `text`, `toggle`
-    - `offcanvas`: `body`, `btnclose`, `button`, `container`, `header`, `title`
-    - `pagination`: `container`, `item`
-    - `progress`: `bar`, `container`, `stacked`
-    - `table`: `container`, `responsive`, `tbody`, `td`, `tfoot`, `th`, `thead`, `tr`
-    - `toast`: `body`, `btnclose`, `container`, `header`, `item`, `title`
-    - `tabList`: `container`, `item`, `tab`
 
 - `I`
   - interface namespaces: `I.h`, `I.b`, `I.c`, and `I.core`
