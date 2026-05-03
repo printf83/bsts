@@ -35,20 +35,35 @@ const cleanupAttr: IAttachFn = (key, elem, attr) => {
 	return { attr, elem, changed };
 };
 
-const attrFn: IAttachFn[] = [
-	cleanupAttr,
-	attachAlias,
-	attachBoolean,
-	attachData,
-	attachAria,
-	attachBSClass,
-	attachBSAttr,
-	attachBSTS,
-	attachEvent,
-	attachStyle,
-	attachClass,
-	attachHref,
-	attachOther,
+const attachHandlerCategories = [
+	{
+		category: "cleanup",
+		handlers: [cleanupAttr],
+	},
+	{
+		category: "alias",
+		handlers: [attachAlias],
+	},
+	{
+		category: "boolean",
+		handlers: [attachBoolean],
+	},
+	{
+		category: "data",
+		handlers: [attachData, attachAria],
+	},
+	{
+		category: "bootstrap",
+		handlers: [attachBSClass, attachBSAttr, attachBSTS],
+	},
+	{
+		category: "dom",
+		handlers: [attachEvent, attachStyle, attachClass, attachHref],
+	},
+	{
+		category: "fallback",
+		handlers: [attachOther],
+	},
 ];
 
 /**
@@ -56,25 +71,25 @@ const attrFn: IAttachFn[] = [
  * object. It handles various special cases like events, styles, classes etc.
  *
  * It loops through the keys in the attribute object, and passes each key/value
- * pair through the attrFn array of handler functions. This allows each handler
- * to transform the attribute as needed.
+ * pair through the assembled handler categories. This makes the pipeline
+ * order and intent explicit while preserving the existing behavior.
  *
  * The element and updated attribute object are returned after being mutated
  * by the handler functions.
  */
 export const attachAttr = (elem: Element, attr: attr): Element => {
 	if (attr) {
-		let d = Object.assign({}, attr);
+		let d = { ...attr };
 
-		//add hasdestroy and hasbuild
-		let { hasBuild, hasDestroy } = hasBuildAndDestroyEvent(d);
+		// add hasdestroy and hasbuild
+		const { hasBuild, hasDestroy } = hasBuildAndDestroyEvent(d);
 		if (hasBuild || hasDestroy) {
 			if (d.class) {
 				if (Array.isArray(d.class)) {
 					if (hasBuild) d.class.push("bs-build-event");
 					if (hasDestroy) d.class.push("bs-destroy-event");
 				} else {
-					let o = d.class.split(" ");
+					const o = d.class.split(" ");
 					if (hasBuild) o.push("bs-build-event");
 					if (hasDestroy) o.push("bs-destroy-event");
 					d.class = o.join(" ");
@@ -86,25 +101,22 @@ export const attachAttr = (elem: Element, attr: attr): Element => {
 			}
 		}
 
-		//convert to attribute
+		// convert to attribute
 		for (const key of Object.keys(d)) {
-			let handleByAttrFn = false;
 			let k = keyOfType(key, d);
 
-			for (const [y, fn] of attrFn.entries()) {
-				if (typeof d[k] !== "undefined" && d[k] !== null) {
-					if (y === attrFn.length - 1 && handleByAttrFn) {
-						break;
-					}
-
-					let { elem: e, attr: a, changed: c } = fn(key, elem, d);
-					if (c) {
-						handleByAttrFn = true;
+			for (const category of attachHandlerCategories) {
+				for (const fn of category.handlers) {
+					if (typeof d[k] !== "undefined" && d[k] !== null) {
+						const { elem: e, attr: a, changed: c } = fn(key, elem, d);
 						elem = e;
 						d = a;
+						if (c) {
+							break;
+						}
+					} else {
+						break;
 					}
-				} else {
-					break;
 				}
 			}
 		}

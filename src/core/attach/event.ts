@@ -17,9 +17,9 @@ export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
 	if (key === "on") {
 		if (attr && typeof attr.on !== "undefined") {
-			for (const [key, value] of Object.entries(attr.on)) {
+			for (const [eventName, value] of Object.entries(attr.on)) {
 				if (typeof value === "function") {
-					addEvent(key, elem as ElementWithAbortController, value);
+					addEvent(eventName, elem as ElementWithAbortController, value);
 				}
 			}
 
@@ -42,12 +42,9 @@ export const hasBuildAndDestroyEvent = (attr: attr) => {
 	let hasDestroy = false;
 
 	if (attr && typeof attr.on !== "undefined") {
-		const prop = Object.keys(attr.on);
-		if (prop.length > 0) {
-			hasDestroy = true;
-			if (prop.includes("build")) {
-			}
-		}
+		const eventKeys = Object.keys(attr.on);
+		hasBuild = eventKeys.includes("build");
+		hasDestroy = eventKeys.includes("destroy");
 	}
 
 	return { hasBuild, hasDestroy };

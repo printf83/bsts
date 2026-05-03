@@ -1,3 +1,4 @@
+import { getAttrValues, getAllowedKey } from "./attachHelpers.js";
 import { keyOfType } from "../util/keyOfType.js";
 import { IAttachFn } from "./_index.js";
 
@@ -82,28 +83,6 @@ const formatDB: {
 	},
 };
 
-let allowPropDB: Set<string> = new Set();
-
-/**
- * Checks if the given key is allowed as a property name.
- * Returns the key if allowed, null otherwise.
- *
- * Checks against a global allow list of allowed property names.
- */
-function allowProp(key?: string) {
-	if (key) {
-		if (allowPropDB.size === 0) {
-			allowPropDB = new Set(Object.keys(formatDB));
-		}
-
-		if (allowPropDB.has(key)) {
-			return key;
-		}
-	}
-
-	return null;
-}
-
 /**
  * Applies a formatting rule to an element.
  *
@@ -134,20 +113,13 @@ function addAttr(rule: IFormat | undefined, data: string | number | boolean, ele
  */
 export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
-	let allowKey = allowProp(key);
+	const allowKey = getAllowedKey(key, formatDB);
 	if (allowKey) {
-		let a = keyOfType(key, attr);
-		let b = keyOfType(allowKey, formatDB);
-		let data: (string | number | boolean)[] = [];
-
-		if (!Array.isArray(attr[a])) {
-			data = [attr[a] as string | number | boolean];
-		} else {
-			data = attr[a] as (string | number | boolean)[];
-		}
+		const a = keyOfType(key, attr);
+		const data = getAttrValues(attr, key);
 
 		data.forEach((i) => {
-			elem = addAttr(formatDB[b], i, elem);
+			elem = addAttr(formatDB[allowKey], i, elem);
 		});
 
 		delete attr[a];
