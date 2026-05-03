@@ -82,7 +82,7 @@ const formatDB: {
 	},
 };
 
-let allowPropDB: (string | undefined)[] = [];
+let allowPropDB: Set<string> = new Set();
 
 /**
  * Checks if the given key is allowed as a property name.
@@ -92,11 +92,11 @@ let allowPropDB: (string | undefined)[] = [];
  */
 function allowProp(key?: string) {
 	if (key) {
-		if (allowPropDB.length === 0) {
-			allowPropDB = Object.keys(formatDB);
+		if (allowPropDB.size === 0) {
+			allowPropDB = new Set(Object.keys(formatDB));
 		}
 
-		if (allowPropDB.indexOf(key) > -1) {
+		if (allowPropDB.has(key)) {
 			return key;
 		}
 	}

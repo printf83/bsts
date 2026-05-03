@@ -11,7 +11,7 @@ export const colorExtend = () => {
 	} else {
 		let textColor = bsTypeA.textColor.map((i) => {
 			let ivar = i;
-			if (i.indexOf("-emphasis") > -1) {
+			if (i.includes("-emphasis")) {
 				ivar = `${i.replace("-emphasis", "")}-text-emphasis`;
 			} else if (i === "body-tertiary") {
 				ivar = "tertiary-text";
@@ -26,7 +26,7 @@ export const colorExtend = () => {
 
 		let bgColor = bsTypeA.bgColor.map((i) => {
 			let ivar = i;
-			if (i.indexOf("-subtle") > -1) {
+			if (i.includes("-subtle")) {
 				ivar = `${i.replace("-subtle", "")}-bg-subtle`;
 			} else if (i === "body-tertiary") {
 				ivar = "tertiary-bg";
@@ -41,7 +41,7 @@ export const colorExtend = () => {
 
 		let borderColor = bsTypeA.borderColor.map((i) => {
 			let ivar = i;
-			if (i.indexOf("-subtle") > -1) {
+			if (i.includes("-subtle")) {
 				ivar = `${i.replace("-subtle", "")}-border-subtle`;
 			} else if (i === "body-tertiary") {
 				ivar = "tertiary-border";

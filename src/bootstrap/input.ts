@@ -43,10 +43,8 @@ export class input extends HInput {
 				id: attr.id || UUID(),
 				type: attr.type,
 				class: [
-					["range", "radio", "checkbox"].indexOf(attr.type) === -1 && !attr.plaintext
-						? "form-control"
-						: undefined,
-					["radio", "checkbox"].indexOf(attr.type) > -1
+					!["range", "radio", "checkbox"].includes(attr.type) && !attr.plaintext ? "form-control" : undefined,
+					["radio", "checkbox"].includes(attr.type)
 						? attr.toggle === true
 							? "btn-check"
 							: "form-check-input"

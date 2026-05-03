@@ -44,7 +44,7 @@ export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
 
 	if (key) {
-		if (formatDB.indexOf(key) > -1) {
+		if (formatDB.includes(key)) {
 			let k = keyOfType(key, attr);
 
 			if (attr && typeof attr[k] !== "undefined") {

@@ -10,37 +10,17 @@ import { mergeClass } from "./mergeClass.js";
  * @param source - The source attr object to merge from
  * @returns The merged attr object
  */
-export const mergeObject = <T extends attr>(target?: T, source?: T): T | never => {
-	if (target) {
-		if (source) {
-			let a_class = target.class;
-			let b_class = source.class;
-			let a_style = target.style;
-			let b_style = source.style;
-			let a_aria = target.aria;
-			let b_aria = source.aria;
-			let a_data = target.data;
-			let b_data = source.data;
-			let a_on = target.on;
-			let b_on = source.on;
-
-			let result = mergeAttr(target, source);
-
-			result.class = mergeClass(a_class, b_class);
-			result.style = mergeAttr(a_style, b_style);
-			result.aria = mergeAttr(a_aria, b_aria);
-			result.data = mergeAttr(a_data, b_data);
-			result.on = mergeAttr(a_on, b_on);
-
-			return result;
-		} else {
-			return target;
-		}
-	} else {
-		if (source) {
-			return source;
-		} else {
-			throw new Error("Please provide target or source");
-		}
+export const mergeObject = <T extends attr>(target?: T, source?: T): T => {
+	if (!target && !source) {
+		throw new Error("Please provide target or source");
 	}
+
+	const result = mergeAttr(target ?? ({} as T), source ?? ({} as T));
+	result.class = mergeClass(target?.class, source?.class);
+	result.style = mergeAttr(target?.style, source?.style);
+	result.aria = mergeAttr(target?.aria, source?.aria);
+	result.data = mergeAttr(target?.data, source?.data);
+	result.on = mergeAttr(target?.on, source?.on);
+
+	return result as T;
 };

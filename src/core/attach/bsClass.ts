@@ -585,7 +585,7 @@ const formatDB: {
 	}),
 };
 
-let allowPropDB: (string | undefined)[] = [];
+let allowPropDB: Set<string> = new Set();
 
 /**
  * Checks if a given value matches one of the allowed values.
@@ -599,7 +599,7 @@ function allowValue<T extends string | number | boolean>(
 	listOfPossible: (string | number | boolean)[]
 ): valueToCheck is T {
 	if (listOfPossible && listOfPossible.length > 0) {
-		return listOfPossible.indexOf(valueToCheck) > -1;
+		return listOfPossible.includes(valueToCheck);
 	}
 	return false;
 }
@@ -612,11 +612,11 @@ function allowValue<T extends string | number | boolean>(
  */
 function allowProp(key?: string) {
 	if (key) {
-		if (allowPropDB.length === 0) {
-			allowPropDB = Object.keys(formatDB);
+		if (allowPropDB.size === 0) {
+			allowPropDB = new Set(Object.keys(formatDB));
 		}
 
-		if (allowPropDB.indexOf(key) > -1) {
+		if (allowPropDB.has(key)) {
 			return key;
 		}
 	}

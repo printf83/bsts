@@ -176,7 +176,7 @@ const formatDB: {
 	//---------------------
 };
 
-let allowPropDB: (string | undefined)[] = [];
+let allowPropDB: Set<string> = new Set();
 
 /**
  * Checks if a value is included in the provided array of allowed values.
@@ -187,23 +187,23 @@ function allowValue<T extends string | number | boolean>(
 	listOfPossible: (string | number | boolean)[]
 ): valueToCheck is T {
 	if (listOfPossible && listOfPossible.length > 0) {
-		return listOfPossible.indexOf(valueToCheck) > -1;
+		return listOfPossible.includes(valueToCheck);
 	}
 	return false;
 }
 
 /**
  * Checks if the given key is allowed as a property.
- * Populates the allowPropDB array with valid property names if it is empty.
+ * Populates the allowPropDB set with valid property names if it is empty.
  * Returns the key if it is valid, null otherwise.
  */
 function allowProp(key?: string) {
 	if (key) {
-		if (allowPropDB.length === 0) {
-			allowPropDB = Object.keys(formatDB);
+		if (allowPropDB.size === 0) {
+			allowPropDB = new Set(Object.keys(formatDB));
 		}
 
-		if (allowPropDB.indexOf(key) > -1) {
+		if (allowPropDB.has(key)) {
 			return key;
 		}
 	}

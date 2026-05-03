@@ -87,30 +87,24 @@ export const attachAttr = (elem: Element, attr: attr): Element => {
 		}
 
 		//convert to attribute
-		let prop = Object.keys(d);
-		if (prop) {
-			let propLength = prop.length;
-			let attrFnLength = attrFn.length;
+		for (const key of Object.keys(d)) {
+			let handleByAttrFn = false;
+			let k = keyOfType(key, d);
 
-			for (let x = 0; x < propLength; x++) {
-				let handleByAttrFn = false;
-				let k = keyOfType(prop[x], d);
-
-				for (let y = 0; y < attrFnLength; y++) {
-					if (typeof d[k] !== "undefined" && d[k] !== null) {
-						if (y === attrFnLength - 1 && handleByAttrFn) {
-							break;
-						}
-
-						let { elem: e, attr: a, changed: c } = attrFn[y]!(prop[x], elem, d);
-						if (c) {
-							handleByAttrFn = true;
-							elem = e;
-							d = a;
-						}
-					} else {
+			for (const [y, fn] of attrFn.entries()) {
+				if (typeof d[k] !== "undefined" && d[k] !== null) {
+					if (y === attrFn.length - 1 && handleByAttrFn) {
 						break;
 					}
+
+					let { elem: e, attr: a, changed: c } = fn(key, elem, d);
+					if (c) {
+						handleByAttrFn = true;
+						elem = e;
+						d = a;
+					}
+				} else {
+					break;
 				}
 			}
 		}

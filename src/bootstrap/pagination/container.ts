@@ -16,7 +16,7 @@ function pagingOnChange(attr: Container, sender: Element) {
 		attr.skip = parseInt(data);
 
 		let container = sender.closest(".pagination") as Element;
-		var event = new CustomEvent("change.bs.pagination", {
+		const event = new CustomEvent("change.bs.pagination", {
 			detail: {
 				total: attr.total,
 				skip: attr.skip,
@@ -49,9 +49,9 @@ const genElem = (attr: Container): attr => {
 
 		if (attr.total > attr.limit) {
 			//calculate
-			var x = 1;
-			var y = btncount;
-			var c = curpage;
+			let x = 1;
+			let y = btncount;
+			let c = curpage;
 			if (attr.maxBtnCount > btncount) {
 				attr.maxBtnCount = btncount;
 			}
@@ -80,7 +80,7 @@ const genElem = (attr: Container): attr => {
 
 				//6,7,8,x,10
 				//6,7,8,9,x
-				var md = Math.floor(attr.maxBtnCount / 2) + 1;
+				const md = Math.floor(attr.maxBtnCount / 2) + 1;
 
 				x = c - md + 1;
 				y = c + md - 1;
@@ -144,13 +144,13 @@ const genElem = (attr: Container): attr => {
 			}
 
 			//build middle button
-			for (x; x <= y; x++) {
+			for (let page = x; page <= y; page++) {
 				res.push(
 					new item({
-						active: x === c,
-						label: `Page ${x.toString()}`,
+						active: page === c,
+						label: `Page ${page.toString()}`,
 						data: {
-							"bs-skip": (x - 1) * attr.limit,
+							"bs-skip": (page - 1) * attr.limit,
 						},
 						on: {
 							click: (event) => {
@@ -158,7 +158,7 @@ const genElem = (attr: Container): attr => {
 								pagingOnChange(tAttr, target);
 							},
 						},
-						elem: x.toString(),
+						elem: page.toString(),
 					})
 				);
 			}

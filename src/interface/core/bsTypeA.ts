@@ -61,14 +61,14 @@ export namespace bsTypeA {
 	const ROUNDEDSIZE = BORDERWIDTH;
 	const ROUNDEDSTYLE = ["pill", "circle"];
 
-	const _grid = [...GRID, ...GRID.map((i) => `${i}`), ...VIEWPORT.map((i) => GRID.map((j) => `${i}-${j}`)).flat()];
+	const _grid = [...GRID, ...GRID.map((i) => `${i}`), ...VIEWPORT.flatMap((i) => GRID.map((j) => `${i}-${j}`))];
 	const _spacer = [
 		...SPACER,
 		...SPACER.map((i) => `${i}`),
-		...VIEWPORT.map((i) => SPACER.map((j) => `${i}-${j}`)).flat(),
+		...VIEWPORT.flatMap((i) => SPACER.map((j) => `${i}-${j}`)),
 	];
-	const _align = [...ALIGN, ...VIEWPORT.map((i) => ALIGN.map((j) => `${i}-${j}`)).flat()];
-	const _positionView = [...POSITIONVIEW, ...VIEWPORT.map((i) => POSITIONVIEW.map((j) => `${i}-${j}`)).flat()];
+	const _align = [...ALIGN, ...VIEWPORT.flatMap((i) => ALIGN.map((j) => `${i}-${j}`))];
+	const _positionView = [...POSITIONVIEW, ...VIEWPORT.flatMap((i) => POSITIONVIEW.map((j) => `${i}-${j}`))];
 
 	//use by component and handle by component rule
 	// NO NEED TO DO THIS BCOZ HANDLE BY COMPONENT
@@ -86,27 +86,27 @@ export namespace bsTypeA {
 	// export const controlfor = "string";
 
 	//class
-	export const flex = [...FLEX, ...VIEWPORT.map((i) => FLEX.map((j) => `${i}-${j}`)).flat()];
-	export const float = [...FLOAT, ...VIEWPORT.map((i) => FLOAT.map((j) => `${i}-${j}`)).flat()];
+	export const flex = [...FLEX, ...VIEWPORT.flatMap((i) => FLEX.map((j) => `${i}-${j}`))];
+	export const float = [...FLOAT, ...VIEWPORT.flatMap((i) => FLOAT.map((j) => `${i}-${j}`))];
 	export const order = [
 		...ORDER,
 		...ORDER.map((i) => `${i}`),
-		...VIEWPORT.map((i) => ORDER.map((j) => `${i}-${j}`)).flat(),
+		...VIEWPORT.flatMap((i) => ORDER.map((j) => `${i}-${j}`)),
 	];
 	export const offset = _grid;
 
-	export const alignContent = [...ALIGNCONTENT, ...VIEWPORT.map((i) => ALIGNCONTENT.map((j) => `${i}-${j}`)).flat()];
+	export const alignContent = [...ALIGNCONTENT, ...VIEWPORT.flatMap((i) => ALIGNCONTENT.map((j) => `${i}-${j}`))];
 	export const justifyContent = [
 		...JUSTIFYCONTENT,
-		...VIEWPORT.map((i) => JUSTIFYCONTENT.map((j) => `${i}-${j}`)).flat(),
+		...VIEWPORT.flatMap((i) => JUSTIFYCONTENT.map((j) => `${i}-${j}`)),
 	];
 	export const alignItem = _align;
 	export const alignSelf = _align;
-	export const display = [...DISPLAY, ...VIEWPORT.map((i) => DISPLAY.map((j) => `${i}-${j}`)).flat()];
+	export const display = [...DISPLAY, ...VIEWPORT.flatMap((i) => DISPLAY.map((j) => `${i}-${j}`))];
 	export const rowCol = [
 		...ROWCOL,
 		...ROWCOL.map((i) => `${i}`),
-		...VIEWPORT.map((i) => ROWCOL.map((j) => `${i}-${j}`)).flat(),
+		...VIEWPORT.flatMap((i) => ROWCOL.map((j) => `${i}-${j}`)),
 	];
 
 	export const visible = [true, false];
@@ -126,7 +126,7 @@ export namespace bsTypeA {
 		...ROWCOL,
 		...ROWCOL.map((i) => `${i}`),
 		...VIEWPORT,
-		...VIEWPORT.map((i) => ROWCOL.map((j) => `${i}-${j}`)).flat(),
+		...VIEWPORT.flatMap((i) => ROWCOL.map((j) => `${i}-${j}`)),
 	];
 
 	export const userSelect = ["all", "auto", "none"];
@@ -190,9 +190,9 @@ export namespace bsTypeA {
 		...ROUNDEDSIZE.map((i) => `${i}`),
 		...ROUNDED,
 		...ROUNDEDSTYLE,
-		...ROUNDED.map((i) => ROUNDEDSTYLE.map((j) => `${i}-${j}`)).flat(),
-		...ROUNDED.map((i) => ROUNDEDSIZE.map((j) => `${i}-${j}`)).flat(),
-		...ROUNDEDSTYLE.map((i) => ROUNDEDSIZE.map((j) => `${i}-${j}`)).flat(),
+		...ROUNDED.flatMap((i) => ROUNDEDSTYLE.map((j) => `${i}-${j}`)),
+		...ROUNDED.flatMap((i) => ROUNDEDSIZE.map((j) => `${i}-${j}`)),
+		...ROUNDEDSTYLE.flatMap((i) => ROUNDEDSIZE.map((j) => `${i}-${j}`)),
 	];
 	export const roundedSize = [...ROUNDEDSIZE, ...ROUNDEDSIZE.map((i) => `${i}`)];
 
@@ -221,11 +221,11 @@ export namespace bsTypeA {
 	export const container = [true, ...VIEWPORT, "fluid", "xs"];
 
 	export const zIndex = [...ZINDEX, ...ZINDEX.map((i) => `${i}`)];
-	export const objectFit = [...OBJECTFIT, ...VIEWPORT.map((i) => OBJECTFIT.map((j) => `${i}-${j}`)).flat()];
+	export const objectFit = [...OBJECTFIT, ...VIEWPORT.flatMap((i) => OBJECTFIT.map((j) => `${i}-${j}`))];
 
 	export const ratio = [true, "1x1", "4x3", "16x9", "21x9"];
 	export const fixed = STICKY;
-	export const sticky = [...STICKY, ...VIEWPORT.map((i) => STICKY.map((j) => `${i}-${j}`)).flat()];
+	export const sticky = [...STICKY, ...VIEWPORT.flatMap((i) => STICKY.map((j) => `${i}-${j}`))];
 
 	export const clearfix = [true];
 	export const textTruncate = [true];

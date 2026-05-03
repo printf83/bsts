@@ -30,13 +30,14 @@
 
             core.replaceChild(
             body,
-            new h.div([
+            new h.div({ row: true, style:{maxWidth:"50rem",gap:"1rem"} }, [
                 new h.p("This is example p tag"),
                 new h.p(
                 { lead: true, data: { test: "test-data" } },
                 "This is example p tag with attribute"
                 ),
                 new b.button({ id: "btn1", color: "primary" }, "Button"),
+                new h.code({}, "() => console.log('Hello World')"),
                 new b.card.container({ style: { width: "18rem" } }, [
                     new b.card.img({
                         location: "top",
