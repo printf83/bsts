@@ -17,10 +17,10 @@ export const mergeObject = <T extends attr>(target?: T, source?: T): T => {
 
 	const result = mergeAttr(target ?? ({} as T), source ?? ({} as T));
 	result.class = mergeClass(target?.class, source?.class);
-	result.style = mergeAttr(target?.style, source?.style);
-	result.aria = mergeAttr(target?.aria, source?.aria);
-	result.data = mergeAttr(target?.data, source?.data);
-	result.on = mergeAttr(target?.on, source?.on);
+	result.style = target?.style || source?.style ? mergeAttr(target?.style, source?.style) : undefined;
+	result.aria = target?.aria || source?.aria ? mergeAttr(target?.aria, source?.aria) : undefined;
+	result.data = target?.data || source?.data ? mergeAttr(target?.data, source?.data) : undefined;
+	result.on = target?.on || source?.on ? mergeAttr(target?.on, source?.on) : undefined;
 
 	return result as T;
 };
