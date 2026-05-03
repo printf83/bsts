@@ -73,6 +73,24 @@ export const normalizeAttributeValue = (value: unknown): string | undefined => {
 	return String(value);
 };
 
+export const setAttributeValue = (elem: Element, key: string, value: unknown): boolean => {
+	const normalizedValue = normalizeAttributeValue(value);
+	if (normalizedValue !== undefined) {
+		elem.setAttribute(key, normalizedValue);
+		return true;
+	}
+	return false;
+};
+
+export const setStyleValue = (elem: HTMLElement, key: keyof CSSStyleDeclaration, value: unknown): boolean => {
+	const normalizedValue = normalizeAttributeValue(value);
+	if (normalizedValue !== undefined) {
+		(elem.style as any)[key] = normalizedValue;
+		return true;
+	}
+	return false;
+};
+
 export const getAllowedKey = <T extends object>(key: unknown, map: T): keyof T | null => {
 	if (typeof key === "string" && key in map) {
 		return key as keyof T;

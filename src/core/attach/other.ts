@@ -1,4 +1,4 @@
-import { getAttrValue, normalizeAttributeValue } from "./attachHelpers.js";
+import { getAttrValue, setAttributeValue } from "./attachHelpers.js";
 import { IAttachFn } from "./_index.js";
 
 /**
@@ -10,12 +10,7 @@ export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
 
 	if (key && attr) {
-		const value = getAttrValue(attr, key);
-		const normalizedValue = normalizeAttributeValue(value);
-		if (normalizedValue !== undefined) {
-			elem.setAttribute(key, normalizedValue);
-			changed = true;
-		}
+		changed = setAttributeValue(elem, key, getAttrValue(attr, key));
 	}
 
 	return { attr, elem, changed };

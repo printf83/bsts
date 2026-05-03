@@ -1,4 +1,4 @@
-import { getAttrValues, getAllowedKey, normalizeAttributeValue } from "./attachHelpers.js";
+import { getAttrValues, getAllowedKey, setAttributeValue, setStyleValue } from "./attachHelpers.js";
 import { keyOfType } from "../util/keyOfType.js";
 import { IAttachFn } from "./_index.js";
 
@@ -8,11 +8,7 @@ const formatDB: {
 	[key: string]: IFormat;
 } = {
 	theme: (elem, data) => {
-		const normalizedValue = normalizeAttributeValue(data);
-		if (normalizedValue !== undefined) {
-			elem.setAttribute(`data-bs-theme`, normalizedValue);
-		}
-
+		setAttributeValue(elem, "data-bs-theme", data);
 		return elem;
 	},
 	pointer: (elem, data) => {
@@ -23,75 +19,39 @@ const formatDB: {
 		return elem;
 	},
 	label: (elem, data) => {
-		const normalizedValue = normalizeAttributeValue(data);
-		if (normalizedValue !== undefined) {
-			elem.setAttribute("aria-label", normalizedValue);
-		}
-
+		setAttributeValue(elem, "aria-label", data);
 		return elem;
 	},
 	labelledby: (elem, data) => {
-		const normalizedValue = normalizeAttributeValue(data);
-		if (normalizedValue !== undefined) {
-			elem.setAttribute("aria-labelledby", normalizedValue);
-		}
-
+		setAttributeValue(elem, "aria-labelledby", data);
 		return elem;
 	},
 	ownby: (elem, data) => {
-		const normalizedValue = normalizeAttributeValue(data);
-		if (normalizedValue !== undefined) {
-			elem.setAttribute("aria-owns", normalizedValue);
-		}
-
+		setAttributeValue(elem, "aria-owns", data);
 		return elem;
 	},
 	describedby: (elem, data) => {
-		const normalizedValue = normalizeAttributeValue(data);
-		if (normalizedValue !== undefined) {
-			elem.setAttribute("aria-describedby", normalizedValue);
-		}
-
+		setAttributeValue(elem, "aria-describedby", data);
 		return elem;
 	},
 	controlfor: (elem, data) => {
-		const normalizedValue = normalizeAttributeValue(data);
-		if (normalizedValue !== undefined) {
-			elem.setAttribute("aria-controls", normalizedValue);
-		}
-
+		setAttributeValue(elem, "aria-controls", data);
 		return elem;
 	},
 	gridTemplateColumns: (elem, data) => {
-		const normalizedValue = normalizeAttributeValue(data);
-		if (normalizedValue !== undefined) {
-			(elem as HTMLElement).style.gridTemplateColumns = normalizedValue;
-		}
-
+		setStyleValue(elem as HTMLElement, "gridTemplateColumns", data);
 		return elem;
 	},
 	gridTemplateAreas: (elem, data) => {
-		const normalizedValue = normalizeAttributeValue(data);
-		if (normalizedValue !== undefined) {
-			(elem as HTMLElement).style.gridTemplateAreas = normalizedValue;
-		}
-
+		setStyleValue(elem as HTMLElement, "gridTemplateAreas", data);
 		return elem;
 	},
 	gridTemplateRows: (elem, data) => {
-		const normalizedValue = normalizeAttributeValue(data);
-		if (normalizedValue !== undefined) {
-			(elem as HTMLElement).style.gridTemplateRows = normalizedValue;
-		}
-
+		setStyleValue(elem as HTMLElement, "gridTemplateRows", data);
 		return elem;
 	},
 	gridArea: (elem, data) => {
-		const normalizedValue = normalizeAttributeValue(data);
-		if (normalizedValue !== undefined) {
-			(elem as HTMLElement).style.gridArea = normalizedValue;
-		}
-
+		setStyleValue(elem as HTMLElement, "gridArea", data);
 		return elem;
 	},
 };

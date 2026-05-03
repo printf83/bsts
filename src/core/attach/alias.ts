@@ -1,4 +1,4 @@
-import { getAttrValue, getAllowedKey, normalizeAttributeValue } from "./attachHelpers.js";
+import { getAttrValue, getAllowedKey, setAttributeValue } from "./attachHelpers.js";
 import { IAttachFn } from "./_index.js";
 
 const formatDB: { [key: string]: string } = {
@@ -24,12 +24,7 @@ export const attach: IAttachFn = (key, elem, attr) => {
 	if (attr) {
 		const allowKey = getAllowedKey(key, formatDB);
 		if (allowKey) {
-			const value = getAttrValue(attr, key);
-			const normalizedValue = normalizeAttributeValue(value);
-			if (normalizedValue !== undefined) {
-				elem.setAttribute(formatDB[allowKey]!, normalizedValue);
-				changed = true;
-			}
+			changed = setAttributeValue(elem, formatDB[allowKey]!, getAttrValue(attr, key));
 		}
 	}
 
