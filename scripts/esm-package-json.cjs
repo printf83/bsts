@@ -3,6 +3,10 @@ const path = require("path");
 
 const buildDir = "./build";
 function createEsmModulePackageJson() {
+	if (!fs.existsSync(buildDir)) {
+		return;
+	}
+
 	fs.readdir(buildDir, function (err, dirs) {
 		if (err) {
 			throw err;
