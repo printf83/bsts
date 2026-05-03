@@ -1,5 +1,7 @@
 import { bstsConsole as console } from "../util/console.js";
 
+const getStyleRoot = (selector?: string) => document.querySelector(selector ?? ":root") as HTMLElement | null;
+
 /**
  * Converts a hex color value to HSL (hue, saturation, lightness).
  * Handles conversion from 3 or 6 digit hex colors, with optional alpha channel.
@@ -160,12 +162,16 @@ export const RGBToHex = (rgb?: string) => {
  * @param selector - Optional - The selector to set the custom property on (default is :root)
  */
 export const setCSSVar = (variableName: string, value: string, selector?: string) => {
-	let root = document.querySelector(selector ? selector : ":root") as HTMLStyleElement;
+	let root = getStyleRoot(selector);
+	if (!root) {
+		console.warn(
+			`Cannot find ${selector ?? ":root"} to save CSS variable. Use :root instead to set ${variableName}`
+		);
+		root = getStyleRoot(":root");
+	}
+
 	if (root) {
 		root.style.setProperty(variableName, value);
-	} else {
-		console.warn(`Cannot find ${selector} to save CSS variable. Use :root instead to set ${variableName}`);
-		root = document.querySelector(":root") as HTMLStyleElement;
 	}
 };
 
@@ -176,19 +182,15 @@ export const setCSSVar = (variableName: string, value: string, selector?: string
  * Returns undefined if variable or selector cannot be found.
  */
 export const getCSSVar = (variableName: string, selector?: string) => {
-	let root = document.querySelector(selector ? selector : ":root") as HTMLStyleElement;
-	if (root) {
-		return getComputedStyle(root).getPropertyValue(variableName);
-	} else {
-		console.warn(`Cannot find ${selector} to get CSS variable. Use :root instead to get ${variableName}`);
-		root = document.querySelector(selector ? selector : ":root") as HTMLStyleElement;
-
-		if (root) {
-			return getComputedStyle(root).getPropertyValue(variableName);
-		} else {
-			return undefined;
-		}
+	const root = getStyleRoot(selector) ?? getStyleRoot(":root");
+	if (!root) {
+		console.warn(
+			`Cannot find ${selector ?? ":root"} to get CSS variable. Use :root instead to get ${variableName}`
+		);
+		return undefined;
 	}
+
+	return getComputedStyle(root).getPropertyValue(variableName);
 };
 
 /**
@@ -263,12 +265,14 @@ export const varToRgb = (value?: string, alpha?: number) => {
 		if (value.startsWith("#")) {
 			return hexToRGB(value, alpha);
 		} else {
-			let splitedValue = value.replace(/^rgba?\(|\s+|\)$/g, "").split(",");
+			const splitedValue = value.replace(/^rgba?\(|\s+|\)$/g, "").split(",");
+			const parsedAlpha = alpha ?? (splitedValue.length >= 4 ? parseFloat(splitedValue[3] ?? "1") : undefined);
+
 			return {
 				r: parseInt(splitedValue[0] ?? "0"),
 				g: parseInt(splitedValue[1] ?? "0"),
 				b: parseInt(splitedValue[2] ?? "0"),
-				a: alpha ? alpha : splitedValue.length >= 4 ? parseInt(splitedValue[3] ?? "1") : undefined,
+				a: parsedAlpha,
 			};
 		}
 	} else {

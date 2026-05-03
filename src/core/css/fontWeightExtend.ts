@@ -1,6 +1,5 @@
 import { bsTypeA } from "../../interface/core/bsTypeA.js";
-
-let fontWeightExtendDB: string | undefined = undefined;
+import { memoizeCss } from "./memo.js";
 /*
 Exports a function that generates CSS rules to extend Bootstrap's font weight variables.
 
@@ -8,10 +7,8 @@ Exports a function that generates CSS rules to extend Bootstrap's font weight va
 - Generates active, hover and focus state rules for each font weight.
 - Caches the generated CSS in a module variable to avoid re-generating on each call.
 */
-export const fontWeightExtend = () => {
-	if (fontWeightExtendDB) {
-		return fontWeightExtendDB;
-	} else {
+export const fontWeightExtend = () =>
+	memoizeCss("fontWeightExtend", () => {
 		//WARNING! BOOTSTRAP HARDCODED FONTWEIGHT
 
 		let root = `
@@ -30,7 +27,7 @@ export const fontWeightExtend = () => {
 			return { name: i, var: `var(--bs-fw-${i})` };
 		});
 
-		fontWeightExtendDB = [
+		return [
 			`
 			/* 
 			src/core/css/fontWeightExtend.ts 
@@ -61,7 +58,4 @@ export const fontWeightExtend = () => {
 				})
 				.join("\n"),
 		].join("\n");
-
-		return fontWeightExtendDB;
-	}
-};
+	});

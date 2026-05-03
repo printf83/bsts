@@ -18,16 +18,9 @@ export const bstsConsole = {
 		console.error(...data);
 	},
 	info: (action: string, elem?: Element | string) => {
-		if (DEBUG) {
-			if (elem) {
-				if (typeof elem === "string") {
-					console.log(action.replace("$1", elem));
-				} else {
-					console.log(action.replace("$1", elemInfo(elem)));
-				}
-			} else {
-				console.log(action.replace("$1", ""));
-			}
-		}
+		if (!DEBUG) return;
+		const target = elem ? (typeof elem === "string" ? elem : elemInfo(elem)) : "";
+
+		console.log(action.replace("$1", target));
 	},
 };

@@ -1,6 +1,6 @@
 import { bsTypeA } from "../../interface/core/bsTypeA.js";
+import { memoizeCss } from "./memo.js";
 
-let borderWidthExtendDB: string | undefined = undefined;
 /**
  * Extends Bootstrap's border width variables and classes for active, hover and focus states.
  *
@@ -8,10 +8,8 @@ let borderWidthExtendDB: string | undefined = undefined;
  * Generates utility classes like `.border-active-3` for applying a 3px border on active state.
  * Allows control of border width on interaction states independently of static border width.
  */
-export const borderWidthExtend = () => {
-	if (borderWidthExtendDB) {
-		return borderWidthExtendDB;
-	} else {
+export const borderWidthExtend = () =>
+	memoizeCss("borderWidthExtend", () => {
 		//WARNING! BOOTSTRAP HARDCODED FONTWEIGHT
 
 		let root = `
@@ -33,7 +31,7 @@ export const borderWidthExtend = () => {
 			return { name: i, var: `var(--bs-border-${i})`, varMargin: `var(--bs-border-${i}-margin)` };
 		});
 
-		borderWidthExtendDB = [
+		return [
 			`
 			/* 
 			src/core/css/borderWidthExtend.ts 
@@ -67,7 +65,4 @@ export const borderWidthExtend = () => {
 				})
 				.join("\n"),
 		].join("\n");
-
-		return borderWidthExtendDB;
-	}
-};
+	});

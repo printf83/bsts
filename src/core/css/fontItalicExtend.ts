@@ -1,6 +1,6 @@
 import { bsTypeA } from "../../interface/core/bsTypeA.js";
+import { memoizeCss } from "./memo.js";
 
-let fontItalicExtendDB: string | undefined = undefined;
 /**
  * Generates CSS rules to apply font-style: italic/normal
  * based on values in bsTypeA.fontItalic config.
@@ -11,10 +11,9 @@ let fontItalicExtendDB: string | undefined = undefined;
  * selectors to apply the respective font-style property.
  *
  * Returns generated CSS as a string.
- */ export const fontItalicExtend = () => {
-	if (fontItalicExtendDB) {
-		return fontItalicExtendDB;
-	} else {
+ */
+export const fontItalicExtend = () =>
+	memoizeCss("fontItalicExtend", () => {
 		//WARNING! BOOTSTRAP HARDCODED FONTITALIC
 		let root = `
         :root {
@@ -31,7 +30,7 @@ let fontItalicExtendDB: string | undefined = undefined;
 			}
 		});
 
-		fontItalicExtendDB = [
+		return [
 			`
 			/* 
 			src/core/css/fontItalicExtend.ts 
@@ -62,7 +61,4 @@ let fontItalicExtendDB: string | undefined = undefined;
 				})
 				.join("\n"),
 		].join("\n");
-
-		return fontItalicExtendDB;
-	}
-};
+	});
