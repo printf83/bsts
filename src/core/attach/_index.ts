@@ -104,6 +104,7 @@ export const attachAttr = (elem: Element, attr: attr): Element => {
 		// convert to attribute
 		for (const key of Object.keys(d)) {
 			let k = keyOfType(key, d);
+			let handled = false;
 
 			for (const category of attachHandlerCategories) {
 				for (const fn of category.handlers) {
@@ -112,11 +113,16 @@ export const attachAttr = (elem: Element, attr: attr): Element => {
 						elem = e;
 						d = a;
 						if (c) {
+							handled = true;
 							break;
 						}
 					} else {
 						break;
 					}
+				}
+
+				if (handled) {
+					break;
 				}
 			}
 		}

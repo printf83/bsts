@@ -1,4 +1,4 @@
-import { getAttrValues, getAllowedKey } from "./attachHelpers.js";
+import { getAttrValues, getAllowedKey, normalizeAttributeValue } from "./attachHelpers.js";
 import { keyOfType } from "../util/keyOfType.js";
 import { IAttachFn } from "./_index.js";
 
@@ -8,7 +8,11 @@ const formatDB: {
 	[key: string]: IFormat;
 } = {
 	theme: (elem, data) => {
-		elem.setAttribute(`data-bs-theme`, data.toString());
+		const normalizedValue = normalizeAttributeValue(data);
+		if (normalizedValue !== undefined) {
+			elem.setAttribute(`data-bs-theme`, normalizedValue);
+		}
+
 		return elem;
 	},
 	pointer: (elem, data) => {
@@ -19,64 +23,73 @@ const formatDB: {
 		return elem;
 	},
 	label: (elem, data) => {
-		if (data) {
-			elem.setAttribute("aria-label", data.toString());
+		const normalizedValue = normalizeAttributeValue(data);
+		if (normalizedValue !== undefined) {
+			elem.setAttribute("aria-label", normalizedValue);
 		}
 
 		return elem;
 	},
 	labelledby: (elem, data) => {
-		if (data) {
-			elem.setAttribute("aria-labelledby", data.toString());
+		const normalizedValue = normalizeAttributeValue(data);
+		if (normalizedValue !== undefined) {
+			elem.setAttribute("aria-labelledby", normalizedValue);
 		}
 
 		return elem;
 	},
 	ownby: (elem, data) => {
-		if (data) {
-			elem.setAttribute("aria-owns", data.toString());
+		const normalizedValue = normalizeAttributeValue(data);
+		if (normalizedValue !== undefined) {
+			elem.setAttribute("aria-owns", normalizedValue);
 		}
 
 		return elem;
 	},
 	describedby: (elem, data) => {
-		if (data) {
-			elem.setAttribute("aria-describedby", data.toString());
+		const normalizedValue = normalizeAttributeValue(data);
+		if (normalizedValue !== undefined) {
+			elem.setAttribute("aria-describedby", normalizedValue);
 		}
 
 		return elem;
 	},
 	controlfor: (elem, data) => {
-		if (data) {
-			elem.setAttribute("aria-controls", data.toString());
+		const normalizedValue = normalizeAttributeValue(data);
+		if (normalizedValue !== undefined) {
+			elem.setAttribute("aria-controls", normalizedValue);
 		}
 
 		return elem;
 	},
 	gridTemplateColumns: (elem, data) => {
-		if (data) {
-			(elem as HTMLElement).style.gridTemplateColumns = data.toString();
+		const normalizedValue = normalizeAttributeValue(data);
+		if (normalizedValue !== undefined) {
+			(elem as HTMLElement).style.gridTemplateColumns = normalizedValue;
 		}
 
 		return elem;
 	},
 	gridTemplateAreas: (elem, data) => {
-		if (data) {
-			(elem as HTMLElement).style.gridTemplateAreas = data.toString();
+		const normalizedValue = normalizeAttributeValue(data);
+		if (normalizedValue !== undefined) {
+			(elem as HTMLElement).style.gridTemplateAreas = normalizedValue;
 		}
 
 		return elem;
 	},
 	gridTemplateRows: (elem, data) => {
-		if (data) {
-			(elem as HTMLElement).style.gridTemplateRows = data.toString();
+		const normalizedValue = normalizeAttributeValue(data);
+		if (normalizedValue !== undefined) {
+			(elem as HTMLElement).style.gridTemplateRows = normalizedValue;
 		}
 
 		return elem;
 	},
 	gridArea: (elem, data) => {
-		if (data) {
-			(elem as HTMLElement).style.gridArea = data.toString();
+		const normalizedValue = normalizeAttributeValue(data);
+		if (normalizedValue !== undefined) {
+			(elem as HTMLElement).style.gridArea = normalizedValue;
 		}
 
 		return elem;

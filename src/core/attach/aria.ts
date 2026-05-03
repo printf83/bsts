@@ -1,4 +1,5 @@
 import { IAttachFn } from "./_index.js";
+import { normalizeAttributeValue } from "./attachHelpers.js";
 
 /**
  * Attaches ARIA attributes to the provided element.
@@ -18,8 +19,9 @@ export const attach: IAttachFn = (key, elem, attr) => {
 	if (key === "aria") {
 		if (attr && typeof attr.aria !== "undefined") {
 			for (const [key, value] of Object.entries(attr.aria)) {
-				if (value !== undefined) {
-					elem.setAttribute(`aria-${key}`, value.toString());
+				const normalizedValue = normalizeAttributeValue(value);
+				if (normalizedValue !== undefined) {
+					elem.setAttribute(`aria-${key}`, normalizedValue);
 				}
 			}
 

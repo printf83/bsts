@@ -1,4 +1,5 @@
 import { IAttachFn } from "./_index.js";
+import { normalizeAttributeValue } from "./attachHelpers.js";
 
 /**
  * Attaches data attributes to the provided element based on the given attribute data.
@@ -14,8 +15,9 @@ export const attach: IAttachFn = (key, elem, attr) => {
 	if (key === "data") {
 		if (attr && typeof attr.data !== "undefined") {
 			for (const [key, value] of Object.entries(attr.data)) {
-				if (value !== undefined) {
-					elem.setAttribute(`data-${key}`, value.toString());
+				const normalizedValue = normalizeAttributeValue(value);
+				if (normalizedValue !== undefined) {
+					elem.setAttribute(`data-${key}`, normalizedValue);
 				}
 			}
 

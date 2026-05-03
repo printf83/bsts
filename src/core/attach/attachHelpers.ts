@@ -37,6 +37,42 @@ export const getAttrValues = <T extends object>(attr: T, key: string | undefined
 	return Array.isArray(value) ? (value as (string | number | boolean)[]) : [value as string | number | boolean];
 };
 
+export const normalizeAttributeValue = (value: unknown): string | undefined => {
+	if (value === undefined || value === null) {
+		return undefined;
+	}
+
+	if (Array.isArray(value)) {
+		return value
+			.map((item) => {
+				if (item === undefined || item === null) {
+					return "";
+				}
+
+				if (typeof item === "object") {
+					try {
+						return JSON.stringify(item);
+					} catch {
+						return String(item);
+					}
+				}
+
+				return String(item);
+			})
+			.join(" ");
+	}
+
+	if (typeof value === "object") {
+		try {
+			return JSON.stringify(value);
+		} catch {
+			return String(value);
+		}
+	}
+
+	return String(value);
+};
+
 export const getAllowedKey = <T extends object>(key: unknown, map: T): keyof T | null => {
 	if (typeof key === "string" && key in map) {
 		return key as keyof T;
