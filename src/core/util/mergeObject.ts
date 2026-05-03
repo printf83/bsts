@@ -2,25 +2,33 @@ import { attr } from "../../interface/core/attr.js";
 import { mergeAttr } from "./mergeAttr.js";
 import { mergeClass } from "./mergeClass.js";
 
-/**
- * Merges two attr objects together deeply, giving priority to properties in
- * source. Handles merging class, style, aria, data, and on specially.
- *
- * @param target - The target attr object to merge into
- * @param source - The source attr object to merge from
- * @returns The merged attr object
- */
+const mergeNested = <T extends object>(target?: T, source?: T): T | undefined => {
+	if (!target && !source) {
+		return undefined;
+	}
+
+	const merged = mergeAttr(target ?? ({} as T), source ?? ({} as T)) as Record<string, unknown>;
+	const cleaned = Object.entries(merged).reduce<Record<string, unknown>>((acc, [key, value]) => {
+		if (value != null) {
+			acc[key] = value;
+		}
+		return acc;
+	}, {});
+
+	return Object.keys(cleaned).length > 0 ? (cleaned as T) : undefined;
+};
+
 export const mergeObject = <T extends attr>(target?: T, source?: T): T => {
 	if (!target && !source) {
 		throw new Error("Please provide target or source");
 	}
 
-	const result = mergeAttr(target ?? ({} as T), source ?? ({} as T));
-	result.class = mergeClass(target?.class, source?.class);
-	result.style = target?.style || source?.style ? mergeAttr(target?.style, source?.style) : undefined;
-	result.aria = target?.aria || source?.aria ? mergeAttr(target?.aria, source?.aria) : undefined;
-	result.data = target?.data || source?.data ? mergeAttr(target?.data, source?.data) : undefined;
-	result.on = target?.on || source?.on ? mergeAttr(target?.on, source?.on) : undefined;
-
-	return result as T;
+	return {
+		...mergeAttr(target ?? ({} as T), source ?? ({} as T)),
+		class: mergeClass(target?.class, source?.class),
+		style: mergeNested(target?.style, source?.style),
+		aria: mergeNested(target?.aria, source?.aria),
+		data: mergeNested(target?.data, source?.data),
+		on: mergeNested(target?.on, source?.on),
+	} as T;
 };

@@ -41,7 +41,7 @@ export const Textarea = (attr: BTextarea) => {
 					class: "form-label",
 				},
 				attr.label
-		  )
+			)
 		: "";
 
 	//setup element

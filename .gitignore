@@ -1,3 +1,10 @@
-node_modules
-build
-.vscode
+node_modules/
+build/
+build.vscode
+
+# Optional ignores
+.DS_Store
+*.log
+.env
+coverage/
+dist/

@@ -40,7 +40,7 @@ export const Select = (attr: BSelect) => {
 					class: "form-label",
 				},
 				attr.label
-		  )
+			)
 		: "";
 
 	//setup element

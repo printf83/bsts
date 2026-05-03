@@ -1,6 +1,6 @@
 {
 	"name": "@printf83/bsts",
-	"version": "1.1.7-beta",
+	"version": "1.1.7-beta2",
 	"packageManager": "pnpm@10.32.1",
 	"description": "Bootstrap TS builder",
 	"keywords": [
@@ -37,6 +37,7 @@
 		"@typescript-eslint/eslint-plugin": "^8.59.1",
 		"@typescript-eslint/parser": "^8.59.1",
 		"eslint": "^10.2.1",
+		"prettier": "^3.0.0",
 		"typescript": "^5.9.3"
 	},
 	"dependencies": {
@@ -52,6 +53,7 @@
 		"build": "pnpm run compile && pnpm run prepare",
 		"demo": "node -e \"const http=require('http'),fs=require('fs'),path=require('path');const root=process.cwd();const map={'.html':'text/html','.js':'application/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.ico':'image/x-icon'};http.createServer((req,res)=>{const url=req.url==='/'?'/demo.html':req.url.split('?')[0];const file=path.join(root,decodeURIComponent(url));fs.readFile(file,(err,data)=>{if(err){res.writeHead(404,{'Content-Type':'text/plain'});return res.end('Not found');}res.writeHead(200,{'Content-Type':map[path.extname(file)]||'text/plain'});res.end(data);});}).listen(8000,()=>console.log('http://localhost:8000'));\"",
 		"lint": "eslint . --ext .ts",
+		"format": "prettier --write \"src/**/*.{js,ts,html,json,md}\"",
 		"rebuild": "pnpm run clean && pnpm run compile && pnpm run prepare"
 	}
 }
