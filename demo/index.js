@@ -42,8 +42,9 @@ import { card, cardOutline, cardExample1, cardExample2, accordion } from "./comp
 import { modal, offcanvas, popover, tooltip, toast } from "./component/dialog.js";
 
 const main = [
-	new h.div({ container: true, flex: "column" }, [
-		new h.div(
+	new h.div({ container: true, display: "flex", flex: "column" }, [
+		new b.alert.container(
+			{ callout: true, color: "primary" },
 			`BSTS Demo. For more details, go to {{https://printf83.github.io/bsts-test::bsts-test}}. This demo source code is available on {{https://github.com/printf83/bsts/blob/main/demo/index.js::Github}}.`
 		),
 

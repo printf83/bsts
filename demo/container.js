@@ -5,23 +5,18 @@ export const title = (text) => {
 };
 
 export const container = (direction, title, elem, backgroundColor) => {
-	if (backgroundColor) {
-		return new h.div([
-			title ? new h.h5({ marginTop: 3 }, title) : "",
-			new b.card.container({ marginBottom: 2, shadow: "sm", style: { backgroundColor: backgroundColor } }, [
-				new b.card.body([
-					new h.div({ flex: direction === "column" ? "column" : ["row", "wrap"], gap: 1 }, elem),
-				]),
+	const cardProps = {
+		marginBottom: 2,
+		shadow: "sm",
+		...(backgroundColor ? { style: { backgroundColor } } : {}),
+	};
+
+	return new h.div([
+		title ? new h.h5({ marginTop: 3 }, title) : "",
+		new b.card.container(cardProps, [
+			new b.card.body([
+				new h.div({ display: "flex", flex: direction === "column" ? "column" : ["row", "wrap"], gap: 1 }, elem),
 			]),
-		]);
-	} else {
-		return new h.div([
-			title ? new h.h5({ marginTop: 3 }, title) : "",
-			new b.card.container({ marginBottom: 2, shadow: "sm" }, [
-				new b.card.body([
-					new h.div({ flex: direction === "column" ? "column" : ["row", "wrap"], gap: 1 }, elem),
-				]),
-			]),
-		]);
-	}
+		]),
+	]);
 };
