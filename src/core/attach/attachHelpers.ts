@@ -1,5 +1,6 @@
 import { keyOfType } from "../util/keyOfType.js";
 import { addClassIntoElement } from "../util/addClassIntoElement.js";
+import { camel2Dash } from "../util/camel2Dash.js";
 import { bsClassFormatter } from "../../interface/core/bsClassFormatter.js";
 
 export class Formatter implements bsClassFormatter {
@@ -85,7 +86,7 @@ export const setAttributeValue = (elem: Element, key: string, value: unknown): b
 export const setStyleValue = (elem: HTMLElement, key: keyof CSSStyleDeclaration, value: unknown): boolean => {
 	const normalizedValue = normalizeAttributeValue(value);
 	if (normalizedValue !== undefined) {
-		(elem.style as any)[key] = normalizedValue;
+		elem.style.setProperty(camel2Dash(String(key)), normalizedValue);
 		return true;
 	}
 	return false;

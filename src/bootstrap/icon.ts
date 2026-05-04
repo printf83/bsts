@@ -6,27 +6,6 @@ import { i } from "../html/i.js";
 import { icon as Icon } from "../interface/bootstrap/icon.js";
 
 /**
- * Bubbles the event up to trigger the click handler on the closest parent anchor or button element.
- * Stops event propagation and prevents default browser behavior.
- * @param event - The event to bubble up.
- */
-const bubbleEvent = (event: Event) => {
-	event.preventDefault();
-	event.stopPropagation();
-
-	const target = event.target as Element;
-	const a = target.closest("a");
-	if (a) {
-		a.click();
-	} else {
-		const button = target.closest("button");
-		if (button) {
-			button.click();
-		}
-	}
-};
-
-/**
  * Generates a static icon element with the given type, id and optional additional attributes.
  * @param t - The icon type, e.g. "bi" for Bootstrap Icons.
  * @param i - The specific icon id, e.g. "caret-down" for the caret down icon.
@@ -89,13 +68,11 @@ export class icon extends i {
 			);
 		}
 
-		if (attr.handleBubble) {
-			attr = mergeObject({ on: { click: bubbleEvent } }, attr);
-		}
+		//add pointer event to allow click event to bubble up to parent anchor or button element
+		attr.pointerEvent ??= "none";
 
 		delete attr.id;
 		delete attr.type;
-		delete attr.handleBubble;
 		return super.convert(attr);
 	}
 

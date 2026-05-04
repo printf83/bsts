@@ -17,6 +17,5 @@
 	"tabWidth": 4,
 	"trailingComma": "es5",
 	"useTabs": true,
-	"vueIndentScriptAndStyle": true,
-	"parser": "typescript"
+	"vueIndentScriptAndStyle": true
 }

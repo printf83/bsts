@@ -5,5 +5,4 @@ import { attr } from "../core/attr.js";
 export interface icon extends attr {
 	id?: string;
 	type?: "bi";
-	handleBubble?: boolean;
 }
