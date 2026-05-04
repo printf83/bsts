@@ -43,6 +43,10 @@ import { modal, offcanvas, popover, tooltip, toast } from "./component/dialog.js
 
 const main = [
 	new h.div({ container: true, flex: "column" }, [
+		new h.div(
+			`BSTS Demo. For more details, go to {{https://printf83.github.io/bsts-test::bsts-test}}. This demo source code is available on {{https://github.com/printf83/bsts/blob/main/demo/index.js::Github}}.`
+		),
+
 		title("Navbars"),
 		container("column", "", navbar()),
 		title("Buttons"),
