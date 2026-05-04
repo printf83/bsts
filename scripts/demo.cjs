@@ -2,10 +2,12 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
-const root = path.join(process.cwd(), "demo");
+const root = process.cwd();
 const mimeTypes = {
 	".html": "text/html",
 	".js": "application/javascript",
+	".mjs": "application/javascript",
+	".cjs": "application/javascript",
 	".css": "text/css",
 	".json": "application/json",
 	".svg": "image/svg+xml",
@@ -13,7 +15,7 @@ const mimeTypes = {
 };
 
 const server = http.createServer((req, res) => {
-	const urlPath = req.url === "/" ? "/demo.html" : req.url.split("?")[0];
+	const urlPath = req.url === "/" ? "/demo/demo.html" : req.url.split("?")[0];
 	const filePath = path.join(root, decodeURIComponent(urlPath));
 
 	fs.readFile(filePath, (err, data) => {
