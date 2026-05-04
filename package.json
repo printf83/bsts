@@ -31,7 +31,7 @@
 			"default": "./build/esm/index.mjs"
 		}
 	},
-	"unpkg": "./dist/bsts.umd.js",
+	"unpkg": "./dist/bsts.bundle.js",
 	"files": [
 		"build/",
 		"dist/",
@@ -44,6 +44,7 @@
 		"@rollup/plugin-terser": "^1.0.0",
 		"@rollup/plugin-typescript": "^11.1.6",
 		"@total-typescript/ts-reset": "^0.4.2",
+		"tslib": "^2.7.0",
 		"@types/bootstrap": "^5.2.10",
 		"@types/node": "^20.19.39",
 		"@typescript-eslint/eslint-plugin": "^8.59.1",
@@ -64,9 +65,9 @@
 		"build:js": "rollup --config rollup.config.mjs",
 		"build": "pnpm run clean && pnpm run build:js && pnpm run build:types",
 		"prepare": "pnpm run build",
-		"demo": "node -e \"const http=require('http'),fs=require('fs'),path=require('path');const root=process.cwd();const map={'.html':'text/html','.js':'application/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.ico':'image/x-icon'};http.createServer((req,res)=>{const url=req.url==='/'?'/demo.html':req.url.split('?')[0];const file=path.join(root,decodeURIComponent(url));fs.readFile(file,(err,data)=>{if(err){res.writeHead(404,{'Content-Type':'text/plain'});return res.end('Not found');}res.writeHead(200,{'Content-Type':map[path.extname(file)]||'text/plain'});res.end(data);});}).listen(8000,()=>console.log('http://localhost:8000'));\"",
+		"demo": "node -e \"const http=require('http'),fs=require('fs'),path=require('path');const root=path.join(process.cwd(),'demo');const map={'.html':'text/html','.js':'application/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.ico':'image/x-icon'};http.createServer((req,res)=>{const url=req.url==='/'?'/demo.html':req.url.split('?')[0];const file=path.join(root,decodeURIComponent(url));fs.readFile(file,(err,data)=>{if(err){res.writeHead(404,{'Content-Type':'text/plain'});return res.end('Not found');}res.writeHead(200,{'Content-Type':map[path.extname(file)]||'text/plain'});res.end(data);});}).listen(8000,()=>console.log('http://localhost:8000'));\"",
 		"lint": "eslint . --ext .ts",
-		"format": "prettier --write \"src/**/*.{js,ts,html,json,md}\"",
+		"format": "prettier --write \"src/**/*.{js,ts,html,json,md}\" \"demo/**/*.{js,ts,html,json,md}\"",
 		"rebuild": "pnpm run build"
 	}
 }

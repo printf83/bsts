@@ -1,5 +1,3 @@
-// import "./node_modules/bootstrap/dist/js/bootstrap.esm.js";
-// import "./node_modules/@popperjs/core/dist/esm/popper.js";
 import { core, b, h } from "./build/esm/index.js";
 
 const x = () => {

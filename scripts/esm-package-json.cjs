@@ -1,31 +1,10 @@
-const fs = require("fs");
-const path = require("path");
+/**
+ * Legacy script placeholder.
+ *
+ * `bsts` now emits explicit ESM output as `.mjs` and CJS output as `.cjs`,
+ * so a nested `build/esm/package.json` marker is no longer required.
+ *
+ * This file remains only in case tooling still references it.
+ */
 
-const buildDir = "./build";
-function createEsmModulePackageJson() {
-	if (!fs.existsSync(buildDir)) {
-		return;
-	}
-
-	fs.readdir(buildDir, function (err, dirs) {
-		if (err) {
-			throw err;
-		}
-		dirs.forEach(function (dir) {
-			if (dir === "esm") {
-				var packageJsonFile = path.join(buildDir, dir, "/package.json");
-				if (!fs.existsSync(packageJsonFile)) {
-					fs.writeFile(packageJsonFile, new Uint8Array(Buffer.from('{"type": "module"}')), function (err) {
-						if (err) {
-							throw err;
-						} else {
-							console.log(`Create package.json on ${path.join(buildDir, dir)}`);
-						}
-					});
-				}
-			}
-		});
-	});
-}
-
-createEsmModulePackageJson();
+// No-op.

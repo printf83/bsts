@@ -1,7 +1,7 @@
 import commonjs from "@rollup/plugin-commonjs";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
-import { terser } from "@rollup/plugin-terser";
+import terser from "@rollup/plugin-terser";
 
 const basePlugins = [
 	nodeResolve({ browser: true, extensions: [".ts", ".js"] }),
@@ -33,13 +33,13 @@ export default [
 		plugins: [...basePlugins, terser()],
 		output: [
 			{
-				file: "dist/bsts.browser.esm.js",
+				file: "dist/bsts.esm.js",
 				format: "es",
 				sourcemap: true,
 				banner: "/* bsts browser-ready ESM bundle */",
 			},
 			{
-				file: "dist/bsts.umd.js",
+				file: "dist/bsts.bundle.js",
 				format: "umd",
 				name: "bsts",
 				sourcemap: true,

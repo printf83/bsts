@@ -11,7 +11,7 @@ Whenever Bootstrap changes, many things also change, so I built this library to 
 
 ## Project structure
 
-The repository has a clear split between source, build output, and package metadata.
+The repository has a clear split between source, build output, demo files, and package metadata.
 
 ```text
 bsts/
@@ -19,9 +19,11 @@ bsts/
 │   ├── cjs/
 │   ├── esm/
 │   └── types/
+├── demo/
+│   ├── demo.html
+│   └── demo.js
 ├── scripts/
-│   ├── clean.cjs
-│   └── esm-package-json.cjs
+│   └── clean.cjs
 ├── src/
 │   ├── core/
 │   ├── html/
@@ -32,15 +34,16 @@ bsts/
 ├── tsconfig.json
 ├── tsconfig.cjs.json
 ├── tsconfig.esm.json
+├── tsconfig.types.json
 └── README.md
 ```
 
 ## Why ESM?
 
 This package is authored in TypeScript and built for modern ESM output by default.
-- `package.json` exports an ESM entrypoint at `./build/esm/index.js`
-- It also provides a CommonJS fallback under `./build/cjs/index.js`
-- Source files use `.js` import specifiers because the runtime output expects `.js` paths
+- `package.json` exports an ESM entrypoint at `./build/esm/index.mjs`
+- It also provides a CommonJS fallback under `./build/cjs/index.cjs`
+- The compiled runtime output is plain JS, so imports need exact `.js` file specifiers for native ESM resolution
 
 That means the library is compatible with modern bundlers and native ESM consumers while still supporting CJS users through the published build.
 
@@ -71,6 +74,25 @@ core.documentReady(() => {
 });
 ```
 
+## Browser bundles
+
+The library also ships browser-ready bundles under `dist/`:
+
+- `dist/bsts.esm.js` — browser-ready ESM bundle
+- `dist/bsts.bundle.js` — browser-ready UMD bundle
+
+These files can be consumed directly in browser pages or via a CDN.
+
+## Demo
+
+Open `demo/demo.html` or run the local demo server:
+
+```bash
+pnpm run demo
+```
+
+Then visit `http://localhost:8000`.
+
 ## Public API
 
 Import the public namespaces from `@printf83/bsts`:
@@ -96,27 +118,20 @@ import { core, c, t, s, h, b, I } from "@printf83/bsts";
 
 ## How to build
 
-Compile the library and prepare the package metadata using:
+Compile the library using:
 
 ```bash
 pnpm run build
 ```
 
-For development, you can also run:
+Build scripts now include:
 
-```bash
-pnpm run compile
-pnpm run rebuild
-pnpm run clean
-```
-
-## Available scripts
-
-- `pnpm run lint` — run ESLint over the source
-- `pnpm run compile` — compile TypeScript for CJS, ESM, and types
-- `pnpm run build` — compile and prepare the package manifest
-- `pnpm run rebuild` — clean + compile + prepare
-- `pnpm demo` — serve `demo.html` locally for browser testing
+- `pnpm run build:js` — build ESM/CJS outputs and browser bundles
+- `pnpm run build:types` — generate type declarations
+- `pnpm run build` — clean, build JS, and build types
+- `pnpm run demo` — serve the demo site from `demo/`
+- `pnpm run lint` — run ESLint
+- `pnpm run format` — format source and demo files
 
 ## Notes
 
