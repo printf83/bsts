@@ -18,7 +18,23 @@ import {
 import { typography, typographySecondary, leadParagraph, bodyText, textColor } from "./component/typography.js";
 import { blockquote, blockquoteCenter, blockquoteEnd } from "./component/blockquote.js";
 import { table } from "./component/table.js";
-import { form, select } from "./component/form.js";
+import {
+	form,
+	select,
+	textarea,
+	fileInput,
+	formRadio,
+	formCheckbox,
+	formSwitch,
+	formRange,
+	formButton,
+	formDisabled,
+	formValidation,
+	formWeight,
+	formInputAddon,
+	formFloatingLabel,
+} from "./component/form.js";
+import { navTabs, navPills, breadcrumb, pagination } from "./component/nav.js";
 
 const main = [
 	new h.div({ container: true, display: "flex", flex: "column", gap: 5 }, [
@@ -46,6 +62,22 @@ const main = [
 		...containerCol(1, "Table", table()),
 		...containerCol(1, "Form", form()),
 		...containerCol(2, "Select", select()),
+		...containerCol(2, "Textarea", textarea()),
+		...containerCol(2, "File input", fileInput()),
+		...containerCol(2, "Radio", formRadio()),
+		...containerCol(2, "Checkbox", formCheckbox()),
+		...containerCol(2, "Switch", formSwitch()),
+		...containerCol(2, "Range", formRange()),
+		...containerRow(2, "Button", formButton()),
+		...containerCol(2, "Disabled", formDisabled()),
+		...containerCol(2, "Validation", formValidation()),
+		...containerCol(2, "Weight", formWeight()),
+		...containerCol(2, "Input addon", formInputAddon()),
+		...containerCol(2, "Floating label", formFloatingLabel()),
+		...containerCol(1, "Nav Tabs", navTabs()),
+		...containerCol(2, "Nav Pills", navPills()),
+		...containerCol(2, "Breadcrumb", breadcrumb()),
+		...containerCol(2, "Pagination", pagination()),
 	]),
 ];
 
