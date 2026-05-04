@@ -19,84 +19,39 @@ import { tag } from "../tag.js";
  * Escapes the content string for security.
  * Returns null if the tag string is invalid.
  */
+const tagMap: Record<string, typeof tag> = {
+	d: del,
+	m: mark,
+	s: strong,
+	b: b,
+	u: u,
+	i: i,
+	k: kbd,
+	c: code,
+};
+
 function markupCode(k: string, str: string) {
-	if (k.match(/^[buickdms]*$/gm)) {
-		let res: tag | null = null;
-		let ks = k.split("");
-		let ksl = ks.length - 1;
-		str = escapeMarkup(str);
-
-		ks.forEach((x, ix) => {
-			switch (x) {
-				case "d":
-					if (res === null) {
-						res = new del(ix === ksl ? str : "");
-					} else {
-						res.elem = new del(ix === ksl ? str : "");
-					}
-					break;
-				case "m":
-					if (res === null) {
-						res = new mark(ix === ksl ? str : "");
-					} else {
-						res.elem = new mark(ix === ksl ? str : "");
-					}
-					break;
-				case "s":
-					if (res === null) {
-						res = new strong(ix === ksl ? str : "");
-					} else {
-						res.elem = new strong(ix === ksl ? str : "");
-					}
-					break;
-				case "b":
-					if (res === null) {
-						res = new b(ix === ksl ? str : "");
-					} else {
-						res.elem = new b(ix === ksl ? str : "");
-					}
-					break;
-				case "u":
-					if (res === null) {
-						res = new u(ix === ksl ? str : "");
-					} else {
-						res.elem = new u(ix === ksl ? str : "");
-					}
-					break;
-				case "i":
-					if (res === null) {
-						res = new i(ix === ksl ? str : "");
-					} else {
-						res.elem = new i(ix === ksl ? str : "");
-					}
-					break;
-				case "k":
-					if (res === null) {
-						res = new kbd(ix === ksl ? str : "");
-					} else {
-						res.elem = new kbd(ix === ksl ? str : "");
-					}
-					break;
-				case "c":
-					if (res === null) {
-						res = new code(ix === ksl ? str : "");
-					} else {
-						res.elem = new code(ix === ksl ? str : "");
-					}
-					break;
-				default:
-					if (res === null) {
-						res = new span(ix === ksl ? str : "");
-					} else {
-						res.elem = new span(ix === ksl ? str : "");
-					}
-			}
-		});
-
-		return res;
+	if (!/^[buickdms]*$/gm.test(k)) {
+		return null;
 	}
 
-	return null;
+	let res: tag | null = null;
+	const ks = k.split("");
+	const lastIndex = ks.length - 1;
+	str = escapeMarkup(str);
+
+	ks.forEach((x, ix) => {
+		const Component = tagMap[x] ?? span;
+		const content = ix === lastIndex ? str : "";
+
+		if (res === null) {
+			res = new Component(content);
+		} else {
+			res.elem = new Component(content);
+		}
+	});
+
+	return res;
 }
 
 /**

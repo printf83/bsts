@@ -1,5 +1,16 @@
 import { bstsConsole as console } from "./console.js";
 
+const mutationObserverMap = new WeakMap<Element, MutationObserver>();
+
+const forEachElement = (elem: string | Element, fn: (element: Element) => void) => {
+	if (typeof elem === "string") {
+		document.querySelectorAll(elem).forEach(fn);
+		return;
+	}
+
+	fn(elem);
+};
+
 /**
  * Class that extends HTMLElement to allow attaching a MutationObserver.
  * The MutationObserver property can be used to store a reference to a
@@ -13,38 +24,22 @@ export class ElementWithMutationObserver extends HTMLElement {
 
 /**
  * Disconnects the MutationObserver instance from the given element,
- * if one exists. Handles string selector, HTMLElement, and
- * ElementWithMutationObserver types. For selector strings, disconnects
- * observers on all matching elements. Nulls out the MutationObserver
- * property on the element(s) after disconnecting.
+ * if one exists. Handles string selector and Element types.
  */
 export const disconnectMutationObserver = (elem: string | Element | ElementWithMutationObserver) => {
-	if (typeof elem === "string") {
-		let e = document.querySelectorAll(elem);
-		if (e) {
-			e.forEach((i) => {
-				disconnectMutationObserver(i);
-			});
-		}
-	} else {
-		if ("MutationObserver" in elem) {
-			const ob = (elem as ElementWithMutationObserver).MutationObserver;
-			if (ob) {
-				console.info(`Disconnect MutationObserver from $1`, elem);
-				ob.disconnect();
+	forEachElement(elem, (element) => {
+		const observer = mutationObserverMap.get(element);
+		if (!observer) return;
 
-				elem.MutationObserver = undefined;
-				delete elem.MutationObserver;
-			}
-		}
-	}
+		console.info(`Disconnect MutationObserver from $1`, element);
+		observer.disconnect();
+		mutationObserverMap.delete(element);
+	});
 };
 
 /**
  * Attaches a MutationObserver to the given element and calls the provided
- * callback when mutations occur. Handles string selector, HTMLElement, and
- * ElementWithMutationObserver types. For selector strings, attaches observers
- * to all matching elements.
+ * callback when mutations occur. Handles string selector and Element types.
  */
 export const observeMutationObserver = (
 	elem: string | Element | ElementWithMutationObserver,
@@ -52,24 +47,16 @@ export const observeMutationObserver = (
 	options?: MutationObserverInit,
 	arg?: unknown[]
 ) => {
-	if (typeof elem === "string") {
-		let e = document.querySelectorAll(elem);
-		if (e) {
-			e.forEach((i) => {
-				observeMutationObserver(i, callback, options, arg);
+	forEachElement(elem, (element) => {
+		let observer = mutationObserverMap.get(element);
+		if (!observer) {
+			console.info(`Setup MutationObserver for $1`, element);
+			observer = new MutationObserver((mutation, observerInstance) => {
+				callback(mutation, observerInstance, arg);
 			});
-		}
-	} else {
-		if (!("MutationObserver" in elem)) {
-			console.info(`Setup MutationObserver for $1`, elem);
-			(elem as ElementWithMutationObserver).MutationObserver = new MutationObserver((mutation, observer) => {
-				callback(mutation, observer, arg);
-			});
+			mutationObserverMap.set(element, observer);
 		}
 
-		const ob = (elem as ElementWithMutationObserver).MutationObserver;
-		if (ob) {
-			ob.observe(elem, options);
-		}
-	}
+		observer.observe(element, options);
+	});
 };

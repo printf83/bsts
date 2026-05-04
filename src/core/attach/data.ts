@@ -1,4 +1,5 @@
 import { IAttachFn } from "./_index.js";
+import { setAttributeValue } from "./attachHelpers.js";
 
 /**
  * Attaches data attributes to the provided element based on the given attribute data.
@@ -13,16 +14,10 @@ export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
 	if (key === "data") {
 		if (attr && typeof attr.data !== "undefined") {
-			let prop = Object.keys(attr.data);
-			if (prop && prop.length > 0) {
-				for (let x = 0; x < prop.length; x++) {
-					if (attr.data[prop[x]!] !== undefined) {
-						elem.setAttribute(`data-${prop[x]}`, attr.data[prop[x]!]!.toString());
-					}
-				}
+			for (const [key, value] of Object.entries(attr.data)) {
+				const isChanged = setAttributeValue(elem, `data-${key}`, value);
+				if (isChanged) changed = true;
 			}
-
-			changed = true;
 		}
 	}
 

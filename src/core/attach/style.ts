@@ -1,5 +1,5 @@
 import { camel2Dash } from "../util/camel2Dash.js";
-import { keyOfType } from "../util/keyOfType.js";
+import { normalizeAttributeValue } from "./attachHelpers.js";
 import { IAttachFn } from "./_index.js";
 
 /**
@@ -11,22 +11,17 @@ export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
 	if (key === "style") {
 		if (attr && typeof attr.style !== "undefined") {
-			let i = Object.keys(attr.style);
-
-			if (i && i.length > 0) {
-				for (let x = 0; x < i.length; x++) {
-					let k = keyOfType(i[x], attr.style);
-
-					if (attr.style[k]) {
-						if (attr.style[k]!.indexOf(" !important") > -1) {
-							(<HTMLElement>elem).style.setProperty(
-								camel2Dash(i[x]),
-								attr.style[k]!.replace(" !important", ""),
-								"important"
-							);
-						} else {
-							(<HTMLElement>elem).style.setProperty(camel2Dash(i[x]), attr.style[k]!);
-						}
+			for (const [key, value] of Object.entries(attr.style)) {
+				const normalizedValue = normalizeAttributeValue(value);
+				if (normalizedValue) {
+					if (normalizedValue.includes(" !important")) {
+						(<HTMLElement>elem).style.setProperty(
+							camel2Dash(key),
+							normalizedValue.replace(" !important", ""),
+							"important"
+						);
+					} else {
+						(<HTMLElement>elem).style.setProperty(camel2Dash(key), normalizedValue);
 					}
 				}
 			}

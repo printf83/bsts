@@ -1,128 +1,109 @@
-import { addClassIntoElement } from "../util/addClassIntoElement.js";
 import { IAttachFn } from "./_index.js";
 import { keyOfType } from "../util/keyOfType.js";
 import { bstsTypeA } from "../../interface/core/bstsTypeA.js";
-import { bsClassFormatter } from "../../interface/core/bsClassFormatter.js";
-
-class formatter implements bsClassFormatter {
-	shared?: boolean;
-	value?: (string | number | boolean)[];
-	format?: string;
-	formatValue?: string;
-	formatTrue?: string;
-	formatFalse?: string;
-
-	constructor(d: bsClassFormatter) {
-		this.shared = d.shared;
-		this.value = d.value;
-		this.format = d.format;
-		this.formatValue = d.formatValue;
-		this.formatTrue = d.formatTrue;
-		this.formatFalse = d.formatFalse;
-	}
-}
+import { Formatter, applyClassFormatter, getAttrValues, getAllowedKey } from "./attachHelpers.js";
 
 const formatDB: {
-	[key: string]: formatter;
+	[key: string]: Formatter;
 } = {
-	rotate: new formatter({
+	rotate: new Formatter({
 		format: "rotate-$1",
 		value: bstsTypeA.rotate,
 	}),
-	flip: new formatter({
+	flip: new Formatter({
 		format: "flip-$1",
 		value: bstsTypeA.flip,
 	}),
 
 	//---------------------
 
-	animate: new formatter({
+	animate: new Formatter({
 		format: "animate-$1",
 		value: bstsTypeA.animate,
 	}),
-	animateDuration: new formatter({
+	animateDuration: new Formatter({
 		format: "animate-duration-$1",
 		value: bstsTypeA.animateDuration,
 	}),
-	animateRepeat: new formatter({
+	animateRepeat: new Formatter({
 		format: "animate-repeat-$1",
 		value: bstsTypeA.animateRepeat,
 	}),
-	animateDelay: new formatter({
+	animateDelay: new Formatter({
 		format: "animate-delay-$1",
 		value: bstsTypeA.animateDelay,
 	}),
-	animateFill: new formatter({
+	animateFill: new Formatter({
 		format: "animate-fill-$1",
 		value: bstsTypeA.animateFill,
 	}),
-	animateTiming: new formatter({
+	animateTiming: new Formatter({
 		format: "animate-timing-$1",
 		value: bstsTypeA.animateTiming,
 	}),
-	animateDirection: new formatter({
+	animateDirection: new Formatter({
 		format: "animate-direction-$1",
 		value: bstsTypeA.animateDirection,
 	}),
 
 	//---------------------
 
-	bgColorActive: new formatter({
+	bgColorActive: new Formatter({
 		format: "bg-active-$1",
 		value: bstsTypeA.bgColorActive,
 	}),
-	bgColorHover: new formatter({
+	bgColorHover: new Formatter({
 		format: "bg-hover-$1",
 		value: bstsTypeA.bgColorHover,
 	}),
-	bgColorFocus: new formatter({
+	bgColorFocus: new Formatter({
 		format: "bg-focus-$1",
 		value: bstsTypeA.bgColorFocus,
 	}),
 
 	//---------------------
 
-	textColorActive: new formatter({
+	textColorActive: new Formatter({
 		format: "text-active-$1",
 		value: bstsTypeA.textColorActive,
 	}),
-	textColorHover: new formatter({
+	textColorHover: new Formatter({
 		format: "text-hover-$1",
 		value: bstsTypeA.textColorHover,
 	}),
-	textColorFocus: new formatter({
+	textColorFocus: new Formatter({
 		format: "text-focus-$1",
 		value: bstsTypeA.textColorFocus,
 	}),
 
 	//---------------------
 
-	borderColorActive: new formatter({
+	borderColorActive: new Formatter({
 		format: "border-active-$1",
 		value: bstsTypeA.borderColorActive,
 	}),
-	borderColorHover: new formatter({
+	borderColorHover: new Formatter({
 		format: "border-hover-$1",
 		value: bstsTypeA.borderColorHover,
 	}),
-	borderColorFocus: new formatter({
+	borderColorFocus: new Formatter({
 		format: "border-focus-$1",
 		value: bstsTypeA.borderColorFocus,
 	}),
 
 	//---------------------
 
-	fontItalicActive: new formatter({
+	fontItalicActive: new Formatter({
 		formatTrue: "fst-active-italic",
 		formatFalse: "fst-active-normal",
 		value: bstsTypeA.fontItalicActive,
 	}),
-	fontItalicHover: new formatter({
+	fontItalicHover: new Formatter({
 		formatTrue: "fst-hover-italic",
 		formatFalse: "fst-hover-normal",
 		value: bstsTypeA.fontItalicHover,
 	}),
-	fontItalicFocus: new formatter({
+	fontItalicFocus: new Formatter({
 		formatTrue: "fst-focus-italic",
 		formatFalse: "fst-focus-normal",
 		value: bstsTypeA.fontItalicFocus,
@@ -130,109 +111,51 @@ const formatDB: {
 
 	//---------------------
 
-	textDecorationActive: new formatter({
+	textDecorationActive: new Formatter({
 		format: "text-decoration-active-$1",
 		value: bstsTypeA.textDecorationActive,
 	}),
-	textDecorationHover: new formatter({
+	textDecorationHover: new Formatter({
 		format: "text-decoration-hover-$1",
 		value: bstsTypeA.textDecorationHover,
 	}),
-	textDecorationFocus: new formatter({
+	textDecorationFocus: new Formatter({
 		format: "text-decoration-focus-$1",
 		value: bstsTypeA.textDecorationFocus,
 	}),
 
 	//---------------------
 
-	borderWidthActive: new formatter({
+	borderWidthActive: new Formatter({
 		format: "border-active-$1",
 		value: bstsTypeA.borderWidthActive,
 	}),
-	borderWidthHover: new formatter({
+	borderWidthHover: new Formatter({
 		format: "border-hover-$1",
 		value: bstsTypeA.borderWidthHover,
 	}),
-	borderWidthFocus: new formatter({
+	borderWidthFocus: new Formatter({
 		format: "border-focus-$1",
 		value: bstsTypeA.borderWidthFocus,
 	}),
 
 	//---------------------
 
-	fontWeightActive: new formatter({
+	fontWeightActive: new Formatter({
 		format: "fw-active-$1",
 		value: bstsTypeA.fontWeightActive,
 	}),
-	fontWeightHover: new formatter({
+	fontWeightHover: new Formatter({
 		format: "fw-hover-$1",
 		value: bstsTypeA.fontWeightHover,
 	}),
-	fontWeightFocus: new formatter({
+	fontWeightFocus: new Formatter({
 		format: "fw-focus-$1",
 		value: bstsTypeA.fontWeightFocus,
 	}),
 
 	//---------------------
 };
-
-let allowPropDB: (string | undefined)[] = [];
-
-/**
- * Checks if a value is included in the provided array of allowed values.
- * Used to validate if a value is allowed for a property.
- */
-function allowValue<T extends string | number | boolean>(
-	valueToCheck: string | number | boolean,
-	listOfPossible: (string | number | boolean)[]
-): valueToCheck is T {
-	if (listOfPossible && listOfPossible.length > 0) {
-		return listOfPossible.indexOf(valueToCheck) > -1;
-	}
-	return false;
-}
-
-/**
- * Checks if the given key is allowed as a property.
- * Populates the allowPropDB array with valid property names if it is empty.
- * Returns the key if it is valid, null otherwise.
- */
-function allowProp(key?: string) {
-	if (key) {
-		if (allowPropDB.length === 0) {
-			allowPropDB = Object.keys(formatDB);
-		}
-
-		if (allowPropDB.indexOf(key) > -1) {
-			return key;
-		}
-	}
-
-	return null;
-}
-
-/**
- * Adds a class to the given element by following the provided formatting rule.
- * Checks if the data value is allowed by the rule's allowed values.
- * Applies the rule's format strings to add the appropriate class.
- */
-function addClass(rule: bsClassFormatter | undefined, data: string | number | boolean, elem: Element) {
-	if (rule && rule.value && allowValue(data, rule.value)) {
-		if (rule.formatValue) {
-			elem = addClassIntoElement(elem, rule.formatValue!);
-		}
-
-		if (data === true && rule.formatTrue) {
-			elem = addClassIntoElement(elem, rule.formatTrue!);
-		} else if (data === false && rule.formatFalse) {
-			elem = addClassIntoElement(elem, rule.formatFalse!);
-		} else if (rule.format) {
-			elem = addClassIntoElement(elem, rule.format!.replace(/\$1/g, data.toString()));
-		}
-	}
-
-	return elem;
-}
 
 /**
  * Attaches formatting rules to the given element based on the provided
@@ -242,21 +165,13 @@ function addClass(rule: bsClassFormatter | undefined, data: string | number | bo
  */
 export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
-
-	let allowKey = allowProp(key);
+	const allowKey = getAllowedKey(key, formatDB);
 	if (allowKey) {
-		let a = keyOfType(key, attr);
-		let b = keyOfType(allowKey, formatDB);
-		let data: (string | number | boolean)[] = [];
-
-		if (!Array.isArray(attr[a])) {
-			data = [attr[a] as string | number | boolean];
-		} else {
-			data = attr[a] as (string | number | boolean)[];
-		}
+		const a = keyOfType(key, attr);
+		const data = getAttrValues(attr, key);
 
 		data.forEach((i) => {
-			elem = addClass(formatDB[b], i, elem);
+			elem = applyClassFormatter(formatDB[allowKey], i, elem);
 		});
 
 		delete attr[a];

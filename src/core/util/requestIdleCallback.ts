@@ -7,15 +7,16 @@
  * will be called after this timeout even if the browser is not idle.
  */
 export const requestIdleCallback = (callback: Function, timeout?: number) => {
-	if ("requestIdleCallback" in window) {
-		if (timeout) {
-			return window.requestIdleCallback(callback as IdleRequestCallback, { timeout: timeout });
-		} else {
-			return window.requestIdleCallback(callback as IdleRequestCallback);
-		}
-	} else {
-		return setTimeout(callback as TimerHandler, timeout ? timeout : 1);
+	const win = window as typeof window & {
+		requestIdleCallback?: IdleRequestCallback;
+	};
+
+	if (typeof win.requestIdleCallback === "function") {
+		const callbackRef = callback as IdleRequestCallback;
+		return win.requestIdleCallback(callbackRef, timeout ? { timeout } : undefined);
 	}
+
+	return window.setTimeout(callback as TimerHandler, timeout ?? 1);
 };
 
 /**
@@ -24,9 +25,13 @@ export const requestIdleCallback = (callback: Function, timeout?: number) => {
  * Otherwise, clears the timeout that would have called the callback.
  */
 export const cancelIdleCallback = (handle: number) => {
-	if ("cancelIdleCallback" in window) {
-		cancelIdleCallback(handle);
+	const win = window as typeof window & {
+		cancelIdleCallback?: (handle: number) => void;
+	};
+
+	if (typeof win.cancelIdleCallback === "function") {
+		win.cancelIdleCallback(handle);
 	} else {
-		return clearTimeout(handle);
+		window.clearTimeout(handle);
 	}
 };

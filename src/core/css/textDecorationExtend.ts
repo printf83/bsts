@@ -1,6 +1,5 @@
 import { bsTypeA } from "../../interface/core/bsTypeA.js";
-
-let textDecorationExtendDB: string | undefined = undefined;
+import { memoizeCss } from "./memo.js";
 /**
  * Generates CSS custom properties and classes for text decoration styles.
  *
@@ -10,10 +9,8 @@ let textDecorationExtendDB: string | undefined = undefined;
  * Also generates modifier classes for applying text decorations on
  * active, hover and focus states.
  */
-export const textDecorationExtend = () => {
-	if (textDecorationExtendDB) {
-		return textDecorationExtendDB;
-	} else {
+export const textDecorationExtend = () =>
+	memoizeCss("textDecorationExtend", () => {
 		//WARNING! BOOTSTRAP HARDCODED FONTWEIGHT
 
 		let root = `
@@ -28,7 +25,7 @@ export const textDecorationExtend = () => {
 			return { name: i, var: `var(--bs-text-decoration-${i})` };
 		});
 
-		textDecorationExtendDB = [
+		return [
 			`
 			/* 
 			src/core/css/textDecorationExtend.ts 
@@ -59,7 +56,4 @@ export const textDecorationExtend = () => {
 				})
 				.join("\n"),
 		].join("\n");
-
-		return textDecorationExtendDB;
-	}
-};
+	});

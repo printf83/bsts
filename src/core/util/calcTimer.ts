@@ -17,72 +17,34 @@
  * Returns an object with the relative message and next timer interval.
  */
 export const calcTimer = (datevalue: number) => {
-	let t1 = new Date().getTime();
-	let t2 = datevalue;
-	let next = -1;
-	let msg = `just now`;
+	const now = Date.now();
+	const diffMs = datevalue - now;
+	const isPast = diffMs < 0;
+	const sec = Math.floor(Math.abs(diffMs) / 1000);
 
-	if (t1 > t2) {
-		let diff = t1 - t2;
-		let sec = parseInt((diff / 1000).toString(), 10);
+	const pluralize = (value: number, unit: string) => `${value} ${unit}${value > 1 ? "s" : ""}`;
 
-		if (sec < 1) {
-			next = 1000;
-			msg = `just now`;
-		} else if (sec >= 1 && sec < 60) {
-			//second
-			next = 1000;
-			msg = `${sec} second${sec > 1 ? "s" : ""} ago`;
-		} else if (sec >= 60 && sec < 3600) {
-			//minute
-			next = 60000;
-			let t = parseInt((sec / 60).toString(), 10);
-			msg = `${t} minute${t > 1 ? "s" : ""} ago`;
-		} else if (sec >= 3600 && sec < 86400) {
-			//hour
-			next = 3600000;
-			let t = parseInt((sec / 3600).toString(), 10);
-			msg = `${t} hour${t > 1 ? "s" : ""} ago`;
-		} else {
-			//do not on timer
-			next = -1;
-			let t = parseInt((sec / 86400).toString(), 10);
-			msg = `${t} day${t > 1 ? "s" : ""} ago`;
-		}
-	} else if (t1 === t2) {
-		next = 1000;
-		msg = `just now`;
-	} else {
-		let diff = t2 - t1;
-		let sec = parseInt((diff / 1000).toString(), 10);
-
-		if (sec < 1) {
-			next = -2;
-			msg = `ready`;
-		} else if (sec >= 1 && sec < 60) {
-			//second
-			next = 1000;
-			msg = `${sec} second${sec > 1 ? "s" : ""}`;
-		} else if (sec >= 60 && sec < 3600) {
-			//minute
-			next = 60000;
-			let t = parseInt((sec / 60).toString(), 10);
-			msg = `${t} minute${t > 1 ? "s" : ""}`;
-		} else if (sec >= 3600 && sec < 86400) {
-			//hour
-			next = 3600000;
-			let t = parseInt((sec / 3600).toString(), 10);
-			msg = `${t} hour${t > 1 ? "s" : ""}`;
-		} else {
-			//do not on timer
-			next = -1;
-			let t = parseInt((sec / 86400).toString(), 10);
-			msg = `${t} day${t > 1 ? "s" : ""}`;
-		}
+	if (sec < 1) {
+		return {
+			next: isPast ? 1000 : diffMs === 0 ? 1000 : -2,
+			msg: isPast ? "just now" : "ready",
+		};
 	}
 
+	const ranges = [
+		{ limit: 60, unit: "second", interval: 1000, divisor: 1 },
+		{ limit: 3600, unit: "minute", interval: 60000, divisor: 60 },
+		{ limit: 86400, unit: "hour", interval: 3600000, divisor: 3600 },
+		{ limit: Infinity, unit: "day", interval: -1, divisor: 86400 },
+	];
+
+	const range = ranges.find((range) => sec < range.limit)!;
+	const value = Math.floor(sec / range.divisor);
+	const suffix = isPast ? " ago" : "";
+	const msg = `${pluralize(value, range.unit)}${suffix}`;
+
 	return {
-		next: next,
-		msg: msg,
+		next: range.interval,
+		msg,
 	};
 };

@@ -1,10 +1,11 @@
 import { attr } from "../../interface/core/attr.js";
+import { normalizeAttributeValue } from "./attachHelpers.js";
 import { IAttachFn } from "./_index.js";
 
 const CONVERTHASHTOVOID = true;
 
 interface IAttrHref extends attr {
-	href?: string;
+	href?: string | string[] | unknown;
 }
 
 /**
@@ -16,20 +17,17 @@ export const attach: IAttachFn = (key, elem, attr: IAttrHref) => {
 	let changed = false;
 	if (key === "href") {
 		if (attr && typeof attr.href !== "undefined") {
-			let i = Array.isArray(attr.href) ? attr.href.join(" ") : attr.href;
-
-			if (CONVERTHASHTOVOID) {
-				if (i === "#") {
+			const normalizedValue = normalizeAttributeValue(attr.href);
+			if (normalizedValue !== undefined) {
+				if (CONVERTHASHTOVOID && normalizedValue === "#") {
 					elem.setAttribute("rel", "nofollow");
 					elem.setAttribute("href", "javascript:void(0);");
 				} else {
-					elem.setAttribute("href", i);
+					elem.setAttribute("href", normalizedValue);
 				}
-			} else {
-				elem.setAttribute("href", i);
-			}
 
-			changed = true;
+				changed = true;
+			}
 		}
 	}
 

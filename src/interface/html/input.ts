@@ -3,7 +3,7 @@ import { attr } from "../core/attr.js";
 export interface input extends attr {
 	accept?: string;
 	alt?: string;
-	autocomplete?: "on" | "off";
+	autocomplete?: "on" | "off" | string;
 	autofocus?: boolean;
 	checked?: boolean;
 	indeterminate?: boolean;
@@ -11,8 +11,8 @@ export interface input extends attr {
 	disabled?: boolean;
 	form?: string;
 	formaction?: string;
-	formenctype?: "application/x-www-form-urlencoded" | "multipart/form-data" | "text/plain	";
-	formmethod?: "get" | "post";
+	formenctype?: "application/x-www-form-urlencoded" | "multipart/form-data" | "text/plain" | string;
+	formmethod?: "get" | "post" | string;
 	formnovalidate?: boolean;
 	formtarget?: string;
 	list?: string;

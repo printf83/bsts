@@ -96,15 +96,15 @@ class item extends ul {
 		let days: li[] = [];
 
 		//add days
-		for (let w = 0; w < attr.dayTitle.length; w++) {
-			days.push(new li({ class: "day" }, `${attr.dayTitle[w]}`));
+		for (const title of attr.dayTitle) {
+			days.push(new li({ class: "day" }, `${title}`));
 		}
 
 		//add prev month date
-		for (let x = currentFirstDay; x > 0; x--) {
-			let f = prevDayCount - x + 1;
-			let d = `${prevYear}-${prevMonth}-${f}`;
-			let dDate = new Date(prevYear, prevMonth, f).getTime();
+		Array.from({ length: currentFirstDay }, (_, index) => {
+			const f = prevDayCount - currentFirstDay + index + 1;
+			const d = `${prevYear}-${prevMonth}-${f}`;
+			const dDate = new Date(prevYear, prevMonth, f).getTime();
 
 			days.push(
 				new li(
@@ -118,12 +118,13 @@ class item extends ul {
 					`${f}`
 				)
 			);
-		}
+		});
 
 		//add current month date
-		for (let y = 1; y <= currentDayCount; y++) {
-			let d = `${currentYear}-${currentMonth}-${y}`;
-			let dDate = new Date(currentYear, currentMonth, y).getTime();
+		Array.from({ length: currentDayCount }, (_, index) => {
+			const y = index + 1;
+			const d = `${currentYear}-${currentMonth}-${y}`;
+			const dDate = new Date(currentYear, currentMonth, y).getTime();
 
 			days.push(
 				new li(
@@ -180,12 +181,13 @@ class item extends ul {
 					new a({ href: "#" }, `${y}`)
 				)
 			);
-		}
+		});
 
 		//add next month date
-		for (let z = 1; z <= nextViewDayCount; z++) {
-			let d = `${nextYear}-${nextMonth}-${z}`;
-			let dDate = new Date(nextYear, nextMonth, z).getTime();
+		Array.from({ length: nextViewDayCount }, (_, index) => {
+			const z = index + 1;
+			const d = `${nextYear}-${nextMonth}-${z}`;
+			const dDate = new Date(nextYear, nextMonth, z).getTime();
 
 			days.push(
 				new li(
@@ -199,7 +201,7 @@ class item extends ul {
 					`${z}`
 				)
 			);
-		}
+		});
 
 		attr.elem = days;
 

@@ -1,4 +1,5 @@
 import { IAttachFn } from "./_index.js";
+import { setAttributeValue } from "./attachHelpers.js";
 
 /**
  * Attaches ARIA attributes to the provided element.
@@ -17,16 +18,10 @@ export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
 	if (key === "aria") {
 		if (attr && typeof attr.aria !== "undefined") {
-			let prop = Object.keys(attr.aria);
-			if (prop && prop.length > 0) {
-				for (let x = 0; x < prop.length; x++) {
-					if (attr.aria[prop[x]!] !== undefined) {
-						elem.setAttribute(`aria-${prop[x]}`, attr.aria[prop[x]!]!.toString());
-					}
-				}
+			for (const [key, value] of Object.entries(attr.aria)) {
+				const isChanged = setAttributeValue(elem, `aria-${key}`, value);
+				if (isChanged) changed = true;
 			}
-
-			changed = true;
 		}
 	}
 

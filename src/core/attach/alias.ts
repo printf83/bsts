@@ -1,4 +1,4 @@
-import { keyOfType } from "../util/keyOfType.js";
+import { getAttrValue, getAllowedKey, setAttributeValue } from "./attachHelpers.js";
 import { IAttachFn } from "./_index.js";
 
 const formatDB: { [key: string]: string } = {
@@ -21,16 +21,10 @@ const formatDB: { [key: string]: string } = {
  */
 export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
-	if (key && attr && typeof attr !== "undefined") {
-		if (key in formatDB) {
-			let a = keyOfType(key, attr);
-			let b = keyOfType(key, formatDB);
-			if (typeof attr[a] !== "undefined") {
-				elem.setAttribute(formatDB[b]!, attr[a]!.toString());
-				changed = true;
-			}
-
-			return { attr, elem, changed };
+	if (attr) {
+		const allowKey = getAllowedKey(key, formatDB);
+		if (allowKey) {
+			changed = setAttributeValue(elem, formatDB[allowKey]!, getAttrValue(attr, key));
 		}
 	}
 

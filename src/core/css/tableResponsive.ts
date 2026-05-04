@@ -1,4 +1,4 @@
-let tableResponsiveDB: string | undefined = undefined;
+import { memoizeCss } from "./memo.js";
 /**
  * Generates responsive CSS for tables to show on small screens.
  *
@@ -18,12 +18,11 @@ let tableResponsiveDB: string | undefined = undefined;
  * - Add data-myTable="labelText" to cells.
  */
 export const tableResponsive = (title?: string) => {
-	if (tableResponsiveDB) {
-		return tableResponsiveDB;
-	} else {
-		title ??= "bs-title-name";
+	title ??= "bs-title-name";
 
-		tableResponsiveDB = `
+	return memoizeCss(
+		`tableResponsive:${title}`,
+		() => `
 /* 
 src/core/css/tableResponsive.ts 
 ------------------------------- */
@@ -107,8 +106,6 @@ src/core/css/tableResponsive.ts
         grid-template-columns: var(--bs-responsive-columns-xs);
     }
 }
-`;
-
-		return tableResponsiveDB;
-	}
+`
+	);
 };

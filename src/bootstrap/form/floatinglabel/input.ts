@@ -47,7 +47,7 @@ export const Input = (attr: BInput) => {
 					class: "form-label",
 				},
 				attr.label
-		  )
+			)
 		: "";
 
 	//setup element

@@ -1,3 +1,4 @@
+import { getAttrValues, getAllowedKey, setAttributeValue, setStyleValue } from "./attachHelpers.js";
 import { keyOfType } from "../util/keyOfType.js";
 import { IAttachFn } from "./_index.js";
 
@@ -7,7 +8,7 @@ const formatDB: {
 	[key: string]: IFormat;
 } = {
 	theme: (elem, data) => {
-		elem.setAttribute(`data-bs-theme`, data.toString());
+		setAttributeValue(elem, "data-bs-theme", data);
 		return elem;
 	},
 	pointer: (elem, data) => {
@@ -18,91 +19,42 @@ const formatDB: {
 		return elem;
 	},
 	label: (elem, data) => {
-		if (data) {
-			elem.setAttribute("aria-label", data.toString());
-		}
-
+		setAttributeValue(elem, "aria-label", data);
 		return elem;
 	},
 	labelledby: (elem, data) => {
-		if (data) {
-			elem.setAttribute("aria-labelledby", data.toString());
-		}
-
+		setAttributeValue(elem, "aria-labelledby", data);
 		return elem;
 	},
 	ownby: (elem, data) => {
-		if (data) {
-			elem.setAttribute("aria-owns", data.toString());
-		}
-
+		setAttributeValue(elem, "aria-owns", data);
 		return elem;
 	},
 	describedby: (elem, data) => {
-		if (data) {
-			elem.setAttribute("aria-describedby", data.toString());
-		}
-
+		setAttributeValue(elem, "aria-describedby", data);
 		return elem;
 	},
 	controlfor: (elem, data) => {
-		if (data) {
-			elem.setAttribute("aria-controls", data.toString());
-		}
-
+		setAttributeValue(elem, "aria-controls", data);
 		return elem;
 	},
 	gridTemplateColumns: (elem, data) => {
-		if (data) {
-			(elem as HTMLElement).style.gridTemplateColumns = data.toString();
-		}
-
+		setStyleValue(elem as HTMLElement, "gridTemplateColumns", data);
 		return elem;
 	},
 	gridTemplateAreas: (elem, data) => {
-		if (data) {
-			(elem as HTMLElement).style.gridTemplateAreas = data.toString();
-		}
-
+		setStyleValue(elem as HTMLElement, "gridTemplateAreas", data);
 		return elem;
 	},
 	gridTemplateRows: (elem, data) => {
-		if (data) {
-			(elem as HTMLElement).style.gridTemplateRows = data.toString();
-		}
-
+		setStyleValue(elem as HTMLElement, "gridTemplateRows", data);
 		return elem;
 	},
 	gridArea: (elem, data) => {
-		if (data) {
-			(elem as HTMLElement).style.gridArea = data.toString();
-		}
-
+		setStyleValue(elem as HTMLElement, "gridArea", data);
 		return elem;
 	},
 };
-
-let allowPropDB: (string | undefined)[] = [];
-
-/**
- * Checks if the given key is allowed as a property name.
- * Returns the key if allowed, null otherwise.
- *
- * Checks against a global allow list of allowed property names.
- */
-function allowProp(key?: string) {
-	if (key) {
-		if (allowPropDB.length === 0) {
-			allowPropDB = Object.keys(formatDB);
-		}
-
-		if (allowPropDB.indexOf(key) > -1) {
-			return key;
-		}
-	}
-
-	return null;
-}
 
 /**
  * Applies a formatting rule to an element.
@@ -134,20 +86,13 @@ function addAttr(rule: IFormat | undefined, data: string | number | boolean, ele
  */
 export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
-	let allowKey = allowProp(key);
+	const allowKey = getAllowedKey(key, formatDB);
 	if (allowKey) {
-		let a = keyOfType(key, attr);
-		let b = keyOfType(allowKey, formatDB);
-		let data: (string | number | boolean)[] = [];
-
-		if (!Array.isArray(attr[a])) {
-			data = [attr[a] as string | number | boolean];
-		} else {
-			data = attr[a] as (string | number | boolean)[];
-		}
+		const a = keyOfType(key, attr);
+		const data = getAttrValues(attr, key);
 
 		data.forEach((i) => {
-			elem = addAttr(formatDB[b], i, elem);
+			elem = addAttr(formatDB[allowKey], i, elem);
 		});
 
 		delete attr[a];

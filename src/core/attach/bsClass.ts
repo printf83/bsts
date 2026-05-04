@@ -1,119 +1,100 @@
-import { bsClassFormatter } from "../../interface/core/bsClassFormatter.js";
 import { bsTypeA } from "../../interface/core/bsTypeA.js";
-import { addClassIntoElement } from "../util/addClassIntoElement.js";
 import { keyOfType } from "../util/keyOfType.js";
 import { IAttachFn } from "./_index.js";
-
-class formatter implements bsClassFormatter {
-	shared?: boolean;
-	value?: (string | number | boolean)[];
-	format?: string;
-	formatValue?: string;
-	formatTrue?: string;
-	formatFalse?: string;
-
-	constructor(d: bsClassFormatter) {
-		this.shared = d.shared;
-		this.value = d.value;
-		this.format = d.format;
-		this.formatValue = d.formatValue;
-		this.formatTrue = d.formatTrue;
-		this.formatFalse = d.formatFalse;
-	}
-}
+import { Formatter, applyClassFormatter, getAttrValues, getAllowedKey } from "./attachHelpers.js";
 
 const formatDB: {
-	[key: string]: formatter;
+	[key: string]: Formatter;
 } = {
 	//---------------------
 	// viewport & color handle by component
 	//---------------------
 
-	flex: new formatter({
+	flex: new Formatter({
 		format: "flex-$1",
 		value: bsTypeA.flex,
 	}),
-	float: new formatter({
+	float: new Formatter({
 		format: "float-$1",
 		value: bsTypeA.float,
 	}),
-	order: new formatter({
+	order: new Formatter({
 		format: "order-$1",
 		value: bsTypeA.order,
 	}),
-	offset: new formatter({
+	offset: new Formatter({
 		format: "offset-$1",
 		value: bsTypeA.offset,
 	}),
 
 	//---------------------
 
-	alignContent: new formatter({
+	alignContent: new Formatter({
 		format: "align-content-$1",
 		value: bsTypeA.alignContent,
 	}),
-	justifyContent: new formatter({
+	justifyContent: new Formatter({
 		format: "justify-content-$1",
 		value: bsTypeA.justifyContent,
 	}),
-	alignItem: new formatter({
+	alignItem: new Formatter({
 		format: "align-items-$1",
 		value: bsTypeA.alignItem,
 	}),
-	alignSelf: new formatter({
+	alignSelf: new Formatter({
 		format: "align-self-$1",
 		value: bsTypeA.alignSelf,
 	}),
-	display: new formatter({
+	display: new Formatter({
 		format: "d-$1",
 		value: bsTypeA.display,
 	}),
-	rowCol: new formatter({
+	rowCol: new Formatter({
 		format: "row-cols-$1",
 		value: bsTypeA.rowCol,
 	}),
 
 	//---------------------
 
-	visible: new formatter({
+	visible: new Formatter({
 		formatTrue: "visible",
 		formatFalse: "invisible",
 		value: bsTypeA.visible,
 	}),
-	textWrap: new formatter({
+	textWrap: new Formatter({
 		formatTrue: "text-wrap",
 		formatFalse: "text-nowrap",
 		value: bsTypeA.textWrap,
 	}),
-	fontItalic: new formatter({
+	fontItalic: new Formatter({
 		formatTrue: "fst-italic",
 		formatFalse: "fst-normal",
 		value: bsTypeA.fontItalic,
 	}),
-	bgGradient: new formatter({
+	bgGradient: new Formatter({
 		formatTrue: "bg-gradient",
 		value: bsTypeA.bgGradient,
 	}),
-	textBreak: new formatter({
+	textBreak: new Formatter({
 		formatTrue: "text-break",
 		value: bsTypeA.textBreak,
 	}),
-	monospace: new formatter({
+	monospace: new Formatter({
 		formatTrue: "font-monospace",
 		value: bsTypeA.monospace,
 	}),
 
 	//---------------------
 
-	loadingPlaceholder: new formatter({
+	loadingPlaceholder: new Formatter({
 		formatTrue: "placeholder",
 		value: bsTypeA.loadingPlaceholder,
 	}),
-	loadingPlaceholderAnimation: new formatter({
+	loadingPlaceholderAnimation: new Formatter({
 		format: "placeholder-$1",
 		value: bsTypeA.loadingPlaceholderAnimation,
 	}),
-	loadingPlaceholderWeight: new formatter({
+	loadingPlaceholderWeight: new Formatter({
 		format: "placeholder-$1",
 		formatValue: "placeholder $1",
 		value: bsTypeA.loadingPlaceholderWeight,
@@ -121,11 +102,11 @@ const formatDB: {
 
 	//---------------------
 
-	row: new formatter({
+	row: new Formatter({
 		formatTrue: "row",
 		value: bsTypeA.row,
 	}),
-	col: new formatter({
+	col: new Formatter({
 		format: "col-$1",
 		formatTrue: "col",
 		value: bsTypeA.col,
@@ -133,80 +114,80 @@ const formatDB: {
 
 	//---------------------
 
-	userSelect: new formatter({
+	userSelect: new Formatter({
 		format: "user-select-$1",
 		value: bsTypeA.userSelect,
 	}),
-	pointerEvent: new formatter({
+	pointerEvent: new Formatter({
 		format: "pe-$1",
 		value: bsTypeA.pointerEvent,
 	}),
-	position: new formatter({
+	position: new Formatter({
 		format: "position-$1",
 		value: bsTypeA.position,
 	}),
-	overflow: new formatter({
+	overflow: new Formatter({
 		format: "overflow-$1",
 		value: bsTypeA.overflow,
 	}),
-	overflowX: new formatter({
+	overflowX: new Formatter({
 		format: "overflow-x-$1",
 		value: bsTypeA.overflowX,
 	}),
-	overflowY: new formatter({
+	overflowY: new Formatter({
 		format: "overflow-y-$1",
 		value: bsTypeA.overflowY,
 	}),
 
 	//---------------------
 
-	textAlign: new formatter({
+	textAlign: new Formatter({
 		format: "text-$1",
 		value: bsTypeA.textAlign,
 	}),
-	verticalAlign: new formatter({
+	verticalAlign: new Formatter({
 		format: "align-$1",
 		value: bsTypeA.verticalAlign,
 	}),
 
 	//---------------------
 
-	opacity: new formatter({
+	opacity: new Formatter({
 		format: "opacity-$1",
 		value: bsTypeA.opacity,
 	}),
-	bgOpacity: new formatter({
+	bgOpacity: new Formatter({
 		format: "bg-opacity-$1",
 		value: bsTypeA.bgOpacity,
 	}),
-	textOpacity: new formatter({
+	textOpacity: new Formatter({
 		format: "text-opacity-$1",
 		value: bsTypeA.textOpacity,
 	}),
 
 	//---------------------
 
-	focusRing: new formatter({
+	focusRing: new Formatter({
 		format: "focus-ring-$1",
 		formatValue: "focus-ring",
 		value: bsTypeA.focusRing,
 	}),
-	textBgColor: new formatter({
+	textBgColor: new Formatter({
 		format: "text-bg-$1",
 		value: bsTypeA.textBgColor,
 	}),
-	textColor: new formatter({
+	textColor: new Formatter({
 		format: "text-$1",
 		value: bsTypeA.textColor,
 	}),
-	bgColor: new formatter({
+	bgColor: new Formatter({
 		format: "bg-$1",
 		value: bsTypeA.bgColor,
 	}),
 
 	//---------------------
 
-	iconLink: new formatter({
+	iconLink: new Formatter({
 		format: "icon-link-$1",
 		formatValue: "icon-link",
 		formatTrue: "icon-link",
@@ -215,53 +196,53 @@ const formatDB: {
 
 	//---------------------
 
-	textTransform: new formatter({
+	textTransform: new Formatter({
 		format: "text-$1",
 		value: bsTypeA.textTransform,
 	}),
-	textDecoration: new formatter({
+	textDecoration: new Formatter({
 		format: "text-decoration-$1",
 		value: bsTypeA.textDecoration,
 	}),
-	lineHeight: new formatter({
+	lineHeight: new Formatter({
 		format: "lh-$1",
 		value: bsTypeA.lineHeight,
 	}),
 
 	//---------------------
 
-	fontSize: new formatter({
+	fontSize: new Formatter({
 		format: "fs-$1",
 		value: bsTypeA.fontSize,
 	}),
-	fontDisplay: new formatter({
+	fontDisplay: new Formatter({
 		format: "display-$1",
 		value: bsTypeA.fontDisplay,
 	}),
-	fontWeight: new formatter({
+	fontWeight: new Formatter({
 		format: "fw-$1",
 		value: bsTypeA.fontWeight,
 	}),
 
 	//---------------------
 
-	top: new formatter({
+	top: new Formatter({
 		format: "top-$1",
 		value: bsTypeA.top,
 	}),
-	bottom: new formatter({
+	bottom: new Formatter({
 		format: "bottom-$1",
 		value: bsTypeA.bottom,
 	}),
-	start: new formatter({
+	start: new Formatter({
 		format: "start-$1",
 		value: bsTypeA.start,
 	}),
-	end: new formatter({
+	end: new Formatter({
 		format: "end-$1",
 		value: bsTypeA.end,
 	}),
-	tMiddle: new formatter({
+	tMiddle: new Formatter({
 		format: "translate-middle-$1",
 		formatTrue: "translate-middle",
 		value: bsTypeA.tMiddle,
@@ -269,12 +250,12 @@ const formatDB: {
 
 	//---------------------
 
-	height: new formatter({
+	height: new Formatter({
 		format: "h-$1",
 		value: bsTypeA.height,
 		shared: true,
 	}),
-	width: new formatter({
+	width: new Formatter({
 		format: "w-$1",
 		value: bsTypeA.width,
 		shared: true,
@@ -282,34 +263,34 @@ const formatDB: {
 
 	//---------------------
 
-	maxHeight: new formatter({
+	maxHeight: new Formatter({
 		format: "mh-$1",
 		value: bsTypeA.maxHeight,
 	}),
-	maxWidth: new formatter({
+	maxWidth: new Formatter({
 		format: "mw-$1",
 		value: bsTypeA.maxWidth,
 	}),
-	minViewHeight: new formatter({
+	minViewHeight: new Formatter({
 		format: "min-vh-$1",
 		value: bsTypeA.minViewHeight,
 	}),
-	minViewWidth: new formatter({
+	minViewWidth: new Formatter({
 		format: "min-vw-$1",
 		value: bsTypeA.minViewWidth,
 	}),
-	viewHeight: new formatter({
+	viewHeight: new Formatter({
 		format: "vh-$1",
 		value: bsTypeA.viewHeight,
 	}),
-	viewWidth: new formatter({
+	viewWidth: new Formatter({
 		format: "vw-$1",
 		value: bsTypeA.viewWidth,
 	}),
 
 	//---------------------
 
-	shadow: new formatter({
+	shadow: new Formatter({
 		format: "shadow-$1",
 		formatTrue: "shadow",
 		formatValue: "shadow",
@@ -319,138 +300,138 @@ const formatDB: {
 
 	//---------------------
 
-	borderNone: new formatter({
+	borderNone: new Formatter({
 		format: "border-$1-0",
 		formatTrue: "border-0",
 		formatFalse: "border",
 		value: bsTypeA.borderNone,
 	}),
-	border: new formatter({
+	border: new Formatter({
 		format: "border-$1",
 		formatTrue: "border",
 		formatFalse: "border-0",
 		value: bsTypeA.border,
 	}),
-	borderColor: new formatter({
+	borderColor: new Formatter({
 		format: "border-$1",
 		value: bsTypeA.borderColor,
 	}),
-	borderOpacity: new formatter({
+	borderOpacity: new Formatter({
 		format: "border-opacity-$1",
 		value: bsTypeA.borderOpacity,
 	}),
-	borderWidth: new formatter({
+	borderWidth: new Formatter({
 		format: "border-$1",
 		value: bsTypeA.borderWidth,
 	}),
 
 	//---------------------
 
-	roundedNone: new formatter({
+	roundedNone: new Formatter({
 		format: "rounded-$1-0",
 		formatTrue: "rounded",
 		formatFalse: "rounded-0",
 		value: bsTypeA.roundedNone,
 	}),
-	rounded: new formatter({
+	rounded: new Formatter({
 		format: "rounded-$1",
 		formatTrue: "rounded",
 		formatFalse: "rounded-0",
 		value: bsTypeA.rounded,
 	}),
-	roundedSize: new formatter({
+	roundedSize: new Formatter({
 		format: "rounded-$1",
 		value: bsTypeA.roundedSize,
 	}),
 
 	//---------------------
 
-	padding: new formatter({
+	padding: new Formatter({
 		format: "p-$1",
 		value: bsTypeA.padding,
 	}),
-	paddingX: new formatter({
+	paddingX: new Formatter({
 		format: "px-$1",
 		value: bsTypeA.paddingX,
 	}),
-	paddingY: new formatter({
+	paddingY: new Formatter({
 		format: "py-$1",
 		value: bsTypeA.paddingY,
 	}),
-	paddingTop: new formatter({
+	paddingTop: new Formatter({
 		format: "pt-$1",
 		value: bsTypeA.paddingTop,
 	}),
-	paddingBottom: new formatter({
+	paddingBottom: new Formatter({
 		format: "pb-$1",
 		value: bsTypeA.paddingBottom,
 	}),
-	paddingStart: new formatter({
+	paddingStart: new Formatter({
 		format: "ps-$1",
 		value: bsTypeA.paddingStart,
 	}),
-	paddingEnd: new formatter({
+	paddingEnd: new Formatter({
 		format: "pe-$1",
 		value: bsTypeA.paddingEnd,
 	}),
 
 	//---------------------
 
-	margin: new formatter({
+	margin: new Formatter({
 		format: "m-$1",
 		value: bsTypeA.margin,
 	}),
-	marginX: new formatter({
+	marginX: new Formatter({
 		format: "mx-$1",
 		value: bsTypeA.marginX,
 	}),
-	marginY: new formatter({
+	marginY: new Formatter({
 		format: "my-$1",
 		value: bsTypeA.marginY,
 	}),
-	marginTop: new formatter({
+	marginTop: new Formatter({
 		format: "mt-$1",
 		value: bsTypeA.marginTop,
 	}),
-	marginBottom: new formatter({
+	marginBottom: new Formatter({
 		format: "mb-$1",
 		value: bsTypeA.marginBottom,
 	}),
-	marginStart: new formatter({
+	marginStart: new Formatter({
 		format: "ms-$1",
 		value: bsTypeA.marginStart,
 	}),
-	marginEnd: new formatter({
+	marginEnd: new Formatter({
 		format: "me-$1",
 		value: bsTypeA.marginEnd,
 	}),
 
 	//---------------------
 
-	gap: new formatter({
+	gap: new Formatter({
 		format: "gap-$1",
 		value: bsTypeA.gap,
 	}),
-	gutter: new formatter({
+	gutter: new Formatter({
 		format: "g-$1",
 		value: bsTypeA.gutter,
 	}),
-	gutterX: new formatter({
+	gutterX: new Formatter({
 		format: "gx-$1",
 		value: bsTypeA.gutterX,
 	}),
-	gutterY: new formatter({
+	gutterY: new Formatter({
 		format: "gy-$1",
 		value: bsTypeA.gutterY,
 	}),
 
 	//---------------------
 
-	print: new formatter({
+	print: new Formatter({
 		format: "d-print-$1",
 		value: bsTypeA.print,
 	}),
-	container: new formatter({
+	container: new Formatter({
 		format: "container-$1",
 		formatTrue: "container",
 		value: bsTypeA.container,
@@ -458,196 +439,132 @@ const formatDB: {
 
 	//---------------------
 
-	zIndex: new formatter({
+	zIndex: new Formatter({
 		format: "z-$1",
 		value: bsTypeA.zIndex,
 	}),
-	objectFit: new formatter({
+	objectFit: new Formatter({
 		format: "object-fit-$1",
 		value: bsTypeA.objectFit,
 	}),
 
 	//---------------------
 
-	ratio: new formatter({
+	ratio: new Formatter({
 		format: "ratio-$1",
 		formatValue: "ratio",
 		formatTrue: "ratio",
 		value: bsTypeA.ratio,
 	}),
-	fixed: new formatter({
+	fixed: new Formatter({
 		format: "fixed-$1",
 		value: bsTypeA.fixed,
 	}),
-	sticky: new formatter({
+	sticky: new Formatter({
 		format: "sticky-$1",
 		value: bsTypeA.sticky,
 	}),
 
 	//---------------------
 
-	clearfix: new formatter({
+	clearfix: new Formatter({
 		formatTrue: "clearfix",
 		value: bsTypeA.clearfix,
 	}),
-	textTruncate: new formatter({
+	textTruncate: new Formatter({
 		formatTrue: "text-truncate",
 		value: bsTypeA.textTruncate,
 	}),
 
-	vstack: new formatter({
+	vstack: new Formatter({
 		formatTrue: "vstack",
 		value: bsTypeA.vstack,
 	}),
-	hstack: new formatter({
+	hstack: new Formatter({
 		formatTrue: "hstack",
 		value: bsTypeA.hstack,
 	}),
-	visually: new formatter({
+	visually: new Formatter({
 		format: "visually-$1",
 		value: bsTypeA.visually,
 	}),
-	h: new formatter({
+	h: new Formatter({
 		format: "h$1",
 		value: bsTypeA.h,
 	}),
-	small: new formatter({
+	small: new Formatter({
 		formatTrue: "small",
 		value: bsTypeA.small,
 	}),
 
 	//---------------------
 
-	linkColor: new formatter({
+	linkColor: new Formatter({
 		format: "link-$1",
 		value: bsTypeA.linkColor,
 	}),
-	linkUnderlineColor: new formatter({
+	linkUnderlineColor: new Formatter({
 		format: "link-underline-$1",
 		value: bsTypeA.linkUnderlineColor,
 	}),
-	linkOffset: new formatter({
+	linkOffset: new Formatter({
 		format: "link-offset-$1",
 		value: bsTypeA.linkOffset,
 	}),
-	linkOffsetHover: new formatter({
+	linkOffsetHover: new Formatter({
 		format: "link-offset-$1-hover",
 		value: bsTypeA.linkOffsetHover,
 	}),
-	linkOpacity: new formatter({
+	linkOpacity: new Formatter({
 		format: "link-opacity-$1",
 		value: bsTypeA.linkOpacity,
 	}),
-	linkOpacityHover: new formatter({
+	linkOpacityHover: new Formatter({
 		format: "link-opacity-$1-hover",
 		value: bsTypeA.linkOpacityHover,
 	}),
-	linkUnderline: new formatter({
+	linkUnderline: new Formatter({
 		formatTrue: "link-underline",
 		value: bsTypeA.linkUnderline,
 	}),
-	linkUnderlineOpacity: new formatter({
+	linkUnderlineOpacity: new Formatter({
 		format: "link-underline-opacity-$1",
 		value: bsTypeA.linkUnderlineOpacity,
 	}),
-	linkUnderlineOpacityHover: new formatter({
+	linkUnderlineOpacityHover: new Formatter({
 		format: "link-underline-opacity-$1-hover",
 		value: bsTypeA.linkUnderlineOpacityHover,
 	}),
 
 	//---------------------
 
-	btnColor: new formatter({
+	btnColor: new Formatter({
 		format: "btn-$1",
 		formatValue: "btn",
 		value: bsTypeA.btnColor,
 	}),
-	btnOutlineColor: new formatter({
+	btnOutlineColor: new Formatter({
 		format: "btn-outline-$1",
 		formatValue: "btn",
 		value: bsTypeA.btnOutlineColor,
 	}),
-	alertColor: new formatter({
+	alertColor: new Formatter({
 		format: "alert-$1",
 		value: bsTypeA.alertColor,
 	}),
-	alertDismissible: new formatter({
+	alertDismissible: new Formatter({
 		formatTrue: "alert-dismissible",
 		value: bsTypeA.alertDismissible,
 	}),
-	dropdownDirection: new formatter({
+	dropdownDirection: new Formatter({
 		format: "drop$1",
 		value: bsTypeA.dropdownDirection,
 	}),
-	dropdownMenuPositionView: new formatter({
+	dropdownMenuPositionView: new Formatter({
 		format: "dropdown-menu-$1",
 		value: bsTypeA.dropdownMenuPositionView,
 	}),
 };
-
-let allowPropDB: (string | undefined)[] = [];
-
-/**
- * Checks if a given value matches one of the allowed values.
- *
- * @param valueToCheck - The value to check.
- * @param listOfPossible - The list of allowed values.
- * @returns True if the value matches one of the allowed values, false otherwise.
- */
-function allowValue<T extends string | number | boolean>(
-	valueToCheck: string | number | boolean,
-	listOfPossible: (string | number | boolean)[]
-): valueToCheck is T {
-	if (listOfPossible && listOfPossible.length > 0) {
-		return listOfPossible.indexOf(valueToCheck) > -1;
-	}
-	return false;
-}
-
-/**
- * Checks if the given key is allowed to be used for formatting.
- *
- * @param key - The key to check.
- * @returns The key if it is allowed, null otherwise.
- */
-function allowProp(key?: string) {
-	if (key) {
-		if (allowPropDB.length === 0) {
-			allowPropDB = Object.keys(formatDB);
-		}
-
-		if (allowPropDB.indexOf(key) > -1) {
-			return key;
-		}
-	}
-
-	return null;
-}
-
-/**
- * Adds a class to the provided element based on the given rule and data value.
- *
- * @param rule - The formatting rule to use.
- * @param data - The data value to check.
- * @param elem - The element to add the class to.
- */
-function addClass(rule: bsClassFormatter | undefined, data: string | number | boolean, elem: Element) {
-	if (rule && rule.value && allowValue(data, rule.value)) {
-		if (rule.formatValue) {
-			elem = addClassIntoElement(elem, rule.formatValue!);
-		}
-
-		if (data === true && rule.formatTrue) {
-			elem = addClassIntoElement(elem, rule.formatTrue!);
-		} else if (data === false && rule.formatFalse) {
-			elem = addClassIntoElement(elem, rule.formatFalse!);
-		} else if (rule.format) {
-			elem = addClassIntoElement(elem, rule.format!.replace(/\$1/g, data.toString()));
-		}
-	}
-
-	return elem;
-}
 
 /**
  * Attaches formatting classes to the provided element based on the given attribute key and value(s).
@@ -657,20 +574,13 @@ function addClass(rule: bsClassFormatter | undefined, data: string | number | bo
  */
 export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
-	let allowKey = allowProp(key);
+	const allowKey = getAllowedKey(key, formatDB);
 	if (allowKey) {
-		let a = keyOfType(key, attr);
-		let b = keyOfType(allowKey, formatDB);
-		let data: (string | number | boolean)[] = [];
-
-		if (!Array.isArray(attr[a])) {
-			data = [attr[a] as string | number | boolean];
-		} else {
-			data = attr[a] as (string | number | boolean)[];
-		}
+		const a = keyOfType(key, attr);
+		const data = getAttrValues(attr, key);
 
 		data.forEach((i) => {
-			elem = addClass(formatDB[b], i, elem);
+			elem = applyClassFormatter(formatDB[allowKey], i, elem);
 		});
 
 		delete attr[a];

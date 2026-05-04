@@ -11,114 +11,205 @@ import { appendChild, replaceWith } from "../builder.js";
  * Returns an object with `h`, `s`, and `l` properties representing the
  * distance between the colors in the HSL color space.
  */
+const normalizeLoop = (value: number, max: number) => {
+	const remainder = value % max;
+	return remainder < 0 ? remainder + max : remainder;
+};
+
+const normalizeBounce = (value: number, max: number) => {
+	if (value < 0) return -value;
+	if (value > max) return max - (value - max);
+	return value;
+};
+
 function getHSLDistance(fromHex: string, toHex: string) {
 	const fromHSL = hexToHSL(fromHex);
 	const toHSL = hexToHSL(toHex);
 
-	if (fromHSL && toHSL) {
-		return {
-			h: fromHSL.h - toHSL.h,
-			s: fromHSL.s - toHSL.s,
-			l: fromHSL.l - toHSL.l,
-		};
-	} else {
-		return {
-			h: 0,
-			s: 0,
-			l: 0,
-		};
-	}
+	return fromHSL && toHSL
+		? {
+				h: fromHSL.h - toHSL.h,
+				s: fromHSL.s - toHSL.s,
+				l: fromHSL.l - toHSL.l,
+			}
+		: { h: 0, s: 0, l: 0 };
 }
 
-/**
- * Adjusts the provided hex color by the given HSL distance.
- * Converts the hex color to HSL, adds the distance HSL values,
- * and converts back to hex.
- */
 function addDistanceHex(hex: string, distanceHSL: { h: number; s: number; l: number }) {
 	const HSL = hexToHSL(hex);
 
-	if (HSL) {
-		const calcLoop = (val: number, max: number) => {
-			if (val > max) {
-				val = val - max;
-			}
-
-			if (val < 0) {
-				val = max + val;
-			}
-
-			return val;
-		};
-
-		const calcBounce = (val: number, max: number) => {
-			if (val > max) {
-				val = max - (val - max);
-			}
-
-			if (val < 0) {
-				val = -val;
-			}
-
-			return val;
-		};
-
-		return {
-			h: calcLoop(HSL.h - distanceHSL.h, 360),
-			s: calcBounce(HSL.s - distanceHSL.s, 100),
-			l: calcBounce(HSL.l - distanceHSL.l, 100),
-		};
-	} else {
-		return {
-			h: 0,
-			s: 0,
-			l: 0,
-		};
+	if (!HSL) {
+		return { h: 0, s: 0, l: 0 };
 	}
+
+	return {
+		h: normalizeLoop(HSL.h - distanceHSL.h, 360),
+		s: normalizeBounce(HSL.s - distanceHSL.s, 100),
+		l: normalizeBounce(HSL.l - distanceHSL.l, 100),
+	};
 }
 
-/**
- * Adjusts the provided hex color by the HSL distance between two reference colors.
- * Converts the main hex color to HSL, gets the HSL distance between it and the reference color,
- * adds that distance to the provided hex color's HSL, and converts back to hex.
- */
-export const calcHex = (mainHex: string, refHex: string, hex: string) => {
-	return hslToHex(addDistanceHex(hex, getHSLDistance(mainHex, refHex)));
-};
+export const calcHex = (mainHex: string, refHex: string, hex: string) =>
+	hslToHex(addDistanceHex(hex, getHSLDistance(mainHex, refHex)));
 
-/**
- * Calculates the font color (either light or dark) to use for the given background color hex.
- * Returns the light color if the background hex is dark, else returns the dark color.
- */
 function calcFontHex(hex: string, light: string = "#fff", dark: string = "#000") {
 	return hexIsDark(hex) ? light : dark;
 }
 
-/**
- * Converts a hex color string to an RGB color string.
- */
 function getRGBString(hex: string) {
 	const rgb = hexToRGB(hex);
-	return `${rgb?.r},${rgb?.g},${rgb?.b}`;
+	return rgb ? `${rgb.r},${rgb.g},${rgb.b}` : "0,0,0";
 }
+
+type ButtonVars = {
+	btnColor: string;
+	btnBorder: string;
+	btnHoverBg: string;
+	btnHoverColor: string;
+	btnHoverBorder: string;
+	btnActiveBg: string;
+	btnActiveColor: string;
+	btnActiveBorder: string;
+	btnDisabledBg: string;
+	btnDisabledColor: string;
+	btnDisabledBorder: string;
+};
+
+const createButtonVars = (
+	baseColor: string,
+	hex: string,
+	light: string,
+	dark: string,
+	hoverBg: string,
+	hoverBorder: string,
+	activeBg: string,
+	activeBorder: string
+): ButtonVars => {
+	const btnColor = calcFontHex(hex, light, dark);
+	const btnBorder = calcHex(baseColor, baseColor, hex);
+	const btnHoverBg = calcHex(baseColor, hoverBg, hex);
+	const btnHoverColor = calcFontHex(btnHoverBg, light, dark);
+	const btnHoverBorder = calcHex(baseColor, hoverBorder, hex);
+	const btnActiveBg = calcHex(baseColor, activeBg, hex);
+	const btnActiveColor = calcFontHex(btnActiveBg, light, dark);
+	const btnActiveBorder = calcHex(baseColor, activeBorder, hex);
+	const btnDisabledBg = calcHex(baseColor, baseColor, hex);
+	const btnDisabledColor = calcFontHex(btnDisabledBg, light, dark);
+	const btnDisabledBorder = calcHex(baseColor, baseColor, hex);
+
+	return {
+		btnColor,
+		btnBorder,
+		btnHoverBg,
+		btnHoverColor,
+		btnHoverBorder,
+		btnActiveBg,
+		btnActiveColor,
+		btnActiveBorder,
+		btnDisabledBg,
+		btnDisabledColor,
+		btnDisabledBorder,
+	};
+};
+
+type TableVars = {
+	bg: string;
+	color: string;
+	borderColor: string;
+	stripedBg: string;
+	stripedColor: string;
+	activeBg: string;
+	activeColor: string;
+	hoverBg: string;
+	hoverColor: string;
+};
+
+const createTableVars = (
+	baseColor: string,
+	hex: string,
+	light: string,
+	dark: string,
+	bgRef: string,
+	borderRef: string,
+	stripedBgRef: string,
+	activeBgRef: string,
+	hoverBgRef: string
+): TableVars => {
+	const bg = calcHex(baseColor, bgRef, hex);
+	const stripedBg = calcHex(baseColor, stripedBgRef, hex);
+	const activeBg = calcHex(baseColor, activeBgRef, hex);
+	const hoverBg = calcHex(baseColor, hoverBgRef, hex);
+
+	return {
+		bg,
+		color: calcFontHex(bg, light, dark),
+		borderColor: calcHex(baseColor, borderRef, hex),
+		stripedBg,
+		stripedColor: calcFontHex(stripedBg, light, dark),
+		activeBg,
+		activeColor: calcFontHex(activeBg, light, dark),
+		hoverBg,
+		hoverColor: calcFontHex(hoverBg, light, dark),
+	};
+};
+
+const tableCss = (name: string, table: TableVars) => `
+		.table-${name} {
+			--bs-table-bg: ${table.bg};
+			--bs-table-color: ${table.color};
+			--bs-table-border-color: ${table.borderColor};
+			--bs-table-striped-bg: ${table.stripedBg};
+			--bs-table-striped-color: ${table.stripedColor};
+			--bs-table-active-bg: ${table.activeBg};
+			--bs-table-active-color: ${table.activeColor};
+			--bs-table-hover-bg: ${table.hoverBg};
+			--bs-table-hover-color: ${table.hoverColor};
+		}
+`;
+
+const buttonCss = (name: string, hex: string, btn: ButtonVars, rgb: string) => `
+		.text-bg-${name} {
+			color: ${btn.btnColor} !important;
+			background-color: rgba(${rgb},var(--bs-bg-opacity,1)) !important;
+		}
+
+		.btn-${name} {
+			--bs-btn-color: ${btn.btnColor};
+			--bs-btn-bg: ${hex};
+			--bs-btn-border-color: ${btn.btnBorder};
+			--bs-btn-hover-color: ${btn.btnHoverColor};
+			--bs-btn-hover-bg: ${btn.btnHoverBg};
+			--bs-btn-hover-border-color: ${btn.btnHoverBorder};
+			--bs-btn-focus-shadow-rgb: ${rgb};
+			--bs-btn-active-color: ${btn.btnActiveColor};
+			--bs-btn-active-bg: ${btn.btnActiveBg};
+			--bs-btn-active-border-color: ${btn.btnActiveBorder};
+			--bs-btn-disabled-color: ${btn.btnDisabledColor};
+			--bs-btn-disabled-bg: ${btn.btnDisabledBg};
+			--bs-btn-disabled-border-color: ${btn.btnDisabledBorder};
+		}
+
+		.btn-outline-${name} {
+			--bs-btn-color: ${hex};
+			--bs-btn-border-color: ${btn.btnBorder};
+			--bs-btn-hover-color: ${btn.btnHoverColor};
+			--bs-btn-hover-bg: ${btn.btnHoverBg};
+			--bs-btn-hover-border-color: ${btn.btnHoverBorder};
+			--bs-btn-focus-shadow-rgb: ${rgb};
+			--bs-btn-active-color: ${btn.btnActiveColor};
+			--bs-btn-active-bg: ${btn.btnActiveBg};
+			--bs-btn-active-border-color: ${btn.btnActiveBorder};
+			--bs-btn-disabled-color: ${hex};
+			--bs-btn-disabled-border-color: ${btn.btnDisabledBorder};
+		}
+`;
 
 export const dark = (hex: string, light: string = "#fff", dark: string = "#000") => {
 	//:root, [data-bs-theme=light]
 	const baseColor = "#212529"; //--bs-dark
 	const rgb = getRGBString(hex); //--bs-dark-rgb
 
-	//.btn-dark
-	const btnColor = calcFontHex(hex, light, dark); //--bs-btn-color
-	const btnBorder = calcHex(baseColor, "#212529", hex); //--bs-btn-border-color
-	const btnHoverBg = calcHex(baseColor, "#424649", hex); //--bs-btn-hover-bg
-	const btnHoverColor = calcFontHex(btnHoverBg, light, dark); //--bs-btn-hover-color
-	const btnHoverBorder = calcHex(baseColor, "#373b3e", hex); //--bs-btn-hover-border-color
-	const btnActiveBg = calcHex(baseColor, "#4d5154", hex); //--bs-btn-active-bg
-	const btnActiveColor = calcFontHex(btnActiveBg, light, dark); //--bs-btn-active-color
-	const btnActiveBorder = calcHex(baseColor, "#373b3e", hex); //--bs-btn-active-border-color
-	const btnDisabledBg = calcHex(baseColor, "#212529", hex); //--bs-btn-disabled-bg
-	const btnDisabledColor = calcFontHex(btnDisabledBg, light, dark); //--bs-btn-disabled-color
-	const btnDisabledBorder = calcHex(baseColor, "#212529", hex); //--bs-btn-disabled-border-color
+	const btn = createButtonVars(baseColor, hex, light, dark, "#424649", "#373b3e", "#4d5154", "#373b3e");
 
 	//:root, [data-bs-theme=light]
 	const bsTextEmphasis = calcHex(baseColor, "#495057", hex); //--bs-dark-text-emphasis
@@ -131,15 +222,7 @@ export const dark = (hex: string, light: string = "#fff", dark: string = "#000")
 	const bsDarkBorderSubtle = calcHex(baseColor, "#343a40", hex); //--bs-dark-border-subtle
 
 	//.table-dark
-	const bsTableBg = calcHex(baseColor, "#212529", hex); //--bs-table-bg
-	const bsTableColor = calcFontHex(bsTableBg, light, dark); //--bs-table-color
-	const bsTableBorderColor = calcHex(baseColor, "#373b3e", hex); //--bs-table-border-color
-	const bsTableStripedBg = calcHex(baseColor, "#2c3034", hex); //--bs-table-striped-bg
-	const bsTableStripedColor = calcFontHex(bsTableStripedBg, light, dark); //--bs-table-striped-color
-	const bsTableActiveBg = calcHex(baseColor, "#373b3e", hex); //--bs-table-active-bg
-	const bsTableActiveColor = calcFontHex(bsTableActiveBg, light, dark); //--bs-table-active-color
-	const bsTableHoverBg = calcHex(baseColor, "#323539", hex); //--bs-table-hover-bg
-	const bsTableHoverColor = calcFontHex(bsTableHoverBg, light, dark); //--bs-table-hover-color
+	const bsTable = createTableVars(baseColor, hex, light, dark, "#212529", "#373b3e", "#2c3034", "#373b3e", "#323539");
 
 	return `
 		:root, [data-bs-theme='light'] {
@@ -157,52 +240,9 @@ export const dark = (hex: string, light: string = "#fff", dark: string = "#000")
 			--bs-dark-border-subtle: ${bsDarkBorderSubtle};
 		}
 
-		.table-dark {
-			--bs-table-bg: ${bsTableBg};
-			--bs-table-color: ${bsTableColor};
-			--bs-table-border-color: ${bsTableBorderColor};
-			--bs-table-striped-bg: ${bsTableStripedBg};
-			--bs-table-striped-color: ${bsTableStripedColor};
-			--bs-table-active-bg: ${bsTableActiveBg};
-			--bs-table-active-color: ${bsTableActiveColor};
-			--bs-table-hover-bg: ${bsTableHoverBg};
-			--bs-table-hover-color: ${bsTableHoverColor};
-		}
+		${tableCss("dark", bsTable)}
 		
-		.text-bg-dark {
-			color: ${btnColor} !important;
-			background-color: rgba(${rgb},var(--bs-bg-opacity,1)) !important;
-		}
-
-		.btn-dark {
-			--bs-btn-color: ${btnColor};
-			--bs-btn-bg: ${hex};
-			--bs-btn-border-color: ${btnBorder};
-			--bs-btn-hover-color: ${btnHoverColor};
-			--bs-btn-hover-bg: ${btnHoverBg};
-			--bs-btn-hover-border-color: ${btnHoverBorder};
-			--bs-btn-focus-shadow-rgb: ${rgb};
-			--bs-btn-active-color: ${btnActiveColor};
-			--bs-btn-active-bg: ${btnActiveBg};
-			--bs-btn-active-border-color: ${btnActiveBorder};
-			--bs-btn-disabled-color: ${btnDisabledColor};
-			--bs-btn-disabled-bg: ${btnDisabledBg};
-			--bs-btn-disabled-border-color: ${btnDisabledBorder};
-		}
-
-		.btn-outline-dark {
-			--bs-btn-color: ${hex};
-			--bs-btn-border-color: ${btnBorder};
-			--bs-btn-hover-color: ${btnHoverColor};
-			--bs-btn-hover-bg: ${btnHoverBg};
-			--bs-btn-hover-border-color: ${btnHoverBorder};
-			--bs-btn-focus-shadow-rgb: ${rgb};
-			--bs-btn-active-color: ${btnActiveColor};
-			--bs-btn-active-bg: ${btnActiveBg};
-			--bs-btn-active-border-color: ${btnActiveBorder};
-			--bs-btn-disabled-color: ${hex};
-			--bs-btn-disabled-border-color: ${btnDisabledBorder};
-		}
+		${buttonCss("dark", hex, btn, rgb)}
 
 	`;
 };
@@ -212,18 +252,7 @@ export const light = (hex: string, light: string = "#fff", dark: string = "#000"
 	const baseColor = "#f8f9fa"; //--bs-light
 	const rgb = getRGBString(hex); //--bs-light-rgb
 
-	//.btn-light
-	const btnColor = calcFontHex(hex, light, dark); //--bs-btn-color
-	const btnBorder = calcHex(baseColor, "#f8f9fa", hex); //--bs-btn-border-color
-	const btnHoverBg = calcHex(baseColor, "#d3d4d5", hex); //--bs-btn-hover-bg
-	const btnHoverColor = calcFontHex(btnHoverBg, light, dark); //--bs-btn-hover-color
-	const btnHoverBorder = calcHex(baseColor, "#c6c7c8", hex); //--bs-btn-hover-border-color
-	const btnActiveBg = calcHex(baseColor, "#c6c7c8", hex); //--bs-btn-active-bg
-	const btnActiveColor = calcFontHex(btnActiveBg, light, dark); //--bs-btn-active-color
-	const btnActiveBorder = calcHex(baseColor, "#babbbc", hex); //--bs-btn-active-border-color
-	const btnDisabledBg = calcHex(baseColor, "#f8f9fa", hex); //--bs-btn-disabled-bg
-	const btnDisabledColor = calcFontHex(btnDisabledBg, light, dark); //--bs-btn-disabled-color
-	const btnDisabledBorder = calcHex(baseColor, "#f8f9fa", hex); //--bs-btn-disabled-border-color
+	const btn = createButtonVars(baseColor, hex, light, dark, "#d3d4d5", "#c6c7c8", "#c6c7c8", "#babbbc");
 
 	//:root, [data-bs-theme=light]
 	const bsTextEmphasis = calcHex(baseColor, "#495057", hex); //--bs-light-text-emphasis
@@ -236,15 +265,7 @@ export const light = (hex: string, light: string = "#fff", dark: string = "#000"
 	const bsDarkBorderSubtle = calcHex(baseColor, "#495057", hex); //--bs-light-border-subtle
 
 	//.table-light
-	const bsTableBg = calcHex(baseColor, "#f8f9fa", hex); //--bs-table-bg
-	const bsTableColor = calcFontHex(bsTableBg, light, dark); //--bs-table-color
-	const bsTableBorderColor = calcHex(baseColor, "#dfe0e1", hex); //--bs-table-border-color
-	const bsTableStripedBg = calcHex(baseColor, "#ecedee", hex); //--bs-table-striped-bg
-	const bsTableStripedColor = calcFontHex(bsTableStripedBg, light, dark); //--bs-table-striped-color
-	const bsTableActiveBg = calcHex(baseColor, "#dfe0e1", hex); //--bs-table-active-bg
-	const bsTableActiveColor = calcFontHex(bsTableActiveBg, light, dark); //--bs-table-active-color
-	const bsTableHoverBg = calcHex(baseColor, "#e5e6e7", hex); //--bs-table-hover-bg
-	const bsTableHoverColor = calcFontHex(bsTableHoverBg, light, dark); //--bs-table-hover-color
+	const bsTable = createTableVars(baseColor, hex, light, dark, "#f8f9fa", "#dfe0e1", "#ecedee", "#dfe0e1", "#e5e6e7");
 
 	return `	
 		:root, [data-bs-theme='light'] {
@@ -262,52 +283,9 @@ export const light = (hex: string, light: string = "#fff", dark: string = "#000"
 			--bs-light-border-subtle: ${bsDarkBorderSubtle};
 		}
 
-		.table-light {
-			--bs-table-bg: ${bsTableBg};
-			--bs-table-color: ${bsTableColor};
-			--bs-table-border-color: ${bsTableBorderColor};
-			--bs-table-striped-bg: ${bsTableStripedBg};
-			--bs-table-striped-color: ${bsTableStripedColor};
-			--bs-table-active-bg: ${bsTableActiveBg};
-			--bs-table-active-color: ${bsTableActiveColor};
-			--bs-table-hover-bg: ${bsTableHoverBg};
-			--bs-table-hover-color: ${bsTableHoverColor};
-		}
+		${tableCss("light", bsTable)}
 		
-		.text-bg-light {
-			color: ${btnColor} !important;
-			background-color: rgba(${rgb},var(--bs-bg-opacity,1)) !important;
-		}
-
-		.btn-light {
-			--bs-btn-color: ${btnColor};
-			--bs-btn-bg: ${hex};
-			--bs-btn-border-color: ${btnBorder};
-			--bs-btn-hover-color: ${btnHoverColor};
-			--bs-btn-hover-bg: ${btnHoverBg};
-			--bs-btn-hover-border-color: ${btnHoverBorder};
-			--bs-btn-focus-shadow-rgb: ${rgb};
-			--bs-btn-active-color: ${btnActiveColor};
-			--bs-btn-active-bg: ${btnActiveBg};
-			--bs-btn-active-border-color: ${btnActiveBorder};
-			--bs-btn-disabled-color: ${btnDisabledColor};
-			--bs-btn-disabled-bg: ${btnDisabledBg};
-			--bs-btn-disabled-border-color: ${btnDisabledBorder};
-		}
-
-		.btn-outline-light {
-			--bs-btn-color: ${hex};
-			--bs-btn-border-color: ${btnBorder};
-			--bs-btn-hover-color: ${btnHoverColor};
-			--bs-btn-hover-bg: ${btnHoverBg};
-			--bs-btn-hover-border-color: ${btnHoverBorder};
-			--bs-btn-focus-shadow-rgb: ${rgb};
-			--bs-btn-active-color: ${btnActiveColor};
-			--bs-btn-active-bg: ${btnActiveBg};
-			--bs-btn-active-border-color: ${btnActiveBorder};
-			--bs-btn-disabled-color: ${hex};
-			--bs-btn-disabled-border-color: ${btnDisabledBorder};
-		}
+		${buttonCss("light", hex, btn, rgb)}
 
 	`;
 };
@@ -318,17 +296,7 @@ export const secondary = (hex: string, light: string = "#fff", dark: string = "#
 	const rgb = getRGBString(hex); //--bs-secondary-rgb
 
 	//.btn-secondary
-	const btnColor = calcFontHex(hex, light, dark); //--bs-btn-color
-	const btnBorder = calcHex(baseColor, "#6c757d", hex); //--bs-btn-border-color
-	const btnHoverBg = calcHex(baseColor, "#5c636a", hex); //--bs-btn-hover-bg
-	const btnHoverColor = calcFontHex(btnHoverBg, light, dark); //--bs-btn-hover-color
-	const btnHoverBorder = calcHex(baseColor, "#565e64", hex); //--bs-btn-hover-border-color
-	const btnActiveBg = calcHex(baseColor, "#565e64", hex); //--bs-btn-active-bg
-	const btnActiveColor = calcFontHex(btnActiveBg, light, dark); //--bs-btn-active-color
-	const btnActiveBorder = calcHex(baseColor, "#51585e", hex); //--bs-btn-active-border-color
-	const btnDisabledBg = calcHex(baseColor, "#6c757d", hex); //--bs-btn-disabled-bg
-	const btnDisabledColor = calcFontHex(btnDisabledBg, light, dark); //--bs-btn-disabled-color
-	const btnDisabledBorder = calcHex(baseColor, "#6c757d", hex); //--bs-btn-disabled-border-color
+	const btn = createButtonVars(baseColor, hex, light, dark, "#5c636a", "#565e64", "#565e64", "#51585e");
 
 	//:root, [data-bs-theme=light]
 	const bsTextEmphasis = calcHex(baseColor, "#2b2f32", hex); //--bs-secondary-text-emphasis
@@ -341,15 +309,7 @@ export const secondary = (hex: string, light: string = "#fff", dark: string = "#
 	const bsDarkBorderSubtle = calcHex(baseColor, "#41464b", hex); //--bs-secondary-border-subtle
 
 	//.table-secondary
-	const bsTableBg = calcHex(baseColor, "#e2e3e5", hex); //--bs-table-bg
-	const bsTableColor = calcFontHex(bsTableBg, light, dark); //--bs-table-color
-	const bsTableBorderColor = calcHex(baseColor, "#cbccce", hex); //--bs-table-border-color
-	const bsTableStripedBg = calcHex(baseColor, "#d7d8da", hex); //--bs-table-striped-bg
-	const bsTableStripedColor = calcFontHex(bsTableStripedBg, light, dark); //--bs-table-striped-color
-	const bsTableActiveBg = calcHex(baseColor, "#cbccce", hex); //--bs-table-active-bg
-	const bsTableActiveColor = calcFontHex(bsTableActiveBg, light, dark); //--bs-table-active-color
-	const bsTableHoverBg = calcHex(baseColor, "#d1d2d4", hex); //--bs-table-hover-bg
-	const bsTableHoverColor = calcFontHex(bsTableHoverBg, light, dark); //--bs-table-hover-color
+	const bsTable = createTableVars(baseColor, hex, light, dark, "#e2e3e5", "#cbccce", "#d7d8da", "#cbccce", "#d1d2d4");
 
 	return `
 		
@@ -369,52 +329,9 @@ export const secondary = (hex: string, light: string = "#fff", dark: string = "#
 			--bs-secondary-border-subtle: ${bsDarkBorderSubtle};
 		}
 
-		.table-secondary {
-			--bs-table-bg: ${bsTableBg};
-			--bs-table-color: ${bsTableColor};
-			--bs-table-border-color: ${bsTableBorderColor};
-			--bs-table-striped-bg: ${bsTableStripedBg};
-			--bs-table-striped-color: ${bsTableStripedColor};
-			--bs-table-active-bg: ${bsTableActiveBg};
-			--bs-table-active-color: ${bsTableActiveColor};
-			--bs-table-hover-bg: ${bsTableHoverBg};
-			--bs-table-hover-color: ${bsTableHoverColor};
-		}
+		${tableCss("secondary", bsTable)}
 		
-		.text-bg-secondary {
-			color: ${btnColor} !important;
-			background-color: rgba(${rgb},var(--bs-bg-opacity,1)) !important;
-		}
-
-		.btn-secondary {
-			--bs-btn-color: ${btnColor};
-			--bs-btn-bg: ${hex};
-			--bs-btn-border-color: ${btnBorder};
-			--bs-btn-hover-color: ${btnHoverColor};
-			--bs-btn-hover-bg: ${btnHoverBg};
-			--bs-btn-hover-border-color: ${btnHoverBorder};
-			--bs-btn-focus-shadow-rgb: ${rgb};
-			--bs-btn-active-color: ${btnActiveColor};
-			--bs-btn-active-bg: ${btnActiveBg};
-			--bs-btn-active-border-color: ${btnActiveBorder};
-			--bs-btn-disabled-color: ${btnDisabledColor};
-			--bs-btn-disabled-bg: ${btnDisabledBg};
-			--bs-btn-disabled-border-color: ${btnDisabledBorder};
-		}
-
-		.btn-outline-secondary {
-			--bs-btn-color: ${hex};
-			--bs-btn-border-color: ${btnBorder};
-			--bs-btn-hover-color: ${btnHoverColor};
-			--bs-btn-hover-bg: ${btnHoverBg};
-			--bs-btn-hover-border-color: ${btnHoverBorder};
-			--bs-btn-focus-shadow-rgb: ${rgb};
-			--bs-btn-active-color: ${btnActiveColor};
-			--bs-btn-active-bg: ${btnActiveBg};
-			--bs-btn-active-border-color: ${btnActiveBorder};
-			--bs-btn-disabled-color: ${hex};
-			--bs-btn-disabled-border-color: ${btnDisabledBorder};
-		}
+		${buttonCss("secondary", hex, btn, rgb)}
 	`;
 };
 
@@ -424,17 +341,7 @@ export const warning = (hex: string, light: string = "#fff", dark: string = "#00
 	const rgb = getRGBString(hex); //--bs-warning-rgb
 
 	//.btn-warning
-	const btnColor = calcFontHex(hex, light, dark); //--bs-btn-color
-	const btnBorder = calcHex(baseColor, "#ffc107", hex); //--bs-btn-border-color
-	const btnHoverBg = calcHex(baseColor, "#ffca2c", hex); //--bs-btn-hover-bg
-	const btnHoverColor = calcFontHex(btnHoverBg, light, dark); //--bs-btn-hover-color
-	const btnHoverBorder = calcHex(baseColor, "#ffc720", hex); //--bs-btn-hover-border-color
-	const btnActiveBg = calcHex(baseColor, "#ffcd39", hex); //--bs-btn-active-bg
-	const btnActiveColor = calcFontHex(btnActiveBg, light, dark); //--bs-btn-active-color
-	const btnActiveBorder = calcHex(baseColor, "#ffc720", hex); //--bs-btn-active-border-color
-	const btnDisabledBg = calcHex(baseColor, "#ffc107", hex); //--bs-btn-disabled-bg
-	const btnDisabledColor = calcFontHex(btnDisabledBg, light, dark); //--bs-btn-disabled-color
-	const btnDisabledBorder = calcHex(baseColor, "#ffc107", hex); //--bs-btn-disabled-border-color
+	const btn = createButtonVars(baseColor, hex, light, dark, "#ffca2c", "#ffc720", "#ffcd39", "#ffc720");
 
 	//:root, [data-bs-theme=light]
 	const bsTextEmphasis = calcHex(baseColor, "#664d03", hex); //--bs-warning-text-emphasis
@@ -449,15 +356,7 @@ export const warning = (hex: string, light: string = "#fff", dark: string = "#00
 	const bsDarkHighlightBg = calcHex(baseColor, "#664d03", hex); //--bs-highlight-bg
 
 	//.table-warning
-	const bsTableBg = calcHex(baseColor, "#fff3cd", hex); //--bs-table-bg
-	const bsTableColor = calcFontHex(bsTableBg, light, dark); //--bs-table-color
-	const bsTableBorderColor = calcHex(baseColor, "#e6dbb9", hex); //--bs-table-border-color
-	const bsTableStripedBg = calcHex(baseColor, "#f2e7c3", hex); //--bs-table-striped-bg
-	const bsTableStripedColor = calcFontHex(bsTableStripedBg, light, dark); //--bs-table-striped-color
-	const bsTableActiveBg = calcHex(baseColor, "#e6dbb9", hex); //--bs-table-active-bg
-	const bsTableActiveColor = calcFontHex(bsTableActiveBg, light, dark); //--bs-table-active-color
-	const bsTableHoverBg = calcHex(baseColor, "#ece1be", hex); //--bs-table-hover-bg
-	const bsTableHoverColor = calcFontHex(bsTableHoverBg, light, dark); //--bs-table-hover-color
+	const bsTable = createTableVars(baseColor, hex, light, dark, "#fff3cd", "#e6dbb9", "#f2e7c3", "#e6dbb9", "#ece1be");
 
 	return `
 		
@@ -481,54 +380,9 @@ export const warning = (hex: string, light: string = "#fff", dark: string = "#00
 			--bs-highlight-bg: ${bsDarkHighlightBg};
 		}
 
-		.table-warning {
-			--bs-table-bg: ${bsTableBg};
-			--bs-table-color: ${bsTableColor};
-			--bs-table-border-color: ${bsTableBorderColor};
-			--bs-table-striped-bg: ${bsTableStripedBg};
-			--bs-table-striped-color: ${bsTableStripedColor};
-			--bs-table-active-bg: ${bsTableActiveBg};
-			--bs-table-active-color: ${bsTableActiveColor};
-			--bs-table-hover-bg: ${bsTableHoverBg};
-			--bs-table-hover-color: ${bsTableHoverColor};
-		}
+		${tableCss("warning", bsTable)}
 		
-		.text-bg-warning {
-			color: ${btnColor} !important;
-			background-color: rgba(${rgb},var(--bs-bg-opacity,1)) !important;
-		}
-
-		.btn-warning {
-			--bs-btn-color: ${btnColor};
-			--bs-btn-bg: ${hex};
-			--bs-btn-border-color: ${btnBorder};
-			--bs-btn-hover-color: ${btnHoverColor};
-			--bs-btn-hover-bg: ${btnHoverBg};
-			--bs-btn-hover-border-color: ${btnHoverBorder};
-			--bs-btn-focus-shadow-rgb: ${rgb};
-			--bs-btn-active-color: ${btnActiveColor};
-			--bs-btn-active-bg: ${btnActiveBg};
-			--bs-btn-active-border-color: ${btnActiveBorder};
-			--bs-btn-disabled-color: ${btnDisabledColor};
-			--bs-btn-disabled-bg: ${btnDisabledBg};
-			--bs-btn-disabled-border-color: ${btnDisabledBorder};
-		}
-
-		.btn-outline-warning {
-			--bs-btn-color: ${hex};
-			--bs-btn-border-color: ${btnBorder};
-			--bs-btn-hover-color: ${btnHoverColor};
-			--bs-btn-hover-bg: ${btnHoverBg};
-			--bs-btn-hover-border-color: ${btnHoverBorder};
-			--bs-btn-focus-shadow-rgb: ${rgb};
-			--bs-btn-active-color: ${btnActiveColor};
-			--bs-btn-active-bg: ${btnActiveBg};
-			--bs-btn-active-border-color: ${btnActiveBorder};
-			--bs-btn-disabled-color: ${hex};
-			--bs-btn-disabled-border-color: ${btnDisabledBorder};
-		}
-
-		
+		${buttonCss("warning", hex, btn, rgb)}
 	`;
 };
 
@@ -538,17 +392,7 @@ export const info = (hex: string, light: string = "#fff", dark: string = "#000")
 	const rgb = getRGBString(hex); //--bs-info-rgb
 
 	//.btn-info
-	const btnColor = calcFontHex(hex, light, dark); //--bs-btn-color
-	const btnBorder = calcHex(baseColor, "#0dcaf0", hex); //--bs-btn-border-color
-	const btnHoverBg = calcHex(baseColor, "#31d2f2", hex); //--bs-btn-hover-bg
-	const btnHoverColor = calcFontHex(btnHoverBg, light, dark); //--bs-btn-hover-color
-	const btnHoverBorder = calcHex(baseColor, "#25cff2", hex); //--bs-btn-hover-border-color
-	const btnActiveBg = calcHex(baseColor, "#3dd5f3", hex); //--bs-btn-active-bg
-	const btnActiveColor = calcFontHex(btnActiveBg, light, dark); //--bs-btn-active-color
-	const btnActiveBorder = calcHex(baseColor, "#25cff2", hex); //--bs-btn-active-border-color
-	const btnDisabledBg = calcHex(baseColor, "#0dcaf0", hex); //--bs-btn-disabled-bg
-	const btnDisabledColor = calcFontHex(btnDisabledBg, light, dark); //--bs-btn-disabled-color
-	const btnDisabledBorder = calcHex(baseColor, "#0dcaf0", hex); //--bs-btn-disabled-border-color
+	const btn = createButtonVars(baseColor, hex, light, dark, "#31d2f2", "#25cff2", "#3dd5f3", "#25cff2");
 
 	//:root, [data-bs-theme=light]
 	const bsTextEmphasis = calcHex(baseColor, "#58151c", hex); //--bs-info-text-emphasis
@@ -561,15 +405,7 @@ export const info = (hex: string, light: string = "#fff", dark: string = "#000")
 	const bsDarkBorderSubtle = calcHex(baseColor, "#087990", hex); //--bs-info-border-subtle
 
 	//.table-info
-	const bsTableBg = calcHex(baseColor, "#cff4fc", hex); //--bs-table-bg
-	const bsTableColor = calcFontHex(bsTableBg, light, dark); //--bs-table-color
-	const bsTableBorderColor = calcHex(baseColor, "#badce3", hex); //--bs-table-border-color
-	const bsTableStripedBg = calcHex(baseColor, "#c5e8ef", hex); //--bs-table-striped-bg
-	const bsTableStripedColor = calcFontHex(bsTableStripedBg, light, dark); //--bs-table-striped-color
-	const bsTableActiveBg = calcHex(baseColor, "#badce3", hex); //--bs-table-active-bg
-	const bsTableActiveColor = calcFontHex(bsTableActiveBg, light, dark); //--bs-table-active-color
-	const bsTableHoverBg = calcHex(baseColor, "#bfe2e9", hex); //--bs-table-hover-bg
-	const bsTableHoverColor = calcFontHex(bsTableHoverBg, light, dark); //--bs-table-hover-color
+	const bsTable = createTableVars(baseColor, hex, light, dark, "#cff4fc", "#badce3", "#c5e8ef", "#badce3", "#bfe2e9");
 
 	return `
 		:root, [data-bs-theme='light'] {
@@ -587,52 +423,9 @@ export const info = (hex: string, light: string = "#fff", dark: string = "#000")
 			--bs-info-border-subtle: ${bsDarkBorderSubtle};
 		}
 
-		.table-info {
-			--bs-table-bg: ${bsTableBg};
-			--bs-table-color: ${bsTableColor};
-			--bs-table-border-color: ${bsTableBorderColor};
-			--bs-table-striped-bg: ${bsTableStripedBg};
-			--bs-table-striped-color: ${bsTableStripedColor};
-			--bs-table-active-bg: ${bsTableActiveBg};
-			--bs-table-active-color: ${bsTableActiveColor};
-			--bs-table-hover-bg: ${bsTableHoverBg};
-			--bs-table-hover-color: ${bsTableHoverColor};
-		}
+		${tableCss("info", bsTable)}
 		
-		.text-bg-info {
-			color: ${btnColor} !important;
-			background-color: rgba(${rgb},var(--bs-bg-opacity,1)) !important;
-		}
-
-		.btn-info {
-			--bs-btn-color: ${btnColor};
-			--bs-btn-bg: ${hex};
-			--bs-btn-border-color: ${btnBorder};
-			--bs-btn-hover-color: ${btnHoverColor};
-			--bs-btn-hover-bg: ${btnHoverBg};
-			--bs-btn-hover-border-color: ${btnHoverBorder};
-			--bs-btn-focus-shadow-rgb: ${rgb};
-			--bs-btn-active-color: ${btnActiveColor};
-			--bs-btn-active-bg: ${btnActiveBg};
-			--bs-btn-active-border-color: ${btnActiveBorder};
-			--bs-btn-disabled-color: ${btnDisabledColor};
-			--bs-btn-disabled-bg: ${btnDisabledBg};
-			--bs-btn-disabled-border-color: ${btnDisabledBorder};
-		}
-
-		.btn-outline-info {
-			--bs-btn-color: ${hex};
-			--bs-btn-border-color: ${btnBorder};
-			--bs-btn-hover-color: ${btnHoverColor};
-			--bs-btn-hover-bg: ${btnHoverBg};
-			--bs-btn-hover-border-color: ${btnHoverBorder};
-			--bs-btn-focus-shadow-rgb: ${rgb};
-			--bs-btn-active-color: ${btnActiveColor};
-			--bs-btn-active-bg: ${btnActiveBg};
-			--bs-btn-active-border-color: ${btnActiveBorder};
-			--bs-btn-disabled-color: ${hex};
-			--bs-btn-disabled-border-color: ${btnDisabledBorder};
-		}
+		${buttonCss("info", hex, btn, rgb)}
 	`;
 };
 
@@ -642,17 +435,7 @@ export const danger = (hex: string, light: string = "#fff", dark: string = "#000
 	const rgb = getRGBString(hex); //--bs-danger-rgb
 
 	//.btn-danger
-	const btnColor = calcFontHex(hex, light, dark); //--bs-btn-color
-	const btnBorder = calcHex(baseColor, "#dc3545", hex); //--bs-btn-border-color
-	const btnHoverBg = calcHex(baseColor, "#bb2d3b", hex); //--bs-btn-hover-bg
-	const btnHoverColor = calcFontHex(btnHoverBg, light, dark); //--bs-btn-hover-color
-	const btnHoverBorder = calcHex(baseColor, "#b02a37", hex); //--bs-btn-hover-border-color
-	const btnActiveBg = calcHex(baseColor, "#b02a37", hex); //--bs-btn-active-bg
-	const btnActiveColor = calcFontHex(btnActiveBg, light, dark); //--bs-btn-active-color
-	const btnActiveBorder = calcHex(baseColor, "#a52834", hex); //--bs-btn-active-border-color
-	const btnDisabledBg = calcHex(baseColor, "#dc3545", hex); //--bs-btn-disabled-bg
-	const btnDisabledColor = calcFontHex(btnDisabledBg, light, dark); //--bs-btn-disabled-color
-	const btnDisabledBorder = calcHex(baseColor, "#dc3545", hex); //--bs-btn-disabled-border-color
+	const btn = createButtonVars(baseColor, hex, light, dark, "#bb2d3b", "#b02a37", "#b02a37", "#a52834");
 
 	//:root, [data-bs-theme=light]
 	const bsTextEmphasis = calcHex(baseColor, "#58151c", hex); //--bs-danger-text-emphasis
@@ -671,15 +454,7 @@ export const danger = (hex: string, light: string = "#fff", dark: string = "#000
 	const bsDarkCodeColor = calcHex(baseColor, "#e685b5", hex); //--bs-code-color
 
 	//.table-danger
-	const bsTableBg = calcHex(baseColor, "#f8d7da", hex); //--bs-table-bg
-	const bsTableColor = calcFontHex(bsTableBg, light, dark); //--bs-table-color
-	const bsTableBorderColor = calcHex(baseColor, "#dfc2c4", hex); //--bs-table-border-color
-	const bsTableStripedBg = calcHex(baseColor, "#eccccf", hex); //--bs-table-striped-bg
-	const bsTableStripedColor = calcFontHex(bsTableStripedBg, light, dark); //--bs-table-striped-color
-	const bsTableActiveBg = calcHex(baseColor, "#dfc2c4", hex); //--bs-table-active-bg
-	const bsTableActiveColor = calcFontHex(bsTableActiveBg, light, dark); //--bs-table-active-color
-	const bsTableHoverBg = calcHex(baseColor, "#e5c7ca", hex); //--bs-table-hover-bg
-	const bsTableHoverColor = calcFontHex(bsTableHoverBg, light, dark); //--bs-table-hover-color
+	const bsTable = createTableVars(baseColor, hex, light, dark, "#f8d7da", "#dfc2c4", "#eccccf", "#dfc2c4", "#e5c7ca");
 
 	//formcontrol invalid icon
 	const esHex = encodeURIComponent(hex);
@@ -712,17 +487,7 @@ export const danger = (hex: string, light: string = "#fff", dark: string = "#000
 			--bs-code-color: ${bsDarkCodeColor};
 		}
 
-		.table-danger {
-			--bs-table-bg: ${bsTableBg};
-			--bs-table-color: ${bsTableColor};
-			--bs-table-border-color: ${bsTableBorderColor};
-			--bs-table-striped-bg: ${bsTableStripedBg};
-			--bs-table-striped-color: ${bsTableStripedColor};
-			--bs-table-active-bg: ${bsTableActiveBg};
-			--bs-table-active-color: ${bsTableActiveColor};
-			--bs-table-hover-bg: ${bsTableHoverBg};
-			--bs-table-hover-color: ${bsTableHoverColor};
-		}
+		${tableCss("danger", bsTable)}
 
 		.form-control.is-invalid, .was-validated .form-control:invalid {
 			background-image: ${formControlInvalidImg};
@@ -732,40 +497,7 @@ export const danger = (hex: string, light: string = "#fff", dark: string = "#000
 			--bs-form-select-bg-icon: ${bsFormSelectBgIcon};
 		}
 		
-		.text-bg-danger {
-			color: ${btnColor} !important;
-			background-color: rgba(${rgb},var(--bs-bg-opacity,1)) !important;
-		}
-
-		.btn-danger {
-			--bs-btn-color: ${btnColor};
-			--bs-btn-bg: ${hex};
-			--bs-btn-border-color: ${btnBorder};
-			--bs-btn-hover-color: ${btnHoverColor};
-			--bs-btn-hover-bg: ${btnHoverBg};
-			--bs-btn-hover-border-color: ${btnHoverBorder};
-			--bs-btn-focus-shadow-rgb: ${rgb};
-			--bs-btn-active-color: ${btnActiveColor};
-			--bs-btn-active-bg: ${btnActiveBg};
-			--bs-btn-active-border-color: ${btnActiveBorder};
-			--bs-btn-disabled-color: ${btnDisabledColor};
-			--bs-btn-disabled-bg: ${btnDisabledBg};
-			--bs-btn-disabled-border-color: ${btnDisabledBorder};
-		}
-
-		.btn-outline-danger {
-			--bs-btn-color: ${hex};
-			--bs-btn-border-color: ${btnBorder};
-			--bs-btn-hover-color: ${btnHoverColor};
-			--bs-btn-hover-bg: ${btnHoverBg};
-			--bs-btn-hover-border-color: ${btnHoverBorder};
-			--bs-btn-focus-shadow-rgb: ${rgb};
-			--bs-btn-active-color: ${btnActiveColor};
-			--bs-btn-active-bg: ${btnActiveBg};
-			--bs-btn-active-border-color: ${btnActiveBorder};
-			--bs-btn-disabled-color: ${hex};
-			--bs-btn-disabled-border-color: ${btnDisabledBorder};
-		}
+		${buttonCss("danger", hex, btn, rgb)}
 	`;
 };
 
@@ -775,17 +507,7 @@ export const success = (hex: string, light: string = "#fff", dark: string = "#00
 	const rgb = getRGBString(hex); //--bs-success-rgb
 
 	//.btn-success
-	const btnColor = calcFontHex(hex, light, dark); //--bs-btn-color
-	const btnBorder = calcHex(baseColor, "#198754", hex); //--bs-btn-border-color
-	const btnHoverBg = calcHex(baseColor, "#157347", hex); //--bs-btn-hover-bg
-	const btnHoverColor = calcFontHex(btnHoverBg, light, dark); //--bs-btn-hover-color
-	const btnHoverBorder = calcHex(baseColor, "#146c43", hex); //--bs-btn-hover-border-color
-	const btnActiveBg = calcHex(baseColor, "#146c43", hex); //--bs-btn-active-bg
-	const btnActiveColor = calcFontHex(btnActiveBg, light, dark); //--bs-btn-active-color
-	const btnActiveBorder = calcHex(baseColor, "#13653f", hex); //--bs-btn-active-border-color
-	const btnDisabledBg = calcHex(baseColor, "#198754", hex); //--bs-btn-disabled-bg
-	const btnDisabledColor = calcFontHex(btnDisabledBg, light, dark); //--bs-btn-disabled-color
-	const btnDisabledBorder = calcHex(baseColor, "#198754", hex); //--bs-btn-disabled-border-color
+	const btn = createButtonVars(baseColor, hex, light, dark, "#157347", "#146c43", "#146c43", "#13653f");
 
 	//:root, [data-bs-theme=light]
 	const bsTextEmphasis = calcHex(baseColor, "#0a3622", hex); //--bs-success-text-emphasis
@@ -802,15 +524,7 @@ export const success = (hex: string, light: string = "#fff", dark: string = "#00
 	const bsDarkFormValidBorder = calcHex(baseColor, "#75b798", hex); //--bs-form-valid-border-color
 
 	//.table-succcess
-	const bsTableBg = calcHex(baseColor, "#d1e7dd", hex); //--bs-table-bg
-	const bsTableColor = calcFontHex(bsTableBg, light, dark); //--bs-table-color
-	const bsTableBorderColor = calcHex(baseColor, "#bcd0c7", hex); //--bs-table-border-color
-	const bsTableStripedBg = calcHex(baseColor, "#c7dbd2", hex); //--bs-table-striped-bg
-	const bsTableStripedColor = calcFontHex(bsTableStripedBg, light, dark); //--bs-table-striped-color
-	const bsTableActiveBg = calcHex(baseColor, "#bcd0c7", hex); //--bs-table-active-bg
-	const bsTableActiveColor = calcFontHex(bsTableActiveBg, light, dark); //--bs-table-active-color
-	const bsTableHoverBg = calcHex(baseColor, "#c1d6cc", hex); //--bs-table-hover-bg
-	const bsTableHoverColor = calcFontHex(bsTableHoverBg, light, dark); //--bs-table-hover-color
+	const bsTable = createTableVars(baseColor, hex, light, dark, "#d1e7dd", "#bcd0c7", "#c7dbd2", "#bcd0c7", "#c1d6cc");
 
 	//formcontrol valid icon
 	const esHex = encodeURIComponent(hex);
@@ -839,17 +553,7 @@ export const success = (hex: string, light: string = "#fff", dark: string = "#00
 			--bs-form-valid-border-color: ${bsDarkFormValidBorder};
 		}
 
-		.table-success {
-			--bs-table-bg: ${bsTableBg};
-			--bs-table-color: ${bsTableColor};
-			--bs-table-border-color: ${bsTableBorderColor};
-			--bs-table-striped-bg: ${bsTableStripedBg};
-			--bs-table-striped-color: ${bsTableStripedColor};
-			--bs-table-active-bg: ${bsTableActiveBg};
-			--bs-table-active-color: ${bsTableActiveColor};
-			--bs-table-hover-bg: ${bsTableHoverBg};
-			--bs-table-hover-color: ${bsTableHoverColor};
-		}
+		${tableCss("success", bsTable)}
 
 		.form-control.is-valid, .was-validated .form-control:valid {
 			background-image: ${formControlValidImg};
@@ -859,40 +563,7 @@ export const success = (hex: string, light: string = "#fff", dark: string = "#00
 			--bs-form-select-bg-icon: ${bsFormSelectBgIcon};
 		}
 		
-		.text-bg-success {
-			color: ${btnColor} !important;
-			background-color: rgba(${rgb},var(--bs-bg-opacity,1)) !important;
-		}
-
-		.btn-success {
-			--bs-btn-color: ${btnColor};
-			--bs-btn-bg: ${hex};
-			--bs-btn-border-color: ${btnBorder};
-			--bs-btn-hover-color: ${btnHoverColor};
-			--bs-btn-hover-bg: ${btnHoverBg};
-			--bs-btn-hover-border-color: ${btnHoverBorder};
-			--bs-btn-focus-shadow-rgb: ${rgb};
-			--bs-btn-active-color: ${btnActiveColor};
-			--bs-btn-active-bg: ${btnActiveBg};
-			--bs-btn-active-border-color: ${btnActiveBorder};
-			--bs-btn-disabled-color: ${btnDisabledColor};
-			--bs-btn-disabled-bg: ${btnDisabledBg};
-			--bs-btn-disabled-border-color: ${btnDisabledBorder};
-		}
-
-		.btn-outline-success {
-			--bs-btn-color: ${hex};
-			--bs-btn-border-color: ${btnBorder};
-			--bs-btn-hover-color: ${btnHoverColor};
-			--bs-btn-hover-bg: ${btnHoverBg};
-			--bs-btn-hover-border-color: ${btnHoverBorder};
-			--bs-btn-focus-shadow-rgb: ${rgb};
-			--bs-btn-active-color: ${btnActiveColor};
-			--bs-btn-active-bg: ${btnActiveBg};
-			--bs-btn-active-border-color: ${btnActiveBorder};
-			--bs-btn-disabled-color: ${hex};
-			--bs-btn-disabled-border-color: ${btnDisabledBorder};
-		}
+		${buttonCss("success", hex, btn, rgb)}
 	`;
 };
 
@@ -903,17 +574,8 @@ export const primary = (hex: string, light: string = "#fff", dark: string = "#00
 	const bsFocusBorder = calcHex(baseColor, "#86b7fe", hex); //form-control-focus
 
 	//.btn-primary
-	const btnColor = calcFontHex(hex, light, dark); //--bs-btn-color
-	const btnBorder = calcHex(baseColor, "#0d6efd", hex); //--bs-btn-border-color
-	const btnHoverBg = calcHex(baseColor, "#0b5ed7", hex); //--bs-btn-hover-bg
-	const btnHoverColor = calcFontHex(btnHoverBg, light, dark); //--bs-btn-hover-color
-	const btnHoverBorder = calcHex(baseColor, "#0a58ca", hex); //--bs-btn-hover-border-color
-	const btnActiveBg = calcHex(baseColor, "#0a58ca", hex); //--bs-btn-active-bg
-	const btnActiveColor = calcFontHex(btnActiveBg, light, dark); //--bs-btn-active-color
-	const btnActiveBorder = calcHex(baseColor, "#0a53be", hex); //--bs-btn-active-border-color
-	const btnDisabledBg = calcHex(baseColor, "#0d6efd", hex); //--bs-btn-disabled-bg
-	const btnDisabledColor = calcFontHex(btnDisabledBg, light, dark); //--bs-btn-disabled-color
-	const btnDisabledBorder = calcHex(baseColor, "#0d6efd", hex); //--bs-btn-disabled-border-color
+	const btn = createButtonVars(baseColor, hex, light, dark, "#0b5ed7", "#0a58ca", "#0a58ca", "#0a53be");
+	const { btnColor } = btn;
 
 	//:root, [data-bs-theme=light]
 	const bsTextEmphasis = calcHex(baseColor, "#052c65", hex); //--bs-primary-text-emphasis
@@ -934,15 +596,7 @@ export const primary = (hex: string, light: string = "#fff", dark: string = "#00
 	const bsDarkLinkHoverColorRGB = getRGBString(bsDarkLinkHoverColor); //--bs-link-hover-color-rgb
 
 	//.table-primary
-	const bsTableBg = calcHex(baseColor, "#cfe2ff", hex); //--bs-table-bg
-	const bsTableColor = calcFontHex(bsTableBg, light, dark); //--bs-table-color
-	const bsTableBorderColor = calcHex(baseColor, "#bacbe6", hex); //--bs-table-border-color
-	const bsTableStripedBg = calcHex(baseColor, "#c5d7f2", hex); //--bs-table-striped-bg
-	const bsTableStripedColor = calcFontHex(bsTableStripedBg, light, dark); //--bs-table-striped-color
-	const bsTableActiveBg = calcHex(baseColor, "#bacbe6", hex); //--bs-table-active-bg
-	const bsTableActiveColor = calcFontHex(bsTableActiveBg, light, dark); //--bs-table-active-color
-	const bsTableHoverBg = calcHex(baseColor, "#bfd1ec", hex); //--bs-table-hover-bg
-	const bsTableHoverColor = calcFontHex(bsTableHoverBg, light, dark); //--bs-table-hover-color
+	const bsTable = createTableVars(baseColor, hex, light, dark, "#cfe2ff", "#bacbe6", "#c5d7f2", "#bacbe6", "#bfd1ec");
 
 	//checkbox and radio svg
 	const esBsFocusBorder = encodeURIComponent(bsFocusBorder);
@@ -996,17 +650,7 @@ export const primary = (hex: string, light: string = "#fff", dark: string = "#00
 			--bs-link-hover-color-rgb: ${bsDarkLinkHoverColorRGB};
 		}
 
-		.table-primary {
-			--bs-table-bg: ${bsTableBg};
-			--bs-table-color: ${bsTableColor};
-			--bs-table-border-color: ${bsTableBorderColor};
-			--bs-table-striped-bg: ${bsTableStripedBg};
-			--bs-table-striped-color: ${bsTableStripedColor};
-			--bs-table-active-bg: ${bsTableActiveBg};
-			--bs-table-active-color: ${bsTableActiveColor};
-			--bs-table-hover-bg: ${bsTableHoverBg};
-			--bs-table-hover-color: ${bsTableHoverColor};
-		}
+		${tableCss("primary", bsTable)}
 
 		.form-control:focus, .form-select:focus, .form-check-input:focus {
 			border-color: ${bsFocusBorder};
@@ -1113,40 +757,7 @@ export const primary = (hex: string, light: string = "#fff", dark: string = "#00
 		}
 
 
-		.text-bg-primary {
-			color: ${btnColor} !important;
-			background-color: rgba(${rgb},var(--bs-bg-opacity,1)) !important;
-		}
-
-		.btn-primary {
-			--bs-btn-color: ${btnColor};
-			--bs-btn-bg: ${hex};
-			--bs-btn-border-color: ${btnBorder};
-			--bs-btn-hover-color: ${btnHoverColor};
-			--bs-btn-hover-bg: ${btnHoverBg};
-			--bs-btn-hover-border-color: ${btnHoverBorder};
-			--bs-btn-focus-shadow-rgb: ${rgb};
-			--bs-btn-active-color: ${btnActiveColor};
-			--bs-btn-active-bg: ${btnActiveBg};
-			--bs-btn-active-border-color: ${btnActiveBorder};
-			--bs-btn-disabled-color: ${btnDisabledColor};
-			--bs-btn-disabled-bg: ${btnDisabledBg};
-			--bs-btn-disabled-border-color: ${btnDisabledBorder};
-		}
-
-		.btn-outline-primary {
-			--bs-btn-color: ${hex};
-			--bs-btn-border-color: ${btnBorder};
-			--bs-btn-hover-color: ${btnHoverColor};
-			--bs-btn-hover-bg: ${btnHoverBg};
-			--bs-btn-hover-border-color: ${btnHoverBorder};
-			--bs-btn-focus-shadow-rgb: ${rgb};
-			--bs-btn-active-color: ${btnActiveColor};
-			--bs-btn-active-bg: ${btnActiveBg};
-			--bs-btn-active-border-color: ${btnActiveBorder};
-			--bs-btn-disabled-color: ${hex};
-			--bs-btn-disabled-border-color: ${btnDisabledBorder};
-		}
+		${buttonCss("primary", hex, btn, rgb)}
 
 		.progress, .progress-stacked {
 			--bs-progress-bar-bg: ${hex};

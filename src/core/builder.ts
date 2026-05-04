@@ -11,7 +11,7 @@ import { elem } from "../interface/core/elem.js";
  * and returns the first child node of that div.
  */
 const htmlToElement = (strHTML: string) => {
-	var template = document.createElement("div");
+	const template = document.createElement("div");
 	strHTML = strHTML.trim(); // Never return a text node of whitespace as the result
 	template.innerHTML = strHTML;
 	return template.firstChild;

@@ -1,4 +1,4 @@
-import { keyOfType } from "./../util/keyOfType.js";
+import { getAttrValue, setAttributeValue } from "./attachHelpers.js";
 import { IAttachFn } from "./_index.js";
 
 /**
@@ -9,11 +9,8 @@ import { IAttachFn } from "./_index.js";
 export const attach: IAttachFn = (key, elem, attr) => {
 	let changed = false;
 
-	if (key && attr && typeof attr !== "undefined") {
-		let k = keyOfType(key, attr);
-		let i = Array.isArray(attr[k]) ? attr[k] : attr[k];
-		elem.setAttribute(key, i!.toString());
-		changed = true;
+	if (key && attr) {
+		changed = setAttributeValue(elem, key, getAttrValue(attr, key));
 	}
 
 	return { attr, elem, changed };

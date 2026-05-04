@@ -286,40 +286,24 @@ const btnTypeDB = (btnType?: btnType): btnItemDB => {
 };
 
 const genBtn = (customStyle?: customStyleButton, btn?: btnType | btnType[], fn?: EventListener | EventListener[]) => {
-	let hasDismissButton: boolean = false;
-
-	if (btn) {
-		if (!Array.isArray(btn)) {
-			btn = [btn];
-		}
-
-		let aFn: EventListener[] = [];
-		if (fn) {
-			if (!Array.isArray(fn)) {
-				aFn = [fn];
-			} else {
-				aFn = fn;
-			}
-		}
-
-		if (aFn.length < btn.length) {
-			hasDismissButton = true;
-		}
-
-		let tBtnItem: btnItem[] = [];
-		for (let x = 0; x < btn.length; x++) {
-			let t = btnTypeDB(btn[x]);
-			tBtnItem.push({
-				color: t.color,
-				elem: t.elem,
-				click: aFn.length > x ? aFn[x] : undefined,
-			});
-		}
-
-		return { hasDismissButton: hasDismissButton, btn: genBtnItem(customStyle, tBtnItem) };
-	} else {
+	if (!btn) {
 		return { hasDismissButton: false, btn: [] };
 	}
+
+	const buttons = Array.isArray(btn) ? btn : [btn];
+	const events = fn ? (Array.isArray(fn) ? fn : [fn]) : [];
+	const hasDismissButton = events.length < buttons.length;
+
+	const tBtnItem: btnItem[] = buttons.map((button, index) => {
+		const t = btnTypeDB(button);
+		return {
+			color: t.color,
+			elem: t.elem,
+			click: events[index],
+		};
+	});
+
+	return { hasDismissButton, btn: genBtnItem(customStyle, tBtnItem) };
 };
 
 export const Create = (attr: ICreate) => {
@@ -369,7 +353,7 @@ export const Create = (attr: ICreate) => {
 							attr.attrHeader
 						),
 						new title(attr.title || document.title)
-				  )
+					)
 				: "",
 			new body(mergeAttr({ paddingY: 0 }, attr.attrBody), attr.elem ? attr.elem : ""),
 			showFooter
@@ -387,7 +371,7 @@ export const Create = (attr: ICreate) => {
 							attr.attrFooter
 						),
 						btn.btn
-				  )
+					)
 				: "",
 		]);
 	} else if (attr.customStyle === 2) {
@@ -416,10 +400,10 @@ export const Create = (attr: ICreate) => {
 										marginEnd: 2,
 										opacity: "25",
 										position: "absolute",
-								  })
+									})
 								: "",
 						]
-				  )
+					)
 				: "",
 			new body(
 				mergeAttr({ padding: 4, paddingTop: showHeader ? 0 : undefined, textAlign: "center" }, attr.attrBody),
@@ -435,7 +419,7 @@ export const Create = (attr: ICreate) => {
 							attr.attrFooter
 						),
 						btn.btn
-				  )
+					)
 				: "",
 		]);
 	} else {
@@ -449,7 +433,7 @@ export const Create = (attr: ICreate) => {
 							attr.attrHeader
 						),
 						new title(attr.title || document.title)
-				  )
+					)
 				: "",
 			new body(attr.attrBody ? attr.attrBody : {}, attr.elem ? attr.elem : ""),
 			showFooter ? new footer(attr.attrFooter ? attr.attrFooter : {}, btn.btn) : "",

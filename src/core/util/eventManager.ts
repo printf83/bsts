@@ -29,54 +29,31 @@ function detachEvent(elem: Element | ElementWithAbortController): void {
  * Uses AbortController to allow removing the listener.
  * Adds class to enable bulk listener removal.
  */
+const ensureAbortController = (elem: Element | ElementWithAbortController) => {
+	const target = elem as ElementWithAbortController;
+	if (!target.AbortController) {
+		target.AbortController = new AbortController();
+		elem.classList.add("bs-destroy-event");
+	}
+	return target.AbortController;
+};
+
 export const addEvent = (name: string, elem: string | Element | ElementWithAbortController, fn: EventListener) => {
 	if (typeof elem === "string") {
-		let e = document.querySelectorAll(elem);
-		if (e) {
-			e.forEach((i) => {
-				addEvent(name, i, fn);
-			});
-		}
-	} else {
-		//create detachEventListener db
-		if ("AbortController" in elem) {
-			if (typeof elem.AbortController === "undefined") {
-				elem.AbortController = new AbortController();
-				elem.classList.add("bs-destroy-event");
-			}
-
-			//add event to element
-			//using signal to remove listerner
-			if (name === "build" || name === "destroy") {
-				elem.addEventListener(name, fn, {
-					signal: elem.AbortController.signal,
-					once: true,
-				});
-			} else {
-				elem.addEventListener(name, fn, {
-					signal: elem.AbortController.signal,
-				});
-			}
-		} else {
-			(elem as ElementWithAbortController).AbortController = new AbortController();
-			elem.classList.add("bs-destroy-event");
-
-			//add event to element
-			//using signal to remove listerner
-			if (name === "build" || name === "destroy") {
-				elem.addEventListener(name, fn, {
-					signal: (elem as ElementWithAbortController).AbortController!.signal,
-					once: true,
-				});
-			} else {
-				elem.addEventListener(name, fn, {
-					signal: (elem as ElementWithAbortController).AbortController!.signal,
-				});
-			}
-		}
-
-		console.info(`Attach ${name} event to $1`, elem);
+		document.querySelectorAll(elem).forEach((i) => addEvent(name, i, fn));
+		return;
 	}
+
+	const controller = ensureAbortController(elem);
+	const options: AddEventListenerOptions = {
+		signal: controller.signal,
+	};
+	if (name === "build" || name === "destroy") {
+		options.once = true;
+	}
+
+	elem.addEventListener(name, fn, options);
+	console.info(`Attach ${name} event to $1`, elem);
 };
 
 /**
@@ -92,27 +69,13 @@ export const addEvent = (name: string, elem: string | Element | ElementWithAbort
  */
 export const removeEvent = (elem: string | Element | ElementWithAbortController) => {
 	if (typeof elem === "string") {
-		let e = document.querySelectorAll(elem);
-		if (e) {
-			e.forEach((i) => {
-				removeEvent(i);
-			});
-		}
-	} else {
-		if (elem) {
-			let c = elem?.childNodes;
-
-			//remove event from child
-			if (c?.length > 0) {
-				let d = Array.from(c).map((i) => i as ElementWithAbortController);
-
-				d.forEach((e) => {
-					removeEvent(e);
-				});
-			}
-
-			//detach event from elem
-			detachEvent(elem);
-		}
+		document.querySelectorAll(elem).forEach(removeEvent);
+		return;
 	}
+
+	Array.from(elem.childNodes)
+		.filter((node): node is Element => node.nodeType === Node.ELEMENT_NODE)
+		.forEach((child) => removeEvent(child as ElementWithAbortController));
+
+	detachEvent(elem);
 };

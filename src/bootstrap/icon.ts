@@ -64,7 +64,7 @@ export class icon extends i {
 			attr.elem = undefined;
 		}
 
-		if (!attr.type && attr.id && attr.id.indexOf(" ") > -1) {
+		if (!attr.type && attr.id && attr.id.includes(" ")) {
 			let sid = attr.id.split(" ");
 			if (sid.length === 2) {
 				switch (sid[0]) {

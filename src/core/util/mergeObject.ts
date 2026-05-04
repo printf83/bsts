@@ -2,45 +2,33 @@ import { attr } from "../../interface/core/attr.js";
 import { mergeAttr } from "./mergeAttr.js";
 import { mergeClass } from "./mergeClass.js";
 
-/**
- * Merges two attr objects together deeply, giving priority to properties in
- * source. Handles merging class, style, aria, data, and on specially.
- *
- * @param target - The target attr object to merge into
- * @param source - The source attr object to merge from
- * @returns The merged attr object
- */
-export const mergeObject = <T extends attr>(target?: T, source?: T): T | never => {
-	if (target) {
-		if (source) {
-			let a_class = target.class;
-			let b_class = source.class;
-			let a_style = target.style;
-			let b_style = source.style;
-			let a_aria = target.aria;
-			let b_aria = source.aria;
-			let a_data = target.data;
-			let b_data = source.data;
-			let a_on = target.on;
-			let b_on = source.on;
-
-			let result = mergeAttr(target, source);
-
-			result.class = mergeClass(a_class, b_class);
-			result.style = mergeAttr(a_style, b_style);
-			result.aria = mergeAttr(a_aria, b_aria);
-			result.data = mergeAttr(a_data, b_data);
-			result.on = mergeAttr(a_on, b_on);
-
-			return result;
-		} else {
-			return target;
-		}
-	} else {
-		if (source) {
-			return source;
-		} else {
-			throw new Error("Please provide target or source");
-		}
+const mergeNested = <T extends object>(target?: T, source?: T): T | undefined => {
+	if (!target && !source) {
+		return undefined;
 	}
+
+	const merged = mergeAttr(target ?? ({} as T), source ?? ({} as T)) as Record<string, unknown>;
+	const cleaned = Object.entries(merged).reduce<Record<string, unknown>>((acc, [key, value]) => {
+		if (value != null) {
+			acc[key] = value;
+		}
+		return acc;
+	}, {});
+
+	return Object.keys(cleaned).length > 0 ? (cleaned as T) : undefined;
+};
+
+export const mergeObject = <T extends attr>(target?: T, source?: T): T => {
+	if (!target && !source) {
+		throw new Error("Please provide target or source");
+	}
+
+	return {
+		...mergeAttr(target ?? ({} as T), source ?? ({} as T)),
+		class: mergeClass(target?.class, source?.class),
+		style: mergeNested(target?.style, source?.style),
+		aria: mergeNested(target?.aria, source?.aria),
+		data: mergeNested(target?.data, source?.data),
+		on: mergeNested(target?.on, source?.on),
+	} as T;
 };
