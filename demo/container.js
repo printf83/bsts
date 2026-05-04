@@ -1,26 +1,14 @@
-import { core, b, h, t } from "@printf83/bsts";
-export const containerCol = (level, title, elem) => {
-	return [
-		new h.div({ display: "flex", flex: "column", gap: 1 }, [
-			title
-				? level === 1
-					? new h.h3({ border: "bottom", fontWeight: "bold" }, title)
-					: new h.h5({ border: "bottom", textColor: "secondary" }, title)
-				: "",
-			new h.div({ display: "flex", flex: "column", gap: 1 }, elem),
-		]),
-	];
+import { core, b, h } from "@printf83/bsts";
+
+export const title = (text) => {
+	return new h.h3({ border: "bottom", fontWeight: "bold" }, text);
 };
 
-export const containerRow = (level, title, elem) => {
-	return [
-		new h.div({ display: "flex", flex: "column", gap: 1 }, [
-			title
-				? level === 1
-					? new h.h3({ border: "bottom", fontWeight: "bold" }, title)
-					: new h.h5({ border: "bottom", textColor: "secondary" }, title)
-				: "",
-			new h.div({ display: "flex", flex: "row", gap: 1 }, elem),
+export const container = (direction, title, elem) => {
+	return new b.card.container([
+		title ? new b.card.header(title) : "",
+		new b.card.body([
+			new h.div({ display: "flex", flex: direction === "column" ? "column" : ["row", "wrap"], gap: 1 }, elem),
 		]),
-	];
+	]);
 };

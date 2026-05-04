@@ -1,13 +1,14 @@
 # bsts
 
-Maybe this is a strange way to generate HTML, but it is the way I learn.
-This library is meant to create Bootstrap 5.3 HTML in a TypeScript-friendly way.
-It exists because the author prefers writing scripts instead of writing raw HTML, so everything becomes script.
-Whenever Bootstrap changes, many things also change, so I built this library to keep the core generation in one place and update it for the latest Bootstrap version.
+Maybe this is a strange way to generate HTML, but it is the way I learn. This library is meant to create Bootstrap 5.3
+HTML in a TypeScript-friendly way. It exists because the author prefers writing scripts instead of writing raw HTML, so
+everything becomes script. Whenever Bootstrap changes, many things also change, so I built this library to keep the core
+generation in one place and update it for the latest Bootstrap version.
 
 ## What is bsts?
 
-`bsts` is a small TypeScript-first library for generating Bootstrap HTML using typed component builders. It allows you to construct Bootstrap markup programmatically with a builder-like API.
+`bsts` is a small TypeScript-first library for generating Bootstrap HTML using typed component builders. It allows you
+to construct Bootstrap markup programmatically with a builder-like API.
 
 ## Project structure
 
@@ -20,8 +21,8 @@ bsts/
 │   ├── esm/
 │   └── types/
 ├── demo/
-│   ├── demo.html
-│   └── demo.js
+│   ├── index.html
+│   └── index.js
 ├── scripts/
 │   ├── clean.cjs
 │   └── demo.cjs
@@ -42,11 +43,13 @@ bsts/
 ## Why ESM?
 
 This package is authored in TypeScript and built for modern ESM output by default.
+
 - `package.json` exports an ESM entrypoint at `./build/esm/index.mjs`
 - It also provides a CommonJS fallback under `./build/cjs/index.cjs`
 - The compiled runtime output is plain JS, so imports need exact `.js` file specifiers for native ESM resolution
 
-That means the library is compatible with modern bundlers and native ESM consumers while still supporting CJS users through the published build.
+That means the library is compatible with modern bundlers and native ESM consumers while still supporting CJS users
+through the published build.
 
 ## Install
 
@@ -60,18 +63,15 @@ pnpm install
 import { core, b, h } from "@printf83/bsts";
 
 core.documentReady(() => {
-  const body = document.getElementById("main") as Element;
-  core.replaceChild(
-    body,
-    new h.div([
-      new h.p("This is example p tag"),
-      new h.p(
-        { lead: true, data: { test: "test-data" } },
-        "This is example p tag with attribute"
-      ),
-      new b.button({ id: "btn1", color: "primary" }, "Button"),
-    ])
-  );
+	const body = document.getElementById("main") as Element;
+	core.replaceChild(
+		body,
+		new h.div([
+			new h.p("This is example p tag"),
+			new h.p({ lead: true, data: { test: "test-data" } }, "This is example p tag with attribute"),
+			new b.button({ id: "btn1", color: "primary" }, "Button"),
+		])
+	);
 });
 ```
 
@@ -86,7 +86,7 @@ These files can be consumed directly in browser pages or via a CDN.
 
 ## Demo
 
-Open `demo/demo.html` or run the local demo server:
+Open `demo/index.html` or run the local demo server:
 
 ```bash
 pnpm run demo
@@ -103,19 +103,37 @@ import { core, c, t, s, h, b, I } from "@printf83/bsts";
 ```
 
 - `core` / `c`
-  - runtime utilities: `documentReady`, `appendChild`, `prependChild`, `replaceChild`, `replaceWith`, `removeElement`, `getHtml`, `getNode`, `build`
-  - tag helpers: `tag`, `html`, `tagConstructor`, `tagConstructorNoElement`, `tagConstructorArgs`, `tagConstructorArgsNoElement`
-  - Bootstrap helpers: `bsConstructorNoElement`, `bsConstructor`, `bsConstructorMultiTag`, `BsConstructorArg`, `BsConstructorNoElementArg`, `BsConstructorMultiTagArg`
-  - utilities: `addEvent`, `removeEvent`, `placeholder`, `mergeObject`, `mergeAttr`, `mergeClass`, `addClassIntoElement`, `camel2Dash`, `elemInfo`, `UUID`, `requestIdleCallback`, `observeResizeObserver`, `disconnectResizeObserver`, `RGBToHex`, `getCSSVar`, `setCSSVar`, `accentColor`, `dataManager`, `isAttr`, `isTag`, `isHtml`
+    - runtime utilities: `documentReady`, `appendChild`, `prependChild`, `replaceChild`, `replaceWith`, `removeElement`,
+      `getHtml`, `getNode`, `build`
+    - tag helpers: `tag`, `html`, `tagConstructor`, `tagConstructorNoElement`, `tagConstructorArgs`,
+      `tagConstructorArgsNoElement`
+    - Bootstrap helpers: `bsConstructorNoElement`, `bsConstructor`, `bsConstructorMultiTag`, `BsConstructorArg`,
+      `BsConstructorNoElementArg`, `BsConstructorMultiTagArg`
+    - utilities: `addEvent`, `removeEvent`, `placeholder`, `mergeObject`, `mergeAttr`, `mergeClass`,
+      `addClassIntoElement`, `camel2Dash`, `elemInfo`, `UUID`, `requestIdleCallback`, `observeResizeObserver`,
+      `disconnectResizeObserver`, `RGBToHex`, `getCSSVar`, `setCSSVar`, `accentColor`, `dataManager`, `isAttr`, `isTag`,
+      `isHtml`
 
 - `h`
-  - HTML tag constructors: `a`, `abbr`, `address`, `area`, `article`, `aside`, `audio`, `b`, `base`, `bdi`, `bdo`, `blockquote`, `body`, `br`, `button`, `canvas`, `caption`, `cite`, `code`, `col`, `colgroup`, `data`, `datalist`, `dd`, `del`, `details`, `dfn`, `dialog`, `div`, `dl`, `dt`, `em`, `embed`, `fieldset`, `figcaption`, `figure`, `footer`, `form`, `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `head`, `header`, `hr`, `i`, `iframe`, `img`, `input`, `ins`, `kbd`, `label`, `legend`, `li`, `link`, `main`, `map`, `mark`, `menu`, `meta`, `meter`, `nav`, `noscript`, `obj`, `ol`, `optgroup`, `option`, `output`, `p`, `param`, `picture`, `pre`, `progress`, `q`, `rp`, `rt`, `ruby`, `s`, `samp`, `script`, `section`, `select`, `small`, `source`, `span`, `strong`, `style`, `sub`, `summary`, `sup`, `table`, `tbody`, `td`, `template`, `textarea`, `tfoot`, `th`, `thead`, `time`, `title`, `tr`, `track`, `u`, `ul`, `variable`, `video`, `wbr`
+    - HTML tag constructors: `a`, `abbr`, `address`, `area`, `article`, `aside`, `audio`, `b`, `base`, `bdi`, `bdo`,
+      `blockquote`, `body`, `br`, `button`, `canvas`, `caption`, `cite`, `code`, `col`, `colgroup`, `data`, `datalist`,
+      `dd`, `del`, `details`, `dfn`, `dialog`, `div`, `dl`, `dt`, `em`, `embed`, `fieldset`, `figcaption`, `figure`,
+      `footer`, `form`, `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `head`, `header`, `hr`, `i`, `iframe`, `img`, `input`,
+      `ins`, `kbd`, `label`, `legend`, `li`, `link`, `main`, `map`, `mark`, `menu`, `meta`, `meter`, `nav`, `noscript`,
+      `obj`, `ol`, `optgroup`, `option`, `output`, `p`, `param`, `picture`, `pre`, `progress`, `q`, `rp`, `rt`, `ruby`,
+      `s`, `samp`, `script`, `section`, `select`, `small`, `source`, `span`, `strong`, `style`, `sub`, `summary`, `sup`,
+      `table`, `tbody`, `td`, `template`, `textarea`, `tfoot`, `th`, `thead`, `time`, `title`, `tr`, `track`, `u`, `ul`,
+      `variable`, `video`, `wbr`
 
 - `b`
-  - Bootstrap component constructors: `blockquote`, `figure`, `form`, `icon`, `button`, `label`, `caption`, `msg`, `alert`, `img`, `row`, `col`, `grid`, `container`, `input`, `btnclose`, `select`, `textarea`, `dropdown`, `btngroup`, `inputgroup`, `formfloating`, `card`, `collapse`, `list`, `tabList`, `badge`, `visuallyhidden`, `nav`, `modal`, `toast`, `progress`, `popover`, `tooltip`, `offcanvas`, `navbar`, `breadcrumb`, `accordion`, `carousel`, `pagination`, `pill`, `table`, `scrollspy`, `verticalrule`, `spinner`, `timer`, `ul`, `initTimer`, `calendar`
+    - Bootstrap component constructors: `blockquote`, `figure`, `form`, `icon`, `button`, `label`, `caption`, `msg`,
+      `alert`, `img`, `row`, `col`, `grid`, `container`, `input`, `btnclose`, `select`, `textarea`, `dropdown`,
+      `btngroup`, `inputgroup`, `formfloating`, `card`, `collapse`, `list`, `tabList`, `badge`, `visuallyhidden`, `nav`,
+      `modal`, `toast`, `progress`, `popover`, `tooltip`, `offcanvas`, `navbar`, `breadcrumb`, `accordion`, `carousel`,
+      `pagination`, `pill`, `table`, `scrollspy`, `verticalrule`, `spinner`, `timer`, `ul`, `initTimer`, `calendar`
 
 - `I`
-  - interface namespaces: `I.h`, `I.b`, `I.c`, and `I.core`
+    - interface namespaces: `I.h`, `I.b`, `I.c`, and `I.core`
 
 ## How to build
 
@@ -141,6 +159,7 @@ Build scripts now include:
 - `build/cjs/` contains the CommonJS runtime build
 - `build/types/` contains generated TypeScript declarations
 
-Check [bsts testing website](https://printf83.github.io/bsts-test/) or [GitHub](https://github.com/printf83/bsts-test) for more example code.
+Check [bsts testing website](https://printf83.github.io/bsts-test/) or [GitHub](https://github.com/printf83/bsts-test)
+for more example code.
 
 Update : 1/5/2026

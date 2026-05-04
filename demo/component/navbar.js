@@ -1,4 +1,4 @@
-import { core, b, h, t } from "@printf83/bsts";
+import { core, b, h } from "@printf83/bsts";
 
 export const navbar = () => {
 	const navbarItem = () => {

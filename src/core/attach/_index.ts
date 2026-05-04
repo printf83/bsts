@@ -83,6 +83,11 @@ export const attachAttr = (elem: Element, attr: attr): Element => {
 
 		// add hasdestroy and hasbuild
 		const { hasBuild, hasDestroy } = hasBuildAndDestroyEvent(d);
+		const flexKey = keyOfType("flex", d);
+		const displayKey = keyOfType("display", d);
+		if (flexKey !== undefined && typeof d[flexKey] !== "undefined" && displayKey === undefined) {
+			d.display = "flex";
+		}
 		if (hasBuild || hasDestroy) {
 			if (d.class) {
 				if (Array.isArray(d.class)) {
