@@ -23,7 +23,8 @@ bsts/
 │   ├── demo.html
 │   └── demo.js
 ├── scripts/
-│   └── clean.cjs
+│   ├── clean.cjs
+│   └── demo.cjs
 ├── src/
 │   ├── core/
 │   ├── html/
@@ -129,7 +130,7 @@ Build scripts now include:
 - `pnpm run build:js` — build ESM/CJS outputs and browser bundles
 - `pnpm run build:types` — generate type declarations
 - `pnpm run build` — clean, build JS, and build types
-- `pnpm run demo` — serve the demo site from `demo/`
+- `pnpm run demo` — run `scripts/demo.cjs` and serve the demo site from `demo/`
 - `pnpm run lint` — run ESLint
 - `pnpm run format` — format source and demo files
 
