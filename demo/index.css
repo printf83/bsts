@@ -1,0 +1,8 @@
+body {
+	background-color: #fefefe;
+}
+
+.debug:not(.toast-container) {
+	position: static !important;
+	display: block !important;
+}

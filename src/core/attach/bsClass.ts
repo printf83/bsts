@@ -12,6 +12,7 @@ const formatDB: {
 
 	flex: new Formatter({
 		format: "flex-$1",
+		formatValue: "d-flex",
 		value: bsTypeA.flex,
 	}),
 	float: new Formatter({

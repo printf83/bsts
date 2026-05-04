@@ -42,7 +42,7 @@ import { card, cardOutline, cardExample1, cardExample2, accordion } from "./comp
 import { modal, offcanvas, popover, tooltip, toast } from "./component/dialog.js";
 
 const main = [
-	new h.div({ container: true, display: "flex", flex: "column", gap: 5 }, [
+	new h.div({ container: true, flex: "column" }, [
 		title("Navbars"),
 		container("column", "", navbar()),
 		title("Buttons"),
@@ -115,11 +115,11 @@ const main = [
 		title("Accordion"),
 		container("column", "", accordion()),
 		title("Dialog"),
-		container("row", "Modal", modal()),
+		container("row", "Modal", modal(), "#efefef"),
 		container("row", "Offcanvas", offcanvas()),
 		container("row", "Popover", popover()),
 		container("row", "Tooltip", tooltip()),
-		container("row", "Toast", toast()),
+		container("row", "Toast", toast(), "#efefef"),
 	]),
 ];
 
