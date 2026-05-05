@@ -68,9 +68,6 @@ export class icon extends i {
 			);
 		}
 
-		//add pointer event to allow click event to bubble up to parent anchor or button element
-		attr.pointerEvent ??= "none";
-
 		delete attr.id;
 		delete attr.type;
 		return super.convert(attr);

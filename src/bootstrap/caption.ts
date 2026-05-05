@@ -10,9 +10,9 @@ import { elem } from "../interface/core/elem.js";
 
 const fnIcon = (display: CaptionDisplay | undefined, attr: string | Icon | icon) => {
 	if (typeof attr === "string") {
-		return new icon({ id: attr, display: display });
+		return new icon({ id: attr, display: display, pointerEvent: "none" });
 	} else if (isAttr<Icon>(attr)) {
-		return new icon(mergeObject(attr, { display: display }));
+		return new icon(mergeObject(attr, { display: display, pointerEvent: "none" }));
 	} else {
 		return attr;
 	}
@@ -93,7 +93,7 @@ export class caption extends div {
 			} else {
 				if (attr.icon) {
 					if (typeof attr.icon === "string") {
-						attr.elem = new icon({ id: attr.icon });
+						attr.elem = new icon({ id: attr.icon, pointerEvent: "none" });
 					} else if (isAttr<Icon>(attr.icon)) {
 						attr.elem = new icon(attr.icon);
 					} else {

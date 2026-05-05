@@ -1,10 +1,10 @@
 import { core, b, h } from "@printf83/bsts";
 
 export const navbar = () => {
-	const navbarItem = () => {
+	const navbarItem = (brand) => {
 		const id = core.UUID();
 		return new b.navbar.innercontainer({ container: "fluid" }, [
-			new b.navbar.brand({ href: "#" }, "Navbar"),
+			new b.navbar.brand({ href: "#" }, brand),
 			new b.navbar.toggle.collapse({
 				target: `#${id}`,
 				controlfor: id,
@@ -18,9 +18,7 @@ export const navbar = () => {
 					},
 					[
 						new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
-						new b.navbar.item(new b.navbar.link({ href: "#" }, "Features")),
-						new b.navbar.item(new b.navbar.link({ href: "#" }, "Pricing")),
-						new b.navbar.item(new b.navbar.link({ href: "#" }, "About")),
+						new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
 						new b.navbar.item({ dropdown: true }, [
 							new b.dropdown.button({ navItem: true }, "Dropdown"),
 							new b.dropdown.menu([
@@ -30,6 +28,7 @@ export const navbar = () => {
 								new b.dropdown.item({ href: "#" }, "Something else here"),
 							]),
 						]),
+						new b.navbar.item(new b.navbar.link({ href: "#", disabled: true }, "Disabled")),
 					]
 				),
 				new h.form({ display: "flex", role: "search" }, [
@@ -57,16 +56,18 @@ export const navbar = () => {
 			{
 				bgColor: "primary",
 				textColorRGB: bsWhiteRGB,
+				expand: "xxl",
 			},
-			navbarItem()
+			navbarItem("Expand XXL")
 		),
 		new b.navbar.container(
 			{
 				bgColor: "dark",
 				textColorRGB: bsWhiteRGB,
+				expand: "xl",
 			},
-			navbarItem()
+			navbarItem("Expand XL")
 		),
-		new b.navbar.container({ bgColor: "body-tertiary" }, navbarItem()),
+		new b.navbar.container({ bgColor: "body-tertiary", expand: "lg" }, navbarItem("Expand LG")),
 	];
 };
