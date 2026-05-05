@@ -280,7 +280,7 @@ class header extends div {
 							},
 						},
 					},
-					new icon({ id: "arrow-left" })
+					new icon({ id: "arrow-left", pointerEvent: "none" })
 				),
 				new div(
 					{ marginX: "auto" },
@@ -366,7 +366,7 @@ class header extends div {
 							},
 						},
 					},
-					new icon({ id: "arrow-right" })
+					new icon({ id: "arrow-right", pointerEvent: "none" })
 				),
 			];
 		}

@@ -5,4 +5,5 @@ body {
 .debug:not(.toast-container) {
 	position: static !important;
 	display: block !important;
+	z-index: 0 !important;
 }

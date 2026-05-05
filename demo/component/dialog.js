@@ -81,7 +81,7 @@ export const toast = () => {
 				style: { width: "20px", height: "20px" },
 			}),
 			new h.strong({ marginEnd: "auto" }, "Bootstrap"),
-			new h.small("11 mins ago"),
+			new b.toast.timer(),
 			new b.toast.btnclose(),
 		]),
 		new b.toast.body("Hello, world! This is a toast message."),
