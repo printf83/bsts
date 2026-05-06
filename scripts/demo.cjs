@@ -16,15 +16,32 @@ const mimeTypes = {
 
 const server = http.createServer((req, res) => {
 	const urlPath = req.url === "/" ? "/demo/index.html" : req.url.split("?")[0];
-	const filePath = path.join(root, decodeURIComponent(urlPath));
+	let decodedPath;
+	try {
+		decodedPath = decodeURIComponent(urlPath);
+	} catch {
+		res.writeHead(400, { "Content-Type": "text/plain" });
+		return res.end("Bad request");
+	}
 
-	fs.readFile(filePath, (err, data) => {
+	const resolvedPath = path.resolve(root, `.${decodedPath}`);
+	const relativePath = path.relative(root, resolvedPath);
+	if (
+		relativePath.startsWith("..") ||
+		path.isAbsolute(relativePath) ||
+		decodedPath.includes("\0")
+	) {
+		res.writeHead(403, { "Content-Type": "text/plain" });
+		return res.end("Forbidden");
+	}
+
+	fs.readFile(resolvedPath, (err, data) => {
 		if (err) {
 			res.writeHead(404, { "Content-Type": "text/plain" });
 			return res.end("Not found");
 		}
 
-		const ext = path.extname(filePath).toLowerCase();
+		const ext = path.extname(resolvedPath).toLowerCase();
 		res.writeHead(200, { "Content-Type": mimeTypes[ext] || "text/plain" });
 		res.end(data);
 	});
