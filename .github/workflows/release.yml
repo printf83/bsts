@@ -1,0 +1,50 @@
+name: Create GitHub release
+
+on:
+    push:
+        tags:
+            - "v*.*.*"
+    workflow_dispatch:
+        inputs:
+            tag:
+                description: "Tag name for the release"
+                required: false
+                default: ""
+                type: string
+            draft:
+                description: "Create a draft release"
+                required: false
+                default: false
+                type: boolean
+            prerelease:
+                description: "Create as a prerelease"
+                required: false
+                default: false
+                type: boolean
+
+permissions:
+    contents: write
+
+jobs:
+    release:
+        name: Create release
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Create GitHub release
+              uses: actions/create-release@v1
+              with:
+                  tag_name:
+                      ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.tag != '' &&
+                      github.event.inputs.tag || github.ref_name }}
+                  release_name:
+                      ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.tag != '' &&
+                      github.event.inputs.tag || github.ref_name }}
+                  body: |
+                      Release ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.tag != '' && github.event.inputs.tag || github.ref_name }}
+                  draft: ${{ github.event.inputs.draft == 'true' }}
+                  prerelease: ${{ github.event.inputs.prerelease == 'true' }}
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
