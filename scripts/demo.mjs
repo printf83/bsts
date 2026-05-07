@@ -1,6 +1,6 @@
-const http = require("http");
-const fs = require("fs");
-const path = require("path");
+import http from "node:http";
+import fs from "node:fs/promises";
+import path from "node:path";
 
 const root = process.cwd();
 const mimeTypes = {
@@ -14,9 +14,10 @@ const mimeTypes = {
 	".ico": "image/x-icon",
 };
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
 	const urlPath = req.url === "/" ? "/demo/index.html" : req.url.split("?")[0];
 	let decodedPath;
+
 	try {
 		decodedPath = decodeURIComponent(urlPath);
 	} catch {
@@ -35,16 +36,15 @@ const server = http.createServer((req, res) => {
 		return res.end("Forbidden");
 	}
 
-	fs.readFile(resolvedPath, (err, data) => {
-		if (err) {
-			res.writeHead(404, { "Content-Type": "text/plain" });
-			return res.end("Not found");
-		}
-
+	try {
+		const data = await fs.readFile(resolvedPath);
 		const ext = path.extname(resolvedPath).toLowerCase();
 		res.writeHead(200, { "Content-Type": mimeTypes[ext] || "text/plain" });
 		res.end(data);
-	});
+	} catch {
+		res.writeHead(404, { "Content-Type": "text/plain" });
+		res.end("Not found");
+	}
 });
 
 server.listen(8000, () => {

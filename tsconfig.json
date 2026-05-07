@@ -1,17 +1,17 @@
 {
-  "compilerOptions": {
-    /* Visit https://aka.ms/tsconfig to read more about this file */ 
-    "target": "ES2019",
-    "lib": ["ES2019", "DOM"],
-    "module": "commonjs",
-    "outDir": "./build",
-    "rootDir": "./src",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "skipLibCheck": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true
-  }
+	"compilerOptions": {
+		/* Visit https://aka.ms/tsconfig to read more about this file */
+		"target": "ES2023",
+		"lib": ["ES2023", "DOM"],
+		"module": "commonjs",
+		"outDir": "./build",
+		"rootDir": "./src",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"noUncheckedIndexedAccess": true,
+		"skipLibCheck": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true
+	}
 }

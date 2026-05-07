@@ -3,7 +3,7 @@ import tsPlugin from "@typescript-eslint/eslint-plugin";
 
 export default [
 	{
-		ignores: ["build/**", "node_modules/**"],
+		ignores: ["build/**", "dist/**", "node_modules/**"],
 	},
 	{
 		files: ["**/*.ts"],
@@ -12,6 +12,24 @@ export default [
 			parserOptions: {
 				project: "./tsconfig.json",
 				sourceType: "module",
+			},
+		},
+		plugins: {
+			"@typescript-eslint": tsPlugin,
+		},
+		rules: {
+			"@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+			"@typescript-eslint/no-explicit-any": "warn",
+			"@typescript-eslint/explicit-module-boundary-types": "off",
+		},
+	},
+	{
+		files: ["**/*.mjs"],
+		languageOptions: {
+			parser: tsParser,
+			parserOptions: {
+				sourceType: "module",
+				ecmaVersion: "latest",
 			},
 		},
 		plugins: {

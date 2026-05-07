@@ -1,14 +1,10 @@
 {
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "typeRoots": ["./types"],
-    "outDir": "./build/types",
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ES2019"
-    ]
-  }
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"typeRoots": ["./types"],
+		"outDir": "./build/types",
+		"declaration": true,
+		"emitDeclarationOnly": true,
+		"lib": ["DOM", "DOM.Iterable", "ES2023"]
+	}
 }
