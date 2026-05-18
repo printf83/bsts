@@ -84,6 +84,26 @@ The library also ships browser-ready bundles under `dist/`:
 
 These files can be consumed directly in browser pages or via a CDN.
 
+example :
+
+<script src="https://cdn.jsdelivr.net/npm/@printf83/bsts@1.1.15/dist/bsts.bundle.js"></script>
+
+```ts
+const { core, b, h } = bsts;
+
+core.documentReady(() => {
+	const body = document.getElementById("main") as Element;
+	core.replaceChild(
+		body,
+		new h.div([
+			new h.p("This is example p tag"),
+			new h.p({ lead: true, data: { test: "test-data" } }, "This is example p tag with attribute"),
+			new b.button({ id: "btn1", color: "primary" }, "Button"),
+		])
+	);
+});
+```
+
 ## Demo
 
 Open `demo/index.html` or run the local demo server:
