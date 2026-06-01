@@ -89,7 +89,7 @@ These files can be consumed directly in browser pages or via a CDN.
 ```html
 <html>
 	<head>
-		<script src="https://cdn.jsdelivr.net/npm/@printf83/bsts@1.1.15/dist/bsts.bundle.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@printf83/bsts@1.2.0/dist/bsts.bundle.js"></script>
 	</head>
 	<body>
 		<div id="main"></div>
@@ -190,4 +190,4 @@ Build scripts now include:
 Check [bsts testing website](https://printf83.github.io/bsts-test/) or [GitHub](https://github.com/printf83/bsts-test)
 for more example code.
 
-Update : 1/5/2026
+Update : 2/6/2026
